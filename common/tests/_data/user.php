@@ -2,13 +2,34 @@
 
 return [
     [
-        'username' => 'bayer.hudson',
-        'auth_key' => 'HP187Mvq7Mmm3CTU80dLkGmni_FUH_lR',
-        //password_0
-        'password_hash' => '$2y$13$EjaPFBnZOQsHdGuHI.xvhuDp1fHpo8hKRSk6yshqa9c5EG8s3C3lO',
-        'password_reset_token' => 'ExzkCOaYc1L8IOBs4wdTGGbgNiG3Wz1I_1402312317',
-        'created_at' => '1402312317',
-        'updated_at' => '1402312317',
-        'email' => 'nicole.paucek@schultz.info',
+        'username' => "Admin",
+        'password_hash' => hash('md5','Iamadmin@1234'),
+        'email' => 'admin.deobelly@gmail.com',
+        'verified_at' => null,
+        'status' => 1,
+        'role' => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
     ],
+    [
+        'username' => "Customer",
+        'password_hash' => hash('md5','Iamrobot@1234'),
+        'email' => 'customer.deobelly@gmail.com',
+        'verified_at' => null,
+        'status' => 1,
+        'role' => 0,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+    [
+        'username' => "Sale",
+        'password_hash' => hash('md5','Iamsale@1234'),
+        'email' => 'sale.deobelly@gmail.com',
+        'verified_at' => null,
+        'status' => 1,
+        'role' => 2,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
 ];
