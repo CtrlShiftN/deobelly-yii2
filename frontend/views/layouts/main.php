@@ -25,7 +25,7 @@ AppAsset::register($this);
         <?php $this->registerCsrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
-        <?= $this->render('_head') ?>
+        <?= $this->render('_mainHead') ?>
         <style>
             input[type=search] {
                 background: url('<?= $cdnUrl?>/img/search-icon.png') no-repeat 9px center;
@@ -247,8 +247,8 @@ AppAsset::register($this);
                                                     </a>
                                                 </form>
                                             <?php else : ?>
-                                                <a class="dropdown-item" href="<?= $cdnUrl ?>/login">Đăng nhập</a>
-                                                <a class="dropdown-item" href="<?= $cdnUrl ?>/register">Đăng ký</a>
+                                                <a class="dropdown-item" href="<?= $cdnUrl ?>/site/login">Đăng nhập</a>
+                                                <a class="dropdown-item" href="<?= $cdnUrl ?>/site/register">Đăng ký</a>
                                             <?php endif; ?>
                                         </div>
                                     </div>
