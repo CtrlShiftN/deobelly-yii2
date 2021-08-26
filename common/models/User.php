@@ -11,11 +11,15 @@ use yii\web\IdentityInterface;
  *
  * @property int $id
  * @property string $username
+ * @property string $name
+ * @property string|null $tel
+ * @property string|null $address
  * @property string $auth_key
  * @property string $password_hash
  * @property string|null $password_reset_token
  * @property string $email
  * @property string|null $verified_at
+ * @property string $referral_code
  * @property int $status 0 for inactive, 1 for active
  * @property int $role 0 for customer, >= 1 for admins and sales
  * @property string $created_at
@@ -27,13 +31,14 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     const ROLE_USER = 0;
     const ROLE_ADMIN = 1;
     const ROLE_SALE = 2;
-    const ROLE_EDITOR = 4;
+    const ROLE_EDITOR = 3;
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 1;
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'user';
     }
@@ -44,15 +49,18 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
+            [['username', 'name', 'auth_key', 'password_hash', 'email', 'referral_code', 'created_at', 'updated_at'], 'required'],
             [['verified_at', 'created_at', 'updated_at'], 'safe'],
             [['status', 'role'], 'integer'],
             ['role', 'default', 'value' => self::ROLE_USER],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            [['username', 'password_hash', 'password_reset_token', 'email', 'verification_token'], 'string', 'max' => 255],
+            [['username', 'address', 'password_hash', 'password_reset_token', 'email', 'referral_code', 'verification_token'], 'string', 'max' => 255],
+            [['name'], 'string', 'max' => 100],
+            [['tel'], 'string', 'max' => 12],
             [['auth_key'], 'string', 'max' => 32],
             [['username'], 'unique'],
             [['email'], 'unique'],
+            [['referral_code'], 'unique'],
             [['password_reset_token'], 'unique'],
         ];
     }
@@ -65,11 +73,15 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             'id' => 'ID',
             'username' => 'Username',
+            'name' => 'Name',
+            'tel' => 'Tel',
+            'address' => 'Address',
             'auth_key' => 'Auth Key',
             'password_hash' => 'Password Hash',
             'password_reset_token' => 'Password Reset Token',
             'email' => 'Email',
             'verified_at' => 'Verified At',
+            'referral_code' => 'Referral Code',
             'status' => 'Status',
             'role' => 'Role',
             'created_at' => 'Created At',
@@ -90,7 +102,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * @param mixed $token
      * @param null $type
-     * @return void|IdentityInterface|null
+     * @return void
      * @throws NotSupportedException
      */
     public static function findIdentityByAccessToken($token, $type = null)
@@ -102,7 +114,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      * @param $username
      * @return User|null
      */
-    public static function findByUsername($username)
+    public static function findByUsername($username): ?User
     {
         return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
@@ -117,10 +129,24 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
+     * @param $email
+     * @return User|null
+     */
+    public static function findAdminByEmail($email)
+    {
+        $user = static::findOne(['email' => $email, 'status' => self::STATUS_ACTIVE]);
+        if (!empty($user) && $user->role > 0){
+            return $user;
+        }else{
+            return null;
+        }
+    }
+
+    /**
      * @param $token
      * @return User|null
      */
-    public static function findByPasswordResetToken($token)
+    public static function findByPasswordResetToken($token): ?User
     {
         if (!static::isPasswordResetTokenValid($token)) {
             return null;
@@ -136,7 +162,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      * @param $token
      * @return User|null
      */
-    public static function findByVerificationToken($token) {
+    public static function findByVerificationToken($token): ?User
+    {
         return static::findOne([
             'verification_token' => $token,
             'status' => self::STATUS_INACTIVE
@@ -147,13 +174,13 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      * @param $token
      * @return bool
      */
-    public static function isPasswordResetTokenValid($token)
+    public static function isPasswordResetTokenValid($token): bool
     {
         if (empty($token)) {
             return false;
         }
 
-        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
+        $timestamp = (int)substr($token, strrpos($token, '_') + 1);
         $expire = Yii::$app->params['user.passwordResetTokenExpire'];
         return $timestamp + $expire >= time();
     }
@@ -169,7 +196,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * @return string|null
      */
-    public function getAuthKey()
+    public function getAuthKey(): ?string
     {
         return $this->auth_key;
     }
@@ -178,7 +205,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      * @param string $authKey
      * @return bool
      */
-    public function validateAuthKey($authKey)
+    public function validateAuthKey($authKey): bool
     {
         return $this->getAuthKey() === $authKey;
     }
@@ -187,7 +214,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      * @param $password
      * @return bool
      */
-    public function validatePassword($password)
+    public function validatePassword($password): bool
     {
         return Yii::$app->security->validatePassword($password, $this->password_hash);
     }

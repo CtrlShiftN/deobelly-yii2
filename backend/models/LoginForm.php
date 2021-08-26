@@ -1,7 +1,8 @@
 <?php
 
-namespace common\models;
+namespace backend\models;
 
+use common\models\User;
 use Yii;
 use yii\base\Model;
 
@@ -56,22 +57,11 @@ class LoginForm extends Model
      */
     public function login()
     {
-        if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+        $user = $this->getUser();
+        if ($this->validate() && $user->role > 0) {
+            return Yii::$app->user->login($user, $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
-        
-        return false;
-    }
-
-    /**
-     * @return bool
-     */
-    public function loginAsAdmin(): bool
-    {
-        if ($this->validate() && !empty($this->getAdmin())) {
-            return Yii::$app->user->login($this->getAdmin(), $this->rememberMe ? 3600 * 24 * 30 : 0);
-        }
-
+        $this->addError('email', 'This account does not exist');
         return false;
     }
 
@@ -84,18 +74,6 @@ class LoginForm extends Model
     {
         if ($this->_user === null) {
             $this->_user = User::findByEmail($this->email);
-        }
-
-        return $this->_user;
-    }
-
-    /**
-     * @return User|null
-     */
-    protected function getAdmin()
-    {
-        if ($this->_user === null) {
-            $this->_user = User::findAdminByEmail($this->email);
         }
 
         return $this->_user;
