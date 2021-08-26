@@ -129,20 +129,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @param $email
-     * @return User|null
-     */
-    public static function findAdminByEmail($email)
-    {
-        $user = static::findOne(['email' => $email, 'status' => self::STATUS_ACTIVE]);
-        if (!empty($user) && $user->role > 0){
-            return $user;
-        }else{
-            return null;
-        }
-    }
-
-    /**
      * @param $token
      * @return User|null
      */

@@ -59,18 +59,6 @@ class LoginForm extends Model
         if ($this->validate()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
-        
-        return false;
-    }
-
-    /**
-     * @return bool
-     */
-    public function loginAsAdmin(): bool
-    {
-        if ($this->validate() && !empty($this->getAdmin())) {
-            return Yii::$app->user->login($this->getAdmin(), $this->rememberMe ? 3600 * 24 * 30 : 0);
-        }
 
         return false;
     }
@@ -89,15 +77,4 @@ class LoginForm extends Model
         return $this->_user;
     }
 
-    /**
-     * @return User|null
-     */
-    protected function getAdmin()
-    {
-        if ($this->_user === null) {
-            $this->_user = User::findAdminByEmail($this->email);
-        }
-
-        return $this->_user;
-    }
 }
