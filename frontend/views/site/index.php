@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 $cdnUrl = Yii::$app->params['frontend'];
-$imgUrl = Yii::$app->params['common'];
+$imgUrl = Yii::$app->params['common']."/media";
 $this->title = 'DE OBELLY';
 ?>
 <link rel="stylesheet" href="<?= $cdnUrl ?>/css/index.css">
