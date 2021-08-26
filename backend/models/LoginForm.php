@@ -1,7 +1,8 @@
 <?php
 
-namespace common\models;
+namespace backend\models;
 
+use common\models\User;
 use Yii;
 use yii\base\Model;
 
@@ -56,10 +57,11 @@ class LoginForm extends Model
      */
     public function login()
     {
-        if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+        $user = $this->getUser();
+        if ($this->validate() && $user->role > 0) {
+            return Yii::$app->user->login($user, $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
-
+        $this->addError('email', 'This account does not exist');
         return false;
     }
 
@@ -76,5 +78,4 @@ class LoginForm extends Model
 
         return $this->_user;
     }
-
 }
