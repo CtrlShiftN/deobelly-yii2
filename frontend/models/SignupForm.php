@@ -11,9 +11,10 @@ use common\models\User;
  */
 class SignupForm extends Model
 {
-    public $username;
     public $email;
     public $password;
+    public $name;
+    public $tel;
 
 
     /**
@@ -22,11 +23,6 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['username', 'trim'],
-            ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
-
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
@@ -35,28 +31,40 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
+
+            ['name', 'required'],
+            ['name', 'trim'],
+            ['name', 'string', 'max' => 100],
+
+            ['tel', 'trim'],
+            ['tel', 'string', 'max' => 12],
         ];
     }
 
     /**
-     * Signs user up.
-     *
-     * @return bool whether the creating new account was successful and email was sent
+     * @return bool|null
+     * @throws \yii\base\Exception
      */
-    public function signup()
+    public function signup(): ?bool
     {
         if (!$this->validate()) {
             return null;
         }
-        
+
         $user = new User();
-        $user->username = $this->username;
         $user->email = $this->email;
         $user->setPassword($this->password);
+        $user->name = $this->name;
+        $user->tel = $this->tel;
         $user->generateAuthKey();
-        $user->generateEmailVerificationToken();
-
-        return $user->save() && $this->sendEmail($user);
+        $user->generatePasswordResetToken();
+        $user->username = strstr($this->email, '@', true);
+        $user->referral_code = strstr($this->email, '@', true);
+        $user->role = $user::ROLE_USER;
+        $user->created_at = date('Y-m-d H:m:s');
+        $user->updated_at = date('Y-m-d H:m:s');
+        $user->status = $user::STATUS_ACTIVE;
+        return $user->save();
     }
 
     /**
@@ -64,7 +72,7 @@ class SignupForm extends Model
      * @param User $user user model to with email should be send
      * @return bool whether the email was sent
      */
-    protected function sendEmail($user)
+    protected function sendEmail(User $user): bool
     {
         return Yii::$app
             ->mailer
