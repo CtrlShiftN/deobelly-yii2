@@ -12,6 +12,6 @@ $cdnUrl = Yii::$app->params['frontend'];
 <script type="text/javascript" src="<?= $cdnUrl ?>/js/popper.min.js"></script>
 <!--<link href="--><?//= $cdnUrl ?><!--/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">-->
 <script type="text/javascript" src="<?= $cdnUrl ?>/js/jquery-3.6.0.min.js"></script>
-<!--<script type="text/javascript" src="--><?//= $cdnUrl ?><!--/bootstrap/js/bootstrap.min.js"></script>-->
+<script type="text/javascript" src="<?= $cdnUrl ?>/bootstrap/js/bootstrap.min.js"></script>
 <link href="<?= $cdnUrl ?>/fontawesome/css/all.css" rel="stylesheet" type="text/css">
 <link href="<?= $cdnUrl ?>/css/style.css" rel="stylesheet" type="text/css">

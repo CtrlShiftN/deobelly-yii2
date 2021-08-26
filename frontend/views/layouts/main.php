@@ -271,7 +271,7 @@ AppAsset::register($this);
                 <div class="footer-content">
                     <div class="ft-bg-overlay"></div>
                     <div class="container inner">
-                        <div class="row d-none d-lg-flex">
+                        <div class="row d-none d-lg-flex m-0 p-0">
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
                                     <h3>VỀ CHÚNG TÔI</h3>
@@ -353,7 +353,7 @@ AppAsset::register($this);
                                 </ul>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row m-0 p-0">
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
                                     <h3>THÔNG TIN LIÊN HỆ</h3>
