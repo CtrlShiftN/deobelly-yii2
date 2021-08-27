@@ -32,7 +32,7 @@ AppAsset::register($this);
             }
 
             footer .footer-content {
-                background: url('<?= $cdnUrl?>/img/footer_bg.png');
+                background: url('<?= $cdnUrl?>/img/footer_bg.png') no-repeat;
             }
         </style>
     </head>
