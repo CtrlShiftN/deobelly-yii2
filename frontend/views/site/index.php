@@ -4,23 +4,22 @@
 $cdnUrl = Yii::$app->params['frontend'];
 $imgUrl = Yii::$app->params['common']."/media";
 $this->title = 'DE OBELLY';
+$this->registerCssFile("$cdnUrl/css/index.css");
+$this->registerCss("
+    .bg-link-product { 
+            background-image: url('$imgUrl/background/bgLinkToProduct.jpg');        
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat; 
+        }
+    .bgNews{ 
+            background-image: url('$imgUrl/background/bgNews.jpg');        
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat; 
+        }
+        ");
 ?>
-<link rel="stylesheet" href="<?= $cdnUrl ?>/css/index.css">
-<style>
-    .bg-link-product {
-        background-image: url("<?= $imgUrl ?>/background/bgLinkToProduct.jpg");
-        background-attachment: fixed;
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
-
-    .bgNews {
-        background-image: url("<?= $imgUrl ?>/background/bgNews.jpg");
-        background-attachment: fixed;
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
-</style>
 <div class="full-width">
     <!-- Carousel wrapper -->
     <div id="sliderHeader" class="carousel slide carousel-fade" data-bs-ride="carousel">
