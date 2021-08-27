@@ -3,7 +3,6 @@
 namespace common\components\importSample;
 
 use common\models\User;
-use yii\base\BaseObject;
 
 class SampleData
 {
