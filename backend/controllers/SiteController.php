@@ -55,6 +55,15 @@ class SiteController extends Controller
         ];
     }
 
+    public function beforeAction($action)
+    {
+        $this->layout = 'adminlte3';
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+        return true; // or false to not run the action
+    }
+
     /**
      * Displays homepage.
      *
