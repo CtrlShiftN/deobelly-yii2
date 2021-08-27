@@ -25,6 +25,10 @@ class SampleData
         ]
     ];
 
+    /**
+     * @return string
+     * @throws \yii\base\Exception
+     */
     public static function insertSampleUser()
     {
         $count = 0;

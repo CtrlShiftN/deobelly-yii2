@@ -13,6 +13,8 @@ use yii\bootstrap5\NavBar;
 use yii\helpers\Url;
 
 $cdnUrl = Yii::$app->params['backend'];
+$controller = Yii::$app->controller->id;
+$action = Yii::$app->controller->action->id;
 
 AppAsset::register($this);
 ?>
@@ -91,13 +93,15 @@ AppAsset::register($this);
                              with font-awesome or any other icon font library -->
                         <li class="nav-header text-uppercase font-weight-bold">Tài khoản</li>
                         <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
+                            <a href="<?= $cdnUrl ?>/user/create"
+                               class="nav-link <?= ($controller == 'user' && $action == 'create') ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-user-plus"></i>
                                 <p>Thêm tài khoản mới</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
+                            <a href="<?= $cdnUrl ?>/user"
+                               class="nav-link <?= ($controller == 'user' && $action == 'index') ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>Quản lý tài khoản</p>
                             </a>
@@ -170,7 +174,8 @@ AppAsset::register($this);
 
         <!-- Main Footer -->
         <footer class="main-footer">
-            <strong>Copyright &copy; <?= date('Y') ?> <a href="<?= Yii::$app->params['frontend'] ?>">De Obelly</a>.</strong>
+            <strong>Copyright &copy; <?= date('Y') ?> <a href="<?= Yii::$app->params['frontend'] ?>">De
+                    Obelly</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 2.4.4
