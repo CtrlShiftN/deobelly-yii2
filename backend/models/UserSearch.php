@@ -70,7 +70,7 @@ class UserSearch extends User
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $query,
+            'query' => $query->indexBy('id'),
             'pagination' => [
                 'pageSize' => 15,
             ],

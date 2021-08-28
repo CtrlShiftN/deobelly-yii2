@@ -27,7 +27,9 @@
     "ext-openssl": "*",
     "kartik-v/yii2-grid": "^3.3",
     "kartik-v/yii2-krajee-base": "^2.0",
-    "kartik-v/yii2-widget-select2": "^2.2"
+    "kartik-v/yii2-widget-select2": "^2.2",
+    "kartik-v/yii2-editable": "^1.7",
+    "ext-json": "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",

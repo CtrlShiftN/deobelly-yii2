@@ -39,6 +39,7 @@ class User extends \common\models\User
             [['username', 'address', 'password_hash', 'password_reset_token', 'email', 'referral_code', 'verification_token'], 'string', 'max' => 255],
             [['name'], 'string', 'max' => 100],
             [['tel'], 'string', 'max' => 12],
+            ['tel', 'validateTel'],
             [['auth_key'], 'string', 'max' => 32],
             [['username'], 'unique'],
             [['email'], 'unique'],
@@ -70,5 +71,16 @@ class User extends \common\models\User
             'updated_at' => 'Updated At',
             'verification_token' => 'Verification Token',
         ];
+    }
+
+    public function validateTel($attribute, $params, $validator){
+        if (!preg_match('/\A(84|0[3|5|7|8|9])+([0-9]{8})\z/', $attribute, $output_array)){
+            $this->addError($attribute, 'Số điện thoại không hợp lệ');
+        }
+    }
+
+    public static function updateUser($id, $attribute, $value)
+    {
+        return \common\models\User::updateAll([$attribute=>$value],['id'=>$id]);
     }
 }

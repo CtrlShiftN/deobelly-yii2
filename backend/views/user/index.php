@@ -6,6 +6,7 @@ use kartik\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\UserSearch */
@@ -13,6 +14,7 @@ use yii\helpers\Url;
 
 $this->title = 'Tài khoản';
 $this->params['breadcrumbs'][] = $this->title;
+$arrStatus = ["Không hoạt động", "Đang hoạt động"];
 ?>
 <div class="user-index">
     <div class="pt-3">
@@ -43,24 +45,48 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['class' => 'kartik-sheet-style']
             ],
             [
+                'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'name',
                 'label' => 'Họ và tên',
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',
+                'value' => function ($model, $key, $index, $widget) {
+                    return $model['name'];
+                },
+                // edit field
+                'editableOptions' => [
+                    'asPopover' => false,
+                ],
             ],
             [
+                'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'tel',
                 'label' => 'Số điện thoại',
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',
+                'value' => function ($model, $key, $index, $widget) {
+                    return $model['tel'];
+                },
+                // edit field
+                'editableOptions' => [
+                    'asPopover' => false,
+                ],
             ],
             [
+                'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'address',
                 'label' => 'Địa chỉ',
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
+                'value' => function ($model, $key, $index, $widget) {
+                    return $model['address'];
+                },
+                // edit field
+                'editableOptions' => [
+                    'asPopover' => false,
+                ],
             ],
             [
                 'attribute' => 'email',
@@ -77,19 +103,49 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => false
             ],
             [
-                'class' => 'kartik\grid\BooleanColumn',
+                'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'status',
                 'label' => 'Trạng thái',
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
+                'value' => function ($model, $key, $index, $widget) use ($arrStatus) {
+                    return $arrStatus[$model['status']];
+                },
+                'editableOptions' => function ($model, $key, $index) use ($arrStatus) {
+                    return [
+                        'name' => 'status',
+                        'asPopover' => false,
+                        'header' => 'Trạng Thái',
+                        'size' => 'md',
+                        'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
+                        'data' => $arrStatus,
+                        // default value in the text box
+                        'value' => $arrStatus[$model['status']],
+                        'displayValueConfig' => $arrStatus
+                    ];
+                },
             ],
             [
+                'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'role',
                 'label' => 'Vai trò',
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) {
                     return User::ROLES[$model->role];
+                },
+                'editableOptions' => function ($model, $key, $index) {
+                    return [
+                        'name' => 'role',
+                        'asPopover' => false,
+                        'header' => 'Vai trò',
+                        'size' => 'md',
+                        'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
+                        'data' => User::ROLES,
+                        // default value in the text box
+                        'value' => User::ROLES[$model['role']],
+                        'displayValueConfig' => User::ROLES
+                    ];
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 'filter' => User::ROLES,
@@ -100,29 +156,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw'
             ],
             [
-                'class' => 'kartik\grid\ActionColumn',
-                'dropdown' => true,
-                'dropdownOptions' => ['class' => 'float-right'],
-                'urlCreator' => function ($action, $model, $key, $index) {
-                    if ($action == 'update') {
-                        return Url::toRoute(['user/update', 'id' => $key]);
-                    }
-                    if ($action == 'view') {
-                        return Url::toRoute(['user/view', 'id' => $key]);
-                    }
-                    if ($action == 'delete') {
-                        return Url::toRoute(['user/delete', 'id' => $key]);
-                    }
-                    return '#';
+                'label' => 'Hành động',
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'value' => function ($model, $key, $index, $widget) {
+                    return Html::a('Xóa', Url::toRoute(['user/delete', 'id' => $key]), ['class' => 'btn btn-danger', 'data' => [
+                        'method' => 'post',
+                        'confirm' => 'Are you sure you want to delete this item?',
+                    ],]);
                 },
-                'viewOptions' => ['title' => 'Xem chi tiết tài khoản', 'data-toggle' => 'tooltip'],
-                'updateOptions' => ['title' => 'Chỉnh sửa tài khoản', 'data-toggle' => 'tooltip'],
-                'deleteOptions' => ['title' => 'Xóa tài khoản', 'data-toggle' => 'tooltip'],
-                'headerOptions' => ['class' => 'kartik-sheet-style'],
-            ],
-
+                'format' => 'raw'
+            ]
         ];
-
+        Pjax::begin();
         echo GridView::widget([
             'id' => 'gridview',
             'dataProvider' => $dataProvider,
@@ -134,12 +180,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'toggleDataContainer' => ['class' => 'btn-group mr-2'],
             // set export properties
             'export' => [
-                'fontAwesome' => true
+                'fontAwesome' => true,
+                'label' => '<i class="far fa-file-alt"></i>  Xuất file',
             ],
             'responsive' => true,
             'persistResize' => false,
             'toggleDataOptions' => ['minCount' => 10],
-            'exportConfig' => true,
             'rowOptions' => function ($model, $index, $widget, $grid) {
                 return [
                     'class' => GridView::TYPE_DEFAULT
@@ -148,6 +194,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'condensed' => true,
             'hover' => true,
             'columns' => $gridColumns,
+            'exportConfig' => $defaultExportConfig,
             'toolbar' => [
                 [
                     'content' => Html::a('<i class="fas fa-user-plus"></i> Thêm thành viên mới', ['create'], [
@@ -157,12 +204,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]),
                     'options' => ['class' => 'btn-group mr-2']
                 ],
+                '{export}',
                 '{toggleData}',
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
                 'heading' => 'Danh sách tài khoản',
             ],
-        ]); ?>
+        ]);
+        Pjax::end();
+        ?>
     </div>
 </div>

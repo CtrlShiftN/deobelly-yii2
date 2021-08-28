@@ -4,9 +4,12 @@ namespace backend\controllers;
 
 use backend\models\User;
 use backend\models\UserSearch;
+use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\json;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -21,6 +24,15 @@ class UserController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ]
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
@@ -53,6 +65,19 @@ class UserController extends Controller
     {
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+
+        if (Yii::$app->request->post('hasEditable')) {
+            // which rows has been edited?
+            $_id = $_POST['editableKey'];
+            $_index = $_POST['editableIndex'];
+            // which attribute has been edited?
+            $attribute = $_POST['editableAttribute'];
+            // update to db
+            $value = $_POST['User'][$_index][$attribute];
+            $result = User::updateUser($_id, $attribute, $value);
+            // response to gridview
+            return json_encode($result);
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
