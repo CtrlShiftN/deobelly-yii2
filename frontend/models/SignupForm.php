@@ -38,7 +38,14 @@ class SignupForm extends Model
 
             ['tel', 'trim'],
             ['tel', 'string', 'max' => 12],
+            ['tel', 'validateTel']
         ];
+    }
+
+    public function validateTel($attribute, $params, $validator){
+        if (!preg_match('/\A(84|0[3|5|7|8|9])+([0-9]{8})\z/', $attribute, $output_array)){
+            $this->addError($attribute, 'Số điện thoại không hợp lệ');
+        }
     }
 
     /**
