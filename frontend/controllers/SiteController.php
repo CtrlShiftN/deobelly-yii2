@@ -52,6 +52,15 @@ class SiteController extends Controller
         ];
     }
 
+    public function beforeAction($action)
+    {
+        $this->layout = 'main';
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+        return true; // or false to not run the action
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -60,10 +69,6 @@ class SiteController extends Controller
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
     }
@@ -85,6 +90,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout = 'blank';
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -153,6 +159,7 @@ class SiteController extends Controller
      */
     public function actionSignup()
     {
+        $this->layout = 'blank';
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
             Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
@@ -217,8 +224,8 @@ class SiteController extends Controller
      * Verify email address
      *
      * @param string $token
-     * @throws BadRequestHttpException
      * @return yii\web\Response
+     * @throws BadRequestHttpException
      */
     public function actionVerifyEmail($token)
     {

@@ -2,7 +2,7 @@
 
 namespace backend\controllers;
 
-use common\models\LoginForm;
+use backend\models\LoginForm;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -55,6 +55,15 @@ class SiteController extends Controller
         ];
     }
 
+    public function beforeAction($action)
+    {
+        $this->layout = 'adminlte3';
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+        return true; // or false to not run the action
+    }
+
     /**
      * Displays homepage.
      *
@@ -95,7 +104,7 @@ class SiteController extends Controller
      *
      * @return Response
      */
-    public function actionLogout()
+    public function actionLogout(): Response
     {
         Yii::$app->user->logout();
 
