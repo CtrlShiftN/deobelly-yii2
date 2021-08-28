@@ -13,9 +13,7 @@ use Yii;
  * @property string|null $title
  * @property string|null $content
  * @property int|null $admin_id
- * @property string|null $tag_id
- * @property int|null $blog_category_id
- * @property int|null $status
+ * @property int|null $status 0 for inactive, 1 for active
  * @property string|null $created_at
  * @property string|null $updated_at
  */
@@ -36,9 +34,9 @@ class Posts extends \yii\db\ActiveRecord
     {
         return [
             [['content'], 'string'],
-            [['admin_id', 'blog_category_id', 'status'], 'integer'],
+            [['admin_id', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['avatar', 'thumbnail', 'title', 'tag_id'], 'string', 'max' => 255],
+            [['avatar', 'thumbnail', 'title'], 'string', 'max' => 255],
         ];
     }
 
@@ -54,8 +52,6 @@ class Posts extends \yii\db\ActiveRecord
             'title' => 'Title',
             'content' => 'Content',
             'admin_id' => 'Admin ID',
-            'tag_id' => 'Tag ID',
-            'blog_category_id' => 'Blog Category ID',
             'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
