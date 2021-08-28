@@ -34,6 +34,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     const ROLE_EDITOR = 3;
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 1;
+    const ROLES = ['User', 'Admin', 'Sale', 'Editor'];
 
     /**
      * {@inheritdoc}

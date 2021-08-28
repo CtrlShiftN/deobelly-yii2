@@ -23,6 +23,31 @@ class UserSearch extends User
     }
 
     /**
+     * @return string[]
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => 'Username',
+            'name' => 'Họ và tên',
+            'tel' => 'Số điện thoại',
+            'address' => 'Địa chỉ',
+            'auth_key' => 'Auth Key',
+            'password_hash' => 'Password Hash',
+            'password_reset_token' => 'Password Reset Token',
+            'email' => 'Email',
+            'verified_at' => 'Xác thực',
+            'referral_code' => 'Mã giới thiệu',
+            'status' => 'Trạng thái',
+            'role' => 'Vai trò',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+            'verification_token' => 'Verification Token',
+        ];
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function scenarios()
@@ -47,7 +72,7 @@ class UserSearch extends User
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 1,
+                'pageSize' => 15,
             ],
         ]);
 
