@@ -31,6 +31,7 @@ class m210827_022555_create_products_table extends Migration
             'fake_sold' => $this->integer()->defaultValue(rand(999, 99999))->comment('client see this amount if sold < 1k'),
             'sold' => $this->integer()->defaultValue(0),
             'status' => $this->smallInteger()->defaultValue(1)->comment('0 for inactive, 1 for active'),
+            'admin_id' => $this->bigInteger(),
             'created_at' => $this->dateTime(),
             'updated_at' => $this->dateTime()
         ]);

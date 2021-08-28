@@ -17,6 +17,7 @@ class m210827_044029_create_trademark_table extends Migration
             'name' => $this->string(),
             'slug' => $this->string()->unique(),
             'status' => $this->smallInteger()->defaultValue(1)->comment('0 for inactive, 1 for active'),
+            'admin_id' => $this->bigInteger(),
             'created_at'=>$this->dateTime(),
             'updated_at'=>$this->dateTime()
         ]);
