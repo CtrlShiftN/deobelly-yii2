@@ -77,12 +77,58 @@ class SampleData
             'sale_price' => 149000,
             'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
             'quantity' => 20,
-            'image' => 'product/clothes/shirt/shirt1.png',
-            'images' => 'product/clothes/shirt/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/shirt/shirt3.png',
+            'image' => 'product/clothes/top/shirt1.png',
+            'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
             'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
             'trademark_id' => 1,
             'admin_id' => 1,
-        ]
+        ],
+        [
+            'name' => 'Áo sơ mi nam tay dài CÔNG SỞ LADOS',
+            'slug' => 'ao-so-mi-nam-tay-dai-cong-so-lados',
+            'short_description' => "<li>chất vải mát mịn chống nhăn</li>",
+            'description' => "
+<li> Chất liệu: vải kate lụa mịn mềm, thấm hút mồ hôi tốt.</li>
+<li> Co giãn nhẹ, mặc cực thoải mái, ít nhăn</li>
+<li> Chất vải đẹp, không xù lông, không phai màu</li>
+<li> Đường may cực tỉ mỉ cực đẹp</li>
+<li> Có thể mặc đi làm, đi chơi, dễ phối đồ, không kén người mặc</li>
+<li> Kiểu dáng: Thiết kế theo form rộng vừa,đơn giản , dễ mặc ..Tôn lên được sự trẻ trung năng động cho các bạn nam, kèm vào đó là sự hoạt động thoải mái khi mặc sản phẩm.</li>
+</li>Được sản xuất và bảo hành bởi Công ty TNHH MTV LADOS VIỆT NAM</li>
+",
+            'cost_price' => 290000,
+            'regular_price' => 199000,
+            'sale_price' => 199000,
+            'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
+            'quantity' => 30,
+            'image' => 'product/clothes/shirt/ao-so-mi-lados.png',
+            'images' => '',
+            'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
+            'trademark_id' => 2,
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Áo Vest Nam Thời Trang The Shirts Studio Hàn Quốc',
+            'slug' => 'ao-vest-nam-thoi-trang-the-shirt-studio-han-quoc',
+            'short_description' => "",
+            'description' => "
+<li> Hàng nhập khẩu trực tiếp chính hãng từ Hàn Quốc.</li>
+<li> Thiết kế đẹp mắt hợp thời trang, kiểu dáng trẻ trung. </li>
+<li> Bộ Vest The Shirt Studio là dòng sản phẩm cao cấp,được thiết kế,may đo theo xu hướng hiện đại ,lịch lãm ,kiểu dáng body khoẻ khoắn.</li>
+<li> <ul>Hướng dẫn bảo quản:<li> Giặt máy bằng nước lạnh</li><li> Không sử dụng chất tẩy mạnh.</li><li> Ủi nhẹ ở nhiệt độ tối đa 110°C.</li></ul></li>
+</li> Thông tin thương hiệu The Shirt Studio là thương hiệu thời trang rất được giới trẻ ưa chuộng. Khác với những thương hiệu thời trang thông thường, The Shirt Studio không chú trọng vào những thiết kế mang tính thời thượng mà chỉ tập trung phát triển những mẫu trang phục cơ bản nhất, dễ phối đồ và luôn cần có trong tủ quần áo của các đấng mày râu. Thêm vào đó, sự khác biệt của The Shirt Studio còn thể hiện rõ nét thông qua chất liệu vải được tuyển chọn, xử lý kỹ lưỡng , thân thiện với môi trường, kết hợp cùng kiểu dáng không bao giờ lỗi mốt và những đường cắt may tinh xảo</li>
+",
+            'cost_price' => 590000,
+            'regular_price' => 449000,
+            'sale_price' => 449000,
+            'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '3',
+            'quantity' => 18,
+            'image' => 'product/clothes/shirt/vest-nam-han-quoc.jpg',
+            'images' => '',
+            'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '3',
+            'trademark_id' => 3,
+            'admin_id' => 1,
+        ],
     ];
 
     /**
@@ -134,10 +180,23 @@ class SampleData
      */
     protected static $trademarkInfoArr = [
         [
+            'id' => 1,
             'name' => 'HUGO',
             'slug' => 'hugo',
             'admin_id' => 1,
-        ]
+        ],
+        [
+            'id' => 2,
+            'name' => 'LADOS',
+            'slug' => 'lados',
+            'admin_id' => 1,
+        ],
+        [
+            'id' => 3,
+            'name' => 'The Shirt Studio',
+            'slug' => 'the-shirt-studio',
+            'admin_id' => 1,
+        ],
     ];
 
     /**
@@ -310,6 +369,7 @@ class SampleData
         $countTrademark = 0;
         foreach (self::$trademarkInfoArr as $values) {
             $trademark = new Trademark();
+            $trademark->id = $values['id'];
             $trademark->name = $values['name'];
             $trademark->slug = $values['slug'];
             $trademark->created_at = date('Y-m-d H:m:s');
