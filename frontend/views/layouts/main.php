@@ -120,7 +120,7 @@ AppAsset::register($this);
                                                 </div>
                                             </div>
                                             <div class="col-9">
-                                                <h4><?= Yii::$app->user->name ?></h4>
+                                                <h4><?= Yii::$app->user->identity->name ?></h4>
                                                 <span class="text-success"><i class="fas fa-circle success"></i></span>
                                                 Online
                                             </div>
@@ -199,7 +199,7 @@ AppAsset::register($this);
                         <div class="main-nav-left col-10 col-sm-10 col-lg-2 text-center text-sm-center text-lg-start">
                             <div class="py-2">
                                 <a href="<?php echo Url::home() ?>" class="logo-align">
-                                    <img src="<?= $cdnUrl ?>/img/logo.png">
+                                    <img src="<?= Url::toRoute(['img/logo.png']) ?>">
                                 </a>
                             </div>
                         </div>
@@ -238,17 +238,11 @@ AppAsset::register($this);
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownUserLogin">
                                             <?php if (!Yii::$app->user->isGuest) : ?>
-                                                <div class="dropdown-item"><?php Yii::$app->user->identity->name ?></div>
-                                                <form method="POST" action="<?= $cdnUrl ?>/logout">
-                                                    @csrf
-                                                    <a class="dropdown-item" href="<?= $cdnUrl ?>/logout"
-                                                       onclick="event.preventDefault(); this.closest('form').submit();">{{
-                                                        __('Log Out') }}
-                                                    </a>
-                                                </form>
+                                                <div class="dropdown-item"><?= Yii::$app->user->identity->name ?></div>
+                                                <?= Html::a('Logout', ['site/logout'], ['data' => ['method' => 'post'],'class'=>'dropdown-item text-decoration-none']) ?>
                                             <?php else : ?>
-                                                <a class="dropdown-item" href="<?= $cdnUrl ?>/site/login">Đăng nhập</a>
-                                                <a class="dropdown-item" href="<?= $cdnUrl ?>/site/register">Đăng ký</a>
+                                                <a class="dropdown-item" href="<?= Url::toRoute(['site/login']) ?>">Đăng nhập</a>
+                                                <a class="dropdown-item" href="<?= Url::toRoute(['site/signup']) ?>">Đăng ký</a>
                                             <?php endif; ?>
                                         </div>
                                     </div>

@@ -13,6 +13,8 @@ use yii\bootstrap4\NavBar;
 use yii\helpers\Url;
 
 $cdnUrl = Yii::$app->params['frontend'];
+$imgUrl = Yii::$app->params['common']."/media";
+$this->registerCssFile("$cdnUrl/css/login.css");
 
 AppAsset::register($this);
 ?>
@@ -26,6 +28,21 @@ AppAsset::register($this);
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
         <?= $this->render('_blankHead') ?>
+        <style>
+            body, html {
+                width:  100%;
+                height:  100vh !important;
+                margin:  0;
+                padding:  0;
+            }
+            #wrapper{
+                background-image: url("<?= $imgUrl?>/bg-login-signup.png");
+                height: 100%;
+                background-position: top;
+                background-repeat: no-repeat;
+                background-size: cover;
+
+        </style>
     </head>
     <body>
     <?php $this->beginBody() ?>

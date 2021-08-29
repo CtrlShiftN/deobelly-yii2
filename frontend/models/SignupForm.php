@@ -37,8 +37,9 @@ class SignupForm extends Model
             ['name', 'string', 'max' => 100],
 
             ['tel', 'trim'],
-            ['tel', 'string', 'max' => 12],
-            ['tel', 'validateTel']
+            ['tel', 'required'],
+            ['tel', 'string', 'max' => 12, 'min' => Yii::$app->params['user.telMinLength']],
+
         ];
     }
 
