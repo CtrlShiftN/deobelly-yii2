@@ -9,6 +9,8 @@ use common\models\ProductsCategory;
 use common\models\TermsAndServices;
 use common\models\Trademark;
 use common\models\User;
+use yii\helpers\BaseConsole;
+use yii\helpers\Console;
 
 class SampleData
 {
@@ -135,7 +137,7 @@ class SampleData
      *  product category data
      * @var array[]
      */
-    protected static $categoryInfoArr = [
+    protected static $productCategoryInfoArr = [
         [
             'name' => 'Áo sơ mi',
             'slug' => 'ao-so-mi',
@@ -225,6 +227,8 @@ class SampleData
                                     <p>Gam màu đa dạng, dễ dàng mix cùng nhiều trang phục mà vẫn giữ được lịch lãm, cổ điển không bao giờ lỗi mốt</p>
                                     <p>Nếu bạn một tín đồ của áo polo, hãy lựa ngay items mình yêu thích và đặt hàng ngay tại Biluxury!</p>',
             'admin_id' => 1,
+            'tag_id' => 1,
+            'blog_category_id' => 1,
         ],
         [
             'avatar' => 'posts/avatar/lacoste-ava.PNG',
@@ -247,6 +251,8 @@ class SampleData
                                     <p>Gam màu đa dạng, dễ dàng mix cùng nhiều trang phục mà vẫn giữ được lịch lãm, cổ điển không bao giờ lỗi mốt</p>
                                     <p>Nếu bạn một tín đồ của áo polo, hãy lựa ngay items mình yêu thích và đặt hàng ngay tại Biluxury!</p>',
             'admin_id' => 1,
+            'tag_id' => 1,
+            'blog_category_id' => 1,
         ],
         [
             'avatar' => 'posts/avatar/lacoste-ava.PNG',
@@ -269,6 +275,8 @@ class SampleData
                                     <p>Gam màu đa dạng, dễ dàng mix cùng nhiều trang phục mà vẫn giữ được lịch lãm, cổ điển không bao giờ lỗi mốt</p>
                                     <p>Nếu bạn một tín đồ của áo polo, hãy lựa ngay items mình yêu thích và đặt hàng ngay tại Biluxury!</p>',
             'admin_id' => 1,
+            'tag_id' => 1,
+            'blog_category_id' => 1,
         ],
     ];
 
@@ -331,6 +339,7 @@ class SampleData
             }
         }
         echo "Inserted " . $countUsers . '/' . count(self::$userInfoArr) . ' users. ';
+        return 0;
     }
 
     /**
@@ -339,7 +348,7 @@ class SampleData
     public static function insertSampleProductCategory()
     {
         $countCategory = 0;
-        foreach (self::$categoryInfoArr as $values) {
+        foreach (self::$productCategoryInfoArr as $values) {
             $category = new ProductsCategory();
             $category->name = $values['name'];
             $category->slug = $values['slug'];
@@ -352,7 +361,7 @@ class SampleData
                 $countCategory++;
             }
         }
-        echo "Inserted " . $countCategory . '/' . count(self::$categoryInfoArr) . ' products category. ';
+        echo "Inserted " . $countCategory . '/' . count(self::$productCategoryInfoArr) . ' products category. ';
     }
 
     /**
@@ -422,6 +431,8 @@ class SampleData
             $posts->title = $values['title'];
             $posts->content = $values['content'];
             $posts->admin_id = $values['admin_id'];
+            $posts->tag_id = $values['tag_id'];
+            $posts->blog_category_id = $values['blog_category_id'];
             $posts->created_at = date('Y-m-d H:m:s');
             $posts->updated_at = date('Y-m-d H:m:s');
             $posts->status = SystemConstant::STATUS_ACTIVE;
@@ -450,7 +461,7 @@ class SampleData
                 $countTerms++;
             }
         }
-        echo "Inserted " . $countTerms . '/' . count(self::$termsInfoArr) . ' posts. ';
+        echo "Inserted " . $countTerms . '/' . count(self::$termsInfoArr) . ' terms. ';
     }
 
     /**
