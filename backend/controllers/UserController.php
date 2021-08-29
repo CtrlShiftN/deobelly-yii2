@@ -6,6 +6,7 @@ use backend\models\User;
 use backend\models\UserSearch;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -108,8 +109,18 @@ class UserController extends Controller
         $model = new User();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $model->setPassword($model->password_hash);
+                $model->generateAuthKey();
+                $model->generatePasswordResetToken();
+                $model->username = strstr($model->email, '@', true);
+                $model->referral_code = strstr($model->email, '@', true);
+                $model->created_at = date('Y-m-d H:m:s');
+                $model->updated_at = date('Y-m-d H:m:s');
+                $model->status = $model::STATUS_ACTIVE;
+                if ($model->save()){
+                    return $this->redirect(Url::toRoute('user/index'));
+                }
             }
         } else {
             $model->loadDefaultValues();

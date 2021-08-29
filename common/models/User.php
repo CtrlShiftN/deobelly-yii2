@@ -58,6 +58,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['username', 'address', 'password_hash', 'password_reset_token', 'email', 'referral_code', 'verification_token'], 'string', 'max' => 255],
             [['name'], 'string', 'max' => 100],
             [['tel'], 'string', 'max' => 12],
+            ['tel', 'validateTel'],
             [['auth_key'], 'string', 'max' => 32],
             [['username'], 'unique'],
             [['email'], 'unique'],
@@ -89,6 +90,12 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'updated_at' => 'Updated At',
             'verification_token' => 'Verification Token',
         ];
+    }
+
+    public function validateTel($attribute, $params, $validator){
+        if (!preg_match('/^(84|0[1-9])+([0-9]{8})$/', $this->tel)){
+            $this->addError($attribute, 'Số điện thoại không hợp lệ');
+        }
     }
 
     /**
