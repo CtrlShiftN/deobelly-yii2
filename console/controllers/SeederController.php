@@ -7,7 +7,7 @@ use yii\console\Controller;
 
 class SeederController extends Controller
 {
-    public function actionUser() {
-        echo SampleData::insertSampleUser();
+    public function actionIndex() {
+        echo SampleData::importAllSampleData();
     }
 }
