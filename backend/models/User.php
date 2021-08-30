@@ -74,7 +74,7 @@ class User extends \common\models\User
     }
 
     public function validateTel($attribute, $params, $validator){
-        if (!preg_match('/\A(84|0[3|5|7|8|9])+([0-9]{8})\z/', $attribute, $output_array)){
+        if (!preg_match('/^(84|0[1-9])+([0-9]{8})$/', $this->tel)){
             $this->addError($attribute, 'Số điện thoại không hợp lệ');
         }
     }

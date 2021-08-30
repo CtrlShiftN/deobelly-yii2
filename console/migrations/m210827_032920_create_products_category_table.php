@@ -18,6 +18,7 @@ class m210827_032920_create_products_category_table extends Migration
             'slug' => $this->string()->unique(),
             'code' => $this->bigInteger()->unique()->comment("first letter is product type, the rest is code number"),
             'status' => $this->smallInteger()->defaultValue(1)->comment('0 for inactive, 1 for active'),
+            'admin_id' => $this->bigInteger(),
             'created_at'=>$this->dateTime(),
             'updated_at'=>$this->dateTime()
         ]);
