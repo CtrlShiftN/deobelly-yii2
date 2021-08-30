@@ -36,9 +36,9 @@ class Posts extends \yii\db\ActiveRecord
     {
         return [
             [['content'], 'string'],
-            [['admin_id', 'tag_id', 'blog_category_id', 'status'], 'integer'],
+            [['admin_id', 'blog_category_id', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['avatar', 'thumbnail', 'title'], 'string', 'max' => 255],
+            [['avatar', 'thumbnail', 'tag_id', 'title'], 'string', 'max' => 255],
         ];
     }
 

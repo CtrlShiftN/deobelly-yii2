@@ -9,6 +9,7 @@ class m210829_123508_create_posts_table extends Migration
 {
     /**
      * {@inheritdoc}
+     *
      */
     public function safeUp()
     {
