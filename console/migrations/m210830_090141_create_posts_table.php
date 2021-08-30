@@ -5,11 +5,10 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `{{%posts}}`.
  */
-class m210829_123508_create_posts_table extends Migration
+class m210830_090141_create_posts_table extends Migration
 {
     /**
      * {@inheritdoc}
-     *
      */
     public function safeUp()
     {
