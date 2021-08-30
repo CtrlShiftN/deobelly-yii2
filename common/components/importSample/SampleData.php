@@ -102,8 +102,8 @@ class SampleData
 <li>-Various tide brands</li>
 <li>-We are committed to providing you with the best quality products at the best prices.</li>
 ",
-            'cost_price' => 400000,
-            'regular_price' => 200000,
+            'cost_price' => 200000,
+            'regular_price' => 400000,
             'sale_price' => 340000,
             'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
             'quantity' => 20,
@@ -126,8 +126,8 @@ class SampleData
 <li> Kiểu dáng: Thiết kế theo form rộng vừa,đơn giản , dễ mặc ..Tôn lên được sự trẻ trung năng động cho các bạn nam, kèm vào đó là sự hoạt động thoải mái khi mặc sản phẩm.</li>
 </li>Được sản xuất và bảo hành bởi Công ty TNHH MTV LADOS VIỆT NAM</li>
 ",
-            'cost_price' => 600000,
-            'regular_price' => 300000,
+            'cost_price' => 300000,
+            'regular_price' => 600000,
             'sale_price' => 510000,
             'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
             'quantity' => 30,
@@ -148,8 +148,8 @@ class SampleData
 <li> <ul>Hướng dẫn bảo quản:<li> Giặt máy bằng nước lạnh</li><li> Không sử dụng chất tẩy mạnh.</li><li> Ủi nhẹ ở nhiệt độ tối đa 110°C.</li></ul></li>
 </li> Thông tin thương hiệu The Shirt Studio là thương hiệu thời trang rất được giới trẻ ưa chuộng. Khác với những thương hiệu thời trang thông thường, The Shirt Studio không chú trọng vào những thiết kế mang tính thời thượng mà chỉ tập trung phát triển những mẫu trang phục cơ bản nhất, dễ phối đồ và luôn cần có trong tủ quần áo của các đấng mày râu. Thêm vào đó, sự khác biệt của The Shirt Studio còn thể hiện rõ nét thông qua chất liệu vải được tuyển chọn, xử lý kỹ lưỡng , thân thiện với môi trường, kết hợp cùng kiểu dáng không bao giờ lỗi mốt và những đường cắt may tinh xảo</li>
 ",
-            'cost_price' => 1200000,
-            'regular_price' => 600000,
+            'cost_price' => 600000,
+            'regular_price' => 1200000,
             'sale_price' => 1020000,
             'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '3',
             'quantity' => 18,
