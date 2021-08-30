@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `{{%posts}}`.
  */
-class m210828_132956_create_posts_table extends Migration
+class m210829_123508_create_posts_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -19,8 +19,8 @@ class m210828_132956_create_posts_table extends Migration
             'title' => $this->string(),
             'content' => $this->text(),
             'admin_id' => $this->bigInteger(),
-            'tag_id' =>$this->string()->comment('Tags of the current post, csv'),
-            'blog_category_id'=>$this->bigInteger(),
+            'tag_id' => $this->string(),
+            'blog_category_id' => $this->bigInteger(),
             'status' => $this->smallInteger()->defaultValue(1)->comment('0 for inactive, 1 for active'),
             'created_at' => $this->dateTime(),
             'updated_at' => $this->dateTime(),

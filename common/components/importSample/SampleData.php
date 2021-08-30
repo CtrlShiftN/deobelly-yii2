@@ -4,13 +4,14 @@ namespace common\components\importsample;
 
 use common\components\SystemConstant;
 use common\models\Posts;
+use common\models\PostsCategory;
+use common\models\PostsTag;
+use common\models\Meta;
 use common\models\Products;
 use common\models\ProductsCategory;
 use common\models\TermsAndServices;
 use common\models\Trademark;
 use common\models\User;
-use yii\helpers\BaseConsole;
-use yii\helpers\Console;
 
 class SampleData
 {
@@ -18,7 +19,7 @@ class SampleData
      * user data
      * @var array[]
      */
-    protected static $userInfoArr = [
+    protected static array $userInfoArr = [
         [
             'email' => 'admin.deobelly@gmail.com',
             'password_hash' => 'Iamadmin@1234',
@@ -54,10 +55,37 @@ class SampleData
     ];
 
     /**
+     *
+     * @throws \yii\base\Exception
+     */
+    public static function insertSampleUser()
+    {
+        $countUsers = 0;
+        foreach (self::$userInfoArr as $values) {
+            $user = new User();
+            $user->email = $values['email'];
+            $user->setPassword($values['password_hash']);
+            $user->name = $values['name'];
+            $user->tel = $values['tel'];
+            $user->generateAuthKey();
+            $user->generatePasswordResetToken();
+            $user->username = $values['username'];
+            $user->referral_code = strstr($values['email'], '@', true);
+            $user->role = $values['role'];
+            $user->created_at = date('Y-m-d H:m:s');
+            $user->updated_at = date('Y-m-d H:m:s');
+            if ($user->save()) {
+                $countUsers++;
+            }
+        }
+        echo "Inserted " . $countUsers . '/' . count(self::$userInfoArr) . ' users.' . PHP_EOL;
+    }
+
+    /**
      * product data
      * @var array[]
      */
-    protected static $productInforArr = [
+    protected static array $productInforArr = [
         [
             'name' => 'Áo thun không cổ BOSS',
             'slug' => 'ao-thun-khong-co-boss',
@@ -74,9 +102,9 @@ class SampleData
 <li>-Various tide brands</li>
 <li>-We are committed to providing you with the best quality products at the best prices.</li>
 ",
-            'cost_price' => 190000,
-            'regular_price' => 149000,
-            'sale_price' => 149000,
+            'cost_price' => 199000,
+            'regular_price' => 200000,
+            'sale_price' => 159000,
             'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
             'quantity' => 20,
             'image' => 'product/clothes/top/shirt1.png',
@@ -98,9 +126,9 @@ class SampleData
 <li> Kiểu dáng: Thiết kế theo form rộng vừa,đơn giản , dễ mặc ..Tôn lên được sự trẻ trung năng động cho các bạn nam, kèm vào đó là sự hoạt động thoải mái khi mặc sản phẩm.</li>
 </li>Được sản xuất và bảo hành bởi Công ty TNHH MTV LADOS VIỆT NAM</li>
 ",
-            'cost_price' => 290000,
-            'regular_price' => 199000,
-            'sale_price' => 199000,
+            'cost_price' => 299000,
+            'regular_price' => 300000,
+            'sale_price' => 249000,
             'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
             'quantity' => 30,
             'image' => 'product/clothes/shirt/ao-so-mi-lados.png',
@@ -120,9 +148,9 @@ class SampleData
 <li> <ul>Hướng dẫn bảo quản:<li> Giặt máy bằng nước lạnh</li><li> Không sử dụng chất tẩy mạnh.</li><li> Ủi nhẹ ở nhiệt độ tối đa 110°C.</li></ul></li>
 </li> Thông tin thương hiệu The Shirt Studio là thương hiệu thời trang rất được giới trẻ ưa chuộng. Khác với những thương hiệu thời trang thông thường, The Shirt Studio không chú trọng vào những thiết kế mang tính thời thượng mà chỉ tập trung phát triển những mẫu trang phục cơ bản nhất, dễ phối đồ và luôn cần có trong tủ quần áo của các đấng mày râu. Thêm vào đó, sự khác biệt của The Shirt Studio còn thể hiện rõ nét thông qua chất liệu vải được tuyển chọn, xử lý kỹ lưỡng , thân thiện với môi trường, kết hợp cùng kiểu dáng không bao giờ lỗi mốt và những đường cắt may tinh xảo</li>
 ",
-            'cost_price' => 590000,
-            'regular_price' => 449000,
-            'sale_price' => 449000,
+            'cost_price' => 599000,
+            'regular_price' => 600000,
+            'sale_price' => 549000,
             'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '3',
             'quantity' => 18,
             'image' => 'product/clothes/shirt/vest-nam-han-quoc.jpg',
@@ -134,10 +162,41 @@ class SampleData
     ];
 
     /**
+     *
+     */
+    public static function insertSampleProduct()
+    {
+        $countProduct = 0;
+        foreach (self::$productInforArr as $values) {
+            $product = new Products();
+            $product->name = $values['name'];
+            $product->slug = $values['slug'];
+            $product->short_description = $values['short_description'];
+            $product->description = $values['description'];
+            $product->cost_price = $values['cost_price'];
+            $product->regular_price = $values['regular_price'];
+            $product->sale_price = $values['sale_price'];
+            $product->SKU = $values['SKU'];
+            $product->quantity = $values['quantity'];
+            $product->image = $values['image'];
+            $product->images = $values['images'];
+            $product->category_id = $values['category_id'];
+            $product->trademark_id = $values['trademark_id'];
+            $product->created_at = date('Y-m-d H:m:s');
+            $product->updated_at = date('Y-m-d H:m:s');
+            $product->admin_id = $values['admin_id'];
+            if ($product->save()) {
+                $countProduct++;
+            }
+        }
+        echo "Inserted " . $countProduct . '/' . count(self::$productInforArr) . ' products.' . PHP_EOL;
+    }
+
+    /**
      *  product category data
      * @var array[]
      */
-    protected static $productCategoryInfoArr = [
+    protected static array $productCategoryInfoArr = [
         [
             'name' => 'Áo sơ mi',
             'slug' => 'ao-so-mi',
@@ -177,10 +236,31 @@ class SampleData
     ];
 
     /**
+     *
+     */
+    public static function insertSampleProductCategory()
+    {
+        $countCategory = 0;
+        foreach (self::$productCategoryInfoArr as $values) {
+            $category = new ProductsCategory();
+            $category->name = $values['name'];
+            $category->slug = $values['slug'];
+            $category->code = $values['code'];
+            $category->created_at = date('Y-m-d H:m:s');
+            $category->updated_at = date('Y-m-d H:m:s');
+            $category->admin_id = $values['admin_id'];
+            if ($category->save()) {
+                $countCategory++;
+            }
+        }
+        echo "Inserted " . $countCategory . '/' . count(self::$productCategoryInfoArr) . ' products category.' . PHP_EOL;
+    }
+
+    /**
      *  trademark data
      * @var array[]
      */
-    protected static $trademarkInfoArr = [
+    protected static array $trademarkInfoArr = [
         [
             'id' => 1,
             'name' => 'HUGO',
@@ -202,13 +282,34 @@ class SampleData
     ];
 
     /**
+     *
+     */
+    public static function insertSampleTrademark()
+    {
+        $countTrademark = 0;
+        foreach (self::$trademarkInfoArr as $values) {
+            $trademark = new Trademark();
+            $trademark->id = $values['id'];
+            $trademark->name = $values['name'];
+            $trademark->slug = $values['slug'];
+            $trademark->created_at = date('Y-m-d H:m:s');
+            $trademark->updated_at = date('Y-m-d H:m:s');
+            $trademark->admin_id = $values['admin_id'];
+            if ($trademark->save()) {
+                $countTrademark++;
+            }
+        }
+        echo "Inserted " . $countTrademark . '/' . count(self::$trademarkInfoArr) . ' trademarks.' . PHP_EOL;
+    }
+
+    /**
      *  posts data
      * @var array[]
      */
-    protected static $postsInfoArr = [
+    protected static array $postsInfoArr = [
         [
             'avatar' => 'posts/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'posts/thumbnail/lacoste-short.jpg',
+            'thumbnail' => 'posts/thumbnail/lacoste-short.PNG',
             'title' => 'De Obelly Collections 2021 - Lựa chọn hoàn hảo cho mùa hè',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
                                 với những chiếc áo Polo đa sắc màu trong BST Hè DE OBELLY 2021. Hãy check ngay những mẫu
@@ -227,12 +328,12 @@ class SampleData
                                     <p>Gam màu đa dạng, dễ dàng mix cùng nhiều trang phục mà vẫn giữ được lịch lãm, cổ điển không bao giờ lỗi mốt</p>
                                     <p>Nếu bạn một tín đồ của áo polo, hãy lựa ngay items mình yêu thích và đặt hàng ngay tại Biluxury!</p>',
             'admin_id' => 1,
-            'tag_id' => 1,
-            'blog_category_id' => 1,
+            'tag_id' => '1',
+            'blog_category_id' => 7,
         ],
         [
             'avatar' => 'posts/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'posts/thumbnail/lacoste-short-2.jpg',
+            'thumbnail' => 'posts/thumbnail/lacoste-short-2.PNG',
             'title' => 'Cực chất với bộ sưu tập mùa hè',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
                                 với những chiếc áo Polo đa sắc màu trong BST Hè DE OBELLY 2021. Hãy check ngay những mẫu
@@ -251,13 +352,36 @@ class SampleData
                                     <p>Gam màu đa dạng, dễ dàng mix cùng nhiều trang phục mà vẫn giữ được lịch lãm, cổ điển không bao giờ lỗi mốt</p>
                                     <p>Nếu bạn một tín đồ của áo polo, hãy lựa ngay items mình yêu thích và đặt hàng ngay tại Biluxury!</p>',
             'admin_id' => 1,
-            'tag_id' => 1,
-            'blog_category_id' => 1,
+            'tag_id' => '8',
+            'blog_category_id' => 7,
         ],
         [
             'avatar' => 'posts/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'posts/thumbnail/lacoste-short.jpg',
-            'title' => 'Mạnh mẽ đầy nam tính với thiết kế mới nhất của De Obelly',
+            'thumbnail' => 'posts/thumbnail/lacoste-short-2.PNG',
+            'title' => 'Community—And Style—Thrived at the Santa Fe Indian Market',
+            'content' => '<p>Every year, the Santa Fe Indian Market brings in thousands of global tourists and collectors to the city. 
+                         Visitors flock to the streets around the city’s main plaza, 
+                         where hundreds of Indigenous artists from different tribes across North America showcase and sell their new works 
+                         (including textiles, jewelry, art, and more) in their respective booths. 
+                         This weekend, the 99th annual outdoor market returned once again, and the sense of community was as present as ever. 
+                         While overall attendance was down (the typically free event was ticketed this year due to COVID) and the number of artists showcasing was fewer than usual, 
+                         you could still feel the energy and excitement around the event. 
+                         The streets were still lined with excited shoppers perusing the latest goods, 
+                         and booths were filled with artists visiting each other and having a laugh—masks up, of course.</p>
+                        <p>Indian Market weekend is a big tourism event for the city, but the occasion represents something much more important for the participating artists and artisans. Business aside, it’s a time for the Native American community to come back together, visit with friends and family, and get inspired by each other’s creativity. And this year, after a canceled 2020 event and a long time apart due to COVID-19, that spirit of connection was needed more than ever. “There is nothing like interacting with fellow creatives in person,” says Jamie Okuma, a Luiseño and Shoshone-Bannock fashion artist who showcased her new collection at the market’s fashion show this weekend. “Meeting collectors and enjoying being in the presence of other humans outside of family was something I really didn’t realize I needed. As an artist, I’m naturally isolated by profession, so the few shows I do in person are extremely important for my mental health. When those were gone, it was pretty rough.”</p>
+                        <p>Last year, the Santa Fe Indian Market was held virtually, and for many artists, that meant a considerable loss of income. Sales at the fair make up a significant portion of their yearly incomes, as a single piece can go for thousands of dollars. For all these reasons, the Indigenous artists were counting on the continuation of this year’s event. “There was a lot of trepidation leading up to it, with the delta variant looming overhead and the state of New Mexico’s mandates ever changing,” says Pat Pruitt, a Laguna, Chiricahua Apache, and Anglo metalsmith and jewelry designer. “But it was good to see friends, family, and collectors.”</p>
+                        <p>Though there were fewer visitors, many artists still did surprisingly well in sales; it seems shoppers were ready to spend. For instance, Naiomi Glasses—a Diné textile artist and first-time shower at the market—says she got many future rug orders from the event and looks forward to returning next year for its centennial year. “As a working artist, the market is important so that I could meet new and current customers in person. It gives them and me a personable connection,” says Glasses. </p>
+                        <p>Along with a clear sense of togetherness, there was also major style present throughout the weekend—whether it was worn by visitors or artists on the streets or shown on the runway for the market’s annual fashion show, which was organized by Amber-Dawn Bear Robe. </p>
+                        <p>Around the booths, visitors and artists alike dressed up for the affair, cladding themselves in their best ribbon skirts or turquoise squash-blossom necklaces. At the fashion show, Indigenous designers Jamie Okuma, Orlando Dugi, Pamela Baker, and Lauren Good Day showcased their newest collections, pieces that combined traditional craftsmanship with new, modern updates. Dugi and Baker showed refined eveningwear pieces like beaded gowns and velvet suiting, while Okuma opted for her signature statement prints on dresses, coats, and more. Good Day even showed sprightly athleticwear—the through line being that Native design doesn’t have to look one specific way. For all in attendance, that sense of innovation is forever an Indian Market staple. “The energy was palpable,” says Pruitt. “Spirits were high, and in the end, the machine that is Indian Market just keeps on going.”</p>
+                        <p>Below, more stylish highlights from the Santa Fe Indian Market weekend.</p>',
+            'admin_id' => 1,
+            'tag_id' => '1',
+            'blog_category_id' => 4,
+        ],
+        [
+            'avatar' => 'posts/avatar/lacoste-ava.PNG',
+            'thumbnail' => 'posts/thumbnail/lacoste-short-2.PNG',
+            'title' => '4 "cặp đôi" trang phục cho chàng phong cách ngày hè',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
                                 với những chiếc áo Polo đa sắc màu trong BST Hè DE OBELLY 2021. Hãy check ngay những mẫu
                                  Hot nhất trong tuần qua nhé</p><p>Áo polo được bắt nguồn từ bang Manipur của Ấn Độ
@@ -275,12 +399,39 @@ class SampleData
                                     <p>Gam màu đa dạng, dễ dàng mix cùng nhiều trang phục mà vẫn giữ được lịch lãm, cổ điển không bao giờ lỗi mốt</p>
                                     <p>Nếu bạn một tín đồ của áo polo, hãy lựa ngay items mình yêu thích và đặt hàng ngay tại Biluxury!</p>',
             'admin_id' => 1,
-            'tag_id' => 1,
-            'blog_category_id' => 1,
+            'tag_id' => '8',
+            'blog_category_id' => 3,
         ],
     ];
 
-    protected static $termsInfoArr = [
+    /**
+     *
+     */
+    public static function insertSamplePosts()
+    {
+        $countPosts = 0;
+        foreach (self::$postsInfoArr as $value) {
+            $posts = new Posts();
+            $posts->avatar = $value['avatar'];
+            $posts->thumbnail = $value['thumbnail'];
+            $posts->title = $value['title'];
+            $posts->content = $value['content'];
+            $posts->admin_id = $value['admin_id'];
+            $posts->tag_id = $value['tag_id'];
+            $posts->blog_category_id = $value['blog_category_id'];
+            $posts->created_at = date('Y-m-d H:m:s');
+            $posts->updated_at = date('Y-m-d H:m:s');
+            if ($posts->save()) {
+                $countPosts++;
+            }
+        }
+        echo "Inserted " . $countPosts . "/" . count(self::$postsInfoArr) . ' posts.' . PHP_EOL;
+    }
+
+    /**
+     * @var array|array[]
+     */
+    protected static array $termsInfoArr = [
         [
             'title' => ' ĐIỀU KHOẢN CỬA HÀNG TRỰC TUYẾN',
             'content' => '<p>- Bằng việc đồng ý các Điều Khoản Dịch Vụ, bạn xác nhận rằng ít nhất bạn trong độ tuổi trưởng thành ở khu vực mà bạn đang sống và bạn đã cho chúng tôi sự đồng ý của bạn để cho phép bất kỳ người phụ thuộc của bạn sử dụng trang này.<br>- Bạn có thể không sử dụng sản phẩm của chúng tôi khi có bất kỳ sự trái luật hoặc có ý định lạm dụng hay không trong khi sử dụng Dịch Vụ, vi phạm bất kỳ luật lệ nào trong quyền hạn của bạn (bao gồm nhưng không giới hạn quy định pháp luật).<br>- Bạn không được truyền bất kỳ sâu hoặc virus hoặc bất kỳ mã nào có tính chất phá hoại.<br>- Một sự vi phạm hoặc làm trái bất kỳ Điều Khoản nào sẽ dẫn đến việc chấm dứt ngay Dịch Vụ.</p>',
@@ -315,153 +466,183 @@ class SampleData
 
     /**
      *
-     * @throws \yii\base\Exception
-     */
-    public static function insertSampleUser()
-    {
-        $countUsers = 0;
-        foreach (self::$userInfoArr as $key => $values) {
-            $user = new User();
-            $user->email = $values['email'];
-            $user->setPassword($values['password_hash']);
-            $user->name = $values['name'];
-            $user->tel = $values['tel'];
-            $user->generateAuthKey();
-            $user->generatePasswordResetToken();
-            $user->username = $values['username'];
-            $user->referral_code = strstr($values['email'], '@', true);
-            $user->role = $values['role'];
-            $user->created_at = date('Y-m-d H:m:s');
-            $user->updated_at = date('Y-m-d H:m:s');
-            $user->status = SystemConstant::STATUS_ACTIVE;
-            if ($user->save()) {
-                $countUsers++;
-            }
-        }
-        echo "Inserted " . $countUsers . '/' . count(self::$userInfoArr) . ' users. ';
-        return 0;
-    }
-
-    /**
-     *
-     */
-    public static function insertSampleProductCategory()
-    {
-        $countCategory = 0;
-        foreach (self::$productCategoryInfoArr as $values) {
-            $category = new ProductsCategory();
-            $category->name = $values['name'];
-            $category->slug = $values['slug'];
-            $category->code = $values['code'];
-            $category->created_at = date('Y-m-d H:m:s');
-            $category->updated_at = date('Y-m-d H:m:s');
-            $category->status = SystemConstant::STATUS_ACTIVE;
-            $category->admin_id = $values['admin_id'];
-            if ($category->save()) {
-                $countCategory++;
-            }
-        }
-        echo "Inserted " . $countCategory . '/' . count(self::$productCategoryInfoArr) . ' products category. ';
-    }
-
-    /**
-     *
-     */
-    public static function insertSampleTrademark()
-    {
-        $countTrademark = 0;
-        foreach (self::$trademarkInfoArr as $values) {
-            $trademark = new Trademark();
-            $trademark->id = $values['id'];
-            $trademark->name = $values['name'];
-            $trademark->slug = $values['slug'];
-            $trademark->created_at = date('Y-m-d H:m:s');
-            $trademark->updated_at = date('Y-m-d H:m:s');
-            $trademark->status = SystemConstant::STATUS_ACTIVE;
-            $trademark->admin_id = $values['admin_id'];
-            if ($trademark->save()) {
-                $countTrademark++;
-            }
-        }
-        echo "Inserted " . $countTrademark . '/' . count(self::$trademarkInfoArr) . ' trademarks. ';
-    }
-
-    /**
-     *
-     */
-    public static function insertSampleProduct()
-    {
-        $countProduct = 0;
-        foreach (self::$productInforArr as $values) {
-            $product = new Products();
-            $product->name = $values['name'];
-            $product->slug = $values['slug'];
-            $product->short_description = $values['short_description'];
-            $product->description = $values['description'];
-            $product->cost_price = $values['cost_price'];
-            $product->regular_price = $values['regular_price'];
-            $product->sale_price = $values['sale_price'];
-            $product->SKU = $values['SKU'];
-            $product->quantity = $values['quantity'];
-            $product->image = $values['image'];
-            $product->images = $values['images'];
-            $product->category_id = $values['category_id'];
-            $product->trademark_id = $values['trademark_id'];
-            $product->created_at = date('Y-m-d H:m:s');
-            $product->updated_at = date('Y-m-d H:m:s');
-            $product->admin_id = $values['admin_id'];
-            $product->status = SystemConstant::STATUS_ACTIVE;
-            if ($product->save()) {
-                $countProduct++;
-            }
-        }
-        echo "Inserted " . $countProduct . '/' . count(self::$productInforArr) . ' products. ';
-    }
-
-    /**
-     *
-     */
-    public static function insertSamplePosts()
-    {
-        $countPosts = 0;
-        foreach (self::$postsInfoArr as $values) {
-            $posts = new Posts();
-            $posts->avatar = $values['avatar'];
-            $posts->thumbnail = $values['thumbnail'];
-            $posts->title = $values['title'];
-            $posts->content = $values['content'];
-            $posts->admin_id = $values['admin_id'];
-            $posts->tag_id = $values['tag_id'];
-            $posts->blog_category_id = $values['blog_category_id'];
-            $posts->created_at = date('Y-m-d H:m:s');
-            $posts->updated_at = date('Y-m-d H:m:s');
-            $posts->status = SystemConstant::STATUS_ACTIVE;
-            if ($posts->save()) {
-                $countPosts++;
-            }
-        }
-        echo "Inserted " . $countPosts . '/' . count(self::$postsInfoArr) . ' posts. ';
-    }
-
-    /**
-     *
      */
     public static function insertSampleTerms()
     {
         $countTerms = 0;
-        foreach (self::$termsInfoArr as $values) {
+        foreach (self::$termsInfoArr as $value) {
             $terms = new TermsAndServices();
-            $terms->title = $values['title'];
-            $terms->content = $values['content'];
-            $terms->admin_id = $values['admin_id'];
+            $terms->title = $value['title'];
+            $terms->content = $value['content'];
+            $terms->admin_id = $value['admin_id'];
             $terms->created_at = date('Y-m-d H:m:s');
             $terms->updated_at = date('Y-m-d H:m:s');
-            $terms->status = SystemConstant::STATUS_ACTIVE;
             if ($terms->save()) {
                 $countTerms++;
             }
         }
-        echo "Inserted " . $countTerms . '/' . count(self::$termsInfoArr) . ' terms. ';
+        echo "Inserted " . $countTerms . '/' . count(self::$termsInfoArr) . ' terms.' . PHP_EOL;
+    }
+
+    /**
+     * @var array|\string[][]
+     */
+    protected static array $metaInfoArr = [
+        [
+            'key' => 'product_category_max_top_code',
+            'value' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '3',
+        ],
+        [
+            'key' => 'product_category_max_trousers_code',
+            'value' => SystemConstant::PRODUCT_CATEGORY_TYPE_TROUSERS . '1',
+        ],
+        [
+            'key' => 'product_category_max_accessories_code',
+            'value' => SystemConstant::PRODUCT_CATEGORY_TYPE_ACCESSORIES . '1',
+        ],
+        [
+            'key' => 'product_category_max_shoes_code',
+            'value' => SystemConstant::PRODUCT_CATEGORY_TYPE_SHOES . '1',
+        ],
+    ];
+
+    /**
+     *
+     */
+    protected static function insertSampleMeta()
+    {
+        $countMeta = 0;
+        foreach (self::$metaInfoArr as $value)
+        {
+            $meta = new Meta();
+            $meta->key = $value['key'];
+            $meta->value = $value['value'];
+            if ($meta->save())
+            {
+                $countMeta++;
+            }
+        }
+        echo "Inserted ".$countMeta.'/'.count(self::$metaInfoArr).' meta.'.PHP_EOL;
+    }
+
+    /**
+     * @var array|\string[][]
+     */
+    protected static array $blogTagInfoArr = [
+        [
+            'title' => 'Street Style',
+            'slug' => 'street-style',
+        ],
+        [
+            'title' => 'Trends',
+            'slug' => 'trends',
+        ],
+        [
+            'title' => 'Shopping Tips',
+            'slug' => 'shopping-tips',
+        ],
+        [
+            'title' => 'Beauty',
+            'slug' => 'beauty',
+        ],
+        [
+            'title' => 'Office Style',
+            'slug' => 'office-style',
+        ],
+        [
+            'title' => 'White Collar',
+            'slug' => 'white-collar',
+        ],
+        [
+            'title' => 'Spring',
+            'slug' => 'spring',
+        ],
+        [
+            'title' => 'Summer',
+            'slug' => 'summer',
+        ],
+        [
+            'title' => 'Autumn',
+            'slug' => 'autumn',
+        ],
+        [
+            'title' => 'Winter',
+            'slug' => 'winter',
+        ],
+    ];
+
+    /**
+     *
+     */
+    protected static function insertSampleBlogTag()
+    {
+        $countTag = 0;
+        foreach (self::$blogTagInfoArr as $value)
+        {
+            $blogTag = new PostsTag();
+            $blogTag->title = $value['title'];
+            $blogTag->slug = $value['slug'];
+            $blogTag->created_at = date('Y-m-d H:m:s');
+            $blogTag->updated_at = date('Y-m-d H:m:s');
+            if ($blogTag->save())
+            {
+                $countTag++;
+            }
+        }
+        echo "Inserted ".$countTag.'/'.count(self::$blogTagInfoArr).' meta.'.PHP_EOL;
+    }
+
+    protected static array $blogCategoryInfoArr = [
+        [
+            'title' => 'Fashion Design',
+            'slug' => 'fashion-design',
+        ],
+        [
+            'title' => 'Fashion Designers',
+            'slug' => 'fashion-designers',
+        ],
+        [
+            'title' => 'Fashion Events',
+            'slug' => 'fashion-events',
+        ],
+        [
+            'title' => 'Fashion Week',
+            'slug' => 'fashion-week',
+        ],
+        [
+            'title' => 'Fashion News',
+            'slug' => 'fashion-news',
+        ],
+        [
+            'title' => 'Fashion Technology',
+            'slug' => 'fashion-technology',
+        ],
+        [
+            'title' => 'Fashion Brand',
+            'slug' => 'fashion-brand',
+        ],
+        [
+            'title' => 'Uncategorized',
+            'slug' => 'uncategorized',
+        ],
+    ];
+
+    protected static function insertSampleBlogCategory()
+    {
+        $countBlogCate = 0;
+        foreach (self::$blogCategoryInfoArr as $value)
+        {
+            $blogCate = new PostsCategory();
+            $blogCate->title = $value['title'];
+            $blogCate->slug = $value['slug'];
+            $blogCate->created_at = date('Y-m-d H:m:s');
+            $blogCate->updated_at = date('Y-m-d H:m:s');
+            if ($blogCate->save())
+            {
+                $countBlogCate++;
+            }
+        }
+        echo "Inserted ".$countBlogCate.'/'.count(self::$blogCategoryInfoArr).' meta.'.PHP_EOL;
     }
 
     /**
@@ -475,5 +656,8 @@ class SampleData
         self::insertSampleProduct();
         self::insertSamplePosts();
         self::insertSampleTerms();
+        self::insertSampleMeta();
+        self::insertSampleBlogTag();
+        self::insertSampleBlogCategory();
     }
 }

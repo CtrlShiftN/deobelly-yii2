@@ -1,10 +1,12 @@
 <?php
 
 /* @var $this yii\web\View */
-$cdnUrl = Yii::$app->params['frontend'];
+
+use yii\helpers\Url;
+
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->title = 'DE OBELLY';
-$this->registerCssFile("$cdnUrl/css/index.css");
+$this->registerCssFile(Url::toRoute("/css/index.css"));
 $this->registerCss("
     .bg-link-product { 
         background-image: url('$imgUrl/background/bgLinkToProduct.jpg');        
@@ -485,7 +487,7 @@ $this->registerCss("
 
     <div class="container text-center">
         <div class="row m-0 px-0 py-4 pb-md-5 d-inline-block">
-            <a href="<?= $cdnUrl ?>/shop/index" class="text-decoration-none linkToProduct px-3">
+            <a href="<?= Url::toRoute('shop/index') ?>" class="text-decoration-none linkToProduct px-3">
                 <h5 class="text-uppercase m-0"><i class="far fa-hand-point-right"></i> Xem toàn bộ sản phẩm</h5>
             </a>
         </div>
@@ -703,7 +705,7 @@ $this->registerCss("
                 </div>
             </div>
         </div>
-        <a href="<?= $cdnUrl ?>/site/blog" class="text-decoration-none linkToProduct d-inline-block px-3">
+        <a href="<?= Url::toRoute('site/blog') ?>" class="text-decoration-none linkToProduct d-inline-block px-3">
             <h5 class="text-uppercase m-0"><i class="far fa-hand-point-right"></i> Xem thêm</h5>
         </a>
     </div>
