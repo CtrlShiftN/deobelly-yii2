@@ -13,7 +13,7 @@ use Yii;
  * @property string|null $title
  * @property string|null $content
  * @property int|null $admin_id
- * @property int|null $tag_id
+ * @property string|null $tag_id
  * @property int|null $blog_category_id
  * @property int|null $status 0 for inactive, 1 for active
  * @property string|null $created_at
@@ -38,7 +38,7 @@ class Posts extends \yii\db\ActiveRecord
             [['content'], 'string'],
             [['admin_id', 'blog_category_id', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['avatar', 'thumbnail', 'tag_id', 'title'], 'string', 'max' => 255],
+            [['avatar', 'thumbnail', 'title', 'tag_id'], 'string', 'max' => 255],
         ];
     }
 

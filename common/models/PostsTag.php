@@ -33,6 +33,7 @@ class PostsTag extends \yii\db\ActiveRecord
             [['status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title', 'slug'], 'string', 'max' => 255],
+            [['slug'], 'unique'],
         ];
     }
 
