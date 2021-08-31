@@ -6,7 +6,7 @@
 use yii\bootstrap4\Html;
 use yii\helpers\Url;
 
-$cdnUrl = Yii::$app->params['common'];
+$imgUrl = Yii::$app->params['common']."/media";
 $this->registerCssFile(Url::toRoute("css/posts.css"));
 ?>
 
@@ -20,16 +20,15 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
             <?php
             $avatar = pathinfo($value['avatar'], PATHINFO_BASENAME);
             $thumbnail = pathinfo($value['thumbnail'], PATHINFO_BASENAME); ?>
-
             <div class="col-12 row p-0 m-0 my-2 my-md-4">
-                <div class="col-4"><a href="#"><img src="<?= $cdnUrl.'/media/'.$value['avatar']?>" class="img-fluid"></a></div>
+                <div class="col-4"><a href="#"><img src="<?= $imgUrl.'/'.$value['avatar']?>" class="img-fluid"></a></div>
                 <div class="col-8">
                     <div class="h-75">
                         <h4 class="title text-uppercase fw-bold"><a href="#"><?=$value['title']?></a></h4>
                         <div class="date-author">
                             <i class="far fa-calendar-alt"></i><span class="me-3">16/07/2021 </span><i class="fas fa-user"></i><span class="ms-1">DE OBELLY</span>
                         </div>
-                        <div class=" short-text mt-2 mt-md-3 fs-5 lh-sm"><?=$value['content'] ?></div>
+                        <div class="short-text mt-2 mt-md-3 fs-5 lh-sm"><?=$value['content'] ?></div>
                     </div>
                     <div class="h-25 watch-more ">
                         <div class="d-flex align-items-end float-end h-100 fs-5">
@@ -40,7 +39,7 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
             </div>
         <?php endforeach; ?>
     </div>
-    <div class=" col-12 col-lg-4">
+    <div class="col-12 col-lg-4">
         <div class="w-100"><p class="fs-4 fw-bold border-bottom">DANH MỤC TIN TỨC</p></div>
         <div class="text-dark">
             <?php for ($i = 0; $i < 3; $i++): ?>
@@ -49,9 +48,9 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
         </div>
         <div class="w-100 mt-3 fs-3"><span class="fw-bold">TIN NỔI BẬT</span></div>
         <?php foreach($posts as $value): ?>
-            <div class="row my-2 ">
-                <div class="col-4 ">
-                    <a href="#"><img src="<?= $cdnUrl.'/media/'.$value['thumbnail']?>" class="img-fluid h-100"></a>
+            <div class="row my-2">
+                <div class="col-4">
+                    <a href="#"><img src="<?= $imgUrl.'/'.$value['thumbnail']?>" class="img-fluid h-100"></a>
                 </div>
                 <div class="col-8">
                     <div class="title text-uppercase fw-bold"><a href="#"><?=$value['title']?></a></div>
@@ -62,8 +61,8 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
             </div>
         <?php endforeach; ?>
         <div class="my-4">
-            <div class="my-4 d-none d-lg-block"><a href="">
-                    <a href="#"><img src="<?= $cdnUrl.'/media/'.$value['thumbnail']?>" class="img-fluid"></a>
+            <div class="my-4 d-none d-lg-block">
+                    <a href="#"><img src="<?= $imgUrl.'/'.$value['thumbnail']?>" class="img-fluid"></a>
             </div>
         </div>
     </div>
