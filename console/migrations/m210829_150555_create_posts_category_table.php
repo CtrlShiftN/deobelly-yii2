@@ -3,23 +3,22 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%trademark}}`.
+ * Handles the creation of table `{{%posts_category}}`.
  */
-class m210827_044029_create_trademark_table extends Migration
+class m210829_150555_create_posts_category_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%trademark}}', [
+        $this->createTable('{{%posts_category}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string(),
+            'title' => $this->string(),
             'slug' => $this->string()->unique(),
             'status' => $this->smallInteger()->defaultValue(1)->comment('0 for inactive, 1 for active'),
-            'admin_id' => $this->bigInteger(),
-            'created_at'=>$this->dateTime(),
-            'updated_at'=>$this->dateTime()
+            'created_at' => $this->dateTime(),
+            'updated_at' => $this->dateTime(),
         ]);
     }
 
@@ -28,6 +27,6 @@ class m210827_044029_create_trademark_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%trademark}}');
+        $this->dropTable('{{%posts_category}}');
     }
 }

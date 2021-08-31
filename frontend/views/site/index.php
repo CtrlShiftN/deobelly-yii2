@@ -1,24 +1,32 @@
 <?php
 
 /* @var $this yii\web\View */
-$cdnUrl = Yii::$app->params['frontend'];
-$imgUrl = Yii::$app->params['common']."/media";
+
+use yii\helpers\Url;
+
+$imgUrl = Yii::$app->params['common'] . "/media";
 $this->title = 'DE OBELLY';
-$this->registerCssFile("$cdnUrl/css/index.css");
+$this->registerCssFile(Url::toRoute("/css/index.css"));
 $this->registerCss("
     .bg-link-product { 
-            background-image: url('$imgUrl/background/bgLinkToProduct.jpg');        
-            background-attachment: fixed;
-            background-size: cover;
-            background-repeat: no-repeat; 
-        }
+        background-image: url('$imgUrl/background/bgLinkToProduct.jpg');        
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat; 
+    }
     .bgNews{ 
-            background-image: url('$imgUrl/background/bgNews.jpg');        
-            background-attachment: fixed;
-            background-size: cover;
-            background-repeat: no-repeat; 
-        }
-        ");
+        background-image: url('$imgUrl/background/bgNews.jpg');        
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat; 
+    }
+    .btnAdd, .btnBuyNow, .btnFavor {
+        height: 42px;
+        position: absolute;
+        transition: 0.3s;
+        z-index: 3;
+    }
+");
 ?>
 <div class="full-width">
     <!-- Carousel wrapper -->
@@ -200,7 +208,7 @@ $this->registerCss("
                 <div class="product-tumb">
                     <a href="#" class="text-decoration-none w-100 m-0 p-0 h-100">
                         <div class="badge p-2 px-sm-3 rounded-0">-30%</div>
-                        <img src="<?= $imgUrl ?>/product/clothes/shirt/shirt2.png" alt="" class="w-100">
+                        <img src="<?= $imgUrl ?>/product/clothes/top/shirt2.png" alt="" class="w-100">
                     </a>
                 </div>
                 <div class="product-button d-none d-sm-block">
@@ -235,7 +243,7 @@ $this->registerCss("
                 <div class="product-tumb">
                     <a href="#" class="text-decoration-none w-100 m-0 p-0 h-100">
                         <div class="badge p-2 px-sm-3 rounded-0">-30%</div>
-                        <img src="<?= $imgUrl ?>/product/clothes/shirt/shirt5.png" alt="" class="w-100">
+                        <img src="<?= $imgUrl ?>/product/clothes/top/shirt5.png" alt="" class="w-100">
                     </a>
                 </div>
                 <div class="product-button d-none d-sm-block">
@@ -270,7 +278,7 @@ $this->registerCss("
                 <div class="product-tumb">
                     <a href="#" class="text-decoration-none w-100 m-0 p-0 h-100">
                         <div class="badge p-2 px-sm-3 rounded-0">-30%</div>
-                        <img src="<?= $imgUrl ?>/product/clothes/shirt/shirt3.png" alt="" class="w-100">
+                        <img src="<?= $imgUrl ?>/product/clothes/top/shirt3.png" alt="" class="w-100">
                     </a>
                 </div>
                 <div class="product-button d-none d-sm-block">
@@ -305,7 +313,7 @@ $this->registerCss("
                 <div class="product-tumb">
                     <a href="#" class="text-decoration-none w-100 m-0 p-0 h-100">
                         <div class="badge p-2 px-sm-3 rounded-0">-30%</div>
-                        <img src="<?= $imgUrl ?>/product/clothes/shirt/shirt2.png" alt="" class="w-100">
+                        <img src="<?= $imgUrl ?>/product/clothes/top/shirt2.png" alt="" class="w-100">
                     </a>
                 </div>
                 <div class="product-button d-none d-sm-block">
@@ -340,7 +348,7 @@ $this->registerCss("
                 <div class="product-tumb">
                     <a href="#" class="text-decoration-none w-100 m-0 p-0 h-100">
                         <div class="badge p-2 px-sm-3 rounded-0">-30%</div>
-                        <img src="<?= $imgUrl ?>/product/clothes/shirt/shirt1.png" alt="" class="w-100">
+                        <img src="<?= $imgUrl ?>/product/clothes/top/shirt1.png" alt="" class="w-100">
                     </a>
                 </div>
                 <div class="product-button d-none d-sm-block">
@@ -375,7 +383,7 @@ $this->registerCss("
                 <div class="product-tumb">
                     <a href="#" class="text-decoration-none w-100 m-0 p-0 h-100">
                         <div class="badge p-2 px-sm-3 rounded-0">-30%</div>
-                        <img src="<?= $imgUrl ?>/product/clothes/shirt/shirt1.png" alt="" class="w-100">
+                        <img src="<?= $imgUrl ?>/product/clothes/top/shirt1.png" alt="" class="w-100">
                     </a>
                 </div>
                 <div class="product-button d-none d-sm-block">
@@ -410,7 +418,7 @@ $this->registerCss("
                 <div class="product-tumb">
                     <a href="#" class="text-decoration-none w-100 m-0 p-0 h-100">
                         <div class="badge p-2 px-sm-3 rounded-0">-30%</div>
-                        <img src="<?= $imgUrl ?>/product/clothes/shirt/shirt4.png" alt="" class="w-100">
+                        <img src="<?= $imgUrl ?>/product/clothes/top/shirt4.png" alt="" class="w-100">
                     </a>
                 </div>
                 <div class="product-button d-none d-sm-block">
@@ -445,7 +453,7 @@ $this->registerCss("
                 <div class="product-tumb">
                     <a href="#" class="text-decoration-none w-100 m-0 p-0 h-100">
                         <div class="badge p-2 px-sm-3 rounded-0">-30%</div>
-                        <img src="<?= $imgUrl ?>/product/clothes/shirt/shirt2.png" alt="" class="w-100">
+                        <img src="<?= $imgUrl ?>/product/clothes/top/shirt2.png" alt="" class="w-100">
                     </a>
                 </div>
                 <div class="product-button d-none d-sm-block">
@@ -479,7 +487,7 @@ $this->registerCss("
 
     <div class="container text-center">
         <div class="row m-0 px-0 py-4 pb-md-5 d-inline-block">
-            <a href="<?= $cdnUrl ?>/shop/index" class="text-decoration-none linkToProduct px-3">
+            <a href="<?= Url::toRoute('shop/index') ?>" class="text-decoration-none linkToProduct px-3">
                 <h5 class="text-uppercase m-0"><i class="far fa-hand-point-right"></i> Xem toàn bộ sản phẩm</h5>
             </a>
         </div>
@@ -497,7 +505,7 @@ $this->registerCss("
                         <div class="card border-0 rounded-0 h-100 m-0">
                             <a href="#" class="text-decoration-none w-100 h-100">
                                 <div class="card-img border-0">
-                                    <img src="<?= $imgUrl ?>/product/clothes/shirt/shirt1.png"
+                                    <img src="<?= $imgUrl ?>/product/clothes/top/shirt1.png"
                                          class="mb-sm-2">
                                 </div>
                             </a>
@@ -509,7 +517,7 @@ $this->registerCss("
                         <div class="card border-0 rounded-0 h-100 m-0">
                             <a href="#" class="text-decoration-none w-100 h-100">
                                 <div class="card-img border-0">
-                                    <img src="<?= $imgUrl ?>/product/clothes/shirt/shirt2.png"
+                                    <img src="<?= $imgUrl ?>/product/clothes/top/shirt2.png"
                                          class="mb-sm-2">
                                 </div>
                             </a>
@@ -521,7 +529,7 @@ $this->registerCss("
                         <div class="card border-0 rounded-0 h-100 m-0">
                             <a href="#" class="text-decoration-none w-100 h-100">
                                 <div class="card-img border-0">
-                                    <img src="<?= $imgUrl ?>/product/clothes/shirt/shirt3.png"
+                                    <img src="<?= $imgUrl ?>/product/clothes/top/shirt3.png"
                                          class="mb-sm-2">
                                 </div>
                             </a>
@@ -533,7 +541,7 @@ $this->registerCss("
                         <div class="card border-0 rounded-0 h-100 m-0">
                             <a href="#" class="text-decoration-none w-100 h-100">
                                 <div class="card-img border-0">
-                                    <img src="<?= $imgUrl ?>/product/clothes/shirt/shirt4.png"
+                                    <img src="<?= $imgUrl ?>/product/clothes/top/shirt4.png"
                                          class="mb-sm-2">
                                 </div>
                             </a>
@@ -545,7 +553,7 @@ $this->registerCss("
                         <div class="card border-0 rounded-0 h-100 m-0">
                             <a href="#" class="text-decoration-none w-100 h-100">
                                 <div class="card-img border-0">
-                                    <img src="<?= $imgUrl ?>/product/clothes/shirt/shirt5.png"
+                                    <img src="<?= $imgUrl ?>/product/clothes/top/shirt5.png"
                                          class="mb-sm-2">
                                 </div>
                             </a>
@@ -557,7 +565,7 @@ $this->registerCss("
                         <div class="card border-0 rounded-0 h-100 m-0">
                             <a href="#" class="text-decoration-none w-100 h-100">
                                 <div class="card-img border-0">
-                                    <img src="<?= $imgUrl ?>/product/clothes/shirt/shirt6.png"
+                                    <img src="<?= $imgUrl ?>/product/clothes/top/shirt6.png"
                                          class="mb-sm-2">
                                 </div>
                             </a>
@@ -683,7 +691,8 @@ $this->registerCss("
                                  class="object-fit-cover w-100 h-100 m-0 p-0 zoomImages">
                         </div>
                         <div class="card-body position-relative text-start p-1">
-                            <h5 class="card-title text-uppercase fw-bolder">Card title Card title Card title Card title Card title Card title Card
+                            <h5 class="card-title text-uppercase fw-bolder">Card title Card title Card title Card title
+                                Card title Card title Card
                                 title</h5>
                             <h6 class="card-subtitle mb-2 text-muted">
                                 <small><i class="fas fa-calendar-alt"></i> 14/8/2021</small>
@@ -696,7 +705,7 @@ $this->registerCss("
                 </div>
             </div>
         </div>
-        <a href="<?= $cdnUrl ?>/site/blog" class="text-decoration-none linkToProduct d-inline-block px-3">
+        <a href="<?= Url::toRoute('site/blog') ?>" class="text-decoration-none linkToProduct d-inline-block px-3">
             <h5 class="text-uppercase m-0"><i class="far fa-hand-point-right"></i> Xem thêm</h5>
         </a>
     </div>
