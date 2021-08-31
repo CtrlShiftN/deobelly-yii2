@@ -48,7 +48,6 @@ $arrStatus = ["Không hoạt động", "Đang hoạt động"];
                 'label' => 'Tiêu đề',
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
-                'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['title'];
                 },
@@ -62,10 +61,10 @@ $arrStatus = ["Không hoạt động", "Đang hoạt động"];
                 'label' => 'Slug',
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
-                'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['slug'];
                 },
+                'filter' => false
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
@@ -73,6 +72,7 @@ $arrStatus = ["Không hoạt động", "Đang hoạt động"];
                 'label' => 'Trạng thái',
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
+                'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) use ($arrStatus) {
                     return $arrStatus[$model['status']];
                 },
@@ -89,6 +89,12 @@ $arrStatus = ["Không hoạt động", "Đang hoạt động"];
                         'displayValueConfig' => $arrStatus
                     ];
                 },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => $arrStatus,
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => 'Chọn trạng thái']
             ],
             [
                 'attribute' => 'created_at',
@@ -96,12 +102,14 @@ $arrStatus = ["Không hoạt động", "Đang hoạt động"];
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'filter' => false,
+                'width' => '200px',
                 'format' => 'raw'
             ],
             [
                 'label' => 'Hành động',
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
+                'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) {
                     return Html::a('Xóa', Url::toRoute(['posts-tag/delete', 'id' => $key]), ['class' => 'btn btn-danger', 'data' => [
                         'method' => 'post',
