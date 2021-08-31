@@ -26,15 +26,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             'inputOptions' => ['id' => 'floatingInputEmail', 'class' => 'form-control'],
                             'template' => "{input}\n<label for='floatingInputEmail'>Email</label>\n{error}"])->textInput(['autofocus' => true, 'class' => 'form-control w-100 border rounded-pill'])->label(false) ?>
                         <?= $form->field($model, 'password', ['options' => [
-                            'class' => 'form-floating mt-5 '],
+                            'class' => 'form-floating mt-3'],
                             'inputOptions' => ['id' => 'floatingInputPassword', 'class' => 'form-control'],
                             'template' => "{input}\n<label for='floatingInputPassword'>Password</label>\n{error}"])->textInput(['type'=> 'password','class' => 'form-control w-100 border rounded-pill'])->label(false) ?>
 
                         <?= Html::submitButton('Login', ['class' => 'btn btn-primary rounded-pill fs-4 text-light w-100 mt-5', 'name' => 'login-button']) ?>
-
-
                         <div class="mt-4">
-                            Bạn quên mật khẩu ? <?= Html::a('Đổi mật khẩu', ['site/request-password-reset'],['class'=>'text-decoration-none'] ) ?>
+                            Bạn quên mật khẩu ? <?= Html::a('Quên mật khẩu', ['site/request-password-reset'],['class'=>'text-decoration-none'] ) ?>
                         </div>
                         <div class="pb-4">
                             Bạn chưa có tài khoản ? <?= Html::a('Đăng Kí ', ['site/signup'],['class'=>'text-decoration-none'] ) ?>
