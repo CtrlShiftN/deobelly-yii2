@@ -61,4 +61,9 @@ class Posts extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
         ];
     }
+
+    public function getPosts()
+    {
+        return Posts::find()->where(['status'=>1])->asArray()->all();
+    }
 }

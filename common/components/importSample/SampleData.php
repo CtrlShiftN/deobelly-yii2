@@ -309,7 +309,7 @@ class SampleData
     protected static array $postsInfoArr = [
         [
             'avatar' => 'posts/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'posts/thumbnail/lacoste-short.PNG',
+            'thumbnail' => 'posts/thumbnail/lacoste-short-2.jpg',
             'title' => 'De Obelly Collections 2021 - Lựa chọn hoàn hảo cho mùa hè',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
                                 với những chiếc áo Polo đa sắc màu trong BST Hè DE OBELLY 2021. Hãy check ngay những mẫu
@@ -333,7 +333,7 @@ class SampleData
         ],
         [
             'avatar' => 'posts/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'posts/thumbnail/lacoste-short-2.PNG',
+            'thumbnail' => 'posts/thumbnail/lacoste-short-2.jpg',
             'title' => 'Cực chất với bộ sưu tập mùa hè',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
                                 với những chiếc áo Polo đa sắc màu trong BST Hè DE OBELLY 2021. Hãy check ngay những mẫu
@@ -357,30 +357,31 @@ class SampleData
         ],
         [
             'avatar' => 'posts/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'posts/thumbnail/lacoste-short-2.PNG',
-            'title' => 'Community—And Style—Thrived at the Santa Fe Indian Market',
-            'content' => '<p>Every year, the Santa Fe Indian Market brings in thousands of global tourists and collectors to the city. 
-                         Visitors flock to the streets around the city’s main plaza, 
-                         where hundreds of Indigenous artists from different tribes across North America showcase and sell their new works 
-                         (including textiles, jewelry, art, and more) in their respective booths. 
-                         This weekend, the 99th annual outdoor market returned once again, and the sense of community was as present as ever. 
-                         While overall attendance was down (the typically free event was ticketed this year due to COVID) and the number of artists showcasing was fewer than usual, 
-                         you could still feel the energy and excitement around the event. 
-                         The streets were still lined with excited shoppers perusing the latest goods, 
-                         and booths were filled with artists visiting each other and having a laugh—masks up, of course.</p>
-                        <p>Indian Market weekend is a big tourism event for the city, but the occasion represents something much more important for the participating artists and artisans. Business aside, it’s a time for the Native American community to come back together, visit with friends and family, and get inspired by each other’s creativity. And this year, after a canceled 2020 event and a long time apart due to COVID-19, that spirit of connection was needed more than ever. “There is nothing like interacting with fellow creatives in person,” says Jamie Okuma, a Luiseño and Shoshone-Bannock fashion artist who showcased her new collection at the market’s fashion show this weekend. “Meeting collectors and enjoying being in the presence of other humans outside of family was something I really didn’t realize I needed. As an artist, I’m naturally isolated by profession, so the few shows I do in person are extremely important for my mental health. When those were gone, it was pretty rough.”</p>
-                        <p>Last year, the Santa Fe Indian Market was held virtually, and for many artists, that meant a considerable loss of income. Sales at the fair make up a significant portion of their yearly incomes, as a single piece can go for thousands of dollars. For all these reasons, the Indigenous artists were counting on the continuation of this year’s event. “There was a lot of trepidation leading up to it, with the delta variant looming overhead and the state of New Mexico’s mandates ever changing,” says Pat Pruitt, a Laguna, Chiricahua Apache, and Anglo metalsmith and jewelry designer. “But it was good to see friends, family, and collectors.”</p>
-                        <p>Though there were fewer visitors, many artists still did surprisingly well in sales; it seems shoppers were ready to spend. For instance, Naiomi Glasses—a Diné textile artist and first-time shower at the market—says she got many future rug orders from the event and looks forward to returning next year for its centennial year. “As a working artist, the market is important so that I could meet new and current customers in person. It gives them and me a personable connection,” says Glasses. </p>
-                        <p>Along with a clear sense of togetherness, there was also major style present throughout the weekend—whether it was worn by visitors or artists on the streets or shown on the runway for the market’s annual fashion show, which was organized by Amber-Dawn Bear Robe. </p>
-                        <p>Around the booths, visitors and artists alike dressed up for the affair, cladding themselves in their best ribbon skirts or turquoise squash-blossom necklaces. At the fashion show, Indigenous designers Jamie Okuma, Orlando Dugi, Pamela Baker, and Lauren Good Day showcased their newest collections, pieces that combined traditional craftsmanship with new, modern updates. Dugi and Baker showed refined eveningwear pieces like beaded gowns and velvet suiting, while Okuma opted for her signature statement prints on dresses, coats, and more. Good Day even showed sprightly athleticwear—the through line being that Native design doesn’t have to look one specific way. For all in attendance, that sense of innovation is forever an Indian Market staple. “The energy was palpable,” says Pruitt. “Spirits were high, and in the end, the machine that is Indian Market just keeps on going.”</p>
-                        <p>Below, more stylish highlights from the Santa Fe Indian Market weekend.</p>',
+            'thumbnail' => 'posts/thumbnail/lacoste-short-2.jpg',
+            'title' => 'Mạnh mẽ đầy nam tính với thiết kế mới nhất của De Obelly',
+            'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
+                                với những chiếc áo Polo đa sắc màu trong BST Hè DE OBELLY 2021. Hãy check ngay những mẫu
+                                 Hot nhất trong tuần qua nhé</p><p>Áo polo được bắt nguồn từ bang Manipur của Ấn Độ
+                                 - nơi khởi nguồn của môn polo (bóng khúc cầu trên lưng ngựa). Những người lính thực dân
+                                 Anh đã mang trò chơi này về quê hương và biến nó thành môn thể thao quý tộc ở Anh vào cuối
+                                  thế kỷ 19. Thiết kế nguyên bản của áo Polo là dáng dài tay thay vì ngắn tay như ngày nay.</p>
+                                  <p>Khi Lacoste lần đầu mặc trang phục này đến giải quần vợt US Open 1926 và giành chức vô địch,
+                                  nó lập tức trở thành một hiện tượng thời trang. Đây là một trang phục đơn giản dành cho mọi nam giới,
+                                   đã có lịch sử tông tại gần 100 năm, không có sự phân biệt giàu nghèo, cao thấp trong văn hóa mặc của đàn ông.
+                                   Cùng với nhiều ưu điểm vượt trội từ áo phông có cổ mang đến cho người mặc.</p>
+                                   <p>Áo có form ôm người nhưng vẫn tôn lên các đường nét vạm vỡ, săn chắc của phái mạnh</p>
+                                    <p>Thiết kế hội tụ đầy đủ tính ưu việt, vượt trội hơn hẳn "người anh em" sơ mi</p>
+                                    <p>Phong cách thể thao, nam tính và năng động, trẻ trung là điều mà bất kỳ người đàn ông nào cũng muốn hướng đến</p>
+                                    <p>Chất liệu co giãn tốt, thoáng mát, thấm hút mồ hôi cho người mặc vận động thoải mái</p>
+                                    <p>Gam màu đa dạng, dễ dàng mix cùng nhiều trang phục mà vẫn giữ được lịch lãm, cổ điển không bao giờ lỗi mốt</p>
+                                    <p>Nếu bạn một tín đồ của áo polo, hãy lựa ngay items mình yêu thích và đặt hàng ngay tại Biluxury!</p>',
             'admin_id' => 1,
             'tag_id' => '1',
             'blog_category_id' => 4,
         ],
         [
             'avatar' => 'posts/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'posts/thumbnail/lacoste-short-2.PNG',
+            'thumbnail' => 'posts/thumbnail/lacoste-short-2.jpg',
             'title' => '4 "cặp đôi" trang phục cho chàng phong cách ngày hè',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
                                 với những chiếc áo Polo đa sắc màu trong BST Hè DE OBELLY 2021. Hãy check ngay những mẫu

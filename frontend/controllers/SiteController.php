@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Posts;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -262,5 +263,14 @@ class SiteController extends Controller
         return $this->render('resendVerificationEmail', [
             'model' => $model
         ]);
+    }
+
+    public function actionPosts()
+    {
+        $searchModelPosts = new Posts();
+        $getPosts = $searchModelPosts->getPosts();
+        return $this->render('posts', [
+            'posts' => $getPosts
+	    ]);
     }
 }
