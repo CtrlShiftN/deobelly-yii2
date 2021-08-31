@@ -41,12 +41,10 @@ AppAsset::register($this);
                 background-position: top;
                 background-repeat: no-repeat;
                 background-size: cover;
-
         </style>
     </head>
     <body>
     <?php $this->beginBody() ?>
-
     <div class="wrapper">
         <div id="content">
             <div class="container">
