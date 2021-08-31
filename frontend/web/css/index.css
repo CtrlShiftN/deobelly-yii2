@@ -102,9 +102,11 @@
 .carouselProduct .carousel-inner .carousel-item-start {
     transform: translateX(0);
 }
+
 .zoomImages {
     transition: 0.3s;
 }
+
 .zoomImages:hover {
     transform: scale(1.05);
 }
@@ -250,11 +252,8 @@ a:focus, button:focus {
     transition: 0.3s;
 }
 
-.product-details p {
-    font-size: 15px;
-    line-height: 22px;
-    margin-bottom: 10px;
-    color: #999;
+.product-details small {
+    font-size: 12px;
 }
 
 .product-details .btn-outline-dark {
@@ -288,7 +287,7 @@ a:focus, button:focus {
         width: 100%;
         position: relative !important;
         display: inline-block;
-        padding: 6px;
+        padding: 0 6px;
     }
 
     .product-tumb {
@@ -305,7 +304,7 @@ a:focus, button:focus {
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 2;
     }
 
     #subscribe .container {
@@ -313,8 +312,10 @@ a:focus, button:focus {
     }
 
     .product-price {
-        font-size: 13px;
+        font-size: 1.05rem !important;
+        padding-top: 48px !important;
     }
+
     .news .card-title {
         display: block;
         display: -webkit-box;
@@ -330,7 +331,7 @@ a:focus, button:focus {
     .product-details h5 {
         display: block;
         display: -webkit-box;
-        margin: 0 !important;
+        margin: 1px;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -343,7 +344,9 @@ a:focus, button:focus {
 
     .product-price {
         font-size: 18px;
+        padding-top: 48px !important;
     }
+
     .news .card-title {
         display: block;
         display: -webkit-box;
@@ -360,10 +363,11 @@ a:focus, button:focus {
         width: 238px;
         height: 360px;
     }
+
     .product-details {
         position: absolute !important;
         top: 76% !important;
-        padding: 6px !important;
+        padding: 0 6px !important;
         margin-bottom: 5px;
     }
 
@@ -379,14 +383,16 @@ a:focus, button:focus {
     }
 
     #subscribe .container {
-        padding: 60px 32px !important;
+        padding: 50px 32px !important;
     }
 }
+
 @media (min-width: 768px) and (max-width: 992px) {
     .product-card {
         width: 192px;
         height: 290px;
     }
+
     .banner {
         height: 47vw;
         font-size: 1.5rem;
@@ -395,14 +401,20 @@ a:focus, button:focus {
     .banner--top {
         height: 16vw;
     }
+
+    .product-price {
+        font-size: 16px;
+        padding-top: 48px !important;
+    }
 }
+
 @media (min-width: 992px) {
     .w-motto {
         width: 70%;
     }
 
     #subscribe .container {
-        padding: 100px 72px !important;
+        padding: 70px 72px !important;
     }
 }
 
@@ -410,7 +422,7 @@ a:focus, button:focus {
 @media (min-width: 768px) and (max-width: 1200px) {
     .product-details {
         top: 73%;
-        padding: 6px;
+        padding: 0 6px;
         margin-bottom: 5px;
     }
 
@@ -424,6 +436,7 @@ a:focus, button:focus {
         width: 200px;
         height: 302px;
     }
+
     .banner {
         height: 47vw;
     }
@@ -432,11 +445,13 @@ a:focus, button:focus {
         height: 16vw;
     }
 }
+
 @media (min-width: 1200px) {
     .product-price {
         font-size: 1.05rem !important;
     }
 }
+
 @media (min-width: 1200px) and (max-width: 1400px) {
     .product-card {
         width: 245px;
@@ -462,17 +477,13 @@ a:focus, button:focus {
         font-size: 1.3rem;
     }
 }
-@media (max-width: 1200px) {
-    .product-price {
-        font-size: 1rem !important;
-    }
-}
 
 @media (min-width: 1400px) and (max-width: 1550px) {
     .product-card {
         width: 100%;
         height: 30vw;
     }
+
     .product-details {
         top: 75%;
         padding: 2%;
@@ -493,6 +504,7 @@ a:focus, button:focus {
     .product-price {
         font-size: 1.1rem !important;
     }
+
     .product-button {
         top: 64%;
     }
@@ -503,6 +515,7 @@ a:focus, button:focus {
         width: 100%;
         height: 25vw;
     }
+
     .product-details {
         top: 77%;
         padding: 2%;

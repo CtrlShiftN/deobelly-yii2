@@ -29,12 +29,12 @@ class SampleData
             'role' => User::ROLE_ADMIN,
         ],
         [
-            'email' => 'customer.deobelly@gmail.com',
-            'password_hash' => 'Iamcustomer@1234',
-            'name' => "I'm Customer",
+            'email' => 'editor.deobelly@gmail.com',
+            'password_hash' => 'Iameditor@1234',
+            'name' => "I'm Writer God",
             'tel' => '0333333333',
-            'username' => 'customer',
-            'role' => User::ROLE_USER,
+            'username' => 'editor',
+            'role' => User::ROLE_EDITOR,
         ],
         [
             'email' => 'sale.deobelly@gmail.com',
@@ -45,12 +45,12 @@ class SampleData
             'role' => User::ROLE_SALE,
         ],
         [
-            'email' => 'editor.deobelly@gmail.com',
-            'password_hash' => 'Iameditor@1234',
-            'name' => "I'm Writer God",
+            'email' => 'customer.deobelly@gmail.com',
+            'password_hash' => 'Iamcustomer@1234',
+            'name' => "I'm Customer",
             'tel' => '0333333333',
-            'username' => 'editor',
-            'role' => User::ROLE_EDITOR,
+            'username' => 'customer',
+            'role' => User::ROLE_USER,
         ]
     ];
 
@@ -134,7 +134,7 @@ class SampleData
             'sale_price' => null,
             'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
             'quantity' => 20,
-            'image' => 'product/clothes/top/shirt1.png',
+            'image' => 'product/clothes/top/shirt6.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
             'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
             'trademark_id' => 1,
@@ -161,7 +161,7 @@ class SampleData
             'sale_price' => null,
             'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
             'quantity' => 20,
-            'image' => 'product/clothes/top/shirt1.png',
+            'image' => 'product/clothes/top/shirt3.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
             'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
             'trademark_id' => 1,
@@ -188,7 +188,7 @@ class SampleData
             'sale_price' => null,
             'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
             'quantity' => 20,
-            'image' => 'product/clothes/top/shirt1.png',
+            'image' => 'product/clothes/top/shirt5.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
             'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
             'trademark_id' => 1,
@@ -215,7 +215,7 @@ class SampleData
             'sale_price' => null,
             'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
             'quantity' => 20,
-            'image' => 'product/clothes/top/shirt1.png',
+            'image' => 'product/clothes/top/shirt4.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
             'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
             'trademark_id' => 1,
@@ -242,7 +242,7 @@ class SampleData
             'sale_price' => null,
             'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
             'quantity' => 20,
-            'image' => 'product/clothes/top/shirt1.png',
+            'image' => 'product/clothes/top/shirt2.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
             'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
             'trademark_id' => 1,
@@ -261,12 +261,12 @@ class SampleData
 <li> Kiểu dáng: Thiết kế theo form rộng vừa,đơn giản , dễ mặc ..Tôn lên được sự trẻ trung năng động cho các bạn nam, kèm vào đó là sự hoạt động thoải mái khi mặc sản phẩm.</li>
 </li>Được sản xuất và bảo hành bởi Công ty TNHH MTV LADOS VIỆT NAM</li>
 ",
-            'cost_price' => 300000,
-            'regular_price' => 600000,
-            'sale_price' => 510000,
+            'cost_price' => 800000,
+            'regular_price' => 1600000,
+            'sale_price' => 1360000,
             'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
             'quantity' => 30,
-            'image' => 'product/clothes/shirt/ao-so-mi-lados.png',
+            'image' => 'product/clothes/shirt/ao-so-mi-lados.jpg',
             'images' => '',
             'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
             'trademark_id' => 2,
@@ -284,11 +284,11 @@ class SampleData
 </li> Thông tin thương hiệu The Shirt Studio là thương hiệu thời trang rất được giới trẻ ưa chuộng. Khác với những thương hiệu thời trang thông thường, The Shirt Studio không chú trọng vào những thiết kế mang tính thời thượng mà chỉ tập trung phát triển những mẫu trang phục cơ bản nhất, dễ phối đồ và luôn cần có trong tủ quần áo của các đấng mày râu. Thêm vào đó, sự khác biệt của The Shirt Studio còn thể hiện rõ nét thông qua chất liệu vải được tuyển chọn, xử lý kỹ lưỡng , thân thiện với môi trường, kết hợp cùng kiểu dáng không bao giờ lỗi mốt và những đường cắt may tinh xảo</li>
 ",
             'cost_price' => 600000,
-            'regular_price' => 1200000,
-            'sale_price' => 1020000,
+            'regular_price' => 11999000,
+            'sale_price' => 10190000,
             'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '3',
             'quantity' => 18,
-            'image' => 'product/clothes/shirt/vest-nam-han-quoc.jpg',
+            'image' => 'product/clothes/vest/vest-nam-han-quoc.jpg',
             'images' => '',
             'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '3',
             'trademark_id' => 3,
@@ -467,7 +467,7 @@ class SampleData
                                     <p>Chất liệu co giãn tốt, thoáng mát, thấm hút mồ hôi cho người mặc vận động thoải mái</p>
                                     <p>Gam màu đa dạng, dễ dàng mix cùng nhiều trang phục mà vẫn giữ được lịch lãm, cổ điển không bao giờ lỗi mốt</p>
                                     <p>Nếu bạn một tín đồ của áo polo, hãy lựa ngay items mình yêu thích và đặt hàng ngay tại Biluxury!</p>',
-            'admin_id' => 1,
+            'admin_id' => 2,
             'tag_id' => '1',
             'blog_category_id' => 7,
         ],
@@ -491,7 +491,7 @@ class SampleData
                                     <p>Chất liệu co giãn tốt, thoáng mát, thấm hút mồ hôi cho người mặc vận động thoải mái</p>
                                     <p>Gam màu đa dạng, dễ dàng mix cùng nhiều trang phục mà vẫn giữ được lịch lãm, cổ điển không bao giờ lỗi mốt</p>
                                     <p>Nếu bạn một tín đồ của áo polo, hãy lựa ngay items mình yêu thích và đặt hàng ngay tại Biluxury!</p>',
-            'admin_id' => 1,
+            'admin_id' => 2,
             'tag_id' => '8',
             'blog_category_id' => 7,
         ],
@@ -514,7 +514,7 @@ class SampleData
                         <p>Along with a clear sense of togetherness, there was also major style present throughout the weekend—whether it was worn by visitors or artists on the streets or shown on the runway for the market’s annual fashion show, which was organized by Amber-Dawn Bear Robe. </p>
                         <p>Around the booths, visitors and artists alike dressed up for the affair, cladding themselves in their best ribbon skirts or turquoise squash-blossom necklaces. At the fashion show, Indigenous designers Jamie Okuma, Orlando Dugi, Pamela Baker, and Lauren Good Day showcased their newest collections, pieces that combined traditional craftsmanship with new, modern updates. Dugi and Baker showed refined eveningwear pieces like beaded gowns and velvet suiting, while Okuma opted for her signature statement prints on dresses, coats, and more. Good Day even showed sprightly athleticwear—the through line being that Native design doesn’t have to look one specific way. For all in attendance, that sense of innovation is forever an Indian Market staple. “The energy was palpable,” says Pruitt. “Spirits were high, and in the end, the machine that is Indian Market just keeps on going.”</p>
                         <p>Below, more stylish highlights from the Santa Fe Indian Market weekend.</p>',
-            'admin_id' => 1,
+            'admin_id' => 2,
             'tag_id' => '1',
             'blog_category_id' => 4,
         ],
@@ -538,7 +538,7 @@ class SampleData
                                     <p>Chất liệu co giãn tốt, thoáng mát, thấm hút mồ hôi cho người mặc vận động thoải mái</p>
                                     <p>Gam màu đa dạng, dễ dàng mix cùng nhiều trang phục mà vẫn giữ được lịch lãm, cổ điển không bao giờ lỗi mốt</p>
                                     <p>Nếu bạn một tín đồ của áo polo, hãy lựa ngay items mình yêu thích và đặt hàng ngay tại Biluxury!</p>',
-            'admin_id' => 1,
+            'admin_id' => 2,
             'tag_id' => '8',
             'blog_category_id' => 3,
         ],

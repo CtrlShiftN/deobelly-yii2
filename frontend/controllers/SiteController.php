@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use common\models\Products;
+use frontend\models\PostsSearch;
 use frontend\models\ProductsSearch;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
@@ -83,9 +83,12 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $searchModelProduct = new ProductsSearch();
+        $searchModelPosts = new PostsSearch();
         $getProductIntro = $searchModelProduct->getProductIntro();
-        return $this->render('index',[
+        $getPostsIntro = $searchModelPosts->getPostsIntro();
+        return $this->render('index', [
             'productIntro' => $getProductIntro,
+            'posts' => $getPostsIntro,
         ]);
     }
 

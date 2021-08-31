@@ -87,8 +87,11 @@ class ProductsSearch extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
     public function getProductIntro()
     {
-        return Products::find()->where(['status'=>1])->orderBy("updated DESC")->limit(4)->asArray()->all();
+        return Products::find()->where(['status' => 1])->orderBy("updated_at DESC")->limit(8)->asArray()->all();
     }
 }
