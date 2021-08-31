@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="mt-3">
                             <?= Html::submitButton('Đăng Kí', ['class' => 'btn btn-primary rounded-pill text-light w-100', 'name' => 'signup-button','value'=>'Đăng Kí']) ?>
                         </div>
-                        <p class="text-center py-3">Bạn đã có tài khoản ? <?= Html::a('Đăng Nhập', ['site/login']) ?>
+                        <p class="text-center py-3">Bạn đã có tài khoản ? <?= Html::a('Đăng Nhập', ['/login']) ?>
                     </div>
                 </div>
             <?php ActiveForm::end(); ?>
