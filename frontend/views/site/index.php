@@ -203,286 +203,43 @@ $this->registerCss("
         <i class="fas fa-feather-alt fa-flip-horizontal"></i> sản phẩm mới <i class="fas fa-feather-alt"></i>
     </h1>
     <div class="col-12 row mx-0 px-3 px-md-5">
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-sm-2 my-3 my-md-2">
-            <div class="product-card overflow-hidden">
-                <div class="product-tumb">
-                    <a href="#" class="text-decoration-none w-100 m-0 p-0 h-100">
-                        <div class="badge p-2 px-sm-3 rounded-0">-30%</div>
-                        <img src="<?= $imgUrl ?>/product/clothes/top/shirt2.png" alt="" class="w-100">
-                    </a>
-                </div>
-                <div class="product-button d-none d-sm-block">
-                    <a href="javascript:void(0)" class="btn btn-dark rounded-0 btnFavor"><i
-                                class="far fa-heart"></i></a>
-                    <a href="#" class="btn btn-dark rounded-0 btnBuyNow">Mua ngay</a>
-                    <a href="#" class="btn btn-dark rounded-0 btnAdd"><i class="fas fa-cart-plus"></i></a>
-                </div>
-                <div class="product-details border-top m-0">
-                    <a href="#">
-                        <h5 class="mb-0 mb-sm-1 text-dark">
-                            [LOẠI 600 MIẾNG] Bông Tẩy Trang Pháp Tetra Medical CarrMedical Carr
-                        </h5>
-                        <div class="product-price mb-1">11.290.000 VNĐ</div>
-                    </a>
-                    <div class="d-sm-none row m-0 p-0 mb-2">
-                        <div class="col-6 p-0 pe-1 d-block">
-                            <a href="javascript:void(0)" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
-                                        class="far fa-heart"></i></a>
+        <?php foreach ($productIntro as $key => $value): ?>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-sm-2 my-3 my-md-2">
+                <div class="product-card overflow-hidden">
+                    <div class="product-tumb">
+                        <a href="#" class="text-decoration-none w-100 m-0 p-0 h-100">
+                            <div class="badge p-2 px-sm-3 rounded-0">-30%</div>
+                            <img src="<?= $imgUrl ?>/product/clothes/top/shirt2.png" alt="" class="w-100">
+                        </a>
+                    </div>
+                    <div class="product-button d-none d-sm-block">
+                        <a href="javascript:void(0)" class="btn btn-dark rounded-0 btnFavor"><i
+                                    class="far fa-heart"></i></a>
+                        <a href="#" class="btn btn-dark rounded-0 btnBuyNow">Mua ngay</a>
+                        <a href="#" class="btn btn-dark rounded-0 btnAdd"><i class="fas fa-cart-plus"></i></a>
+                    </div>
+                    <div class="product-details border-top m-0">
+                        <a href="#">
+                            <h5 class="mb-0 mb-sm-1 text-dark">
+                                [LOẠI 600 MIẾNG] Bông Tẩy Trang Pháp Tetra Medical CarrMedical Carr
+                            </h5>
+                            <div class="product-price mb-1">11.290.000 VNĐ</div>
+                        </a>
+                        <div class="d-sm-none row m-0 p-0 mb-2">
+                            <div class="col-6 p-0 pe-1 d-block">
+                                <a href="javascript:void(0)" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
+                                            class="far fa-heart"></i></a>
+                            </div>
+                            <div class="col-6 p-0 ps-1 d-block">
+                                <a href="#" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
+                                            class="fas fa-cart-plus"></i></a>
+                            </div>
+                            <a href="#" class="btn rounded-0 p-1 btn-outline-dark col-12 mt-2">Mua ngay</a>
                         </div>
-                        <div class="col-6 p-0 ps-1 d-block">
-                            <a href="#" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
-                                        class="fas fa-cart-plus"></i></a>
-                        </div>
-                        <a href="#" class="btn rounded-0 p-1 btn-outline-dark col-12 mt-2">Mua ngay</a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-sm-2 my-3 my-md-2">
-            <div class="product-card overflow-hidden">
-                <div class="product-tumb">
-                    <a href="#" class="text-decoration-none w-100 m-0 p-0 h-100">
-                        <div class="badge p-2 px-sm-3 rounded-0">-30%</div>
-                        <img src="<?= $imgUrl ?>/product/clothes/top/shirt5.png" alt="" class="w-100">
-                    </a>
-                </div>
-                <div class="product-button d-none d-sm-block">
-                    <a href="javascript:void(0)" class="btn btn-dark rounded-0 btnFavor"><i
-                                class="far fa-heart"></i></a>
-                    <a href="#" class="btn btn-dark rounded-0 btnBuyNow">Mua ngay</a>
-                    <a href="#" class="btn btn-dark rounded-0 btnAdd"><i class="fas fa-cart-plus"></i></a>
-                </div>
-                <div class="product-details border-top m-0">
-                    <a href="#">
-                        <h5 class="mb-0 mb-sm-1 text-dark">
-                            [LOẠI 600 MIẾNG] Bông Tẩy Trang Pháp Tetra Medical CarrMedical Carr
-                        </h5>
-                        <div class="product-price mb-1">11.290.000 VNĐ</div>
-                    </a>
-                    <div class="d-sm-none row m-0 p-0 mb-2">
-                        <div class="col-6 p-0 pe-1 d-block">
-                            <a href="javascript:void(0)" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
-                                        class="far fa-heart"></i></a>
-                        </div>
-                        <div class="col-6 p-0 ps-1 d-block">
-                            <a href="#" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
-                                        class="fas fa-cart-plus"></i></a>
-                        </div>
-                        <a href="#" class="btn rounded-0 p-1 btn-outline-dark col-12 mt-2">Mua ngay</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-sm-2 my-3 my-md-2">
-            <div class="product-card overflow-hidden">
-                <div class="product-tumb">
-                    <a href="#" class="text-decoration-none w-100 m-0 p-0 h-100">
-                        <div class="badge p-2 px-sm-3 rounded-0">-30%</div>
-                        <img src="<?= $imgUrl ?>/product/clothes/top/shirt3.png" alt="" class="w-100">
-                    </a>
-                </div>
-                <div class="product-button d-none d-sm-block">
-                    <a href="javascript:void(0)" class="btn btn-dark rounded-0 btnFavor"><i
-                                class="far fa-heart"></i></a>
-                    <a href="#" class="btn btn-dark rounded-0 btnBuyNow">Mua ngay</a>
-                    <a href="#" class="btn btn-dark rounded-0 btnAdd"><i class="fas fa-cart-plus"></i></a>
-                </div>
-                <div class="product-details border-top m-0">
-                    <a href="#">
-                        <h5 class="mb-0 mb-sm-1 text-dark">
-                            [LOẠI 600 MIẾNG] Bông Tẩy Trang Pháp Tetra Medical CarrMedical Carr
-                        </h5>
-                        <div class="product-price mb-1">11.290.000 VNĐ</div>
-                    </a>
-                    <div class="d-sm-none row m-0 p-0 mb-2">
-                        <div class="col-6 p-0 pe-1 d-block">
-                            <a href="javascript:void(0)" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
-                                        class="far fa-heart"></i></a>
-                        </div>
-                        <div class="col-6 p-0 ps-1 d-block">
-                            <a href="#" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
-                                        class="fas fa-cart-plus"></i></a>
-                        </div>
-                        <a href="#" class="btn rounded-0 p-1 btn-outline-dark col-12 mt-2">Mua ngay</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-sm-2 my-3 my-md-2">
-            <div class="product-card overflow-hidden">
-                <div class="product-tumb">
-                    <a href="#" class="text-decoration-none w-100 m-0 p-0 h-100">
-                        <div class="badge p-2 px-sm-3 rounded-0">-30%</div>
-                        <img src="<?= $imgUrl ?>/product/clothes/top/shirt2.png" alt="" class="w-100">
-                    </a>
-                </div>
-                <div class="product-button d-none d-sm-block">
-                    <a href="javascript:void(0)" class="btn btn-dark rounded-0 btnFavor"><i
-                                class="far fa-heart"></i></a>
-                    <a href="#" class="btn btn-dark rounded-0 btnBuyNow">Mua ngay</a>
-                    <a href="#" class="btn btn-dark rounded-0 btnAdd"><i class="fas fa-cart-plus"></i></a>
-                </div>
-                <div class="product-details border-top m-0">
-                    <a href="#">
-                        <h5 class="mb-0 mb-sm-1 text-dark">
-                            [LOẠI 600 MIẾNG] Bông Tẩy Trang Pháp Tetra Medical CarrMedical Carr
-                        </h5>
-                        <div class="product-price mb-1">11.290.000 VNĐ</div>
-                    </a>
-                    <div class="d-sm-none row m-0 p-0 mb-2">
-                        <div class="col-6 p-0 pe-1 d-block">
-                            <a href="javascript:void(0)" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
-                                        class="far fa-heart"></i></a>
-                        </div>
-                        <div class="col-6 p-0 ps-1 d-block">
-                            <a href="#" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
-                                        class="fas fa-cart-plus"></i></a>
-                        </div>
-                        <a href="#" class="btn rounded-0 p-1 btn-outline-dark col-12 mt-2">Mua ngay</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-sm-2 my-3 my-md-2">
-            <div class="product-card overflow-hidden">
-                <div class="product-tumb">
-                    <a href="#" class="text-decoration-none w-100 m-0 p-0 h-100">
-                        <div class="badge p-2 px-sm-3 rounded-0">-30%</div>
-                        <img src="<?= $imgUrl ?>/product/clothes/top/shirt1.png" alt="" class="w-100">
-                    </a>
-                </div>
-                <div class="product-button d-none d-sm-block">
-                    <a href="javascript:void(0)" class="btn btn-dark rounded-0 btnFavor"><i
-                                class="far fa-heart"></i></a>
-                    <a href="#" class="btn btn-dark rounded-0 btnBuyNow">Mua ngay</a>
-                    <a href="#" class="btn btn-dark rounded-0 btnAdd"><i class="fas fa-cart-plus"></i></a>
-                </div>
-                <div class="product-details border-top m-0">
-                    <a href="#">
-                        <h5 class="mb-0 mb-sm-1 text-dark">
-                            [LOẠI 600 MIẾNG] Bông Tẩy Trang Pháp Tetra Medical CarrMedical Carr
-                        </h5>
-                        <div class="product-price mb-1">11.290.000 VNĐ</div>
-                    </a>
-                    <div class="d-sm-none row m-0 p-0 mb-2">
-                        <div class="col-6 p-0 pe-1 d-block">
-                            <a href="javascript:void(0)" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
-                                        class="far fa-heart"></i></a>
-                        </div>
-                        <div class="col-6 p-0 ps-1 d-block">
-                            <a href="#" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
-                                        class="fas fa-cart-plus"></i></a>
-                        </div>
-                        <a href="#" class="btn rounded-0 p-1 btn-outline-dark col-12 mt-2">Mua ngay</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-sm-2 my-3 my-md-2">
-            <div class="product-card overflow-hidden">
-                <div class="product-tumb">
-                    <a href="#" class="text-decoration-none w-100 m-0 p-0 h-100">
-                        <div class="badge p-2 px-sm-3 rounded-0">-30%</div>
-                        <img src="<?= $imgUrl ?>/product/clothes/top/shirt1.png" alt="" class="w-100">
-                    </a>
-                </div>
-                <div class="product-button d-none d-sm-block">
-                    <a href="javascript:void(0)" class="btn btn-dark rounded-0 btnFavor"><i
-                                class="far fa-heart"></i></a>
-                    <a href="#" class="btn btn-dark rounded-0 btnBuyNow">Mua ngay</a>
-                    <a href="#" class="btn btn-dark rounded-0 btnAdd"><i class="fas fa-cart-plus"></i></a>
-                </div>
-                <div class="product-details border-top m-0">
-                    <a href="#">
-                        <h5 class="mb-0 mb-sm-1 text-dark">
-                            [LOẠI 600 MIẾNG] Bông Tẩy Trang Pháp Tetra Medical CarrMedical Carr
-                        </h5>
-                        <div class="product-price mb-1">11.290.000 VNĐ</div>
-                    </a>
-                    <div class="d-sm-none row m-0 p-0 mb-2">
-                        <div class="col-6 p-0 pe-1 d-block">
-                            <a href="javascript:void(0)" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
-                                        class="far fa-heart"></i></a>
-                        </div>
-                        <div class="col-6 p-0 ps-1 d-block">
-                            <a href="#" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
-                                        class="fas fa-cart-plus"></i></a>
-                        </div>
-                        <a href="#" class="btn rounded-0 p-1 btn-outline-dark col-12 mt-2">Mua ngay</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-sm-2 my-3 my-md-2">
-            <div class="product-card overflow-hidden">
-                <div class="product-tumb">
-                    <a href="#" class="text-decoration-none w-100 m-0 p-0 h-100">
-                        <div class="badge p-2 px-sm-3 rounded-0">-30%</div>
-                        <img src="<?= $imgUrl ?>/product/clothes/top/shirt4.png" alt="" class="w-100">
-                    </a>
-                </div>
-                <div class="product-button d-none d-sm-block">
-                    <a href="javascript:void(0)" class="btn btn-dark rounded-0 btnFavor"><i
-                                class="far fa-heart"></i></a>
-                    <a href="#" class="btn btn-dark rounded-0 btnBuyNow">Mua ngay</a>
-                    <a href="#" class="btn btn-dark rounded-0 btnAdd"><i class="fas fa-cart-plus"></i></a>
-                </div>
-                <div class="product-details border-top m-0">
-                    <a href="#">
-                        <h5 class="mb-0 mb-sm-1 text-dark">
-                            [LOẠI 600 MIẾNG] Bông Tẩy Trang Pháp Tetra Medical CarrMedical Carr
-                        </h5>
-                        <div class="product-price mb-1">11.290.000 VNĐ</div>
-                    </a>
-                    <div class="d-sm-none row m-0 p-0 mb-2">
-                        <div class="col-6 p-0 pe-1 d-block">
-                            <a href="javascript:void(0)" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
-                                        class="far fa-heart"></i></a>
-                        </div>
-                        <div class="col-6 p-0 ps-1 d-block">
-                            <a href="#" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
-                                        class="fas fa-cart-plus"></i></a>
-                        </div>
-                        <a href="#" class="btn rounded-0 p-1 btn-outline-dark col-12 mt-2">Mua ngay</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-sm-2 my-3 my-md-2">
-            <div class="product-card overflow-hidden">
-                <div class="product-tumb">
-                    <a href="#" class="text-decoration-none w-100 m-0 p-0 h-100">
-                        <div class="badge p-2 px-sm-3 rounded-0">-30%</div>
-                        <img src="<?= $imgUrl ?>/product/clothes/top/shirt2.png" alt="" class="w-100">
-                    </a>
-                </div>
-                <div class="product-button d-none d-sm-block">
-                    <a href="javascript:void(0)" class="btn btn-dark rounded-0 btnFavor"><i
-                                class="far fa-heart"></i></a>
-                    <a href="#" class="btn btn-dark rounded-0 btnBuyNow">Mua ngay</a>
-                    <a href="#" class="btn btn-dark rounded-0 btnAdd"><i class="fas fa-cart-plus"></i></a>
-                </div>
-                <div class="product-details border-top m-0">
-                    <a href="#">
-                        <h5 class="mb-0 mb-sm-1 text-dark">
-                            [LOẠI 600 MIẾNG] Bông Tẩy Trang Pháp Tetra Medical CarrMedical Carr
-                        </h5>
-                        <div class="product-price mb-1">11.290.000 VNĐ</div>
-                    </a>
-                    <div class="d-sm-none row m-0 p-0 mb-2">
-                        <div class="col-6 p-0 pe-1 d-block">
-                            <a href="javascript:void(0)" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
-                                        class="far fa-heart"></i></a>
-                        </div>
-                        <div class="col-6 p-0 ps-1 d-block">
-                            <a href="#" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
-                                        class="fas fa-cart-plus"></i></a>
-                        </div>
-                        <a href="#" class="btn rounded-0 p-1 btn-outline-dark col-12 mt-2">Mua ngay</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
 
     <div class="container text-center">

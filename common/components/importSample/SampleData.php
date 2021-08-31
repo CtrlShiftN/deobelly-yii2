@@ -88,7 +88,34 @@ class SampleData
     protected static array $productInforArr = [
         [
             'name' => 'Áo thun không cổ BOSS',
-            'slug' => 'ao-thun-khong-co-boss',
+            'slug' => 'ao-thun-khong-co-boss-1',
+            'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
+            'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
+<li>T-Shirts</li>
+<li>-Color：Black , White , Red, Blue, Yellow,Pink</li>
+<li>-Sizes: XS  S M L XL  XXL  3XL </li>
+<li>-If you like loose, please take a big size.</li>
+<li>-Ships From:China</li>
+<li>-Transportation time：It takes about 5-20 days, depending on the speed of logistics</li>
+<li>-Product Description</li>
+<li>-Brand New T-shirt </li>
+<li>-Various tide brands</li>
+<li>-We are committed to providing you with the best quality products at the best prices.</li>
+",
+            'cost_price' => 150000,
+            'regular_price' => 299000,
+            'sale_price' => null,
+            'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
+            'quantity' => 20,
+            'image' => 'product/clothes/top/shirt1.png',
+            'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
+            'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
+            'trademark_id' => 1,
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Áo thun không cổ HUGO-BOSS',
+            'slug' => 'ao-thun-khong-co-hugo-boss',
             'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
             'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
 <li>T-Shirts</li>
@@ -104,7 +131,115 @@ class SampleData
 ",
             'cost_price' => 200000,
             'regular_price' => 400000,
-            'sale_price' => 340000,
+            'sale_price' => null,
+            'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
+            'quantity' => 20,
+            'image' => 'product/clothes/top/shirt1.png',
+            'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
+            'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
+            'trademark_id' => 1,
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Áo thun không cổ',
+            'slug' => 'ao-thun-khong-co',
+            'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
+            'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
+<li>T-Shirts</li>
+<li>-Color：Black , White , Red, Blue, Yellow,Pink</li>
+<li>-Sizes: XS  S M L XL  XXL  3XL </li>
+<li>-If you like loose, please take a big size.</li>
+<li>-Ships From:China</li>
+<li>-Transportation time：It takes about 5-20 days, depending on the speed of logistics</li>
+<li>-Product Description</li>
+<li>-Brand New T-shirt </li>
+<li>-Various tide brands</li>
+<li>-We are committed to providing you with the best quality products at the best prices.</li>
+",
+            'cost_price' => 200000,
+            'regular_price' => 399000,
+            'sale_price' => null,
+            'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
+            'quantity' => 20,
+            'image' => 'product/clothes/top/shirt1.png',
+            'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
+            'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
+            'trademark_id' => 1,
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Áo thun không cổ',
+            'slug' => 'ao-thun-khong-co-2',
+            'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
+            'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
+<li>T-Shirts</li>
+<li>-Color：Black , White , Red, Blue, Yellow,Pink</li>
+<li>-Sizes: XS  S M L XL  XXL  3XL </li>
+<li>-If you like loose, please take a big size.</li>
+<li>-Ships From:China</li>
+<li>-Transportation time：It takes about 5-20 days, depending on the speed of logistics</li>
+<li>-Product Description</li>
+<li>-Brand New T-shirt </li>
+<li>-Various tide brands</li>
+<li>-We are committed to providing you with the best quality products at the best prices.</li>
+",
+            'cost_price' => 200000,
+            'regular_price' => 399000,
+            'sale_price' => null,
+            'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
+            'quantity' => 20,
+            'image' => 'product/clothes/top/shirt1.png',
+            'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
+            'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
+            'trademark_id' => 1,
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Áo thun không cổ',
+            'slug' => 'ao-thun-khong-co-3',
+            'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
+            'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
+<li>T-Shirts</li>
+<li>-Color：Black , White , Red, Blue, Yellow,Pink</li>
+<li>-Sizes: XS  S M L XL  XXL  3XL </li>
+<li>-If you like loose, please take a big size.</li>
+<li>-Ships From:China</li>
+<li>-Transportation time：It takes about 5-20 days, depending on the speed of logistics</li>
+<li>-Product Description</li>
+<li>-Brand New T-shirt </li>
+<li>-Various tide brands</li>
+<li>-We are committed to providing you with the best quality products at the best prices.</li>
+",
+            'cost_price' => 300000,
+            'regular_price' => 599000,
+            'sale_price' => null,
+            'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
+            'quantity' => 20,
+            'image' => 'product/clothes/top/shirt1.png',
+            'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
+            'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
+            'trademark_id' => 1,
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Áo thun không cổ',
+            'slug' => 'ao-thun-khong-co-4',
+            'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
+            'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
+<li>T-Shirts</li>
+<li>-Color：Black , White , Red, Blue, Yellow,Pink</li>
+<li>-Sizes: XS  S M L XL  XXL  3XL </li>
+<li>-If you like loose, please take a big size.</li>
+<li>-Ships From:China</li>
+<li>-Transportation time：It takes about 5-20 days, depending on the speed of logistics</li>
+<li>-Product Description</li>
+<li>-Brand New T-shirt </li>
+<li>-Various tide brands</li>
+<li>-We are committed to providing you with the best quality products at the best prices.</li>
+",
+            'cost_price' => 175000,
+            'regular_price' => 349000,
+            'sale_price' => null,
             'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
             'quantity' => 20,
             'image' => 'product/clothes/top/shirt1.png',
@@ -175,7 +310,12 @@ class SampleData
             $product->description = $values['description'];
             $product->cost_price = $values['cost_price'];
             $product->regular_price = $values['regular_price'];
-            $product->sale_price = $values['sale_price'];
+            if(!empty($values['sale_price']))
+            {
+                $product->sale_price = $values['sale_price'];
+            } else {
+                $product->sale_price = null;
+            }
             $product->SKU = $values['SKU'];
             $product->quantity = $values['quantity'];
             $product->image = $values['image'];

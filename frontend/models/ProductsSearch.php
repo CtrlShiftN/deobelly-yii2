@@ -1,7 +1,9 @@
 <?php
 
-namespace common\models;
+namespace frontend\models;
 
+use common\models\Posts;
+use common\models\Products;
 use Yii;
 
 /**
@@ -29,7 +31,7 @@ use Yii;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class Products extends \yii\db\ActiveRecord
+class ProductsSearch extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -83,5 +85,10 @@ class Products extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
+    }
+
+    public function getProductIntro()
+    {
+        return Products::find()->where(['status'=>1])->orderBy("updated DESC")->limit(4)->asArray()->all();
     }
 }

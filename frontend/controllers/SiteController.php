@@ -2,6 +2,8 @@
 
 namespace frontend\controllers;
 
+use common\models\Products;
+use frontend\models\ProductsSearch;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -80,7 +82,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModelProduct = new ProductsSearch();
+        $getProductIntro = $searchModelProduct->getProductIntro();
+        return $this->render('index',[
+            'productIntro' => $getProductIntro,
+        ]);
     }
 
     /**
