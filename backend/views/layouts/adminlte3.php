@@ -107,6 +107,15 @@ AppAsset::register($this);
                                 <p>Quản lý tài khoản</p>
                             </a>
                         </li>
+                        <!-- Post -->
+                        <li class="nav-header text-uppercase font-weight-bold">Bài viết</li>
+                        <li class="nav-item">
+                            <a href="<?= Url::toRoute('posts-tag/') ?>"
+                               class="nav-link <?= ($controller == 'posts-tag') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>Quản lý thẻ</p>
+                            </a>
+                        </li>
                         <li class="nav-header text-uppercase font-weight-bold">Sản phẩm</li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
