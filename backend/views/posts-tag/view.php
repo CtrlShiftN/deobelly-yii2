@@ -3,16 +3,15 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-
 /* @var $this yii\web\View */
-/* @var $model backend\models\User */
+/* @var $model backend\models\PostsTag */
 
-$this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
+$this->title = $model->title;
+$this->params['breadcrumbs'][] = ['label' => 'Posts Tags', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="user-view">
+<div class="posts-tag-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -30,15 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'username',
-            'name',
-            'tel',
-            'address',
-            'email:email',
-            'verified_at',
-            'status',
-            'role',
+            'title',
+            'slug',
             'created_at',
             'updated_at',
         ],

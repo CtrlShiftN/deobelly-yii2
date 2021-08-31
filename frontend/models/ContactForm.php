@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use common\models\User;
 use Yii;
 
 /**
@@ -37,6 +38,7 @@ class ContactForm extends \yii\db\ActiveRecord
             [['content'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'email'], 'string', 'max' => 255],
+            ['email', 'unique', 'targetClass' => User::class, 'message' => 'This email has already been taken.'],
         ];
     }
 

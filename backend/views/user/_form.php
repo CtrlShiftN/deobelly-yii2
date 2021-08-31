@@ -6,6 +6,8 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model backend\models\User */
 /* @var $form yii\widgets\ActiveForm */
+
+$this->registerCss('.help-block {color: red}');
 ?>
 
 <div class="user-form">
