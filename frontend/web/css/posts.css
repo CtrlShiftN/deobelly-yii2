@@ -1,9 +1,9 @@
-a {
-    color: black !important;
-    text-decoration: none !important;
+.posts a {
+    color: black ;
+    text-decoration: none ;
 }
-a:hover {
-    color: rgba(87, 88, 87, 0.83)  !important;
+.posts a:hover {
+    color: rgba(87, 88, 87, 0.83) ;
 }
 .short-text, .hot-news, .title {
     display: block;
@@ -21,6 +21,11 @@ a:hover {
 }
 .hot-news {
     -webkit-line-clamp: 4;
+}
+@media (min-width: 1250px) {
+    .short-text{
+        -webkit-line-clamp: 5;
+    }
 }
 @media (max-width: 500px) {
     .title {

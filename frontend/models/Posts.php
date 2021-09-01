@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace frontend\models;
 
 use Yii;
 
@@ -62,4 +62,8 @@ class Posts extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getPosts()
+    {
+        return Posts::find()->where(['status'=>1])->asArray()->all();
+    }
 }

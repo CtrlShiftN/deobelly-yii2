@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 
 
-use common\models\Posts;
+use frontend\models\Posts;
 use frontend\models\PostsSearch;
 use frontend\models\ProductsSearch;
 use frontend\models\ResendVerificationEmailForm;

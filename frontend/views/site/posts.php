@@ -10,7 +10,7 @@ $imgUrl = Yii::$app->params['common']."/media";
 $this->registerCssFile(Url::toRoute("css/posts.css"));
 ?>
 
-<div class="row mt-4">
+<div class="posts row mt-4">
     <div class="col-12 col-lg-8 p-0 m-0">
         <div class="text-center fw-bold fs-1 border-bottom border-dark border-3">
             <i class="fas fa-feather-alt fa-flip-horizontal"></i> <span class="fw-bold"> Tin Mới </span><i
