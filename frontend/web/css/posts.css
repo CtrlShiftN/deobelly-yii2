@@ -1,0 +1,47 @@
+.posts a {
+    color: black ;
+    text-decoration: none ;
+}
+.posts a:hover {
+    color: rgba(87, 88, 87, 0.83) ;
+}
+.short-text, .hot-news, .title {
+    display: block;
+    display: -webkit-box;
+    margin: 0 auto;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.title {
+    font-size: 20px;
+}
+.short-text, .title {
+    -webkit-line-clamp: 3;
+}
+.hot-news {
+    -webkit-line-clamp: 4;
+}
+@media (max-width: 360px) {
+    .date-author {
+        display: none;
+    }
+}
+@media (max-width: 530px) {
+    .short-text{
+        display: none;
+    }
+}
+@media (max-width: 767px) {
+    .watch-more, .hot-news {
+        display: none;
+    }
+    .short-text{
+        -webkit-line-clamp: 2;
+    }
+}
+@media (min-width: 1250px) {
+    .short-text{
+        -webkit-line-clamp: 4;
+    }
+}

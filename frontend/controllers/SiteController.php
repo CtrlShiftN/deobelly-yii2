@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use frontend\models\Posts;
 use frontend\models\PostsSearch;
 use frontend\models\ProductsSearch;
 use frontend\models\ResendVerificationEmailForm;
@@ -272,5 +273,14 @@ class SiteController extends Controller
         return $this->render('resendVerificationEmail', [
             'model' => $model
         ]);
+    }
+
+    public function actionPosts()
+    {
+        $searchModelPosts = new Posts();
+        $getPosts = $searchModelPosts->getPosts();
+        return $this->render('posts', [
+            'posts' => $getPosts
+	    ]);
     }
 }
