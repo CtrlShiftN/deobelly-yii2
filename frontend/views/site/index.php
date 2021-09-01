@@ -401,7 +401,7 @@ $this->registerCss("
                                     <small class="d-block p-1"><i
                                                 class="fas fa-calendar-alt"></i> <?= $value['updated_at'] ?></small>
                                     <small class="d-block p-1"><i
-                                                class="fas fa-user-edit"></i> <?= \common\models\User::find()->select('name')->where(['status' => 1, 'id' => $value['id']])->one()['name']; ?>
+                                                class="fas fa-user-edit"></i> <?= \common\models\User::find()->select('name')->where(['status' => 1, 'id' => $value['admin_id']])->one()['name']; ?>
                                     </small>
                                 </h6>
                                 <a href="#" class="btn float-end">Xem bài viết <i
