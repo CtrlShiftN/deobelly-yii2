@@ -34,5 +34,4 @@ class m210830_090141_create_posts_table extends Migration
     {
         $this->dropTable('{{%posts}}');
     }
-
 }

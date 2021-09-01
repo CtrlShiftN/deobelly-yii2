@@ -62,6 +62,9 @@ class Posts extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
     public function getPosts()
     {
         return Posts::find()->where(['status'=>1])->asArray()->all();

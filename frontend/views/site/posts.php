@@ -17,9 +17,6 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
                 class="fas fa-feather-alt"></i>
         </div>
         <?php foreach($posts as $value) : ?>
-            <?php
-            $avatar = pathinfo($value['avatar'], PATHINFO_BASENAME);
-            $thumbnail = pathinfo($value['thumbnail'], PATHINFO_BASENAME); ?>
             <div class="col-12 row p-0 m-0 my-2 my-md-4">
                 <div class="col-4"><a href="#"><img src="<?= $imgUrl.'/'.$value['avatar']?>" class="img-fluid"></a></div>
                 <div class="col-8">

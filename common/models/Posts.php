@@ -61,5 +61,4 @@ class Posts extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
         ];
     }
-
 }

@@ -22,26 +22,26 @@
 .hot-news {
     -webkit-line-clamp: 4;
 }
-@media (min-width: 1250px) {
-    .short-text{
-        -webkit-line-clamp: 5;
+@media (max-width: 360px) {
+    .date-author {
+        display: none;
     }
 }
-@media (max-width: 500px) {
-    .title {
-        font-size: 15px;
-    }
-    .date-author {
-        font-size: 12px;
+@media (max-width: 530px) {
+    .short-text{
+        display: none;
     }
 }
 @media (max-width: 767px) {
-    .short-text,.watch-more, .hot-news {
+    .watch-more, .hot-news {
         display: none;
     }
+    .short-text{
+        -webkit-line-clamp: 2;
+    }
 }
-@media (max-width: 355px) {
-    .date-author {
-        display: none;
+@media (min-width: 1250px) {
+    .short-text{
+        -webkit-line-clamp: 4;
     }
 }

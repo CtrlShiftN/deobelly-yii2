@@ -2,7 +2,6 @@
 
 namespace frontend\controllers;
 
-
 use frontend\models\Posts;
 use frontend\models\PostsSearch;
 use frontend\models\ProductsSearch;
