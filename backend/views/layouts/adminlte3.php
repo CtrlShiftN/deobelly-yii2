@@ -116,6 +116,13 @@ AppAsset::register($this);
                                 <p>Quản lý thẻ</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="<?= Url::toRoute('posts-category/') ?>"
+                               class="nav-link <?= ($controller == 'posts-category') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>Quản lý danh mục</p>
+                            </a>
+                        </li>
                         <li class="nav-header text-uppercase font-weight-bold">Sản phẩm</li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
