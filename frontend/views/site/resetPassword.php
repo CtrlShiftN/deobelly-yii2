@@ -22,13 +22,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             <h1 class="fw-bold text-primary text-center "><?= Html::encode($this->title) ?></h1>
                             <p class="my-md-4 my-2">Please choose your new password:</p>
                         </div>
-                        <?= $form->field($model, 'password', ['options' => [
-                            'class' => 'form-floating mt-5 '],
-                            'inputOptions' => ['id' => 'floatingInputPassword', 'class' => 'form-control'],
-                            'template' => "{input}\n<label for='floatingInputPassword'>Password</label>\n{error}"])->textInput(['type'=> 'password','autofocus' => true,'class' => 'form-control w-100 border rounded-pill'])->label(false) ?>
-
+                        <?= $form->field($model, 'password', [
+                            'inputOptions' => ['autofocus' => true, 'class' => 'form-control border rounded-pill mt-md-5 mt-3']
+                        ])->textInput()->input('password', ['placeholder' => "Nhập mật khẩu mới"])->label(false); ?>
+                        <?= $form->field($model, 'password_confirm', [
+                            'inputOptions' => ['autofocus' => true, 'class' => 'form-control border rounded-pill mt-md-3 mt-2']
+                        ])->textInput()->input('password', ['placeholder' => "Nhập lại mật khẩu"])->label(false); ?>
                         <?= Html::submitButton('Lưu Mật Khẩu', ['class' => 'btn btn-primary rounded-pill fs-4 text-light w-100 my-5', 'name' => 'login-button']) ?>
-
                     </div>
                 </div>
                 <?php ActiveForm::end(); ?>

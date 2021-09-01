@@ -3,6 +3,7 @@
 }
 input{
     outline: unset;
+    height: 50px;
 }
 .border-radius{
     border-radius: 30px;

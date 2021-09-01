@@ -24,13 +24,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div  class=" pt-md-5 pt-3">
                             <h4><p>Vui lòng điền vào email của bạn. Một liên kết để đặt lại mật khẩu sẽ được gửi đến đó.</p></h4>
                         </div>
-                        <?= $form->field($model, 'email', ['options' => [
-                            'class' => 'form-floating mt-5 '],
-                            'inputOptions' => ['id' => 'floatingInputEmail', 'class' => 'form-control'],
-                            'template' => "{input}\n<label for='floatingInputEmail'>Email</label>\n{error}"])->textInput(['autofocus' => true, 'class' => 'form-control w-100 border rounded-pill'])->label(false) ?>
-
+                        <?= $form->field($model, 'email', [
+                            'inputOptions' => ['autofocus' => true, 'class' => 'form-control border rounded-pill mt-md-5 mt-3']
+                        ])->textInput()->input('email', ['placeholder' => "Nhập email"])->label(false); ?>
                         <?= Html::submitButton('Gửi', ['class' => 'btn btn-primary rounded-pill fs-4 text-light w-100 mt-5', 'name' => 'reset-button']) ?>
-
                         <div class="py-md-4 py-2">
                             Bạn đã nhớ mật khẩu ? <?= Html::a('Đăng Nhập ', ['site/login'],['class'=>'text-decoration-none'] ) ?>
                         </div>

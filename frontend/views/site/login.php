@@ -21,15 +21,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class=" pt-md-5 pt-3">
                             <h1 class="fw-bold text-primary text-center "><?= Html::encode($this->title) ?></h1>
                         </div>
-                        <?= $form->field($model, 'email', ['options' => [
-                            'class' => 'form-floating mt-5 '],
-                            'inputOptions' => ['id' => 'floatingInputEmail', 'class' => 'form-control'],
-                            'template' => "{input}\n<label for='floatingInputEmail'>Email</label>\n{error}"])->textInput(['autofocus' => true, 'class' => 'form-control w-100 border rounded-pill'])->label(false) ?>
-                        <?= $form->field($model, 'password', ['options' => [
-                            'class' => 'form-floating mt-3'],
-                            'inputOptions' => ['id' => 'floatingInputPassword', 'class' => 'form-control'],
-                            'template' => "{input}\n<label for='floatingInputPassword'>Password</label>\n{error}"])->textInput(['type'=> 'password','class' => 'form-control w-100 border rounded-pill'])->label(false) ?>
-                        <?= Html::submitButton('Login', ['class' => 'btn btn-primary rounded-pill fs-4 text-light w-100 mt-5', 'name' => 'login-button']) ?>
+                        <?= $form->field($model, 'email', [
+                            'inputOptions' => ['autofocus' => true, 'class' => 'form-control border rounded-pill mt-md-5 mt-3']
+                        ])->textInput()->input('email', ['placeholder' => "Nhập email"])->label(false); ?>
+
+                        <?= $form->field($model, 'password', [
+                            'inputOptions' => ['autofocus' => true, 'class' => 'form-control border rounded-pill mt-md-4 mt-2']
+                        ])->textInput()->input('password', ['placeholder' => "Nhập mật khẩu"])->label(false); ?>
+
+                        <?= Html::submitButton('Login', ['class' => 'btn btn-primary rounded-pill fs-4 text-light w-100 mt-5','name' => 'login-button']) ?>
                         <div class="mt-4">
                             Bạn quên mật khẩu ? <?= Html::a('Quên mật khẩu', ['/request-password-reset'],['class'=>'text-decoration-none'] ) ?>
                         </div>
