@@ -23,7 +23,8 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
                     <div class="h-75">
                         <h4 class="title text-uppercase fw-bold"><a href="#"><?=$value['title']?></a></h4>
                         <div class="date-author">
-                            <i class="far fa-calendar-alt"></i><span class="me-3">16/07/2021 </span><i class="fas fa-user"></i><span class="ms-1">DE OBELLY</span>
+                            <i class="far fa-calendar-alt"></i><span class="me-3"> <?=$value['updated_at']?></span><i class="fas fa-user"></i>
+                            <span class="ms-1"><?= \common\models\User::find()->select('name')->where(['status'=>1,'id'=>$value['admin_id']])->one()["name"] ?></span>
                         </div>
                         <div class="short-text mt-2 mt-md-3 fs-5 lh-sm"><?=$value['content'] ?></div>
                     </div>
@@ -39,9 +40,9 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
     <div class="col-12 col-lg-4">
         <div class="w-100"><p class="fs-4 fw-bold border-bottom">DANH MỤC TIN TỨC</p></div>
         <div class="text-dark">
-            <?php for ($i = 0; $i < 3; $i++): ?>
-            <a href="" class="w-100">Xu Hướng Thời Trang<span class="float-end">(7)</span></a><br>
-            <?php endfor; ?>
+            <?php foreach($posts_category as $value): ?>
+            <a href="" class="w-100"><?=$value['title'] ?><span class="float-end">(7)</span></a><br>
+            <?php endforeach; ?>
         </div>
         <div class="w-100 mt-3 fs-3"><span class="fw-bold">TIN NỔI BẬT</span></div>
         <?php foreach($posts as $value): ?>
@@ -52,15 +53,11 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
                 <div class="col-8">
                     <div class="title text-uppercase fw-bold"><a href="#"><?=$value['title']?></a></div>
                     <div class="date-author d-lg-none d-xl-block mt-2">
-                        <i class="far fa-calendar-alt"></i><span>16/07/2021 </span><i class="fas fa-user ms-1"></i><span>DE OBELLY</span></div>
+                        <i class="fas fa-user ms-1"></i>
+                        <span><?= \common\models\User::find()->select('name')->where(['status'=>1,'id'=>$value['admin_id']])->one()["name"] ?></span></div>
                     <div class="d-lg-none hot-news mt-2 mt-md-3 fs-5 lh-sm"><?=$value['content'] ?></div>
                 </div>
             </div>
         <?php endforeach; ?>
-        <div class="my-4">
-            <div class="my-4 d-none d-lg-block">
-                    <a href="#"><img src="<?= $imgUrl.'/'.$value['thumbnail']?>" class="img-fluid"></a>
-            </div>
-        </div>
     </div>
 </div>

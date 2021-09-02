@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use frontend\models\Posts;
+use frontend\models\PostsCategory;
 use frontend\models\PostsSearch;
 use frontend\models\ProductsSearch;
 use frontend\models\ResendVerificationEmailForm;
@@ -274,12 +275,19 @@ class SiteController extends Controller
         ]);
     }
 
+    /**
+     * @return string
+     */
     public function actionPosts()
     {
         $searchModelPosts = new Posts();
+        $searchMdelPostsCategory = new PostsCategory();
+
+        $getPostsCategory = $searchMdelPostsCategory->getPostsCategory();
         $getPosts = $searchModelPosts->getPosts();
         return $this->render('posts', [
-            'posts' => $getPosts
+            'posts' => $getPosts,
+            'posts_category' =>$getPostsCategory
 	    ]);
     }
 }
