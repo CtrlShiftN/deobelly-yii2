@@ -39,11 +39,11 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
     </div>
     <div class="col-12 col-lg-4">
         <div class="w-100"><p class="fs-4 fw-bold border-bottom">DANH MỤC TIN TỨC</p></div>
-        <div class="text-dark">
+        <div class="row text-dark">
             <?php foreach($posts_category as $value): ?>
-            <a href="" class="w-100"><?=$value['title'] ?><span class="float-end">(7)</span></a><br>
+                <div class="col-6 category"><a href="" class="w-100 one-line"><?=$value['title'] ?><span class="float-end d-lg-none">( <?=$value['id'] ?> )</span></a></div>
             <?php endforeach; ?>
-        </div>
+            </div>
         <div class="w-100 mt-3 fs-3"><span class="fw-bold">TIN NỔI BẬT</span></div>
         <?php foreach($posts as $value): ?>
             <div class="row my-2">
