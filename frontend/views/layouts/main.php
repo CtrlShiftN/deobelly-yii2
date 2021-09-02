@@ -120,7 +120,7 @@ AppAsset::register($this);
                                                 </div>
                                             </div>
                                             <div class="col-9">
-                                                <h4><?= Yii::$app->user->name ?></h4>
+                                                <h4><?= Yii::$app->user->identity->name ?></h4>
                                                 <span class="text-success"><i class="fas fa-circle success"></i></span>
                                                 Online
                                             </div>
