@@ -714,7 +714,7 @@ class SampleData
     /**
      *
      */
-    protected static function insertSampleBlogTag()
+    protected static function insertSamplePostsTag()
     {
         $countTag = 0;
         foreach (self::$blogTagInfoArr as $value)
@@ -729,7 +729,7 @@ class SampleData
                 $countTag++;
             }
         }
-        echo "Inserted ".$countTag.'/'.count(self::$blogTagInfoArr).' meta.'.PHP_EOL;
+        echo "Inserted ".$countTag.'/'.count(self::$blogTagInfoArr).' posts tag.'.PHP_EOL;
     }
 
     protected static array $blogCategoryInfoArr = [
@@ -767,7 +767,7 @@ class SampleData
         ],
     ];
 
-    protected static function insertSampleBlogCategory()
+    protected static function insertSamplePostsCategory()
     {
         $countBlogCate = 0;
         foreach (self::$blogCategoryInfoArr as $value)
@@ -782,7 +782,7 @@ class SampleData
                 $countBlogCate++;
             }
         }
-        echo "Inserted ".$countBlogCate.'/'.count(self::$blogCategoryInfoArr).' meta.'.PHP_EOL;
+        echo "Inserted ".$countBlogCate.'/'.count(self::$blogCategoryInfoArr).' posts category.'.PHP_EOL;
     }
 
     /**
@@ -797,7 +797,7 @@ class SampleData
         self::insertSamplePosts();
         self::insertSampleTerms();
         self::insertSampleMeta();
-        self::insertSampleBlogTag();
-        self::insertSampleBlogCategory();
+        self::insertSamplePostsTag();
+        self::insertSamplePostsCategory();
     }
 }

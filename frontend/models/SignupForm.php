@@ -43,7 +43,7 @@ class SignupForm extends Model
             ['tel', 'trim'],
             ['tel', 'required', 'message'=>"Số điện thoại không được để trống"],
             ['tel', 'string', 'max' => 12, 'min' => Yii::$app->params['user.telMinLength']],
-
+            ['tel', 'validateTel'],
         ];
     }
 
