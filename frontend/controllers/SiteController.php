@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use frontend\models\PostsSearch;
 use frontend\models\ProductsSearch;
 use frontend\models\ResendVerificationEmailForm;
+use frontend\models\Terms;
 use frontend\models\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
@@ -271,6 +272,14 @@ class SiteController extends Controller
 
         return $this->render('resendVerificationEmail', [
             'model' => $model
+        ]);
+    }
+
+    public function actionTerms() {
+        $modelTerms = new Terms();
+        $getTerms = $modelTerms->getTermsAndServices();
+        return $this->render('terms', [
+            'terms' => $getTerms,
         ]);
     }
 }
