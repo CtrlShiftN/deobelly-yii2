@@ -123,6 +123,13 @@ AppAsset::register($this);
                                 <p>Quản lý danh mục</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="<?= Url::toRoute('posts/') ?>"
+                               class="nav-link <?= ($controller == 'posts') ? 'active' : '' ?>">
+                                <i class="nav-icon far fa-newspaper"></i>
+                                <p>Quản lý bài viết</p>
+                            </a>
+                        </li>
                         <li class="nav-header text-uppercase font-weight-bold">Sản phẩm</li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -162,6 +169,13 @@ AppAsset::register($this);
                                     <span class="badge badge-info right">2</span>
                                 </p>
                             </a>
+                        </li>
+                        <li class="nav-item">
+                            <?php
+                            echo Html::a('Đăng xuất', Url::toRoute('site/logout'), ['class' => 'btn btn-danger', 'data' => [
+                                'method' => 'post',
+                            ],])
+                            ?>
                         </li>
                     </ul>
                 </nav>
