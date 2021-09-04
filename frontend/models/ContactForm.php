@@ -34,13 +34,13 @@ class ContactForm extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'email', 'tel', 'content'], 'required', 'message' => 'Trường nhập không được bỏ trống' ],
+            [['name', 'email', 'tel', 'content'], 'required', 'message' => 'Trường nhập không được bỏ trống'],
             [['tel', 'status', 'user_id'], 'integer'],
             [['content'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'email'], 'string', 'max' => 255],
-            [['email'], 'email','message' => 'Email không đúng định dạng'],
-            [['tel'], 'match', 'pattern' => '/^0[0-9]{9}$/',  'message' => 'Bao gồm 10 ký tự số bắt đầu từ "0"'],
+            [['email'], 'email', 'message' => 'Email không đúng định dạng'],
+            [['tel'], 'match', 'pattern' => '/^(84|0[1-9])+([0-9]{8})$/', 'message' => 'Phải bắt đầu từ 0 hoặc 84'],
         ];
     }
 
@@ -68,18 +68,18 @@ class ContactForm extends \yii\db\ActiveRecord
     public function saveContactData()
     {
         $contactModel = new ContactForm();
-        $contactModel -> name = $this->name;
-        $contactModel -> email = $this->email;
-        $contactModel -> tel = $this->tel;
-        $contactModel -> content = $this->content;
+        $contactModel->name = $this->name;
+        $contactModel->email = $this->email;
+        $contactModel->tel = $this->tel;
+        $contactModel->content = $this->content;
         if (!Yii::$app->user->isGuest) {
-            $contactModel -> user_id = Yii::$app->user->identity->id;
+            $contactModel->user_id = Yii::$app->user->identity->id;
         } else {
-            $contactModel -> user_id = null;
+            $contactModel->user_id = null;
         }
-        $contactModel -> status = SystemConstant::STATUS_ACTIVE;
-        $contactModel -> created_at = date('Y-m-d H:i:s');
-        $contactModel -> updated_at = date('Y-m-d H:i:s');
-        return $contactModel ->save();
+        $contactModel->status = SystemConstant::STATUS_ACTIVE;
+        $contactModel->created_at = date('Y-m-d H:i:s');
+        $contactModel->updated_at = date('Y-m-d H:i:s');
+        return $contactModel->save();
     }
 }

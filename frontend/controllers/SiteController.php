@@ -139,9 +139,9 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 //            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
             if ($model->saveContactData()) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
+                Yii::$app->session->setFlash('success', "Cảm ơn quý khách đã gửi phản hồi. Chúng tôi sẽ sớm hồi âm lại với quý khách");
             } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
+                Yii::$app->session->setFlash('error', "Chưa thể gửi phản hồi. Xin quý khách vui lòng thử lại.");
             }
 
             return $this->refresh();
