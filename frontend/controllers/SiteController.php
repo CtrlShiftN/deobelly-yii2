@@ -7,6 +7,7 @@ use frontend\models\PostsCategory;
 use frontend\models\PostsSearch;
 use frontend\models\ProductsSearch;
 use frontend\models\ResendVerificationEmailForm;
+use frontend\models\Terms;
 use frontend\models\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
@@ -275,19 +276,28 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionTerms() {
+        $modelTerms = new Terms();
+        $getTerms = $modelTerms->getTermsAndServices();
+        return $this->render('terms', [
+            'terms' => $getTerms,
+        ]);
+    }
+
+
     /**
      * @return string
      */
     public function actionPosts()
     {
         $searchModelPosts = new Posts();
-        $searchMdelPostsCategory = new PostsCategory();
+        $searchModelPostsCategory = new PostsCategory();
 
-        $getPostsCategory = $searchMdelPostsCategory->getPostsCategory();
+        $getPostsCategory = $searchModelPostsCategory->getPostsCategory();
         $getPosts = $searchModelPosts->getPosts();
         return $this->render('posts', [
             'posts' => $getPosts,
-            'posts_category' =>$getPostsCategory
-	    ]);
+            'posts_category' => $getPostsCategory
+        ]);
     }
 }

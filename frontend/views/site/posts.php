@@ -5,6 +5,7 @@
 
 use yii\bootstrap4\Html;
 use yii\helpers\Url;
+use frontend\models\User;
 
 $imgUrl = Yii::$app->params['common']."/media";
 $this->registerCssFile(Url::toRoute("css/posts.css"));
@@ -24,7 +25,7 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
                         <h4 class="title text-uppercase fw-bold"><a href="#"><?=$value['title']?></a></h4>
                         <div class="date-author">
                             <i class="far fa-calendar-alt"></i><span class="me-3"> <?=$value['updated_at']?></span><i class="fas fa-user"></i>
-                            <span class="ms-1"><?= \common\models\User::find()->select('name')->where(['status'=>1,'id'=>$value['admin_id']])->one()["name"] ?></span>
+                            <span class="ms-1"><?= User::getNameUserById($value['admin_id'])['name']; ?></span>
                         </div>
                         <div class="short-text mt-2 mt-md-3 fs-5 lh-sm"><?=$value['content'] ?></div>
                     </div>
