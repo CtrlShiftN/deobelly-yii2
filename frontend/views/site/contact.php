@@ -4,8 +4,9 @@
 /* @var $form yii\bootstrap4\ActiveForm */
 /* @var $model \frontend\models\ContactForm */
 
-use yii\bootstrap4\Html;
-use yii\bootstrap4\ActiveForm;
+use kartik\label\LabelInPlace;
+use yii\bootstrap5\Html;
+use yii\bootstrap5\ActiveForm;
 use yii\helpers\Url;
 
 $this->title = 'Contact';
@@ -16,6 +17,7 @@ $this->registerCss("
         width: 45%;
     } 
 ");
+$config = ['template'=>"{input}\n{error}\n{hint}"];
 ?>
 <div class="site-contact">
     <div class="w-100">
@@ -69,7 +71,12 @@ $this->registerCss("
             <?= $form->field($model, 'name')->textInput(['autofocus' => true])->label('Họ và Tên:',['class'=>'fw-bold']) ?>
             <div class="row">
                 <div class="col-md-6 my-3">
-                    <?= $form->field($model, 'email')->label('Địa chỉ mail:',['class'=>'fw-bold']) ?>
+                    <?= $form->field($model, 'email', $config)->widget(LabelInPlace::classname(),[
+                        'type' => LabelInPlace::TYPE_HTML5,
+                        'label'=>'<i class="fas fa-phone"></i> Phone number',
+                        'options' => ['type' => 'email', 'class'=>'form-control'],
+                        'encodeLabel'=> false
+                    ]); ?>
                 </div>
                 <div class="col-md-6 my-3">
                     <?= $form->field($model, 'tel')->label('Số điện thoại:',['class'=>'fw-bold']) ?>
