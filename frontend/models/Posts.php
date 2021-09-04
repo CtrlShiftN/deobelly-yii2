@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use yii\db\Query;
 
 /**
  * This is the model class for table "posts".
@@ -65,8 +66,17 @@ class Posts extends \yii\db\ActiveRecord
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    public function getPosts()
+    public static function getAllPosts($postCategory = null, $postTag = null)
     {
-        return Posts::find()->where(['status'=>1])->asArray()->all();
+        $query = (new Query())->select(['p.title', 'p.content', 'pc.title', 'pc.slug'])->from('posts as p')
+            ->innerJoin('posts_category as pc', 'p.blog_category_id = pc.id')
+            ->where(['p.status' => 1]);
+        if (!empty($postCategory)) {
+            $query->andWhere(['p.category_id'=>$postCategory]);
+        }
+        if (!empty($postTag)) {
+            $query->andWhere(['p.tag_id'=>$postTag]);
+        }
+        return $query->all();
     }
 }

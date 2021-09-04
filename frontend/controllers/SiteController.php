@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\components\helpers\ParamHelper;
 use frontend\models\Posts;
 use frontend\models\PostsCategory;
 use frontend\models\PostsSearch;
@@ -280,14 +281,13 @@ class SiteController extends Controller
      */
     public function actionPosts()
     {
-        $searchModelPosts = new Posts();
-        $searchMdelPostsCategory = new PostsCategory();
+        $postTag = ParamHelper::getParamValue('post_tag');
+        $postsCategory = ParamHelper::getParamValue('post_category');
 
-        $getPostsCategory = $searchMdelPostsCategory->getPostsCategory();
-        $getPosts = $searchModelPosts->getPosts();
+        $allPost = Posts::getAllPosts($postsCategory, $postTag);
+        print_r($allPost);die;
         return $this->render('posts', [
-            'posts' => $getPosts,
-            'posts_category' =>$getPostsCategory
+            'posts' => $allPost,
 	    ]);
     }
 }

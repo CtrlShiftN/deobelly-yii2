@@ -55,7 +55,7 @@ class PostsCategory extends \yii\db\ActiveRecord
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    public function getPostsCategory()
+    public static function getPostsCategory()
     {
         return PostsCategory::find()->where(['status'=>1])->asArray()->all();
     }
