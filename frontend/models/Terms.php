@@ -58,7 +58,7 @@ class Terms extends \yii\db\ActiveRecord
     /**
      * @return mixed
      */
-    public function getTermsAndServices() {
+    public static function getTermsAndServices() {
         return TermsAndServices::find()->where(['status' => '1'])->asArray()->all();
     }
 }

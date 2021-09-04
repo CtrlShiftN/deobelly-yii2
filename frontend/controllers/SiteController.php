@@ -83,10 +83,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $searchModelProduct = new ProductsSearch();
-        $searchModelPosts = new PostsSearch();
-        $getProductIntro = $searchModelProduct->getProductIntro();
-        $getPostsIntro = $searchModelPosts->getPostsIntro();
+        $getProductIntro = ProductsSearch::getProductIntro();
+        $getPostsIntro = PostsSearch::getPostsIntro();
         return $this->render('index', [
             'productIntro' => $getProductIntro,
             'posts' => $getPostsIntro,
@@ -140,9 +138,9 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 //            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
             if ($model->saveContactData()) {
-                Yii::$app->session->setFlash('success', "Cảm ơn quý khách đã gửi phản hồi. Chúng tôi sẽ sớm hồi âm lại với quý khách");
+                Yii::$app->session->setFlash('contactSuccess', "Cảm ơn quý khách đã gửi phản hồi. Chúng tôi sẽ sớm hồi âm lại với quý khách");
             } else {
-                Yii::$app->session->setFlash('error', "Chưa thể gửi phản hồi. Xin quý khách vui lòng thử lại.");
+                Yii::$app->session->setFlash('contactError', "Chưa thể gửi phản hồi. Xin quý khách vui lòng thử lại.");
             }
 
             return $this->refresh();
@@ -276,8 +274,7 @@ class SiteController extends Controller
     }
 
     public function actionTerms() {
-        $modelTerms = new Terms();
-        $getTerms = $modelTerms->getTermsAndServices();
+        $getTerms = Terms::getTermsAndServices();
         return $this->render('terms', [
             'terms' => $getTerms,
         ]);

@@ -40,7 +40,7 @@ class ContactForm extends \yii\db\ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'email'], 'string', 'max' => 255],
             [['email'], 'email', 'message' => 'Email không đúng định dạng'],
-            [['tel'], 'match', 'pattern' => '/^(84|0[1-9])+([0-9]{8})$/', 'message' => 'Phải bắt đầu từ 0 hoặc 84'],
+            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => 'Bao gồm 10 chữ số bắt đầu từ 0 hoặc 11 bắt đầu từ 84'],
         ];
     }
 

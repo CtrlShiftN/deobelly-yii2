@@ -47,18 +47,18 @@ $this->registerCss("
                  class="shadow-lg rounded w-100">
         </div>
         <div class="col-12 col-lg-6 order-sm-first order-xs-first my-3 my-lg-5">
-            <?php if (Yii::$app->session->hasFlash('success')): ?>
+            <?php if (Yii::$app->session->hasFlash('contactSuccess')): ?>
                 <div class="alert alert-success alert-dismissible fade show my-3">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     <h4><i class="icon fa fa-check"></i> THÀNH CÔNG!</h4>
-                    <?= Yii::$app->session->getFlash('success') ?>
+                    <?= Yii::$app->session->getFlash('contactSuccess') ?>
                 </div>
             <?php endif; ?>
-            <?php if (Yii::$app->session->hasFlash('error')): ?>
+            <?php if (Yii::$app->session->hasFlash('contactError')): ?>
                 <div class="alert alert-danger alert-dismissible fade show my-3">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     <h4><i class="fas fa-times"></i> LỖI!</h4>
-                    <?= Yii::$app->session->getFlash('error') ?>
+                    <?= Yii::$app->session->getFlash('contactError') ?>
                 </div>
             <?php endif; ?>
             <h3 class="fw-bold mb-4 text-center"><span class=" border-3 border-dark border-bottom ">GỬI THẮC MẮC CỦA BẠN</span>
