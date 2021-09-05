@@ -20,7 +20,7 @@ use yii\db\Query;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class Posts extends \yii\db\ActiveRecord
+class Posts extends \common\models\PostsCategory
 {
     /**
      * {@inheritdoc}
@@ -69,13 +69,13 @@ class Posts extends \yii\db\ActiveRecord
     public static function getAllPosts($postCategory = null, $posts = null)
     {
         $query = (new Query())->select(['p.title', 'p.content','p.avatar','p.id','p.updated_at','p.admin_id','p.thumbnail', 'pc.slug'])->from('posts as p')
-            ->innerJoin('posts_category as pc', 'p.id = pc.id')
+            ->innerJoin('posts_category as pc', 'p.blog_category_id = pc.id')
             ->where(['p.status' => 1]);
         if (!empty($postCategory)) {
-            $query->andWhere(['pc.id'=>$postCategory]);
+            $query->andWhere(['p.category_id'=>$postCategory]);
         }
         if (!empty($posts)) {
-            $query->andWhere(['p.id'=>$posts]);
+            $query->andWhere(['p.tag_id'=>$posts]);
         }
         return $query->all();
     }
