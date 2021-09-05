@@ -66,16 +66,16 @@ class Posts extends \yii\db\ActiveRecord
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getAllPosts($postCategory = null, $postTag = null)
+    public static function getAllPosts($postCategory = null, $posts = null)
     {
-        $query = (new Query())->select(['p.title', 'p.content', 'pc.title', 'pc.slug'])->from('posts as p')
-            ->innerJoin('posts_category as pc', 'p.blog_category_id = pc.id')
+        $query = (new Query())->select(['p.title', 'p.content','p.avatar','p.id','p.updated_at','p.admin_id','p.thumbnail', 'pc.slug'])->from('posts as p')
+            ->innerJoin('posts_category as pc', 'p.id = pc.id')
             ->where(['p.status' => 1]);
         if (!empty($postCategory)) {
-            $query->andWhere(['p.category_id'=>$postCategory]);
+            $query->andWhere(['pc.id'=>$postCategory]);
         }
-        if (!empty($postTag)) {
-            $query->andWhere(['p.tag_id'=>$postTag]);
+        if (!empty($posts)) {
+            $query->andWhere(['p.id'=>$posts]);
         }
         return $query->all();
     }

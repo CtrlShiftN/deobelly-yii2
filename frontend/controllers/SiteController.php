@@ -291,11 +291,10 @@ class SiteController extends Controller
      */
     public function actionPosts()
     {
-        $postTag = ParamHelper::getParamValue('post_tag');
-        $postsCategory = ParamHelper::getParamValue('post_category');
+        $posts = ParamHelper::getParamValue('posts');
+        $postsCategory = ParamHelper::getParamValue('posts_category');
 
-        $allPost = Posts::getAllPosts($postsCategory, $postTag);
-        print_r($allPost);die;
+        $allPost = Posts::getAllPosts($posts,$postsCategory);
         return $this->render('posts', [
             'posts' => $allPost,
 	    ]);
