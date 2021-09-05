@@ -13,6 +13,7 @@ class SignupForm extends Model
 {
     public $email;
     public $password;
+    public $password_confirm;
     public $name;
     public $tel;
 
@@ -24,21 +25,25 @@ class SignupForm extends Model
     {
         return [
             ['email', 'trim'],
-            ['email', 'required'],
+            ['email', 'required', 'message'=>"Email không được để trống"],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Địa chỉ email này đã được sử dụng.'],
 
-            ['password', 'required'],
+            ['password', 'required', 'message'=>"Mật khẩu không được để trống"],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
 
-            ['name', 'required'],
+            ['password_confirm', 'required', 'message'=>"Nhập lại mật khẩu không được để trống"],
+            ['password_confirm', 'compare', 'compareAttribute'=>'password', 'message'=>"Mật khẩu không khớp" ],
+
+            ['name', 'required', 'message'=>"Tên không được để trống"],
             ['name', 'trim'],
             ['name', 'string', 'max' => 100],
 
             ['tel', 'trim'],
-            ['tel', 'string', 'max' => 12],
-            ['tel', 'validateTel']
+            ['tel', 'required', 'message'=>"Số điện thoại không được để trống"],
+            ['tel', 'string', 'max' => 12, 'min' => Yii::$app->params['user.telMinLength']],
+            ['tel', 'validateTel'],
         ];
     }
 

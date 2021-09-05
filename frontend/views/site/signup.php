@@ -2,31 +2,72 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap4\ActiveForm */
-/* @var $model \frontend\models\SignupForm */
+/* @var $model \common\models\LoginForm */
 
+use kartik\label\LabelInPlace;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\ActiveForm;
+use yii\helpers\Url;
 
-$this->title = 'Signup';
+$imgUrl = Yii::$app->params['common'] . "/media";
+$this->title = 'Đăng Kí';
 $this->params['breadcrumbs'][] = $this->title;
+$config = ['template'=>"{input}\n{error}\n{hint}"];
 ?>
-<div class="site-signup">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="h-top"></div>
+<div class="row border-radius">
+    <div class="col-6 col-lg-7 d-md-block d-none bg-light border-radius bg-white">
+        <div class="h-100 d-flex">
+            <div class="align-self-center"><img src="<?= $imgUrl ?>/img-content-login.jpg" class="img-fluid"></div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-5 ">
+        <div class="">
+            <div class="max-width mx-auto ">
+                <?php $form = ActiveForm::begin(['id' => 'login-form', 'class' => 'form-floating']); ?>
+                <div class=" border-radius bg-light">
+                    <div class="mx-4">
+                        <div class="pt-3">
+                            <h1 class="fw-bold text-center text-primary"><?= Html::encode($this->title) ?></h1>
+                        </div>
+                        <?= $form->field($model, 'name', $config)->widget(LabelInPlace::classname(),[
+                            'type' => LabelInPlace::TYPE_HTML5,
+                            'label'=>'Nhập họ tên',
+                            'options' => ['type' => 'text', 'class'=>'form-control fs-5 border rounded-pill mt-5'],
+                            'encodeLabel'=> false
+                        ]); ?>
 
-    <p>Please fill out the following fields to signup:</p>
-
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
-            <?= $form->field($model, 'name')->textInput(['placeholder' => 'Nhập họ và tên'])->label(false) ?>
-            <?= $form->field($model, 'email')->textInput(['placeholder' => 'Nhập email'])->label(false) ?>
-            <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Mật khẩu'])->label(false) ?>
-            <?= $form->field($model, 'tel')->textInput(['placeholder' => 'Nhập số điện thoại'])->label(false) ?>
-                <div class="form-group">
-                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                        <?= $form->field($model, 'email', $config)->widget(LabelInPlace::classname(),[
+                            'type' => LabelInPlace::TYPE_HTML5,
+                            'label'=>'Nhập email',
+                            'options' => ['type' => 'email', 'class'=>'form-control fs-5 border rounded-pill mt-md-3 mt-2','placeholder'=>'abc xyz'],
+                            'encodeLabel'=> false
+                        ]); ?>
+                        <?= $form->field($model, 'password', $config)->widget(LabelInPlace::classname(),[
+                            'type' => LabelInPlace::TYPE_HTML5,
+                            'label'=>'Nhập mật khẩu',
+                            'options' => ['type' => 'password', 'class'=>'form-control fs-5 border rounded-pill mt-2'],
+                            'encodeLabel'=> false
+                        ]); ?>
+                        <?= $form->field($model, 'password_confirm', $config)->widget(LabelInPlace::classname(),[
+                            'type' => LabelInPlace::TYPE_HTML5,
+                            'label'=>'Nhập lại mật khẩu',
+                            'options' => ['type' => 'password', 'class'=>'form-control fs-5 border rounded-pill mt-2'],
+                            'encodeLabel'=> false
+                        ]); ?>
+                        <?= $form->field($model, 'tel', $config)->widget(LabelInPlace::classname(),[
+                            'type' => LabelInPlace::TYPE_HTML5,
+                            'label'=>'Nhập số điện thoại',
+                            'options' => ['type' => 'number', 'class'=>'form-control fs-5 border rounded-pill mt-2'],
+                            'encodeLabel'=> false
+                        ]); ?>
+                        <?= Html::submitButton('Đăng Kí', ['class' => 'btn btn-primary rounded-pill text-light w-100', 'name' => 'signup-button','value'=>'Đăng Kí']) ?>
+                    </div>
+                    <p class="text-center py-3">Bạn đã có tài khoản ? <?= Html::a('Đăng Nhập', ['/login']) ?>
+                    </div>
                 </div>
-
-            <?php ActiveForm::end(); ?>
+                <?php ActiveForm::end(); ?>
+            </div>
         </div>
     </div>
 </div>
