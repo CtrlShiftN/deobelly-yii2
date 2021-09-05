@@ -69,19 +69,13 @@ $config = ['template'=>"{input}\n{error}\n{hint}"];
 
             <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
             <?= $form->field($model, 'name')->textInput(['autofocus' => true])->label('Họ và Tên:',['class'=>'fw-bold']) ?>
-            <div class="row">
-                <div class="col-md-6 my-3">
-                    <?= $form->field($model, 'email', $config)->widget(LabelInPlace::classname(),[
-                        'type' => LabelInPlace::TYPE_HTML5,
-                        'label'=>'<i class="fas fa-phone"></i> Phone number',
-                        'options' => ['type' => 'email', 'class'=>'form-control'],
-                        'encodeLabel'=> false
-                    ]); ?>
-                </div>
-                <div class="col-md-6 my-3">
-                    <?= $form->field($model, 'tel')->label('Số điện thoại:',['class'=>'fw-bold']) ?>
-                </div>
-            </div>
+                <?= $form->field($model, 'email', $config)->widget(LabelInPlace::classname(),[
+                    'type' => LabelInPlace::TYPE_HTML5,
+                    'label'=>'<i class="fas fa-phone"></i> Phone number',
+                    'options' => ['type' => 'email', 'class'=>'form-control'],
+                    'encodeLabel'=> false
+                ]); ?>
+                <?= $form->field($model, 'tel')->label('Số điện thoại:',['class'=>'fw-bold']) ?>
 
             <?= $form->field($model, 'content')->textarea(['rows' => 6])->label('Nội dung liên hệ:',['class'=>'fw-bold'])?>
 
