@@ -1,51 +1,24 @@
-/*
 .max-width{
     max-width: 400px;
 }
-input{
-    outline: unset;
-}
-label{
-    padding-top: 3px;
-    color: black !important;
-}
-.invalid-feedback{
-    display: block!important;
-}
-.lip-icon{
-    display: none;
-}
-.border-radius{
-    border-radius: 30px;
-}
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    margin: 0;
-}*/
-.max-width{
-    max-width: 500px;
-}
 .lip-icon{
     display: none;
 }
 input{
+    text-indent: 10px;
     outline: unset;
 }
 label{
-    padding-top: 3px;
     color: black !important;
 }
-.h-top{
+.h-15{
     height: 10vh;
 }
-
 .border-radius{
     border-radius: 10px;
 }
 .invalid-feedback{
+    padding-left: 10px;
     display: block!important;
 }
 .row{

@@ -46,7 +46,7 @@ class ResetPasswordForm extends Model
     public function rules()
     {
         return [
-            ['password', 'required'],
+            ['password', 'required', 'message'=>"Mật khẩu không được để trống"],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
 
             ['password_confirm', 'required', 'message'=>"Nhập lại mật khẩu không được để trống"],

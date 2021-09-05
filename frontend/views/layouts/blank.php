@@ -35,7 +35,7 @@ AppAsset::register($this);
                 margin:  0;
                 padding:  0;
             }
-            .wrapper{
+            #wrapper{
                 background-image: url("<?= $imgUrl?>/bg-login-signup.png");
                 min-height: 100%;
                 background-position: top;
@@ -45,7 +45,7 @@ AppAsset::register($this);
     </head>
     <body>
     <?php $this->beginBody() ?>
-    <div class="wrapper">
+    <div id="wrapper">
         <div id="content">
             <div class="container">
                 <?= $content ?>
