@@ -20,7 +20,7 @@ class m210830_090141_create_posts_table extends Migration
             'content' => $this->text(),
             'admin_id' => $this->bigInteger(),
             'tag_id' => $this->string(),
-            'blog_category_id' => $this->bigInteger(),
+            'post_category_id' => $this->bigInteger(),
             'status' => $this->smallInteger()->defaultValue(1)->comment('0 for inactive, 1 for active'),
             'created_at' => $this->dateTime(),
             'updated_at' => $this->dateTime(),

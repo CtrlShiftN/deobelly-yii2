@@ -25,7 +25,7 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
                         <h4 class="title text-uppercase fw-bold"><a href="#"><?=$value['title']?></a></h4>
                         <div class="date-author">
                             <i class="far fa-calendar-alt"><span class="me-3"> <?=$value['updated_at']?></span></i>
-                            <i class="fas fa-user"><span class="ms-1"><?= User::getNameUserById($value['admin_id'])['name']; ?></span></i>
+                            <i class="fas fa-user"><span class="ms-1"><?= User::getUserNameById($value['admin_id'])['name']; ?></span></i>
                         </div>
                         <div class="short-text mt-2 mt-md-3 fs-5 lh-sm"><?=$value['content'] ?></div>
                     </div>
@@ -42,7 +42,7 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
         <div class="w-100"><p class="fs-4 fw-bold border-bottom">DANH MỤC TIN TỨC</p></div>
         <div class="row text-dark">
             <?php foreach($posts as $value): ?>
-                <div class="col-6 category"><a href="" class="w-100 one-line"><?=$value['slug'] ?><span class="float-end d-lg-none">( <?=$value['id'] ?> )</span></a></div>
+                <div class="col-6"><a href="#" class="w-100 one-line"><?= $value['title'] ?></a></div>
             <?php endforeach; ?>
             </div>
         <div class="w-100 mt-3 fs-3"><span class="fw-bold">TIN NỔI BẬT</span></div>
@@ -55,7 +55,7 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
                     <div class="title text-uppercase fw-bold"><a href="#"><?=$value['title']?></a></div>
                     <div class="date-author d-lg-none d-xl-block mt-2">
                         <i class="fas fa-user ms-1"></i>
-                        <span><?= User::getNameUserById($value['admin_id'])['name']; ?></span></div>
+                        <span><?= User::getUserNameById($value['admin_id'])['name']; ?></span></div>
                     <div class="d-lg-none hot-news mt-2 mt-md-3 fs-5 lh-sm"><?=$value['content'] ?></div>
                 </div>
             </div>

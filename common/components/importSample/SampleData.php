@@ -469,7 +469,7 @@ class SampleData
                                     <p>Nếu bạn một tín đồ của áo polo, hãy lựa ngay items mình yêu thích và đặt hàng ngay tại Biluxury!</p>',
             'admin_id' => 2,
             'tag_id' => '1',
-            'blog_category_id' => 7,
+            'post_category_id' => 7,
         ],
         [
             'avatar' => 'posts/avatar/lacoste-ava.PNG',
@@ -493,7 +493,7 @@ class SampleData
                                     <p>Nếu bạn một tín đồ của áo polo, hãy lựa ngay items mình yêu thích và đặt hàng ngay tại Biluxury!</p>',
             'admin_id' => 2,
             'tag_id' => '8',
-            'blog_category_id' => 7,
+            'post_category_id' => 7,
         ],
         [
             'avatar' => 'posts/avatar/lacoste-ava.PNG',
@@ -517,7 +517,7 @@ class SampleData
                                     <p>Nếu bạn một tín đồ của áo polo, hãy lựa ngay items mình yêu thích và đặt hàng ngay tại Biluxury!</p>',
             'admin_id' => 2,
             'tag_id' => '1',
-            'blog_category_id' => 4,
+            'post_category_id' => 4,
         ],
         [
             'avatar' => 'posts/avatar/lacoste-ava.PNG',
@@ -541,7 +541,7 @@ class SampleData
                                     <p>Nếu bạn một tín đồ của áo polo, hãy lựa ngay items mình yêu thích và đặt hàng ngay tại Biluxury!</p>',
             'admin_id' => 2,
             'tag_id' => '8',
-            'blog_category_id' => 3,
+            'post_category_id' => 3,
         ],
     ];
 
@@ -559,7 +559,7 @@ class SampleData
             $posts->content = $value['content'];
             $posts->admin_id = $value['admin_id'];
             $posts->tag_id = $value['tag_id'];
-            $posts->blog_category_id = $value['blog_category_id'];
+            $posts->post_category_id = $value['post_category_id'];
             $posts->created_at = date('Y-m-d H:m:s');
             $posts->updated_at = date('Y-m-d H:m:s');
             if ($posts->save()) {

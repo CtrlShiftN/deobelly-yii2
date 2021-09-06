@@ -15,7 +15,7 @@ use yii\db\Query;
  * @property string|null $content
  * @property int|null $admin_id
  * @property string|null $tag_id
- * @property int|null $blog_category_id
+ * @property int|null $post_category_id
  * @property int|null $status 0 for inactive, 1 for active
  * @property string|null $created_at
  * @property string|null $updated_at
@@ -37,7 +37,7 @@ class Posts extends \common\models\PostsCategory
     {
         return [
             [['content'], 'string'],
-            [['admin_id', 'blog_category_id', 'status'], 'integer'],
+            [['admin_id', 'post_category_id', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['avatar', 'thumbnail', 'title', 'tag_id'], 'string', 'max' => 255],
         ];
@@ -56,7 +56,7 @@ class Posts extends \common\models\PostsCategory
             'content' => 'Content',
             'admin_id' => 'Admin ID',
             'tag_id' => 'Tag ID',
-            'blog_category_id' => 'Blog Category ID',
+            'post_category_id' => 'Post Category ID',
             'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
@@ -68,14 +68,14 @@ class Posts extends \common\models\PostsCategory
      */
     public static function getAllPosts($postCategory = null, $posts = null)
     {
-        $query = (new Query())->select(['p.title', 'p.content','p.avatar','p.id','p.updated_at','p.admin_id','p.thumbnail', 'pc.slug'])->from('posts as p')
-            ->innerJoin('posts_category as pc', 'p.blog_category_id = pc.id')
+        $query = (new Query())->select(['p.title', 'p.content','p.avatar','p.id','p.updated_at','p.admin_id','p.thumbnail'])->from('posts as p')
+            ->innerJoin('posts_category as pc', 'p.post_category_id = pc.id')
             ->where(['p.status' => 1]);
         if (!empty($postCategory)) {
-            $query->andWhere(['p.category_id'=>$postCategory]);
+            $query->andWhere(['p.post_category_id'=>$postCategory]);
         }
         if (!empty($posts)) {
-            $query->andWhere(['p.tag_id'=>$posts]);
+            $query->andWhere(['p.id'=>$posts]);
         }
         return $query->all();
     }
