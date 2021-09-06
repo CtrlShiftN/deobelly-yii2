@@ -33,7 +33,7 @@ class SignupForm extends Model
             ['password', 'required', 'message'=>"Mật khẩu không được để trống"],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
 
-            ['password_confirm', 'required', 'message'=>"Nhập lại mật khẩu không được để trống"],
+            ['password_confirm', 'required', 'message'=>"Mật khẩu không được để trống"],
             ['password_confirm', 'compare', 'compareAttribute'=>'password', 'message'=>"Mật khẩu không khớp" ],
 
             ['name', 'required', 'message'=>"Tên không được để trống"],
