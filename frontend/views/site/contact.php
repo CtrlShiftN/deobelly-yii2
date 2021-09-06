@@ -5,8 +5,8 @@
 /* @var $model \frontend\models\ContactForm */
 
 use kartik\label\LabelInPlace;
-use yii\bootstrap4\Html;
-use yii\bootstrap4\ActiveForm;
+use yii\bootstrap5\Html;
+use kartik\form\ActiveForm;
 use yii\helpers\Url;
 
 $this->title = 'Contact';

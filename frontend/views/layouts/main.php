@@ -30,7 +30,9 @@ AppAsset::register($this);
             input[type=search] {
                 background: url('<?= $cdnUrl?>/img/search-icon.png') no-repeat 9px center;
             }
-
+            input[type=search]:focus {
+                outline: none;
+            }
             footer .footer-content {
                 background: url('<?= $cdnUrl?>/img/footer_bg.png') no-repeat;
             }

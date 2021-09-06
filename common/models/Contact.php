@@ -8,10 +8,10 @@ use Yii;
  * This is the model class for table "contact".
  *
  * @property int $id
- * @property string|null $name
- * @property string|null $email
- * @property int|null $tel
- * @property string|null $content
+ * @property string $name
+ * @property string $email
+ * @property int $tel
+ * @property string $content
  * @property int|null $status 0 for inactive, 1 for active
  * @property int|null $user_id
  * @property string|null $created_at
@@ -33,6 +33,7 @@ class Contact extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name', 'email', 'tel', 'content'], 'required'],
             [['tel', 'status', 'user_id'], 'integer'],
             [['content'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
