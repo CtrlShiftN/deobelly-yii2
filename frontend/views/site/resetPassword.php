@@ -43,7 +43,7 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                             'options' => ['type' => 'password', 'class' => 'form-control fs-5 border rounded-pill mt-md-4 mt-2'],
                             'encodeLabel' => false
                         ]); ?>
-                        <?= Html::submitButton('Đăng Kí', ['class' => 'btn btn-primary rounded-pill text-light w-100 mt-md-5 mt-3', 'name' => 'signup-button', 'value' => 'Đăng Kí']) ?>
+                        <?= Html::submitButton('Đăng Kí', ['class' => 'btn btn-primary rounded-pill text-light w-100 my-md-5 my-3', 'name' => 'signup-button', 'value' => 'Đăng Kí']) ?>
                     </div>
                 </div>
                 <?php ActiveForm::end(); ?>
