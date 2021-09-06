@@ -68,7 +68,7 @@ class Posts extends \common\models\PostsCategory
      */
     public static function getAllPosts($postCategory = null, $posts = null)
     {
-        $query = (new Query())->select(['p.title', 'p.content','p.avatar','p.id','p.updated_at','p.admin_id','p.thumbnail'])->from('posts as p')
+        $query = (new Query())->select(['p.title', 'p.content','p.avatar','p.id','p.updated_at','p.admin_id','p.thumbnail','pc.title as pc-title'])->from('posts as p')
             ->innerJoin('posts_category as pc', 'p.post_category_id = pc.id')
             ->where(['p.status' => 1]);
         if (!empty($postCategory)) {

@@ -42,7 +42,7 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
         <div class="w-100"><p class="fs-4 fw-bold border-bottom">DANH MỤC TIN TỨC</p></div>
         <div class="row text-dark">
             <?php foreach($posts as $value): ?>
-                <div class="col-6"><a href="#" class="w-100 one-line"><?= $value['title'] ?></a></div>
+                <div class="col-6"><a href="#" class="w-100 one-line"><?= $value['pc-title'] ?></a></div>
             <?php endforeach; ?>
             </div>
         <div class="w-100 mt-3 fs-3"><span class="fw-bold">TIN NỔI BẬT</span></div>
