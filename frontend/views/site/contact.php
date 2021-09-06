@@ -5,8 +5,8 @@
 /* @var $model \frontend\models\ContactForm */
 
 use kartik\label\LabelInPlace;
-use yii\bootstrap5\Html;
-use yii\bootstrap5\ActiveForm;
+use yii\bootstrap4\Html;
+use yii\bootstrap4\ActiveForm;
 use yii\helpers\Url;
 
 $this->title = 'Contact';
@@ -30,25 +30,8 @@ $config = ['template'=>"{input}\n{error}\n{hint}"];
             <h5> Nếu bạn có yêu cầu kinh doanh hoặc câu hỏi khác, vui lòng điền vào biểu mẫu sau để liên hệ với chúng tôi. Cảm ơn bạn!</h5>
         </div>
     </div>
-    <div class="row mt-3 ">
-        <div class="col-lg-6 order-lg-first order-xs-last my-3">
-            <div class="text-center w-100 my-3">
-                <img src="<?= $imgUrl ?>/logo.png" class="w-25 d-none d-lg-inline-block">
-                <h3 class="fw-bold mb-4 text-center text-md-start d-lg-none"><span class=" border-3 border-dark border-bottom">LIÊN HỆ</span></h3>
-            </div>
-            <div class="w-100">
-                <p><span class="fw-bold">Địa chỉ:</span><br>Tầng 1,tòa nhà GP Invest, 170 Đê La Thành,
-                    Đống Đa,Hà Nội</p>
-                <p class="d-inline-block w-45"><span class="fw-bold">Email liên hệ:</span><br>deobelly@gmail.com</p>
-                <p class="d-inline-block w-45"><span class="fw-bold">Điện Thoại:</span><br>1900.636.099</p>
-                <p><span class="fw-bold">Thời gian làm việc:</span><br>Thứ 2 đến Thứ 6 từ 8h đến 18h; Thứ 7 và Chủ
-                    nhật từ 8h00 đến 17h00.</p>
-            </div>
-            <img src="<?= Url::toRoute('img/contact/cskh.jpg') ?>"
-                 alt="Chăm sóc khách hàng."
-                 class="shadow-lg rounded w-100">
-        </div>
-        <div class="col-12 col-lg-6 order-sm-first order-xs-first my-3 my-lg-5">
+    <div class="row mt-3 align-items-center justify-content-center">
+        <div class="col-12 col-lg-6 h-100">
             <?php if (Yii::$app->session->hasFlash('contactSuccess')): ?>
                 <div class="alert alert-success alert-dismissible fade show my-3">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -65,24 +48,56 @@ $config = ['template'=>"{input}\n{error}\n{hint}"];
             <?php endif; ?>
             <h3 class="fw-bold mb-4 text-center"><span class=" border-3 border-dark border-bottom ">GỬI THẮC MẮC CỦA BẠN</span>
             </h3>
-            <div class="hr"></div>
-
-            <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
-            <?= $form->field($model, 'name')->textInput(['autofocus' => true])->label('Họ và Tên:',['class'=>'fw-bold']) ?>
-                <?= $form->field($model, 'email', $config)->widget(LabelInPlace::classname(),[
-                    'type' => LabelInPlace::TYPE_HTML5,
-                    'label'=>'<i class="fas fa-phone"></i> Phone number',
-                    'options' => ['type' => 'email', 'class'=>'form-control'],
-                    'encodeLabel'=> false
-                ]); ?>
-                <?= $form->field($model, 'tel')->label('Số điện thoại:',['class'=>'fw-bold']) ?>
-
-            <?= $form->field($model, 'content')->textarea(['rows' => 6])->label('Nội dung liên hệ:',['class'=>'fw-bold'])?>
-
+            <?php $form = ActiveForm::begin(['id' => 'contact-form','class' => 'form-floating']); ?>
+            <?= $form->field($model, 'name', $config)->widget(LabelInPlace::classname(), [
+                'type' => LabelInPlace::TYPE_HTML5,
+                'label' => '<span class="ms-2 text-dark px-2 py-3">Nhập họ tên</span>',
+                'options' => ['type' => 'text', 'class' => 'form-control rounded-pill'],
+                'encodeLabel' => false,
+                'defaultIndicators'=>false,
+            ]); ?>
+            <?= $form->field($model, 'email', $config)->widget(LabelInPlace::classname(),[
+                'type' => LabelInPlace::TYPE_HTML5,
+                'label'=>'<span class="ms-2 text-dark px-2">Nhập địa chỉ mail</span>',
+                'options' => ['type' => 'email', 'class'=>'form-control rounded-pill'],
+                'encodeLabel'=> false,
+                'defaultIndicators'=>false,
+            ]); ?>
+            <?= $form->field($model, 'tel', $config)->widget(LabelInPlace::classname(),[
+                'type' => LabelInPlace::TYPE_HTML5,
+                'label'=>'<span class="ms-2 text-dark px-2 py-3">Nhập số điện thoại</span>',
+                'options' => ['type' => 'text', 'class'=>'form-control rounded-pill'],
+                'encodeLabel'=> false,
+                'defaultIndicators'=>false,
+            ]); ?>
+            <?= $form->field($model, 'content', $config)->widget(LabelInPlace::classname(),[
+                'type' => LabelInPlace::TYPE_TEXTAREA,
+                'label'=>'<span class="ms-2 text-dark px-2 py-3">Nhập nội dung</span>',
+                'options' => ['type' => 'email', 'class'=>'form-control rounded-pill'],
+                'encodeLabel'=> false,
+                'defaultIndicators'=>false,
+            ]); ?>
             <div class="form-group mt-2 mt-md-3">
                 <?= Html::submitButton('Gửi', ['class' => 'btn btn-dark p-2 col-12', 'name' => 'contact-button']) ?>
             </div>
             <?php ActiveForm::end(); ?>
+        </div>
+        <div class="col-12 col-lg-6 my-3">
+            <div class="text-center w-100 my-3">
+                <img src="<?= $imgUrl ?>/logo.png" class="w-25 d-none d-lg-inline-block">
+                <h3 class="fw-bold mb-4 text-center text-md-start d-lg-none"><span class=" border-3 border-dark border-bottom">LIÊN HỆ</span></h3>
+            </div>
+            <div class="w-100">
+                <p><span class="fw-bold">Địa chỉ:</span><br>Tầng 1,tòa nhà GP Invest, 170 Đê La Thành,
+                    Đống Đa,Hà Nội</p>
+                <p class="d-inline-block w-45"><span class="fw-bold">Email liên hệ:</span><br>deobelly@gmail.com</p>
+                <p class="d-inline-block w-45"><span class="fw-bold">Điện Thoại:</span><br>1900.636.099</p>
+                <p><span class="fw-bold">Thời gian làm việc:</span><br>Thứ 2 đến Thứ 6 từ 8h đến 18h; Thứ 7 và Chủ
+                    nhật từ 8h00 đến 17h00.</p>
+            </div>
+            <img src="<?= Url::toRoute('img/contact/cskh.jpg') ?>"
+                 alt="Chăm sóc khách hàng."
+                 class="shadow-lg rounded w-100">
         </div>
     </div>
 </div>

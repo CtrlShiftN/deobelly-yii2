@@ -78,7 +78,7 @@ AppAsset::register($this);
                                     <li class="site-nav-top">
                                         <div class="vr mx-2"></div>
                                     </li>
-                                    <li class="site-nav-top"><a href="#" class="site-nav-top-link"><span>Liên hệ</span></a>
+                                    <li class="site-nav-top"><a href="<?= Url::toRoute('site/contact') ?>" class="site-nav-top-link"><span>Liên hệ</span></a>
                                     </li>
                                 </ul>
                             </div>
@@ -183,7 +183,7 @@ AppAsset::register($this);
                                                     </a>
                                                 </li>
                                                 <li class="nav-item  ">
-                                                    <a href="#" class="nav-link ">
+                                                    <a href="<?= Url::toRoute('site/contact') ?>" class="nav-link ">
                                                         <i class="nav-icon fas fa-handshake"></i>
                                                         <p>Liên hệ</p>
                                                     </a>
