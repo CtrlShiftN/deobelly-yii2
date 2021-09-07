@@ -2,8 +2,8 @@
 
 namespace backend\controllers;
 
-use backend\models\PostsTag;
-use backend\models\PostsTagSearch;
+use backend\models\PostsCategory;
+use backend\models\PostsCategorySearch;
 use common\components\helpers\StringHelper;
 use common\components\SystemConstant;
 use Yii;
@@ -14,9 +14,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PostsTagController implements the CRUD actions for PostsTag model.
+ * PostsCategoryController implements the CRUD actions for PostsCategory model.
  */
-class PostsTagController extends Controller
+class PostsCategoryController extends Controller
 {
     /**
      * @inheritDoc
@@ -60,14 +60,13 @@ class PostsTagController extends Controller
     }
 
     /**
-     * Lists all PostsTag models.
+     * Lists all PostsCategory models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PostsTagSearch();
+        $searchModel = new PostsCategorySearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-
         if (Yii::$app->request->post('hasEditable')) {
             // which rows has been edited?
             $_id = $_POST['editableKey'];
@@ -76,14 +75,14 @@ class PostsTagController extends Controller
             $attribute = $_POST['editableAttribute'];
             if ($attribute == 'title') {
                 // update to db
-                $value = $_POST['PostsTag'][$_index][$attribute];
-                $result = PostsTag::updatePostTagTitle($_id, $attribute, $value);
+                $value = $_POST['PostsCategory'][$_index][$attribute];
+                $result = PostsCategory::updatePostCategoryTitle($_id, $attribute, $value);
                 // response to gridview
                 return json_encode($result);
             } elseif ($attribute == 'status') {
                 // update to db
-                $value = $_POST['PostsTag'][$_index][$attribute];
-                $result = PostsTag::updatePostTagStatus($_id, $attribute, $value);
+                $value = $_POST['PostsCategory'][$_index][$attribute];
+                $result = PostsCategory::updatePostCategoryStatus($_id, $attribute, $value);
                 // response to gridview
                 return json_encode($result);
             }
@@ -96,7 +95,7 @@ class PostsTagController extends Controller
     }
 
     /**
-     * Displays a single PostsTag model.
+     * Displays a single PostsCategory model.
      * @param int $id ID
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -109,13 +108,13 @@ class PostsTagController extends Controller
     }
 
     /**
-     * Creates a new PostsTag model.
+     * Creates a new PostsCategory model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new PostsTag();
+        $model = new PostsCategory();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
@@ -124,7 +123,7 @@ class PostsTagController extends Controller
                 $model->updated_at = date('Y-m-d H:m:s');
                 $model->status = SystemConstant::STATUS_ACTIVE;
                 if ($model->save()) {
-                    return $this->redirect(Url::toRoute('posts-tag/index'));
+                    return $this->redirect(Url::toRoute('posts-category/'));
                 }
             }
         } else {
@@ -137,7 +136,7 @@ class PostsTagController extends Controller
     }
 
     /**
-     * Updates an existing PostsTag model.
+     * Updates an existing PostsCategory model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return mixed
@@ -157,7 +156,7 @@ class PostsTagController extends Controller
     }
 
     /**
-     * Deletes an existing PostsTag model.
+     * Deletes an existing PostsCategory model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return mixed
@@ -171,15 +170,15 @@ class PostsTagController extends Controller
     }
 
     /**
-     * Finds the PostsTag model based on its primary key value.
+     * Finds the PostsCategory model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return PostsTag the loaded model
+     * @return PostsCategory the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = PostsTag::findOne($id)) !== null) {
+        if (($model = PostsCategory::findOne($id)) !== null) {
             return $model;
         }
 
