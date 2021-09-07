@@ -12,7 +12,7 @@ use yii\widgets\Pjax;
 $this->title = 'Posts';
 $this->params['breadcrumbs'][] = $this->title;
 $arrStatus = ["Không hoạt động", "Đang hoạt động"];
-$commonUrl = Yii::$app->params['common'];
+$commonUrl = Yii::getAlias('@common');
 ?>
 <div class="posts-index">
     <div class="pt-3">
