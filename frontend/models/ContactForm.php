@@ -2,6 +2,8 @@
 
 namespace frontend\models;
 
+use common\components\SystemConstant;
+use common\models\Contact;
 use Yii;
 
 /**
@@ -17,7 +19,7 @@ use Yii;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class ContactForm extends \yii\db\ActiveRecord
+class ContactForm extends Contact
 {
     /**
      * {@inheritdoc}
@@ -69,10 +71,31 @@ class ContactForm extends \yii\db\ActiveRecord
         ];
     }
 
-    public function sendReplyContact() {
+    public function saveContactData()
+    {
+        $contactModel = new ContactForm();
+        $contactModel->name = $this->name;
+        $contactModel->email = $this->email;
+        $contactModel->tel = $this->tel;
+        $contactModel->content = $this->content;
+        if (!Yii::$app->user->isGuest) {
+            $contactModel->user_id = Yii::$app->user->identity->id;
+        } else {
+            $contactModel->user_id = null;
+        }
+        $contactModel->status = SystemConstant::STATUS_ACTIVE;
+        $contactModel->created_at = date('Y-m-d H:i:s');
+        $contactModel->updated_at = date('Y-m-d H:i:s');
+        return $contactModel->save();
+    }
+
+    /**
+     * @return bool
+     */
+    public static function sendReplyContact() {
         return Yii::$app->mailer->compose()
             ->setFrom(Yii::$app->params['supportEmail'])
-            ->setTo($this->email)
+            ->setTo(Yii::$app->params['adminEmail'])
             ->setSubject('Thông báo về việc gửi phản hồi')
             ->setTextBody('Cảm ơn quý khách đã gửi phản hồi. Chúng tôi sẽ sớm hồi âm lại với quý khách.')
             ->setHtmlBody('<b>HTML content <i>Vuvuvuvvv</i></b>')
