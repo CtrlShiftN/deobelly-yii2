@@ -79,8 +79,8 @@ class User extends \yii\db\ActiveRecord
         ];
     }
 
-    public static function getUserNameById($id)
+    public static function findIdentity($id)
     {
-        return User::find()->select('name')->where(['status' => 1, 'id' => $id])->asArray()->one();
+        return static::findOne(['id' => $id]);
     }
 }
