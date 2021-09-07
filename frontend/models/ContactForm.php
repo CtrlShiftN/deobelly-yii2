@@ -68,4 +68,14 @@ class ContactForm extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
         ];
     }
+
+    public function sendReplyContact() {
+        return Yii::$app->mailer->compose()
+            ->setFrom(Yii::$app->params['supportEmail'])
+            ->setTo($this->email)
+            ->setSubject('Thông báo về việc gửi phản hồi')
+            ->setTextBody('Cảm ơn quý khách đã gửi phản hồi. Chúng tôi sẽ sớm hồi âm lại với quý khách.')
+            ->setHtmlBody('<b>HTML content <i>Vuvuvuvvv</i></b>')
+            ->send();
+    }
 }

@@ -136,8 +136,8 @@ class SiteController extends Controller
     {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-//            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-            if ($model->saveContactData()) {
+            if ($model->sendReplyContact()) {
+//            if ($model->saveContactData()) {
                 Yii::$app->session->setFlash('contactSuccess', "Cảm ơn quý khách đã gửi phản hồi. Chúng tôi sẽ sớm hồi âm lại với quý khách");
             } else {
                 Yii::$app->session->setFlash('contactError', "Chưa thể gửi phản hồi. Xin quý khách vui lòng thử lại.");

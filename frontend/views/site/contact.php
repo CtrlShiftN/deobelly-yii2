@@ -10,7 +10,7 @@ use kartik\form\ActiveForm;
 use yii\helpers\Url;
 
 $this->title = 'Contact';
-$imgUrl = Yii::$app->params['common'] . "/media";
+$imgUrl = Yii::getAlias('@common') . "/media";
 $this->registerCssFile(Url::toRoute('css/contact.css'));
 $this->registerCss("
     .w-45 {
@@ -78,7 +78,7 @@ $config = ['template'=>"{input}\n{error}\n{hint}"];
                 'defaultIndicators'=>false,
             ]); ?>
             <div class="form-group mt-2 mt-md-3">
-                <?= Html::submitButton('Gửi', ['class' => 'btn btn-dark p-2 col-12', 'name' => 'contact-button']) ?>
+                <?= Html::submitButton('Gửi', ['class' => 'btn btn-dark p-2 col-12 rounded-pill', 'name' => 'contact-button']) ?>
             </div>
             <?php ActiveForm::end(); ?>
         </div>

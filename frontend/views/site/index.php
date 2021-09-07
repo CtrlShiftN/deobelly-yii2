@@ -5,7 +5,7 @@
 use frontend\models\User;
 use yii\helpers\Url;
 
-$imgUrl = Yii::$app->params['common'] . "/media";
+$imgUrl = Yii::getAlias('@common') . "/media";
 $this->title = 'DE OBELLY';
 $this->registerCssFile(Url::toRoute("/css/index.css"));
 $this->registerCss("
