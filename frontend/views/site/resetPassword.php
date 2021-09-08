@@ -2,7 +2,6 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap5\ActiveForm */
-
 /* @var $model \common\models\LoginForm */
 
 use kartik\label\LabelInPlace;
@@ -10,7 +9,7 @@ use yii\bootstrap5\Html;
 use yii\bootstrap5\ActiveForm;
 use yii\helpers\Url;
 
-$imgUrl = Yii::getAlias('@common'). "/media";
+$imgUrl = Yii::$app->params['common']. "/media";
 $this->title = 'Đổi mật khẩu';
 $this->params['breadcrumbs'][] = $this->title;
 $config = ['template' => "{input}\n{error}\n{hint}"];

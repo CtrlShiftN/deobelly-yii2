@@ -9,7 +9,7 @@ use yii\bootstrap5\Html;
 use yii\bootstrap5\ActiveForm;
 use yii\helpers\Url;
 
-$imgUrl = Yii::getAlias('@common'). "/media";
+$imgUrl = Yii::$app->params['common']. "/media";
 $this->title = 'Quên mật khẩu';
 $this->params['breadcrumbs'][] = $this->title;
 $config = ['template' => "{input}\n{error}\n{hint}"];
