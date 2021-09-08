@@ -10,9 +10,9 @@ use yii\widgets\Pjax;
 /* @var $searchModel backend\models\PostsTagSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Posts Tags';
+$this->title = Yii::t('app','Post tags');
 $this->params['breadcrumbs'][] = $this->title;
-$arrStatus = ["Không hoạt động", "Đang hoạt động"];
+$arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
 ?>
 <div class="posts-tag-index">
     <div class="pt-3">
@@ -27,7 +27,7 @@ $arrStatus = ["Không hoạt động", "Đang hoạt động"];
                 'showFooter' => true,
                 'showCaption' => true,
                 'filename' => 'grid-export',
-                'alertMsg' => 'The EXCEL export file will be generated for download.',
+                'alertMsg' => Yii::t('app','The EXCEL export file will be generated for download.'),
                 'options' => ['title' => 'Microsoft Excel 95+'],
                 'mime' => 'application/vnd.ms-excel',
                 'config' => [
@@ -45,7 +45,7 @@ $arrStatus = ["Không hoạt động", "Đang hoạt động"];
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'title',
-                'label' => 'Tiêu đề',
+                'label' => Yii::t('app','Title'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) {
@@ -69,7 +69,7 @@ $arrStatus = ["Không hoạt động", "Đang hoạt động"];
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'status',
-                'label' => 'Trạng thái',
+                'label' => Yii::t('app','Status'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',
@@ -80,7 +80,7 @@ $arrStatus = ["Không hoạt động", "Đang hoạt động"];
                     return [
                         'name' => 'status',
                         'asPopover' => false,
-                        'header' => 'Trạng Thái',
+                        'header' => Yii::t('app','Status'),
                         'size' => 'md',
                         'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
                         'data' => $arrStatus,
@@ -94,11 +94,11 @@ $arrStatus = ["Không hoạt động", "Đang hoạt động"];
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
-                'filterInputOptions' => ['placeholder' => 'Chọn trạng thái']
+                'filterInputOptions' => ['placeholder' => '-- '.Yii::t('app','Status').' --']
             ],
             [
                 'attribute' => 'created_at',
-                'label' => 'Ngày tạo',
+                'label' => Yii::t('app','Created_at'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'filter' => false,
@@ -106,14 +106,14 @@ $arrStatus = ["Không hoạt động", "Đang hoạt động"];
                 'format' => 'raw'
             ],
             [
-                'label' => 'Hành động',
+                'label' => Yii::t('app','Actions'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) {
                     return Html::a('Xóa', Url::toRoute(['posts-tag/delete', 'id' => $key]), ['class' => 'btn btn-danger', 'data' => [
                         'method' => 'post',
-                        'confirm' => 'Are you sure you want to delete this item?',
+                        'confirm' => Yii::t('app','Are you sure you want to delete this item?'),
                     ],]);
                 },
                 'format' => 'raw'
@@ -132,7 +132,7 @@ $arrStatus = ["Không hoạt động", "Đang hoạt động"];
             // set export properties
             'export' => [
                 'fontAwesome' => true,
-                'label' => '<i class="far fa-file-alt"></i>  Xuất file',
+                'label' => '<i class="far fa-file-alt"></i>  '.Yii::t('app','Export files'),
             ],
             'responsive' => true,
             'persistResize' => false,
@@ -148,7 +148,7 @@ $arrStatus = ["Không hoạt động", "Đang hoạt động"];
             'exportConfig' => $defaultExportConfig,
             'toolbar' => [
                 [
-                    'content' => Html::a('<i class="fas fa-user-plus"></i> Thêm thẻ bài viết', ['create'], [
+                    'content' => Html::a('<i class="fas fa-user-plus"></i> '.Yii::t('app','Create new post tags'), ['create'], [
                         'class' => 'btn btn-success',
                         'title' => 'Reset Grid',
                         'data-pjax' => 0,
@@ -160,7 +160,7 @@ $arrStatus = ["Không hoạt động", "Đang hoạt động"];
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
-                'heading' => 'Danh sách thẻ bài viết',
+                'heading' => Yii::t('app','Post tags list'),
             ],
         ]);
         Pjax::end();

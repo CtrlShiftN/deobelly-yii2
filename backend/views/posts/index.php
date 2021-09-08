@@ -9,10 +9,10 @@ use yii\widgets\Pjax;
 /* @var $searchModel backend\models\PostsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Posts';
+$this->title = Yii::t('app','Posts');
 $this->params['breadcrumbs'][] = $this->title;
-$arrStatus = ["Không hoạt động", "Đang hoạt động"];
-$commonUrl = Yii::getAlias('@common');
+$arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
+$commonUrl = Yii::$app->params['common'];
 ?>
 <div class="posts-index">
     <div class="pt-3">
@@ -27,7 +27,7 @@ $commonUrl = Yii::getAlias('@common');
                 'showFooter' => true,
                 'showCaption' => true,
                 'filename' => 'grid-export',
-                'alertMsg' => 'The EXCEL export file will be generated for download.',
+                'alertMsg' => Yii::t('app','The EXCEL export file will be generated for download.'),
                 'options' => ['title' => 'Microsoft Excel 95+'],
                 'mime' => 'application/vnd.ms-excel',
                 'config' => [
@@ -48,9 +48,11 @@ $commonUrl = Yii::getAlias('@common');
                 'label' => 'Avatar',
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
+                'width' => '140px',
                 'value' => function ($model, $key, $index, $widget) use ($commonUrl) {
                     return Html::img($commonUrl . '/media/' . $model['avatar'], ['width' => '120px', 'height' => '120px', 'alt' => $model['title']]);
                 },
+                'filter' => false,
                 'format' => 'raw'
             ],
             [
@@ -62,12 +64,14 @@ $commonUrl = Yii::getAlias('@common');
                 'value' => function ($model, $key, $index, $widget) use ($commonUrl) {
                     return Html::img($commonUrl . '/media/' . $model['thumbnail'], ['width' => '120px', 'height' => '120px', 'alt' => $model['title']]);
                 },
+                'width' => '140px',
+                'filter' => false,
                 'format' => 'raw'
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'title',
-                'label' => 'Tiêu đề',
+                'label' => Yii::t('app','Title'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) {
@@ -78,25 +82,25 @@ $commonUrl = Yii::getAlias('@common');
                     'asPopover' => false,
                 ],
             ],
-//            [
-//                'class' => 'kartik\grid\EditableColumn',
-//                'attribute' => 'content',
-//                'label' => 'Nội dung',
-//                'vAlign' => 'middle',
-//                'hAlign' => 'center',
-//                'value' => function ($model, $key, $index, $widget) {
-//                    return $model['content'];
-//                },
-//                // edit field
-//                'editableOptions' => [
-//                    'asPopover' => false,
-//                ],
-//                'format'=>'raw'
-//            ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'content',
+                'label' => Yii::t('app','Content'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'value' => function ($model, $key, $index, $widget) {
+                    return $model['content'];
+                },
+                // edit field
+                'editableOptions' => [
+                    'asPopover' => false,
+                ],
+                'format'=>'raw'
+            ],
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'status',
-                'label' => 'Trạng thái',
+                'label' => Yii::t('app','Status'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',
@@ -107,7 +111,7 @@ $commonUrl = Yii::getAlias('@common');
                     return [
                         'name' => 'status',
                         'asPopover' => false,
-                        'header' => 'Trạng Thái',
+                        'header' => Yii::t('app','Status'),
                         'size' => 'md',
                         'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
                         'data' => $arrStatus,
@@ -121,11 +125,11 @@ $commonUrl = Yii::getAlias('@common');
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
-                'filterInputOptions' => ['placeholder' => 'Chọn trạng thái']
+                'filterInputOptions' => ['placeholder' => '-- '.Yii::t('app','Status').' --']
             ],
             [
                 'attribute' => 'created_at',
-                'label' => 'Ngày tạo',
+                'label' => Yii::t('app','Created_at'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'filter' => false,
@@ -133,14 +137,14 @@ $commonUrl = Yii::getAlias('@common');
                 'format' => 'raw'
             ],
             [
-                'label' => 'Hành động',
+                'label' => Yii::t('app','Actions'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) {
-                    return Html::a('Xóa', Url::toRoute(['posts-category/delete', 'id' => $key]), ['class' => 'btn btn-danger', 'data' => [
+                    return Html::a('Xóa', Url::toRoute(['posts/delete', 'id' => $key]), ['class' => 'btn btn-danger', 'data' => [
                         'method' => 'post',
-                        'confirm' => 'Are you sure you want to delete this item?',
+                        'confirm' => Yii::t('app','Are you sure you want to delete this item?'),
                     ],]);
                 },
                 'format' => 'raw'
@@ -160,7 +164,7 @@ $commonUrl = Yii::getAlias('@common');
             // set export properties
             'export' => [
                 'fontAwesome' => true,
-                'label' => '<i class="far fa-file-alt"></i>  Xuất file',
+                'label' => '<i class="far fa-file-alt"></i> '.Yii::t('app','Export files'),
             ],
             'responsive' => true,
             'persistResize' => false,
@@ -176,7 +180,7 @@ $commonUrl = Yii::getAlias('@common');
             'exportConfig' => $defaultExportConfig,
             'toolbar' => [
                 [
-                    'content' => Html::a('<i class="fas fa-user-plus"></i> Thêm bài viết mới', ['create'], [
+                    'content' => Html::a('<i class="fas fa-user-plus"></i> '.Yii::t('app','Create new posts'), ['create'], [
                         'class' => 'btn btn-success',
                         'title' => 'Reset Grid',
                         'data-pjax' => 0,
@@ -188,7 +192,7 @@ $commonUrl = Yii::getAlias('@common');
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
-                'heading' => 'Quản lý bài viết',
+                'heading' => Yii::t('app','Posts list'),
             ],
         ]);
         Pjax::end();
