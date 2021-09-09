@@ -62,23 +62,23 @@ AppAsset::register($this);
                             <div class="topbar col-xs-7 col-md-7 col-lg-7 text-white py-1 text-end text-uppercase">
                                 <ul class="menu-topbar-right my-0">
                                     <li class="site-nav-top"><a href="<?php echo Url::home() ?>"
-                                                                class="site-nav-top-link"><span>Giới thiệu</span></a>
+                                                                class="site-nav-top-link"><span><?= Yii::t('app','Introduce') ?></span></a>
                                     </li>
                                     <li class="site-nav-top">
                                         <div class="vr mx-2"></div>
                                     </li>
-                                    <li class="site-nav-top"><a href="#" class="site-nav-top-link"><span>Tin tức</span></a>
+                                    <li class="site-nav-top"><a href="#" class="site-nav-top-link"><span><?= Yii::t('app','News') ?></span></a>
                                     </li>
                                     <li class="site-nav-top">
                                         <div class="vr mx-2"></div>
                                     </li>
                                     <li class="site-nav-top"><a href="#"
-                                                                class="site-nav-top-link"><span>Chính sách & điều khoản</span></a>
+                                                                class="site-nav-top-link"><span><?= Yii::t('app','Terms & Service') ?></span></a>
                                     </li>
                                     <li class="site-nav-top">
                                         <div class="vr mx-2"></div>
                                     </li>
-                                    <li class="site-nav-top"><a href="#" class="site-nav-top-link"><span>Liên hệ</span></a>
+                                    <li class="site-nav-top"><a href="#" class="site-nav-top-link"><span><?= Yii::t('app','Contact') ?></span></a>
                                     </li>
                                 </ul>
                             </div>
@@ -101,7 +101,7 @@ AppAsset::register($this);
                                         <a class="text-decoration-none" href="<?php echo Url::home() ?>">
                                             <h3 class="offcanvas-title text-uppercase fw-bolder text-white"
                                                 id="offcanvasWithBackdropLabel"><i
-                                                        class=" fas fa-feather-alt fa-flip-horizontal"></i> De Obelly <i
+                                                        class=" fas fa-feather-alt fa-flip-horizontal"></i> <?= Yii::t('app',' De Obelly ') ?> <i
                                                         class=" fas fa-feather-alt"></i></h3></a>
                                     </div>
                                     <button type="button" class="btn-close text-reset btn-close-white"
@@ -135,8 +135,8 @@ AppAsset::register($this);
                                                 </div>
                                             </div>
                                             <div class="col-8 pe-0">
-                                                <p class="mb-0">Xin chào,</p>
-                                                <h3>Guest</h3>
+                                                <p class="mb-0"><?= Yii::t('app','Hi,') ?></p>
+                                                <h3><?= Yii::t('app','Guest') ?></h3>
                                             </div>
                                         </div>
                                     <?php endif; ?>
@@ -148,14 +148,14 @@ AppAsset::register($this);
                                                 <li class="nav-item  ">
                                                     <a href="<?= Url::home() ?>" class="nav-link ">
                                                         <i class="nav-icon fas fa-handshake"></i>
-                                                        <p>Trang chủ</p>
+                                                        <p><?= Yii::t('app','Home page') ?></p>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item has-treeview">
                                                     <a href="#" class="nav-link">
                                                         <i class="nav-icon fas fa-th"></i>
                                                         <p>
-                                                            Sản phẩm
+                                                            <?= Yii::t('app','Product') ?>
                                                             <i class="right fas fa-angle-left"></i>
                                                         </p>
                                                     </a>
@@ -164,14 +164,14 @@ AppAsset::register($this);
                                                             <a href="#"
                                                                class="nav-link ">
                                                                 <i class="far fa-circle nav-icon"></i>
-                                                                <p>Men</p>
+                                                                <p><?= Yii::t('app','Men') ?></p>
                                                             </a>
                                                         </li>
                                                         <li class="nav-item">
                                                             <a href="#"
                                                                class="nav-link ">
                                                                 <i class="far fa-circle nav-icon"></i>
-                                                                <p>Women</p>
+                                                                <p><?= Yii::t('app','Women') ?></p>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -179,13 +179,13 @@ AppAsset::register($this);
                                                 <li class="nav-item  ">
                                                     <a href="#" class="nav-link ">
                                                         <i class="nav-icon fas fa-handshake"></i>
-                                                        <p>Chính sách</p>
+                                                        <p><?= Yii::t('app','Policy') ?></p>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item  ">
                                                     <a href="#" class="nav-link ">
                                                         <i class="nav-icon fas fa-handshake"></i>
-                                                        <p>Liên hệ</p>
+                                                        <p><?= Yii::t('app','Contact') ?></p>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -205,19 +205,19 @@ AppAsset::register($this);
                         </div>
                         <div class="main-nav-right col-1 col-sm-1 col-lg-10 text-end">
                             <ul class="site-nav mb-0 ps-0 d-none d-sm-none d-lg-inline" id="main-menu">
-                                <li><a href="#" class="site-nav-link"><span>Sản phẩm mới</span></a>
+                                <li><a href="#" class="site-nav-link"><span><?= Yii::t('app','New product') ?></span></a>
                                 </li>
                                 <li><a href="#"
-                                       class="site-nav-link"><span>On Sale</span></a></li>
+                                       class="site-nav-link"><span><?= Yii::t('app','On Sale') ?></span></a></li>
                                 <li><a href="#"
-                                       class="site-nav-link"><span>Quần áo</span></a></li>
-                                <li><a href="#" class="site-nav-link"><span>Giày dép</span></a>
+                                       class="site-nav-link"><span><?= Yii::t('app','Clothes') ?></span></a></li>
+                                <li><a href="#" class="site-nav-link"><span><?= Yii::t('app','Footwear') ?></span></a>
                                 </li>
-                                <li><a href="#" class="site-nav-link"><span>Phụ kiện</span></a>
+                                <li><a href="#" class="site-nav-link"><span><?= Yii::t('app','Accessory') ?></span></a>
                                 </li>
                                 <li><a href="#"
-                                       class="site-nav-link"><span>Bộ đồ</span></a></li>
-                                <li class="pe-0"><a href="#" class="site-nav-link"><span>Quà tặng</span></a>
+                                       class="site-nav-link"><span><?= Yii::t('app','Suit') ?></span></a></li>
+                                <li class="pe-0"><a href="#" class="site-nav-link"><span><?= Yii::t('app','Gift') ?></span></a>
                                 </li>
                                 <!-- TODO: Add search action -->
                                 <li class="pe-0 ps-1">
@@ -247,8 +247,8 @@ AppAsset::register($this);
                                                     </a>
                                                 </form>
                                             <?php else : ?>
-                                                <a class="dropdown-item" href="<?= $cdnUrl ?>/site/login">Đăng nhập</a>
-                                                <a class="dropdown-item" href="<?= $cdnUrl ?>/site/register">Đăng ký</a>
+                                                <a class="dropdown-item" href="<?= $cdnUrl ?>/site/login"><?= Yii::t('app','Log in') ?></a>
+                                                <a class="dropdown-item" href="<?= $cdnUrl ?>/site/register"><?= Yii::t('app','Register') ?></a>
                                             <?php endif; ?>
                                         </div>
                                     </div>
@@ -274,81 +274,81 @@ AppAsset::register($this);
                         <div class="row d-none d-lg-flex m-0 p-0">
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
-                                    <h3>VỀ CHÚNG TÔI</h3>
+                                    <h3><?= Yii::t('app','ABOUT US') ?></h3>
                                     <li>
-                                        <a href="/">Suplo Fashion</a>
+                                        <a href="/"><?= Yii::t('app','Suplo Fashion') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/">Triết lý kinh doanh</a>
+                                        <a href="/"><?= Yii::t('app','Business philosophy') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/">Truyền thông sự kiện</a>
+                                        <a href="/"><?= Yii::t('app','Event communication') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/">Hoạt động xã hội</a>
+                                        <a href="/"><?= Yii::t('app','Social activities') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/">Liên kết &amp; hợp tác</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-3">
-                                <ul class="footer-nav no-bullets">
-                                    <h3>TIN TỨC</h3>
-                                    <li>
-                                        <a href="/">Review sản phẩm</a>
-                                    </li>
-                                    <li>
-                                        <a href="/">Tin tức thời trang</a>
-                                    </li>
-                                    <li>
-                                        <a href="/">Thương hiệu nổi tiếng</a>
-                                    </li>
-                                    <li>
-                                        <a href="/">Đánh giá của khách hàng</a>
-                                    </li>
-                                    <li>
-                                        <a href="/">Lịch sử thương hiệu</a>
+                                        <a href="/"><?= Yii::t('app','Links &amp; cooperate') ?></a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
-                                    <h3>TƯ VẤN SẢN PHẨM</h3>
+                                    <h3><?= Yii::t('app','News')?></h3>
                                     <li>
-                                        <a href="/">Thời trang công sở</a>
+                                        <a href="/"><?= Yii::t('app','product Reviews') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/">Đặt may trang phục</a>
+                                        <a href="/"><?= Yii::t('app','Fashion News') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/">Câu hỏi thường gặp</a>
+                                        <a href="/"><?= Yii::t('app','Famous brand') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/">Kiến thức cần thiết</a>
+                                        <a href="/"><?= Yii::t('app','Customer reviews') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/">Tại sao nên lựa chọn chúng tôi</a>
+                                        <a href="/"><?= Yii::t('app','Brand history') ?></a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
-                                    <h3>HƯỚNG DẪN</h3>
+                                    <h3><?= Yii::t('app','CONSULTING PRODUCTS') ?></h3>
                                     <li>
-                                        <a href="/">Hướng dẫn mua hàng</a>
+                                        <a href="/"><?= Yii::t('app','Office fashion') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/">Chính sách ưu đãi thẻ VIP</a>
+                                        <a href="/"><?= Yii::t('app','Order clothes') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/">Chính sách bảo hành</a>
+                                        <a href="/"><?= Yii::t('app','Frequently asked questions') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/">Hướng dẫn sử dụng</a>
+                                        <a href="/"><?= Yii::t('app','Necessary knowledge') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/">Hướng dẫn thanh toán</a>
+                                        <a href="/"><?= Yii::t('app','Why choose us') ?></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-3">
+                                <ul class="footer-nav no-bullets">
+                                    <h3><?= Yii::t('app','INSTRUCT') ?></h3>
+                                    <li>
+                                        <a href="/"><?= Yii::t('app','Shopping guide') ?></a>
+                                    </li>
+                                    <li>
+                                        <a href="/"><?= Yii::t('app','VIP card preferential policy') ?></a>
+                                    </li>
+                                    <li>
+                                        <a href="/"><?= Yii::t('app','warranty Policy') ?></a>
+                                    </li>
+                                    <li>
+                                        <a href="/"><?= Yii::t('app','User manual') ?></a>
+                                    </li>
+                                    <li>
+                                        <a href="/"><?= Yii::t('app','Payment Guide') ?></a>
                                     </li>
                                 </ul>
                             </div>
@@ -356,8 +356,8 @@ AppAsset::register($this);
                         <div class="row m-0 p-0">
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
-                                    <h3>THÔNG TIN LIÊN HỆ</h3>
-                                    <li><span class="ft-content"><i class="fas fa-home"></i> Số xxx, đường YYY, phường ZZZ, quận ABC, Hà Nội</span>
+                                    <h3><?= Yii::t('app','CONTACT INFO') ?></h3>
+                                    <li><span class="ft-content"><i class="fas fa-home"></i> <?= Yii::t('app','Number xxx, YYY street, ZZZ ward, ABC district, Hanoi') ?></span>
                                     </li>
                                     <li><span class="ft-content"><i class="fas fa-phone-square"></i> <a
                                                     href="tel:1800 1089">1800 1089</a> | <a
@@ -369,8 +369,8 @@ AppAsset::register($this);
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
-                                    <h3>ĐĂNG KÝ NHẬN TIN</h3>
-                                    <li class="mb-3"><span class="ft-content">Tin khuyến mãi / Tin thương hiệu</span>
+                                    <h3><?= Yii::t('app','SIGN UP FOR NEWS') ?></h3>
+                                    <li class="mb-3"><span class="ft-content"><?= Yii::t('app','Promotional News / Brand News') ?></span>
                                     </li>
                                     <li>
                                         <form action="#" method="POST" class="d-inline">
@@ -387,8 +387,8 @@ AppAsset::register($this);
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
-                                    <h3 class="h3">KẾT NỐI VỚI CHÚNG TÔI</h3>
-                                    <li class="mb-3"><span class="ft-content">Mạng xã hội</span></li>
+                                    <h3 class="h3"><?= Yii::t('app','CONNECT WITH US') ?></h3>
+                                    <li class="mb-3"><span class="ft-content"><?= Yii::t('app','Social network')?></span></li>
                                     <li>
                                         <div class="ft-social-network">
                                             <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"
@@ -406,7 +406,7 @@ AppAsset::register($this);
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
-                                    <h3>CHỨNG NHẬN</h3>
+                                    <h3><?= Yii::t('app','') ?></h3>
                                     <li>
                                         <a href="javascript:void(0)" target="_blank"><img class="pt-2"
                                                                                           src="//theme.hstatic.net/1000180292/1000232392/14/footer_payment_logo_1.png?v=3509"></a>

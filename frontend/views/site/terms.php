@@ -10,7 +10,7 @@ $this->title = 'Chính sách và điều khoản';
 $this->registerCssFile(Url::toRoute('css/terms.css'));
 ?>
 <div class="my-4" id="contentTerms">
-    <h1 class="text-center">Điều Khoản Và Dịch Vụ</h1>
+    <h1 class="text-center"><?= yii::t('app','Terms & Service') ?></h1>
     <hr>
     <?php foreach ($terms as $value): ?>
     <h5><?= $value['id'] ?>. <?= $value['title'] ?></h5>
