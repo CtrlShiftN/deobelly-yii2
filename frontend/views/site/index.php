@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-use frontend\models\User;
+use common\models\User;
 use yii\helpers\Url;
 
 $imgUrl = Yii::$app->params['common']."/media";
