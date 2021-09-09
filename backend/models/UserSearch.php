@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\User;
@@ -29,21 +30,21 @@ class UserSearch extends User
     {
         return [
             'id' => 'ID',
-            'username' => 'Username',
-            'name' => 'Họ và tên',
-            'tel' => 'Số điện thoại',
-            'address' => 'Địa chỉ',
-            'auth_key' => 'Auth Key',
-            'password_hash' => 'Password Hash',
-            'password_reset_token' => 'Password Reset Token',
-            'email' => 'Email',
-            'verified_at' => 'Xác thực',
-            'referral_code' => 'Mã giới thiệu',
-            'status' => 'Trạng thái',
-            'role' => 'Vai trò',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'verification_token' => 'Verification Token',
+            'username' => Yii::t('app', 'Username'),
+            'name' => Yii::t('app', 'Name'),
+            'tel' => Yii::t('app', 'Tel'),
+            'address' => Yii::t('app', 'Address'),
+            'auth_key' => Yii::t('app', 'Auth Key'),
+            'password_hash' => Yii::t('app', 'Password Hash'),
+            'password_reset_token' => Yii::t('app', 'Password Reset Token'),
+            'email' => Yii::t('app', 'Email'),
+            'verified_at' => Yii::t('app', 'Verified At'),
+            'referral_code' => Yii::t('app', 'Referral Code'),
+            'status' => Yii::t('app', 'Status'),
+            'role' => Yii::t('app', 'Role'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'verification_token' => Yii::t('app', 'Verification Token'),
         ];
     }
 
