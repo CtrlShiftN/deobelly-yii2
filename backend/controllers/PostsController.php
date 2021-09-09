@@ -2,10 +2,8 @@
 
 namespace backend\controllers;
 
-use backend\models\PostsTag;
-use backend\models\PostsTagSearch;
-use common\components\helpers\StringHelper;
-use common\components\SystemConstant;
+use backend\models\Posts;
+use backend\models\PostsSearch;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
@@ -14,9 +12,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PostsTagController implements the CRUD actions for PostsTag model.
+ * PostsController implements the CRUD actions for Posts model.
  */
-class PostsTagController extends Controller
+class PostsController extends Controller
 {
     /**
      * @inheritDoc
@@ -60,33 +58,24 @@ class PostsTagController extends Controller
     }
 
     /**
-     * Lists all PostsTag models.
+     * Lists all Posts models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PostsTagSearch();
+        $searchModel = new PostsSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-
         if (Yii::$app->request->post('hasEditable')) {
             // which rows has been edited?
             $_id = $_POST['editableKey'];
             $_index = $_POST['editableIndex'];
             // which attribute has been edited?
             $attribute = $_POST['editableAttribute'];
-            if ($attribute == 'title') {
-                // update to db
-                $value = $_POST['PostsTag'][$_index][$attribute];
-                $result = PostsTag::updatePostTagTitle($_id, $attribute, $value);
-                // response to gridview
-                return json_encode($result);
-            } elseif ($attribute == 'status') {
-                // update to db
-                $value = $_POST['PostsTag'][$_index][$attribute];
-                $result = PostsTag::updatePostTagStatus($_id, $attribute, $value);
-                // response to gridview
-                return json_encode($result);
-            }
+            // update to db
+            $value = $_POST['Posts'][$_index][$attribute];
+            $result = Posts::updatePost($_id, $attribute, $value);
+            // response to gridview
+            return json_encode($result);
         }
 
         return $this->render('index', [
@@ -96,7 +85,7 @@ class PostsTagController extends Controller
     }
 
     /**
-     * Displays a single PostsTag model.
+     * Displays a single Posts model.
      * @param int $id ID
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -109,22 +98,18 @@ class PostsTagController extends Controller
     }
 
     /**
-     * Creates a new PostsTag model.
+     * Creates a new Posts model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new PostsTag();
+        $model = new Posts();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
-                $model->slug = StringHelper::toSlug($model->title);
-                $model->created_at = date('Y-m-d H:m:s');
-                $model->updated_at = date('Y-m-d H:m:s');
-                $model->status = SystemConstant::STATUS_ACTIVE;
                 if ($model->save()) {
-                    return $this->redirect(Url::toRoute('posts-tag/index'));
+                    return $this->redirect(Url::toRoute('posts/'));
                 }
             }
         } else {
@@ -137,7 +122,7 @@ class PostsTagController extends Controller
     }
 
     /**
-     * Updates an existing PostsTag model.
+     * Updates an existing Posts model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return mixed
@@ -157,7 +142,7 @@ class PostsTagController extends Controller
     }
 
     /**
-     * Deletes an existing PostsTag model.
+     * Deletes an existing Posts model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return mixed
@@ -171,15 +156,15 @@ class PostsTagController extends Controller
     }
 
     /**
-     * Finds the PostsTag model based on its primary key value.
+     * Finds the Posts model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return PostsTag the loaded model
+     * @return Posts the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = PostsTag::findOne($id)) !== null) {
+        if (($model = Posts::findOne($id)) !== null) {
             return $model;
         }
 
