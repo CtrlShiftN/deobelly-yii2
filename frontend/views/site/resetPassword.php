@@ -1,22 +1,21 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $form yii\bootstrap4\ActiveForm */
-
+/* @var $form yii\bootstrap5\ActiveForm */
 /* @var $model \common\models\LoginForm */
 
 use kartik\label\LabelInPlace;
-use yii\bootstrap4\Html;
-use yii\bootstrap4\ActiveForm;
+use yii\bootstrap5\Html;
+use yii\bootstrap5\ActiveForm;
 use yii\helpers\Url;
 
-$imgUrl = Yii::$app->params['common'] . "/media";
+$imgUrl = Yii::$app->params['common']. "/media";
 $this->title = 'Đổi mật khẩu';
 $this->params['breadcrumbs'][] = $this->title;
 $config = ['template' => "{input}\n{error}\n{hint}"];
 ?>
-<div class="h-100 d-flex justify-content-center">
-    <div class="row border-radius align-self-center">
+<div class="pt-5">
+    <div class="row border-radius mt-md-5 mt-0">
         <div class="col-6 col-md-6 d-md-block d-none bg-light border-radius bg-white">
             <div class="h-100 d-flex">
                 <div class="align-self-center"><img src="<?= $imgUrl ?>/img-content-login.jpg" class="img-fluid"></div>

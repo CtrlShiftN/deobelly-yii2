@@ -43,16 +43,9 @@ class SignupForm extends Model
             ['tel', 'trim'],
             ['tel', 'required', 'message'=>"Số điện thoại không được để trống"],
             ['tel', 'string', 'max' => 12, 'min' => Yii::$app->params['user.telMinLength']],
-            ['tel', 'validateTel'],
+            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => 'số điện thoại phải bắt đầu bằng 0 hoặc 84'],
         ];
     }
-
-    public function validateTel($attribute, $params, $validator){
-        if (!preg_match('/^(84|0[1-9])+([0-9]{8})$/', $this->tel)){
-            $this->addError($attribute, 'Số điện thoại không hợp lệ');
-        }
-    }
-
     /**
      * @return bool|null
      * @throws \yii\base\Exception
