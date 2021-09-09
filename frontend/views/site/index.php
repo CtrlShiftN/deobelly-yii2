@@ -5,7 +5,7 @@
 use frontend\models\User;
 use yii\helpers\Url;
 
-$imgUrl = Yii::getAlias('@common') . "/media";
+$imgUrl = Yii::$app->params['common']."/media";
 $this->title = 'DE OBELLY';
 $this->registerCssFile(Url::toRoute("/css/index.css"));
 $this->registerCss("
@@ -402,7 +402,7 @@ $this->registerCss("
                                     <small class="d-block p-1"><i
                                                 class="fas fa-calendar-alt"></i> <?= $value['updated_at'] ?></small>
                                     <small class="d-block p-1"><i
-                                                class="fas fa-user-edit"></i> <?= User::getNameUserById($value['admin_id'])['name']; ?>
+                                                class="fas fa-user-edit"></i> <?= User::findOne(['id' => $value['admin_id']])['name']; ?>
                                     </small>
                                 </h6>
                                 <a href="#" class="btn float-end">Xem bài viết <i

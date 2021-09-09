@@ -10,7 +10,7 @@ use kartik\form\ActiveForm;
 use yii\helpers\Url;
 
 $this->title = 'Contact';
-$imgUrl = Yii::getAlias('@common') . "/media";
+$imgUrl = Yii::$app->params['common']."/media";
 $this->registerCssFile(Url::toRoute('css/contact.css'));
 $this->registerCss("
     .w-45 {

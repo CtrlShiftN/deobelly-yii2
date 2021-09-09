@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d757da3765a908926c6909c10a1462b",
+    "content-hash": "c6a5f3e1f1e28f931b1dfc7c356da4a3",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -766,21 +766,22 @@
         },
         {
             "name": "kartik-v/yii2-label-inplace",
-            "version": "v1.2.3",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-label-inplace.git",
-                "reference": "8a152fe1a55b87b6ac69624e4da0c1c8a828c172"
+                "reference": "5e678362670856e21fe9539ffdab93f242d5e8c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-label-inplace/zipball/8a152fe1a55b87b6ac69624e4da0c1c8a828c172",
-                "reference": "8a152fe1a55b87b6ac69624e4da0c1c8a828c172",
+                "url": "https://api.github.com/repos/kartik-v/yii2-label-inplace/zipball/5e678362670856e21fe9539ffdab93f242d5e8c3",
+                "reference": "5e678362670856e21fe9539ffdab93f242d5e8c3",
                 "shasum": ""
             },
             "require": {
                 "kartik-v/yii2-krajee-base": ">=1.9"
             },
+            "default-branch": true,
             "type": "yii2-extension",
             "extra": {
                 "branch-alias": {
@@ -819,7 +820,7 @@
                 "issues": "https://github.com/kartik-v/yii2-label-inplace/issues",
                 "source": "https://github.com/kartik-v/yii2-label-inplace/tree/master"
             },
-            "time": "2018-09-16T17:57:12+00:00"
+            "time": "2019-05-25T07:25:14+00:00"
         },
         {
             "name": "kartik-v/yii2-popover-x",
@@ -6190,7 +6191,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "kartik-v/yii2-grid": 20
+        "kartik-v/yii2-grid": 20,
+        "kartik-v/yii2-label-inplace": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

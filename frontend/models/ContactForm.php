@@ -95,10 +95,10 @@ class ContactForm extends Contact
     public static function sendReplyContact() {
         return Yii::$app->mailer->compose()
             ->setFrom(Yii::$app->params['supportEmail'])
-            ->setTo(Yii::$app->params['adminEmail'])
-            ->setSubject('Thông báo về việc gửi phản hồi')
-            ->setTextBody('Cảm ơn quý khách đã gửi phản hồi. Chúng tôi sẽ sớm hồi âm lại với quý khách.')
-            ->setHtmlBody('<b>HTML content <i>Vuvuvuvvv</i></b>')
+            ->setTo('nguyenvu260502@gmail.com')
+            ->setSubject('Bạn có 1 phản hồi mới!')
+//            ->setTextBody('anc acn acnaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+            ->setHtmlBody('Bạn vừa nhận được phản hồi từ người dùng. <b><i>Hãy kiểm tra!</i></b><br>')
             ->send();
     }
 }
