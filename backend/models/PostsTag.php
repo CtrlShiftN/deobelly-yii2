@@ -35,6 +35,7 @@ class PostsTag extends \common\models\PostsTag
             [['created_at', 'updated_at'], 'safe'],
             [['title', 'slug'], 'string', 'max' => 255],
             [['slug'], 'unique'],
+            ['title', 'checkDuplicateSlug']
         ];
     }
 
@@ -45,12 +46,19 @@ class PostsTag extends \common\models\PostsTag
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
+            'title' => Yii::t('app', 'Title'),
             'slug' => 'Slug',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'status' => Yii::t('app', 'Status'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
+    }
+
+    public function checkDuplicateSlug($attribute, $params, $validator)
+    {
+        if (\common\models\PostsTag::findOne(['slug' => StringHelper::toSlug($this->title)])) {
+            $this->addError($attribute, 'Thẻ đã tồn tại.');
+        }
     }
 
     /**
@@ -71,7 +79,8 @@ class PostsTag extends \common\models\PostsTag
      * @param $value
      * @return int
      */
-    public static function updatePostTagStatus($id, $attribute, $value){
+    public static function updatePostTagStatus($id, $attribute, $value)
+    {
         return \common\models\PostsTag::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
     }
 

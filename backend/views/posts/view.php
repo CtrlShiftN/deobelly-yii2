@@ -35,7 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'content:ntext',
             'tag_id',
             'blog_category_id',
-            'status',
             'created_at',
             'updated_at',
         ],
