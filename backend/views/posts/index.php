@@ -45,7 +45,7 @@ $commonUrl = Yii::$app->params['common'];
             [
                 'class' => 'kartik\grid\DataColumn',
                 'attribute' => 'avatar',
-                'label' => 'Avatar',
+                'label' => Yii::t('app', 'Avatar'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '140px',

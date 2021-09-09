@@ -45,11 +45,11 @@ class PostsTag extends \common\models\PostsTag
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
+            'title' => Yii::t('app', 'Title'),
             'slug' => 'Slug',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'status' => Yii::t('app', 'Status'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 
