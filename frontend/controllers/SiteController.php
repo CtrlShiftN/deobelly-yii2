@@ -138,9 +138,9 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->saveContactData()) {
                 ContactForm::sendReplyContact();
-                Yii::$app->session->setFlash('contactSuccess', "Cảm ơn quý khách đã gửi phản hồi. Chúng tôi sẽ sớm hồi âm lại với quý khách");
+                Yii::$app->session->setFlash('contactSuccess', 'Thank you for your feedback. We will reply to you soon.');
             } else {
-                Yii::$app->session->setFlash('contactError', "Chưa thể gửi phản hồi. Xin quý khách vui lòng thử lại.");
+                Yii::$app->session->setFlash('contactError','Unable to submit a response. Please try again.');
             }
 
             return $this->refresh();

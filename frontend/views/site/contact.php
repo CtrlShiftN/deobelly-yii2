@@ -36,14 +36,14 @@ $config = ['template'=>"{input}\n{error}\n{hint}"];
                 <div class="alert alert-success alert-dismissible fade show my-3">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     <h4><i class="icon fa fa-check"></i> <?= Yii::t('app','SUCCESS') ?>!</h4>
-                    <?= Yii::$app->session->getFlash('contactSuccess') ?>
+                    <?= Yii::t('app',Yii::$app->session->getFlash('contactSuccess')) ?>
                 </div>
             <?php endif; ?>
             <?php if (Yii::$app->session->hasFlash('contactError')): ?>
                 <div class="alert alert-danger alert-dismissible fade show my-3">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     <h4><i class="fas fa-times"></i> <?= Yii::t('app','ERROR') ?>!</h4>
-                    <?= Yii::$app->session->getFlash('contactError') ?>
+                    <?= Yii::t('app',Yii::$app->session->getFlash('contactError')) ?>
                 </div>
             <?php endif; ?>
             <h3 class="fw-bold mb-4 text-center"><span class=" border-3 border-dark border-bottom "><?= Yii::t('app','SUBMIT YOUR QUESTION') ?>!</span>
