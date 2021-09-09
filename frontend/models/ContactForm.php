@@ -3,23 +3,22 @@
 namespace frontend\models;
 
 use common\components\SystemConstant;
-use common\models\Contact;
 use Yii;
 
 /**
  * This is the model class for table "contact".
  *
  * @property int $id
- * @property string $name
- * @property string $email
- * @property int $tel
- * @property string $content
+ * @property string|null $name
+ * @property string|null $email
+ * @property int|null $tel
+ * @property string|null $content
  * @property int|null $status 0 for inactive, 1 for active
  * @property int|null $user_id
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class ContactForm extends Contact
+class ContactForm extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -59,18 +58,21 @@ class ContactForm extends Contact
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Tên',
-            'email' => 'Email',
-            'tel' => 'Số điện thoại',
-            'content' => 'Nội dung',
-            'status' => 'Status',
-            'user_id' => 'User ID',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'email' => Yii::t('app', 'Email'),
+            'tel' => Yii::t('app', 'Tel'),
+            'content' => Yii::t('app', 'Content'),
+            'status' => Yii::t('app', 'Status'),
+            'user_id' => Yii::t('app', 'User ID'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 
+    /**
+     * @return bool
+     */
     public function saveContactData()
     {
         $contactModel = new ContactForm();

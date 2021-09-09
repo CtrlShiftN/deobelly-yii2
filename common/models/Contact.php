@@ -8,10 +8,10 @@ use Yii;
  * This is the model class for table "contact".
  *
  * @property int $id
- * @property string $name
- * @property string $email
- * @property int $tel
- * @property string $content
+ * @property string|null $name
+ * @property string|null $email
+ * @property int|null $tel
+ * @property string|null $content
  * @property int|null $status 0 for inactive, 1 for active
  * @property int|null $user_id
  * @property string|null $created_at
@@ -33,7 +33,6 @@ class Contact extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'email', 'tel', 'content'], 'required'],
             [['tel', 'status', 'user_id'], 'integer'],
             [['content'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
@@ -47,15 +46,15 @@ class Contact extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'email' => 'Email',
-            'tel' => 'Tel',
-            'content' => 'Content',
-            'status' => 'Status',
-            'user_id' => 'User ID',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'email' => Yii::t('app', 'Email'),
+            'tel' => Yii::t('app', 'Tel'),
+            'content' => Yii::t('app', 'Content'),
+            'status' => Yii::t('app', 'Status'),
+            'user_id' => Yii::t('app', 'User ID'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 }
