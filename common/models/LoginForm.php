@@ -25,6 +25,7 @@ class LoginForm extends Model
         return [
             // username and password are both required
             ['email', 'required'],
+            ['email', 'email'],
             ['password','required','message'=>'Mật khẩu không đươc để trống'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],

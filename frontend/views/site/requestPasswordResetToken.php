@@ -33,6 +33,18 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                             <p class="fs-5">Vui lòng điền vào email của bạn. Một liên kết để đặt lại mật khẩu sẽ được
                                 gửi đến đó.</p>
                         </div>
+                        <?php if (Yii::$app->session->hasFlash('success')): ?>
+                            <div class="alert alert-success my-3">
+                                <h4><i class="icon fa fa-check"></i> THÀNH CÔNG!</h4>
+                                <?= Yii::$app->session->getFlash('success') ?>
+                            </div>
+                        <?php endif; ?>
+                        <?php if (Yii::$app->session->hasFlash('error')): ?>
+                            <div class="alert alert-danger my-3">
+                                <h4><i class="fas fa-times"></i> LỖI!</h4>
+                                <?= Yii::$app->session->getFlash('error') ?>
+                            </div>
+                        <?php endif; ?>
                         <?= $form->field($model, 'email', $config)->widget(LabelInPlace::classname(), [
                             'type' => LabelInPlace::TYPE_HTML5,
                             'label' => '<span class="ms-2">Nhập email</span>',
