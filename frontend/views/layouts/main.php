@@ -305,7 +305,7 @@ AppAsset::register($this);
                                         <a href="/"><?= Yii::t('app','Famous brand') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','Customer reviews') ?></a>
+                                        <a href="/"><?= Yii::t('app','Customer feedback') ?></a>
                                     </li>
                                     <li>
                                         <a href="/"><?= Yii::t('app','Brand history') ?></a>
@@ -314,7 +314,7 @@ AppAsset::register($this);
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
-                                    <h3><?= Yii::t('app','PRODUCT CONSULATION') ?></h3>
+                                    <h3><?= Yii::t('app','PRODUCT CONSULTING') ?></h3>
                                     <li>
                                         <a href="/"><?= Yii::t('app','Office fashion') ?></a>
                                     </li>
@@ -345,7 +345,7 @@ AppAsset::register($this);
                                         <a href="/"><?= Yii::t('app','warranty Policy') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','Guidelines for Use') ?></a>
+                                        <a href="/"><?= Yii::t('app','Directions for use') ?></a>
                                     </li>
                                     <li>
                                         <a href="/"><?= Yii::t('app','Payment Guide') ?></a>

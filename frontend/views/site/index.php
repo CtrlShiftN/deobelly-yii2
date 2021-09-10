@@ -47,7 +47,7 @@ $this->registerCss("
                 <img src="<?= $imgUrl ?>/slideshow.jpg" class="d-block w-100" alt="..."/>
                 <div class="carousel-caption d-none d-md-block">
                     <h5><?= Yii::t('app','First slide label') ?></h5>
-                    <p><?= Yii::t('app','Nulla vitae elit libero, a pharetra augue mollis interdum') ?></p>
+                    <p><?= Yii::t('app','No life is free right now, sometimes soft against vibrations') ?></p>
                 </div>
             </div>
             <!-- Single item -->
@@ -187,7 +187,7 @@ $this->registerCss("
             </div>
             <div class="h-25 w-100 d-flex align-items-center justify-content-center px-lg-2 border border-2">
                 <div class="p-2 text-center">
-                    <h4 class="text-uppercase m-0 d-none d-lg-block fw-bolder"><?= Yii::t('app','Fashionable suits')?></h4>
+                    <h4 class="text-uppercase m-0 d-none d-lg-block fw-bolder"><?= Yii::t('app','Fashionable vest suits')?></h4>
                     <h5 class="text-uppercase m-0 d-lg-none fw-bolder"><?= Yii::t('app','Fashionable suits')?></h5>
                     <a href="#" class="btn text-uppercase text-danger fw-bolder p-0"><?= Yii::t('app','Watch now!')?></a>
                 </div>
