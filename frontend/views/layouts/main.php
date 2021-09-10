@@ -62,7 +62,7 @@ AppAsset::register($this);
                             <div class="topbar col-xs-7 col-md-7 col-lg-7 text-white py-1 text-end text-uppercase">
                                 <ul class="menu-topbar-right my-0">
                                     <li class="site-nav-top"><a href="<?php echo Url::home() ?>"
-                                                                class="site-nav-top-link"><span><?= Yii::t('app','Introduce') ?></span></a>
+                                                                class="site-nav-top-link"><span><?= Yii::t('app','Introduction') ?></span></a>
                                     </li>
                                     <li class="site-nav-top">
                                         <div class="vr mx-2"></div>
@@ -101,7 +101,7 @@ AppAsset::register($this);
                                         <a class="text-decoration-none" href="<?php echo Url::home() ?>">
                                             <h3 class="offcanvas-title text-uppercase fw-bolder text-white"
                                                 id="offcanvasWithBackdropLabel"><i
-                                                        class=" fas fa-feather-alt fa-flip-horizontal"></i> <?= Yii::t('app',' De Obelly ') ?> <i
+                                                        class=" fas fa-feather-alt fa-flip-horizontal"></i>De Obelly <i
                                                         class=" fas fa-feather-alt"></i></h3></a>
                                     </div>
                                     <button type="button" class="btn-close text-reset btn-close-white"
@@ -148,7 +148,7 @@ AppAsset::register($this);
                                                 <li class="nav-item  ">
                                                     <a href="<?= Url::home() ?>" class="nav-link ">
                                                         <i class="nav-icon fas fa-handshake"></i>
-                                                        <p><?= Yii::t('app','Home page') ?></p>
+                                                        <p><?= Yii::t('app','Home') ?></p>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item has-treeview">
@@ -288,7 +288,7 @@ AppAsset::register($this);
                                         <a href="/"><?= Yii::t('app','Social activities') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','Links &amp; cooperate') ?></a>
+                                        <a href="/"><?= Yii::t('app','Association and cooperation') ?></a>
                                     </li>
                                 </ul>
                             </div>
@@ -296,7 +296,7 @@ AppAsset::register($this);
                                 <ul class="footer-nav no-bullets">
                                     <h3><?= Yii::t('app','News')?></h3>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','product Reviews') ?></a>
+                                        <a href="/"><?= Yii::t('app','Product reviews') ?></a>
                                     </li>
                                     <li>
                                         <a href="/"><?= Yii::t('app','Fashion News') ?></a>
@@ -314,7 +314,7 @@ AppAsset::register($this);
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
-                                    <h3><?= Yii::t('app','CONSULTING PRODUCTS') ?></h3>
+                                    <h3><?= Yii::t('app','PRODUCT CONSULATION') ?></h3>
                                     <li>
                                         <a href="/"><?= Yii::t('app','Office fashion') ?></a>
                                     </li>
@@ -325,27 +325,27 @@ AppAsset::register($this);
                                         <a href="/"><?= Yii::t('app','Frequently asked questions') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','Necessary knowledge') ?></a>
+                                        <a href="/"><?= Yii::t('app','General knowledge') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','Why choose us') ?></a>
+                                        <a href="/"><?= Yii::t('app','Why you should choose us') ?></a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
-                                    <h3><?= Yii::t('app','INSTRUCT') ?></h3>
+                                    <h3><?= Yii::t('app','INSTRUCTIONS') ?></h3>
                                     <li>
                                         <a href="/"><?= Yii::t('app','Shopping guide') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','VIP card preferential policy') ?></a>
+                                        <a href="/"><?= Yii::t('app','Preferential policy of VIP card') ?></a>
                                     </li>
                                     <li>
                                         <a href="/"><?= Yii::t('app','warranty Policy') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','User manual') ?></a>
+                                        <a href="/"><?= Yii::t('app','Guidelines for Use') ?></a>
                                     </li>
                                     <li>
                                         <a href="/"><?= Yii::t('app','Payment Guide') ?></a>
@@ -369,8 +369,8 @@ AppAsset::register($this);
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
-                                    <h3><?= Yii::t('app','SIGN UP FOR NEWS') ?></h3>
-                                    <li class="mb-3"><span class="ft-content"><?= Yii::t('app','Promotional News / Brand News') ?></span>
+                                    <h3><?= Yii::t('app','SIGN UP TO RECEIVE NEWS') ?></h3>
+                                    <li class="mb-3"><span class="ft-content"><?= Yii::t('app','Promotion news / Brand news') ?></span>
                                     </li>
                                     <li>
                                         <form action="#" method="POST" class="d-inline">
@@ -406,7 +406,7 @@ AppAsset::register($this);
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
-                                    <h3><?= Yii::t('app','') ?></h3>
+                                    <h3><?= Yii::t('app','CERTIFICATE') ?></h3>
                                     <li>
                                         <a href="javascript:void(0)" target="_blank"><img class="pt-2"
                                                                                           src="//theme.hstatic.net/1000180292/1000232392/14/footer_payment_logo_1.png?v=3509"></a>
