@@ -63,9 +63,9 @@ return [
     'Referral Code' => 'Mã Giới Thiệu',
     'Invalid phone number.' => 'Số điện thoại không hợp lệ.',
     'Invalid email.' => 'Địa chỉ mail không hợp lệ.',
-    'Includes 11 digits starting at 0 or 84.' => 'Bao gồm 11 chữ số bắt đầu từ 0 hoặc 84.',
-    "Content can't be blank." => 'Nội dung là bắt buộc.',
+    'Includes 11 digits starting with 0 or 84.' => 'Bao gồm 11 chữ số bắt đầu từ 0 hoặc 84.',
+    "Content can't be blank." => 'Nội dung không được để trống.',
     'Name can not be blank.' => 'Họ và tên không được để trống.',
-    'Phone number can not be blank.' => 'Số điện thoại không được để trống',
-    "Email can't be blank." => 'Email là bắt buộc.',
+    'Phone number can not be blank.' => 'Số điện thoại không được để trống.',
+    "Email can't be blank." => 'Email không được để trống.',
 ];
