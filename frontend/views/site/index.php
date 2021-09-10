@@ -2,9 +2,10 @@
 
 /* @var $this yii\web\View */
 
+use common\models\User;
 use yii\helpers\Url;
 
-$imgUrl = Yii::$app->params['common'] . "/media";
+$imgUrl = Yii::$app->params['common']."/media";
 $this->title = 'DE OBELLY';
 $this->registerCssFile(Url::toRoute("/css/index.css"));
 $this->registerCss("
@@ -401,7 +402,7 @@ $this->registerCss("
                                     <small class="d-block p-1"><i
                                                 class="fas fa-calendar-alt"></i> <?= $value['updated_at'] ?></small>
                                     <small class="d-block p-1"><i
-                                                class="fas fa-user-edit"></i> <?= \common\models\User::find()->select('name')->where(['status' => 1, 'id' => $value['admin_id']])->one()['name']; ?>
+                                                class="fas fa-user-edit"></i> <?= User::findOne(['id' => $value['admin_id']])['name']; ?>
                                     </small>
                                 </h6>
                                 <a href="#" class="btn float-end">Xem bài viết <i

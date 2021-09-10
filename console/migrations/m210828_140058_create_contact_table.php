@@ -14,10 +14,10 @@ class m210828_140058_create_contact_table extends Migration
     {
         $this->createTable('{{%contact}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string(),
-            'email' => $this->string(),
-            'tel' => $this->integer(),
-            'content' => $this->text(),
+            'name' => $this->string()->notNull(),
+            'email' => $this->string()->notNull(),
+            'tel' => $this->integer()->notNull(),
+            'content' => $this->text()->notNull(),
             'status' => $this->smallInteger()->defaultValue(1)->comment('0 for inactive, 1 for active'),
             'user_id' => $this->bigInteger(),
             'created_at' => $this->dateTime(),

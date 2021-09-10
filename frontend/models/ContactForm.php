@@ -2,7 +2,7 @@
 
 namespace frontend\models;
 
-use common\models\User;
+use common\components\SystemConstant;
 use Yii;
 
 /**
@@ -34,11 +34,21 @@ class ContactForm extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tel', 'status', 'user_id'], 'integer'],
+            ['name', 'required', 'message' => Yii::t('app', 'Name can not be blank.')],
+            [['status', 'user_id'], 'integer'],
+
+            ['content', 'required', 'message' => Yii::t('app', "Content can't be blank.")],
             [['content'], 'string'],
+
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'email'], 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => User::class, 'message' => 'Email này đã được sử dụng.'],
+            
+            ['email', 'required', 'message' => Yii::t('app', "Email can't be blank.")],
+            [['email'], 'email', 'message' => Yii::t('app', 'Invalid email.')],
+
+            ['tel', 'integer', 'message' => Yii::t('app', 'Invalid phone number.')],
+            ['tel', 'required', 'message' => Yii::t('app', 'Phone number can not be blank.')],
+            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{10})$/', 'message' => Yii::t('app', 'Includes 11 digits starting with 0 or 84.')],
         ];
     }
 
@@ -48,15 +58,49 @@ class ContactForm extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'email' => 'Email',
-            'tel' => 'Tel',
-            'content' => 'Content',
-            'status' => 'Status',
-            'user_id' => 'User ID',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'email' => Yii::t('app', 'Email'),
+            'tel' => Yii::t('app', 'Tel'),
+            'content' => Yii::t('app', 'Content'),
+            'status' => Yii::t('app', 'Status'),
+            'user_id' => Yii::t('app', 'User ID'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
+    }
+
+    /**
+     * @return bool
+     */
+    public function saveContactData()
+    {
+        $contactModel = new ContactForm();
+        $contactModel->name = $this->name;
+        $contactModel->email = $this->email;
+        $contactModel->tel = $this->tel;
+        $contactModel->content = $this->content;
+        if (!Yii::$app->user->isGuest) {
+            $contactModel->user_id = Yii::$app->user->identity->id;
+        } else {
+            $contactModel->user_id = null;
+        }
+        $contactModel->status = SystemConstant::STATUS_ACTIVE;
+        $contactModel->created_at = date('Y-m-d H:i:s');
+        $contactModel->updated_at = date('Y-m-d H:i:s');
+        return $contactModel->save();
+    }
+
+    /**
+     * @return bool
+     */
+    public static function sendReplyContact()
+    {
+        return Yii::$app->mailer->compose()
+            ->setFrom(Yii::$app->params['supportEmail'])
+            ->setTo(Yii::$app->params['adminEmail'])
+            ->setSubject('Bạn có 1 phản hồi mới!')
+            ->setHtmlBody('Bạn vừa nhận được phản hồi từ người dùng. <b><i>Hãy kiểm tra!</i></b><br>')
+            ->send();
     }
 }
