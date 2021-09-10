@@ -3,7 +3,6 @@
 namespace frontend\models;
 
 use common\models\Posts;
-use Yii;
 
 /**
  * This is the model class for table "posts".
@@ -20,7 +19,7 @@ use Yii;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class PostsSearch extends \yii\db\ActiveRecord
+class PostsSearch extends Posts
 {
     /**
      * {@inheritdoc}
@@ -66,7 +65,7 @@ class PostsSearch extends \yii\db\ActiveRecord
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    public function getPostsIntro()
+    public static function getPostsIntro()
     {
         return Posts::find()->where(['status' => 1])->orderBy('updated_at DESC')->limit(4)->asArray()->all();
     }
