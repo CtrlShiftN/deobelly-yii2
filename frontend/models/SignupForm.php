@@ -43,7 +43,7 @@ class SignupForm extends Model
             ['tel', 'trim'],
             ['tel', 'required', 'message'=>Yii::t('app','Phone number can not be blank.')],
             ['tel', 'string', 'max' => 12, 'min' => Yii::$app->params['user.telMinLength']],
-            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app','Phone number must start with 0 or 84')],
+            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app','Includes 11 digits starting at 0 or 84.')],
         ];
     }
     /**

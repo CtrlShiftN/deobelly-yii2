@@ -24,7 +24,7 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
         <div class="col-12 col-md-6">
             <div class="max-width mx-auto ">
                 <?php $form = ActiveForm::begin(['id' => 'login-form', 'class' => 'form-floating']); ?>
-                <div class=" border-radius bg-light">
+                <div class="border-radius bg-light">
                     <div class="mx-4">
                         <div class="pt-3">
                             <h1 class="fw-bold text-center text-primary"><?= Html::encode($this->title) ?></h1>

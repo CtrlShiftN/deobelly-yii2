@@ -82,7 +82,7 @@ return [
     'Incorrect password'=>'Mật khẩu không đúng',
     'Name can not be blank.'=>'Tên không được để trống',
     'Phone number can not be blank.'=>'Số điện thoại không được để trống.',
-    'Phone number must start with 0 or 84'=>'Số điện thoại phải bắt đầu bằng 0 hoặc 84',
+    'Includes 11 digits starting at 0 or 84.' => 'Bao gồm 11 chữ số bắt đầu từ 0 hoặc 84.',
     'Password reset token cannot be blank.'=>'Mã thông báo đặt lại mật khẩu không được để trống.',
     'Wrong password reset token.'=>'Mã thông báo đặt lại mật khẩu sai.',
     'There are no users with this email address.'=>'Không có người dùng nào có địa chỉ email này.',
