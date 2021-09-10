@@ -34,21 +34,21 @@ class ContactForm extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            ['name', 'required', 'message' => Yii::t('app','Name is required.')],
+            ['name', 'required', 'message' => Yii::t('app', 'Name can not be blank.')],
             [['status', 'user_id'], 'integer'],
 
-            ['content', 'required', 'message' => Yii::t('app','Content is required.')],
+            ['content', 'required', 'message' => Yii::t('app', "Content can't be blank.")],
             [['content'], 'string'],
 
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'email'], 'string', 'max' => 255],
 
-            ['email', 'required', 'message' => Yii::t('app','Email is required.')],
-            [['email'], 'email', 'message' => Yii::t('app','Invalid mail.')],
+            ['email', 'required', 'message' => Yii::t('app', "Email can't be blank.")],
+            [['email'], 'email', 'message' => Yii::t('app', 'Invalid email.')],
 
-            ['tel', 'integer', 'message' => Yii::t('app','Invalid phone number.')],
-            ['tel', 'required', 'message' => Yii::t('app','Tel is required.')],
-            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app','Includes 11 digits starting at 0 or 10 starting at 84.')],
+            ['tel', 'integer', 'message' => Yii::t('app', 'Invalid phone number.')],
+            ['tel', 'required', 'message' => Yii::t('app', 'Phone number can not be blank.')],
+            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{10})$/', 'message' => Yii::t('app', 'Includes 11 digits starting at 0 or 84.')],
         ];
     }
 
@@ -94,7 +94,8 @@ class ContactForm extends \yii\db\ActiveRecord
     /**
      * @return bool
      */
-    public static function sendReplyContact() {
+    public static function sendReplyContact()
+    {
         return Yii::$app->mailer->compose()
             ->setFrom(Yii::$app->params['supportEmail'])
             ->setTo(Yii::$app->params['adminEmail'])

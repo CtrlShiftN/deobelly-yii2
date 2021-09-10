@@ -140,7 +140,7 @@ class SiteController extends Controller
                 ContactForm::sendReplyContact();
                 Yii::$app->session->setFlash('contactSuccess', 'Thank you for your feedback. We will reply to you soon.');
             } else {
-                Yii::$app->session->setFlash('contactError','Unable to submit a response. Please try again.');
+                Yii::$app->session->setFlash('contactError', 'Unable to submit a response. Please try again.');
             }
 
             return $this->refresh();
@@ -273,7 +273,8 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionTerms() {
+    public function actionTerms()
+    {
         $getTerms = Terms::getTermsAndServices();
         return $this->render('terms', [
             'terms' => $getTerms,

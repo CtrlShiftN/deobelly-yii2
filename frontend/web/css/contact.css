@@ -1,4 +1,4 @@
-iframe{
+iframe {
     position: relative;
     left: 50%;
     right: 50%;
@@ -7,15 +7,17 @@ iframe{
     max-width: 100vw;
     width: 100vw;
 }
-.border-radius{
+
+.border-radius {
     border-radius: 30px;
 }
 
 @media (max-width: 576px) {
-    .order-xs-first{
+    .order-xs-first {
         order: 1;
     }
-    .order-xs-last{
+
+    .order-xs-last {
         order: 2;
     }
 }
