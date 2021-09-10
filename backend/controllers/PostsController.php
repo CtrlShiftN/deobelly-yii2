@@ -4,12 +4,14 @@ namespace backend\controllers;
 
 use backend\models\Posts;
 use backend\models\PostsSearch;
+use common\components\helpers\StringHelper;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * PostsController implements the CRUD actions for Posts model.
@@ -108,6 +110,12 @@ class PostsController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
+                $model->avatarImage = UploadedFile::getInstance($model, 'avatarImage');
+                if ($model->avatarImage && $model->validate()){
+                    $filePath = Yii::getAlias('@common').'/media/posts/avatar/' . StringHelper::toSlug($model->title) . '.' . $model->avatarImage->extension;
+                    $model->avatarImage->saveAs($filePath);
+                    $model->avatar = '/media/posts/avatar/' . StringHelper::toSlug($model->title) .'.'. $model->avatarImage->extension;
+                }
                 if ($model->save()) {
                     return $this->redirect(Url::toRoute('posts/'));
                 }

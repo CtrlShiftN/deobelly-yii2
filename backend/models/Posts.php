@@ -21,6 +21,9 @@ use Yii;
  */
 class Posts extends \common\models\Posts
 {
+    public $avatarImage;
+    public $thumbnailImage;
+
     /**
      * {@inheritdoc}
      */
@@ -39,6 +42,7 @@ class Posts extends \common\models\Posts
             [['admin_id', 'blog_category_id', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['avatar', 'thumbnail', 'title', 'tag_id'], 'string', 'max' => 255],
+            [['avatarImage', 'thumbnailImage'], 'file'],
         ];
     }
 
@@ -59,6 +63,8 @@ class Posts extends \common\models\Posts
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'avatarImage' => Yii::t('app', 'Avatar Image'),
+            'thumbnailImage' => Yii::t('app', 'Thumbnail Image'),
         ];
     }
 
