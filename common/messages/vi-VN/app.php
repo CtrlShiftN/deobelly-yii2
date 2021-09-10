@@ -15,7 +15,7 @@ return [
     'Submit' => 'Gửi',
     'If you have a business inquiry or other question, please fill out the following form to contact us. Thank you!' => 'Nếu bạn có yêu cầu kinh doanh hoặc câu hỏi khác, vui lòng điền vào biểu mẫu sau để liên hệ với chúng tôi. Cảm ơn bạn',
     'Working time' => 'Thời gian làm việc',
-    'Thank you for your feedback. We will reply to you soon.' => 'Cảm ơn quý khách đã gửi phản hồi. Chúng tôi sẽ sớm gửi câu trả lời tới quý khách.',
+    'Thank you for your feedback. We will reply to you soon.' => 'Cảm ơn quý khách đã gửi phản hồi. Chúng tôi sẽ sớm trả lời quý khách.',
     'Unable to submit a response. Please try again.' => 'Chưa thể gửi phản hồi. Xin quý khách vui lòng thử lại.',
     'Are you sure you want to delete this item?' => 'Bạn chắc chắn muốn xóa vĩnh viễn?',
     'The EXCEL export file will be generated for download.' => 'Tệp Excel sẽ được tạo để tải về',
