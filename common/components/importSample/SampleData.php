@@ -24,7 +24,7 @@ class SampleData
             'email' => 'admin.deobelly@gmail.com',
             'password_hash' => 'Iamadmin@1234',
             'name' => "I'm Admin",
-            'tel' => '0333333333',
+            'tel' => '0364752421',
             'username' => 'admin',
             'role' => User::ROLE_ADMIN,
         ],
@@ -32,7 +32,7 @@ class SampleData
             'email' => 'editor.deobelly@gmail.com',
             'password_hash' => 'Iameditor@1234',
             'name' => "I'm Writer God",
-            'tel' => '0333333333',
+            'tel' => '0334517566',
             'username' => 'editor',
             'role' => User::ROLE_EDITOR,
         ],
@@ -40,7 +40,7 @@ class SampleData
             'email' => 'sale.deobelly@gmail.com',
             'password_hash' => 'Iamsale@1234',
             'name' => "I'm Sale",
-            'tel' => '0333333333',
+            'tel' => '0345678910',
             'username' => 'sale',
             'role' => User::ROLE_SALE,
         ],
@@ -449,7 +449,7 @@ class SampleData
     protected static array $postsInfoArr = [
         [
             'avatar' => 'posts/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'posts/thumbnail/lacoste-short.PNG',
+            'thumbnail' => 'posts/thumbnail/lacoste-short.jpg',
             'title' => 'De Obelly Collections 2021 - Lựa chọn hoàn hảo cho mùa hè',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
                                 với những chiếc áo Polo đa sắc màu trong BST Hè DE OBELLY 2021. Hãy check ngay những mẫu
@@ -473,7 +473,7 @@ class SampleData
         ],
         [
             'avatar' => 'posts/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'posts/thumbnail/lacoste-short-2.PNG',
+            'thumbnail' => 'posts/thumbnail/lacoste-short-2.jpg',
             'title' => 'Cực chất với bộ sưu tập mùa hè',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
                                 với những chiếc áo Polo đa sắc màu trong BST Hè DE OBELLY 2021. Hãy check ngay những mẫu
@@ -497,7 +497,7 @@ class SampleData
         ],
         [
             'avatar' => 'posts/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'posts/thumbnail/lacoste-short-2.PNG',
+            'thumbnail' => 'posts/thumbnail/lacoste-short-2.jpg',
             'title' => 'Community—And Style—Thrived at the Santa Fe Indian Market',
             'content' => '<p>Every year, the Santa Fe Indian Market brings in thousands of global tourists and collectors to the city. 
                          Visitors flock to the streets around the city’s main plaza, 
@@ -520,7 +520,7 @@ class SampleData
         ],
         [
             'avatar' => 'posts/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'posts/thumbnail/lacoste-short-2.PNG',
+            'thumbnail' => 'posts/thumbnail/lacoste-short-2.jpg',
             'title' => '4 "cặp đôi" trang phục cho chàng phong cách ngày hè',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
                                 với những chiếc áo Polo đa sắc màu trong BST Hè DE OBELLY 2021. Hãy check ngay những mẫu
