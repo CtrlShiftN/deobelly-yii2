@@ -26,7 +26,7 @@ class LoginForm extends Model
             // username and password are both required
             ['email', 'required'],
             ['email', 'email'],
-            ['password','required','message'=>'Mật khẩu không đươc để trống'],
+            ['password','required','message'=>Yii::t('app','Password can not be blank.')],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
@@ -46,7 +46,7 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Tên đăng nhập hoặc mật khẩu không chính xác.');
+                $this->addError($attribute, Yii::t('app','Username or password incorrect.'));
             }
         }
     }

@@ -10,7 +10,7 @@ use yii\bootstrap5\ActiveForm;
 use yii\helpers\Url;
 
 $imgUrl = Yii::$app->params['common']. "\media";
-$this->title = 'Đăng Nhập';
+$this->title = Yii::t('app', 'Login');
 $this->params['breadcrumbs'][] = $this->title;
 $config = ['template' => "{input}\n{error}\n{hint}"];
 ?>
@@ -31,25 +31,25 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                         </div>
                         <?= $form->field($model, 'email', $config)->widget(LabelInPlace::classname(), [
                             'type' => LabelInPlace::TYPE_HTML5,
-                            'label' => '<span class="ms-2">Nhập email</span>',
+                            'label' => (Yii::t('app','Enter email')),
                             'options' => ['type' => 'email', 'class' => 'form-control border rounded-pill mt-md-5 mt-3'],
                             'encodeLabel' => false
                         ]); ?>
                         <?= $form->field($model, 'password', $config)->widget(LabelInPlace::classname(), [
                             'type' => LabelInPlace::TYPE_HTML5,
-                            'label' => '<span class="ms-2">Nhập mật khẩu</span>',
+                            'label' => (Yii::t('app','Enter password')),
                             'options' => ['type' => 'password', 'class' => 'form-control border rounded-pill mt-md-4 mt-3'],
                             'encodeLabel' => false
                         ]); ?>
                         <?= $form->field($model, 'rememberMe')->checkbox() ?>
-                        <?= Html::submitButton('Login', ['class' => 'btn btn-primary rounded-pill fs-4 text-light w-100 mt-md-4 mt-3', 'name' => 'login-button']) ?>
+                        <?= Html::submitButton(Yii::t('app','Login'), ['class' => 'btn btn-primary rounded-pill fs-4 text-light w-100 mt-md-4 mt-3', 'name' => 'login-button']) ?>
                         <div class="mt-4">
-                            Bạn quên mật khẩu
-                            ? <?= Html::a('Quên mật khẩu', ['/request-password-reset'], ['class' => 'text-decoration-none']) ?>
+                            <?= Yii::t('app','You forgot password ?') ?>
+                             <?= Html::a(Yii::t('app','Forgot password'), ['/request-password-reset'], ['class' => 'text-decoration-none']) ?>
                         </div>
                         <div class="pb-4">
-                            Bạn chưa có tài khoản
-                            ? <?= Html::a('Đăng Kí ', ['/signup'], ['class' => 'text-decoration-none']) ?>
+                            <?= Yii::t('app','You dont have an account ?') ?>
+                             <?= Html::a(Yii::t('app','Signup'), ['/signup'], ['class' => 'text-decoration-none']) ?>
                         </div>
                     </div>
                 </div>

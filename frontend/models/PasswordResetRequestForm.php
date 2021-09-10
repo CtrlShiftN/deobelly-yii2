@@ -21,12 +21,12 @@ class PasswordResetRequestForm extends Model
     {
         return [
             ['email', 'trim'],
-            ['email', 'required'],
+            ['email', 'required','message'=>Yii::t('app','Email can not be blank.')],
             ['email', 'email'],
             ['email', 'exist',
                 'targetClass' => '\common\models\User',
                 'filter' => ['status' => User::STATUS_ACTIVE],
-                'message' => 'Không có người dùng nào có địa chỉ email này.'
+                'message' =>Yii::t('app','There are no users with this email address.')
             ],
         ];
     }

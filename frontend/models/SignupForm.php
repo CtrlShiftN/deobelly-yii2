@@ -25,25 +25,25 @@ class SignupForm extends Model
     {
         return [
             ['email', 'trim'],
-            ['email', 'required', 'message'=>"Email không được để trống"],
+            ['email', 'required', 'message'=>Yii::t('app','Email can not be blank.')],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Địa chỉ email này đã được sử dụng.'],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => Yii::t('app','This email address is already in use.')],
 
-            ['password', 'required', 'message'=>"Mật khẩu không được để trống"],
+            ['password', 'required', 'message'=>Yii::t('app','Password can not be blank.')],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
 
-            ['password_confirm', 'required', 'message'=>"Mật khẩu không được để trống"],
-            ['password_confirm', 'compare', 'compareAttribute'=>'password', 'message'=>"Mật khẩu không khớp" ],
+            ['password_confirm', 'required','message'=> Yii::t('app','Comfirm-password can not be blank.')],
+            ['password_confirm', 'compare', 'compareAttribute'=>'password', 'message'=>Yii::t('app','Incorrect password.')],
 
-            ['name', 'required', 'message'=>"Tên không được để trống"],
+            ['name', 'required', 'message'=>Yii::t('app','Name can not be blank.')],
             ['name', 'trim'],
             ['name', 'string', 'max' => 100],
 
             ['tel', 'trim'],
-            ['tel', 'required', 'message'=>"Số điện thoại không được để trống"],
+            ['tel', 'required', 'message'=>Yii::t('app','Phone number can not be blank.')],
             ['tel', 'string', 'max' => 12, 'min' => Yii::$app->params['user.telMinLength']],
-            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => 'số điện thoại phải bắt đầu bằng 0 hoặc 84'],
+            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app','Phone number must start with 0 or 84')],
         ];
     }
     /**

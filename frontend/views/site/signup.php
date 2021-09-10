@@ -10,7 +10,7 @@ use yii\bootstrap5\ActiveForm;
 use yii\helpers\Url;
 
 $imgUrl = Yii::$app->params['common']. "/media";
-$this->title = 'Đăng Kí';
+$this->title = Yii::t('app', 'Signup');
 $this->params['breadcrumbs'][] = $this->title;
 $config = ['template' => "{input}\n{error}\n{hint}"];
 ?>
@@ -31,37 +31,37 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                         </div>
                         <?= $form->field($model, 'name', $config)->widget(LabelInPlace::classname(), [
                             'type' => LabelInPlace::TYPE_HTML5,
-                            'label' => '<span class="ms-2">Nhập họ tên</span>',
+                            'label' => (Yii::t('app','Enter name')),
                             'options' => ['type' => 'text', 'class' => 'form-control border rounded-pill mt-md-5 mt-3'],
                             'encodeLabel' => false
                         ]); ?>
                         <?= $form->field($model, 'tel', $config)->widget(LabelInPlace::classname(), [
                             'type' => LabelInPlace::TYPE_HTML5,
-                            'label' => '<span class="ms-2">Nhập số điện thoại</span>',
+                            'label' => (Yii::t('app','Enter phone number')),
                             'options' => ['type' => 'number', 'class' => 'form-control border rounded-pill mt-md-3 mt-2'],
                             'encodeLabel' => false
                         ]); ?>
                         <?= $form->field($model, 'email', $config)->widget(LabelInPlace::classname(), [
                             'type' => LabelInPlace::TYPE_HTML5,
-                            'label' => '<span class="ms-2">Nhập email</span>',
+                            'label' => (Yii::t('app','Enter email')),
                             'options' => ['type' => 'email', 'class' => 'form-control border rounded-pill mt-md-3 mt-2'],
                             'encodeLabel' => false
                         ]); ?>
                         <?= $form->field($model, 'password', $config)->widget(LabelInPlace::classname(), [
                             'type' => LabelInPlace::TYPE_HTML5,
-                            'label' => '<span class="ms-2">Nhập mật khẩu</span>',
+                            'label' => (Yii::t('app','Enter password')),
                             'options' => ['type' => 'password', 'class' => 'form-control border rounded-pill mt-md-3 mt-2'],
                             'encodeLabel' => false
                         ]); ?>
                         <?= $form->field($model, 'password_confirm', $config)->widget(LabelInPlace::classname(), [
                             'type' => LabelInPlace::TYPE_HTML5,
-                            'label' => '<span class="ms-2">Nhập lại mật khẩu</span>',
+                            'label' => (Yii::t('app','Enter confirm-password')),
                             'options' => ['type' => 'password', 'class' => 'form-control border rounded-pill mt-md-3 mt-2'],
                             'encodeLabel' => false
                         ]); ?>
-                        <?= Html::submitButton('Đăng Kí', ['class' => 'btn btn-primary rounded-pill text-light w-100', 'name' => 'signup-button', 'value' => 'Đăng Kí']) ?>
+                        <?= Html::submitButton(Yii::t('app','Signup'), ['class' => 'btn btn-primary rounded-pill text-light w-100', 'name' => 'signup-button']) ?>
                     </div>
-                    <p class="text-center py-3">Bạn đã có tài khoản ? <?= Html::a('Đăng Nhập', ['/login']) ?>
+                    <p class="text-center py-3"><?= Yii::t('app','You already have an account ?') ?> <?= Html::a(Yii::t('app','Login'), ['/login']) ?>
                 </div>
                 <?php ActiveForm::end(); ?>
             </div>

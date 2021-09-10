@@ -10,7 +10,7 @@ use yii\bootstrap5\ActiveForm;
 use yii\helpers\Url;
 
 $imgUrl = Yii::$app->params['common']. "/media";
-$this->title = 'Đổi mật khẩu';
+$this->title = Yii::t('app','Change password');
 $this->params['breadcrumbs'][] = $this->title;
 $config = ['template' => "{input}\n{error}\n{hint}"];
 ?>
@@ -28,21 +28,21 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                     <div class="mx-4">
                         <div class=" pt-md-5 pt-3">
                             <h1 class="fw-bold text-primary text-center pb-3"><?= Html::encode($this->title) ?></h1>
-                            <p class="my-md-4 my-2 fs-5">Hãy nhập mật khẩu mới của bạn:</p>
+                            <p class="my-md-4 my-2 fs-5"><?= Yii::t('app','Please enter your new password:') ?></p>
                         </div>
                         <?= $form->field($model, 'password', $config)->widget(LabelInPlace::classname(), [
                             'type' => LabelInPlace::TYPE_HTML5,
-                            'label' => '<span class="ms-2">Nhập mật khẩu mới</span>',
+                            'label' => (Yii::t('app','Enter new password')),
                             'options' => ['type' => 'password', 'class' => 'form-control fs-5 border rounded-pill mt-md-4 mt-2'],
                             'encodeLabel' => false
                         ]); ?>
                         <?= $form->field($model, 'password_confirm', $config)->widget(LabelInPlace::classname(), [
                             'type' => LabelInPlace::TYPE_HTML5,
-                            'label' => '<span class="ms-2">Nhập lại mật khẩu</span>',
+                            'label' => (Yii::t('app','Enter confirm-password')),
                             'options' => ['type' => 'password', 'class' => 'form-control fs-5 border rounded-pill mt-md-4 mt-2'],
                             'encodeLabel' => false
                         ]); ?>
-                        <?= Html::submitButton('Đăng Kí', ['class' => 'btn btn-primary rounded-pill text-light w-100 my-md-5 my-3', 'name' => 'signup-button', 'value' => 'Đăng Kí']) ?>
+                        <?= Html::submitButton(Yii::t('app','Change password'), ['class' => 'btn btn-primary rounded-pill text-light w-100 my-md-5 my-3', 'name' => 'signup-button']) ?>
                     </div>
                 </div>
                 <?php ActiveForm::end(); ?>
