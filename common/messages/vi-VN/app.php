@@ -62,4 +62,10 @@ return [
     'Verification Token' => 'Mã Xác Thực',
     'Referral Code' => 'Mã Giới Thiệu',
     'Invalid phone number.' => 'Số điện thoại không hợp lệ.',
+    'Invalid email.' => 'Địa chỉ mail không hợp lệ.',
+    'Includes 11 digits starting at 0 or 10 starting at 84.' => 'Bao gồm 11 chữ số bắt đầu từ 0 hoặc 10 bắt đầu từ 84.',
+    'Name is required.' => 'Tên là bắt buộc',
+    'Content is required.' => 'Nội dung là bắt buộc',
+    'Email is required.' => 'Email là bắt buộc',
+    'Tel is required.' => 'Số điện thoại là bắt buộc',
 ];

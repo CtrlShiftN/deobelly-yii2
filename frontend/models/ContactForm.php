@@ -34,21 +34,21 @@ class ContactForm extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            ['name', 'required', 'message' => 'Tên là bắt buộc'],
+            ['name', 'required', 'message' => Yii::t('app','Name is required.')],
             [['status', 'user_id'], 'integer'],
 
-            ['content', 'required', 'message' => 'Nội dung là bắt buộc'],
+            ['content', 'required', 'message' => Yii::t('app','Content is required.')],
             [['content'], 'string'],
 
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'email'], 'string', 'max' => 255],
 
-            ['email', 'required', 'message' => 'Mail là bắt buộc'],
-            [['email'], 'email', 'message' => 'Email không đúng định dạng'],
+            ['email', 'required', 'message' => Yii::t('app','Email is required.')],
+            [['email'], 'email', 'message' => Yii::t('app','Invalid mail.')],
 
-            ['tel', 'integer', 'message' => 'Số điện thoại không hợp lệ'],
-            ['tel', 'required', 'message' => 'Số điện thoại là bắt buộc'],
-            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => 'Bao gồm 10 chữ số bắt đầu từ 0 hoặc 11 bắt đầu từ 84'],
+            ['tel', 'integer', 'message' => Yii::t('app','Invalid phone number.')],
+            ['tel', 'required', 'message' => Yii::t('app','Tel is required.')],
+            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app','Includes 11 digits starting at 0 or 10 starting at 84.')],
         ];
     }
 

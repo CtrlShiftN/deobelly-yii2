@@ -4,15 +4,15 @@
 /* @var $form yii\bootstrap4\ActiveForm */
 /* @var $model \frontend\models\ContactForm */
 
-use kartik\label\LabelInPlace;
 use yii\bootstrap5\Html;
-use kartik\form\ActiveForm;
+use yii\bootstrap4\ActiveForm;
 use yii\helpers\Url;
 
 $this->title = Yii::t('app', 'Contact');
 $imgUrl = Yii::$app->params['common']."/media";
 $this->registerCssFile(Url::toRoute('css/contact.css'));
 $this->registerCss("
+    @media (max-width:
     .w-45 {
         width: 45%;
     } 
@@ -48,38 +48,22 @@ $config = ['template'=>"{input}\n{error}\n{hint}"];
             <?php endif; ?>
             <h3 class="fw-bold mb-4 text-center"><span class=" border-3 border-dark border-bottom "><?= Yii::t('app','SUBMIT YOUR QUESTION') ?>!</span>
             </h3>
-            <?php $form = ActiveForm::begin(['id' => 'contact-form','class' => 'form-floating']); ?>
-            <?= $form->field($model, 'name', $config)->widget(LabelInPlace::classname(), [
-                'type' => LabelInPlace::TYPE_HTML5,
-                'label' => '<span class="ms-2 text-dark px-2 py-3">'.Yii::t('app','Name').'</span>',
-                'options' => ['type' => 'text', 'class' => 'form-control rounded-pill'],
-                'encodeLabel' => false,
-                'defaultIndicators'=>false,
-            ]); ?>
-            <?= $form->field($model, 'email', $config)->widget(LabelInPlace::classname(),[
-                'type' => LabelInPlace::TYPE_HTML5,
-                'label'=>'<span class="ms-2 text-dark px-2">Email</span>',
-                'options' => ['type' => 'email', 'class'=>'form-control rounded-pill'],
-                'encodeLabel'=> false,
-                'defaultIndicators'=>false,
-            ]); ?>
-            <?= $form->field($model, 'tel', $config)->widget(LabelInPlace::classname(),[
-                'type' => LabelInPlace::TYPE_HTML5,
-                'label'=>'<span class="ms-2 text-dark px-2 py-3">'.Yii::t('app','Phone number').'</span>',
-                'options' => ['type' => 'text', 'class'=>'form-control rounded-pill'],
-                'encodeLabel'=> false,
-                'defaultIndicators'=>false,
-            ]); ?>
-            <?= $form->field($model, 'content', $config)->widget(LabelInPlace::classname(),[
-                'type' => LabelInPlace::TYPE_TEXTAREA,
-                'label'=>'<span class="ms-2 text-dark px-2 py-3">'.Yii::t('app','Content').'</span>',
-                'options' => ['type' => 'email', 'class'=>'form-control rounded-pill'],
-                'encodeLabel'=> false,
-                'defaultIndicators'=>false,
-            ]); ?>
-            <div class="form-group mt-2 mt-md-3">
-                <?= Html::submitButton(Yii::t('app','Submit'), ['class' => 'btn btn-dark p-2 col-12 rounded-pill', 'name' => 'contact-button']) ?>
-            </div>
+            <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+                <?= $form->field($model, 'name')->textInput(['autofocus' => true, 'class' => 'rounded-pill form-control'])->label(Yii::t('app','Name'),['class'=>'fw-bold fs-5 px-3']) ?>
+                <div class="row">
+                    <div class="col-md-6 my-3">
+                        <?= $form->field($model, 'email')->textInput(['autofocus' => true, 'class' => 'rounded-pill form-control'])->label('Email',['class'=>'fw-bold fs-5 px-3']) ?>
+                    </div>
+                    <div class="col-md-6 my-3">
+                        <?= $form->field($model, 'tel')->textInput(['autofocus' => true, 'class' => 'rounded-pill form-control'])->label(Yii::t('app','Phone number'),['class'=>'fw-bold fs-5 px-3']) ?>
+                    </div>
+                </div>
+
+                <?= $form->field($model, 'content')->textarea(['rows' => 5])->label(Yii::t('app','Content'),['class'=>'fw-bold fs-5 px-3'])?>
+
+                <div class="form-group mt-2 mt-md-3">
+                    <?= Html::submitButton(Yii::t('app','Submit'), ['class' => 'btn btn-dark p-2 col-12 rounded-pill', 'name' => 'contact-button']) ?>
+                </div>
             <?php ActiveForm::end(); ?>
         </div>
         <div class="col-12 col-lg-6 my-3">
@@ -87,12 +71,12 @@ $config = ['template'=>"{input}\n{error}\n{hint}"];
                 <img src="<?= $imgUrl ?>/logo.png" class="w-25 d-none d-lg-inline-block">
                 <h3 class="fw-bold mb-4 text-center text-md-start d-lg-none"><span class=" border-3 border-dark border-bottom text-uppercase"><?= Yii::t('app','Contact') ?></span></h3>
             </div>
-            <div class="w-100">
-                <p><span class="fw-bold"><?= Yii::t('app','Address') ?>:</span><br>Tầng 1,tòa nhà GP Invest, 170 Đê La Thành,
+            <div class="w-100 row m-0">
+                <p class="col-12 mx-0"><span class="fw-bold"><?= Yii::t('app','Address') ?>:</span><br>Tầng 1,tòa nhà GP Invest, 170 Đê La Thành,
                     Đống Đa,Hà Nội</p>
-                <p class="d-inline-block w-45"><span class="fw-bold">Email:</span><br>deobelly@gmail.com</p>
-                <p class="d-inline-block w-45"><span class="fw-bold"><?= Yii::t('app','Tel') ?>:</span><br>1900.636.099</p>
-                <p><span class="fw-bold"><?= Yii::t('app','Working time') ?>:</span><br>Thứ 2 đến Thứ 6 từ 8h đến 18h; Thứ 7 và Chủ
+                <p class="d-inline-block col-12 col-sm-6"><span class="fw-bold">Email:</span><br>deobelly@gmail.com</p>
+                <p class="d-inline-block col-12 col-sm-6"><span class="fw-bold"><?= Yii::t('app','Tel') ?>:</span><br>1900.636.099</p>
+                <p class="d-inline-block col-12"><span class="fw-bold"><?= Yii::t('app','Working time') ?>:</span><br>Thứ 2 đến Thứ 6 từ 8h đến 18h; Thứ 7 và Chủ
                     nhật từ 8h00 đến 17h00.</p>
             </div>
             <img src="<?= Url::toRoute('img/contact/cskh.jpg') ?>"
