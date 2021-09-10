@@ -35,6 +35,7 @@ class PostsCategory extends \common\models\PostsCategory
             [['created_at', 'updated_at'], 'safe'],
             [['title', 'slug'], 'string', 'max' => 255],
             [['slug'], 'unique'],
+            ['title', 'checkDuplicateSlug']
         ];
     }
 
@@ -45,13 +46,26 @@ class PostsCategory extends \common\models\PostsCategory
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'slug' => 'Slug',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'title' => Yii::t('app', 'Title'),
+            'slug' => Yii::t('app', 'Slug'),
+            'status' => Yii::t('app', 'Status'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
+
+    /**
+     * @param $attribute
+     * @param $params
+     * @param $validator
+     */
+    public function checkDuplicateSlug($attribute, $params, $validator)
+    {
+        if (\common\models\PostsCategory::findOne(['slug' => StringHelper::toSlug($this->title)])) {
+            $this->addError($attribute, 'Danh mục đã tồn tại.');
+        }
+    }
+
 
     /**
      * @param $id
