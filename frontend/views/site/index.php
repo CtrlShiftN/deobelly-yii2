@@ -48,7 +48,7 @@ $this->registerCss("
                 <img src="<?= $imgUrl ?>/slideshow.jpg" class="d-block w-100" alt="..."/>
                 <div class="carousel-caption d-none d-md-block">
                     <h5><?= Yii::t('app','First slide label') ?></h5>
-                    <p><?= Yii::t('app','Nulla vitae elit libero, a pharetra augue mollis interdum') ?></p>
+                    <p><?= Yii::t('app','No life is free right now, sometimes soft against vibrations') ?></p>
                 </div>
             </div>
             <!-- Single item -->
@@ -85,8 +85,7 @@ $this->registerCss("
 <!--Search trends-->
 <div class="row m-0 p-0 d-none d-md-block p-4 pb-0">
     <h1 class="text-uppercase mb-3 fw-bolder text-center">
-        <i class=" fas fa-feather-alt fa-flip-horizontal"></i><?= Yii::t('app',' search trends ')?>
-        <i class="fas fa-feather-alt"></i>
+        <i class=" fas fa-feather-alt fa-flip-horizontal"></i> <?= Yii::t('app','search trends')?> <i class="fas fa-feather-alt"></i>
     </h1>
     <div class="col-12 row mt-3 p-0">
         <div class="text-center col-4 col-lg-2 d-none d-md-block py-lg-0 py-md-2">
@@ -125,7 +124,7 @@ $this->registerCss("
                     <span class="searchTrends">
                         <img src="<?= $imgUrl ?>/icon/bag.jpg">
                     </span>
-                <p class="m-0 mt-2 text-uppercase fw-bolder"><?= Yii::t('app','Hand bag')?></p>
+                <p class="m-0 mt-2 text-uppercase fw-bolder"><?= Yii::t('app','Handbag')?></p>
             </a>
         </div>
         <div class="text-center col-4 col-lg-2 d-none d-md-block py-lg-0 py-md-2">
@@ -166,7 +165,7 @@ $this->registerCss("
             <div class="h-25 w-100 d-flex align-items-center justify-content-center px-lg-2 border border-2">
                 <div class="p-2 text-center">
                     <h4 class="text-uppercase m-0 d-none d-lg-block fw-bolder"><?= Yii::t('app','Luxurious and elegant VEST sets')?></h4>
-                    <h5 class="text-uppercase m-0 d-lg-none fw-bolder"><?= Yii::t('app','Luxury VESTs')?></h5>
+                    <h5 class="text-uppercase m-0 d-lg-none fw-bolder"><?= Yii::t('app','Luxury VEST sets')?></h5>
                     <a href="#" class="btn text-uppercase text-danger fw-bolder p-0"><?= Yii::t('app','Watch now!')?></a>
                 </div>
             </div>
@@ -189,7 +188,7 @@ $this->registerCss("
             </div>
             <div class="h-25 w-100 d-flex align-items-center justify-content-center px-lg-2 border border-2">
                 <div class="p-2 text-center">
-                    <h4 class="text-uppercase m-0 d-none d-lg-block fw-bolder"><?= Yii::t('app','Fashionable suits')?></h4>
+                    <h4 class="text-uppercase m-0 d-none d-lg-block fw-bolder"><?= Yii::t('app','Fashionable vest suits')?></h4>
                     <h5 class="text-uppercase m-0 d-lg-none fw-bolder"><?= Yii::t('app','Fashionable suits')?></h5>
                     <a href="#" class="btn text-uppercase text-danger fw-bolder p-0"><?= Yii::t('app','Watch now!')?></a>
                 </div>
@@ -401,7 +400,7 @@ $this->registerCss("
                                                 class="fas fa-user-edit"></i> <?= User::findOne(['id' => $value['admin_id']])['name']; ?>
                                     </small>
                                 </h6>
-                                <a href="#" class="btn float-end"><?= Yii::t('app','View Posts')?> <i
+                                <a href="#" class="btn float-end"><?= Yii::t('app','View posts')?> <i
                                             class="fas fa-angle-double-right"></i></a>
                             </div>
                         </a>
@@ -419,8 +418,7 @@ $this->registerCss("
         <h1><i class="fas fa-feather-alt fa-flip-horizontal"></i><?= Yii::t('app','Get early access today')?><i
                     class="fas fa-feather-alt"></i></h1>
         <h5 class="mt-4 px-3">
-            <?= Yii::t('app','It only takes a minute to sign up and our tree starter tier is extremely generous. If you have any questions,
-            our support team would be happy to help you.') ?>
+            <?= Yii::t('app','It only takes a minute to sign up and our tree starter tier is extremely generous. If you have any questions,our support team would be happy to help you.') ?>
         </h5>
         <form method="POST" action="#">
             <div class="col-12 m-0 p-0 mt-4 row p-0 px-sm-4 px-md-4 px-lg-5">
