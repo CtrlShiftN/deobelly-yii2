@@ -51,9 +51,8 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                             'encodeLabel' => false
                         ]); ?>
                         <?= Html::submitButton(Yii::t('app','Send'), ['class' => 'btn btn-primary rounded-pill fs-4 text-light w-100 mt-md-4 mt-2', 'name' => 'reset-button']) ?>
-                        <div class="py-md-4 py-2">
-                            <?= Yii::t('app','You remembered the password ?') ?>
-                            <?= Html::a('Đăng Nhập ', ['site/login'], ['class' => 'text-decoration-none']) ?>
+                        <div class="py-md-4 py-2 text-center">
+                            <?= Html::a(Yii::t('app','Back to login page.'), ['site/login'], ['class' => 'text-decoration-none']) ?>
                         </div>
                     </div>
                 </div>

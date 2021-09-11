@@ -31,7 +31,7 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                         </div>
                         <?= $form->field($model, 'name', $config)->widget(LabelInPlace::classname(), [
                             'type' => LabelInPlace::TYPE_HTML5,
-                            'label' => (Yii::t('app','Enter name')),
+                            'label' => (Yii::t('app','Enter first and last name')),
                             'options' => ['type' => 'text', 'class' => 'form-control border rounded-pill mt-md-5 mt-3'],
                             'encodeLabel' => false
                         ]); ?>
