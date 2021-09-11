@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 
 use common\components\helpers\ParamHelper;
-use frontend\models\Posts;
+use frontend\models\Post;
 use frontend\models\ProductsSearch;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\Terms;
@@ -85,10 +85,10 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $getProductIntro = ProductsSearch::getProductIntro();
-        $getPostsIntro = Posts::getPostsIntro();
+        $getPostIntro = Post::getPostIntro();
         return $this->render('index', [
             'productIntro' => $getProductIntro,
-            'posts' => $getPostsIntro,
+            'post' => $getPostIntro,
         ]);
     }
 
@@ -286,14 +286,14 @@ class SiteController extends Controller
     /**
      * @return string
      */
-    public function actionPosts()
+    public function actionPost()
     {
-        $posts = ParamHelper::getParamValue('posts');
-        $postsCategory = ParamHelper::getParamValue('posts_category');
+        $post = ParamHelper::getParamValue('post');
+        $postCategory = ParamHelper::getParamValue('post_category');
 
-        $allPost = Posts::getAllPosts($posts,$postsCategory);
-        return $this->render('posts', [
-            'posts' => $allPost,
+        $allPosts = Post::getAllPosts($post,$postCategory);
+        return $this->render('post', [
+            'posts' => $allPosts,
 	    ]);
     }
 }

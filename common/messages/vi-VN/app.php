@@ -23,7 +23,7 @@ return [
     'Created_at' => 'Ngày tạo',
     'Actions' => 'Hành Động',
     'Export files' => 'Xuất file',
-    'Create new posts' => 'Thêm bài viết mới',
+    'Create new post' => 'Thêm bài viết mới',
     'Create new user' => 'Thêm tài khoản mới',
     'Create new category' => 'Thêm danh mục mới',
     'Add new account' => 'Thêm tài khoản mới',

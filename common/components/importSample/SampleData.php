@@ -3,9 +3,9 @@
 namespace common\components\importsample;
 
 use common\components\SystemConstant;
-use common\models\Posts;
-use common\models\PostsCategory;
-use common\models\PostsTag;
+use common\models\Post;
+use common\models\PostCategory;
+use common\models\PostTag;
 use common\models\Meta;
 use common\models\Products;
 use common\models\ProductsCategory;
@@ -443,13 +443,13 @@ class SampleData
     }
 
     /**
-     *  posts data
+     *  post data
      * @var array[]
      */
-    protected static $postsInfoArr = [
+    protected static $postInfoArr = [
         [
-            'avatar' => 'posts/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'posts/thumbnail/lacoste-short.jpg',
+            'avatar' => 'post/avatar/lacoste-ava.PNG',
+            'thumbnail' => 'post/thumbnail/lacoste-short.jpg',
             'title' => 'De Obelly Collections 2021 - Lựa chọn hoàn hảo cho mùa hè',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
                                 với những chiếc áo Polo đa sắc màu trong BST Hè DE OBELLY 2021. Hãy check ngay những mẫu
@@ -472,8 +472,8 @@ class SampleData
             'post_category_id' => 7,
         ],
         [
-            'avatar' => 'posts/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'posts/thumbnail/lacoste-short-2.jpg',
+            'avatar' => 'post/avatar/lacoste-ava.PNG',
+            'thumbnail' => 'post/thumbnail/lacoste-short-2.jpg',
             'title' => 'Cực chất với bộ sưu tập mùa hè',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
                                 với những chiếc áo Polo đa sắc màu trong BST Hè DE OBELLY 2021. Hãy check ngay những mẫu
@@ -496,8 +496,8 @@ class SampleData
             'post_category_id' => 7,
         ],
         [
-            'avatar' => 'posts/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'posts/thumbnail/lacoste-short-2.jpg',
+            'avatar' => 'post/avatar/lacoste-ava.PNG',
+            'thumbnail' => 'post/thumbnail/lacoste-short-2.jpg',
             'title' => 'Community—And Style—Thrived at the Santa Fe Indian Market',
             'content' => '<p>Every year, the Santa Fe Indian Market brings in thousands of global tourists and collectors to the city. 
                          Visitors flock to the streets around the city’s main plaza, 
@@ -519,8 +519,8 @@ class SampleData
             'post_category_id' => 4,
         ],
         [
-            'avatar' => 'posts/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'posts/thumbnail/lacoste-short-2.jpg',
+            'avatar' => 'post/avatar/lacoste-ava.PNG',
+            'thumbnail' => 'post/thumbnail/lacoste-short-2.jpg',
             'title' => '4 "cặp đôi" trang phục cho chàng phong cách ngày hè',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
                                 với những chiếc áo Polo đa sắc màu trong BST Hè DE OBELLY 2021. Hãy check ngay những mẫu
@@ -547,25 +547,25 @@ class SampleData
     /**
      *
      */
-    public static function insertSamplePosts()
+    public static function insertSamplePost()
     {
-        $countPosts = 0;
-        foreach (self::$postsInfoArr as $value) {
-            $posts = new Posts();
-            $posts->avatar = $value['avatar'];
-            $posts->thumbnail = $value['thumbnail'];
-            $posts->title = $value['title'];
-            $posts->content = $value['content'];
-            $posts->admin_id = $value['admin_id'];
-            $posts->tag_id = $value['tag_id'];
-            $posts->post_category_id = $value['post_category_id'];
-            $posts->created_at = date('Y-m-d H:m:s');
-            $posts->updated_at = date('Y-m-d H:m:s');
-            if ($posts->save()) {
-                $countPosts++;
+        $countPost = 0;
+        foreach (self::$postInfoArr as $value) {
+            $post = new Post();
+            $post->avatar = $value['avatar'];
+            $post->thumbnail = $value['thumbnail'];
+            $post->title = $value['title'];
+            $post->content = $value['content'];
+            $post->admin_id = $value['admin_id'];
+            $post->tag_id = $value['tag_id'];
+            $post->post_category_id = $value['post_category_id'];
+            $post->created_at = date('Y-m-d H:m:s');
+            $post->updated_at = date('Y-m-d H:m:s');
+            if ($post->save()) {
+                $countPost++;
             }
         }
-        echo "Inserted " . $countPosts . "/" . count(self::$postsInfoArr) . ' posts.' . PHP_EOL;
+        echo "Inserted " . $countPost . "/" . count(self::$postInfoArr) . ' post.' . PHP_EOL;
     }
 
     /**
@@ -714,12 +714,12 @@ class SampleData
     /**
      *
      */
-    protected static function insertSamplePostsTag()
+    protected static function insertSamplePostTag()
     {
         $countTag = 0;
         foreach (self::$blogTagInfoArr as $value)
         {
-            $blogTag = new PostsTag();
+            $blogTag = new PostTag();
             $blogTag->title = $value['title'];
             $blogTag->slug = $value['slug'];
             $blogTag->created_at = date('Y-m-d H:m:s');
@@ -729,7 +729,7 @@ class SampleData
                 $countTag++;
             }
         }
-        echo "Inserted ".$countTag.'/'.count(self::$blogTagInfoArr).' posts tag.'.PHP_EOL;
+        echo "Inserted ".$countTag.'/'.count(self::$blogTagInfoArr).' post tag.'.PHP_EOL;
     }
 
     protected static $blogCategoryInfoArr = [
@@ -767,12 +767,12 @@ class SampleData
         ],
     ];
 
-    protected static function insertSamplePostsCategory()
+    protected static function insertSamplePostCategory()
     {
         $countBlogCate = 0;
         foreach (self::$blogCategoryInfoArr as $value)
         {
-            $blogCate = new PostsCategory();
+            $blogCate = new PostCategory();
             $blogCate->title = $value['title'];
             $blogCate->slug = $value['slug'];
             $blogCate->created_at = date('Y-m-d H:m:s');
@@ -782,7 +782,7 @@ class SampleData
                 $countBlogCate++;
             }
         }
-        echo "Inserted ".$countBlogCate.'/'.count(self::$blogCategoryInfoArr).' posts category.'.PHP_EOL;
+        echo "Inserted ".$countBlogCate.'/'.count(self::$blogCategoryInfoArr).' post category.'.PHP_EOL;
     }
 
     /**
@@ -794,10 +794,10 @@ class SampleData
         self::insertSampleProductCategory();
         self::insertSampleTrademark();
         self::insertSampleProduct();
-        self::insertSamplePosts();
+        self::insertSamplePost();
         self::insertSampleTerms();
         self::insertSampleMeta();
-        self::insertSamplePostsTag();
-        self::insertSamplePostsCategory();
+        self::insertSamplePostTag();
+        self::insertSamplePostCategory();
     }
 }
