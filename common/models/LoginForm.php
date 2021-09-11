@@ -23,12 +23,11 @@ class LoginForm extends Model
     public function rules()
     {
         return [
-            // username and password are both required
+            ['email', 'required', 'message'=>Yii::t('app','Email can not be blank.')],
             ['email', 'email'],
             ['password','required','message'=>Yii::t('app','Password can not be blank.')],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
-            // password is validated by validatePassword()
             ['password', 'validatePassword'],
         ];
     }

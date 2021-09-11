@@ -29,12 +29,8 @@ AppAsset::register($this);
         <?php $this->head() ?>
         <?= $this->render('_blankHead') ?>
         <?php $this->registerCss("body,html {width:  100%;height:  100vh !important;margin:  0;padding:  0;} 
-            #wrapper { min-height: 100%; background-position: top; background-repeat: no-repeat; background-size: cover; }
-            #content,.container{ height: 100vh; }") ?>
-        <style>
-            #wrapper{
-                background-image: url("<?= $imgUrl?>/bg-login-signup.png");}
-        </style>
+            #wrapper { background-image: url('$imgUrl/bg-login-signup.png');min-height: 100%; background-position: top; background-repeat: no-repeat; background-size: cover; }
+            #content,.container{min-height: 100vh; }") ?>
     </head>
     <body>
     <?php $this->beginBody() ?>

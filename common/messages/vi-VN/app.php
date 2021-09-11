@@ -103,4 +103,5 @@ return [
     'Invalid email.' => 'Địa chỉ mail không hợp lệ.',
     "Content can't be blank." => 'Nội dung không được để trống.',
     "Email can't be blank." => 'Email không được để trống.',
+    'Password retrieval'=>'Lấy lại mật khẩu'
 ];

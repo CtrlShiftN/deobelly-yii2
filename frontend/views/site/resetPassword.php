@@ -1,12 +1,11 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $form yii\bootstrap5\ActiveForm */
+/* @var $form yii\bootstrap4\ActiveForm */
 /* @var $model \common\models\LoginForm */
 
-use kartik\label\LabelInPlace;
 use yii\bootstrap5\Html;
-use yii\bootstrap5\ActiveForm;
+use yii\bootstrap4\ActiveForm;
 use yii\helpers\Url;
 
 $imgUrl = Yii::$app->params['common']. "/media";
@@ -30,18 +29,12 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                             <h1 class="fw-bold text-primary text-center pb-3"><?= Html::encode($this->title) ?></h1>
                             <p class="my-md-4 my-2 fs-5"><?= Yii::t('app','Please enter your new password:') ?></p>
                         </div>
-                        <?= $form->field($model, 'password', $config)->widget(LabelInPlace::classname(), [
-                            'type' => LabelInPlace::TYPE_HTML5,
-                            'label' => (Yii::t('app','Enter new password')),
-                            'options' => ['type' => 'password', 'class' => 'form-control fs-5 border rounded-pill mt-md-4 mt-2'],
-                            'encodeLabel' => false
-                        ]); ?>
-                        <?= $form->field($model, 'password_confirm', $config)->widget(LabelInPlace::classname(), [
-                            'type' => LabelInPlace::TYPE_HTML5,
-                            'label' => (Yii::t('app','Enter confirm-password')),
-                            'options' => ['type' => 'password', 'class' => 'form-control fs-5 border rounded-pill mt-md-4 mt-2'],
-                            'encodeLabel' => false
-                        ]); ?>
+                        <?= $form->field($model,'password')
+                            ->textInput(['type' => 'password','class' => 'rounded-pill form-control'])
+                            ->label(Yii::t('app','Enter new password')) ?>
+                        <?= $form->field($model,'password_confirm')
+                            ->textInput(['type' => 'password','class' => 'rounded-pill form-control'])
+                            ->label(Yii::t('app','Enter confirm password')) ?>
                         <?= Html::submitButton(Yii::t('app','Change password'), ['class' => 'btn btn-primary rounded-pill text-light w-100 my-md-5 my-3', 'name' => 'signup-button']) ?>
                     </div>
                 </div>
