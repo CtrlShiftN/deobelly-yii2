@@ -166,7 +166,7 @@ AppAsset::register($this);
                                                             <a href="#"
                                                                class="nav-link ">
                                                                 <i class="far fa-circle nav-icon"></i>
-                                                                <p><?= Yii::t('app','Men') ?></p>
+                                                                <p><?= Yii::t('app','Man') ?></p>
                                                             </a>
                                                         </li>
                                                         <li class="nav-item">
