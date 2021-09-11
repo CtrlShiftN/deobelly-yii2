@@ -1,8 +1,8 @@
 <?php
 
-namespace frontend\models;
+namespace backend\models;
 
-use common\models\Posts;
+use Yii;
 
 /**
  * This is the model class for table "posts".
@@ -19,7 +19,7 @@ use common\models\Posts;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class PostsSearch extends Posts
+class Posts extends \common\models\Posts
 {
     /**
      * {@inheritdoc}
@@ -49,24 +49,21 @@ class PostsSearch extends Posts
     {
         return [
             'id' => 'ID',
-            'avatar' => 'Avatar',
-            'thumbnail' => 'Thumbnail',
-            'title' => 'Title',
-            'content' => 'Content',
-            'admin_id' => 'Admin ID',
-            'tag_id' => 'Tag ID',
-            'blog_category_id' => 'Blog Category ID',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'avatar' => Yii::t('app', 'Avatar'),
+            'thumbnail' => Yii::t('app', 'Thumbnail'),
+            'title' => Yii::t('app', 'Title'),
+            'content' => Yii::t('app', 'Content'),
+            'admin_id' => Yii::t('app', 'Admin ID'),
+            'tag_id' => Yii::t('app', 'Post Tags'),
+            'blog_category_id' => Yii::t('app', 'Post Categories'),
+            'status' => Yii::t('app', 'Status'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 
-    /**
-     * @return array|\yii\db\ActiveRecord[]
-     */
-    public static function getPostsIntro()
+    public static function updatePost($id, $attribute, $value)
     {
-        return Posts::find()->where(['status' => 1])->orderBy('updated_at DESC')->limit(4)->asArray()->all();
+        return \common\models\Posts::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
     }
 }

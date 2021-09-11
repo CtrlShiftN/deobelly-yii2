@@ -86,10 +86,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $searchModelProduct = new ProductsSearch();
-        $searchModelPosts = new PostsSearch();
-        $getProductIntro = $searchModelProduct->getProductIntro();
-        $getPostsIntro = $searchModelPosts->getPostsIntro();
+        $getProductIntro = ProductsSearch::getProductIntro();
+        $getPostsIntro = PostsSearch::getPostsIntro();
         return $this->render('index', [
             'productIntro' => $getProductIntro,
             'posts' => $getPostsIntro,
@@ -141,10 +139,11 @@ class SiteController extends Controller
     {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
+            if ($model->saveContactData()) {
+                ContactForm::sendReplyContact();
+                Yii::$app->session->setFlash('contactSuccess', 'Thank you for your feedback. We will reply to you soon.');
             } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
+                Yii::$app->session->setFlash('contactError', 'Unable to submit a response. Please try again.');
             }
 
             return $this->refresh();
@@ -277,9 +276,9 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionTerms() {
-        $modelTerms = new Terms();
-        $getTerms = $modelTerms->getTermsAndServices();
+    public function actionTerms()
+    {
+        $getTerms = Terms::getTermsAndServices();
         return $this->render('terms', [
             'terms' => $getTerms,
         ]);

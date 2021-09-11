@@ -40,10 +40,10 @@ AppAsset::register($this);
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="<?= $cdnUrl ?>" class="nav-link">Home</a>
+                    <a href="<?= $cdnUrl ?>" class="nav-link"><?= Yii::t('app', 'Home') ?></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
+                    <a href="#" class="nav-link"><?= Yii::t('app', 'Contact') ?></a>
                 </li>
             </ul>
 
@@ -92,61 +92,68 @@ AppAsset::register($this);
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                              with font-awesome or any other icon font library -->
-                        <li class="nav-header text-uppercase font-weight-bold">Tài khoản</li>
-                        <li class="nav-item">
-                            <a href="<?= $cdnUrl ?>/user/create"
-                               class="nav-link <?= ($controller == 'user' && $action == 'create') ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-user-plus"></i>
-                                <p>Thêm tài khoản mới</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= $cdnUrl ?>/user"
-                               class="nav-link <?= ($controller == 'user' && $action == 'index') ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-user"></i>
-                                <p>Quản lý tài khoản</p>
-                            </a>
-                        </li>
+                        <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 1) : ?>
+                            <li class="nav-item <?= ($controller == 'user') ? 'menu-is-opening menu-open' : '' ?>">
+                                <a href="#" class="nav-link <?= ($controller == 'user') ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-user-astronaut"></i>
+                                    <p>
+                                        <?= Yii::t('app', 'Accounts') ?>
+                                        <i class="right fas fa-angle-right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?= $cdnUrl ?>/user/create"
+                                           class="nav-link <?= ($controller == 'user' && $action == 'create') ? 'active' : '' ?>">
+                                            <i class="nav-icon fas fa-user-plus"></i>
+                                            <p><?= Yii::t('app', 'Add new account') ?></p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?= $cdnUrl ?>/user"
+                                           class="nav-link <?= ($controller == 'user' && $action == 'index') ? 'active' : '' ?>">
+                                            <i class="nav-icon fas fa-user"></i>
+                                            <p><?= Yii::t('app', 'Account management') ?></p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        <?php endif; ?>
                         <!-- Post -->
-                        <li class="nav-header text-uppercase font-weight-bold">Bài viết</li>
-                        <li class="nav-item">
-                            <a href="<?= Url::toRoute('posts-tag/') ?>"
-                               class="nav-link <?= ($controller == 'posts-tag') ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-user"></i>
-                                <p>Quản lý thẻ</p>
-                            </a>
-                        </li>
-                        <li class="nav-header text-uppercase font-weight-bold">Sản phẩm</li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <li class="nav-item <?= ($controller == 'posts' || $controller == 'posts-tag' || $controller == 'posts-category') ? 'menu-is-opening menu-open' : '' ?>">
+                            <a href="#"
+                               class="nav-link <?= ($controller == 'posts' || $controller == 'posts-tag' || $controller == 'posts-category') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-blog"></i>
                                 <p>
-                                    Dashboard
+                                    <?= Yii::t('app', 'Posts') ?>
                                     <i class="right fas fa-angle-right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="./index.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v1</p>
+                                    <a href="<?= Url::toRoute('posts-tag/') ?>"
+                                       class="nav-link <?= ($controller == 'posts-tag') ? 'active' : '' ?>">
+                                        <i class="nav-icon fas fa-user"></i>
+                                        <p><?= Yii::t('app', 'Post tags') ?></p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./index2.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v2</p>
+                                    <a href="<?= Url::toRoute('posts-category/') ?>"
+                                       class="nav-link <?= ($controller == 'posts-category') ? 'active' : '' ?>">
+                                        <i class="nav-icon fas fa-user"></i>
+                                        <p><?= Yii::t('app', 'Post categories') ?></p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./index3.html" class="nav-link active">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v3</p>
+                                    <a href="<?= Url::toRoute('posts/') ?>"
+                                       class="nav-link <?= ($controller == 'posts') ? 'active' : '' ?>">
+                                        <i class="nav-icon far fa-newspaper"></i>
+                                        <p><?= Yii::t('app', 'Post management') ?></p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-header text-uppercase font-weight-bold">Khác</li>
+                        <li class="nav-header text-uppercase font-weight-bold"><?= Yii::t('app', 'Others') ?></li>
                         <li class="nav-item">
                             <a href="pages/calendar.html" class="nav-link">
                                 <i class="nav-icon fas fa-calendar-alt"></i>
@@ -154,6 +161,12 @@ AppAsset::register($this);
                                     Calendar
                                     <span class="badge badge-info right">2</span>
                                 </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= Url::toRoute('site/logout') ?>" class="nav-link">
+                                <i class="nav-icon fas fa-power-off"></i>
+                                <p><?= Yii::t('app', 'Logout') ?></p>
                             </a>
                         </li>
                     </ul>
@@ -184,11 +197,11 @@ AppAsset::register($this);
 
         <!-- Main Footer -->
         <footer class="main-footer">
-            <strong>Copyright &copy; <?= date('Y') ?> <a href="<?= Yii::$app->params['frontend'] ?>">De
+            <strong><?= Yii::t('app', 'Copyright') ?> &copy; <?= date('Y') ?> <a href="<?= Yii::$app->params['frontend'] ?>">De
                     Obelly</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 2.4.4
+                <b><?= Yii::t('app', 'Version') ?></b> 2.4.4
             </div>
         </footer>
     </div>

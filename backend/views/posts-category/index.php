@@ -1,22 +1,19 @@
 <?php
 
-
-use common\models\User;
 use kartik\grid\GridView;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\UserSearch */
+/* @var $searchModel backend\models\PostsCategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app','Accounts');
+$this->title = Yii::t('app','Post categories');
 $this->params['breadcrumbs'][] = $this->title;
 $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
 ?>
-<div class="user-index">
+<div class="posts-category-index">
     <div class="pt-3">
         <?php
         $defaultExportConfig = [
@@ -46,13 +43,12 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'name',
-                'label' => Yii::t('app','Full name'),
+                'attribute' => 'title',
+                'label' => Yii::t('app','Title'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
-                'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) {
-                    return $model['name'];
+                    return $model['title'];
                 },
                 // edit field
                 'editableOptions' => [
@@ -60,46 +56,13 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
                 ],
             ],
             [
-                'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'tel',
-                'label' => Yii::t('app','Tel'),
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'width' => '150px',
-                'value' => function ($model, $key, $index, $widget) {
-                    return $model['tel'];
-                },
-                // edit field
-                'editableOptions' => [
-                    'asPopover' => false,
-                ],
-            ],
-            [
-                'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'address',
-                'label' => Yii::t('app','Address'),
+                'attribute' => 'slug',
+                'label' => 'Slug',
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) {
-                    return $model['address'];
+                    return $model['slug'];
                 },
-                // edit field
-                'editableOptions' => [
-                    'asPopover' => false,
-                ],
-            ],
-            [
-                'attribute' => 'email',
-                'label' => 'Email',
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'width' => '250px',
-            ],
-            [
-                'attribute' => 'verified_at',
-                'label' => Yii::t('app','Verified'),
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
                 'filter' => false
             ],
             [
@@ -108,6 +71,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
                 'label' => Yii::t('app','Status'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
+                'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) use ($arrStatus) {
                     return $arrStatus[$model['status']];
                 },
@@ -129,44 +93,24 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
-                'filterInputOptions' => ['placeholder' => '-- '.Yii::t('app','Status').' --'], // allows multiple authors to be chosen
+                'filterInputOptions' => ['placeholder' => '-- '.Yii::t('app','Status').' --']
             ],
             [
-                'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'role',
-                'label' => Yii::t('app','Role'),
+                'attribute' => 'created_at',
+                'label' => Yii::t('app','Created_at'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
-                'value' => function ($model, $key, $index, $widget) {
-                    return User::ROLES[$model->role];
-                },
-                'editableOptions' => function ($model, $key, $index) {
-                    return [
-                        'name' => 'role',
-                        'asPopover' => false,
-                        'header' => Yii::t('app','Role'),
-                        'size' => 'md',
-                        'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
-                        'data' => User::ROLES,
-                        // default value in the text box
-                        'value' => User::ROLES[$model['role']],
-                        'displayValueConfig' => User::ROLES
-                    ];
-                },
-                'filterType' => GridView::FILTER_SELECT2,
-                'filter' => User::ROLES,
-                'filterWidgetOptions' => [
-                    'pluginOptions' => ['allowClear' => true],
-                ],
-                'filterInputOptions' => ['placeholder' => '-- '.Yii::t('app','Role').' --'], // allows multiple authors to be chosen
+                'filter' => false,
+                'width' => '200px',
                 'format' => 'raw'
             ],
             [
                 'label' => Yii::t('app','Actions'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
+                'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) {
-                    return Html::a('Xóa', Url::toRoute(['user/delete', 'id' => $key]), ['class' => 'btn btn-danger', 'data' => [
+                    return Html::a('Xóa', Url::toRoute(['posts-category/delete', 'id' => $key]), ['class' => 'btn btn-danger', 'data' => [
                         'method' => 'post',
                         'confirm' => Yii::t('app','Are you sure you want to delete this item?'),
                     ],]);
@@ -203,7 +147,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
             'exportConfig' => $defaultExportConfig,
             'toolbar' => [
                 [
-                    'content' => Html::a('<i class="fas fa-user-plus"></i> '.Yii::t('app','Create new user'), ['create'], [
+                    'content' => Html::a('<i class="fas fa-user-plus"></i> '.Yii::t('app','Create new post category'), ['create'], [
                         'class' => 'btn btn-success',
                         'title' => 'Reset Grid',
                         'data-pjax' => 0,
@@ -215,7 +159,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
-                'heading' => Yii::t('app','User list'),
+                'heading' => Yii::t('app','Post category list'),
             ],
         ]);
         Pjax::end();
