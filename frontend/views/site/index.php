@@ -47,24 +47,24 @@ $this->registerCss("
             <div class="carousel-item active">
                 <img src="<?= $imgUrl ?>/slideshow.jpg" class="d-block w-100" alt="..."/>
                 <div class="carousel-caption d-none d-md-block">
-                    <h5><?= Yii::t('app','First slide label') ?></h5>
-                    <p><?= Yii::t('app','No life is free right now, sometimes soft against vibrations') ?></p>
+                    <h5>First slide label</h5>
+                    <p>No life is free right now, sometimes soft against vibrations</p>
                 </div>
             </div>
             <!-- Single item -->
             <div class="carousel-item">
                 <img src="<?= $imgUrl ?>/slideshow.jpg" class="d-block w-100" alt="..."/>
                 <div class="carousel-caption d-none d-md-block">
-                    <h5><?= Yii::t('app','Second slide label') ?></h5>
-                    <p><?= Yii::t('app','Lorem ipsum dolor sit amet, consectetur adipiscing elit') ?></p>
+                    <h5>Second slide label</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                 </div>
             </div>
             <!-- Single item -->
             <div class="carousel-item">
                 <img src="<?= $imgUrl ?>/slideshow.jpg" class="d-block w-100" alt="..."/>
                 <div class="carousel-caption d-none d-md-block">
-                    <h5><?= Yii::t('app','Third slide label') ?></h5>
-                    <p><?= Yii::t('app','Praesent commodo cursus magna, vel scelerisque nisl consectetur') ?></p>
+                    <h5>Third slide label</h5>
+                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur</p>
                 </div>
             </div>
         </div>
@@ -400,7 +400,7 @@ $this->registerCss("
                                                 class="fas fa-user-edit"></i> <?= User::findOne(['id' => $value['admin_id']])['name']; ?>
                                     </small>
                                 </h6>
-                                <a href="#" class="btn float-end"><?= Yii::t('app','View posts')?> <i
+                                <a href="#" class="btn float-end"><?= Yii::t('app','View post')?> <i
                                             class="fas fa-angle-double-right"></i></a>
                             </div>
                         </a>
@@ -409,7 +409,7 @@ $this->registerCss("
             <?php endforeach; ?>
         </div>
         <a href="<?= Url::toRoute('site/blog') ?>" class="text-decoration-none linkToProduct d-inline-block px-3">
-            <h5 class="text-uppercase m-0"><i class="far fa-hand-point-right"></i> <?= Yii::t('app','See more news')?></h5>
+            <h5 class="text-uppercase m-0"><i class="far fa-hand-point-right"></i> <?= Yii::t('app','View more news')?></h5>
         </a>
     </div>
 </div>
@@ -418,7 +418,7 @@ $this->registerCss("
         <h1><i class="fas fa-feather-alt fa-flip-horizontal"></i><?= Yii::t('app','Get early access today')?><i
                     class="fas fa-feather-alt"></i></h1>
         <h5 class="mt-4 px-3">
-            <?= Yii::t('app','It only takes a minute to sign up and our tree starter tier is extremely generous. If you have any questions,our support team would be happy to help you.') ?>
+            <?= Yii::t('app','It only takes a few minutes to register to enjoy our services. If you have any questions,our support team would be happy to help you.') ?>
         </h5>
         <form method="POST" action="#">
             <div class="col-12 m-0 p-0 mt-4 row p-0 px-sm-4 px-md-4 px-lg-5">
