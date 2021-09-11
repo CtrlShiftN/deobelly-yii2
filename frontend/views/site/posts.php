@@ -25,7 +25,7 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
                         <h4 class="title text-uppercase fw-bold"><a href="#"><?=$value['title']?></a></h4>
                         <div class="date-author">
                             <i class="far fa-calendar-alt"><span class="me-3"> <?=$value['updated_at']?></span></i>
-                            <i class="fas fa-user"><span class="ms-1"><?= User::getUserNameById($value['admin_id'])['name']; ?></span></i>
+                            <i class="fas fa-user"><span class="ms-1"><?= User::findOne(['id' =>$value['admin_id']])['name']; ?></span></i>
                         </div>
                         <div class="short-text mt-2 mt-md-3 fs-5 lh-sm"><?=$value['content'] ?></div>
                     </div>
@@ -47,7 +47,7 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
             </div>
         <div class="w-100 mt-3 fs-3"><span class="fw-bold">TIN NỔI BẬT</span></div>
         <?php foreach($posts as $value): ?>
-            <div class="row my-2">
+            <div class="row my-lg-2 my-3">
                 <div class="col-4">
                     <a href="#"><img src="<?= $imgUrl.'/'.$value['thumbnail']?>" class="img-fluid h-100"></a>
                 </div>
@@ -55,7 +55,7 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
                     <div class="title text-uppercase fw-bold"><a href="#"><?=$value['title']?></a></div>
                     <div class="date-author d-lg-none d-xl-block mt-2">
                         <i class="fas fa-user ms-1"></i>
-                        <span><?= User::getUserNameById($value['admin_id'])['name']; ?></span></div>
+                        <span><?= User::findOne(['id' =>$value['admin_id']])['name']; ?></span></div>
                     <div class="d-lg-none hot-news mt-2 mt-md-3 fs-5 lh-sm"><?=$value['content'] ?></div>
                 </div>
             </div>

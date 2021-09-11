@@ -78,9 +78,4 @@ class User extends \yii\db\ActiveRecord
             'verification_token' => 'Verification Token',
         ];
     }
-
-    public static function getUserNameById($id)
-    {
-        return User::find()->select('name')->where(['status' => 1, 'id' => $id])->asArray()->one();
-    }
 }
