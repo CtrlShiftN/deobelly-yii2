@@ -19,7 +19,7 @@ class SampleData
      * user data
      * @var array[]
      */
-    protected static array $userInfoArr = [
+    protected static $userInfoArr = [
         [
             'email' => 'admin.deobelly@gmail.com',
             'password_hash' => 'Iamadmin@1234',
@@ -85,7 +85,7 @@ class SampleData
      * product data
      * @var array[]
      */
-    protected static array $productInforArr = [
+    protected static $productInforArr = [
         [
             'name' => 'Áo thun không cổ BOSS',
             'slug' => 'ao-thun-khong-co-boss-1',
@@ -336,7 +336,7 @@ class SampleData
      *  product category data
      * @var array[]
      */
-    protected static array $productCategoryInfoArr = [
+    protected static $productCategoryInfoArr = [
         [
             'name' => 'Áo sơ mi',
             'slug' => 'ao-so-mi',
@@ -400,7 +400,7 @@ class SampleData
      *  trademark data
      * @var array[]
      */
-    protected static array $trademarkInfoArr = [
+    protected static $trademarkInfoArr = [
         [
             'id' => 1,
             'name' => 'HUGO',
@@ -446,7 +446,7 @@ class SampleData
      *  posts data
      * @var array[]
      */
-    protected static array $postsInfoArr = [
+    protected static $postsInfoArr = [
         [
             'avatar' => 'posts/avatar/lacoste-ava.PNG',
             'thumbnail' => 'posts/thumbnail/lacoste-short.jpg',
@@ -571,7 +571,7 @@ class SampleData
     /**
      * @var array|array[]
      */
-    protected static array $termsInfoArr = [
+    protected static $termsInfoArr = [
         [
             'title' => ' ĐIỀU KHOẢN CỬA HÀNG TRỰC TUYẾN',
             'content' => '<p>- Bằng việc đồng ý các Điều Khoản Dịch Vụ, bạn xác nhận rằng ít nhất bạn trong độ tuổi trưởng thành ở khu vực mà bạn đang sống và bạn đã cho chúng tôi sự đồng ý của bạn để cho phép bất kỳ người phụ thuộc của bạn sử dụng trang này.<br>- Bạn có thể không sử dụng sản phẩm của chúng tôi khi có bất kỳ sự trái luật hoặc có ý định lạm dụng hay không trong khi sử dụng Dịch Vụ, vi phạm bất kỳ luật lệ nào trong quyền hạn của bạn (bao gồm nhưng không giới hạn quy định pháp luật).<br>- Bạn không được truyền bất kỳ sâu hoặc virus hoặc bất kỳ mã nào có tính chất phá hoại.<br>- Một sự vi phạm hoặc làm trái bất kỳ Điều Khoản nào sẽ dẫn đến việc chấm dứt ngay Dịch Vụ.</p>',
@@ -627,7 +627,7 @@ class SampleData
     /**
      * @var array|\string[][]
      */
-    protected static array $metaInfoArr = [
+    protected static $metaInfoArr = [
         [
             'key' => 'product_category_max_top_code',
             'value' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '3',
@@ -668,7 +668,7 @@ class SampleData
     /**
      * @var array|\string[][]
      */
-    protected static array $blogTagInfoArr = [
+    protected static $blogTagInfoArr = [
         [
             'title' => 'Street Style',
             'slug' => 'street-style',
@@ -732,7 +732,7 @@ class SampleData
         echo "Inserted ".$countTag.'/'.count(self::$blogTagInfoArr).' posts tag.'.PHP_EOL;
     }
 
-    protected static array $blogCategoryInfoArr = [
+    protected static $blogCategoryInfoArr = [
         [
             'title' => 'Fashion Design',
             'slug' => 'fashion-design',
