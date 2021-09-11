@@ -30,9 +30,11 @@ AppAsset::register($this);
             input[type=search] {
                 background: url('<?= $cdnUrl?>/img/search-icon.png') no-repeat 9px center;
             }
+
             input[type=search]:focus {
                 outline: none;
             }
+
             footer .footer-content {
                 background: url('<?= $cdnUrl?>/img/footer_bg.png') no-repeat;
             }
@@ -64,23 +66,25 @@ AppAsset::register($this);
                             <div class="topbar col-xs-7 col-md-7 col-lg-7 text-white py-1 text-end text-uppercase">
                                 <ul class="menu-topbar-right my-0">
                                     <li class="site-nav-top"><a href="<?php echo Url::home() ?>"
-                                                                class="site-nav-top-link"><span><?= Yii::t('app','Introduction') ?></span></a>
-                                    </li>
-                                    <li class="site-nav-top">
-                                        <div class="vr mx-2"></div>
-                                    </li>
-                                    <li class="site-nav-top"><a href="#" class="site-nav-top-link"><span><?= Yii::t('app','News') ?></span></a>
+                                                                class="site-nav-top-link"><span><?= Yii::t('app', 'Introduction') ?></span></a>
                                     </li>
                                     <li class="site-nav-top">
                                         <div class="vr mx-2"></div>
                                     </li>
                                     <li class="site-nav-top"><a href="#"
-                                                                class="site-nav-top-link"><span><?= Yii::t('app','Terms & Service') ?></span></a>
+                                                                class="site-nav-top-link"><span><?= Yii::t('app', 'News') ?></span></a>
                                     </li>
                                     <li class="site-nav-top">
                                         <div class="vr mx-2"></div>
                                     </li>
-                                    <li class="site-nav-top"><a href="<?= Url::toRoute('site/contact') ?>" class="site-nav-top-link"><span>Liên hệ</span></a>
+                                    <li class="site-nav-top"><a href="<?= Url::toRoute('site/terms') ?>"
+                                                                class="site-nav-top-link"><span><?= Yii::t('app', 'Terms & Service') ?></span></a>
+                                    </li>
+                                    <li class="site-nav-top">
+                                        <div class="vr mx-2"></div>
+                                    </li>
+                                    <li class="site-nav-top"><a href="<?= Url::toRoute('site/contact') ?>"
+                                                                class="site-nav-top-link"><span><?= Yii::t('app', 'Contact') ?></span></a>
                                     </li>
                                 </ul>
                             </div>
@@ -137,8 +141,8 @@ AppAsset::register($this);
                                                 </div>
                                             </div>
                                             <div class="col-8 pe-0">
-                                                <p class="mb-0"><?= Yii::t('app','Hi,') ?></p>
-                                                <h3><?= Yii::t('app','Guest') ?></h3>
+                                                <p class="mb-0"><?= Yii::t('app', 'Hi,') ?></p>
+                                                <h3><?= Yii::t('app', 'Guest') ?></h3>
                                             </div>
                                         </div>
                                     <?php endif; ?>
@@ -150,14 +154,14 @@ AppAsset::register($this);
                                                 <li class="nav-item  ">
                                                     <a href="<?= Url::home() ?>" class="nav-link ">
                                                         <i class="nav-icon fas fa-handshake"></i>
-                                                        <p><?= Yii::t('app','Home') ?></p>
+                                                        <p><?= Yii::t('app', 'Home') ?></p>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item has-treeview">
                                                     <a href="#" class="nav-link">
                                                         <i class="nav-icon fas fa-th"></i>
                                                         <p>
-                                                            <?= Yii::t('app','Product') ?>
+                                                            <?= Yii::t('app', 'Product') ?>
                                                             <i class="right fas fa-angle-left"></i>
                                                         </p>
                                                     </a>
@@ -166,14 +170,14 @@ AppAsset::register($this);
                                                             <a href="#"
                                                                class="nav-link ">
                                                                 <i class="far fa-circle nav-icon"></i>
-                                                                <p><?= Yii::t('app','Man') ?></p>
+                                                                <p><?= Yii::t('app', 'Man') ?></p>
                                                             </a>
                                                         </li>
                                                         <li class="nav-item">
                                                             <a href="#"
                                                                class="nav-link ">
                                                                 <i class="far fa-circle nav-icon"></i>
-                                                                <p><?= Yii::t('app','Women') ?></p>
+                                                                <p><?= Yii::t('app', 'Women') ?></p>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -181,13 +185,13 @@ AppAsset::register($this);
                                                 <li class="nav-item  ">
                                                     <a href="#" class="nav-link ">
                                                         <i class="nav-icon fas fa-handshake"></i>
-                                                        <p><?= Yii::t('app','Policy') ?></p>
+                                                        <p><?= Yii::t('app', 'Policy') ?></p>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item  ">
                                                     <a href="<?= Url::toRoute('site/contact') ?>" class="nav-link ">
                                                         <i class="nav-icon fas fa-handshake"></i>
-                                                        <p><?= Yii::t('app','Contact') ?></p>
+                                                        <p><?= Yii::t('app', 'Contact') ?></p>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -207,19 +211,21 @@ AppAsset::register($this);
                         </div>
                         <div class="main-nav-right col-1 col-sm-1 col-lg-10 text-end">
                             <ul class="site-nav mb-0 ps-0 d-none d-sm-none d-lg-inline" id="main-menu">
-                                <li><a href="#" class="site-nav-link"><span><?= Yii::t('app','New product') ?></span></a>
+                                <li><a href="#"
+                                       class="site-nav-link"><span><?= Yii::t('app', 'New product') ?></span></a>
                                 </li>
                                 <li><a href="#"
-                                       class="site-nav-link"><span><?= Yii::t('app','On Sale') ?></span></a></li>
+                                       class="site-nav-link"><span><?= Yii::t('app', 'On Sale') ?></span></a></li>
                                 <li><a href="#"
-                                       class="site-nav-link"><span><?= Yii::t('app','Clothes') ?></span></a></li>
-                                <li><a href="#" class="site-nav-link"><span><?= Yii::t('app','Footwear') ?></span></a>
+                                       class="site-nav-link"><span><?= Yii::t('app', 'Clothes') ?></span></a></li>
+                                <li><a href="#" class="site-nav-link"><span><?= Yii::t('app', 'Footwear') ?></span></a>
                                 </li>
-                                <li><a href="#" class="site-nav-link"><span><?= Yii::t('app','Accessory') ?></span></a>
+                                <li><a href="#" class="site-nav-link"><span><?= Yii::t('app', 'Accessory') ?></span></a>
                                 </li>
                                 <li><a href="#"
-                                       class="site-nav-link"><span><?= Yii::t('app','Suit') ?></span></a></li>
-                                <li class="pe-0"><a href="#" class="site-nav-link"><span><?= Yii::t('app','Gift') ?></span></a>
+                                       class="site-nav-link"><span><?= Yii::t('app', 'Suit') ?></span></a></li>
+                                <li class="pe-0"><a href="#"
+                                                    class="site-nav-link"><span><?= Yii::t('app', 'Gift') ?></span></a>
                                 </li>
                                 <!-- TODO: Add search action -->
                                 <li class="pe-0 ps-1">
@@ -249,8 +255,10 @@ AppAsset::register($this);
                                                     </a>
                                                 </form>
                                             <?php else : ?>
-                                                <a class="dropdown-item" href="<?= $cdnUrl ?>/site/login"><?= Yii::t('app','Log in') ?></a>
-                                                <a class="dropdown-item" href="<?= $cdnUrl ?>/site/register"><?= Yii::t('app','Register') ?></a>
+                                                <a class="dropdown-item"
+                                                   href="<?= $cdnUrl ?>/site/login"><?= Yii::t('app', 'Log in') ?></a>
+                                                <a class="dropdown-item"
+                                                   href="<?= $cdnUrl ?>/site/register"><?= Yii::t('app', 'Register') ?></a>
                                             <?php endif; ?>
                                         </div>
                                     </div>
@@ -276,81 +284,81 @@ AppAsset::register($this);
                         <div class="row d-none d-lg-flex m-0 p-0">
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
-                                    <h3><?= Yii::t('app','ABOUT US') ?></h3>
+                                    <h3><?= Yii::t('app', 'ABOUT US') ?></h3>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','Suplo Fashion') ?></a>
+                                        <a href="/"><?= Yii::t('app', 'Suplo Fashion') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','Business philosophy') ?></a>
+                                        <a href="/"><?= Yii::t('app', 'Business philosophy') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','Event communication') ?></a>
+                                        <a href="/"><?= Yii::t('app', 'Event communication') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','Social activities') ?></a>
+                                        <a href="/"><?= Yii::t('app', 'Social activities') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','Association and cooperation') ?></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-3">
-                                <ul class="footer-nav no-bullets">
-                                    <h3><?= Yii::t('app','News')?></h3>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app','Product reviews') ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app','Fashion News') ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app','Famous brand') ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app','Customer feedback') ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app','Brand history') ?></a>
+                                        <a href="/"><?= Yii::t('app', 'Association and cooperation') ?></a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
-                                    <h3><?= Yii::t('app','PRODUCT CONSULTING') ?></h3>
+                                    <h3><?= Yii::t('app', 'News') ?></h3>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','Office fashion') ?></a>
+                                        <a href="/"><?= Yii::t('app', 'Product reviews') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','Order clothes') ?></a>
+                                        <a href="/"><?= Yii::t('app', 'Fashion News') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','Frequently asked questions') ?></a>
+                                        <a href="/"><?= Yii::t('app', 'Famous brand') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','General knowledge') ?></a>
+                                        <a href="/"><?= Yii::t('app', 'Customer feedback') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','Why you should choose us') ?></a>
+                                        <a href="/"><?= Yii::t('app', 'Brand history') ?></a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
-                                    <h3><?= Yii::t('app','INSTRUCTIONS') ?></h3>
+                                    <h3><?= Yii::t('app', 'PRODUCT CONSULTING') ?></h3>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','Shopping guide') ?></a>
+                                        <a href="/"><?= Yii::t('app', 'Office fashion') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','Preferential policy of VIP card') ?></a>
+                                        <a href="/"><?= Yii::t('app', 'Order clothes') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','warranty Policy') ?></a>
+                                        <a href="/"><?= Yii::t('app', 'Frequently asked questions') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','Directions for use') ?></a>
+                                        <a href="/"><?= Yii::t('app', 'General knowledge') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/"><?= Yii::t('app','Payment Guide') ?></a>
+                                        <a href="/"><?= Yii::t('app', 'Why you should choose us') ?></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-3">
+                                <ul class="footer-nav no-bullets">
+                                    <h3><?= Yii::t('app', 'INSTRUCTIONS') ?></h3>
+                                    <li>
+                                        <a href="/"><?= Yii::t('app', 'Shopping guide') ?></a>
+                                    </li>
+                                    <li>
+                                        <a href="/"><?= Yii::t('app', 'Preferential policy of VIP card') ?></a>
+                                    </li>
+                                    <li>
+                                        <a href="/"><?= Yii::t('app', 'warranty Policy') ?></a>
+                                    </li>
+                                    <li>
+                                        <a href="/"><?= Yii::t('app', 'Directions for use') ?></a>
+                                    </li>
+                                    <li>
+                                        <a href="/"><?= Yii::t('app', 'Payment Guide') ?></a>
                                     </li>
                                 </ul>
                             </div>
@@ -358,8 +366,9 @@ AppAsset::register($this);
                         <div class="row m-0 p-0">
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
-                                    <h3><?= Yii::t('app','CONTACT INFO') ?></h3>
-                                    <li><span class="ft-content"><i class="fas fa-home"></i> <?= Yii::t('app','Number xxx, YYY street, ZZZ ward, ABC district, Hanoi') ?></span>
+                                    <h3><?= Yii::t('app', 'CONTACT INFO') ?></h3>
+                                    <li><span class="ft-content"><i
+                                                    class="fas fa-home"></i> <?= Yii::t('app', 'Number xxx, YYY street, ZZZ ward, ABC district, Hanoi') ?></span>
                                     </li>
                                     <li><span class="ft-content"><i class="fas fa-phone-square"></i> <a
                                                     href="tel:1800 1089">1800 1089</a> | <a
@@ -371,8 +380,9 @@ AppAsset::register($this);
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
-                                    <h3><?= Yii::t('app','SIGN UP TO RECEIVE NEWS') ?></h3>
-                                    <li class="mb-3"><span class="ft-content"><?= Yii::t('app','Promotion news / Brand news') ?></span>
+                                    <h3><?= Yii::t('app', 'SIGN UP TO RECEIVE NEWS') ?></h3>
+                                    <li class="mb-3"><span
+                                                class="ft-content"><?= Yii::t('app', 'Promotion news / Brand news') ?></span>
                                     </li>
                                     <li>
                                         <form action="#" method="POST" class="d-inline">
@@ -389,8 +399,9 @@ AppAsset::register($this);
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
-                                    <h3 class="h3"><?= Yii::t('app','CONNECT WITH US') ?></h3>
-                                    <li class="mb-3"><span class="ft-content"><?= Yii::t('app','Social network')?></span></li>
+                                    <h3 class="h3"><?= Yii::t('app', 'CONNECT WITH US') ?></h3>
+                                    <li class="mb-3"><span
+                                                class="ft-content"><?= Yii::t('app', 'Social network') ?></span></li>
                                     <li>
                                         <div class="ft-social-network">
                                             <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"
@@ -408,7 +419,7 @@ AppAsset::register($this);
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <ul class="footer-nav no-bullets">
-                                    <h3><?= Yii::t('app','CERTIFICATE') ?></h3>
+                                    <h3><?= Yii::t('app', 'CERTIFICATE') ?></h3>
                                     <li>
                                         <a href="javascript:void(0)" target="_blank"><img class="pt-2"
                                                                                           src="//theme.hstatic.net/1000180292/1000232392/14/footer_payment_logo_1.png?v=3509"></a>
