@@ -30,7 +30,9 @@ AppAsset::register($this);
             input[type=search] {
                 background: url('<?= $cdnUrl?>/img/search-icon.png') no-repeat 9px center;
             }
-
+            input[type=search]:focus {
+                outline: none;
+            }
             footer .footer-content {
                 background: url('<?= $cdnUrl?>/img/footer_bg.png') no-repeat;
             }
@@ -78,7 +80,7 @@ AppAsset::register($this);
                                     <li class="site-nav-top">
                                         <div class="vr mx-2"></div>
                                     </li>
-                                    <li class="site-nav-top"><a href="#" class="site-nav-top-link"><span><?= Yii::t('app','Contact') ?></span></a>
+                                    <li class="site-nav-top"><a href="<?= Url::toRoute('site/contact') ?>" class="site-nav-top-link"><span>Liên hệ</span></a>
                                     </li>
                                 </ul>
                             </div>
@@ -183,7 +185,7 @@ AppAsset::register($this);
                                                     </a>
                                                 </li>
                                                 <li class="nav-item  ">
-                                                    <a href="#" class="nav-link ">
+                                                    <a href="<?= Url::toRoute('site/contact') ?>" class="nav-link ">
                                                         <i class="nav-icon fas fa-handshake"></i>
                                                         <p><?= Yii::t('app','Contact') ?></p>
                                                     </a>
