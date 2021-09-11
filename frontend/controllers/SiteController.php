@@ -4,8 +4,6 @@ namespace frontend\controllers;
 
 use common\components\helpers\ParamHelper;
 use frontend\models\Posts;
-use frontend\models\PostsCategory;
-use frontend\models\PostsSearch;
 use frontend\models\ProductsSearch;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\Terms;
@@ -87,7 +85,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $getProductIntro = ProductsSearch::getProductIntro();
-        $getPostsIntro = PostsSearch::getPostsIntro();
+        $getPostsIntro = Posts::getPostsIntro();
         return $this->render('index', [
             'productIntro' => $getProductIntro,
             'posts' => $getPostsIntro,

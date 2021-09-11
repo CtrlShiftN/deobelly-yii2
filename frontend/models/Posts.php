@@ -20,7 +20,7 @@ use yii\db\Query;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class Posts extends \common\models\PostsCategory
+class Posts extends \common\models\Posts
 {
     /**
      * {@inheritdoc}
@@ -78,5 +78,13 @@ class Posts extends \common\models\PostsCategory
             $query->andWhere(['p.id'=>$posts]);
         }
         return $query->all();
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getPostsIntro()
+    {
+        return Posts::find()->where(['status' => 1])->orderBy('updated_at DESC')->limit(4)->asArray()->all();
     }
 }
