@@ -281,19 +281,4 @@ class SiteController extends Controller
             'terms' => $getTerms,
         ]);
     }
-
-
-    /**
-     * @return string
-     */
-    public function actionPost()
-    {
-        $post = ParamHelper::getParamValue('post');
-        $postCategory = ParamHelper::getParamValue('post_category');
-
-        $allPosts = Post::getAllPosts($post,$postCategory);
-        return $this->render('post', [
-            'posts' => $allPosts,
-	    ]);
-    }
 }
