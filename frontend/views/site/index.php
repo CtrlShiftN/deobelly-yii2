@@ -101,7 +101,7 @@ $this->registerCss("
                     <span class="searchTrends">
                         <img src="<?= $imgUrl ?>/icon/vestCongSo.jpg">
                     </span>
-                <p class="m-0 mt-2 text-uppercase fw-bolder"><?= Yii::t('app', 'Office fashion') ?></p>
+                <p class="m-0 mt-2 text-uppercase fw-bolder"><?= Yii::t('app', 'Office Fashion') ?></p>
             </a>
         </div>
         <div class="text-center col-4 col-lg-2 d-none d-md-block py-lg-0 py-md-2">
@@ -178,7 +178,7 @@ $this->registerCss("
                     <h4 class="text-uppercase m-0 d-none d-lg-block fw-bolder"><?= Yii::t('app', 'Trendy fashion accessories') ?></h4>
                     <h5 class="text-uppercase m-0 d-lg-none fw-bolder"><?= Yii::t('app', 'Trendy fashion accessories') ?></h5>
                     <a href="#"
-                       class="btn text-uppercase text-danger fw-bolder p-0"><?= Yii::t('app', 'Buy now!') ?></a>
+                       class="btn text-uppercase text-danger fw-bolder p-0"><?= Yii::t('app', 'Buy now') ?></a>
                 </div>
             </div>
             <div class="m-0 p-0 overflow-hidden h-75 w-100">

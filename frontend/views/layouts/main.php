@@ -286,7 +286,7 @@ AppAsset::register($this);
                                 <ul class="footer-nav no-bullets">
                                     <h3><?= Yii::t('app', 'ABOUT US') ?></h3>
                                     <li>
-                                        <a href="/"><?= Yii::t('app', 'Suplo Fashion') ?></a>
+                                        <a href="/"><?= Yii::t('app', 'Suplo fashion') ?></a>
                                     </li>
                                     <li>
                                         <a href="/"><?= Yii::t('app', 'Business philosophy') ?></a>
@@ -309,7 +309,7 @@ AppAsset::register($this);
                                         <a href="/"><?= Yii::t('app', 'Product reviews') ?></a>
                                     </li>
                                     <li>
-                                        <a href="/"><?= Yii::t('app', 'Fashion News') ?></a>
+                                        <a href="/"><?= Yii::t('app', 'Fashion news') ?></a>
                                     </li>
                                     <li>
                                         <a href="/"><?= Yii::t('app', 'Famous brand') ?></a>
@@ -326,7 +326,7 @@ AppAsset::register($this);
                                 <ul class="footer-nav no-bullets">
                                     <h3><?= Yii::t('app', 'PRODUCT CONSULTING') ?></h3>
                                     <li>
-                                        <a href="/"><?= Yii::t('app', 'Office fashion') ?></a>
+                                        <a href="/"><?= Yii::t('app', 'Office Fashion') ?></a>
                                     </li>
                                     <li>
                                         <a href="/"><?= Yii::t('app', 'Order clothes') ?></a>
