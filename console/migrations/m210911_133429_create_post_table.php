@@ -16,6 +16,7 @@ class m210911_133429_create_post_table extends Migration
             'id' => $this->primaryKey(),
             'avatar' => $this->string()->notNull(),
             'title' => $this->string()->notNull(),
+            'slug' => $this->string()->notNull(),
             'content' => $this->text()->notNull(),
             'admin_id' => $this->bigInteger(),
             'tag_id' => $this->string(),
