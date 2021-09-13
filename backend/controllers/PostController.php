@@ -4,12 +4,14 @@ namespace backend\controllers;
 
 use backend\models\Post;
 use backend\models\PostSearch;
+use common\components\helpers\StringHelper;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * PostController implements the CRUD actions for Post model.
@@ -107,13 +109,11 @@ class PostController extends Controller
         $model = new Post();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post())) {
+            if ($model->load($this->request->post()) && $model->validate()) {
                 if ($model->save()) {
-                    return $this->redirect(Url::toRoute('post/'));
+                    return $this->redirect(Url::toRoute(['posts/upload-avatar', 'model' => $model]));
                 }
             }
-        } else {
-            $model->loadDefaultValues();
         }
 
         return $this->render('create', [
@@ -169,5 +169,11 @@ class PostController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionUploadAvatar($model)
+    {
+        echo $model->title;
+        die;
     }
 }
