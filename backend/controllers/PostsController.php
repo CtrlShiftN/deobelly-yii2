@@ -109,19 +109,11 @@ class PostsController extends Controller
         $model = new Posts();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post())) {
-                $model->avatarImage = UploadedFile::getInstance($model, 'avatarImage');
-                if ($model->avatarImage && $model->validate()){
-                    $filePath = Yii::getAlias('@common').'/media/posts/avatar/' . StringHelper::toSlug($model->title) . '.' . $model->avatarImage->extension;
-                    $model->avatarImage->saveAs($filePath);
-                    $model->avatar = '/media/posts/avatar/' . StringHelper::toSlug($model->title) .'.'. $model->avatarImage->extension;
-                }
+            if ($model->load($this->request->post()) && $model->validate()) {
                 if ($model->save()) {
-                    return $this->redirect(Url::toRoute('posts/'));
+                    return $this->redirect(Url::toRoute(['posts/upload-avatar', 'model' => $model]));
                 }
             }
-        } else {
-            $model->loadDefaultValues();
         }
 
         return $this->render('create', [
@@ -177,5 +169,11 @@ class PostsController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionUploadAvatar($model)
+    {
+        echo $model->title;
+        die;
     }
 }
