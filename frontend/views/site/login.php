@@ -27,7 +27,7 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                 <div class="border-radius bg-light">
                     <div class="mx-4">
                         <div class="pt-md-5 pt-3">
-                            <h1 class="fw-bold text-primary text-center mb-md-5 mb-3"><?= Html::encode($this->title) ?></h1>
+                            <h1 class="fw-bold text-primary text-center mb-md-4 mb-3"><?= Html::encode($this->title) ?></h1>
                         </div>
                         <?= $form->field($model, 'email')
                             ->textInput(['autofocus' => true, 'class' => 'rounded-pill form-control mb-2'])

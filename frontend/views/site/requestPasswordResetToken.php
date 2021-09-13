@@ -44,9 +44,9 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                             </div>
                         <?php endif; ?>
                         <?= $form->field($model,'email')
-                            ->textInput(['type' => 'email','autofocus' => true,'class' => 'rounded-pill form-control my-3'])
+                            ->textInput(['type' => 'email','autofocus' => true,'class' => 'rounded-pill form-control'])
                             ->label(Yii::t('app','Enter email')) ?>
-                        <?= Html::submitButton(Yii::t('app','Send'), ['class' => 'btn btn-primary rounded-pill fs-4 text-light w-100 mt-md-4 mt-3', 'name' => 'reset-button']) ?>
+                        <?= Html::submitButton(Yii::t('app','Send'), ['class' => 'btn btn-primary rounded-pill fs-4 text-light w-100 mt-md-5 mt-3', 'name' => 'reset-button']) ?>
                         <div class="py-md-4 py-3 text-center">
                             <?= Html::a(Yii::t('app','Back to login page.'), ['site/login'], ['class' => 'text-decoration-none']) ?>
                         </div>
