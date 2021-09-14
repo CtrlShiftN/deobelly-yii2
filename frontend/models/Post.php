@@ -65,20 +65,21 @@ class Post extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return array|\yii\db\ActiveRecord[]
+     * @return Query
      */
     public static function getAllPosts($postCategory = null, $posts = null)
     {
         $query = (new Query())->select(['p.title', 'p.content','p.avatar','p.id','p.updated_at','p.admin_id','pc.title as pc-title'])->from('post as p')
             ->innerJoin('post_category as pc', 'p.post_category_id = pc.id')
-            ->where(['p.status' => 1]);
+            ->where(['p.status' => 1])
+            ->orderBy('updated_at DESC');
         if (!empty($postCategory)) {
             $query->andWhere(['p.post_category_id'=>$postCategory]);
         }
         if (!empty($posts)) {
             $query->andWhere(['p.id'=>$posts]);
         }
-        return $query->all();
+        return $query;
     }
 
     /**
@@ -87,5 +88,13 @@ class Post extends \yii\db\ActiveRecord
     public static function getPostIntro()
     {
         return Post::find()->where(['status' => 1])->orderBy('updated_at DESC')->limit(4)->asArray()->all();
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getOutstandingPosts()
+    {
+        return Post::find()->where(['status' => 1])->orderBy('updated_at DESC')->limit(5)->asArray()->all();
     }
 }

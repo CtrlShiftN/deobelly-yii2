@@ -8,6 +8,7 @@ class SystemConstant
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 1;
     const LIMIT_PER_PAGE = 12;
+    const POST_PER_PAGE = 8;
     const PRODUCT_CATEGORY_TYPE_TOP = 1;
     const PRODUCT_CATEGORY_TYPE_TROUSERS = 2;
     const PRODUCT_CATEGORY_TYPE_SHOES = 3;

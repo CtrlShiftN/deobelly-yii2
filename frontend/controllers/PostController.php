@@ -3,7 +3,9 @@
 namespace frontend\controllers;
 
 use common\components\helpers\ParamHelper;
+use common\components\SystemConstant;
 use frontend\models\Post;
+use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
@@ -65,9 +67,18 @@ class PostController extends \yii\web\Controller
         $post = ParamHelper::getParamValue('post');
         $postCategory = ParamHelper::getParamValue('post_category');
 
-        $allPosts = Post::getAllPosts($post,$postCategory);
+        $getQueryAllPost = Post::getAllPosts($post,$postCategory);
+        $pages = new Pagination(['totalCount' => $getQueryAllPost->count(), 'defaultPageSize' => SystemConstant::POST_PER_PAGE]);
+        $posts = $getQueryAllPost->offset($pages->offset)
+            ->limit( SystemConstant::POST_PER_PAGE)
+            ->all();
+
+
+        $outstandingPosts = Post::getOutstandingPosts();
         return $this->render('index', [
-            'posts' => $allPosts,
+            'posts' => $posts,
+            'pages' => $pages,
+            'outstandingPosts' => $outstandingPosts,
         ]);
     }
 
