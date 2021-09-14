@@ -103,5 +103,6 @@ return [
     'Invalid email.' => 'Địa chỉ mail không hợp lệ.',
     "Content can't be blank." => 'Nội dung không được để trống.',
     "Email can't be blank." => 'Email không được để trống.',
-    'Password retrieval'=>'Lấy lại mật khẩu'
+    'Password retrieval'=>'Lấy lại mật khẩu',
+    'Please fill out your email. A verification email will be sent there.' => 'Hãy nhập vào email vủa bạn. Một email xác nhận sẽ được gửi tới email mà bạn đã nhập.'
 ];
