@@ -8,7 +8,7 @@ use Yii;
 class HeaderHelper
 {
     /**
-     * Allow only these origin to access the controller
+     * Allow only these origins to access the controller
      */
     public static function getHeaderAccessControlAllowOrigin()
     {
