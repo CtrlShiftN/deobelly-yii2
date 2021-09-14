@@ -68,5 +68,6 @@ return [
     'Name can not be blank.' => 'Họ và tên không được để trống.',
     'Phone number can not be blank.' => 'Số điện thoại không được để trống.',
     "Email can't be blank." => 'Email không được để trống.',
-    'outstanding blog posts' => 'bài viết nổi bật'
+    'outstanding blog posts' => 'bài viết nổi bật',
+    'News' => 'Tin tức',
 ];

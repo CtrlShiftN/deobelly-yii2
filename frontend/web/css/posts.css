@@ -18,9 +18,10 @@
 
 .title {
     font-size: 20px;
+    -webkit-line-clamp: 2;
 }
 
-.short-text, .title {
+.short-text {
     -webkit-line-clamp: 3;
 }
 
@@ -35,10 +36,6 @@
 }
 
 @media (max-width: 430px) {
-    .date-author {
-        display: none;
-    }
-
     .title {
         font-size: 20px;
     }
