@@ -449,8 +449,8 @@ class SampleData
     protected static $postInfoArr = [
         [
             'avatar' => 'post/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'post/thumbnail/lacoste-short.jpg',
             'title' => 'De Obelly Collections 2021 - Lựa chọn hoàn hảo cho mùa hè',
+            'slug' => 'de-obelly-collections-2021-lua-chon-hoan-hao-cho-mua-he',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
                                 với những chiếc áo Polo đa sắc màu trong BST Hè DE OBELLY 2021. Hãy check ngay những mẫu
                                  Hot nhất trong tuần qua nhé</p><p>Áo polo được bắt nguồn từ bang Manipur của Ấn Độ
@@ -473,8 +473,8 @@ class SampleData
         ],
         [
             'avatar' => 'post/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'post/thumbnail/lacoste-short-2.jpg',
             'title' => 'Cực chất với bộ sưu tập mùa hè',
+            'slug' => 'cuc-chat-voi-bo-suu-tap-mua-he',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
                                 với những chiếc áo Polo đa sắc màu trong BST Hè DE OBELLY 2021. Hãy check ngay những mẫu
                                  Hot nhất trong tuần qua nhé</p><p>Áo polo được bắt nguồn từ bang Manipur của Ấn Độ
@@ -497,8 +497,8 @@ class SampleData
         ],
         [
             'avatar' => 'post/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'post/thumbnail/lacoste-short-2.jpg',
-            'title' => 'Community—And Style—Thrived at the Santa Fe Indian Market',
+            'title' => 'Community And Style Thrived at the Santa Fe Indian Market',
+            'slug' => 'community—and-style—thrived-at-the-santa-fe-indian-market',
             'content' => '<p>Every year, the Santa Fe Indian Market brings in thousands of global tourists and collectors to the city. 
                          Visitors flock to the streets around the city’s main plaza, 
                          where hundreds of Indigenous artists from different tribes across North America showcase and sell their new works 
@@ -520,8 +520,8 @@ class SampleData
         ],
         [
             'avatar' => 'post/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'post/thumbnail/lacoste-short-2.jpg',
             'title' => '4 "cặp đôi" trang phục cho chàng phong cách ngày hè',
+            'slug' => '4-cap-doi-trang-phuc-cho-chang-phong-cach-mua-he',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
                                 với những chiếc áo Polo đa sắc màu trong BST Hè DE OBELLY 2021. Hãy check ngay những mẫu
                                  Hot nhất trong tuần qua nhé</p><p>Áo polo được bắt nguồn từ bang Manipur của Ấn Độ
@@ -553,8 +553,8 @@ class SampleData
         foreach (self::$postInfoArr as $value) {
             $post = new Post();
             $post->avatar = $value['avatar'];
-            $post->thumbnail = $value['thumbnail'];
             $post->title = $value['title'];
+            $post->slug = $value['slug'];
             $post->content = $value['content'];
             $post->admin_id = $value['admin_id'];
             $post->tag_id = $value['tag_id'];

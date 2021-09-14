@@ -5,12 +5,11 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 
-
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\PostTagSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app','Post tags');
+$this->title = Yii::t('app', 'Post Tags');
 $this->params['breadcrumbs'][] = $this->title;
 $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
 ?>

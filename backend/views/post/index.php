@@ -56,19 +56,6 @@ $commonUrl = Yii::$app->params['common'];
                 'format' => 'raw'
             ],
             [
-                'class' => 'kartik\grid\DataColumn',
-                'attribute' => 'thumbnail',
-                'label' => 'Thumbnail',
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'value' => function ($model, $key, $index, $widget) use ($commonUrl) {
-                    return Html::img($commonUrl . '/media/' . $model['thumbnail'], ['width' => '120px', 'height' => '120px', 'alt' => $model['title']]);
-                },
-                'width' => '140px',
-                'filter' => false,
-                'format' => 'raw'
-            ],
-            [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'title',
                 'label' => Yii::t('app','Title'),
@@ -76,6 +63,20 @@ $commonUrl = Yii::$app->params['common'];
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['title'];
+                },
+                // edit field
+                'editableOptions' => [
+                    'asPopover' => false,
+                ],
+            ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'slug',
+                'label' => Yii::t('app','Slug'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'value' => function ($model, $key, $index, $widget) {
+                    return $model['slug'];
                 },
                 // edit field
                 'editableOptions' => [

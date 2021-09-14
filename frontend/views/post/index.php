@@ -14,7 +14,7 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
 <div class="posts row mt-4">
     <div class="col-12 col-lg-8 p-0 m-0">
         <div class="text-center fw-bold fs-1 border-bottom border-dark border-3">
-            <i class="fas fa-feather-alt fa-flip-horizontal"></i> <span class="fw-bold"> Tin Mới </span><i
+            <i class="fas fa-feather-alt fa-flip-horizontal"></i> <span class="fw-bold text-uppercase"><?= Yii::t('app', 'News')?></span><i
                     class="fas fa-feather-alt"></i>
         </div>
         <?php foreach($posts as $value) : ?>
@@ -39,13 +39,13 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
         <?php endforeach; ?>
     </div>
     <div class="col-12 col-lg-4">
-        <div class="w-100"><p class="fs-4 fw-bold border-bottom">DANH MỤC TIN TỨC</p></div>
+        <div class="w-100"><p class="fs-4 fw-bold border-bottom text-uppercase"><?= Yii::t('app', 'Post categories')?></p></div>
         <div class="row text-dark">
             <?php foreach($posts as $value): ?>
                 <div class="col-6"><a href="#" class="w-100 one-line"><?= $value['pc-title'] ?></a></div>
             <?php endforeach; ?>
         </div>
-        <div class="w-100 mt-3 fs-3"><p class="fw-bold border-bottom">TIN NỔI BẬT</p></div>
+        <div class="w-100 mt-3 fs-3"><p class="fw-bold border-bottom text-uppercase"><?= Yii::t('app', 'outstanding blog posts')?></p></div>
         <?php foreach($posts as $value): ?>
             <div class="row my-lg-2 my-3">
                 <div class="col-4">

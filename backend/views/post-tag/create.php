@@ -5,11 +5,13 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\PostTag */
 
-$this->title = 'Thêm thẻ bài viết mới';
-$this->params['breadcrumbs'][] = ['label' => 'Posts Tags', 'url' => ['index']];
+$this->title = Yii::t('app', 'Create Post Tag');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Post Tags'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="posts-tag-create">
+<div class="post-tag-create">
+
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,

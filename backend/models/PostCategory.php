@@ -15,7 +15,7 @@ use Yii;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class PostCategory extends \common\models\PostCategory
+class PostCategory extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -35,7 +35,6 @@ class PostCategory extends \common\models\PostCategory
             [['created_at', 'updated_at'], 'safe'],
             [['title', 'slug'], 'string', 'max' => 255],
             [['slug'], 'unique'],
-            ['title', 'checkDuplicateSlug']
         ];
     }
 
@@ -45,7 +44,7 @@ class PostCategory extends \common\models\PostCategory
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id' => Yii::t('app', 'ID'),
             'title' => Yii::t('app', 'Title'),
             'slug' => Yii::t('app', 'Slug'),
             'status' => Yii::t('app', 'Status'),

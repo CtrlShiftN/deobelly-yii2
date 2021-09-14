@@ -1,7 +1,5 @@
 <?php
 
-use kartik\editors\Summernote;
-use kartik\file\FileInput;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -16,9 +14,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'tag_id')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'blog_category_id')->textInput() ?>
+    <?= $form->field($model, 'post_category_id')->textInput() ?>
 
     <?= $form->field($model, 'content')->widget(\yii\redactor\widgets\Redactor::class) ?>
 

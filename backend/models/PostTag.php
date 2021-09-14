@@ -15,7 +15,7 @@ use Yii;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class PostTag extends \common\models\PostTag
+class PostTag extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -35,7 +35,6 @@ class PostTag extends \common\models\PostTag
             [['created_at', 'updated_at'], 'safe'],
             [['title', 'slug'], 'string', 'max' => 255],
             [['slug'], 'unique'],
-            ['title', 'checkDuplicateSlug']
         ];
     }
 
@@ -45,15 +44,20 @@ class PostTag extends \common\models\PostTag
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id' => Yii::t('app', 'ID'),
             'title' => Yii::t('app', 'Title'),
-            'slug' => 'Slug',
+            'slug' => Yii::t('app', 'Slug'),
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 
+    /**
+     * @param $attribute
+     * @param $params
+     * @param $validator
+     */
     public function checkDuplicateSlug($attribute, $params, $validator)
     {
         if (\common\models\PostTag::findOne(['slug' => StringHelper::toSlug($this->title)])) {

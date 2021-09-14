@@ -9,7 +9,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel backend\models\PostCategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app','Post categories');
+$this->title = Yii::t('app', 'Post Categories');
 $this->params['breadcrumbs'][] = $this->title;
 $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
 ?>

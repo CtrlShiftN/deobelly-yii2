@@ -44,7 +44,7 @@ return [
     'Account management' => 'Quản trị tài khoản',
     'Post management' => 'Quản trị bài viết',
     'Post categories' => 'Danh mục bài viết',
-    'Post Categories' => 'Danh mục bài viết',
+    'Post Categories' => 'Danh Mục Bài Viết',
     'Full name' => 'Họ và tên',
     'Verified' => 'Đã xác thực',
     'Verified At' => 'Ngày xác thực',
@@ -68,4 +68,5 @@ return [
     'Name can not be blank.' => 'Họ và tên không được để trống.',
     'Phone number can not be blank.' => 'Số điện thoại không được để trống.',
     "Email can't be blank." => 'Email không được để trống.',
+    'outstanding blog posts' => 'bài viết nổi bật'
 ];
