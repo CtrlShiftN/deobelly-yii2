@@ -67,7 +67,7 @@ class Post extends \yii\db\ActiveRecord
     /**
      * @return Query
      */
-    public static function getAllPosts($postCategory = null, $posts = null)
+    public static function getAllPosts($postCategory = null, $postTag = null)
     {
         $query = (new Query())->select(['p.title', 'p.content','p.avatar','p.id','p.updated_at','p.admin_id','pc.title as pc-title'])->from('post as p')
             ->innerJoin('post_category as pc', 'p.post_category_id = pc.id')
@@ -76,8 +76,8 @@ class Post extends \yii\db\ActiveRecord
         if (!empty($postCategory)) {
             $query->andWhere(['p.post_category_id'=>$postCategory]);
         }
-        if (!empty($posts)) {
-            $query->andWhere(['p.id'=>$posts]);
+        if (!empty($postTag)) {
+            $query->andWhere(['p.tag_id'=>$postTag]);
         }
         return $query;
     }

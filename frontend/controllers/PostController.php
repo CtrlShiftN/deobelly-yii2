@@ -64,10 +64,10 @@ class PostController extends \yii\web\Controller
     }
     public function actionIndex()
     {
-        $post = ParamHelper::getParamValue('post');
+        $postTag = ParamHelper::getParamValue('post_tag');
         $postCategory = ParamHelper::getParamValue('post_category');
 
-        $getQueryAllPost = Post::getAllPosts($post,$postCategory);
+        $getQueryAllPost = Post::getAllPosts($postTag,$postCategory);
         $pages = new Pagination(['totalCount' => $getQueryAllPost->count(), 'defaultPageSize' => SystemConstant::POST_PER_PAGE]);
         $posts = $getQueryAllPost->offset($pages->offset)
             ->limit( SystemConstant::POST_PER_PAGE)
