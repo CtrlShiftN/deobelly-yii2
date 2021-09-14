@@ -21,23 +21,23 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
             </div>
         </div>
         <div class="col-12 col-md-6">
-            <div class="max-width mx-auto ">
-                <?php $form = ActiveForm::begin(['id' => 'login-form', 'class' => 'form-floating']); ?>
-                <div class="border-radius bg-light">
-                    <div class="mx-4">
-                        <div class="pt-md-5 pt-3">
-                            <h1 class="fw-bold text-primary text-center pb-3"><?= Html::encode($this->title) ?></h1>
-                            <p class="my-md-4 my-2 fs-5"><?= Yii::t('app','Please enter your new password:') ?></p>
-                        </div>
+            <div class="mx-md-4 my-md-3 border-radius bg-light py-4 px-3">
+                <div class="mt-3 mb-4">
+                    <h1 class="fw-bold text-primary text-center m-0"><?= Html::encode($this->title) ?></h1>
+                    <p class="my-md-4 my-2 fs-5"><?= Yii::t('app','Please enter your new password:') ?></p>
+                </div>
+                <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+                    <div class="mt-3">
                         <?= $form->field($model,'password')
                             ->textInput(['type' => 'password','class' => 'rounded-pill form-control'])
                             ->label(Yii::t('app','Enter new password')) ?>
+                    </div>
+                    <div class="mt-3">
                         <?= $form->field($model,'password_confirm')
                             ->textInput(['type' => 'password','class' => 'rounded-pill form-control'])
                             ->label(Yii::t('app','Enter confirm password')) ?>
-                        <?= Html::submitButton(Yii::t('app','Change password'), ['class' => 'btn btn-primary rounded-pill text-light w-100 my-md-5 my-3', 'name' => 'signup-button']) ?>
                     </div>
-                </div>
+                    <?= Html::submitButton(Yii::t('app', 'Login'), ['class' => 'btn btn-primary rounded-pill fs-4 text-light w-100 mt-3', 'name' => 'login-button']) ?>
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
