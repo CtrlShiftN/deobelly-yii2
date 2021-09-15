@@ -22,7 +22,7 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                 <div class="align-self-center"><img src="<?= Url::toRoute('img/img-content-login.jpg') ?>" class="img-fluid"></div>
             </div>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6 px-xl-5">
             <div class="mx-md-4 my-md-3 border-radius bg-light py-4 px-3">
                 <div class="mt-3 mb-4">
                     <h1 class="fw-bold text-primary text-center m-0"><?= Html::encode($this->title) ?></h1>
@@ -40,14 +40,14 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                     </div>
                     <?= $form->field($model, 'rememberMe')->checkbox(['class' => 'mt-3']) ?>
                     <?= Html::submitButton(Yii::t('app', 'Login'), ['class' => 'btn btn-primary rounded-pill fs-4 text-light w-100 mt-3', 'name' => 'login-button']) ?>
-                    <div class="mt-3">
-                        <?= Yii::t('app', 'You forgot password ?') ?>
-                        <?= Html::a(Yii::t('app', 'Password retrieval'), ['/request-password-reset'], ['class' => 'text-decoration-none one-line']) ?>
-                    </div>
                 <?php ActiveForm::end(); ?>
+                <div class="mt-3">
+                    <?= Yii::t('app', 'You forgot password ?') ?>
+                    <?= Html::a(Yii::t('app', 'Password retrieval'), ['/site/request-password-reset'], ['class' => 'text-decoration-none one-line']) ?>
+                </div>
                 <div class="mb-3">
                     <?= Yii::t('app', 'You dont have an account ?') ?>
-                    <?= Html::a(Yii::t('app', 'Signup'), ['/signup'], ['class' => 'text-decoration-none one-line']) ?>
+                    <?= Html::a(Yii::t('app', 'Signup'), ['/site/signup'], ['class' => 'text-decoration-none one-line']) ?>
                 </div>
             </div>
         </div>

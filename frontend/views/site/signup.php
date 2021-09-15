@@ -22,7 +22,7 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                 <div class="align-self-center"><img src="<?= Url::toRoute('img/img-content-login.jpg') ?>" class="img-fluid"></div>
             </div>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6 px-xl-5">
             <div class="mx-md-4 my-md-3 border-radius bg-light py-4 px-3">
                 <div class="mt-3 mb-4">
                     <h1 class="fw-bold text-primary text-center m-0"><?= Html::encode($this->title) ?></h1>
@@ -53,10 +53,10 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                             ->textInput(['type' => 'password', 'class' => 'rounded-pill form-control'])
                             ->label(Yii::t('app', 'Enter first and last name')) ?>
                     </div>
-                    <?= Html::submitButton(Yii::t('app', 'Login'), ['class' => 'btn btn-primary rounded-pill fs-4 text-light w-100 mt-3', 'name' => 'login-button']) ?>
+                    <?= Html::submitButton(Yii::t('app', 'Register'), ['class' => 'btn btn-primary rounded-pill fs-4 text-light w-100 mt-3', 'name' => 'login-button']) ?>
                 <?php ActiveForm::end(); ?>
                 <div class="mb-3">
-                    <?= Yii::t('app', 'You already have an account ?') ?> <?= Html::a(Yii::t('app', 'Login'), ['/login'], ['class' => 'text-decoration-none one-line']) ?>
+                    <?= Yii::t('app', 'You already have an account ?') ?> <?= Html::a(Yii::t('app', 'Login'), ['/site/login'], ['class' => 'text-decoration-none one-line']) ?>
                 </div>
             </div>
         </div>

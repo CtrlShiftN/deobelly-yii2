@@ -166,6 +166,7 @@ class SiteController extends Controller
      * Signs user up.
      *
      * @return mixed
+     * @throws \yii\base\Exception
      */
     public function actionSignup()
     {
@@ -175,7 +176,7 @@ class SiteController extends Controller
             /*Yii::$app->user->switchIdentity($model);
             \Yii::$app->user->identity->login($model);*/
 
-            return $this->goHome();
+            return $this->actionLogin();
         }
 
         return $this->render('signup', [

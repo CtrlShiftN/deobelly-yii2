@@ -20,7 +20,7 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                 <div class="align-self-center"><img src="<?= $imgUrl ?>/img-content-login.jpg" class="img-fluid"></div>
             </div>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6 px-xl-5">
             <div class="mx-md-4 my-md-3 border-radius bg-light py-4 px-3">
                 <div class="mt-3 mb-4">
                     <h1 class="fw-bold text-primary text-center m-0"><?= Html::encode($this->title) ?></h1>

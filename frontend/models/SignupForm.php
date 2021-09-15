@@ -50,7 +50,7 @@ class SignupForm extends Model
      * @return bool|null
      * @throws \yii\base\Exception
      */
-    public function signup(): ?bool
+    public function signup()
     {
         if (!$this->validate()) {
             return null;
