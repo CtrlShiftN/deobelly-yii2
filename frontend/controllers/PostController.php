@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\components\helpers\ParamHelper;
 use common\components\SystemConstant;
 use frontend\models\Post;
+use frontend\models\PostCategory;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -57,21 +58,20 @@ class PostController extends \yii\web\Controller
     }
     public function actionIndex()
     {
-        $postTag = ParamHelper::getParamValue('post_tag');
-        $postCategory = ParamHelper::getParamValue('post_category');
-
-        $getQueryAllPost = Post::getAllPosts($postTag,$postCategory);
+        $paramPostTag = ParamHelper::getParamValue('post_tag');
+        $paramPostCategory = ParamHelper::getParamValue('post_category');
+        $getQueryAllPost = Post::getAllPosts($paramPostTag,$paramPostCategory);
         $pages = new Pagination(['totalCount' => $getQueryAllPost->count(), 'defaultPageSize' => SystemConstant::POST_PER_PAGE]);
-        $posts = $getQueryAllPost->offset($pages->offset)
+        $post = $getQueryAllPost->offset($pages->offset)
             ->limit( SystemConstant::POST_PER_PAGE)
             ->all();
-
-
         $outstandingPosts = Post::getOutstandingPosts();
+        $postCategory = PostCategory::getAllPostCategory();
         return $this->render('index', [
-            'posts' => $posts,
+            'post' => $post,
             'pages' => $pages,
             'outstandingPosts' => $outstandingPosts,
+            'postCategory' => $postCategory
         ]);
     }
 

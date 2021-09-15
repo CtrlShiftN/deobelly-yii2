@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use common\components\encrypt\CryptHelper;
 use Yii;
 use yii\db\Query;
 
@@ -69,15 +70,15 @@ class Post extends \yii\db\ActiveRecord
      */
     public static function getAllPosts($postCategory = null, $postTag = null)
     {
-        $query = (new Query())->select(['p.title', 'p.content','p.avatar','p.id','p.updated_at','p.admin_id','pc.title as pc-title'])->from('post as p')
+        $query = (new Query())->select(['p.title', 'p.content','p.avatar','p.id','p.updated_at','p.admin_id','pc.title as pc-title', 'pc.id as pc-id'])->from('post as p')
             ->innerJoin('post_category as pc', 'p.post_category_id = pc.id')
             ->where(['p.status' => 1])
             ->orderBy('updated_at DESC');
         if (!empty($postCategory)) {
-            $query->andWhere(['p.post_category_id'=>$postCategory]);
+            $query->andWhere(['p.post_category_id'=>CryptHelper::decryptString($postCategory)]);
         }
         if (!empty($postTag)) {
-            $query->andWhere(['p.tag_id'=>$postTag]);
+            $query->andWhere(['p.tag_id', 'like', explode(',',$postTag)]);
         }
         return $query;
     }

@@ -69,7 +69,7 @@ AppAsset::register($this);
                                     <li class="site-nav-top">
                                         <div class="vr mx-2"></div>
                                     </li>
-                                    <li class="site-nav-top"><a href="<?= $cdnUrl ?>/site/posts" class="site-nav-top-link"><span>Tin tức</span></a>
+                                    <li class="site-nav-top"><a href="<?= $cdnUrl ?>/post/index" class="site-nav-top-link"><span>Tin tức</span></a>
                                     </li>
                                     <li class="site-nav-top">
                                         <div class="vr mx-2"></div>

@@ -6,11 +6,11 @@
 
 use yii\bootstrap5\Html;
 use yii\helpers\Url;
-use frontend\models\User;
+use common\models\User;
 use yii\widgets\LinkPager;
 
 $imgUrl = Yii::$app->params['common'] . "/media";
-$this->registerCssFile(Url::toRoute("css/posts.css"));
+$this->registerCssFile(Url::toRoute("css/post.css"));
 ?>
 <div class="posts row mt-4">
     <div class="col-12 col-lg-8 col-xl-9 p-0 m-0">
@@ -19,18 +19,19 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
                     class="fw-bold text-uppercase"><?= Yii::t('app', 'News') ?></span><i
                     class="fas fa-feather-alt"></i>
         </div>
-        <?php foreach ($posts as $value) : ?>
+        <?php foreach ($post as $value) : ?>
             <div class="col-12 row p-0 m-0 my-2 my-md-4">
-                <div class="col-4 px-md-4"><a href="#"><img src="<?= $imgUrl . '/' . $value['avatar'] ?>" class="img-fluid"></a>
+                <div class="col-4 px-md-4"><a href="#"><img src="<?= $imgUrl . '/' . $value['avatar'] ?>"
+                                                            class="img-fluid"></a>
                 </div>
                 <div class="col-8">
                     <a href="#">
                         <div class="h-75">
                             <h4 class="title text-uppercase fw-bold"><?= $value['title'] ?></h4>
-                                <i class="far fa-calendar-alt"><span
-                                            class="me-3"> <?= $value['updated_at'] ?></span></i>
-                                <i class="fas fa-user d-none d-sm-inline-block"><span
-                                            class="ms-1"><?= User::findOne(['id' => $value['admin_id']])['name']; ?></span></i>
+                            <i class="far fa-calendar-alt"><span
+                                        class="me-3"> <?= $value['updated_at'] ?></span></i>
+                            <i class="fas fa-user d-none d-sm-inline-block"><span
+                                        class="ms-1"><?= User::findOne(['id' => $value['admin_id']])['name']; ?></span></i>
                             <div class="short-text mt-2 mt-md-3 fs-5 lh-sm"><?= $value['content'] ?></div>
                         </div>
                     </a>
@@ -72,9 +73,14 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
     <div class="col-12 col-lg-4 col-xl-3">
         <div class="w-100"><p
                     class="fs-4 fw-bold border-bottom text-uppercase"><?= Yii::t('app', 'Post categories') ?></p></div>
-        <div class="row text-dark">
-            <?php foreach ($posts as $value): ?>
-                <div class="col-6"><a href="#" class="w-100 one-line"><?= $value['pc-title'] ?></a></div>
+        <div class="row text-dark list-scrolling">
+            <div class="col-12 col-sm-6 col-lg-12 py-1 border-bottom text-ellipsis"><a href="<?= Url::toRoute(['post/index']) ?>"
+                                                               class="w-100 one-line text-uppercase fw-bold">Tất
+                    cả</a></div>
+            <?php foreach ($postCategory as $value): ?>
+                <div class="col-12 col-sm-6 col-lg-12 py-1 border-bottom text-ellipsis"><a
+                            href="<?= Url::toRoute(['post/index', 'post_tag' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                            class="w-100 one-line"><?= $value['title'] ?></a></div>
             <?php endforeach; ?>
         </div>
         <div class="w-100 mt-3 fs-4"><p
@@ -89,10 +95,10 @@ $this->registerCssFile(Url::toRoute("css/posts.css"));
                 <div class="col-8">
                     <a href="#">
                         <div class="title text-uppercase fw-bold fs-6"><?= $value['title'] ?></div>
-                            <i class="far fa-calendar-alt"><span
-                                        class="me-3"> <?= $value['updated_at'] ?></span></i>
-                            <i class="fas fa-user d-none d-sm-inline-block"><span
-                                        class="ms-1"><?= User::findOne(['id' => $value['admin_id']])['name']; ?></span></i>
+                        <i class="far fa-calendar-alt"><span
+                                    class="me-3"> <?= $value['updated_at'] ?></span></i>
+                        <i class="fas fa-user d-none d-sm-inline-block"><span
+                                    class="ms-1"><?= User::findOne(['id' => $value['admin_id']])['name']; ?></span></i>
                         <div class="d-lg-none hot-news mt-2 mt-md-3 fs-5 lh-sm"><?= $value['content'] ?></div>
                     </a>
                 </div>
