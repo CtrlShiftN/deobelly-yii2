@@ -388,11 +388,11 @@ $this->registerCss("
             <i class="fas fa-feather-alt fa-flip-horizontal"></i> Tin mới <i class="fas fa-feather-alt"></i>
         </h1>
         <div class="row m-0 p-0">
-            <?php foreach ($posts as $key => $value): ?>
+            <?php foreach ($post as $key => $value): ?>
                 <div class="col-12 col-sm-6 col-lg-3 px-5 pb-3 p-sm-3 news">
                     <div class="card h-100 border-0">
                         <a class="text-decoration-none text-dark" href="#">
-                            <div class="position-relative overflow-hidden rounded">
+                            <div class="position-relative overflow-hidden rounded px-md-4">
                                 <img src="<?= $imgUrl . '/' . $value['avatar'] ?>"
                                      class="object-fit-cover w-100 h-100 m-0 p-0 zoomImages">
                             </div>
@@ -413,7 +413,7 @@ $this->registerCss("
                 </div>
             <?php endforeach; ?>
         </div>
-        <a href="<?= Url::toRoute('site/blog') ?>" class="text-decoration-none linkToProduct d-inline-block px-3">
+        <a href="<?= Url::toRoute('site/post') ?>" class="text-decoration-none linkToProduct d-inline-block px-3">
             <h5 class="text-uppercase m-0"><i class="far fa-hand-point-right"></i> Xem thêm tin tức</h5>
         </a>
     </div>
