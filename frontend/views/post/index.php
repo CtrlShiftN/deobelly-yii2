@@ -15,8 +15,11 @@ $this->registerCss("
     .accordion-item {
         border: 1px solid black !important;
     }
-    .accordion-item {
+    .accordion-item, .accordion-button:focus {
         outline: none !important;
+    }
+    .accordion-button:focus {
+        box-shadow: none !important;
     }
 ");
 ?>
@@ -96,7 +99,7 @@ $this->registerCss("
                 </button>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                      data-bs-parent="#accordionFlushPost">
-                    <div class="accordion-body">
+                    <div class="accordion-body border-top border-dark">
                         <?php foreach ($postCategory as $value): ?>
                             <a target="_blank"
                                href="<?= Url::toRoute(['post/index', 'post_category' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"><span

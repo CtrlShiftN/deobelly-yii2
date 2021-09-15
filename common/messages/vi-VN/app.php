@@ -82,10 +82,10 @@ return [
     'Trends' => 'Xu Hướng',
     'Shopping tips' => 'Mẹo mua sắm',
     'Beauty' => 'Sắc đẹp',
-    'Office style' => 'phong cách công sở',
+    'Office style' => 'Phong cách công sở',
     'White collar' => 'Cổ áo trắng',
     'Spring' => 'Mùa xuân',
-    'Summer' => 'Mùa hạ',
+    'Summer' => 'Mùa hè',
     'Autumn' => 'Mùa thu',
     'Winter' => 'Mùa đông',
 ];
