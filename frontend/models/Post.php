@@ -68,17 +68,18 @@ class Post extends \yii\db\ActiveRecord
     /**
      * @return Query
      */
-    public static function getAllPosts($postCategory = null, $postTag = null)
+    public static function getAllPosts($postTag = null, $postCategory = null)
     {
-        $query = (new Query())->select(['p.title', 'p.content','p.avatar','p.id','p.updated_at','p.admin_id','pc.title as pc-title', 'pc.id as pc-id'])->from('post as p')
+        $query = (new Query())->select(['p.title', 'p.content', 'p.avatar', 'p.id', 'p.updated_at', 'p.admin_id','p.tag_id', 'pc.title as pc-title', 'pc.id as pc-id', 'pt.id as pt-id'])->from('post as p')
             ->innerJoin('post_category as pc', 'p.post_category_id = pc.id')
+            ->innerJoin('post_tag as pt', 'p.tag_id = pt.id')
             ->where(['p.status' => 1])
             ->orderBy('updated_at DESC');
-        if (!empty($postCategory)) {
-            $query->andWhere(['p.post_category_id'=>CryptHelper::decryptString($postCategory)]);
-        }
         if (!empty($postTag)) {
-            $query->andWhere(['p.tag_id', 'like', explode(',',$postTag)]);
+            $query->andWhere(['like' ,'p.tag_id', CryptHelper::decryptString($postTag)]);
+        }
+        if (!empty($postCategory)) {
+            $query->andWhere(['p.post_category_id' => CryptHelper::decryptString($postCategory)]);
         }
         return $query;
     }

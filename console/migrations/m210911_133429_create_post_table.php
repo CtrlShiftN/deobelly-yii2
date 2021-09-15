@@ -19,6 +19,7 @@ class m210911_133429_create_post_table extends Migration
             'slug' => $this->string()->notNull(),
             'content' => $this->text()->notNull(),
             'admin_id' => $this->bigInteger(),
+            'viewed' => $this->integer(),
             'tag_id' => $this->string(),
             'post_category_id' => $this->bigInteger()->notNull(),
             'status' => $this->smallInteger()->defaultValue(1)->comment('0 for inactive, 1 for active'),

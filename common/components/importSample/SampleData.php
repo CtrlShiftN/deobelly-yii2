@@ -468,7 +468,7 @@ class SampleData
                                     <p>Gam màu đa dạng, dễ dàng mix cùng nhiều trang phục mà vẫn giữ được lịch lãm, cổ điển không bao giờ lỗi mốt</p>
                                     <p>Nếu bạn một tín đồ của áo polo, hãy lựa ngay items mình yêu thích và đặt hàng ngay tại Biluxury!</p>',
             'admin_id' => 2,
-            'tag_id' => '1',
+            'tag_id' => '1,2,5',
             'post_category_id' => 7,
         ],
         [
@@ -492,7 +492,7 @@ class SampleData
                                     <p>Gam màu đa dạng, dễ dàng mix cùng nhiều trang phục mà vẫn giữ được lịch lãm, cổ điển không bao giờ lỗi mốt</p>
                                     <p>Nếu bạn một tín đồ của áo polo, hãy lựa ngay items mình yêu thích và đặt hàng ngay tại Biluxury!</p>',
             'admin_id' => 2,
-            'tag_id' => '8',
+            'tag_id' => '2,6,8',
             'post_category_id' => 7,
         ],
         [
@@ -515,7 +515,7 @@ class SampleData
                         <p>Around the booths, visitors and artists alike dressed up for the affair, cladding themselves in their best ribbon skirts or turquoise squash-blossom necklaces. At the fashion show, Indigenous designers Jamie Okuma, Orlando Dugi, Pamela Baker, and Lauren Good Day showcased their newest collections, pieces that combined traditional craftsmanship with new, modern updates. Dugi and Baker showed refined eveningwear pieces like beaded gowns and velvet suiting, while Okuma opted for her signature statement prints on dresses, coats, and more. Good Day even showed sprightly athleticwear—the through line being that Native design doesn’t have to look one specific way. For all in attendance, that sense of innovation is forever an Indian Market staple. “The energy was palpable,” says Pruitt. “Spirits were high, and in the end, the machine that is Indian Market just keeps on going.”</p>
                         <p>Below, more stylish highlights from the Santa Fe Indian Market weekend.</p>',
             'admin_id' => 2,
-            'tag_id' => '1',
+            'tag_id' => '1,4,5',
             'post_category_id' => 4,
         ],
         [
@@ -539,7 +539,7 @@ class SampleData
                                     <p>Gam màu đa dạng, dễ dàng mix cùng nhiều trang phục mà vẫn giữ được lịch lãm, cổ điển không bao giờ lỗi mốt</p>
                                     <p>Nếu bạn một tín đồ của áo polo, hãy lựa ngay items mình yêu thích và đặt hàng ngay tại Biluxury!</p>',
             'admin_id' => 2,
-            'tag_id' => '8',
+            'tag_id' => '3,8,1',
             'post_category_id' => 3,
         ],
     ];
@@ -668,9 +668,9 @@ class SampleData
     /**
      * @var array|\string[][]
      */
-    protected static $blogTagInfoArr = [
+    protected static $postTagInfoArr = [
         [
-            'title' => 'Street Style',
+            'title' => 'Street style',
             'slug' => 'street-style',
         ],
         [
@@ -678,7 +678,7 @@ class SampleData
             'slug' => 'trends',
         ],
         [
-            'title' => 'Shopping Tips',
+            'title' => 'Shopping tips',
             'slug' => 'shopping-tips',
         ],
         [
@@ -686,11 +686,11 @@ class SampleData
             'slug' => 'beauty',
         ],
         [
-            'title' => 'Office Style',
+            'title' => 'Office style',
             'slug' => 'office-style',
         ],
         [
-            'title' => 'White Collar',
+            'title' => 'White collar',
             'slug' => 'white-collar',
         ],
         [
@@ -717,22 +717,22 @@ class SampleData
     protected static function insertSamplePostTag()
     {
         $countTag = 0;
-        foreach (self::$blogTagInfoArr as $value)
+        foreach (self::$postTagInfoArr as $value)
         {
-            $blogTag = new PostTag();
-            $blogTag->title = $value['title'];
-            $blogTag->slug = $value['slug'];
-            $blogTag->created_at = date('Y-m-d H:m:s');
-            $blogTag->updated_at = date('Y-m-d H:m:s');
-            if ($blogTag->save())
+            $postTag = new PostTag();
+            $postTag->title = $value['title'];
+            $postTag->slug = $value['slug'];
+            $postTag->created_at = date('Y-m-d H:m:s');
+            $postTag->updated_at = date('Y-m-d H:m:s');
+            if ($postTag->save())
             {
                 $countTag++;
             }
         }
-        echo "Inserted ".$countTag.'/'.count(self::$blogTagInfoArr).' post tag.'.PHP_EOL;
+        echo "Inserted ".$countTag.'/'.count(self::$postTagInfoArr).' post tag.'.PHP_EOL;
     }
 
-    protected static $blogCategoryInfoArr = [
+    protected static $postCategoryInfoArr = [
         [
             'title' => 'Fashion Design',
             'slug' => 'fashion-design',
@@ -769,20 +769,20 @@ class SampleData
 
     protected static function insertSamplePostCategory()
     {
-        $countBlogCate = 0;
-        foreach (self::$blogCategoryInfoArr as $value)
+        $countpostCate = 0;
+        foreach (self::$postCategoryInfoArr as $value)
         {
-            $blogCate = new PostCategory();
-            $blogCate->title = $value['title'];
-            $blogCate->slug = $value['slug'];
-            $blogCate->created_at = date('Y-m-d H:m:s');
-            $blogCate->updated_at = date('Y-m-d H:m:s');
-            if ($blogCate->save())
+            $postCate = new PostCategory();
+            $postCate->title = $value['title'];
+            $postCate->slug = $value['slug'];
+            $postCate->created_at = date('Y-m-d H:m:s');
+            $postCate->updated_at = date('Y-m-d H:m:s');
+            if ($postCate->save())
             {
-                $countBlogCate++;
+                $countpostCate++;
             }
         }
-        echo "Inserted ".$countBlogCate.'/'.count(self::$blogCategoryInfoArr).' post category.'.PHP_EOL;
+        echo "Inserted ".$countpostCate.'/'.count(self::$postCategoryInfoArr).' post category.'.PHP_EOL;
     }
 
     /**
