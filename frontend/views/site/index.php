@@ -392,7 +392,7 @@ $this->registerCss("
                 <div class="col-12 col-sm-6 col-lg-3 px-5 pb-3 p-sm-3 news">
                     <div class="card h-100 border-0">
                         <a class="text-decoration-none text-dark" href="#">
-                            <div class="position-relative overflow-hidden rounded">
+                            <div class="position-relative overflow-hidden rounded px-md-4">
                                 <img src="<?= $imgUrl . '/' . $value['avatar'] ?>"
                                      class="object-fit-cover w-100 h-100 m-0 p-0 zoomImages">
                             </div>

@@ -85,7 +85,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $getProductIntro = ProductsSearch::getProductIntro();
-        $getPostIntro = Post::getPostIntro();
+        $getPostIntro = Post::getOutstandingPosts();
         return $this->render('index', [
             'productIntro' => $getProductIntro,
             'post' => $getPostIntro,

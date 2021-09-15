@@ -46,7 +46,7 @@ $this->registerCss("
                             <?php if (!empty($value['tag_id'])): ?>
                                 <?php foreach (\frontend\models\PostTag::getPostTag(explode(',', $value['tag_id'])) as $tag) : ?>
                                     <a target="_blank"
-                                       href="<?= Url::toRoute(['post/index', 'post_tag' => \common\components\encrypt\CryptHelper::encryptString($value['pt-id'])]) ?>"><span
+                                       href="<?= Url::toRoute(['post/index', 'post_tag' => \common\components\encrypt\CryptHelper::encryptString($value['tag_id'])]) ?>"><span
                                                 class="badge border text-dark"><?= Yii::t('app', $tag['title']) ?></span></a>
                                 <?php endforeach; ?>
                             <?php endif; ?>
