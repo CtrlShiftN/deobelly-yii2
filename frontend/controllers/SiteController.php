@@ -2,7 +2,8 @@
 
 namespace frontend\controllers;
 
-use frontend\models\PostsSearch;
+use common\components\helpers\ParamHelper;
+use frontend\models\Post;
 use frontend\models\ProductsSearch;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\Terms;
@@ -83,13 +84,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $searchModelProduct = new ProductsSearch();
-        $searchModelPosts = new PostsSearch();
-        $getProductIntro = $searchModelProduct->getProductIntro();
-        $getPostsIntro = $searchModelPosts->getPostsIntro();
+        $getProductIntro = ProductsSearch::getProductIntro();
+        $getPostIntro = Post::getOutstandingPosts();
         return $this->render('index', [
             'productIntro' => $getProductIntro,
-            'posts' => $getPostsIntro,
+            'post' => $getPostIntro,
         ]);
     }
 
@@ -163,9 +162,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Signs user up.
-     *
-     * @return mixed
+     * @return mixed|string
      * @throws \yii\base\Exception
      */
     public function actionSignup()
@@ -173,9 +170,6 @@ class SiteController extends Controller
         $this->layout = 'blank';
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-            /*Yii::$app->user->switchIdentity($model);
-            \Yii::$app->user->identity->login($model);*/
-
             return $this->actionLogin();
         }
 

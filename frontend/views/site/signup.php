@@ -19,7 +19,7 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
     <div class="row border-radius mt-md-5 mt-0">
         <div class="col-6 col-md-6 d-md-block d-none bg-light border-radius bg-white">
             <div class="h-100 d-flex">
-                <div class="align-self-center"><img src="<?= Url::toRoute('img/img-content-login.jpg') ?>" class="img-fluid"></div>
+                <div class="align-self-center"><img src="<?= $imgUrl ?>/img-content-login.jpg" class="img-fluid"></div>
             </div>
         </div>
         <div class="col-12 col-md-6 px-xl-5">
@@ -48,14 +48,14 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                             ->textInput(['type' => 'password', 'class' => 'rounded-pill form-control'])
                             ->label(Yii::t('app', 'Enter password')) ?>
                     </div>
-                    <div class="mt-2">
+                    <div class="my-2">
                         <?= $form->field($model, 'password_confirm')
                             ->textInput(['type' => 'password', 'class' => 'rounded-pill form-control'])
-                            ->label(Yii::t('app', 'Enter first and last name')) ?>
+                            ->label(Yii::t('app', 'Confirm password')) ?>
                     </div>
                     <?= Html::submitButton(Yii::t('app', 'Register'), ['class' => 'btn btn-primary rounded-pill fs-4 text-light w-100 mt-3', 'name' => 'login-button']) ?>
                 <?php ActiveForm::end(); ?>
-                <div class="mb-3">
+                <div class="my-3">
                     <?= Yii::t('app', 'You already have an account ?') ?> <?= Html::a(Yii::t('app', 'Login'), ['/site/login'], ['class' => 'text-decoration-none one-line']) ?>
                 </div>
             </div>

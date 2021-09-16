@@ -24,28 +24,25 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['email', 'trim'],
-            ['email', 'required', 'message'=>Yii::t('app','Email can not be blank.')],
+            ['email', 'required', 'message' => Yii::t('app', 'Email can not be blank.')],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => Yii::t('app','This email address is already in use.')],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => Yii::t('app', 'This email address is already in use.')],
 
-            ['password', 'required', 'message'=>Yii::t('app','Password can not be blank.')],
+            ['password', 'required', 'message' => Yii::t('app', 'Password can not be blank.')],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
 
-            ['password_confirm', 'required','message'=> Yii::t('app','Confirm password can not be blank.')],
-            ['password_confirm', 'compare', 'compareAttribute'=>'password', 'message'=>Yii::t('app','Incorrect password.')],
+            ['password_confirm', 'required', 'message' => Yii::t('app', 'Confirm password can not be blank.')],
+            ['password_confirm', 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('app', 'Incorrect password.')],
 
-            ['name', 'required', 'message'=>Yii::t('app','Name can not be blank.')],
-            ['name', 'trim'],
+            ['name', 'required', 'message' => Yii::t('app', 'Name can not be blank.')],
             ['name', 'string', 'max' => 100],
 
-            ['tel', 'trim'],
-            ['tel', 'required', 'message'=>Yii::t('app','Phone number can not be blank.')],
-            ['tel', 'string', 'max' => 12, 'min' => Yii::$app->params['user.telMinLength']],
-            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app','Includes 11 digits starting at 0 or 84.')],
+            ['tel', 'required', 'message' => Yii::t('app', 'Phone number can not be blank.')],
+            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{10})$/', 'message' => Yii::t('app', 'Includes 11 digits starting with 0 or 84.')],
         ];
     }
+
     /**
      * @return bool|null
      * @throws \yii\base\Exception

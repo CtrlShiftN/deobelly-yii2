@@ -120,33 +120,33 @@ AppAsset::register($this);
                             </li>
                         <?php endif; ?>
                         <!-- Post -->
-                        <li class="nav-item <?= ($controller == 'posts' || $controller == 'posts-tag' || $controller == 'posts-category') ? 'menu-is-opening menu-open' : '' ?>">
+                        <li class="nav-item <?= ($controller == 'post' || $controller == 'post-tag' || $controller == 'post-category') ? 'menu-is-opening menu-open' : '' ?>">
                             <a href="#"
-                               class="nav-link <?= ($controller == 'posts' || $controller == 'posts-tag' || $controller == 'posts-category') ? 'active' : '' ?>">
+                               class="nav-link <?= ($controller == 'post' || $controller == 'post-tag' || $controller == 'post-category') ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-blog"></i>
                                 <p>
-                                    <?= Yii::t('app', 'Posts') ?>
+                                    <?= Yii::t('app', 'Post') ?>
                                     <i class="right fas fa-angle-right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?= Url::toRoute('posts-tag/') ?>"
-                                       class="nav-link <?= ($controller == 'posts-tag') ? 'active' : '' ?>">
+                                    <a href="<?= Url::toRoute('post-tag/') ?>"
+                                       class="nav-link <?= ($controller == 'post-tag') ? 'active' : '' ?>">
                                         <i class="nav-icon fas fa-user"></i>
                                         <p><?= Yii::t('app', 'Post tags') ?></p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= Url::toRoute('posts-category/') ?>"
-                                       class="nav-link <?= ($controller == 'posts-category') ? 'active' : '' ?>">
+                                    <a href="<?= Url::toRoute('post-category/') ?>"
+                                       class="nav-link <?= ($controller == 'post-category') ? 'active' : '' ?>">
                                         <i class="nav-icon fas fa-user"></i>
                                         <p><?= Yii::t('app', 'Post categories') ?></p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= Url::toRoute('posts/') ?>"
-                                       class="nav-link <?= ($controller == 'posts') ? 'active' : '' ?>">
+                                    <a href="<?= Url::toRoute('post/') ?>"
+                                       class="nav-link <?= ($controller == 'post') ? 'active' : '' ?>">
                                         <i class="nav-icon far fa-newspaper"></i>
                                         <p><?= Yii::t('app', 'Post management') ?></p>
                                     </a>
