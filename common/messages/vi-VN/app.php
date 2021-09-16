@@ -42,7 +42,7 @@ return [
     'Women' => 'Nữ',
     'Policy' => 'Chính sách',
     'New product' => 'Sản phẩm mới',
-    'On Sale' => 'Đang Sale',
+    'On sale' => 'Đang giảm giá',
     'Clothes' => 'Quần áo',
     'Footwear' => 'Giày dép',
     'Suit' => 'Bộ đồ',
