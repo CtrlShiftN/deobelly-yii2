@@ -5,7 +5,7 @@
 use common\models\User;
 use yii\helpers\Url;
 
-$imgUrl = Yii::$app->params['common']."/media";
+$imgUrl = Yii::$app->params['common'] . "/media";
 $this->title = 'DE OBELLY';
 $this->registerCssFile(Url::toRoute("/css/index.css"));
 $this->registerCss("
@@ -48,7 +48,7 @@ $this->registerCss("
                 <img src="<?= $imgUrl ?>/slideshow.jpg" class="d-block w-100" alt="..."/>
                 <div class="carousel-caption d-none d-md-block">
                     <h5>First slide label</h5>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <p>No life is free right now, sometimes soft against vibrations</p>
                 </div>
             </div>
             <!-- Single item -->
@@ -56,7 +56,7 @@ $this->registerCss("
                 <img src="<?= $imgUrl ?>/slideshow.jpg" class="d-block w-100" alt="..."/>
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Second slide label</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                 </div>
             </div>
             <!-- Single item -->
@@ -64,7 +64,7 @@ $this->registerCss("
                 <img src="<?= $imgUrl ?>/slideshow.jpg" class="d-block w-100" alt="..."/>
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Third slide label</h5>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur</p>
                 </div>
             </div>
         </div>
@@ -85,7 +85,7 @@ $this->registerCss("
 <!--Search trends-->
 <div class="row m-0 p-0 d-none d-md-block p-4 pb-0">
     <h1 class="text-uppercase mb-3 fw-bolder text-center">
-        <i class=" fas fa-feather-alt fa-flip-horizontal"></i> xu hướng tìm kiếm <i
+        <i class=" fas fa-feather-alt fa-flip-horizontal"></i> <?= Yii::t('app', 'search trends') ?> <i
                 class="fas fa-feather-alt"></i>
     </h1>
     <div class="col-12 row mt-3 p-0">
@@ -93,7 +93,7 @@ $this->registerCss("
                     <span class="searchTrends">
                         <img src="<?= $imgUrl ?>/icon/man.jpg">
                     </span>
-            <p class="m-0 mt-2 text-uppercase fw-bolder">Thời trang nam</p>
+            <p class="m-0 mt-2 text-uppercase fw-bolder"><?= Yii::t('app', 'Man Fashion') ?></p>
             </a>
         </div>
         <div class="text-center col-4 col-lg-2 d-none d-md-block py-lg-0 py-md-2">
@@ -101,7 +101,7 @@ $this->registerCss("
                     <span class="searchTrends">
                         <img src="<?= $imgUrl ?>/icon/vestCongSo.jpg">
                     </span>
-                <p class="m-0 mt-2 text-uppercase fw-bolder">Thời trang công sở</p>
+                <p class="m-0 mt-2 text-uppercase fw-bolder"><?= Yii::t('app', 'Office Fashion') ?></p>
             </a>
         </div>
         <div class="text-center col-4 col-lg-2 d-none d-md-block py-lg-0 py-md-2">
@@ -109,7 +109,7 @@ $this->registerCss("
                     <span class="searchTrends">
                         <img src="<?= $imgUrl ?>/icon/vest.jpg">
                     </span>
-                <p class="m-0 mt-2 text-uppercase fw-bolder">Vest</p>
+                <p class="m-0 mt-2 text-uppercase fw-bolder"><?= Yii::t('app', 'Vest') ?></p>
             </a>
         </div>
         <div class="text-center col-4 col-lg-2 d-none d-md-block py-lg-0 py-md-2">
@@ -117,7 +117,7 @@ $this->registerCss("
                     <span class="searchTrends">
                         <img src="<?= $imgUrl ?>/icon/acessories.jpg">
                     </span>
-                <p class="m-0 mt-2 text-uppercase fw-bolder">Phụ kiện</p>
+                <p class="m-0 mt-2 text-uppercase fw-bolder"><?= Yii::t('app', 'Accessory') ?></p>
             </a>
         </div>
         <div class="text-center col-4 col-lg-2 d-none d-md-block py-lg-0 py-md-2">
@@ -125,7 +125,7 @@ $this->registerCss("
                     <span class="searchTrends">
                         <img src="<?= $imgUrl ?>/icon/bag.jpg">
                     </span>
-                <p class="m-0 mt-2 text-uppercase fw-bolder">Túi xách</p>
+                <p class="m-0 mt-2 text-uppercase fw-bolder"><?= Yii::t('app', 'Handbag') ?></p>
             </a>
         </div>
         <div class="text-center col-4 col-lg-2 d-none d-md-block py-lg-0 py-md-2">
@@ -133,7 +133,7 @@ $this->registerCss("
                     <span class="searchTrends">
                         <img src="<?= $imgUrl ?>/icon/shoes.jpg">
                     </span>
-                <p class="m-0 mt-2 text-uppercase fw-bolder">Giày</p>
+                <p class="m-0 mt-2 text-uppercase fw-bolder"><?= Yii::t('app', 'Shoes') ?></p>
             </a>
         </div>
     </div>
@@ -165,20 +165,20 @@ $this->registerCss("
             </div>
             <div class="h-25 w-100 d-flex align-items-center justify-content-center px-lg-2 border border-2">
                 <div class="p-2 text-center">
-                    <h4 class="text-uppercase m-0 d-none d-lg-block fw-bolder">Những bộ VEST sang trọng, lịch
-                        lãm</h4>
-                    <h5 class="text-uppercase m-0 d-lg-none fw-bolder">Những bộ VEST sang trọng</h5>
-                    <a href="#" class="btn text-uppercase text-danger fw-bolder p-0">Xem ngay!</a>
+                    <h4 class="text-uppercase m-0 d-none d-lg-block fw-bolder"><?= Yii::t('app', 'Luxurious and elegant VEST sets') ?></h4>
+                    <h5 class="text-uppercase m-0 d-lg-none fw-bolder"><?= Yii::t('app', 'Luxury VEST sets') ?></h5>
+                    <a href="#"
+                       class="btn text-uppercase text-danger fw-bolder p-0"><?= Yii::t('app', 'Watch now!') ?></a>
                 </div>
             </div>
         </div>
         <div class="banner col-4 px-1">
             <div class="h-25 d-flex align-items-center justify-content-center px-lg-2 border border-2">
                 <div class="p-2 text-center">
-                    <h4 class="text-uppercase m-0 d-none d-lg-block fw-bolder">Phụ kiện thời trang thời
-                        thượng</h4>
-                    <h5 class="text-uppercase m-0 d-lg-none fw-bolder">Phụ kiện thời trang thời thượng</h5>
-                    <a href="#" class="btn text-uppercase text-danger fw-bolder p-0">Mua ngay!</a>
+                    <h4 class="text-uppercase m-0 d-none d-lg-block fw-bolder"><?= Yii::t('app', 'Trendy fashion accessories') ?></h4>
+                    <h5 class="text-uppercase m-0 d-lg-none fw-bolder"><?= Yii::t('app', 'Trendy fashion accessories') ?></h5>
+                    <a href="#"
+                       class="btn text-uppercase text-danger fw-bolder p-0"><?= Yii::t('app', 'Buy now') ?></a>
                 </div>
             </div>
             <div class="m-0 p-0 overflow-hidden h-75 w-100">
@@ -191,9 +191,10 @@ $this->registerCss("
             </div>
             <div class="h-25 w-100 d-flex align-items-center justify-content-center px-lg-2 border border-2">
                 <div class="p-2 text-center">
-                    <h4 class="text-uppercase m-0 d-none d-lg-block fw-bolder">Những bộ vest thời thượng</h4>
-                    <h5 class="text-uppercase m-0 d-lg-none fw-bolder">Những bộ vest thời thượng</h5>
-                    <a href="#" class="btn text-uppercase text-danger fw-bolder p-0">Xem ngay!</a>
+                    <h4 class="text-uppercase m-0 d-none d-lg-block fw-bolder"><?= Yii::t('app', 'Fashionable vest suits') ?></h4>
+                    <h5 class="text-uppercase m-0 d-lg-none fw-bolder"><?= Yii::t('app', 'Fashionable suits') ?></h5>
+                    <a href="#"
+                       class="btn text-uppercase text-danger fw-bolder p-0"><?= Yii::t('app', 'Watch now!') ?></a>
                 </div>
             </div>
         </div>
@@ -201,7 +202,8 @@ $this->registerCss("
 </div>
 <div class="row p-0 m-0 pt-4 pt-md-5">
     <h1 class="text-uppercase mb-3 fw-bolder text-center">
-        <i class="fas fa-feather-alt fa-flip-horizontal"></i> sản phẩm mới <i class="fas fa-feather-alt"></i>
+        <i class="fas fa-feather-alt fa-flip-horizontal"></i> <?= Yii::t('app', 'new product') ?> <i
+                class="fas fa-feather-alt"></i>
     </h1>
     <div class="col-12 row mx-0 px-3 px-md-5">
         <?php foreach ($productIntro as $key => $value): ?>
@@ -216,7 +218,7 @@ $this->registerCss("
                     <div class="product-button d-none d-sm-block">
                         <a href="javascript:void(0)" class="btn btn-dark rounded-0 btnFavor"><i
                                     class="far fa-heart"></i></a>
-                        <a href="#" class="btn btn-dark rounded-0 btnBuyNow">Mua ngay</a>
+                        <a href="#" class="btn btn-dark rounded-0 btnBuyNow"><?= Yii::t('app', 'Buy now') ?></a>
                         <a href="#" class="btn btn-dark rounded-0 btnAdd"><i class="fas fa-cart-plus"></i></a>
                     </div>
                     <div class="product-details border-top m-0">
@@ -242,7 +244,8 @@ $this->registerCss("
                                 <a href="#" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
                                             class="fas fa-cart-plus"></i></a>
                             </div>
-                            <a href="#" class="btn rounded-0 p-1 btn-outline-dark col-12 mt-2">Mua ngay</a>
+                            <a href="#"
+                               class="btn rounded-0 p-1 btn-outline-dark col-12 mt-2"><?= Yii::t('app', 'Buy now') ?></a>
                         </div>
                     </div>
                 </div>
@@ -253,14 +256,16 @@ $this->registerCss("
     <div class="container text-center">
         <div class="row m-0 px-0 py-4 pb-md-5 d-inline-block">
             <a href="<?= Url::toRoute('shop/index') ?>" class="text-decoration-none linkToProduct px-3">
-                <h5 class="text-uppercase m-0"><i class="far fa-hand-point-right"></i> Xem toàn bộ sản phẩm</h5>
+                <h5 class="text-uppercase m-0"><i
+                            class="far fa-hand-point-right"></i> <?= Yii::t('app', 'View all products') ?> </h5>
             </a>
         </div>
     </div>
 </div>
 <div class="row m-0 px-0 px-3 px-md-5">
     <h1 class="text-uppercase fw-bolder text-center col-12 mb-3">
-        <i class="fas fa-feather-alt fa-flip-horizontal"></i> Bộ sưu tập <i class="fas fa-feather-alt"></i>
+        <i class="fas fa-feather-alt fa-flip-horizontal"></i> <?= Yii::t('app', 'Collection') ?> <i
+                class="fas fa-feather-alt"></i>
     </h1>
     <div class="col-12 m-0 p-0">
         <div id="recipeCarouselAccessories" class="carousel slide carouselProduct col-12" data-bs-ride="carousel">
@@ -356,10 +361,8 @@ $this->registerCss("
         </h1>
         <div class="border border-5 border-light p-4 p-md-5 text-justify bg-transparent mx-auto w-motto">
             <h4 class="m-0 text-light">
-                <i>
-                    Mỗi nhân viên của DE OBELLY luôn tri ân khách hàng bằng việc kinh doanh những sản phẩm
-                    tốt nhất -
-                    thời thượng nhất và chu đáo nhất để đáp ứng được nhu cầu của quý khách hàng...
+                <i><?= Yii::t('app', 'Each employee of DE OBELLY is always grateful to customers by selling the best - trendiest and most thoughtful products to meet the needs of customers...') ?>
+
                 </i>
             </h4>
             <div class="text-end mt-3">
@@ -385,7 +388,8 @@ $this->registerCss("
 <div class="row px-0 m-0 text-center py-4 pt-md-5">
     <div class="container">
         <h1 class="text-uppercase mb-3 fw-bolder text-center">
-            <i class="fas fa-feather-alt fa-flip-horizontal"></i> Tin mới <i class="fas fa-feather-alt"></i>
+            <i class="fas fa-feather-alt fa-flip-horizontal"></i> <?= Yii::t('app', 'News') ?> <i
+                    class="fas fa-feather-alt"></i>
         </h1>
         <div class="row m-0 p-0">
             <?php foreach ($post as $key => $value): ?>
@@ -405,7 +409,7 @@ $this->registerCss("
                                                 class="fas fa-user-edit"></i> <?= User::findOne(['id' => $value['admin_id']])['name']; ?>
                                     </small>
                                 </h6>
-                                <a href="#" class="btn float-end">Xem bài viết <i
+                                <a href="#" class="btn float-end"><?= Yii::t('app', 'View post') ?> <i
                                             class="fas fa-angle-double-right"></i></a>
                             </div>
                         </a>
@@ -414,30 +418,31 @@ $this->registerCss("
             <?php endforeach; ?>
         </div>
         <a href="<?= Url::toRoute('site/post') ?>" class="text-decoration-none linkToProduct d-inline-block px-3">
-            <h5 class="text-uppercase m-0"><i class="far fa-hand-point-right"></i> Xem thêm tin tức</h5>
+            <h5 class="text-uppercase m-0"><i class="far fa-hand-point-right"></i> <?= Yii::t('app', 'View more news') ?></h5>
         </a>
     </div>
 </div>
 <div class="full-width bgNews py-4 py-md-5" id="subscribe">
     <div class="container text-center text-light">
-        <h1><i class="fas fa-feather-alt fa-flip-horizontal"></i> Get early access today <i
+        <h1><i class="fas fa-feather-alt fa-flip-horizontal"></i><?= Yii::t('app', 'Get early access today') ?><i
                     class="fas fa-feather-alt"></i></h1>
         <h5 class="mt-4 px-3">
-            It only takes a minute to sign up and our tree starter
-            tier is extremely generous. If you have any questions,
-            our support team would be happy to help you.
+            <?= Yii::t('app', 'It only takes a few minutes to register to enjoy our services.') ?><br>
+            <?= Yii::t('app', 'If you have any questions,our support team would be happy to help you.') ?>
         </h5>
         <form method="POST" action="#">
             <div class="col-12 m-0 p-0 mt-4 row p-0 px-sm-4 px-md-4 px-lg-5">
                 <div class="col-12 col-md-8">
                     <div class="form-floating mb-3 mb-md-0">
-                        <input type="email" class="form-control bg-transparent border border-2 border-light w-100"
+                        <input type="email"
+                               class="form-control bg-transparent border border-2 border-light w-100 px-2 px-md-3 text-light"
                                id="emailSubscribe" placeholder="name@example.com" name="email-subscribe" required>
-                        <label for="emailSubscribe" class="text-light">Email address</label>
+                        <label for="emailSubscribe" class="text-light"><?= Yii::t('app', 'Email address') ?></label>
                     </div>
                 </div>
                 <div class="col-12 col-md-4 p-md-0">
-                    <button type="submit" class="btn btn-light p-3 w-100" id="btnSubscribe">Get st́arted for free <i
+                    <button type="submit" class="btn btn-light p-3 w-100"
+                            id="btnSubscribe"><?= Yii::t('app', 'Get started now') ?> <i
                                 class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
