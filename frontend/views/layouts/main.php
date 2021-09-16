@@ -71,7 +71,7 @@ AppAsset::register($this);
                                     <li class="site-nav-top">
                                         <div class="vr mx-2"></div>
                                     </li>
-                                    <li class="site-nav-top"><a href="#"
+                                    <li class="site-nav-top"><a href="<?= $cdnUrl ?>/post/index"
                                                                 class="site-nav-top-link"><span><?= Yii::t('app', 'News') ?></span></a>
                                     </li>
                                     <li class="site-nav-top">

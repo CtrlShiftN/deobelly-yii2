@@ -3,9 +3,9 @@
 namespace common\components\importsample;
 
 use common\components\SystemConstant;
-use common\models\Posts;
-use common\models\PostsCategory;
-use common\models\PostsTag;
+use common\models\Post;
+use common\models\PostCategory;
+use common\models\PostTag;
 use common\models\Meta;
 use common\models\Products;
 use common\models\ProductsCategory;
@@ -443,14 +443,14 @@ class SampleData
     }
 
     /**
-     *  posts data
+     *  post data
      * @var array[]
      */
-    protected static $postsInfoArr = [
+    protected static $postInfoArr = [
         [
-            'avatar' => 'posts/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'posts/thumbnail/lacoste-short.jpg',
+            'avatar' => 'post/avatar/lacoste-ava.PNG',
             'title' => 'De Obelly Collections 2021 - Lựa chọn hoàn hảo cho mùa hè',
+            'slug' => 'de-obelly-collections-2021-lua-chon-hoan-hao-cho-mua-he',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
                                 với những chiếc áo Polo đa sắc màu trong BST Hè DE OBELLY 2021. Hãy check ngay những mẫu
                                  Hot nhất trong tuần qua nhé</p><p>Áo polo được bắt nguồn từ bang Manipur của Ấn Độ
@@ -468,13 +468,13 @@ class SampleData
                                     <p>Gam màu đa dạng, dễ dàng mix cùng nhiều trang phục mà vẫn giữ được lịch lãm, cổ điển không bao giờ lỗi mốt</p>
                                     <p>Nếu bạn một tín đồ của áo polo, hãy lựa ngay items mình yêu thích và đặt hàng ngay tại Biluxury!</p>',
             'admin_id' => 2,
-            'tag_id' => '1',
-            'blog_category_id' => 7,
+            'tag_id' => '1,2,5',
+            'post_category_id' => 7,
         ],
         [
-            'avatar' => 'posts/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'posts/thumbnail/lacoste-short-2.jpg',
+            'avatar' => 'post/avatar/lacoste-ava.PNG',
             'title' => 'Cực chất với bộ sưu tập mùa hè',
+            'slug' => 'cuc-chat-voi-bo-suu-tap-mua-he',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
                                 với những chiếc áo Polo đa sắc màu trong BST Hè DE OBELLY 2021. Hãy check ngay những mẫu
                                  Hot nhất trong tuần qua nhé</p><p>Áo polo được bắt nguồn từ bang Manipur của Ấn Độ
@@ -492,13 +492,13 @@ class SampleData
                                     <p>Gam màu đa dạng, dễ dàng mix cùng nhiều trang phục mà vẫn giữ được lịch lãm, cổ điển không bao giờ lỗi mốt</p>
                                     <p>Nếu bạn một tín đồ của áo polo, hãy lựa ngay items mình yêu thích và đặt hàng ngay tại Biluxury!</p>',
             'admin_id' => 2,
-            'tag_id' => '8',
-            'blog_category_id' => 7,
+            'tag_id' => '2,6,8',
+            'post_category_id' => 7,
         ],
         [
-            'avatar' => 'posts/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'posts/thumbnail/lacoste-short-2.jpg',
-            'title' => 'Community—And Style—Thrived at the Santa Fe Indian Market',
+            'avatar' => 'post/avatar/lacoste-ava.PNG',
+            'title' => 'Community And Style Thrived at the Santa Fe Indian Market',
+            'slug' => 'community—and-style—thrived-at-the-santa-fe-indian-market',
             'content' => '<p>Every year, the Santa Fe Indian Market brings in thousands of global tourists and collectors to the city. 
                          Visitors flock to the streets around the city’s main plaza, 
                          where hundreds of Indigenous artists from different tribes across North America showcase and sell their new works 
@@ -515,13 +515,13 @@ class SampleData
                         <p>Around the booths, visitors and artists alike dressed up for the affair, cladding themselves in their best ribbon skirts or turquoise squash-blossom necklaces. At the fashion show, Indigenous designers Jamie Okuma, Orlando Dugi, Pamela Baker, and Lauren Good Day showcased their newest collections, pieces that combined traditional craftsmanship with new, modern updates. Dugi and Baker showed refined eveningwear pieces like beaded gowns and velvet suiting, while Okuma opted for her signature statement prints on dresses, coats, and more. Good Day even showed sprightly athleticwear—the through line being that Native design doesn’t have to look one specific way. For all in attendance, that sense of innovation is forever an Indian Market staple. “The energy was palpable,” says Pruitt. “Spirits were high, and in the end, the machine that is Indian Market just keeps on going.”</p>
                         <p>Below, more stylish highlights from the Santa Fe Indian Market weekend.</p>',
             'admin_id' => 2,
-            'tag_id' => '1',
-            'blog_category_id' => 4,
+            'tag_id' => '1,4,5',
+            'post_category_id' => 4,
         ],
         [
-            'avatar' => 'posts/avatar/lacoste-ava.PNG',
-            'thumbnail' => 'posts/thumbnail/lacoste-short-2.jpg',
+            'avatar' => 'post/avatar/lacoste-ava.PNG',
             'title' => '4 "cặp đôi" trang phục cho chàng phong cách ngày hè',
+            'slug' => '4-cap-doi-trang-phuc-cho-chang-phong-cach-mua-he',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
                                 với những chiếc áo Polo đa sắc màu trong BST Hè DE OBELLY 2021. Hãy check ngay những mẫu
                                  Hot nhất trong tuần qua nhé</p><p>Áo polo được bắt nguồn từ bang Manipur của Ấn Độ
@@ -539,33 +539,33 @@ class SampleData
                                     <p>Gam màu đa dạng, dễ dàng mix cùng nhiều trang phục mà vẫn giữ được lịch lãm, cổ điển không bao giờ lỗi mốt</p>
                                     <p>Nếu bạn một tín đồ của áo polo, hãy lựa ngay items mình yêu thích và đặt hàng ngay tại Biluxury!</p>',
             'admin_id' => 2,
-            'tag_id' => '8',
-            'blog_category_id' => 3,
+            'tag_id' => '3,8,1',
+            'post_category_id' => 3,
         ],
     ];
 
     /**
      *
      */
-    public static function insertSamplePosts()
+    public static function insertSamplePost()
     {
-        $countPosts = 0;
-        foreach (self::$postsInfoArr as $value) {
-            $posts = new Posts();
-            $posts->avatar = $value['avatar'];
-            $posts->thumbnail = $value['thumbnail'];
-            $posts->title = $value['title'];
-            $posts->content = $value['content'];
-            $posts->admin_id = $value['admin_id'];
-            $posts->tag_id = $value['tag_id'];
-            $posts->blog_category_id = $value['blog_category_id'];
-            $posts->created_at = date('Y-m-d H:m:s');
-            $posts->updated_at = date('Y-m-d H:m:s');
-            if ($posts->save()) {
-                $countPosts++;
+        $countPost = 0;
+        foreach (self::$postInfoArr as $value) {
+            $post = new Post();
+            $post->avatar = $value['avatar'];
+            $post->title = $value['title'];
+            $post->slug = $value['slug'];
+            $post->content = $value['content'];
+            $post->admin_id = $value['admin_id'];
+            $post->tag_id = $value['tag_id'];
+            $post->post_category_id = $value['post_category_id'];
+            $post->created_at = date('Y-m-d H:m:s');
+            $post->updated_at = date('Y-m-d H:m:s');
+            if ($post->save()) {
+                $countPost++;
             }
         }
-        echo "Inserted " . $countPosts . "/" . count(self::$postsInfoArr) . ' posts.' . PHP_EOL;
+        echo "Inserted " . $countPost . "/" . count(self::$postInfoArr) . ' post.' . PHP_EOL;
     }
 
     /**
@@ -668,9 +668,9 @@ class SampleData
     /**
      * @var array|\string[][]
      */
-    protected static $blogTagInfoArr = [
+    protected static $postTagInfoArr = [
         [
-            'title' => 'Street Style',
+            'title' => 'Street style',
             'slug' => 'street-style',
         ],
         [
@@ -678,7 +678,7 @@ class SampleData
             'slug' => 'trends',
         ],
         [
-            'title' => 'Shopping Tips',
+            'title' => 'Shopping tips',
             'slug' => 'shopping-tips',
         ],
         [
@@ -686,11 +686,11 @@ class SampleData
             'slug' => 'beauty',
         ],
         [
-            'title' => 'Office Style',
+            'title' => 'Office style',
             'slug' => 'office-style',
         ],
         [
-            'title' => 'White Collar',
+            'title' => 'White collar',
             'slug' => 'white-collar',
         ],
         [
@@ -714,25 +714,25 @@ class SampleData
     /**
      *
      */
-    protected static function insertSamplePostsTag()
+    protected static function insertSamplePostTag()
     {
         $countTag = 0;
-        foreach (self::$blogTagInfoArr as $value)
+        foreach (self::$postTagInfoArr as $value)
         {
-            $blogTag = new PostsTag();
-            $blogTag->title = $value['title'];
-            $blogTag->slug = $value['slug'];
-            $blogTag->created_at = date('Y-m-d H:m:s');
-            $blogTag->updated_at = date('Y-m-d H:m:s');
-            if ($blogTag->save())
+            $postTag = new PostTag();
+            $postTag->title = $value['title'];
+            $postTag->slug = $value['slug'];
+            $postTag->created_at = date('Y-m-d H:m:s');
+            $postTag->updated_at = date('Y-m-d H:m:s');
+            if ($postTag->save())
             {
                 $countTag++;
             }
         }
-        echo "Inserted ".$countTag.'/'.count(self::$blogTagInfoArr).' posts tag.'.PHP_EOL;
+        echo "Inserted ".$countTag.'/'.count(self::$postTagInfoArr).' post tag.'.PHP_EOL;
     }
 
-    protected static $blogCategoryInfoArr = [
+    protected static $postCategoryInfoArr = [
         [
             'title' => 'Fashion Design',
             'slug' => 'fashion-design',
@@ -767,22 +767,22 @@ class SampleData
         ],
     ];
 
-    protected static function insertSamplePostsCategory()
+    protected static function insertSamplePostCategory()
     {
-        $countBlogCate = 0;
-        foreach (self::$blogCategoryInfoArr as $value)
+        $countpostCate = 0;
+        foreach (self::$postCategoryInfoArr as $value)
         {
-            $blogCate = new PostsCategory();
-            $blogCate->title = $value['title'];
-            $blogCate->slug = $value['slug'];
-            $blogCate->created_at = date('Y-m-d H:m:s');
-            $blogCate->updated_at = date('Y-m-d H:m:s');
-            if ($blogCate->save())
+            $postCate = new PostCategory();
+            $postCate->title = $value['title'];
+            $postCate->slug = $value['slug'];
+            $postCate->created_at = date('Y-m-d H:m:s');
+            $postCate->updated_at = date('Y-m-d H:m:s');
+            if ($postCate->save())
             {
-                $countBlogCate++;
+                $countpostCate++;
             }
         }
-        echo "Inserted ".$countBlogCate.'/'.count(self::$blogCategoryInfoArr).' posts category.'.PHP_EOL;
+        echo "Inserted ".$countpostCate.'/'.count(self::$postCategoryInfoArr).' post category.'.PHP_EOL;
     }
 
     /**
@@ -794,10 +794,10 @@ class SampleData
         self::insertSampleProductCategory();
         self::insertSampleTrademark();
         self::insertSampleProduct();
-        self::insertSamplePosts();
+        self::insertSamplePost();
         self::insertSampleTerms();
         self::insertSampleMeta();
-        self::insertSamplePostsTag();
-        self::insertSamplePostsCategory();
+        self::insertSamplePostTag();
+        self::insertSamplePostCategory();
     }
 }
