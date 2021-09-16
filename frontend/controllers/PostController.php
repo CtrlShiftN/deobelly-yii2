@@ -65,11 +65,9 @@ class PostController extends \yii\web\Controller
         $post = $getQueryAllPost->offset($pages->offset)
             ->limit( SystemConstant::POST_PER_PAGE)
             ->all();
-        $postCategory = PostCategory::getAllPostCategory();
         return $this->render('index', [
             'post' => $post,
             'pages' => $pages,
-            'postCategory' => $postCategory
         ]);
     }
 

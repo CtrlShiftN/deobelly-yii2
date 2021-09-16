@@ -7,6 +7,7 @@
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
 use frontend\models\Post;
+use frontend\models\PostCategory;
 use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
@@ -14,10 +15,11 @@ use yii\bootstrap4\NavBar;
 use yii\helpers\Url;
 
 $cdnUrl = Yii::$app->params['frontend'];
-$imageUrl = Yii::$app->params['common'].'/media';
+$imageUrl = Yii::$app->params['common'] . '/media';
 
 AppAsset::register($this);
 $latestPosts = Post::getLatestPosts();
+$postCategory = PostCategory::getAllPostCategory();
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
@@ -276,27 +278,39 @@ $latestPosts = Post::getLatestPosts();
             </div>
             <div class="container px-0">
                 <div class="posts row mt-4">
-                    <div class="col-12 col-lg-9 p-0 m-0">
+                    <div class="col-12 col-lg-8 col-xl-9 p-0 m-0">
                         <?= $content ?>
                     </div>
-                    <div class="col-12 col-lg-3">
+                    <div class="col-12 col-lg-4 col-xl-3">
                         <div class="w-100 mt-3 fs-4"><h2
+                                    class="latest-news__title text-uppercase"><?= Yii::t('app', 'Post Categories') ?></h2>
+                        </div>
+                        <div class="post-category__right-side">
+                            <?php foreach ($postCategory as $category) : ?>
+                                <a target="_blank"
+                                   href="<?= Url::toRoute(['post/index', 'post_category' => \common\components\encrypt\CryptHelper::encryptString($category['id'])]) ?>"><span
+                                            class="badge border text-dark font-weight-bold p-2 m-1"><?= Yii::t('app', $category['title']) ?></span></a>
+                            <?php endforeach; ?>
+                        </div>
+                        <div class="w-100 mt-5 fs-4"><h2
                                     class="latest-news__title text-uppercase"><?= Yii::t('app', 'Latest posts') ?></h2>
                         </div>
                         <div class="latest-news__right-side">
                             <?php foreach ($latestPosts as $value) : ?>
-                                <div class="row">
-                                    <div class="col-5">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-3 col-lg-5">
                                         <a href="<?= Url::toRoute(['post/detail', 'id' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"><img
-                                                    src="<?= $imageUrl.'/'. $value['avatar'] ?>"
+                                                    class="latest-news__image"
+                                                    src="<?= $imageUrl . '/' . $value['avatar'] ?>"
                                                     alt="<?= $value['slug'] ?>"></a>
                                     </div>
-                                    <div class="col-7">
-                                        <a href="<?= Url::toRoute(['post/detail', 'id' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"><p><?= $value['title'] ?></p></a>
-                                        <span class="latest-post__date"><?= date_format(date_create($value['created_at']),'d/m/Y') ?></span>
+                                    <div class="col-9 col-lg-7">
+                                        <a href="<?= Url::toRoute(['post/detail', 'id' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>">
+                                            <p class="pb-0 mb-0"><?= $value['title'] ?></p></a>
+                                        <span class="latest-post__date"><?= date_format(date_create($value['created_at']), 'H:i:s d/m/Y') ?></span>
                                     </div>
                                 </div>
-                            <hr>
+                                <hr class="latest-post__hr">
                             <?php endforeach; ?>
                         </div>
                     </div>

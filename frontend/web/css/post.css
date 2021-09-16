@@ -1,3 +1,4 @@
+
 .latest-news__title {
     font-size: 18px;
     text-transform: uppercase;
@@ -10,6 +11,16 @@
     justify-content: space-between;
 }
 
-.latest-news__right-side > .row > .col-5 > a > img {
+.latest-news__image {
     max-width: 100%;
+}
+
+.latest-post__date{
+    font-size: 13px;
+    font-style: italic;
+    letter-spacing: 0.8px;
+}
+
+.latest-post__hr:last-child{
+    display: none;
 }
