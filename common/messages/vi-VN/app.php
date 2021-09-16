@@ -76,7 +76,7 @@ return [
     'Send'=>'Gửi',
     'Back to login page.'=>'Quay lại trang đăng nhập.',
     'Submitted Successfully !'=>'Gửi Thành Công !',
-    'Send Failed !'=>'Gửi Thất Bại !',
+    'Sent Failed !'=>'Gửi Thất Bại !',
     'You already have an account ?'=>'Bạn đã có tài khoản ?',
     'Enter new password'=>'Nhập mật khẩu mới',
     'Change password'=>'Đổi mật khẩu',
