@@ -88,4 +88,5 @@ return [
     'Summer' => 'Mùa hè',
     'Autumn' => 'Mùa thu',
     'Winter' => 'Mùa đông',
+    'Latest posts' => 'Bài viết mới nhất',
 ];

@@ -86,8 +86,8 @@ class Post extends \yii\db\ActiveRecord
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getOutstandingPosts()
+    public static function getLatestPosts()
     {
-        return Post::find()->where(['status' => 1])->orderBy('updated_at DESC')->limit(4)->asArray()->all();
+        return Post::find()->where(['status' => 1])->orderBy('updated_at DESC')->limit(5)->asArray()->all();
     }
 }
