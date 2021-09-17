@@ -11,8 +11,8 @@ use yii\widgets\LinkPager;
 
 $imgUrl = Yii::$app->params['common'] . "/media";
 ?>
-<h2>Tin tức</h2>
-<div class="row pe-3">
+<h2 class="d-none d-md-block">Tin tức</h2>
+<div class="row">
     <?php foreach ($post as $key => $value) : ?>
         <!-- Three in a row -->
 
@@ -22,25 +22,30 @@ $imgUrl = Yii::$app->params['common'] . "/media";
                             class="article-head__image"
                             src="<?= $imgUrl . '/' . $value['avatar'] ?>"
                             alt="<?= $value['slug'] ?>"></a>
-                <div class="article-category">
-                    <?= Yii::t('app', 'Category') ?>: 
+                <div class="article-category fs__12px">
+                    <?= Yii::t('app', 'Category') ?>: <a target="_blank" class="text-decoration-none text-dark pc-title"
+                                                         href="<?= Url::toRoute(['post/index', 'post_category' => \common\components\encrypt\CryptHelper::encryptString($value['pc-id'])]) ?>">
+                        <?= Yii::t('app', $value['pc-title']) ?></a>
                 </div>
                 <div class="article-meta d-flex justify-content-center align-items-center py-1">
-                    <i class="fa fa-calendar"></i>&nbsp;<b class="color_main"><?= date_format(date_create($value['created_at']), 'H:i:s d/m/Y') ?></b>
+                    <i class="fa fa-calendar"></i>&nbsp;<b
+                            class="color_main"><?= date_format(date_create($value['created_at']), 'H:i:s d/m/Y') ?></b>
                     &nbsp; Đăng bởi:&nbsp; <b class="color_main"><?= $value['name'] ?></b>
                 </div>
             </div>
             <div class="article-title text-center">
-                <a class="text-decoration-none text-dark title-heading" href="<?= Url::toRoute(['post/detail', 'id' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"><h5><?= $value['title'] ?></h5></a>
+                <a class="text-decoration-none text-dark title-heading"
+                   href="<?= Url::toRoute(['post/detail', 'id' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>">
+                    <h5><?= $value['title'] ?></h5></a>
             </div>
             <div class="article-content text-center text-justify">
                 <?= $value['content'] ?>
             </div>
             <ul class="tags mt-2">
                 <?php foreach (\frontend\models\PostTag::getPostTag(explode(',', $value['tag_id'])) as $tag) : ?>
-                <li><a target="_blank" class="tag"
-                       href="<?= Url::toRoute(['post/index', 'post_tag' => \common\components\encrypt\CryptHelper::encryptString($value['tag_id'])]) ?>">
-                                <?= Yii::t('app', $tag['title']) ?></a></li>
+                    <li><a target="_blank" class="tag"
+                           href="<?= Url::toRoute(['post/index', 'post_tag' => \common\components\encrypt\CryptHelper::encryptString($tag['id'])]) ?>">
+                            <?= Yii::t('app', $tag['title']) ?></a></li>
                 <?php endforeach; ?>
             </ul>
         </div>

@@ -278,10 +278,10 @@ $postCategory = PostCategory::getAllPostCategory();
             </div>
             <div class="container px-0">
                 <div class="posts row mt-4">
-                    <div class="col-12 col-lg-8 col-xl-9 p-0 m-0">
+                    <div class="col-12 col-lg-8 col-xl-9 px-3 m-0">
                         <?= $content ?>
                     </div>
-                    <div class="col-12 col-lg-4 col-xl-3">
+                    <div class="col-12 col-lg-4 col-xl-3 ps-3 m-0">
                         <div class="w-100 mt-3 fs-4"><h2
                                     class="latest-news__title text-uppercase"><?= Yii::t('app', 'Post Categories') ?></h2>
                         </div>
@@ -295,7 +295,7 @@ $postCategory = PostCategory::getAllPostCategory();
                         <div class="w-100 mt-5 fs-4"><h2
                                     class="latest-news__title text-uppercase"><?= Yii::t('app', 'Latest posts') ?></h2>
                         </div>
-                        <div class="latest-news__right-side">
+                        <div class="latest-news__right-side mb-3">
                             <?php foreach ($latestPosts as $value) : ?>
                                 <div class="row d-flex align-items-center">
                                     <div class="col-3 col-lg-5">

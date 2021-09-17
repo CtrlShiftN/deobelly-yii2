@@ -54,6 +54,6 @@ class PostTag extends \common\models\PostTag
 
     public static function getPostTag($tag_id)
     {
-        return PostTag::find()->select('title')->where(['status' => 1])->andWhere(['in', 'id', $tag_id])->asArray()->all();
+        return PostTag::find()->select(['title','id'])->where(['status' => 1])->andWhere(['in', 'id', $tag_id])->asArray()->all();
     }
 }
