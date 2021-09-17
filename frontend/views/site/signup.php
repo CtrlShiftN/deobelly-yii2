@@ -30,28 +30,27 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                 <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
                     <div class="mt-2">
                         <?= $form->field($model, 'name')
-                            ->textInput(['autofocus' => true, 'class' => 'rounded-pill form-control'])
-                            ->label(Yii::t('app', 'Enter first and last name')) ?>
+                            ->textInput(['autofocus' => true, 'class' => 'rounded-pill form-control p-2','placeholder'=> Yii::t('app', 'Enter first and last name')])->label(false)
+                        ?>
                     </div>
                     <div class="mt-2">
                         <?= $form->field($model, 'tel')
-                            ->textInput(['type' => 'number', 'class' => 'rounded-pill form-control'])
-                            ->label(Yii::t('app', 'Enter phone number')) ?>
+                            ->textInput(['type' => 'number', 'class' => 'rounded-pill form-control p-2', 'placeholder' => Yii::t('app', 'Enter phone number')])->label(false) ?>
                     </div>
                     <div class="mt-2">
                         <?= $form->field($model, 'email')
-                            ->textInput(['type' => 'email', 'class' => 'rounded-pill form-control'])
-                            ->label(Yii::t('app', 'Enter email')) ?>
+                            ->textInput(['type' => 'email', 'class' => 'rounded-pill form-control p-2', 'placeholder' => Yii::t('app', 'Enter email')])
+                            ->label(false) ?>
                     </div>
                     <div class="mt-2">
                         <?= $form->field($model, 'password')
-                            ->textInput(['type' => 'password', 'class' => 'rounded-pill form-control'])
-                            ->label(Yii::t('app', 'Enter password')) ?>
+                            ->textInput(['type' => 'password', 'class' => 'rounded-pill form-control p-2', 'placeholder' => Yii::t('app', 'Enter password')])
+                            ->label(false) ?>
                     </div>
                     <div class="my-2">
                         <?= $form->field($model, 'password_confirm')
-                            ->textInput(['type' => 'password', 'class' => 'rounded-pill form-control'])
-                            ->label(Yii::t('app', 'Confirm password')) ?>
+                            ->textInput(['type' => 'password', 'class' => 'rounded-pill form-control p-3', 'placeholder' => Yii::t('app', 'Confirm password')])
+                            ->label(false) ?>
                     </div>
                     <?= Html::submitButton(Yii::t('app', 'Register'), ['class' => 'btn btn-primary rounded-pill fs-4 text-light w-100 mt-3', 'name' => 'login-button']) ?>
                 <?php ActiveForm::end(); ?>
