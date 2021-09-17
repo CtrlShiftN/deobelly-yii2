@@ -16,13 +16,15 @@ $imgUrl = Yii::$app->params['common'] . "/media";
     <?php foreach ($post as $key => $value) : ?>
         <!-- Three in a row -->
 
-        <div class="col-12 col-md-6 col-lg-4 py-3">
+        <div class="col-12 col-md-6 col-lg-4 py-3 box">
             <div class="article-head">
                 <a href="<?= Url::toRoute(['post/detail', 'id' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"><img
                             class="article-head__image"
                             src="<?= $imgUrl . '/' . $value['avatar'] ?>"
                             alt="<?= $value['slug'] ?>"></a>
-
+                <div class="article-category">
+                    <?= Yii::t('app', 'Category') ?>: 
+                </div>
                 <div class="article-meta d-flex justify-content-center align-items-center py-1">
                     <i class="fa fa-calendar"></i>&nbsp;<b class="color_main"><?= date_format(date_create($value['created_at']), 'H:i:s d/m/Y') ?></b>
                     &nbsp; Đăng bởi:&nbsp; <b class="color_main"><?= $value['name'] ?></b>

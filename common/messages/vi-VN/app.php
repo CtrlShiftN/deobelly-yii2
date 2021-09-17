@@ -158,4 +158,5 @@ return [
     'Autumn' => 'Mùa thu',
     'Winter' => 'Mùa đông',
     'Latest posts' => 'Bài viết mới nhất',
+    'Category' => 'Danh mục',
 ];

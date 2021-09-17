@@ -100,3 +100,18 @@
 .tag:hover::after {
     border-left-color: crimson;
 }
+
+.article-head{
+    position: relative;
+}
+
+.article-category{
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    opacity: .9;
+}
+
+.box:hover{
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
+}
