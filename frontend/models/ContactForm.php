@@ -94,7 +94,7 @@ class ContactForm extends \yii\db\ActiveRecord
     /**
      * @return bool
      */
-    public static function sendReplyContact()
+    public function sendReplyContact()
     {
         return Yii::$app->mailer->compose()
             ->setFrom(Yii::$app->params['supportEmail'])

@@ -141,6 +141,7 @@ return [
     'Signup'=>'Đăng ký',
     'Enter phone number'=>'Nhập số điện thoại',
     'Confirm password'=>'Xác nhận mật khẩu',
+    'Confirm new password'=>'Xác nhận mật khẩu mới',
     'Enter first and last name'=>'Nhập họ và tên',
     'Please fill in your email. A link to reset the password will be sent there.'=>'Vui lòng điền vào email của bạn. Một liên kết để đặt lại mật khẩu sẽ được gửi đến đó.',
     'Send'=>'Gửi',
@@ -193,5 +194,6 @@ return [
     'Autumn' => 'Mùa thu',
     'Winter' => 'Mùa đông',
     'Password retrieval'=>'Lấy lại mật khẩu',
-    'Register' => 'Đăng ký',
+    'Reset password' => 'Đặt lại mật khẩu',
+    'Resend verification email' => 'Gửi lại email xác minh',
 ];

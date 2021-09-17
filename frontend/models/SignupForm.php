@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use phpDocumentor\Reflection\Types\Integer;
 use Yii;
 use yii\base\Model;
 use common\models\User;
@@ -39,7 +40,7 @@ class SignupForm extends Model
             ['name', 'string', 'max' => 100],
 
             ['tel', 'required', 'message' => Yii::t('app', 'Phone number can not be blank.')],
-            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{10})$/', 'message' => Yii::t('app', 'Includes 11 digits starting with 0 or 84.')],
+            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app', 'Includes 10 digits starting with 0 or 84.')],
         ];
     }
 
@@ -82,7 +83,7 @@ class SignupForm extends Model
                 ['html' => 'emailVerify-html', 'text' => 'emailVerify-text'],
                 ['user' => $user]
             )
-            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
+            ->setFrom(Yii::$app->params['supportEmail'])
             ->setTo($this->email)
             ->setSubject('Account registration at ' . Yii::$app->name)
             ->send();

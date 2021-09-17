@@ -137,10 +137,10 @@ class SiteController extends Controller
     {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
+            if ($model->sendReplyContact() && $model->saveContactData()) {
+                Yii::$app->session->setFlash('contactSuccess', 'Thank you for contacting us. We will respond to you as soon as possible.');
             } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
+                Yii::$app->session->setFlash('contactError', 'There was an error sending your message.');
             }
 
             return $this->refresh();
@@ -189,11 +189,11 @@ class SiteController extends Controller
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', Yii::t('app','Check your email.'));
+                Yii::$app->session->setFlash('requestSuccess', Yii::t('app','Check your email.'));
                 return $this->refresh();
             }
 
-            Yii::$app->session->setFlash('error', Yii::t('app','Sorry, we are unable to reset the password for the email address provided.'));
+            Yii::$app->session->setFlash('requestError', Yii::t('app','Sorry, we are unable to reset the password for the email address provided.'));
         }
 
         return $this->render('requestPasswordResetToken', [
