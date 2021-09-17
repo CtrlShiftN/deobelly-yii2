@@ -38,7 +38,7 @@ class PostController extends \yii\web\Controller
 
     public function beforeAction($action)
     {
-        $this->layout = 'main';
+        $this->layout = 'post';
         if (!parent::beforeAction($action)) {
             return false;
         }
@@ -65,13 +65,9 @@ class PostController extends \yii\web\Controller
         $post = $getQueryAllPost->offset($pages->offset)
             ->limit( SystemConstant::POST_PER_PAGE)
             ->all();
-        $outstandingPosts = Post::getOutstandingPosts();
-        $postCategory = PostCategory::getAllPostCategory();
         return $this->render('index', [
             'post' => $post,
             'pages' => $pages,
-            'outstandingPosts' => $outstandingPosts,
-            'postCategory' => $postCategory
         ]);
     }
 

@@ -142,7 +142,7 @@ return [
     'Fashion Design' => 'Thiết Kế Thời Trang',
     'Fashion Designers' => 'Nhà Thiết Kế Thời Trang',
     'Fashion Events' => 'Sự Kiện Thời Trang',
-    'Fashion Week' => 'Tuần Thời Trang',
+    'Fashion Week' => 'Tuần Lễ Thời Trang',
     'Fashion News' => 'Tin Tức Thời Trang',
     'Fashion Technology' => 'Công Nghệ Thời Trang',
     'Fashion Brand' => 'Thương Hiệu Thời Trang',
@@ -157,4 +157,6 @@ return [
     'Summer' => 'Mùa hè',
     'Autumn' => 'Mùa thu',
     'Winter' => 'Mùa đông',
+    'Latest posts' => 'Bài viết mới nhất',
+    'Category' => 'Danh mục',
 ];

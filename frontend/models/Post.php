@@ -70,24 +70,32 @@ class Post extends \yii\db\ActiveRecord
      */
     public static function getAllPosts($postTag = null, $postCategory = null)
     {
-        $query = (new Query())->select(['p.title', 'p.content', 'p.avatar', 'p.id', 'p.updated_at', 'p.admin_id','p.tag_id', 'pc.title as pc-title', 'pc.id as pc-id'])->from('post as p')
+        $query = (new Query())->select(
+            [
+                'p.*',
+                'pc.title as pc-title',
+                'pc.id as pc-id',
+                'u.name',
+            ]
+        )->from('post as p')
             ->innerJoin('post_category as pc', 'p.post_category_id = pc.id')
-            ->where(['p.status' => 1])
-            ->orderBy('updated_at DESC');
+            ->innerJoin('user as u', 'u.id = p.admin_id')
+            ->where(['p.status' => 1]);
         if (!empty($postTag)) {
-            $query->andWhere(['like' ,'p.tag_id', CryptHelper::decryptString($postTag)]);
+            $query->andWhere(['like', 'p.tag_id', CryptHelper::decryptString($postTag)]);
         }
         if (!empty($postCategory)) {
             $query->andWhere(['p.post_category_id' => CryptHelper::decryptString($postCategory)]);
         }
+        $query->orderBy('updated_at DESC');
         return $query;
     }
 
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getOutstandingPosts()
+    public static function getLatestPosts()
     {
-        return Post::find()->where(['status' => 1])->orderBy('updated_at DESC')->limit(4)->asArray()->all();
+        return Post::find()->where(['status' => 1])->orderBy('updated_at DESC')->limit(5)->asArray()->all();
     }
 }
