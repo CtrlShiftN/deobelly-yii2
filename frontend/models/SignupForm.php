@@ -13,6 +13,7 @@ class SignupForm extends Model
 {
     public $email;
     public $password;
+    public $password_confirm;
     public $name;
     public $tel;
 
@@ -23,29 +24,23 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['email', 'trim'],
-            ['email', 'required'],
+            ['email', 'required', 'message' => Yii::t('app', 'Email can not be blank.')],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => Yii::t('app', 'This email address is already in use.')],
 
-            ['password', 'required'],
+            ['password', 'required', 'message' => Yii::t('app', 'Password can not be blank.')],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
 
-            ['name', 'required'],
-            ['name', 'trim'],
+            ['password_confirm', 'required', 'message' => Yii::t('app', 'Confirm password can not be blank.')],
+            ['password_confirm', 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('app', 'Incorrect password.')],
+
+            ['name', 'required', 'message' => Yii::t('app', 'Name can not be blank.')],
             ['name', 'string', 'max' => 100],
 
-            ['tel', 'trim'],
-            ['tel', 'string', 'max' => 12],
-            ['tel', 'validateTel']
+            ['tel', 'required', 'message' => Yii::t('app', 'Phone number can not be blank.')],
+            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app', 'Includes 10 digits starting with 0 or 84.')],
         ];
-    }
-
-    public function validateTel($attribute, $params, $validator){
-        if (!preg_match('/^(84|0[1-9])+([0-9]{8})$/', $this->tel)){
-            $this->addError($attribute, 'Số điện thoại không hợp lệ');
-        }
     }
 
     /**

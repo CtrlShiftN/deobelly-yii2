@@ -2,31 +2,60 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap4\ActiveForm */
-/* @var $model \frontend\models\SignupForm */
 
-use yii\bootstrap4\Html;
-use yii\bootstrap4\ActiveForm;
+/* @var $model \common\models\LoginForm */
 
-$this->title = 'Signup';
+use yii\bootstrap5\Html;
+use yii\bootstrap5\ActiveForm;
+
+$imgUrl = Yii::$app->params['common'] . "/media";
+$this->title = Yii::t('app', 'Signup');
 $this->params['breadcrumbs'][] = $this->title;
+$config = ['template' => "{input}\n{error}\n{hint}"];
 ?>
-<div class="site-signup">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please fill out the following fields to signup:</p>
-
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
-            <?= $form->field($model, 'name')->textInput(['placeholder' => 'Nhập họ và tên'])->label(false) ?>
-            <?= $form->field($model, 'email')->textInput(['placeholder' => 'Nhập email'])->label(false) ?>
-            <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Mật khẩu'])->label(false) ?>
-            <?= $form->field($model, 'tel')->textInput(['placeholder' => 'Nhập số điện thoại'])->label(false) ?>
-                <div class="form-group">
-                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+<div class="pt-md-5">
+    <div class="row bg-transparent mt-md-5 mt-0 border border-light p-0">
+        <div class="col-6 col-md-6 d-md-block d-none p-0 bg-white">
+            <div class="h-100 d-flex">
+                <div class="align-self-center"><img src="<?= $imgUrl ?>/img-content-login.jpg" class="img-fluid"></div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 px-xl-5 py-0">
+            <div class="mx-md-4 my-md-3 py-4 px-3">
+                <div class="mt-3 mb-4">
+                    <h1 class="fw-bold text-light text-center m-0"><?= Html::encode($this->title) ?></h1>
                 </div>
-
-            <?php ActiveForm::end(); ?>
+                <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+                <div class="mt-2">
+                    <?= $form->field($model, 'name')
+                        ->textInput(['autofocus' => true, 'class' => 'rounded-pill form-control p-3 text-light','placeholder'=> Yii::t('app', 'Enter first and last name')])->label(false)
+                    ?>
+                </div>
+                <div class="mt-2">
+                    <?= $form->field($model, 'tel')
+                        ->textInput(['type' => 'number', 'class' => 'rounded-pill form-control p-3 text-light', 'placeholder' => Yii::t('app', 'Enter phone number')])->label(false) ?>
+                </div>
+                <div class="mt-2">
+                    <?= $form->field($model, 'email')
+                        ->textInput(['type' => 'email', 'class' => 'rounded-pill form-control p-3 text-light', 'placeholder' => Yii::t('app', 'Enter email')])
+                        ->label(false) ?>
+                </div>
+                <div class="mt-2">
+                    <?= $form->field($model, 'password')
+                        ->textInput(['type' => 'password', 'class' => 'rounded-pill form-control p-3 text-light', 'placeholder' => Yii::t('app', 'Enter password')])
+                        ->label(false) ?>
+                </div>
+                <div class="my-2">
+                    <?= $form->field($model, 'password_confirm')
+                        ->textInput(['type' => 'password', 'class' => 'rounded-pill form-control p-3 text-light', 'placeholder' => Yii::t('app', 'Confirm password')])
+                        ->label(false) ?>
+                </div>
+                <?= Html::submitButton(Yii::t('app', 'Register'), ['class' => 'btn btn-light rounded-pill fs-5 text-uppercase w-100 mt-3']) ?>
+                <?php ActiveForm::end(); ?>
+                <div class="my-3 text-light">
+                    <?= Yii::t('app', 'You already have an account ?') ?> <?= Html::a(Yii::t('app', 'Login'), ['/site/login'], ['class' => 'text-decoration-underline one-line text-primary']) ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -4,15 +4,12 @@
 
 /* @var $content string */
 
-use common\widgets\Alert;
 use frontend\assets\AppAsset;
-use yii\bootstrap4\Breadcrumbs;
-use yii\bootstrap4\Html;
-use yii\bootstrap4\Nav;
-use yii\bootstrap4\NavBar;
-use yii\helpers\Url;
+use yii\bootstrap5\Html;
 
 $cdnUrl = Yii::$app->params['frontend'];
+$imgUrl = Yii::$app->params['common']."/media";
+$this->registerCssFile("$cdnUrl/css/login.css");
 
 AppAsset::register($this);
 ?>
@@ -26,10 +23,14 @@ AppAsset::register($this);
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
         <?= $this->render('_blankHead') ?>
+        <?php $this->registerCss("body,html {width:  100%;height:  100vh !important;margin:  0;padding:  0;} 
+            #wrapper { background-image: url('$imgUrl/background-layout.png');min-height: 100%; background-position: top; background-repeat: no-repeat; background-size: cover; }
+            #content,.container{min-height: 100vh; }
+            ::placeholder {color: white !important;}input{background-color: transparent !important;}
+            ") ?>
     </head>
     <body>
     <?php $this->beginBody() ?>
-
     <div id="wrapper">
         <div id="content">
             <div class="container">

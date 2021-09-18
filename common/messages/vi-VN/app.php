@@ -187,7 +187,6 @@ return [
     "Password doesn't match" => 'Mật khẩu không trùng khớp',
     'Password reset token cannot be blank.' => 'Mã thông báo đặt lại mật khẩu không được để trống.',
     'Wrong password reset token.' => 'Mã thông báo đặt lại mật khẩu sai.',
-    'There are no users with this email address.' => 'Không có người dùng nào có địa chỉ email này.',
     'Check your email.' => 'Kiểm tra email của bạn',
     'Sorry, we are unable to reset the password for the email address provided.' => 'Xin lỗi, chúng tôi không thể đặt lại mật khẩu cho địa chỉ email đã cung cấp.',
     'New password saved.' => 'Mật khẩu mới đã được lưu.',
@@ -198,4 +197,6 @@ return [
     'Password retrieval' => 'Lấy lại mật khẩu',
     'Reset password' => 'Đặt lại mật khẩu',
     'Resend verification email' => 'Gửi lại email xác minh',
+    'There is no user with this email address.' => 'Không người dùng nào có địa chỉ email này.',
+    'Incorrect password.' => 'Mật khẩu không chính xác'
 ];

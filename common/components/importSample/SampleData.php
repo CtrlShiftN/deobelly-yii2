@@ -448,7 +448,7 @@ class SampleData
      */
     protected static $postInfoArr = [
         [
-            'avatar' => 'post/avatar/winter-fashion.jpg',
+            'avatar' => 'post/avatar/lacoste-ava.PNG',
             'title' => 'De Obelly Collections 2021 - Lựa chọn hoàn hảo cho mùa hè',
             'slug' => 'de-obelly-collections-2021-lua-chon-hoan-hao-cho-mua-he',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
@@ -472,7 +472,7 @@ class SampleData
             'post_category_id' => 7,
         ],
         [
-            'avatar' => 'post/avatar/winter-fashion.jpg',
+            'avatar' => 'post/avatar/lacoste-ava.PNG',
             'title' => 'Cực chất với bộ sưu tập mùa hè',
             'slug' => 'cuc-chat-voi-bo-suu-tap-mua-he',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
@@ -496,7 +496,7 @@ class SampleData
             'post_category_id' => 7,
         ],
         [
-            'avatar' => 'post/avatar/winter-fashion.jpg',
+            'avatar' => 'post/avatar/lacoste-ava.PNG',
             'title' => 'Community And Style Thrived at the Santa Fe Indian Market',
             'slug' => 'community—and-style—thrived-at-the-santa-fe-indian-market',
             'content' => '<p>Every year, the Santa Fe Indian Market brings in thousands of global tourists and collectors to the city. 
@@ -519,7 +519,7 @@ class SampleData
             'post_category_id' => 4,
         ],
         [
-            'avatar' => 'post/avatar/winter-fashion.jpg',
+            'avatar' => 'post/avatar/lacoste-ava.PNG',
             'title' => '4 "cặp đôi" trang phục cho chàng phong cách ngày hè',
             'slug' => '4-cap-doi-trang-phuc-cho-chang-phong-cach-mua-he',
             'content' => '<p>FashionTEA - Polo - Trang phục kinh điển của cánh mày râu. Tận hưởng mùa hè mát lạnh
@@ -769,7 +769,7 @@ class SampleData
 
     protected static function insertSamplePostCategory()
     {
-        $countpostCate = 0;
+        $countPostCate = 0;
         foreach (self::$postCategoryInfoArr as $value)
         {
             $postCate = new PostCategory();
@@ -779,10 +779,10 @@ class SampleData
             $postCate->updated_at = date('Y-m-d H:m:s');
             if ($postCate->save())
             {
-                $countpostCate++;
+                $countPostCate++;
             }
         }
-        echo "Inserted ".$countpostCate.'/'.count(self::$postCategoryInfoArr).' post category.'.PHP_EOL;
+        echo "Inserted ".$countPostCate.'/'.count(self::$postCategoryInfoArr).' post category.'.PHP_EOL;
     }
 
     /**
