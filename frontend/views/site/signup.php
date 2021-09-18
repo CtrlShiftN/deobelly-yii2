@@ -53,7 +53,7 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                 <?= Html::submitButton(Yii::t('app', 'Register'), ['class' => 'btn btn-light rounded-pill fs-5 text-uppercase w-100 mt-3']) ?>
                 <?php ActiveForm::end(); ?>
                 <div class="my-3 text-light">
-                    <?= Yii::t('app', 'You already have an account ?') ?> <?= Html::a(Yii::t('app', 'Login'), ['/site/login'], ['class' => 'text-decoration-underline one-line text-primary']) ?>
+                    <?= Yii::t('app', 'You already have an account ?') ?> <?= Html::a(Yii::t('app', 'Login'), ['/site/login'], ['class' => 'text-decoration-underline text-primary']) ?>
                 </div>
             </div>
         </div>

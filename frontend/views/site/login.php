@@ -43,11 +43,11 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                 <?php ActiveForm::end(); ?>
                 <div class="mt-3 text-light">
                     <?= Yii::t('app', 'You forgot password ?') ?>
-                    <?= Html::a(Yii::t('app', 'Password retrieval'), ['/site/request-password-reset'], ['class' => 'text-decoration-underline text-primary one-line']) ?>
+                    <?= Html::a(Yii::t('app', 'Password retrieval'), ['/site/request-password-reset'], ['class' => 'text-decoration-underline text-primary']) ?>
                 </div>
                 <div class="mb-3 text-light">
                     <?= Yii::t('app', 'You dont have an account ?') ?>
-                    <?= Html::a(Yii::t('app', 'Signup'), ['/site/signup'], ['class' => 'text-decoration-underline text-primary one-line']) ?>
+                    <?= Html::a(Yii::t('app', 'Signup'), ['/site/signup'], ['class' => 'text-decoration-underline text-primary']) ?>
                 </div>
             </div>
         </div>

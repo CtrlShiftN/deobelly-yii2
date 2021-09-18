@@ -25,18 +25,17 @@ AppAsset::register($this);
         <?= $this->render('_blankHead') ?>
         <?php $this->registerCss("body,html {width:  100%;height:  100vh !important;margin:  0;padding:  0;} 
             #wrapper { background-image: url('$imgUrl/background-layout.png');min-height: 100%; background-position: top; background-repeat: no-repeat; background-size: cover; }
-            #content,.container{min-height: 100vh; }
             ::placeholder {color: white !important;}input{background-color: transparent !important;}
+            .invalid-feedback{padding-left: 17px;}
+            input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none;-moz-appearance: none;appearance: none;margin: 0;}
             ") ?>
     </head>
     <body>
     <?php $this->beginBody() ?>
     <div id="wrapper">
-        <div id="content">
             <div class="container">
                 <?= $content ?>
             </div>
-        </div>
     </div>
     <?php $this->endBody() ?>
     </body>

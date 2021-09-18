@@ -71,7 +71,7 @@ AppAsset::register($this);
                                     <li class="site-nav-top">
                                         <div class="vr mx-2"></div>
                                     </li>
-                                    <li class="site-nav-top"><a href="<?= $cdnUrl ?>/post/index"
+                                    <li class="site-nav-top"><a href="<?= Url::toRoute('post/index') ?>"
                                                                 class="site-nav-top-link"><span><?= Yii::t('app', 'News') ?></span></a>
                                     </li>
                                     <li class="site-nav-top">
@@ -205,7 +205,7 @@ AppAsset::register($this);
                         <div class="main-nav-left col-10 col-sm-10 col-lg-2 text-center text-sm-center text-lg-start">
                             <div class="py-2">
                                 <a href="<?php echo Url::home() ?>" class="logo-align">
-                                    <img src="<?= $cdnUrl ?>/img/logo.png">
+                                    <img src="<?= Url::toRoute('img/logo.png') ?>">
                                 </a>
                             </div>
                         </div>
@@ -247,18 +247,18 @@ AppAsset::register($this);
                                         <div class="dropdown-menu" aria-labelledby="dropdownUserLogin">
                                             <?php if (!Yii::$app->user->isGuest) : ?>
                                                 <div class="dropdown-item"><?php Yii::$app->user->identity->name ?></div>
-                                                <form method="POST" action="<?= $cdnUrl ?>/logout">
+                                                <form method="POST" action="<?= Url::toRoute('/logout') ?>">
                                                     @csrf
-                                                    <a class="dropdown-item" href="<?= $cdnUrl ?>/logout"
+                                                    <a class="dropdown-item" href="<?= Url::toRoute('/logout') ?>"
                                                        onclick="event.preventDefault(); this.closest('form').submit();">{{
                                                         __('Log Out') }}
                                                     </a>
                                                 </form>
                                             <?php else : ?>
                                                 <a class="dropdown-item"
-                                                   href="<?= $cdnUrl ?>/site/login"><?= Yii::t('app', 'Log in') ?></a>
+                                                   href="<?= Url::toRoute('site/login') ?>"><?= Yii::t('app', 'Log in') ?></a>
                                                 <a class="dropdown-item"
-                                                   href="<?= $cdnUrl ?>/site/register"><?= Yii::t('app', 'Register') ?></a>
+                                                   href="<?= Url::toRoute('site/signup') ?>"><?= Yii::t('app', 'Register') ?></a>
                                             <?php endif; ?>
                                         </div>
                                     </div>

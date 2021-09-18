@@ -21,10 +21,10 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
             </div>
         </div>
         <div class="col-12 col-md-6 px-xl-5 py-0">
-            <div class="mx-md-4 my-md-3 py-4 px-3 ">
-                <div class="mt-3 mb-4">
-                    <h1 class="fw-bold text-primary text-center "><?= Html::encode($this->title) ?></h1>
-                    <p class="text-light"><?= Yii::t('app','Please fill in your email. A link to reset the password will be sent there.') ?></p>
+            <div class="mx-md-4 my-md-3 py-4 px-3">
+                <div class="mt-3 mb-4 text-light">
+                    <h1 class="fw-bold text-center"><?= Html::encode($this->title) ?></h1>
+                    <p><?= Yii::t('app','Please fill in your email. A link to reset the password will be sent there.') ?></p>
                 </div>
                 <?php if (Yii::$app->session->hasFlash('requestSuccess')): ?>
                     <div class="alert alert-success alert-dismissible fade show my-3">
@@ -46,7 +46,7 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                 </div>
                 <?= Html::submitButton(Yii::t('app', 'Send'), ['class' => 'btn btn-light rounded-pill fs-5 text-uppercase w-100 mt-3']) ?>
                 <?php ActiveForm::end(); ?>
-                <div class="mb-3 text-light">
+                <div class="my-3 text-light">
                     <?= Html::a(Yii::t('app','Back to login page.'), ['site/login'], ['class' => 'text-decoration-underline text-primary']) ?>
                 </div>
             </div>

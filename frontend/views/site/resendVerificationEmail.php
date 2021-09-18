@@ -21,7 +21,7 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
         </div>
         <div class="col-12 col-md-6 px-xl-5 py-0">
             <div class="mx-md-4 my-md-3 py-4 px-3">
-                <div class="mt-3 mb-4">
+                <div class="mt-3 mb-4 text-light">
                     <h1><?= Html::encode($this->title) ?></h1>
                     <p class="text-light"><?= Yii::t('app','Please fill out your email. A verification email will be sent there.') ?></p>
                 </div>
@@ -33,7 +33,7 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                 </div>
                 <?= Html::submitButton(Yii::t('app', 'Send'), ['class' => 'btn btn-light rounded-pill fs-4 w-100 mt-3']) ?>
                 <?php ActiveForm::end(); ?>
-                <div class="mb-3 text-light">
+                <div class="my-3 text-light">
                     <?= Html::a(Yii::t('app','Back to login page.'), ['site/login'], ['class' => 'text-decoration-underline text-primary']) ?>
                 </div>
             </div>
