@@ -148,7 +148,7 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
             'exportConfig' => $defaultExportConfig,
             'toolbar' => [
                 [
-                    'content' => Html::button('<i class="fas fa-user-plus"></i> ' . Yii::t('app', 'Create new post tags'),
+                    'content' => Html::button('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create new post tags'),
                         [
                             'value' => Url::toRoute('post-tag/create'),
                             'class' => 'btn btn-success',
@@ -172,6 +172,10 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
         <div class="modal fade" id="modalTag" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><?= $this->title ?></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
                     <div class="modal-body modal-tag-content"></div>
                 </div>
             </div>
