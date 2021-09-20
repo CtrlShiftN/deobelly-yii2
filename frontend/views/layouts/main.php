@@ -205,7 +205,7 @@ AppAsset::register($this);
                         <div class="main-nav-left col-10 col-sm-10 col-lg-2 text-center text-sm-center text-lg-start">
                             <div class="py-2">
                                 <a href="<?php echo Url::home() ?>" class="logo-align">
-                                    <img src="<?= Url::toRoute('img/logo.png') ?>">
+                                    <img src="<?= $cdnUrl ?>/img/logo.png">
                                 </a>
                             </div>
                         </div>
@@ -247,13 +247,8 @@ AppAsset::register($this);
                                         <div class="dropdown-menu" aria-labelledby="dropdownUserLogin">
                                             <?php if (!Yii::$app->user->isGuest) : ?>
                                                 <div class="dropdown-item"><?php Yii::$app->user->identity->name ?></div>
-                                                <form method="POST" action="<?= Url::toRoute('/logout') ?>">
-                                                    @csrf
-                                                    <a class="dropdown-item" href="<?= Url::toRoute('/logout') ?>"
-                                                       onclick="event.preventDefault(); this.closest('form').submit();">{{
-                                                        __('Log Out') }}
-                                                    </a>
-                                                </form>
+                                                <a class="dropdown-item"
+                                                   href="<?= Url::toRoute('site/logout') ?>"><?= Yii::t('app', 'Log out') ?></a>
                                             <?php else : ?>
                                                 <a class="dropdown-item"
                                                    href="<?= Url::toRoute('site/login') ?>"><?= Yii::t('app', 'Log in') ?></a>
@@ -265,7 +260,7 @@ AppAsset::register($this);
                                 </li>
                                 <li class="pe-0">
                                     <div class="shopping-cart d-inline pe-0">
-                                        <a href="<?= $cdnUrl ?>/#"><i class="fas fa-shopping-cart fa-lg"></i></a>
+                                        <a href="<?= Url::toRoute('/#') ?>"><i class="fas fa-shopping-cart fa-lg"></i></a>
                                     </div>
                                 </li>
                             </ul>

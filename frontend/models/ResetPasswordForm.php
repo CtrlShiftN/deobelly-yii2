@@ -31,11 +31,11 @@ class ResetPasswordForm extends Model
     public function __construct($token, $config = [])
     {
         if (empty($token) || !is_string($token)) {
-            throw new InvalidArgumentException(Yii::t('app','Password reset token cannot be blank.'));
+            throw new InvalidArgumentException(Yii::t('app', 'Password reset token cannot be blank.'));
         }
         $this->_user = User::findByPasswordResetToken($token);
         if (!$this->_user) {
-            throw new InvalidArgumentException(Yii::t('app','Wrong password reset token.'));
+            throw new InvalidArgumentException(Yii::t('app', 'Wrong password reset token.'));
         }
         parent::__construct($config);
     }
@@ -46,11 +46,11 @@ class ResetPasswordForm extends Model
     public function rules()
     {
         return [
-            ['password', 'required', 'message'=>Yii::t('app','Password can not be blank.')],
+            ['password', 'required', 'message' => Yii::t('app', 'Password can not be blank.')],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
 
-            ['password_confirm', 'required', 'message'=>Yii::t('app','Confirm password can not be blank.')],
-            ['password_confirm', 'compare', 'compareAttribute'=>'password', 'message'=>Yii::t('app','Incorrect password.')],
+            ['password_confirm', 'required', 'message' => Yii::t('app', 'Confirm password can not be blank.')],
+            ['password_confirm', 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('app', 'Incorrect password.')],
         ];
     }
 

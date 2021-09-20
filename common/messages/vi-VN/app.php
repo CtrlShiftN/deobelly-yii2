@@ -48,6 +48,7 @@ return [
     'Suit' => 'Bộ đồ',
     'Gift' => 'Quà tặng',
     'Log in' => 'Đăng nhập',
+    'Log out' => 'Đăng xuất',
     'Register' => 'Đăng ký',
     'ABOUT US' => 'VỀ CHÚNG TÔI',
     'Suplo fashion' => 'Thời trang Suplo',

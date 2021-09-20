@@ -21,7 +21,7 @@ use yii\db\Query;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class Post extends \yii\db\ActiveRecord
+class Post extends \common\models\Post
 {
     /**
      * {@inheritdoc}

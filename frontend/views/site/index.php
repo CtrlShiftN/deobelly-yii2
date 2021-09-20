@@ -418,7 +418,8 @@ $this->registerCss("
             <?php endforeach; ?>
         </div>
         <a href="<?= Url::toRoute('site/post') ?>" class="text-decoration-none linkToProduct d-inline-block px-3">
-            <h5 class="text-uppercase m-0"><i class="far fa-hand-point-right"></i> <?= Yii::t('app', 'View more news') ?></h5>
+            <h5 class="text-uppercase m-0"><i
+                        class="far fa-hand-point-right"></i> <?= Yii::t('app', 'View more news') ?></h5>
         </a>
     </div>
 </div>
