@@ -10,7 +10,6 @@ use yii\helpers\Url;
 
 $cdnUrl = Yii::$app->params['frontend'];
 $imgUrl = Yii::$app->params['common'] . "/media";
-$this->registerCssFile("$cdnUrl/css/login.css");
 
 AppAsset::register($this);
 ?>
