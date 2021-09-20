@@ -14,8 +14,8 @@ class m210827_044029_create_trademark_table extends Migration
     {
         $this->createTable('{{%trademark}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string()->notNull(),
-            'slug' => $this->string()->unique()->notNull(),
+            'name' => $this->string(),
+            'slug' => $this->string()->unique(),
             'status' => $this->smallInteger()->defaultValue(1)->comment('0 for inactive, 1 for active'),
             'admin_id' => $this->bigInteger(),
             'created_at'=>$this->dateTime(),
