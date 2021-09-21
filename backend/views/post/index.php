@@ -182,10 +182,11 @@ $commonUrl = Yii::$app->params['common'];
             'exportConfig' => $defaultExportConfig,
             'toolbar' => [
                 [
-                    'content' => Html::a('<i class="fas fa-user-plus"></i> ' . Yii::t('app', 'Create new post'), ['create'], [
+                    'content' => Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create new post'), ['create'], [
                         'class' => 'btn btn-success',
                         'title' => 'Reset Grid',
                         'data-pjax' => 0,
+                        'target' => '_blank'
                     ]),
                     'options' => ['class' => 'btn-group mr-2']
                 ],
