@@ -24,21 +24,21 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['email', 'required', 'message' => Yii::t('app', 'Email can not be blank.')],
+            ['email', 'required', 'message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
             ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => Yii::t('app', 'This email address is already in use.')],
 
-            ['password', 'required', 'message' => Yii::t('app', 'Password can not be blank.')],
+            ['password', 'required', 'message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
 
-            ['password_confirm', 'required', 'message' => Yii::t('app', 'Confirm password can not be blank.')],
+            ['password_confirm', 'required', 'message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
             ['password_confirm', 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('app', 'Incorrect password.')],
 
-            ['name', 'required', 'message' => Yii::t('app', 'Name can not be blank.')],
+            ['name', 'required', 'message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
             ['name', 'string', 'max' => 100],
 
-            ['tel', 'required', 'message' => Yii::t('app', 'Phone number can not be blank.')],
+            ['tel', 'required', 'message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
             [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app', 'Includes 10 digits starting with 0 or 84.')],
         ];
     }

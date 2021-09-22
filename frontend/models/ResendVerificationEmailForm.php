@@ -21,7 +21,7 @@ class ResendVerificationEmailForm extends Model
     {
         return [
             ['email', 'trim'],
-            ['email', 'required','message'=>Yii::t('app','Email can not be blank.')],
+            ['email', 'required','message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
             ['email', 'email'],
             ['email', 'exist',
                 'targetClass' => '\common\models\User',
