@@ -23,9 +23,9 @@ class LoginForm extends Model
     public function rules()
     {
         return [
-            ['email', 'required', 'message'=>Yii::t('app','Email can not be blank.')],
+            ['email', 'required', 'message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
             ['email', 'email'],
-            ['password','required','message'=>Yii::t('app','Password can not be blank.')],
+            ['password','required','message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             ['password', 'validatePassword'],
@@ -47,6 +47,18 @@ class LoginForm extends Model
                 $this->addError($attribute, Yii::t('app','Incorrect username or password.'));
             }
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'email' => Yii::t('app','Email'),
+            'password' => Yii::t('app','Password'),
+            'rememberMe' => Yii::t('app', 'Remember me')
+        ];
     }
 
     /**

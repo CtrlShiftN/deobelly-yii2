@@ -4,6 +4,7 @@ return [
     'Tel' => 'Số điện thoại',
     'Phone number' => 'Số điện thoại',
     'Address' => 'Địa chỉ',
+    'Password' => 'Mật khẩu',
     'Password Hash' => 'Mật Khẩu',
     'Status' => 'Trạng thái',
     'Role' => 'Vai trò',
@@ -201,5 +202,7 @@ return [
     'There is no user with this email address.' => 'Không người dùng nào có địa chỉ email này.',
     'Incorrect password.' => 'Mật khẩu không chính xác',
     'Add contact' => 'Thêm liên hệ',
-    'Contacts' => 'Liên hệ'
+    'Contacts' => 'Liên hệ',
+    ' can not be blank.' => ' không được bỏ trống.',
+    'Remember me' => 'Nhớ tài khoản'
 ];

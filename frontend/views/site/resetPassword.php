@@ -11,33 +11,79 @@ use yii\bootstrap5\ActiveForm;
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->title = Yii::t('app', 'Change password');
 $this->params['breadcrumbs'][] = $this->title;
-$config = ['template' => "{input}\n{error}\n{hint}"];
+$this->registerCss("
+    ::placeholder {
+        color: #4d4d4d !important;
+    }
+
+    input {
+        background-color: rgba(256, 256, 256, 0.8) !important;
+    }
+
+    .invalid-feedback {
+        padding-left: 17px;
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0;
+    }
+
+    input:focus {
+        box-shadow: none !important;
+    }
+
+    .bg-input-field {
+        background-color: rgba(256, 256, 256, 0.3) !important;
+    }
+");
 ?>
-<div class="pt-md-5">
+<div class="pt-4 pt-md-5">
     <div class="row bg-transparent mt-md-5 mt-0 bg-input-field p-0">
-        <div class="col-lg-6 d-lg-block d-none p-0 bg-white">
-            <div class="h-100 d-flex">
+        <div class="col-lg-7 d-lg-flex d-none p-0 bg-white h-100 align-items-center">
+            <div id="carouselExampleIndicators" class="carousel slide d-lg-block d-none w-100" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="<?= $imgUrl ?>/sale-banner.jpg" class="d-block w-100">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="<?= $imgUrl ?>/2-2-sale.jpg" class="d-block w-100">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="<?= $imgUrl ?>/3-3-sale.jpg" class="d-block w-100">
+                    </div>
+                </div>
+            </div>
+            <div class="h-100 d-flex d-lg-none">
                 <div class="align-self-center"><img src="<?= $imgUrl ?>/img-content-login.jpg" class="img-fluid"></div>
             </div>
         </div>
-        <div class="col-12 col-lg-6 px-xl-5 py-0">
-            <div class="mx-md-4 my-md-3 py-md-4 px-3">
+        <div class="col-12 col-lg-5 px-xl-5 py-0 d-flex align-items-center">
+            <div class="mx-md-4 my-md-3 py-md-4 px-3 w-100">
                 <div class="mt-3 mb-4">
                     <h1 class="fw-bold text-primary text-center m-0"><?= Html::encode($this->title) ?></h1>
                     <p class="my-md-4 my-2 fs-5"><?= Yii::t('app', 'Please enter your new password:') ?></p>
                 </div>
-                <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+                <?php $form = ActiveForm::begin(); ?>
                 <div class="mt-3">
                     <?= $form->field($model, 'password')
-                        ->textInput(['type' => 'password', 'class' => 'rounded-pill form-control p-3 text-light', 'placeholder' => Yii::t('app', 'Enter new password')])
+                        ->textInput(['type' => 'password', 'class' => 'border-0 border-bottom rounded-0 form-control', 'placeholder' => Yii::t('app', 'Enter new password')])
                         ->label(false) ?>
                 </div>
                 <div class="mt-3">
                     <?= $form->field($model, 'password_confirm')
-                        ->textInput(['type' => 'password', 'class' => 'rounded-pill form-control p-3 text-light', 'placeholder' => Yii::t('app', 'Confirm new password')])
+                        ->textInput(['type' => 'password', 'class' => 'border-0 border-bottom rounded-0 form-control', 'placeholder' => Yii::t('app', 'Confirm new password')])
                         ->label(false) ?>
                 </div>
-                <?= Html::submitButton(Yii::t('app', 'Reset password'), ['class' => 'btn btn-light rounded-pill fs-4 w-100 mt-3']) ?>
+                <?= Html::submitButton(Yii::t('app', 'Reset password'), ['class' => 'btn btn-primary rounded-pill fs-4 w-100 mt-3']) ?>
                 <?php ActiveForm::end(); ?>
             </div>
         </div>

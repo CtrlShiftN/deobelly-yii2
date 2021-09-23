@@ -46,10 +46,10 @@ class ResetPasswordForm extends Model
     public function rules()
     {
         return [
-            ['password', 'required', 'message' => Yii::t('app', 'Password can not be blank.')],
+            ['password', 'required', 'message' => '{attribute}' . Yii::t('app', ' can not be blank.')],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
 
-            ['password_confirm', 'required', 'message' => Yii::t('app', 'Confirm password can not be blank.')],
+            ['password_confirm', 'required', 'message' => '{attribute}' . Yii::t('app', ' can not be blank.')],
             ['password_confirm', 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('app', 'Incorrect password.')],
         ];
     }
