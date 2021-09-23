@@ -13,7 +13,6 @@ class SignupForm extends Model
 {
     public $email;
     public $password;
-    public $password_confirm;
     public $name;
     public $tel;
 
@@ -32,9 +31,6 @@ class SignupForm extends Model
             ['password', 'required', 'message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
 
-            ['password_confirm', 'required', 'message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
-            ['password_confirm', 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('app', 'Incorrect password.')],
-
             ['name', 'required', 'message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
             ['name', 'string', 'max' => 100],
 
@@ -47,7 +43,7 @@ class SignupForm extends Model
      * @return bool|null
      * @throws \yii\base\Exception
      */
-    public function signup(): ?bool
+    public function signup()
     {
         if (!$this->validate()) {
             return null;
@@ -67,6 +63,19 @@ class SignupForm extends Model
         $user->updated_at = date('Y-m-d H:m:s');
         $user->status = $user::STATUS_ACTIVE;
         return $user->save();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'email' => Yii::t('app','Email'),
+            'name' => Yii::t('app','Name'),
+            'password' => Yii::t('app','Password'),
+            'tel' => Yii::t('app','Tel'),
+        ];
     }
 
     /**
