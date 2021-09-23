@@ -51,7 +51,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post','get'],
+                    'logout' => ['post', 'get'],
                 ],
             ],
         ];
@@ -194,7 +194,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
                 Yii::$app->session->setFlash('requestSuccess', Yii::t('app', 'Check your email.'));
-                return $this->goHome();
+                return $this->refresh();
             }
 
             Yii::$app->session->setFlash('requestError', Yii::t('app', 'Sorry, we are unable to reset the password for the email address provided.'));

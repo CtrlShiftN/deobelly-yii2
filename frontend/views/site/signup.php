@@ -12,13 +12,13 @@ $imgUrl = Yii::$app->params['common'] . "/media";
 $this->title = Yii::t('app', 'Signup');
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCss("
-            #wrapper {
-                background-image: url('<?= $imgUrl ?>/bg-login-page.jpg');
-                min-height: 100%;
-                background-position: top;
-                background-repeat: no-repeat;
-                background-size: cover;
-            }
+    #wrapper {
+        background-image: url('$imgUrl/bg-login-page.jpg');
+        min-height: 100%;
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
     ::placeholder {
         color: #4d4d4d !important;
     }
@@ -39,7 +39,7 @@ $this->registerCss("
         margin: 0;
     }
 
-    input:focus {
+    input:focus, button:focus {
         box-shadow: none !important;
     }
 
@@ -52,22 +52,25 @@ $this->registerCss("
 ?>
 <div class="pt-4 pt-md-5">
     <div class="row bg-transparent mt-md-5 mt-0 bg-input-field p-0">
-        <div class="col-lg-7 d-lg-flex d-none p-0 bg-white h-100 align-items-center">
-            <div id="carouselExampleIndicators" class="carousel slide d-lg-block d-none w-100" data-bs-ride="carousel">
+        <div class="col-lg-7 d-lg-flex d-none p-0 align-items-center">
+            <div id="carouselExampleIndicators" class="carousel slide w-100" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="<?= $imgUrl ?>/sale-banner.jpg" class="d-block w-100">
+                        <img src="<?= $imgUrl ?>/banner-login-1.jpg" class="d-block w-100">
                     </div>
                     <div class="carousel-item">
-                        <img src="<?= $imgUrl ?>/2-2-sale.jpg" class="d-block w-100">
+                        <img src="<?= $imgUrl ?>/banner-login-2.jpg" class="d-block w-100">
                     </div>
                     <div class="carousel-item">
-                        <img src="<?= $imgUrl ?>/3-3-sale.jpg" class="d-block w-100">
+                        <img src="<?= $imgUrl ?>/banner-login-3.jpg" class="d-block w-100">
                     </div>
                 </div>
             </div>
@@ -75,7 +78,7 @@ $this->registerCss("
                 <div class="align-self-center"><img src="<?= $imgUrl ?>/img-content-login.jpg" class="img-fluid"></div>
             </div>
         </div>
-        <div class="col-12 col-lg-5 px-xl-5 py-0 d-flex align-items-center">
+        <div class="col-12 col-lg-5 px-xl-5 py-0 d-flex align-items-center bg-input-field">
             <div class="mx-md-4 my-md-3 py-md-4 px-3 w-100">
                 <div class="mt-3 mb-4">
                     <h1 class="fw-bold text-center m-0"><?= Html::encode($this->title) ?></h1>
@@ -102,8 +105,9 @@ $this->registerCss("
                 </div>
                 <?= Html::submitButton(Yii::t('app', 'Register'), ['class' => 'btn btn-primary rounded-pill fs-5 text-uppercase w-100 mt-3']) ?>
                 <?php ActiveForm::end(); ?>
-                <div class="my-3">
-                    <?= Yii::t('app', 'You already have an account ?') ?> <?= Html::a(Yii::t('app', 'Login'), ['/site/login'], ['class' => 'text-decoration-underline text-primary']) ?>
+                <div class="my-3 text-center">
+                    <span class="text-secondary"> &mdash; <?= Yii::t('app', 'You already have an account ?') ?>  &mdash;</span>
+                    <?= Html::a(Yii::t('app', 'Login'), ['/site/login'], ['class' => 'btn btn-outline-dark rounded-pill w-100']) ?>
                 </div>
             </div>
         </div>

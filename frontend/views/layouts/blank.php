@@ -30,8 +30,6 @@ AppAsset::register($this);
                 margin: 0;
                 padding: 0;
             }
-
-
         </style>
     </head>
     <body>
