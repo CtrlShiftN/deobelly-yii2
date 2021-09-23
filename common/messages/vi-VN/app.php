@@ -199,5 +199,7 @@ return [
     'Reset password' => 'Đặt lại mật khẩu',
     'Resend verification email' => 'Gửi lại email xác minh',
     'There is no user with this email address.' => 'Không người dùng nào có địa chỉ email này.',
-    'Incorrect password.' => 'Mật khẩu không chính xác'
+    'Incorrect password.' => 'Mật khẩu không chính xác',
+    'Add contact' => 'Thêm liên hệ',
+    'Contacts' => 'Liên hệ'
 ];

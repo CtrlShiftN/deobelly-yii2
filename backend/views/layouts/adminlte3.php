@@ -125,7 +125,7 @@ AppAsset::register($this);
                                class="nav-link <?= ($controller == 'post' || $controller == 'post-tag' || $controller == 'post-category') ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-blog"></i>
                                 <p>
-                                    <?= Yii::t('app', 'Post') ?>
+                                    <?= Yii::t('app', 'Posts') ?>
                                     <i class="right fas fa-angle-right"></i>
                                 </p>
                             </a>
@@ -152,6 +152,12 @@ AppAsset::register($this);
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= Url::toRoute('contact/') ?>" class="nav-link">
+                                <i class="nav-icon fas fa-envelope"></i>
+                                <p><?= Yii::t('app', 'Contact') ?></p>
+                            </a>
                         </li>
                         <li class="nav-header text-uppercase font-weight-bold"><?= Yii::t('app', 'Others') ?></li>
                         <li class="nav-item">
