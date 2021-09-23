@@ -147,10 +147,12 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
             'exportConfig' => $defaultExportConfig,
             'toolbar' => [
                 [
-                    'content' => Html::a('<i class="fas fa-user-plus"></i> '.Yii::t('app','Create new post category'), ['create'], [
+                    'content' => Html::button('<i class="fas fa-plus"></i> '.Yii::t('app','Create new post category'), [
+                        'value' => Url::toRoute('post-category/create'),
                         'class' => 'btn btn-success',
-                        'title' => 'Reset Grid',
-                        'data-pjax' => 0,
+                        'id' => 'modalPostCategoryButton',
+                        'data-bs-toggle' => 'modal',
+                        'data-bs-target' => '#modalCategory'
                     ]),
                     'options' => ['class' => 'btn-group mr-2']
                 ],
@@ -164,5 +166,22 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
         ]);
         Pjax::end();
         ?>
+        <!-- Modal -->
+        <div class="modal fade" id="modalCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><?= $this->title ?></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modal-category-content"></div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $('.modal-category-content').load($('#modalPostCategoryButton').attr('value'));
+            });
+        </script>
     </div>
 </div>

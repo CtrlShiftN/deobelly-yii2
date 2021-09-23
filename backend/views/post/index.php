@@ -9,9 +9,9 @@ use yii\widgets\Pjax;
 /* @var $searchModel backend\models\PostSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app','Posts');
+$this->title = Yii::t('app', 'Posts');
 $this->params['breadcrumbs'][] = $this->title;
-$arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
+$arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
 $commonUrl = Yii::$app->params['common'];
 ?>
 <div class="posts-index">
@@ -27,7 +27,7 @@ $commonUrl = Yii::$app->params['common'];
                 'showFooter' => true,
                 'showCaption' => true,
                 'filename' => 'grid-export',
-                'alertMsg' => Yii::t('app','The EXCEL export file will be generated for download.'),
+                'alertMsg' => Yii::t('app', 'The EXCEL export file will be generated for download.'),
                 'options' => ['title' => 'Microsoft Excel 95+'],
                 'mime' => 'application/vnd.ms-excel',
                 'config' => [
@@ -50,7 +50,7 @@ $commonUrl = Yii::$app->params['common'];
                 'hAlign' => 'center',
                 'width' => '140px',
                 'value' => function ($model, $key, $index, $widget) use ($commonUrl) {
-                    return Html::img($commonUrl . '/media/' . $model['avatar'], ['width' => '120px', 'height' => '120px', 'alt' => $model['title']]);
+                    return Html::img($commonUrl . '/media/' . $model['avatar'], ['width' => '100%', 'alt' => $model['title']]);
                 },
                 'filter' => false,
                 'format' => 'raw'
@@ -58,7 +58,7 @@ $commonUrl = Yii::$app->params['common'];
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'title',
-                'label' => Yii::t('app','Title'),
+                'label' => Yii::t('app', 'Title'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) {
@@ -72,7 +72,7 @@ $commonUrl = Yii::$app->params['common'];
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'slug',
-                'label' => Yii::t('app','Slug'),
+                'label' => Yii::t('app', 'Slug'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) {
@@ -82,26 +82,27 @@ $commonUrl = Yii::$app->params['common'];
                 'editableOptions' => [
                     'asPopover' => false,
                 ],
+                'filter' => false
             ],
             [
-                'class' => 'kartik\grid\EditableColumn',
+//                'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'content',
-                'label' => Yii::t('app','Content'),
+                'label' => Yii::t('app', 'Content'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) {
-                    return $model['content'];
+                    return substr($model['content'], 0, 200) . '...';
                 },
                 // edit field
-                'editableOptions' => [
-                    'asPopover' => false,
-                ],
-                'format'=>'raw'
+//                'editableOptions' => [
+//                    'asPopover' => false,
+//                ],
+                'format' => 'raw'
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'status',
-                'label' => Yii::t('app','Status'),
+                'label' => Yii::t('app', 'Status'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',
@@ -112,7 +113,7 @@ $commonUrl = Yii::$app->params['common'];
                     return [
                         'name' => 'status',
                         'asPopover' => false,
-                        'header' => Yii::t('app','Status'),
+                        'header' => Yii::t('app', 'Status'),
                         'size' => 'md',
                         'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
                         'data' => $arrStatus,
@@ -126,11 +127,11 @@ $commonUrl = Yii::$app->params['common'];
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
-                'filterInputOptions' => ['placeholder' => '-- '.Yii::t('app','Status').' --']
+                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Status') . ' --']
             ],
             [
                 'attribute' => 'created_at',
-                'label' => Yii::t('app','Created_at'),
+                'label' => Yii::t('app', 'Created_at'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'filter' => false,
@@ -138,14 +139,14 @@ $commonUrl = Yii::$app->params['common'];
                 'format' => 'raw'
             ],
             [
-                'label' => Yii::t('app','Actions'),
+                'label' => Yii::t('app', 'Actions'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) {
                     return Html::a('Xóa', Url::toRoute(['post/delete', 'id' => $key]), ['class' => 'btn btn-danger', 'data' => [
                         'method' => 'post',
-                        'confirm' => Yii::t('app','Are you sure you want to delete this item?'),
+                        'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                     ],]);
                 },
                 'format' => 'raw'
@@ -165,7 +166,7 @@ $commonUrl = Yii::$app->params['common'];
             // set export properties
             'export' => [
                 'fontAwesome' => true,
-                'label' => '<i class="far fa-file-alt"></i> '.Yii::t('app','Export files'),
+                'label' => '<i class="far fa-file-alt"></i> ' . Yii::t('app', 'Export files'),
             ],
             'responsive' => true,
             'persistResize' => false,
@@ -181,10 +182,11 @@ $commonUrl = Yii::$app->params['common'];
             'exportConfig' => $defaultExportConfig,
             'toolbar' => [
                 [
-                    'content' => Html::a('<i class="fas fa-user-plus"></i> '.Yii::t('app','Create new post'), ['create'], [
+                    'content' => Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create new post'), ['create'], [
                         'class' => 'btn btn-success',
                         'title' => 'Reset Grid',
                         'data-pjax' => 0,
+                        'target' => '_blank'
                     ]),
                     'options' => ['class' => 'btn-group mr-2']
                 ],
@@ -193,7 +195,7 @@ $commonUrl = Yii::$app->params['common'];
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
-                'heading' => Yii::t('app','Posts list'),
+                'heading' => Yii::t('app', 'Posts list'),
             ],
         ]);
         Pjax::end();

@@ -246,14 +246,8 @@ AppAsset::register($this);
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownUserLogin">
                                             <?php if (!Yii::$app->user->isGuest) : ?>
-                                                <div class="dropdown-item"><?php Yii::$app->user->identity->name ?></div>
-                                                <form method="POST" action="<?= $cdnUrl ?>/logout">
-                                                    @csrf
-                                                    <a class="dropdown-item" href="<?= $cdnUrl ?>/logout"
-                                                       onclick="event.preventDefault(); this.closest('form').submit();">{{
-                                                        __('Log Out') }}
-                                                    </a>
-                                                </form>
+                                                <div class="dropdown-item"><?= Yii::$app->user->identity->name ?></div>
+                                                <a class="dropdown-item" href="<?= Url::toRoute('logout') ?>"></a>
                                             <?php else : ?>
                                                 <a class="dropdown-item"
                                                    href="<?= $cdnUrl ?>/site/login"><?= Yii::t('app', 'Log in') ?></a>
