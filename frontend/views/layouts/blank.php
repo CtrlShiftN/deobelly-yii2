@@ -31,13 +31,7 @@ AppAsset::register($this);
                 padding: 0;
             }
 
-            #wrapper {
-                background-image: url('<?= $imgUrl ?>/bg-login-page.jpg');
-                min-height: 100%;
-                background-position: top;
-                background-repeat: no-repeat;
-                background-size: cover;
-            }
+
         </style>
     </head>
     <body>

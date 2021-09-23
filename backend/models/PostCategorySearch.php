@@ -67,6 +67,8 @@ class PostCategorySearch extends PostCategory
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'slug', $this->slug]);
 
+        $query->orderBy('created_at DESC');
+
         return $dataProvider;
     }
 }

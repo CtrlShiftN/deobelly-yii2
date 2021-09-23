@@ -12,6 +12,13 @@ $imgUrl = Yii::$app->params['common'] . "/media";
 $this->title = Yii::t('app', 'Signup');
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCss("
+            #wrapper {
+                background-image: url('<?= $imgUrl ?>/bg-login-page.jpg');
+                min-height: 100%;
+                background-position: top;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
     ::placeholder {
         color: #4d4d4d !important;
     }

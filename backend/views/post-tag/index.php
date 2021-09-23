@@ -11,7 +11,7 @@ use yii\widgets\Pjax;
 
 $this->title = Yii::t('app', 'Post Tags');
 $this->params['breadcrumbs'][] = $this->title;
-$arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
+$arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
 ?>
 <div class="posts-tag-index">
     <div class="pt-3">
@@ -26,7 +26,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
                 'showFooter' => true,
                 'showCaption' => true,
                 'filename' => 'grid-export',
-                'alertMsg' => Yii::t('app','The EXCEL export file will be generated for download.'),
+                'alertMsg' => Yii::t('app', 'The EXCEL export file will be generated for download.'),
                 'options' => ['title' => 'Microsoft Excel 95+'],
                 'mime' => 'application/vnd.ms-excel',
                 'config' => [
@@ -44,7 +44,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'title',
-                'label' => Yii::t('app','Title'),
+                'label' => Yii::t('app', 'Title'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) {
@@ -68,7 +68,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'status',
-                'label' => Yii::t('app','Status'),
+                'label' => Yii::t('app', 'Status'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',
@@ -79,7 +79,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
                     return [
                         'name' => 'status',
                         'asPopover' => false,
-                        'header' => Yii::t('app','Status'),
+                        'header' => Yii::t('app', 'Status'),
                         'size' => 'md',
                         'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
                         'data' => $arrStatus,
@@ -93,11 +93,11 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
-                'filterInputOptions' => ['placeholder' => '-- '.Yii::t('app','Status').' --']
+                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Status') . ' --']
             ],
             [
                 'attribute' => 'created_at',
-                'label' => Yii::t('app','Created_at'),
+                'label' => Yii::t('app', 'Created_at'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'filter' => false,
@@ -105,19 +105,20 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
                 'format' => 'raw'
             ],
             [
-                'label' => Yii::t('app','Actions'),
+                'label' => Yii::t('app', 'Actions'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) {
                     return Html::a('Xóa', Url::toRoute(['post-tag/delete', 'id' => $key]), ['class' => 'btn btn-danger', 'data' => [
                         'method' => 'post',
-                        'confirm' => Yii::t('app','Are you sure you want to delete this item?'),
+                        'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                     ],]);
                 },
                 'format' => 'raw'
             ]
         ];
+
         Pjax::begin();
         echo GridView::widget([
             'id' => 'gridview',
@@ -131,7 +132,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
             // set export properties
             'export' => [
                 'fontAwesome' => true,
-                'label' => '<i class="far fa-file-alt"></i>  '.Yii::t('app','Export files'),
+                'label' => '<i class="far fa-file-alt"></i>  ' . Yii::t('app', 'Export files'),
             ],
             'responsive' => true,
             'persistResize' => false,
@@ -147,11 +148,14 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
             'exportConfig' => $defaultExportConfig,
             'toolbar' => [
                 [
-                    'content' => Html::a('<i class="fas fa-user-plus"></i> '.Yii::t('app','Create new post tags'), ['create'], [
-                        'class' => 'btn btn-success',
-                        'title' => 'Reset Grid',
-                        'data-pjax' => 0,
-                    ]),
+                    'content' => Html::button('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create new post tags'),
+                        [
+                            'value' => Url::toRoute('post-tag/create'),
+                            'class' => 'btn btn-success',
+                            'id' => 'modalPostTagButton',
+                            'data-bs-toggle' => 'modal',
+                            'data-bs-target' => '#modalTag'
+                        ]),
                     'options' => ['class' => 'btn-group mr-2']
                 ],
                 '{export}',
@@ -159,10 +163,27 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
-                'heading' => Yii::t('app','Post tags list'),
+                'heading' => Yii::t('app', 'Post tags list'),
             ],
         ]);
         Pjax::end();
         ?>
+        <!-- Modal -->
+        <div class="modal fade" id="modalTag" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><?= $this->title ?></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modal-tag-content"></div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $('.modal-tag-content').load($('#modalPostTagButton').attr('value'));
+            });
+        </script>
     </div>
 </div>
