@@ -26,22 +26,22 @@ $this->registerCss("
     <div class="row bg-transparent mt-md-5 mt-0 p-0">
         <div class="col-lg-6 col-xl-7 d-lg-flex d-none">
         </div>
-        <div class="col-12 col-lg-6 col-xl-5 px-xl-5 py-0 d-flex align-items-center bg-input-field">
+        <div class="col-12 col-lg-6 col-xl-5 py-0 d-flex align-items-center bg-input-field">
             <div class="mx-md-4 my-md-3 py-md-4 p-3 w-100 text-center">
-                <div class="border-bottom mb-3 pb-3">
-                    <h1><?= Html::encode($this->title) ?></h1>
-                    <p class="text-light"><?= Yii::t('app', 'Please fill out your email. A verification email will be sent there.') ?></p>
+                <div class="my-3">
+                    <h4 class="text-center text-uppercase m-0 text-secondary line-title"><?= Html::encode($this->title) ?></h4>
+                    <p><?= Yii::t('app', 'Please fill in your email. A link to reset the password will be sent there.') ?></p>
                 </div>
                 <?php $form = ActiveForm::begin(); ?>
-                <div class="my-3">
+                <div class="my-4">
                     <?= $form->field($model, 'email')
-                        ->textInput(['type' => 'email', 'class' => 'border-0 border-bottom rounded-0 form-control', 'placeholder' => Yii::t('app', 'Enter new password')])
+                        ->textInput(['type' => 'email', 'class' => 'border-0 border-bottom rounded-0 form-control py-2', 'placeholder' => Yii::t('app', 'Enter new password')])
                         ->label(false) ?>
                 </div>
                 <?= Html::submitButton(Yii::t('app', 'Send'), ['class' => 'btn btn-primary rounded-pill fs-4 w-100 mt-3']) ?>
                 <?php ActiveForm::end(); ?>
-                <div class="my-3">
-                    <?= Html::a(Yii::t('app', 'Back to login page.'), ['site/login'], ['class' => 'btn btn-outline-dark rounded-pill w-100']) ?>
+                <div class="my-3 text-center">
+                    <?= Html::a(Yii::t('app', 'Back to login page.'), ['site/login'], ['class' => 'text-primary text-decoration-none']) ?>
                 </div>
             </div>
         </div>

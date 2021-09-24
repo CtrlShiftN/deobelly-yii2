@@ -166,6 +166,7 @@ return [
     'Enter password' => 'Nhập mật khẩu',
     'You forgot password ?' => 'Bạn quên mật khẩu ?',
     'You dont have an account ?' => 'Bạn chưa có tài khoản ?',
+    'Forgot password?' => 'Quên mật khẩu?',
     'Forgot password' => 'Quên mật khẩu',
     'Signup' => 'Đăng ký',
     'Enter phone number' => 'Nhập số điện thoại',
@@ -204,5 +205,7 @@ return [
     'Add contact' => 'Thêm liên hệ',
     'Contacts' => 'Liên hệ',
     ' can not be blank.' => ' không được bỏ trống.',
-    'Remember me' => 'Nhớ tài khoản'
+    'Remember me' => 'Nhớ tài khoản',
+    'Login with' => 'Đăng nhập với',
+    'Or' => 'Hoặc',
 ];
