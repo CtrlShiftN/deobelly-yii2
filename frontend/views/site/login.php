@@ -52,8 +52,8 @@ $this->registerCss("
 ");
 ?>
 <div class="pt-4 pt-md-5">
-    <div class="row bg-transparent mt-md-5 mt-0 bg-input-field p-0">
-        <div class="col-lg-7 d-lg-flex d-none p-0 align-items-center">
+    <div class="row bg-transparent mt-md-5 mt-0 p-0">
+        <div class="col-lg-7 d-lg-flex d-none p-0 align-items-center bg-transparent">
             <div id="carouselExampleIndicators" class="carousel slide w-100" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
