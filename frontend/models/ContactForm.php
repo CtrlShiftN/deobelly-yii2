@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use common\components\SystemConstant;
+use common\models\Contact;
 use Yii;
 
 /**
@@ -18,7 +19,7 @@ use Yii;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class ContactForm extends \yii\db\ActiveRecord
+class ContactForm extends Contact
 {
     /**
      * {@inheritdoc}
@@ -48,7 +49,7 @@ class ContactForm extends \yii\db\ActiveRecord
 
             ['tel', 'integer', 'message' => Yii::t('app', 'Invalid phone number.')],
             ['tel', 'required', 'message' => Yii::t('app', 'Phone number can not be blank.')],
-            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{10})$/', 'message' => Yii::t('app', 'Includes 11 digits starting with 0 or 84.')],
+            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app', 'Includes 10 digits starting with 0 or 84.')],
         ];
     }
 

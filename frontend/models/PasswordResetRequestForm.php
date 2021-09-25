@@ -21,13 +21,23 @@ class PasswordResetRequestForm extends Model
     {
         return [
             ['email', 'trim'],
-            ['email', 'required'],
+            ['email', 'required', 'message' => '{attribute}' . Yii::t('app', ' can not be blank.')],
             ['email', 'email'],
             ['email', 'exist',
                 'targetClass' => '\common\models\User',
                 'filter' => ['status' => User::STATUS_ACTIVE],
-                'message' => 'There is no user with this email address.'
+                'message' => Yii::t('app', 'There is no user with this email address.')
             ],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'email' => Yii::t('app','Email'),
         ];
     }
 
@@ -35,6 +45,7 @@ class PasswordResetRequestForm extends Model
      * Sends an email with a link, for resetting the password.
      *
      * @return bool whether the email was send
+     * @throws \yii\base\Exception
      */
     public function sendEmail()
     {
@@ -47,7 +58,7 @@ class PasswordResetRequestForm extends Model
         if (!$user) {
             return false;
         }
-        
+
         if (!User::isPasswordResetTokenValid($user->password_reset_token)) {
             $user->generatePasswordResetToken();
             if (!$user->save()) {

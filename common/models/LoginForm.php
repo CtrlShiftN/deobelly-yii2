@@ -23,11 +23,11 @@ class LoginForm extends Model
     public function rules()
     {
         return [
-            // username and password are both required
-            [['email', 'password'], 'required'],
+            ['email', 'required', 'message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
+            ['email', 'email'],
+            ['password','required','message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
-            // password is validated by validatePassword()
             ['password', 'validatePassword'],
         ];
     }
@@ -44,9 +44,21 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, Yii::t('app','Incorrect username or password.'));
             }
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'email' => Yii::t('app','Email'),
+            'password' => Yii::t('app','Password'),
+            'rememberMe' => Yii::t('app', 'Remember me')
+        ];
     }
 
     /**
@@ -73,7 +85,6 @@ class LoginForm extends Model
         if ($this->_user === null) {
             $this->_user = User::findByEmail($this->email);
         }
-
         return $this->_user;
     }
 

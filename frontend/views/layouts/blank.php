@@ -4,15 +4,12 @@
 
 /* @var $content string */
 
-use common\widgets\Alert;
 use frontend\assets\AppAsset;
-use yii\bootstrap4\Breadcrumbs;
-use yii\bootstrap4\Html;
-use yii\bootstrap4\Nav;
-use yii\bootstrap4\NavBar;
+use yii\bootstrap5\Html;
 use yii\helpers\Url;
 
 $cdnUrl = Yii::$app->params['frontend'];
+$imgUrl = Yii::$app->params['common'] . "/media";
 
 AppAsset::register($this);
 ?>
@@ -26,15 +23,20 @@ AppAsset::register($this);
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
         <?= $this->render('_blankHead') ?>
+        <style>
+            body, html {
+                width: 100%;
+                height: 100vh !important;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
     </head>
     <body>
     <?php $this->beginBody() ?>
-
     <div id="wrapper">
-        <div id="content">
-            <div class="container">
-                <?= $content ?>
-            </div>
+        <div class="container">
+            <?= $content ?>
         </div>
     </div>
     <?php $this->endBody() ?>

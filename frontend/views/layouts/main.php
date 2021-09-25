@@ -246,20 +246,22 @@ AppAsset::register($this);
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownUserLogin">
                                             <?php if (!Yii::$app->user->isGuest) : ?>
-                                                <div class="dropdown-item"><?= Yii::$app->user->identity->name ?></div>
-                                                <a class="dropdown-item" href="<?= Url::toRoute('logout') ?>"></a>
+                                                <div class="dropdown-item"><?php Yii::$app->user->identity->name ?></div>
+                                                <a class="dropdown-item"
+                                                   href="<?= Url::toRoute('site/logout') ?>"><?= Yii::t('app', 'Log out') ?></a>
                                             <?php else : ?>
                                                 <a class="dropdown-item"
-                                                   href="<?= $cdnUrl ?>/site/login"><?= Yii::t('app', 'Log in') ?></a>
+                                                   href="<?= Url::toRoute('site/login') ?>"><?= Yii::t('app', 'Log in') ?></a>
                                                 <a class="dropdown-item"
-                                                   href="<?= $cdnUrl ?>/site/register"><?= Yii::t('app', 'Register') ?></a>
+                                                   href="<?= Url::toRoute('site/signup') ?>"><?= Yii::t('app', 'Register') ?></a>
                                             <?php endif; ?>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="pe-0">
                                     <div class="shopping-cart d-inline pe-0">
-                                        <a href="<?= $cdnUrl ?>/#"><i class="fas fa-shopping-cart fa-lg"></i></a>
+                                        <a href="<?= Url::toRoute('/#') ?>"><i
+                                                    class="fas fa-shopping-cart fa-lg"></i></a>
                                     </div>
                                 </li>
                             </ul>
