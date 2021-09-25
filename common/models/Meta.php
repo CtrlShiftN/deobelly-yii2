@@ -10,8 +10,6 @@ use Yii;
  * @property int $id
  * @property string|null $key
  * @property string|null $value
- * @property string|null $created
- * @property string|null $updated
  */
 class Meta extends \yii\db\ActiveRecord
 {
@@ -29,7 +27,6 @@ class Meta extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['created', 'updated'], 'safe'],
             [['key', 'value'], 'string', 'max' => 255],
             [['key'], 'unique'],
         ];
@@ -41,11 +38,9 @@ class Meta extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'key' => 'Key',
-            'value' => 'Value',
-            'created' => 'Created',
-            'updated' => 'Updated',
+            'id' => Yii::t('app', 'ID'),
+            'key' => Yii::t('app', 'Key'),
+            'value' => Yii::t('app', 'Value'),
         ];
     }
 }
