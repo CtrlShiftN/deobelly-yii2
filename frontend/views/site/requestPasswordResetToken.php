@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile(Url::toRoute("/css/login.css"));
 $this->registerCss("
 #wrapper {
-    background-image: url('$imgUrl/bg-login-page.jpg');
+    background-image: url('$imgUrl/wp6447583.jpg');
     min-height: 100%;
     background-position: top;
     background-repeat: no-repeat;

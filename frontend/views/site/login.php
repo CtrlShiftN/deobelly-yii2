@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile(Url::toRoute("/css/login.css"));
 $this->registerCss("
 #wrapper {
-    background-image: url('$imgUrl/bg-login-page.jpg');
+    background-image: url('$imgUrl/wp6447583.jpg');
     min-height: 100%;
     background-position: top;
     background-repeat: no-repeat;
@@ -24,11 +24,11 @@ $this->registerCss("
 }
 ");
 ?>
-<div class="pt-4 pt-md-5">
+<div class="pt-sm-4 pt-md-5">
     <div class="row bg-transparent mt-md-5 mt-0 p-0">
         <div class="col-lg-6 col-xl-7 d-lg-flex d-none">
         </div>
-        <div class="col-12 col-lg-6 col-xl-5 py-0 d-flex align-items-center bg-input-field">
+        <div class="col-12 col-lg-6 col-xl-5 py-sm-0 py-4 d-flex align-items-center bg-input-field">
             <div class="mx-md-4 my-md-3 py-md-4 p-3 w-100">
                 <div class="my-3">
                     <h4 class="text-center text-uppercase m-0 text-secondary line-title"><?= Yii::t('app','Login with') ?></h4>
@@ -50,12 +50,12 @@ $this->registerCss("
                 <?php $form = ActiveForm::begin(); ?>
                 <div class="mt-3">
                     <?= $form->field($model, 'email')
-                        ->textInput(['autofocus' => true, 'class' => 'border-0 border-bottom rounded-0 form-control py-2', 'placeholder' => Yii::t('app', 'Enter email')])
+                        ->textInput(['autofocus' => true, 'class' => 'border-0 border-bottom rounded-0 form-control', 'placeholder' => Yii::t('app', 'Enter email')])
                         ->label(false) ?>
                 </div>
                 <div class="mt-3">
                     <?= $form->field($model, 'password')
-                        ->textInput(['type' => 'password', 'class' => 'border-0 border-bottom rounded-0 form-control py-2', 'placeholder' => Yii::t('app', 'Enter password')])
+                        ->textInput(['type' => 'password', 'class' => 'border-0 border-bottom rounded-0 form-control', 'placeholder' => Yii::t('app', 'Enter password')])
                         ->label(false) ?>
                 </div>
                 <div class="row m-0 p-0 mt-3">

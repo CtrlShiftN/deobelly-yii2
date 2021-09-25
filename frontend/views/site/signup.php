@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile(Url::toRoute("/css/login.css"));
 $this->registerCss("
 #wrapper {
-    background-image: url('$imgUrl/bg-login-page.jpg');
+    background-image: url('$imgUrl/wp6447583.jpg');
     min-height: 100%;
     background-position: top;
     background-repeat: no-repeat;
@@ -35,25 +35,39 @@ $this->registerCss("
                 <?php $form = ActiveForm::begin(); ?>
                 <div class="mt-2">
                     <?= $form->field($model, 'name')
-                        ->textInput(['autofocus' => true, 'class' => 'border-0 border-bottom rounded-0 form-control py-2', 'placeholder' => Yii::t('app', 'Enter first and last name')])->label(false)
+                        ->textInput(['autofocus' => true, 'class' => 'border-0 border-bottom border-secondary rounded-0 form-control', 'placeholder' => Yii::t('app', 'Enter first and last name')])->label(false)
                     ?>
                 </div>
                 <div class="mt-2">
                     <?= $form->field($model, 'tel')
-                        ->textInput(['type' => 'number', 'class' => 'border-0 border-bottom rounded-0 form-control py-2', 'placeholder' => Yii::t('app', 'Enter phone number')])->label(false) ?>
+                        ->textInput(['type' => 'number', 'class' => 'border-0 border-bottom border-secondary rounded-0 form-control', 'placeholder' => Yii::t('app', 'Enter phone number')])->label(false) ?>
                 </div>
                 <div class="mt-2">
                     <?= $form->field($model, 'email')
-                        ->textInput(['type' => 'email', 'class' => 'border-0 border-bottom rounded-0 form-control py-2', 'placeholder' => Yii::t('app', 'Enter email')])
+                        ->textInput(['type' => 'email', 'class' => 'border-0 border-bottom border-secondary rounded-0 form-control', 'placeholder' => Yii::t('app', 'Enter email')])
                         ->label(false) ?>
                 </div>
                 <div class="mt-2">
                     <?= $form->field($model, 'password')
-                        ->textInput(['type' => 'password', 'class' => 'border-0 border-bottom rounded-0 form-control py-2', 'placeholder' => Yii::t('app', 'Enter password')])
+                        ->textInput(['type' => 'password', 'class' => 'border-0 border-bottom border-secondary rounded-0 form-control', 'placeholder' => Yii::t('app', 'Enter password')])
                         ->label(false) ?>
                 </div>
                 <?= Html::submitButton(Yii::t('app', 'Register'), ['class' => 'btn btn-primary rounded-pill fs-5 text-uppercase w-100 mt-3']) ?>
                 <?php ActiveForm::end(); ?>
+                <div class="my-3">
+                    <h4 class="text-center text-uppercase m-0 text-secondary line-title"><?= Yii::t('app','Or') ?></h4>
+                </div>
+                <div class="row mx-0 my-3 p-0">
+                    <div class="col-12 col-sm-4 m-0 p-1">
+                        <a class="col-12 btn btn-primary py-2"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    </div>
+                    <div class="col-12 col-sm-4 m-0 p-1">
+                        <a class="col-12 btn btn-danger py-2"><i class="fab fa-google"></i> Google</a>
+                    </div>
+                    <div class="col-12 col-sm-4 m-0 p-1">
+                        <a class="col-12 btn btn-success py-2"><i class="fas fa-phone"></i> Phone</a>
+                    </div>
+                </div>
                 <div class="my-3 text-center">
                     <span class="text-secondary"><?= Yii::t('app', 'You already have an account ?') ?> <?= Html::a(Yii::t('app', 'Login'), ['/site/login'], ['class' => 'text-primary text-decoration-none']) ?></span>
                 </div>
