@@ -159,4 +159,6 @@ return [
     'Winter' => 'Mùa đông',
     'Latest posts' => 'Bài viết mới nhất',
     'Category' => 'Danh mục',
+    'About us' => 'Liên hệ',
+    'Our stories' => 'Giới thiệu'
 ];

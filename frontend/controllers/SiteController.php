@@ -274,11 +274,18 @@ class SiteController extends Controller
         ]);
     }
 
+    /**
+     * @return string
+     */
     public function actionTerms()
     {
         $getTerms = Terms::getTermsAndServices();
         return $this->render('terms', [
             'terms' => $getTerms,
         ]);
+    }
+
+    public function actionOurStories(){
+        return $this->render('ourStories');
     }
 }
