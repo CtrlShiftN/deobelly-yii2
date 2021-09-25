@@ -23,36 +23,27 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['email', 'trim'],
-            ['email', 'required'],
+            ['email', 'required', 'message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => Yii::t('app', 'This email address is already in use.')],
 
-            ['password', 'required'],
+            ['password', 'required', 'message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
 
-            ['name', 'required'],
-            ['name', 'trim'],
+            ['name', 'required', 'message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
             ['name', 'string', 'max' => 100],
 
-            ['tel', 'trim'],
-            ['tel', 'string', 'max' => 12],
-            ['tel', 'validateTel']
+            ['tel', 'required', 'message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
+            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app', 'Includes 10 digits starting with 0 or 84.')],
         ];
-    }
-
-    public function validateTel($attribute, $params, $validator){
-        if (!preg_match('/^(84|0[1-9])+([0-9]{8})$/', $this->tel)){
-            $this->addError($attribute, 'Số điện thoại không hợp lệ');
-        }
     }
 
     /**
      * @return bool|null
      * @throws \yii\base\Exception
      */
-    public function signup(): ?bool
+    public function signup()
     {
         if (!$this->validate()) {
             return null;
@@ -72,6 +63,19 @@ class SignupForm extends Model
         $user->updated_at = date('Y-m-d H:m:s');
         $user->status = $user::STATUS_ACTIVE;
         return $user->save();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'email' => Yii::t('app','Email'),
+            'name' => Yii::t('app','Name'),
+            'password' => Yii::t('app','Password'),
+            'tel' => Yii::t('app','Tel'),
+        ];
     }
 
     /**

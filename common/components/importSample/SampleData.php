@@ -769,7 +769,7 @@ class SampleData
 
     protected static function insertSamplePostCategory()
     {
-        $countpostCate = 0;
+        $countPostCate = 0;
         foreach (self::$postCategoryInfoArr as $value)
         {
             $postCate = new PostCategory();
@@ -779,10 +779,10 @@ class SampleData
             $postCate->updated_at = date('Y-m-d H:m:s');
             if ($postCate->save())
             {
-                $countpostCate++;
+                $countPostCate++;
             }
         }
-        echo "Inserted ".$countpostCate.'/'.count(self::$postCategoryInfoArr).' post category.'.PHP_EOL;
+        echo "Inserted ".$countPostCate.'/'.count(self::$postCategoryInfoArr).' post category.'.PHP_EOL;
     }
 
     /**
