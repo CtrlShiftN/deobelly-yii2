@@ -2,15 +2,14 @@
 
 namespace frontend\models;
 
-use common\models\Products;
 use Yii;
 
 /**
- * This is the model class for table "products".
+ * This is the model class for table "product".
  *
  * @property int $id
- * @property string|null $name
- * @property string|null $slug
+ * @property string $name
+ * @property string $slug
  * @property string|null $short_description
  * @property string $description
  * @property float $cost_price
@@ -30,14 +29,14 @@ use Yii;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class ProductsSearch extends Products
+class Product extends \common\models\Product
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'products';
+        return 'product';
     }
 
     /**
@@ -46,7 +45,7 @@ class ProductsSearch extends Products
     public function rules()
     {
         return [
-            [['description', 'cost_price', 'regular_price', 'image', 'category_id'], 'required'],
+            [['name', 'slug', 'description', 'cost_price', 'regular_price', 'image', 'category_id'], 'required'],
             [['description', 'images'], 'string'],
             [['cost_price', 'regular_price', 'sale_price'], 'number'],
             [['quantity', 'category_id', 'trademark_id', 'viewed', 'fake_sold', 'sold', 'status', 'admin_id'], 'integer'],
@@ -62,27 +61,27 @@ class ProductsSearch extends Products
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'slug' => 'Slug',
-            'short_description' => 'Short Description',
-            'description' => 'Description',
-            'cost_price' => 'Cost Price',
-            'regular_price' => 'Regular Price',
-            'sale_price' => 'Sale Price',
-            'SKU' => 'Sku',
-            'quantity' => 'Quantity',
-            'image' => 'Image',
-            'images' => 'Images',
-            'category_id' => 'Category ID',
-            'trademark_id' => 'Trademark ID',
-            'viewed' => 'Viewed',
-            'fake_sold' => 'Fake Sold',
-            'sold' => 'Sold',
-            'status' => 'Status',
-            'admin_id' => 'Admin ID',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'slug' => Yii::t('app', 'Slug'),
+            'short_description' => Yii::t('app', 'Short Description'),
+            'description' => Yii::t('app', 'Description'),
+            'cost_price' => Yii::t('app', 'Cost Price'),
+            'regular_price' => Yii::t('app', 'Regular Price'),
+            'sale_price' => Yii::t('app', 'Sale Price'),
+            'SKU' => Yii::t('app', 'Sku'),
+            'quantity' => Yii::t('app', 'Quantity'),
+            'image' => Yii::t('app', 'Image'),
+            'images' => Yii::t('app', 'Images'),
+            'category_id' => Yii::t('app', 'Category ID'),
+            'trademark_id' => Yii::t('app', 'Trademark ID'),
+            'viewed' => Yii::t('app', 'Viewed'),
+            'fake_sold' => Yii::t('app', 'Fake Sold'),
+            'sold' => Yii::t('app', 'Sold'),
+            'status' => Yii::t('app', 'Status'),
+            'admin_id' => Yii::t('app', 'Admin ID'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 
@@ -91,6 +90,6 @@ class ProductsSearch extends Products
      */
     public static function getProductIntro()
     {
-        return Products::find()->where(['status' => 1])->orderBy("updated_at DESC")->limit(8)->asArray()->all();
+        return Product::find()->where(['status' => 1])->orderBy("updated_at DESC")->limit(8)->asArray()->all();
     }
 }

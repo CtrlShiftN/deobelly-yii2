@@ -5,11 +5,11 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "products".
+ * This is the model class for table "product".
  *
  * @property int $id
- * @property string|null $name
- * @property string|null $slug
+ * @property string $name
+ * @property string $slug
  * @property string|null $short_description
  * @property string $description
  * @property float $cost_price
@@ -29,14 +29,14 @@ use Yii;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class Products extends \yii\db\ActiveRecord
+class Product extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'products';
+        return 'product';
     }
 
     /**
@@ -45,7 +45,7 @@ class Products extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['description', 'cost_price', 'regular_price', 'image', 'category_id'], 'required'],
+            [['name', 'slug', 'description', 'cost_price', 'regular_price', 'image', 'category_id'], 'required'],
             [['description', 'images'], 'string'],
             [['cost_price', 'regular_price', 'sale_price'], 'number'],
             [['quantity', 'category_id', 'trademark_id', 'viewed', 'fake_sold', 'sold', 'status', 'admin_id'], 'integer'],
@@ -61,27 +61,27 @@ class Products extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'slug' => 'Slug',
-            'short_description' => 'Short Description',
-            'description' => 'Description',
-            'cost_price' => 'Cost Price',
-            'regular_price' => 'Regular Price',
-            'sale_price' => 'Sale Price',
-            'SKU' => 'Sku',
-            'quantity' => 'Quantity',
-            'image' => 'Image',
-            'images' => 'Images',
-            'category_id' => 'Category ID',
-            'trademark_id' => 'Trademark ID',
-            'viewed' => 'Viewed',
-            'fake_sold' => 'Fake Sold',
-            'sold' => 'Sold',
-            'status' => 'Status',
-            'admin_id' => 'Admin ID',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'slug' => Yii::t('app', 'Slug'),
+            'short_description' => Yii::t('app', 'Short Description'),
+            'description' => Yii::t('app', 'Description'),
+            'cost_price' => Yii::t('app', 'Cost Price'),
+            'regular_price' => Yii::t('app', 'Regular Price'),
+            'sale_price' => Yii::t('app', 'Sale Price'),
+            'SKU' => Yii::t('app', 'Sku'),
+            'quantity' => Yii::t('app', 'Quantity'),
+            'image' => Yii::t('app', 'Image'),
+            'images' => Yii::t('app', 'Images'),
+            'category_id' => Yii::t('app', 'Category ID'),
+            'trademark_id' => Yii::t('app', 'Trademark ID'),
+            'viewed' => Yii::t('app', 'Viewed'),
+            'fake_sold' => Yii::t('app', 'Fake Sold'),
+            'sold' => Yii::t('app', 'Sold'),
+            'status' => Yii::t('app', 'Status'),
+            'admin_id' => Yii::t('app', 'Admin ID'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 }
