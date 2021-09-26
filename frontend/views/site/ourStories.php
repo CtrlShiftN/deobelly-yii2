@@ -4,10 +4,13 @@
 
 use yii\helpers\Url;
 
-$this->title = Yii::t('app','Our stories');
+$this->title = Yii::t('app', 'Our stories');
 $this->params['breadcrumbs'][] = $this->title;
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->registerCssFile(Url::toRoute("/css/stories.css"));
+$this->registerCss(".intro-quote{
+    background: url(" . $imgUrl . "/quote.png) no-repeat top left;
+   }")
 ?>
 <div class="site-our-stories">
     <div class="full-width d-none d-md-block">
@@ -47,5 +50,44 @@ $this->registerCssFile(Url::toRoute("/css/stories.css"));
             </button>
         </div>
         <!-- Carousel wrapper -->
+    </div>
+    <div class="shop-intro text-center pt-5 pb-2">
+        <img src="<?= $imgUrl ?>/stories/TUJ04917.jpg" width="100%">
+        <h3 class="text-uppercase py-2">De Obelly Shop</h3>
+        <div class="intro-text">
+            <p>Với việc tập trung vào giá trị cốt lõi về chất lượng sản phẩm, cũng như phát triển dịch vụ, kết hợp trải
+                nghiệm khách hàng tại điểm bán lẻ nhằm cung cấp cho khách hàng sự tự tin, tính trang trọng và sự hứng
+                khởi trong việc mua sắm, De Obelly đã phát triển đa dạng các dòng hàng, từ áo sơ mi, polo cho tới
+                các bộ quần áo vest lịch lãm, hay các phụ kiện đồ da tinh tế.</p>
+            <p>Tất cả các sản phẩm của De Obelly đều được sản xuất dưới tiêu chuẩn chất lượng sản phẩm của phân
+                khúc xa xỉ và cận xa xỉ với triết lý sử dụng các nguyên phụ liệu cao cấp và xa xỉ nhập khẩu từ các nhà
+                máy có uy tín lâu năm đang sản xuất cho các thương hiệu xa xỉ, và gia công tại hệ thống các nhà máy
+                nhượng quyền sản xuất được tuyển chọn của De Obelly đặt tại Ý, Bồ Đào Nha, Nhật, Ấn Độ, Trung Quốc,
+                Việt Nam, Thái Lan… Sản phẩm bắt buộc phải trải qua các vòng kiểm tra chi tiết, đảm bảo chất lượng đúng
+                chuẩn hàng xa xỉ Châu Âu – tiêu chuẩn mà De Obelly đã tuân thủ trong thời gian qua.</p>
+            <p>Không chỉ quan tâm đặc biệt tới các vấn đề về sản xuất, De Obelly còn quan tâm tới việc thiết kế và
+                chỉ đạo nghệ thuật để có được sự liền mạch trong trải nghiệm khách hàng. Với việc bổ nhiệm Giám đốc Sáng
+                tạo Tim - Voegele Downing vào tháng 5/2017 cùng với đội ngũ tư vấn về sáng tạo và truyền thông có uy tín
+                quốc tế, De Obelly hứa hẹn sẽ mang lại làn gió mới cho ngành thời trang cao cấp và cận xa xỉ ở Việt
+                Nam cũng như khu vực Đông Nam Á.</p>
+        </div>
+    </div>
+    <div class="full-width pb-5">
+        <img src="<?= $imgUrl ?>/stories/brand2.jpg">
+    </div>
+    <div class="container-md">
+        <div class="row quotes pb-5">
+            <div class="col-12 col-md-6">
+                <img src="<?= $imgUrl ?>/stories/handsome.jpg" width="70%">
+            </div>
+            <div class="col-12 col-md-6 intro-quote">
+                <p>“Từ khi ra đời đến nay, chúng tôi luôn kiên định với sứ mệnh tái hiện nét thanh lịch tự nhiên và
+                    phong cách Ý tại khu vực Đông Nam Á. Đó là lý do chúng tôi tồn tại và làm việc mỗi ngày. Chúng tôi
+                    đặc biệt quan tâm tới việc phục vụ khách hàng với những sản phẩm tinh tế, xa xỉ cùng chất lượng vượt
+                    trội và phong cách thanh lịch tự nhiên. Sự tập trung vào việc đổi mới liên tục giúp chúng tôi phục vụ khách
+                    hàng ngày càng hiệu quả hơn.”</p>
+                <p>Ông Nguyễn Trọng Phi – Chủ tịch Hội đồng quản trị Giovanni Group chia sẻ</p>
+            </div>
+        </div>
     </div>
 </div>

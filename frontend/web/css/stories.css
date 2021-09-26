@@ -64,3 +64,14 @@
     transform: translateX(0);
 }
 /* END SLIDER */
+.intro-text > p{
+    text-align: justify;
+    color: #666666;
+    font-family: "Montserrat", sans-serif;
+}
+
+.intro-quote{
+    position: relative;
+    padding-left: 90px;
+    text-align: justify;
+}
