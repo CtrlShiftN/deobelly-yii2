@@ -75,7 +75,7 @@ $this->registerCss(".intro-quote{
                 Nam cũng như khu vực Đông Nam Á.</p>
         </div>
     </div>
-    <div class="full-width pb-5">
+    <div class="full-width pb-5 d-none d-md-block">
         <img src="<?= $imgUrl ?>/stories/brand2.jpg" width="100%">
     </div>
     <div class="container-md">
@@ -83,7 +83,7 @@ $this->registerCss(".intro-quote{
             <div class="col-12 col-md-6">
                 <img src="<?= $imgUrl ?>/stories/handsome.jpg" width="100%">
             </div>
-            <div class="col-12 col-md-6 intro-quote">
+            <div class="col-12 col-md-6 intro-quote pt-3 pt-md-0">
                 <p>“Từ khi ra đời đến nay, chúng tôi luôn kiên định với sứ mệnh tái hiện nét thanh lịch tự nhiên và
                     phong cách Ý tại khu vực Đông Nam Á. Đó là lý do chúng tôi tồn tại và làm việc mỗi ngày. Chúng tôi
                     đặc biệt quan tâm tới việc phục vụ khách hàng với những sản phẩm tinh tế, xa xỉ cùng chất lượng vượt
