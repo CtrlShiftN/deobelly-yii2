@@ -5,25 +5,25 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "products_category".
+ * This is the model class for table "product_category".
  *
  * @property int $id
- * @property string|null $name
- * @property string|null $slug
- * @property int|null $code first letter is product type, the rest is code number
+ * @property string $name
+ * @property string $slug
+ * @property int $code first letter is product type, the rest is code number
  * @property int|null $status 0 for inactive, 1 for active
  * @property int|null $admin_id
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class ProductsCategory extends \yii\db\ActiveRecord
+class ProductCategory extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'products_category';
+        return 'product_category';
     }
 
     /**
@@ -32,6 +32,7 @@ class ProductsCategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name', 'slug', 'code'], 'required'],
             [['code', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug'], 'string', 'max' => 255],
@@ -46,14 +47,14 @@ class ProductsCategory extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'slug' => 'Slug',
-            'code' => 'Code',
-            'status' => 'Status',
-            'admin_id' => 'Admin ID',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'slug' => Yii::t('app', 'Slug'),
+            'code' => Yii::t('app', 'Code'),
+            'status' => Yii::t('app', 'Status'),
+            'admin_id' => Yii::t('app', 'Admin ID'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 }
