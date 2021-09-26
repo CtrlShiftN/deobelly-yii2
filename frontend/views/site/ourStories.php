@@ -10,7 +10,7 @@ $imgUrl = Yii::$app->params['common'] . "/media";
 $this->registerCssFile(Url::toRoute("/css/stories.css"));
 ?>
 <div class="site-our-stories">
-    <div class="full-width">
+    <div class="full-width d-none d-md-block">
         <!-- Carousel wrapper -->
         <div id="sliderHeader" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <!-- Indicators -->
