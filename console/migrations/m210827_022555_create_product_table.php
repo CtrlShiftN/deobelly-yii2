@@ -3,19 +3,19 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%products}}`.
+ * Handles the creation of table `{{%product}}`.
  */
-class m210827_022555_create_products_table extends Migration
+class m210827_022555_create_product_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%products}}', [
+        $this->createTable('{{%product}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string(),
-            'slug' => $this->string()->unique(),
+            'name' => $this->string()->notNull(),
+            'slug' => $this->string()->unique()->notNull(),
             'short_description' => $this->string()->null(),
             'description' => $this->text()->notNull(),
             'cost_price' => $this->decimal(13, 0)->notNull(),
@@ -42,6 +42,6 @@ class m210827_022555_create_products_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%products}}');
+        $this->dropTable('{{%product}}');
     }
 }

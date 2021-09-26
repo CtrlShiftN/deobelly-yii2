@@ -7,8 +7,8 @@ use common\models\Post;
 use common\models\PostCategory;
 use common\models\PostTag;
 use common\models\Meta;
-use common\models\Products;
-use common\models\ProductsCategory;
+use common\models\Product;
+use common\models\ProductCategory;
 use common\models\TermsAndServices;
 use common\models\Trademark;
 use common\models\User;
@@ -303,15 +303,14 @@ class SampleData
     {
         $countProduct = 0;
         foreach (self::$productInforArr as $values) {
-            $product = new Products();
+            $product = new Product();
             $product->name = $values['name'];
             $product->slug = $values['slug'];
             $product->short_description = $values['short_description'];
             $product->description = $values['description'];
             $product->cost_price = $values['cost_price'];
             $product->regular_price = $values['regular_price'];
-            if(!empty($values['sale_price']))
-            {
+            if (!empty($values['sale_price'])) {
                 $product->sale_price = $values['sale_price'];
             } else {
                 $product->sale_price = null;
@@ -382,7 +381,7 @@ class SampleData
     {
         $countCategory = 0;
         foreach (self::$productCategoryInfoArr as $values) {
-            $category = new ProductsCategory();
+            $category = new ProductCategory();
             $category->name = $values['name'];
             $category->slug = $values['slug'];
             $category->code = $values['code'];
@@ -393,7 +392,7 @@ class SampleData
                 $countCategory++;
             }
         }
-        echo "Inserted " . $countCategory . '/' . count(self::$productCategoryInfoArr) . ' products category.' . PHP_EOL;
+        echo "Inserted " . $countCategory . '/' . count(self::$productCategoryInfoArr) . ' product categories.' . PHP_EOL;
     }
 
     /**
@@ -652,17 +651,15 @@ class SampleData
     protected static function insertSampleMeta()
     {
         $countMeta = 0;
-        foreach (self::$metaInfoArr as $value)
-        {
+        foreach (self::$metaInfoArr as $value) {
             $meta = new Meta();
             $meta->key = $value['key'];
             $meta->value = $value['value'];
-            if ($meta->save())
-            {
+            if ($meta->save()) {
                 $countMeta++;
             }
         }
-        echo "Inserted ".$countMeta.'/'.count(self::$metaInfoArr).' meta.'.PHP_EOL;
+        echo "Inserted " . $countMeta . '/' . count(self::$metaInfoArr) . ' meta.' . PHP_EOL;
     }
 
     /**
@@ -717,19 +714,17 @@ class SampleData
     protected static function insertSamplePostTag()
     {
         $countTag = 0;
-        foreach (self::$postTagInfoArr as $value)
-        {
+        foreach (self::$postTagInfoArr as $value) {
             $postTag = new PostTag();
             $postTag->title = $value['title'];
             $postTag->slug = $value['slug'];
             $postTag->created_at = date('Y-m-d H:m:s');
             $postTag->updated_at = date('Y-m-d H:m:s');
-            if ($postTag->save())
-            {
+            if ($postTag->save()) {
                 $countTag++;
             }
         }
-        echo "Inserted ".$countTag.'/'.count(self::$postTagInfoArr).' post tag.'.PHP_EOL;
+        echo "Inserted " . $countTag . '/' . count(self::$postTagInfoArr) . ' post tag.' . PHP_EOL;
     }
 
     protected static $postCategoryInfoArr = [
@@ -770,19 +765,17 @@ class SampleData
     protected static function insertSamplePostCategory()
     {
         $countPostCate = 0;
-        foreach (self::$postCategoryInfoArr as $value)
-        {
+        foreach (self::$postCategoryInfoArr as $value) {
             $postCate = new PostCategory();
             $postCate->title = $value['title'];
             $postCate->slug = $value['slug'];
             $postCate->created_at = date('Y-m-d H:m:s');
             $postCate->updated_at = date('Y-m-d H:m:s');
-            if ($postCate->save())
-            {
+            if ($postCate->save()) {
                 $countPostCate++;
             }
         }
-        echo "Inserted ".$countPostCate.'/'.count(self::$postCategoryInfoArr).' post category.'.PHP_EOL;
+        echo "Inserted " . $countPostCate . '/' . count(self::$postCategoryInfoArr) . ' post category.' . PHP_EOL;
     }
 
     /**
