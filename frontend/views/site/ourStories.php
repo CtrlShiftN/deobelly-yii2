@@ -10,6 +10,9 @@ $imgUrl = Yii::$app->params['common'] . "/media";
 $this->registerCssFile(Url::toRoute("/css/stories.css"));
 $this->registerCss(".intro-quote{
     background: url(" . $imgUrl . "/quote.png) no-repeat top left;
+    position: relative;
+    padding-left: 90px;
+    text-align: justify;
    }")
 ?>
 <div class="site-our-stories">
@@ -73,12 +76,12 @@ $this->registerCss(".intro-quote{
         </div>
     </div>
     <div class="full-width pb-5">
-        <img src="<?= $imgUrl ?>/stories/brand2.jpg">
+        <img src="<?= $imgUrl ?>/stories/brand2.jpg" width="100%">
     </div>
     <div class="container-md">
-        <div class="row quotes pb-5">
+        <div class="row quotes pb-5 text-center">
             <div class="col-12 col-md-6">
-                <img src="<?= $imgUrl ?>/stories/handsome.jpg" width="70%">
+                <img src="<?= $imgUrl ?>/stories/handsome.jpg" width="100%">
             </div>
             <div class="col-12 col-md-6 intro-quote">
                 <p>“Từ khi ra đời đến nay, chúng tôi luôn kiên định với sứ mệnh tái hiện nét thanh lịch tự nhiên và
