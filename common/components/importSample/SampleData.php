@@ -12,6 +12,7 @@ use common\models\ProductCategory;
 use common\models\TermsAndServices;
 use common\models\Trademark;
 use common\models\User;
+use frontend\models\Slider;
 
 class SampleData
 {
@@ -778,6 +779,68 @@ class SampleData
         echo "Inserted " . $countPostCate . '/' . count(self::$postCategoryInfoArr) . ' post category.' . PHP_EOL;
     }
 
+    protected static $arrSliderInfo = [
+        [
+            'link' => '/slideshow.jpg',
+            'site' => 'index',
+            'slide_label' => 'First slide label',
+            'slide_text' => 'No life is free right now, sometimes soft against vibrations',
+            'admin_id' => 1,
+        ],
+        [
+            'link' => '/slideshow.jpg',
+            'site' => 'index',
+            'slide_label' => 'Second slide label',
+            'slide_text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+            'admin_id' => 1,
+        ],
+        [
+            'link' => '/slideshow.jpg',
+            'site' => 'index',
+            'slide_label' => 'Third slide label',
+            'slide_text' => 'Praesent commodo cursus magna, vel scelerisque nisl consectetur',
+            'admin_id' => 1,
+        ],
+        [
+            'link' => '/slider/slider1.jpg',
+            'site' => 'our-stories',
+            'slide_label' => null,
+            'slide_text' => null,
+            'admin_id' => 1,
+        ],
+        [
+            'link' => '/slider/slider1.jpg',
+            'site' => 'our-stories',
+            'slide_label' => null,
+            'slide_text' => null,
+            'admin_id' => 1,
+        ],
+        [
+            'link' => '/slider/slider1.jpg',
+            'site' => 'our-stories',
+            'slide_label' => null,
+            'slide_text' => null,
+            'admin_id' => 1,
+        ],
+    ];
+
+    protected static function insertSlider()
+    {
+        $count = 0;
+        foreach (self::$arrSliderInfo as $value) {
+            $slider = new Slider();
+            $slider->link = $value['link'];
+            $slider->site = $value['site'];
+            $slider->admin_id = $value['admin_id'];
+            $slider->created_at = date('Y-m-d H:m:s');
+            $slider->updated_at = date('Y-m-d H:m:s');
+            if ($slider->save()) {
+                $count++;
+            }
+        }
+        echo "Inserted " . $count . '/' . count(self::$arrSliderInfo) . ' slider links.' . PHP_EOL;
+    }
+
     /**
      * @throws \yii\base\Exception
      */
@@ -792,5 +855,6 @@ class SampleData
         self::insertSampleMeta();
         self::insertSamplePostTag();
         self::insertSamplePostCategory();
+        self::insertSlider();
     }
 }
