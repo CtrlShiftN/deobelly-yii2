@@ -80,17 +80,19 @@ $this->registerCss(".intro-quote{
     </div>
     <div class="container-md">
         <div class="row quotes pb-5 text-center">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-1"></div>
+            <div class="col-12 col-md-5">
                 <img src="<?= $imgUrl ?>/stories/handsome.jpg" width="100%">
             </div>
-            <div class="col-12 col-md-6 intro-quote pt-3 pt-md-0">
+            <div class="col-12 col-md-5 intro-quote pt-3 pt-md-0">
                 <p>“Từ khi ra đời đến nay, chúng tôi luôn kiên định với sứ mệnh tái hiện nét thanh lịch tự nhiên và
                     phong cách Ý tại khu vực Đông Nam Á. Đó là lý do chúng tôi tồn tại và làm việc mỗi ngày. Chúng tôi
                     đặc biệt quan tâm tới việc phục vụ khách hàng với những sản phẩm tinh tế, xa xỉ cùng chất lượng vượt
                     trội và phong cách thanh lịch tự nhiên. Sự tập trung vào việc đổi mới liên tục giúp chúng tôi phục vụ khách
                     hàng ngày càng hiệu quả hơn.”</p>
-                <p>Ông Nguyễn Trọng Phi – Chủ tịch Hội đồng quản trị Giovanni Group chia sẻ</p>
+                <p>Ông Nguyễn Trọng Phi – Chủ tịch Hội đồng quản trị De Obelly chia sẻ</p>
             </div>
+            <div class="col-12 col-md-1"></div>
         </div>
     </div>
 </div>
