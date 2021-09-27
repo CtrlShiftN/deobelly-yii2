@@ -65,13 +65,13 @@ AppAsset::register($this);
                             </div>
                             <div class="topbar col-xs-7 col-md-7 col-lg-7 text-white py-1 text-end text-uppercase">
                                 <ul class="menu-topbar-right my-0">
-                                    <li class="site-nav-top"><a href="<?php echo Url::home() ?>"
+                                    <li class="site-nav-top"><a href="<?= Url::toRoute('site/our-stories') ?>"
                                                                 class="site-nav-top-link"><span><?= Yii::t('app', 'Introduction') ?></span></a>
                                     </li>
                                     <li class="site-nav-top">
                                         <div class="vr mx-2"></div>
                                     </li>
-                                    <li class="site-nav-top"><a href="<?= Url::toRoute('post/index') ?>"
+                                    <li class="site-nav-top"><a href="<?= Url::toRoute('post/') ?>"
                                                                 class="site-nav-top-link"><span><?= Yii::t('app', 'News') ?></span></a>
                                     </li>
                                     <li class="site-nav-top">
@@ -260,7 +260,8 @@ AppAsset::register($this);
                                 </li>
                                 <li class="pe-0">
                                     <div class="shopping-cart d-inline pe-0">
-                                        <a href="<?= Url::toRoute('/#') ?>"><i class="fas fa-shopping-cart fa-lg"></i></a>
+                                        <a href="<?= Url::toRoute('/#') ?>"><i
+                                                    class="fas fa-shopping-cart fa-lg"></i></a>
                                     </div>
                                 </li>
                             </ul>

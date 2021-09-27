@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use frontend\models\Post;
 use frontend\models\Product;
 use frontend\models\ResendVerificationEmailForm;
+use frontend\models\Slider;
 use frontend\models\TermsAndServices;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -85,9 +86,11 @@ class SiteController extends Controller
     {
         $getProductIntro = Product::getProductIntro();
         $getPostIntro = Post::getLatestPosts();
+        $slider = Slider::getSliderFromSite('index');
         return $this->render('index', [
             'productIntro' => $getProductIntro,
             'post' => $getPostIntro,
+            'slider' => $slider
         ]);
     }
 
@@ -276,11 +279,25 @@ class SiteController extends Controller
         ]);
     }
 
+    /**
+     * @return string
+     */
     public function actionTerms()
     {
         $getTerms = TermsAndServices::getTermsAndServices();
         return $this->render('terms', [
             'terms' => $getTerms,
+        ]);
+    }
+
+    /**
+     * @return string
+     */
+    public function actionOurStories()
+    {
+        $slider = Slider::getSliderFromSite('our-stories');
+        return $this->render('ourStories', [
+            'slider' => $slider
         ]);
     }
 }
