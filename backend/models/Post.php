@@ -21,6 +21,8 @@ use Yii;
  */
 class Post extends \common\models\Post
 {
+    public $file;
+
     /**
      * {@inheritdoc}
      */
@@ -40,6 +42,8 @@ class Post extends \common\models\Post
             [['admin_id', 'post_category_id', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['avatar', 'title', 'slug', 'tag_id'], 'string', 'max' => 255],
+            ['file', 'file'],
+            ['file', 'required']
         ];
     }
 
@@ -60,6 +64,7 @@ class Post extends \common\models\Post
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'file' => Yii::t('app', 'File')
         ];
     }
 

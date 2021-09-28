@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\models\Post;
 use backend\models\PostSearch;
+use common\components\helpers\StringHelper;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
@@ -108,6 +109,8 @@ class PostController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->validate()) {
+                $model->slug = StringHelper::toSlug($model->title);
+
                 if ($model->save()) {
                     return $this->redirect(Url::toRoute(['post/upload-avatar', 'model' => $model]));
                 }
@@ -170,9 +173,8 @@ class PostController extends Controller
     }
 
 
-    public function actionUploadAvatar($model)
+    public function actionFileUpload()
     {
-        echo $model->title;
-        die;
+        var_dump($_FILES);die;
     }
 }
