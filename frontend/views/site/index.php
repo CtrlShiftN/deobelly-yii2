@@ -2,35 +2,16 @@
 
 /* @var $this yii\web\View */
 
-use common\models\User;
 use yii\helpers\Url;
 
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->title = 'DE OBELLY';
 $this->registerCssFile(Url::toRoute("/css/index.css"));
 $this->registerCss("
-    .bg-link-product { 
-        background-image: url('$imgUrl/background/bgLinkToProduct.jpg');        
-        background-attachment: fixed;
-        background-size: cover;
-        background-repeat: no-repeat; 
-    }
-    .bgNews{ 
-        background-image: url('$imgUrl/background/bgNews.jpg');        
-        background-attachment: fixed;
-        background-size: cover;
-        background-repeat: no-repeat; 
-    }
-    .btnAdd, .btnBuyNow, .btnFavor {
-        height: 42px;
-        position: absolute;
-        transition: 0.3s;
-        z-index: 3;
-    }
 ");
 ?>
+<!-- Carousel wrapper -->
 <div class="full-width">
-    <!-- Carousel wrapper -->
     <div id="sliderHeader" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <!-- Indicators -->
         <div class="carousel-indicators">
@@ -45,7 +26,7 @@ $this->registerCss("
             <?php foreach ($slider as $key => $value): ?>
                 <!-- Single item -->
                 <div class="carousel-item <?= $key == 0 ? 'active' : '' ?>">
-                    <img src="<?= $imgUrl . $value['link'] ?>" class="d-block w-100" alt="..."/>
+                    <img src="<?= $imgUrl . '/slider' . $value['link'] ?>" class="d-block w-100" alt="..."/>
                     <div class="carousel-caption d-none d-md-block">
                         <h5><?= empty($value['slide_label']) ? '' : $value['slide_label'] ?></h5>
                         <p><?= empty($value['slide_text']) ? '' : $value['slide_text'] ?></p>
@@ -65,388 +46,108 @@ $this->registerCss("
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <!-- Carousel wrapper -->
 </div>
-<!--Search trends-->
-<div class="row m-0 p-0 d-none d-md-block p-4 pb-0">
-    <h1 class="text-uppercase mb-3 fw-bolder text-center">
-        <i class=" fas fa-feather-alt fa-flip-horizontal"></i> <?= Yii::t('app', 'search trends') ?> <i
-                class="fas fa-feather-alt"></i>
-    </h1>
-    <div class="col-12 row mt-3 p-0">
-        <div class="text-center col-4 col-lg-2 d-none d-md-block py-lg-0 py-md-2">
-                    <span class="searchTrends">
-                        <img src="<?= $imgUrl ?>/icon/man.jpg">
-                    </span>
-            <p class="m-0 mt-2 text-uppercase fw-bolder"><?= Yii::t('app', 'Man Fashion') ?></p>
-            </a>
+<!-- Carousel wrapper -->
+<h1 class="text-uppercase fw-light text-center my-5"><?= Yii::t('app', 'new product') ?></h1>
+<div class="row">
+    <div class="col-12 row mb-md-4 mx-0 p-0">
+        <div class="col-md-5 px-md-3 px-lg-4 d-none d-md-block">
+            <img src="<?= Url::toRoute('img/index/newProductImg1.jpg') ?>" class="object-fit-cover shadow" alt="...">
         </div>
-        <div class="text-center col-4 col-lg-2 d-none d-md-block py-lg-0 py-md-2">
-            <a href="#" class="text-decoration-none text-dark">
-                    <span class="searchTrends">
-                        <img src="<?= $imgUrl ?>/icon/vestCongSo.jpg">
-                    </span>
-                <p class="m-0 mt-2 text-uppercase fw-bolder"><?= Yii::t('app', 'Office Fashion') ?></p>
-            </a>
-        </div>
-        <div class="text-center col-4 col-lg-2 d-none d-md-block py-lg-0 py-md-2">
-            <a href="#" class="text-decoration-none text-dark">
-                    <span class="searchTrends">
-                        <img src="<?= $imgUrl ?>/icon/vest.jpg">
-                    </span>
-                <p class="m-0 mt-2 text-uppercase fw-bolder"><?= Yii::t('app', 'Vest') ?></p>
-            </a>
-        </div>
-        <div class="text-center col-4 col-lg-2 d-none d-md-block py-lg-0 py-md-2">
-            <a href="#" class="text-decoration-none text-dark">
-                    <span class="searchTrends">
-                        <img src="<?= $imgUrl ?>/icon/acessories.jpg">
-                    </span>
-                <p class="m-0 mt-2 text-uppercase fw-bolder"><?= Yii::t('app', 'Accessory') ?></p>
-            </a>
-        </div>
-        <div class="text-center col-4 col-lg-2 d-none d-md-block py-lg-0 py-md-2">
-            <a href="#" class="text-decoration-none text-dark">
-                    <span class="searchTrends">
-                        <img src="<?= $imgUrl ?>/icon/bag.jpg">
-                    </span>
-                <p class="m-0 mt-2 text-uppercase fw-bolder"><?= Yii::t('app', 'Handbag') ?></p>
-            </a>
-        </div>
-        <div class="text-center col-4 col-lg-2 d-none d-md-block py-lg-0 py-md-2">
-            <a href="#" class="text-decoration-none text-dark">
-                    <span class="searchTrends">
-                        <img src="<?= $imgUrl ?>/icon/shoes.jpg">
-                    </span>
-                <p class="m-0 mt-2 text-uppercase fw-bolder"><?= Yii::t('app', 'Shoes') ?></p>
-            </a>
+        <div class="col-12 col-md-7 px-md-3 px-lg-4">
+            <img src="<?= Url::toRoute('img/index/newProductImg2.jpg') ?>" class="object-fit-cover shadow" alt="...">
         </div>
     </div>
-</div>
-<div class="row mx-0 px-0 px-md-4 pt-3">
-    <div class="col-12 row m-0 p-0 mb-3">
-        <div class="banner--top col-12 col-md-4 overflow-hidden m-0 p-0">
-            <div class="w-100 overflow-hidden h-100">
-                <img src="<?= $imgUrl ?>/banner/watch.jpg" class="p-0 w-100 zoomImages m-0 object-fit-cover">
-            </div>
+    <div class="col-12 row mt-3 mt-md-4 mx-0 p-0">
+        <div class="col-12 col-md-7 px-md-3 px-lg-4">
+            <img src="<?= Url::toRoute('img/index/newProductImg3.jpg') ?>" class="object-fit-cover shadow" alt="...">
         </div>
-        <div class="banner--top col-12 col-md-4 overflow-hidden m-0 p-0">
-            <div class="w-100 overflow-hidden h-100">
-                <img src="<?= $imgUrl ?>/banner/shoes-banner.png"
-                     class="p-0 w-100 zoomImages m-0 object-fit-cover">
-            </div>
-        </div>
-        <div class="banner--top col-12 col-md-4 overflow-hidden m-0 p-0">
-            <div class="w-100 overflow-hidden h-100">
-                <img src="<?= $imgUrl ?>/banner/vest-banner.jpg"
-                     class="p-0 w-100 zoomImages m-0 object-fit-cover">
-            </div>
+        <div class="col-12 col-md-5 mt-3 mt-md-0 px-md-3 px-lg-4">
+            <img src="<?= Url::toRoute('img/index/newProductImg4.jpg') ?>" class="object-fit-cover shadow" alt="...">
         </div>
     </div>
-    <div class="col-12 m-0 p-0 row d-none d-md-flex bg-white">
-        <div class="banner col-4 ps-0">
-            <div class="w-100 overflow-hidden h-75 w-100 border-bottom">
-                <img src="<?= $imgUrl ?>/banner/vestBanner.jpg" class="p-0 w-100 zoomImages object-fit-cover">
-            </div>
-            <div class="h-25 w-100 d-flex align-items-center justify-content-center px-lg-2 border border-2">
-                <div class="p-2 text-center">
-                    <h4 class="text-uppercase m-0 d-none d-lg-block fw-bolder"><?= Yii::t('app', 'Luxurious and elegant VEST sets') ?></h4>
-                    <h5 class="text-uppercase m-0 d-lg-none fw-bolder"><?= Yii::t('app', 'Luxury VEST sets') ?></h5>
-                    <a href="#"
-                       class="btn text-uppercase text-danger fw-bolder p-0"><?= Yii::t('app', 'Watch now!') ?></a>
-                </div>
-            </div>
-        </div>
-        <div class="banner col-4 px-1">
-            <div class="h-25 d-flex align-items-center justify-content-center px-lg-2 border border-2">
-                <div class="p-2 text-center">
-                    <h4 class="text-uppercase m-0 d-none d-lg-block fw-bolder"><?= Yii::t('app', 'Trendy fashion accessories') ?></h4>
-                    <h5 class="text-uppercase m-0 d-lg-none fw-bolder"><?= Yii::t('app', 'Trendy fashion accessories') ?></h5>
-                    <a href="#"
-                       class="btn text-uppercase text-danger fw-bolder p-0"><?= Yii::t('app', 'Buy now') ?></a>
-                </div>
-            </div>
-            <div class="m-0 p-0 overflow-hidden h-75 w-100">
-                <img src="<?= $imgUrl ?>/banner/suitWomen.jpg" class="p-0 w-100 zoomImages object-fit-cover">
-            </div>
-        </div>
-        <div class="banner col-4 pe-0">
-            <div class="m-0 p-0 overflow-hidden h-75 w-100 border-bottom">
-                <img src="<?= $imgUrl ?>/banner/suit.jpg" class="p-0 w-100 zoomImages object-fit-cover">
-            </div>
-            <div class="h-25 w-100 d-flex align-items-center justify-content-center px-lg-2 border border-2">
-                <div class="p-2 text-center">
-                    <h4 class="text-uppercase m-0 d-none d-lg-block fw-bolder"><?= Yii::t('app', 'Fashionable vest suits') ?></h4>
-                    <h5 class="text-uppercase m-0 d-lg-none fw-bolder"><?= Yii::t('app', 'Fashionable suits') ?></h5>
-                    <a href="#"
-                       class="btn text-uppercase text-danger fw-bolder p-0"><?= Yii::t('app', 'Watch now!') ?></a>
-                </div>
+    <div class="col-12 text-center mb-5 mt-4 my-md-5">
+        <a href="javascript:void(0)" class="btn btn-dark rounded-0 fs-4 fw-light px-4 px-lg-5">Xem thêm</a>
+    </div>
+</div>
+<div class="row px-lg-5 w-100 m-0 sereno">
+    <div class="col-12 col-md-6 ps-lg-5 px-0 px-md-4">
+        <img src="<?= Url::toRoute('img/index/sereno.jpg') ?>" class="object-fit-cover shadow p-0 d-none d-md-block"
+             alt="...">
+        <img src="<?= Url::toRoute('img/index/sereno-responsive.jpg') ?>" class="object-fit-cover shadow p-0 d-md-none"
+             alt="...">
+    </div>
+    <div class="col-12 col-md-6 d-flex align-items-center px-4 pe-lg-5 mt-3 mt-md-0">
+        <div class="w-100 text-justify">
+            <h1 class="fw-light m-0 text-uppercase text-center text-md-start">sereno</h1>
+            <p class="fs-5 fw-light my-3 my-md-4 my-xl-5">
+                Expressing the new definition of success,
+                DE OBELLY introduces SS21 Collection "SERENO",
+                showing a successful man should be able to comfortably express himself and effortlessly enjoy luxury.
+                Living in a time when the public and the private collide,
+                when the workplace might be the same with the party,
+                when one needs to look classy from monday to weekend without feeling tired.
+                Explore the new vision for contemporary success through DE OBELLY's "SERENO" collection
+            </p>
+            <div class="w-100 text-center">
+                <a href="javascript:void(0)" class="btn btn-dark rounded-0 fs-6 fw-light px-4">Xem thêm</a>
             </div>
         </div>
     </div>
 </div>
-<div class="row p-0 m-0 pt-4 pt-md-5">
-    <h1 class="text-uppercase mb-3 fw-bolder text-center">
-        <i class="fas fa-feather-alt fa-flip-horizontal"></i> <?= Yii::t('app', 'new product') ?> <i
-                class="fas fa-feather-alt"></i>
-    </h1>
-    <div class="col-12 row mx-0 px-3 px-md-5">
-        <?php foreach ($productIntro as $key => $value): ?>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-sm-2 my-3 my-md-2">
-                <div class="product-card overflow-hidden">
-                    <div class="product-tumb">
-                        <a href="#" class="text-decoration-none w-100 m-0 p-0 h-100">
-                            <!--                            <div class="badge p-2 px-sm-3 rounded-0">-30%</div>-->
-                            <img src="<?= $imgUrl . '/' . $value['image'] ?>" alt="" class="w-100">
-                        </a>
-                    </div>
-                    <div class="product-button d-none d-sm-block">
-                        <a href="javascript:void(0)" class="btn btn-dark rounded-0 btnFavor"><i
-                                    class="far fa-heart"></i></a>
-                        <a href="#" class="btn btn-dark rounded-0 btnBuyNow"><?= Yii::t('app', 'Buy now') ?></a>
-                        <a href="#" class="btn btn-dark rounded-0 btnAdd"><i class="fas fa-cart-plus"></i></a>
-                    </div>
-                    <div class="product-details border-top m-0">
-                        <a href="#">
-                            <h5 class="mb-0 mb-sm-1 text-dark position-absolute"><?= $value['name'] ?></h5>
-                            <?php if (empty($value['sale_price'])): ?>
-                                <div class="product-price mb-1 text-danger text-sm-center"><?= number_format($value['regular_price'], 0, ',', '.') ?>
-                                    VNĐ
-                                </div>
-                            <?php else: ?>
-                                <div class="product-price mb-1 text-warning text-sm-center"><small
-                                            class="text-secondary text-decoration-line-through"><?= number_format($value['sale_price'], 0, ',', '.') ?></small> <?= number_format($value['regular_price'], 0, ',', '.') ?>
-                                    VNĐ
-                                </div>
-                            <?php endif; ?>
-                        </a>
-                        <div class="d-sm-none row m-0 p-0 mb-2">
-                            <div class="col-6 p-0 pe-1 d-block">
-                                <a href="javascript:void(0)" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
-                                            class="far fa-heart"></i></a>
-                            </div>
-                            <div class="col-6 p-0 ps-1 d-block">
-                                <a href="#" class="btn rounded-0 p-2 btn-outline-dark w-100"><i
-                                            class="fas fa-cart-plus"></i></a>
-                            </div>
-                            <a href="#"
-                               class="btn rounded-0 p-1 btn-outline-dark col-12 mt-2"><?= Yii::t('app', 'Buy now') ?></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <?php endforeach; ?>
-    </div>
+<h1 class="text-uppercase fw-light text-center mt-5 mb-3 my-5"><?= Yii::t('app', 'pronto') ?></h1>
+<div class="row px-4 px-md-5 my-3 my-md-5">
+    <p class="fs-5 fw-light text-justify w-100">
+        Thời gian là thứ tài sản quý giá mà khi càng thành công,
+        người ta lại càng muốn tận dụng nó một cách triệt để.
+        Thấu hiểu niềm khao khát sở hữu vẻ sang trọng nhưng vẫn thoải mái,
+        DE OBELLY mang đến giải pháp cho những người đàn ông thành công trong thời đại mới.
+        Kết hợp giữa thiết kế tinh tế, cùng những nguyên vật liệu thượng hạng và công nghệ hiện đại nhất,
+        dòng sản phẩm sơ mi “PRONTO” với đặc tính phẳng phiu mà không cần là ủi sau khi giặt,
+        đề cao vẻ thanh lịch nhưng tiện dụng, tiết kiệm từng phút giây quý báu của các Quý ông luôn bận rộn.
+        Các mẫu áo sơ mi không cần là ủi DE OBELLY PRONTO sẽ sớm có mặt tại các gian hàng trên toàn quốc trong tháng
+        10/2021.
+    </p>
+</div>
 
-    <div class="container text-center">
-        <div class="row m-0 px-0 py-4 pb-md-5 d-inline-block">
-            <a href="<?= Url::toRoute('shop/index') ?>" class="text-decoration-none linkToProduct px-3">
-                <h5 class="text-uppercase m-0"><i
-                            class="far fa-hand-point-right"></i> <?= Yii::t('app', 'View all products') ?> </h5>
+<div class="row px-md-5 my-3 my-md-5 px-3">
+    <div class="col-6 px-2 ps-md-5 pe-md-3">
+        <img src="<?= Url::toRoute('img/index/pronto-img-1.jpg') ?>" class="mb-md-4 w-100 shadow pronto-img-left"
+             alt="...">
+        <img src="<?= Url::toRoute('img/index/pronto-img-2.jpg') ?>" class="w-100 mt-4 h-50 shadow d-none d-md-block"
+             alt="...">
+    </div>
+    <div class="col-6 px-2 ps-md-3 pe-md-5">
+        <img src="<?= Url::toRoute('img/index/pronto-img-3.jpg') ?>" class="w-100 h-25 shadow d-none d-md-block"
+             alt="...">
+        <img src="<?= Url::toRoute('img/index/pronto-img-4.jpg') ?>" class="my-md-4 w-100 shadow pronto-img-left"
+             alt="...">
+        <img src="<?= Url::toRoute('img/index/pronto-img-5.jpg') ?>" class="w-100 h-25 shadow d-none d-md-block"
+             alt="...">
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 text-center pt-3 pt-md-5">
+        <a href="javascript:void(0)" class="btn btn-dark rounded-0 fs-4 fw-light px-4 px-lg-5">Xem thêm</a>
+    </div>
+</div>
+<div class="row my-5 px-4 px-md-0">
+    <div class="col-12 col-md-6 position-relative p-0 px-md-3">
+        <div class="overflow-hidden w-100 shadow">
+            <a href="javascript:void(0)" class="text-decoration-none w-100">
+                <p class="position-absolute text-light fs-1 men-title fw-bolder text-uppercase">Men</p>
+                <img src="<?= Url::toRoute('img/index/men.jpg') ?>"
+                     class="object-fit-cover position-relative gender-img" alt="...">
+            </a>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 mt-4 mt-md-0 position-relative overflow-hidden p-0 px-md-3">
+        <div class="overflow-hidden w-100 shadow">
+            <a href="javascript:void(0)" class="text-decoration-none w-100">
+                <p class="position-absolute text-light fs-1 women-title fw-bolder text-uppercase">Women</p>
+                <img src="<?= Url::toRoute('img/index/women.jpg') ?>"
+                     class="object-fit-cover position-relative gender-img" alt="...">
             </a>
         </div>
     </div>
 </div>
-<div class="row m-0 px-0 px-3 px-md-5">
-    <h1 class="text-uppercase fw-bolder text-center col-12 mb-3">
-        <i class="fas fa-feather-alt fa-flip-horizontal"></i> <?= Yii::t('app', 'Collection') ?> <i
-                class="fas fa-feather-alt"></i>
-    </h1>
-    <div class="col-12 m-0 p-0">
-        <div id="recipeCarouselAccessories" class="carousel slide carouselProduct col-12" data-bs-ride="carousel">
-            <div class="carousel-inner text-center" role="listbox">
-                <div class="carousel-item active">
-                    <div class="col-6 col-md-3 m-0 p-0">
-                        <div class="card border-0 rounded-0 h-100 m-0">
-                            <a href="#" class="text-decoration-none w-100 h-100">
-                                <div class="card-img border-0">
-                                    <img src="<?= $imgUrl ?>/product/clothes/top/shirt1.png"
-                                         class="mb-sm-2">
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-6 col-md-3 m-0 p-0">
-                        <div class="card border-0 rounded-0 h-100 m-0">
-                            <a href="#" class="text-decoration-none w-100 h-100">
-                                <div class="card-img border-0">
-                                    <img src="<?= $imgUrl ?>/product/clothes/top/shirt2.png"
-                                         class="mb-sm-2">
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-6 col-md-3 m-0 p-0">
-                        <div class="card border-0 rounded-0 h-100 m-0">
-                            <a href="#" class="text-decoration-none w-100 h-100">
-                                <div class="card-img border-0">
-                                    <img src="<?= $imgUrl ?>/product/clothes/top/shirt3.png"
-                                         class="mb-sm-2">
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-6 col-md-3 m-0 p-0">
-                        <div class="card border-0 rounded-0 h-100 m-0">
-                            <a href="#" class="text-decoration-none w-100 h-100">
-                                <div class="card-img border-0">
-                                    <img src="<?= $imgUrl ?>/product/clothes/top/shirt4.png"
-                                         class="mb-sm-2">
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-6 col-md-3 m-0 p-0">
-                        <div class="card border-0 rounded-0 h-100 m-0">
-                            <a href="#" class="text-decoration-none w-100 h-100">
-                                <div class="card-img border-0">
-                                    <img src="<?= $imgUrl ?>/product/clothes/top/shirt5.png"
-                                         class="mb-sm-2">
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-6 col-md-3 m-0 p-0">
-                        <div class="card border-0 rounded-0 h-100 m-0">
-                            <a href="#" class="text-decoration-none w-100 h-100">
-                                <div class="card-img border-0">
-                                    <img src="<?= $imgUrl ?>/product/clothes/top/shirt6.png"
-                                         class="mb-sm-2">
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#recipeCarouselAccessories"
-                    data-bs-slide="prev">
-                <i class="fas fa-chevron-left fa-3x text-dark"></i>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#recipeCarouselAccessories"
-                    data-bs-slide="next">
-                <i class="fas fa-chevron-right fa-3x text-dark"></i>
-            </button>
-        </div>
-    </div>
-</div>
-<div class="full-width bg-link-product py-5">
-    <div class="container text-center py-5 my-4">
-        <h1 class="text-light text-uppercase mb-3 fw-bolder">
-            <i class="fas fa-feather-alt fa-flip-horizontal"></i> DE OBELLY <i class="fas fa-feather-alt"></i>
-        </h1>
-        <div class="border border-5 border-light p-4 p-md-5 text-justify bg-transparent mx-auto w-motto">
-            <h4 class="m-0 text-light">
-                <i><?= Yii::t('app', 'Each employee of DE OBELLY is always grateful to customers by selling the best - trendiest and most thoughtful products to meet the needs of customers...') ?>
-
-                </i>
-            </h4>
-            <div class="text-end mt-3">
-                <a href="#" class="btn rounded-0 btn-outline-dark mb-1 mb-sm-0 rounded-circle bg-light">
-                    <i class="fas fa-share"></i>
-                </a>
-                <a href="#" class="btn rounded-0 btn-outline-dark mb-1 mb-sm-0 rounded-circle bg-light">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#" class="btn rounded-0 btn-outline-dark mb-1 mb-sm-0 rounded-circle bg-light">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" class="btn rounded-0 btn-outline-dark mb-1 mb-sm-0 rounded-circle bg-light">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" class="btn rounded-0 btn-outline-dark mb-1 mb-sm-0 rounded-circle bg-light">
-                    <i class="far fa-envelope"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row px-0 m-0 text-center py-4 pt-md-5">
-    <div class="container">
-        <h1 class="text-uppercase mb-3 fw-bolder text-center">
-            <i class="fas fa-feather-alt fa-flip-horizontal"></i> <?= Yii::t('app', 'News') ?> <i
-                    class="fas fa-feather-alt"></i>
-        </h1>
-        <div class="row m-0 p-0">
-            <?php foreach ($post as $key => $value): ?>
-                <div class="col-12 col-sm-6 col-lg-3 px-5 pb-3 p-sm-3 news">
-                    <div class="card h-100 border-0">
-                        <a class="text-decoration-none text-dark" href="#">
-                            <div class="position-relative overflow-hidden rounded px-md-4">
-                                <img src="<?= $imgUrl . '/' . $value['avatar'] ?>"
-                                     class="object-fit-cover w-100 h-100 m-0 p-0 zoomImages">
-                            </div>
-                            <div class="card-body position-relative text-start p-1">
-                                <h5 class="card-title text-uppercase fw-bolder"><?= $value['title'] ?></h5>
-                                <h6 class="card-subtitle mb-2 text-muted">
-                                    <small class="d-block p-1"><i
-                                                class="fas fa-calendar-alt"></i> <?= $value['updated_at'] ?></small>
-                                    <small class="d-block p-1"><i
-                                                class="fas fa-user-edit"></i> <?= User::findOne(['id' => $value['admin_id']])['name']; ?>
-                                    </small>
-                                </h6>
-                                <a href="#" class="btn float-end"><?= Yii::t('app', 'View post') ?> <i
-                                            class="fas fa-angle-double-right"></i></a>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-        <a href="<?= Url::toRoute('site/post') ?>" class="text-decoration-none linkToProduct d-inline-block px-3">
-            <h5 class="text-uppercase m-0"><i
-                        class="far fa-hand-point-right"></i> <?= Yii::t('app', 'View more news') ?></h5>
-        </a>
-    </div>
-</div>
-<div class="full-width bgNews py-4 py-md-5" id="subscribe">
-    <div class="container text-center text-light">
-        <h1><i class="fas fa-feather-alt fa-flip-horizontal"></i><?= Yii::t('app', 'Get early access today') ?><i
-                    class="fas fa-feather-alt"></i></h1>
-        <h5 class="mt-4 px-3">
-            <?= Yii::t('app', 'It only takes a few minutes to register to enjoy our services.') ?><br>
-            <?= Yii::t('app', 'If you have any questions,our support team would be happy to help you.') ?>
-        </h5>
-        <form method="POST" action="#">
-            <div class="col-12 m-0 p-0 mt-4 row p-0 px-sm-4 px-md-4 px-lg-5">
-                <div class="col-12 col-md-8">
-                    <div class="form-floating mb-3 mb-md-0">
-                        <input type="email"
-                               class="form-control bg-transparent border border-2 border-light w-100 px-2 px-md-3 text-light"
-                               id="emailSubscribe" placeholder="name@example.com" name="email-subscribe" required>
-                        <label for="emailSubscribe" class="text-light"><?= Yii::t('app', 'Email address') ?></label>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 p-md-0">
-                    <button type="submit" class="btn btn-light p-3 w-100"
-                            id="btnSubscribe"><?= Yii::t('app', 'Get started now') ?> <i
-                                class="fas fa-arrow-right"></i></button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<script>
-    let items = document.querySelectorAll('.carouselProduct .carousel-item')
-    items.forEach((el) => {
-        const minPerSlide = 4
-        let next = el.nextElementSibling
-        for (var i = 1; i < minPerSlide; i++) {
-            if (!next) {
-                next = items[0]
-            }
-            let cloneChild = next.cloneNode(true)
-            el.appendChild(cloneChild.children[0])
-            next = next.nextElementSibling
-        }
-    });
-</script>
