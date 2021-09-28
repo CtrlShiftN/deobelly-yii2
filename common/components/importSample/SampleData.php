@@ -781,21 +781,21 @@ class SampleData
 
     protected static $arrSliderInfo = [
         [
-            'link' => '/slideshow.jpg',
+            'link' => '/sliderItems1.jpg',
             'site' => 'index',
             'slide_label' => 'First slide label',
             'slide_text' => 'No life is free right now, sometimes soft against vibrations',
             'admin_id' => 1,
         ],
         [
-            'link' => '/slideshow.jpg',
+            'link' => '/sliderItems2.jpg',
             'site' => 'index',
             'slide_label' => 'Second slide label',
             'slide_text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
             'admin_id' => 1,
         ],
         [
-            'link' => '/slideshow.jpg',
+            'link' => '/slider1.jpg',
             'site' => 'index',
             'slide_label' => 'Third slide label',
             'slide_text' => 'Praesent commodo cursus magna, vel scelerisque nisl consectetur',

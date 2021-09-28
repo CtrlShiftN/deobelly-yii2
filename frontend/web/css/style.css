@@ -20,7 +20,7 @@
 }
 
 body {
-    overflow-x: hidden;
+    overflow-x: hidden !important;
     overflow-y: scroll;
     box-sizing: border-box;
     background-color: #fff;

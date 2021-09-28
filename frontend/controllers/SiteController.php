@@ -84,12 +84,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $getProductIntro = Product::getProductIntro();
-        $getPostIntro = Post::getLatestPosts();
+//        $getProductIntro = Product::getProductIntro();
+//        $getPostIntro = Post::getLatestPosts();
         $slider = Slider::getSliderFromSite('index');
         return $this->render('index', [
-            'productIntro' => $getProductIntro,
-            'post' => $getPostIntro,
+//            'productIntro' => $getProductIntro,
+//            'post' => $getPostIntro,
             'slider' => $slider
         ]);
     }
