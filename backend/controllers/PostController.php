@@ -3,7 +3,9 @@
 namespace backend\controllers;
 
 use backend\models\Post;
+use backend\models\PostCategory;
 use backend\models\PostSearch;
+use backend\models\PostTag;
 use common\components\helpers\StringHelper;
 use Yii;
 use yii\filters\AccessControl;
@@ -11,6 +13,7 @@ use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * PostController implements the CRUD actions for Post model.
@@ -106,19 +109,29 @@ class PostController extends Controller
     public function actionCreate()
     {
         $model = new Post();
-
+        $arrTagId = PostTag::find()->where(['status' => 1])->asArray()->all();
+        $arrPostCategory = PostCategory::find()->where(['status' => 1])->asArray()->all();
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->validate()) {
-                $model->slug = StringHelper::toSlug($model->title);
-
-                if ($model->save()) {
-                    return $this->redirect(Url::toRoute(['post/upload-avatar', 'model' => $model]));
+            if ($model->load($this->request->post())) {
+                $model->file = UploadedFile::getInstance($model, 'file');
+                $model->slug = trim(StringHelper::toSlug($model->title));
+                // TODO Change server to common/media
+                $isUploadedFile = $model->file->saveAs($_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $model->slug . '.' . $model->file->getExtension());
+                if ($isUploadedFile) {
+                    $model->avatar = '/uploads/' . $model->slug . '.' . $model->file->getExtension();
+                    $model->created_at = date('Y-m-d H:i:s');
+                    $model->updated_at = date('Y-m-d H:i:s');
+                    if ($model->validate() && $model->save()) {
+                        return $this->redirect(Url::toRoute('post/'));
+                    }
                 }
             }
         }
 
         return $this->render('create', [
             'model' => $model,
+            'postTag' => $arrTagId,
+            'postCate' => $arrPostCategory
         ]);
     }
 
@@ -175,6 +188,7 @@ class PostController extends Controller
 
     public function actionFileUpload()
     {
-        var_dump($_FILES);die;
+        var_dump($_FILES);
+        die;
     }
 }

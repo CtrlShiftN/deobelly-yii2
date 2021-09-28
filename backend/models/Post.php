@@ -42,7 +42,7 @@ class Post extends \common\models\Post
             [['admin_id', 'post_category_id', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['avatar', 'title', 'slug', 'tag_id'], 'string', 'max' => 255],
-            ['file', 'file'],
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
             ['file', 'required']
         ];
     }
