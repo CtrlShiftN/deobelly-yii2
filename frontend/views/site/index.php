@@ -79,7 +79,7 @@ $this->registerCss("
     </div>
     <div class="col-12 col-md-6 d-flex align-items-center px-4 pe-lg-5 mt-3 mt-md-0">
         <div class="w-100 text-justify">
-            <h1 class="fw-light m-0 text-uppercase">sereno</h1>
+            <h1 class="fw-light m-0 text-uppercase text-center text-md-start">sereno</h1>
             <p class="fs-5 fw-light my-3 my-md-4 my-xl-5">
                 Expressing the new definition of success,
                 DE OBELLY introduces SS21 Collection "SERENO",

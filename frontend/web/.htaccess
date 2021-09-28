@@ -33,12 +33,12 @@
   php_value session.cookie_httponly true
 </IfModule>
 
-# Settings to hide index2.php and ensure pretty urls
+# Settings to hide index.php and ensure pretty urls
 RewriteEngine on
 
 # if a directory or a file exists, use it directly
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# otherwise forward it to index2.php
+# otherwise forward it to index.php
 RewriteRule . index.php
