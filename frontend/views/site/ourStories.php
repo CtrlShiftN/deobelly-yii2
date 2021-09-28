@@ -32,7 +32,8 @@ $this->registerCss(".intro-quote{
                 <?php foreach ($slider as $key => $value): ?>
                     <!-- Single item -->
                     <div class="carousel-item <?= $key == 0 ? 'active' : '' ?>">
-                        <img src="<?= $imgUrl . $value['link'] ?>" class="d-block w-100" alt="..."/>
+                        <img src="<?= $imgUrl . $value['link'] ?>" class="d-block w-100"
+                             alt="<?= empty($value['slide_label']) ? 'De Obelly' : $value['slide_label'] ?>"/>
                         <div class="carousel-caption d-none d-md-block">
                             <h5><?= empty($value['slide_label']) ? '' : $value['slide_label'] ?></h5>
                             <p><?= empty($value['slide_text']) ? '' : $value['slide_text'] ?></p>
@@ -88,7 +89,8 @@ $this->registerCss(".intro-quote{
                 <p>“Từ khi ra đời đến nay, chúng tôi luôn kiên định với sứ mệnh tái hiện nét thanh lịch tự nhiên và
                     phong cách Ý tại khu vực Đông Nam Á. Đó là lý do chúng tôi tồn tại và làm việc mỗi ngày. Chúng tôi
                     đặc biệt quan tâm tới việc phục vụ khách hàng với những sản phẩm tinh tế, xa xỉ cùng chất lượng vượt
-                    trội và phong cách thanh lịch tự nhiên. Sự tập trung vào việc đổi mới liên tục giúp chúng tôi phục vụ khách
+                    trội và phong cách thanh lịch tự nhiên. Sự tập trung vào việc đổi mới liên tục giúp chúng tôi phục
+                    vụ khách
                     hàng ngày càng hiệu quả hơn.”</p>
                 <p>Ông Nguyễn Trọng Phi – Chủ tịch Hội đồng quản trị De Obelly chia sẻ</p>
             </div>
