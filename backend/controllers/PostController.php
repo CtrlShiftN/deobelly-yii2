@@ -3,13 +3,17 @@
 namespace backend\controllers;
 
 use backend\models\Post;
+use backend\models\PostCategory;
 use backend\models\PostSearch;
+use backend\models\PostTag;
+use common\components\helpers\StringHelper;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * PostController implements the CRUD actions for Post model.
@@ -105,17 +109,32 @@ class PostController extends Controller
     public function actionCreate()
     {
         $model = new Post();
-
+        $arrTagId = PostTag::find()->where(['status' => 1])->asArray()->all();
+        $arrPostCategory = PostCategory::find()->where(['status' => 1])->asArray()->all();
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->validate()) {
-                if ($model->save()) {
-                    return $this->redirect(Url::toRoute(['post/upload-avatar', 'model' => $model]));
+            if ($model->load($this->request->post())) {
+                $model->file = UploadedFile::getInstance($model, 'file');
+                $model->slug = trim(StringHelper::toSlug(trim($model->title)));
+                // TODO Change server save files to common/media
+                $fileName = $model->slug . '.' . $model->file->getExtension();
+                $isUploadedFile = $model->file->saveAs($_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $fileName);
+                if ($isUploadedFile) {
+                    $model->avatar = '/uploads/' . $fileName;
+                    $model->tag_id = implode( ",",$model->tags);
+                    $model->admin_id = Yii::$app->user->identity->getId();
+                    $model->created_at = date('Y-m-d H:i:s');
+                    $model->updated_at = date('Y-m-d H:i:s');
+                    if ($model->save(false)) {
+                        return $this->redirect(Url::toRoute('post/'));
+                    }
                 }
             }
         }
 
         return $this->render('create', [
             'model' => $model,
+            'postTag' => $arrTagId,
+            'postCate' => $arrPostCategory
         ]);
     }
 
@@ -169,10 +188,4 @@ class PostController extends Controller
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 
-
-    public function actionUploadAvatar($model)
-    {
-        echo $model->title;
-        die;
-    }
 }

@@ -212,5 +212,7 @@ return [
     'Or' => 'Hoặc',
     'Link' => 'Đường dẫn',
     'Site' => 'Vị trí trang',
+    'Tags' => 'Thẻ bài viết',
+    'Create Post' => 'Thêm Bài Viết',
     'luxury product' => 'sản phẩm cao cấp',
 ];

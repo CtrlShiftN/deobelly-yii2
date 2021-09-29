@@ -21,6 +21,9 @@ use Yii;
  */
 class Post extends \common\models\Post
 {
+    public $file;
+    public $tags;
+
     /**
      * {@inheritdoc}
      */
@@ -38,8 +41,10 @@ class Post extends \common\models\Post
             [['avatar', 'title', 'slug', 'content', 'post_category_id'], 'required'],
             [['content'], 'string'],
             [['admin_id', 'post_category_id', 'status'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['created_at', 'updated_at', 'tags'], 'safe'],
             [['avatar', 'title', 'slug', 'tag_id'], 'string', 'max' => 255],
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
+            ['file', 'required']
         ];
     }
 
@@ -55,11 +60,13 @@ class Post extends \common\models\Post
             'slug' => Yii::t('app', 'Slug'),
             'content' => Yii::t('app', 'Content'),
             'admin_id' => Yii::t('app', 'Admin ID'),
-            'tag_id' => Yii::t('app', 'Tag ID'),
-            'post_category_id' => Yii::t('app', 'Post Category ID'),
+            'tag_id' => Yii::t('app', 'Tags'),
+            'post_category_id' => Yii::t('app', 'Post Categories'),
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'file' => Yii::t('app', 'File'),
+            'tags' => Yii::t('app', 'Post Tags')
         ];
     }
 
