@@ -78,8 +78,8 @@ class Post extends \common\models\Post
                 'u.name',
             ]
         )->from('post as p')
-            ->innerJoin('post_category as pc', 'p.post_category_id = pc.id')
-            ->innerJoin('user as u', 'u.id = p.admin_id')
+            ->leftJoin('post_category as pc', 'p.post_category_id = pc.id')
+            ->leftJoin('user as u', 'u.id = p.admin_id')
             ->where(['p.status' => 1]);
         if (!empty($postTag)) {
             $query->andWhere(['like', 'p.tag_id', CryptHelper::decryptString($postTag)]);
