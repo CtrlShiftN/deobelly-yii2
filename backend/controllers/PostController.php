@@ -188,10 +188,4 @@ class PostController extends Controller
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 
-
-    public function actionFileUpload()
-    {
-        var_dump($_FILES);
-        die;
-    }
 }
