@@ -28,7 +28,7 @@ $this->registerCss("
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tag_id')->widget(Select2::classname(), [
+    <?= $form->field($model, 'tags')->widget(Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map($postTag, 'id', 'title'),
         'options' => ['placeholder' => Yii::t('app','Choose post tags')],
         'pluginOptions' => [
@@ -48,7 +48,7 @@ $this->registerCss("
     <?= $form->field($model, 'content')->widget(\yii\redactor\widgets\Redactor::class) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

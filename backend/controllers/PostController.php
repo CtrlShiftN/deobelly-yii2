@@ -114,14 +114,17 @@ class PostController extends Controller
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->file = UploadedFile::getInstance($model, 'file');
-                $model->slug = trim(StringHelper::toSlug($model->title));
-                // TODO Change server to common/media
-                $isUploadedFile = $model->file->saveAs($_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $model->slug . '.' . $model->file->getExtension());
+                $model->slug = trim(StringHelper::toSlug(trim($model->title)));
+                // TODO Change server save files to common/media
+                $fileName = $model->slug . '.' . $model->file->getExtension();
+                $isUploadedFile = $model->file->saveAs($_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $fileName);
                 if ($isUploadedFile) {
-                    $model->avatar = '/uploads/' . $model->slug . '.' . $model->file->getExtension();
+                    $model->avatar = '/uploads/' . $fileName;
+                    $model->tag_id = implode( ",",$model->tags);
+                    $model->admin_id = Yii::$app->user->identity->getId();
                     $model->created_at = date('Y-m-d H:i:s');
                     $model->updated_at = date('Y-m-d H:i:s');
-                    if ($model->validate() && $model->save()) {
+                    if ($model->save(false)) {
                         return $this->redirect(Url::toRoute('post/'));
                     }
                 }

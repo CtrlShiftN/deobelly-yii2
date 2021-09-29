@@ -12,7 +12,7 @@ class StringHelper
      */
     public static function toSlug($string)
     {
-        return str_replace(' ', '-', mb_strtolower(self::stripVN($string)));
+        return str_replace(' ', '-', trim(mb_strtolower(self::stripVN($string))));
     }
 
     /**
