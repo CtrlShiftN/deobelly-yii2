@@ -212,4 +212,5 @@ return [
     'Or' => 'Hoặc',
     'Link' => 'Đường dẫn',
     'Site' => 'Vị trí trang',
+    'luxury product' => 'sản phẩm cao cấp',
 ];
