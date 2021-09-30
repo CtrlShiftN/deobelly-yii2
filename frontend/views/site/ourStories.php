@@ -32,7 +32,7 @@ $this->registerCss(".intro-quote{
                 <?php foreach ($slider as $key => $value): ?>
                     <!-- Single item -->
                     <div class="carousel-item <?= $key == 0 ? 'active' : '' ?>">
-                        <img src="<?= $imgUrl . $value['link'] ?>" class="d-block w-100"
+                        <img src="<?= $imgUrl .'/'. $value['link'] ?>" class="d-block w-100"
                              alt="<?= empty($value['slide_label']) ? 'De Obelly' : $value['slide_label'] ?>"/>
                         <div class="carousel-caption d-none d-md-block">
                             <h5><?= empty($value['slide_label']) ? '' : $value['slide_label'] ?></h5>

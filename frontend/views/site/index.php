@@ -26,7 +26,7 @@ $this->registerCss("
             <?php foreach ($slider as $key => $value): ?>
                 <!-- Single item -->
                 <div class="carousel-item <?= $key == 0 ? 'active' : '' ?>">
-                    <img src="<?= $imgUrl . '/slider' . $value['link'] ?>" class="d-block w-100" alt="..."/>
+                    <img src="<?= $imgUrl . '/' . $value['link'] ?>" class="d-block w-100" alt="..."/>
                     <div class="carousel-caption d-none d-md-block">
                         <h5><?= empty($value['slide_label']) ? '' : $value['slide_label'] ?></h5>
                         <p><?= empty($value['slide_text']) ? '' : $value['slide_text'] ?></p>

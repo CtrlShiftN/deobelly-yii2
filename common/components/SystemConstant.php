@@ -1,4 +1,5 @@
 <?php
+
 namespace common\components;
 class SystemConstant
 {
@@ -13,5 +14,6 @@ class SystemConstant
     const PRODUCT_CATEGORY_TYPE_TROUSERS = 2;
     const PRODUCT_CATEGORY_TYPE_SHOES = 3;
     const PRODUCT_CATEGORY_TYPE_ACCESSORIES = 4;
+    const ARRAY_SLIDER_SITE = ['index' => 'Index', 'our-stories' => 'Our stories'];
 
 }
