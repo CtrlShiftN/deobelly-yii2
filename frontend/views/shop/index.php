@@ -10,76 +10,89 @@ $cdnUrl = Yii::$app->params['frontend'];
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->registerCssFile(Url::toRoute("/css/shop.css"));
 $this->registerCss("
-.object-fit-cover {
-    object-fit: cover;
-}
-.h-35 {
-    height: 35% !important;
-}
-.h-65 {
-    height: 65% !important;
-}
 ");
 ?>
+<!-- Carousel wrapper -->
+<div class="full-width">
+    <div id="sliderHeader" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+            <?php foreach ($slider as $key => $value): ?>
+                <button type="button" data-bs-target="#carouselBasicExample" data-bs-slide-to="<?= $key ?>"
+                        class="active"
+                        aria-current="true" aria-label="Slide <?= $key + 1 ?>"></button>
+            <?php endforeach; ?>
+        </div>
+        <!-- Inner -->
+        <div class="carousel-inner">
+            <?php foreach ($slider as $key => $value): ?>
+                <!-- Single item -->
+                <div class="carousel-item <?= $key == 0 ? 'active' : '' ?>">
+                    <img src="<?= $imgUrl . '/slider' . $value['link'] ?>" class="d-block w-100" alt="..."/>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5><?= empty($value['slide_label']) ? '' : $value['slide_label'] ?></h5>
+                        <p><?= empty($value['slide_text']) ? '' : $value['slide_text'] ?></p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#sliderHeader"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#sliderHeader"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<!-- Carousel wrapper -->
 <div class="row p-0 my-5 h-100">
-    <div class="col-6 px-2 ps-md-5 pe-md-3 mb-5">
-<!--        TODO: LINKS-->
+    <div class="col-6 px-1 ps-md-5 pe-md-3 mb-4 mb-md-5">
+        <!--        TODO: LINKS-->
+<!--        <a href="--><?//= Url::toRoute(['shop/product', 'product_category' => \common\components\encrypt\CryptHelper::encryptString('men')]) ?><!--" class="text-decoration-none" target="_blank">-->
         <a href="javascript:void(0)" class="text-decoration-none" target="_blank">
-            <div class="overflow-hidden w-100 shadow h-65 position-relative my-3">
-                <p class="position-absolute text-light fs-1 category-title fw-bolder text-uppercase"><?= Yii::t('app','Men') ?></p>
+            <div class="overflow-hidden w-100 shadow h-65 position-relative my-2 my-md-3">
+                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', 'Men') ?></p>
                 <img src="<?= Url::toRoute('img/index/pronto-img-4.jpg') ?>" class="w-100 shadow object-fit-cover zoom"
                      alt="...">
             </div>
         </a>
-        <a href="javascript:void(0)" class="text-decoration-none" target="_blank">
-            <div class="overflow-hidden w-100 shadow h-35 position-relative my-3">
-                <p class="position-absolute text-light fs-1 category-title fw-bolder text-uppercase"><?= Yii::t('app','Accessory') ?></p>
+        <a href="<?= Url::toRoute(['shop/product', 'product_category' => \common\components\encrypt\CryptHelper::encryptString('accessory')]) ?>" class="text-decoration-none" target="_blank">
+            <div class="overflow-hidden w-100 shadow h-35 position-relative my-2 my-md-3">
+                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', 'Accessory') ?></p>
                 <img src="<?= Url::toRoute('img/index/GLT_1219.jpeg') ?>" class="w-100 shadow object-fit-cover zoom"
                      alt="...">
             </div>
         </a>
     </div>
-    <div class="col-6 px-2 ps-md-3 pe-md-5 mb-5">
-        <a href="javascript:void(0)" class="text-decoration-none" target="_blank">
-            <div class="overflow-hidden w-100 shadow h-35 position-relative my-3">
-                <p class="position-absolute text-light fs-1 category-title fw-bolder text-uppercase"><?= Yii::t('app','new product') ?></p>
+    <div class="col-6 px-1 ps-md-3 pe-md-5 mb-4 mb-md-5">
+        <a href="<?= Url::toRoute(['shop/product', 'product_category' => \common\components\encrypt\CryptHelper::encryptString('new-product')]) ?>" class="text-decoration-none" target="_blank">
+            <div class="overflow-hidden w-100 shadow h-35 position-relative my-2 my-md-3">
+                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', 'new product') ?></p>
                 <img src="<?= Url::toRoute('img/index/women.jpg') ?>" class="w-100 shadow object-fit-cover zoom"
                      alt="...">
             </div>
         </a>
+<!--        <a href="--><?//= Url::toRoute(['shop/product', 'product_category' => \common\components\encrypt\CryptHelper::encryptString('women')]) ?><!--" class="text-decoration-none" target="_blank">-->
         <a href="javascript:void(0)" class="text-decoration-none" target="_blank">
-            <div class="overflow-hidden w-100 shadow h-65 position-relative my-3">
-                <p class="position-absolute text-light fs-1 category-title fw-bolder text-uppercase"><?= Yii::t('app','Women') ?></p>
+            <div class="overflow-hidden w-100 shadow h-65 position-relative my-2 my-md-3">
+                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', 'Women') ?></p>
                 <img src="<?= Url::toRoute('img/index/pronto-img-2.jpg') ?>" class="w-100 shadow object-fit-cover zoom"
                      alt="...">
             </div>
         </a>
     </div>
-    <div class="col-12 mb-5 px-2 px-md-5">
-        <a href="javascript:void(0)" class="text-decoration-none" target="_blank">
-            <div class="overflow-hidden w-100 shadow position-relative mt-3">
-                <p class="position-absolute text-light fs-1 last-category-title fw-bolder text-uppercase"><?= Yii::t('app','luxury product') ?></p>
+    <div class="col-12 mb-md-5 px-1 px-md-5">
+        <a href="<?= Url::toRoute(['shop/product', 'product_category' => \common\components\encrypt\CryptHelper::encryptString('luxury-product')]) ?>" class="text-decoration-none" target="_blank">
+            <div class="overflow-hidden w-100 shadow position-relative mt-md-3">
+                <p class="position-absolute text-light fs-title last-category-title fw-bolder text-uppercase"><?= Yii::t('app', 'luxury product') ?></p>
                 <img src="<?= Url::toRoute('img/index/brand2.jpg') ?>" class="w-100 shadow object-fit-cover zoom"
                      alt="...">
             </div>
         </a>
     </div>
 </div>
-
-<script>
-    $(function () {
-        var request = $.ajax({
-            url: "<?= $cdnUrl ?>/api/ajax/test", // send request to
-            method: "POST", // sending method
-            data: {user_id: 'abc'}, // sending data
-        });
-
-        request.done(function (msg) {
-            console.log('success', msg); // what returns
-        });
-
-        request.fail(function (jqXHR, textStatus) {
-            alert("Request failed: " + textStatus); // check errors
-        });
-    })
-</script>

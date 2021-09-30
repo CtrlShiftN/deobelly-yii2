@@ -215,4 +215,5 @@ return [
     'Tags' => 'Thẻ bài viết',
     'Create Post' => 'Thêm Bài Viết',
     'luxury product' => 'sản phẩm cao cấp',
+    "Women Fashion" => 'Thời Trang Nữ',
 ];

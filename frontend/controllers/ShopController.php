@@ -2,6 +2,9 @@
 
 namespace frontend\controllers;
 
+use common\components\encrypt\CryptHelper;
+use common\components\helpers\ParamHelper;
+use frontend\models\Slider;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -64,11 +67,16 @@ class ShopController extends Controller
     }
 
     /**
-     * @return string
+     * Displays homepage.
+     *
+     * @return mixed
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $slider = Slider::getSliderFromSite('index');
+        return $this->render('index', [
+            'slider' => $slider
+        ]);
     }
 
     /**
@@ -76,6 +84,11 @@ class ShopController extends Controller
      */
     public function actionProduct()
     {
-        return $this->render('product');
+        $slider = Slider::getSliderFromSite('index');
+        $getParamCategory = CryptHelper::decryptString(ParamHelper::getParamValue('product_category'));
+        return $this->render('product', [
+            'paramCate' => $getParamCategory,
+            'slider' => $slider
+        ]);
     }
 }
