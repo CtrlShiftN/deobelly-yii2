@@ -781,42 +781,42 @@ class SampleData
 
     protected static $arrSliderInfo = [
         [
-            'link' => '/sliderItems1.jpg',
+            'link' => 'slider/sliderItems1.jpg',
             'site' => 'index',
             'slide_label' => 'First slide label',
             'slide_text' => 'No life is free right now, sometimes soft against vibrations',
             'admin_id' => 1,
         ],
         [
-            'link' => '/sliderItems2.jpg',
+            'link' => 'slider/sliderItems2.jpg',
             'site' => 'index',
             'slide_label' => 'Second slide label',
             'slide_text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
             'admin_id' => 1,
         ],
         [
-            'link' => '/slider1.jpg',
+            'link' => 'slider/slider1.jpg',
             'site' => 'index',
             'slide_label' => 'Third slide label',
             'slide_text' => 'Praesent commodo cursus magna, vel scelerisque nisl consectetur',
             'admin_id' => 1,
         ],
         [
-            'link' => '/slider/slider1.jpg',
+            'link' => 'slider/slider1.jpg',
             'site' => 'our-stories',
             'slide_label' => null,
             'slide_text' => null,
             'admin_id' => 1,
         ],
         [
-            'link' => '/slider/slider1.jpg',
+            'link' => 'slider/slider1.jpg',
             'site' => 'our-stories',
             'slide_label' => null,
             'slide_text' => null,
             'admin_id' => 1,
         ],
         [
-            'link' => '/slider/slider1.jpg',
+            'link' => 'slider/slider1.jpg',
             'site' => 'our-stories',
             'slide_label' => null,
             'slide_text' => null,
