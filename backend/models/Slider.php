@@ -50,7 +50,7 @@ class Slider extends \common\models\Slider
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'link' => Yii::t('app', 'Link'),
+            'link' => Yii::t('app', 'Slide Image'),
             'site' => Yii::t('app', 'Site'),
             'slide_label' => Yii::t('app', 'Slide Label'),
             'slide_text' => Yii::t('app', 'Slide Text'),

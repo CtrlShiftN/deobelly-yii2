@@ -10,6 +10,8 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Post */
 /* @var $form yii\widgets\ActiveForm */
+
+$this->title = Yii::t('app', 'Add new slide');
 $this->registerCss("
 .help-block{color: red}
 ")
@@ -23,7 +25,7 @@ $this->registerCss("
     <?= $form->field($model, 'file')->widget(FileInput::classname(), [
         'options' => ['multiple' => false, 'accept' => 'image/*'],
         'pluginOptions' => ['previewFileType' => 'image', 'showUpload' => false]
-    ])->label(Yii::t('app', 'Slide'));
+    ])->label(Yii::t('app', 'Slide Image'));
     ?>
 
     <?= $form->field($model, 'site')->textInput(['maxlength' => true]) ?>
@@ -31,7 +33,7 @@ $this->registerCss("
     <?= $form->field($model, 'slide_text')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Create'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
