@@ -221,4 +221,5 @@ return [
     'Add new slide' => 'Thêm trình chiếu',
     'Slide Image' => 'Hình ảnh trình chiếu',
     'Create' => 'Tạo mới',
+    'Call Now' => 'Gọi Ngay',
 ];
