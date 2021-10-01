@@ -436,6 +436,10 @@ AppAsset::register($this);
             </div>
         </div>
     </div>
+    <div class="phone-call"><a href="tel:<?= Yii::$app->params['adminTel'] ?>"><img
+                    src="<?= Yii::$app->params['common'] . '/media/phone-call.png' ?>"
+                    width="50" alt="<?= Yii::t('app', 'Call Now') ?>" title="<?= Yii::t('app', 'Call Now') ?>"></a>
+    </div>
     <script>
         window.addEventListener('DOMContentLoaded', event => {
             // Toggle the side navigation
