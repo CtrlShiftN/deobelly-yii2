@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c2ff9ac43c368410e50c6d04ff696226",
+    "content-hash": "1b42959b186bd24d03b6ffe5ea868a81",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -361,6 +361,47 @@
                 "source": "https://github.com/ezyang/htmlpurifier/tree/master"
             },
             "time": "2020-06-29T00:56:53+00:00"
+        },
+        {
+            "name": "giannisdag/yii2-check-login-attempts",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/giannisdag/yii2-check-login-attempts.git",
+                "reference": "6fbe750f4c4147ccc2033ac8e213dc70e9d6efeb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/giannisdag/yii2-check-login-attempts/zipball/6fbe750f4c4147ccc2033ac8e213dc70e9d6efeb",
+                "reference": "6fbe750f4c4147ccc2033ac8e213dc70e9d6efeb",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "giannisdag\\yii2CheckLoginAttempts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Giannis Dagkoulis",
+                    "email": "giannisdag@yahoo.gr"
+                }
+            ],
+            "description": "Disable login after multiple failures.",
+            "keywords": [
+                "Behavior",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/giannisdag/yii2-check-login-attempts/issues",
+                "source": "https://github.com/giannisdag/yii2-check-login-attempts/tree/master"
+            },
+            "time": "2018-01-08T08:55:07+00:00"
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
