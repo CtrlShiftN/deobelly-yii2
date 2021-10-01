@@ -222,4 +222,7 @@ return [
     'Slide Image' => 'Hình ảnh trình chiếu',
     'Create' => 'Tạo mới',
     'Call Now' => 'Gọi Ngay',
+    'Enter your email' => 'Nhập vào email',
+    'Enter your password' => 'Nhập vào mật khẩu',
+    'This account does not exist' => 'Tài khoản không tồn tại',
 ];
