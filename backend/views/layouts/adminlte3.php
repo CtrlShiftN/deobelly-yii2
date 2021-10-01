@@ -153,20 +153,17 @@ AppAsset::register($this);
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-header text-uppercase font-weight-bold"><?= Yii::t('app', 'Others') ?></li>
                         <li class="nav-item">
                             <a href="<?= Url::toRoute('contact/') ?>" class="nav-link">
                                 <i class="nav-icon fas fa-envelope"></i>
                                 <p><?= Yii::t('app', 'Contact') ?></p>
                             </a>
                         </li>
-                        <li class="nav-header text-uppercase font-weight-bold"><?= Yii::t('app', 'Others') ?></li>
                         <li class="nav-item">
-                            <a href="pages/calendar.html" class="nav-link">
-                                <i class="nav-icon fas fa-calendar-alt"></i>
-                                <p>
-                                    Calendar
-                                    <span class="badge badge-info right">2</span>
-                                </p>
+                            <a href="<?= Url::toRoute('tool/slider') ?>" class="nav-link">
+                                <i class="nav-icon fab fa-slideshare"></i>
+                                <p><?= Yii::t('app', 'Slider') ?></p>
                             </a>
                         </li>
                         <li class="nav-item">

@@ -106,7 +106,6 @@ class SampleData
             'cost_price' => 150000,
             'regular_price' => 299000,
             'sale_price' => null,
-            'SKU' => null,
             'quantity' => 20,
             'image' => 'product/clothes/top/shirt1.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
@@ -133,7 +132,6 @@ class SampleData
             'cost_price' => 200000,
             'regular_price' => 400000,
             'sale_price' => null,
-            'SKU' => null,
             'quantity' => 20,
             'image' => 'product/clothes/top/shirt6.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
@@ -160,7 +158,6 @@ class SampleData
             'cost_price' => 200000,
             'regular_price' => 399000,
             'sale_price' => null,
-            'SKU' => null,
             'quantity' => 20,
             'image' => 'product/clothes/top/shirt3.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
@@ -187,7 +184,6 @@ class SampleData
             'cost_price' => 200000,
             'regular_price' => 399000,
             'sale_price' => null,
-            'SKU' => null,
             'quantity' => 20,
             'image' => 'product/clothes/top/shirt5.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
@@ -214,7 +210,6 @@ class SampleData
             'cost_price' => 300000,
             'regular_price' => 599000,
             'sale_price' => null,
-            'SKU' => null,
             'quantity' => 20,
             'image' => 'product/clothes/top/shirt4.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
@@ -241,7 +236,6 @@ class SampleData
             'cost_price' => 175000,
             'regular_price' => 349000,
             'sale_price' => null,
-            'SKU' => null,
             'quantity' => 20,
             'image' => 'product/clothes/top/shirt2.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
@@ -265,7 +259,6 @@ class SampleData
             'cost_price' => 800000,
             'regular_price' => 1600000,
             'sale_price' => 1360000,
-            'SKU' => null,
             'quantity' => 30,
             'image' => 'product/clothes/shirt/ao-so-mi-lados.jpg',
             'images' => '',
@@ -287,7 +280,6 @@ class SampleData
             'cost_price' => 600000,
             'regular_price' => 11999000,
             'sale_price' => 10190000,
-            'SKU' => null,
             'quantity' => 18,
             'image' => 'product/clothes/vest/vest-nam-han-quoc.jpg',
             'images' => '',
@@ -316,7 +308,7 @@ class SampleData
             } else {
                 $product->sale_price = null;
             }
-            $product->SKU = $values['SKU'];
+            $product->SKU = null;
             $product->quantity = $values['quantity'];
             $product->image = $values['image'];
             $product->images = $values['images'];
@@ -799,42 +791,42 @@ class SampleData
 
     protected static $arrSliderInfo = [
         [
-            'link' => '/sliderItems1.jpg',
+            'link' => 'slider/sliderItems1.jpg',
             'site' => 'index',
             'slide_label' => 'First slide label',
             'slide_text' => 'No life is free right now, sometimes soft against vibrations',
             'admin_id' => 1,
         ],
         [
-            'link' => '/sliderItems2.jpg',
+            'link' => 'slider/sliderItems2.jpg',
             'site' => 'index',
             'slide_label' => 'Second slide label',
             'slide_text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
             'admin_id' => 1,
         ],
         [
-            'link' => '/slider1.jpg',
+            'link' => 'slider/slider1.jpg',
             'site' => 'index',
             'slide_label' => 'Third slide label',
             'slide_text' => 'Praesent commodo cursus magna, vel scelerisque nisl consectetur',
             'admin_id' => 1,
         ],
         [
-            'link' => '/slider/slider1.jpg',
+            'link' => 'slider/slider1.jpg',
             'site' => 'our-stories',
             'slide_label' => null,
             'slide_text' => null,
             'admin_id' => 1,
         ],
         [
-            'link' => '/slider/slider1.jpg',
+            'link' => 'slider/slider1.jpg',
             'site' => 'our-stories',
             'slide_label' => null,
             'slide_text' => null,
             'admin_id' => 1,
         ],
         [
-            'link' => '/slider/slider1.jpg',
+            'link' => 'slider/slider1.jpg',
             'site' => 'our-stories',
             'slide_label' => null,
             'slide_text' => null,

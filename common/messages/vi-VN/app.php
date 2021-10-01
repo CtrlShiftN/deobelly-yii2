@@ -214,6 +214,13 @@ return [
     'Site' => 'Vị trí trang',
     'Tags' => 'Thẻ bài viết',
     'Create Post' => 'Thêm Bài Viết',
+    'Slide Label' => 'Nhãn Hiệu Trên Trình Chiếu',
+    'Slide Text' => 'Nội Dung Trên Trình Chiếu',
+    'Slider' => 'Trình Chiếu',
+    'Sliders list' => 'Danh sách trình chiếu',
+    'Add new slide' => 'Thêm trình chiếu',
+    'Slide Image' => 'Hình ảnh trình chiếu',
+    'Create' => 'Tạo mới',
     'luxury product' => 'sản phẩm cao cấp',
     "Women Fashion" => 'Thời Trang Nữ',
 ];
