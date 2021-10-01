@@ -33,7 +33,8 @@
     "kartik-v/yii2-popover-x": "^1.3",
     "kartik-v/yii2-widget-fileinput": "^1.1",
     "kartik-v/yii2-label-inplace": "dev-master",
-    "yiidoc/yii2-redactor": "^2.0"
+    "yiidoc/yii2-redactor": "^2.0",
+    "giannisdag/yii2-check-login-attempts": "^1.1"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",
