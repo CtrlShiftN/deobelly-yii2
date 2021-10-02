@@ -225,5 +225,7 @@ return [
     'Enter your email' => 'Nhập vào email',
     'Enter your password' => 'Nhập vào mật khẩu',
     'This account does not exist' => 'Tài khoản không tồn tại',
-    'The login function is temporarily disable.' => 'Chức năng đăng nhập đang tạm thời bị khóa'
+    'The login function is temporarily disable.' => 'Chức năng đăng nhập đang tạm thời bị khóa',
+    'Recently Added Products' => 'Sản Phẩm Mới',
+    'View All Products' => 'Tất Cả Sản Phẩm',
 ];

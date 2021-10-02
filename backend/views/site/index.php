@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 
 $this->title = Yii::t('app', 'Admin Panel');
+$imgUrl = Yii::$app->params['common'] . '/media';
 ?>
 <div class="site-index pt-3">
     <!-- Info boxes -->
@@ -187,7 +188,7 @@ $this->title = Yii::t('app', 'Admin Panel');
             <!-- PRODUCT LIST -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Recently Added Products</h3>
+                    <h3 class="card-title"><?= Yii::t('app', 'Recently Added Products') ?></h3>
 
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -201,66 +202,24 @@ $this->title = Yii::t('app', 'Admin Panel');
                 <!-- /.card-header -->
                 <div class="card-body p-0">
                     <ul class="products-list product-list-in-card pl-2 pr-2">
-                        <li class="item">
-                            <div class="product-img">
-                                <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                            </div>
-                            <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">Samsung TV
-                                    <span class="badge badge-warning float-right">$1800</span></a>
-                                <span class="product-description">
-                        Samsung 32" 1080p 60Hz LED Smart HDTV.
-                      </span>
-                            </div>
-                        </li>
-                        <!-- /.item -->
-                        <li class="item">
-                            <div class="product-img">
-                                <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                            </div>
-                            <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">Bicycle
-                                    <span class="badge badge-info float-right">$700</span></a>
-                                <span class="product-description">
-                        26" Mongoose Dolomite Men's 7-speed, Navy Blue.
-                      </span>
-                            </div>
-                        </li>
-                        <!-- /.item -->
-                        <li class="item">
-                            <div class="product-img">
-                                <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                            </div>
-                            <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">
-                                    Xbox One <span class="badge badge-danger float-right">
-                        $350
-                      </span>
-                                </a>
-                                <span class="product-description">
-                        Xbox One Console Bundle with Halo Master Chief Collection.
-                      </span>
-                            </div>
-                        </li>
-                        <!-- /.item -->
-                        <li class="item">
-                            <div class="product-img">
-                                <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                            </div>
-                            <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">PlayStation 4
-                                    <span class="badge badge-success float-right">$399</span></a>
-                                <span class="product-description">
-                        PlayStation 4 500GB Console (PS4)
-                      </span>
-                            </div>
-                        </li>
-                        <!-- /.item -->
+                        <?php foreach ($products as $key => $value): ?>
+                            <li class="item">
+                                <div class="product-img">
+                                    <img src="<?= $imgUrl . '/' . $value['image'] ?>" alt="<?= $value['name'] ?>"
+                                         class="img-size-50">
+                                </div>
+                                <div class="product-info">
+                                    <a href="javascript:void(0)" class="product-title"><?= $value['name'] ?>
+                                        <span class="badge badge-warning float-right"><?= Yii::$app->formatter->asCurrency($value['cost_price']) ?></span></a>
+                                    <span class="product-description"><?= strip_tags($value['description']) ?></span>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer text-center">
-                    <a href="javascript:void(0)" class="uppercase">View All Products</a>
+                    <a href="<?= \yii\helpers\Url::toRoute('product/') ?>" class="uppercase"><?= Yii::t('app','View All Products') ?></a>
                 </div>
                 <!-- /.card-footer -->
             </div>

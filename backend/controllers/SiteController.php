@@ -3,6 +3,8 @@
 namespace backend\controllers;
 
 use backend\models\LoginForm;
+use common\components\SystemConstant;
+use common\models\Product;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -37,7 +39,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post','get'],
+                    'logout' => ['post', 'get'],
                 ],
             ],
         ];
@@ -71,7 +73,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $latestProduct = Product::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->orderBy('created_at DESC')->limit(5)->asArray()->all();
+        return $this->render('index', [
+            'products' => $latestProduct
+        ]);
     }
 
     /**
