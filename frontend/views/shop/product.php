@@ -14,6 +14,11 @@ $this->registerCss("
     button:focus {
         box-shadow: none !important;
     }
+    .favor {
+        top:0;
+        right:12px;
+        z-index: 3;
+    }
 ");
 ?>
 <!-- Carousel wrapper -->
@@ -55,11 +60,50 @@ $this->registerCss("
 </div>
 <div class="row m-0 p-0 pt-5">
     <div class="col-12 d-md-none m-0 p-0">
-        <button type="button" id="btn-type" class="btn bg-transparent border-0 rounded-0 mt-3">Thể loại</button>
+        <button class="btn bg-transparent border-0 rounded-0 mt-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCategory" aria-controls="offcanvasCategory">
+            Thể loại
+        </button>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasCategory" aria-labelledby="offcanvasCategoryLabel">
+            <div class="offcanvas-header border-bottom border-dark">
+                <h5 class="offcanvas-title text-uppercase" id="offcanvasCategoryLabel">Thể loại</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body p-0">
+                <div class="accordion accordion-flush ct-show" id="type_category_offcanvas">
+                    <?php foreach ($bigCategory as $key => $value): ?>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-heading-<?= $value['id'] ?>">
+                                <button class="accordion-button collapsed text-uppercase fw-light btn-title-category"
+                                        type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#flush-collapse-<?= $value['id'] ?>"
+                                        aria-expanded="false" aria-controls="flush-collapse-<?= $value['id'] ?>">
+                                    <?= Yii::t('app', $value['name']) ?>
+                                </button>
+                                <input type='hidden' class="big-cate w-100" value="<?= str_split($value['code'], 3)[0] ?>">
+                            </h2>
+                            <?php $code = str_split($value['code'], 2)[0]; ?>
+                            <div id="flush-collapse-<?= $value['id'] ?>" class="accordion-collapse collapse ps-4 ps-md-5 py-3"
+                                 aria-labelledby="flush-heading-<?= $value['id'] ?>" data-bs-parent="#type_category_offcanvas">
+                                <?php foreach (\frontend\models\ProductCategory::getAllCategoriesByCode($code) as $key => $cate): ?>
+                                    <label class="category-checkbox"><?= $cate['name'] ?>
+                                        <?php $code_cate = str_split($cate['code'], 3)[0]; ?>
+                                        <input type="checkbox" value="<?= $code_cate ?>">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-12 col-md-3 m-0 p-0">
-        <span class="fw-bold fs-5 px-3 py-2 border-bottom border-dark text-uppercase mb-2 d-md-block d-none">Thể loại</span>
-        <div class="accordion accordion-flush ct-show" id="type_category">
+
+    <div class="col-12 col-md-3 m-0 p-0 d-md-block d-none">
+        <div class="w-100 px-3 py-2 mb-2 border-bottom border-dark">
+            <span class="fw-bold fs-5 p-0 text-uppercase">Thể loại</span>
+        </div>
+        <div class="accordion accordion-flush w-100" id="type_category">
             <?php foreach ($bigCategory as $key => $value): ?>
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-heading-<?= $value['id'] ?>">
@@ -123,13 +167,28 @@ $this->registerCss("
 </div>
 
 <script>
-    $('#btn-type').click(function () {
-        if($('#type_category').hasClass('.ct-hidden')) {
-            $('#type_category').addClass('.ct-show').removeClass('.ct-hidden').show(300);
-        } else {
-            $('#type_category').addClass('.ct-hidden').removeClass('.ct-show').hide(300);
-        }
-    });
+    // $('#btn-type').click(function () {
+    //     if($('#type_category').hasClass('ct-hidden')) {
+    //         $('#type_category').addClass('ct-show').removeClass('ct-hidden').show(300);
+    //     } else {
+    //         $('#type_category').addClass('ct-hidden').removeClass('ct-show').hide(300);
+    //     }
+    // });
+
+    // if (window.matchMedia('(max-width: 768x)').matches) {
+    //     if($('#type_category').hasClass('ct-hidden')) {
+    //         $('#type_category').hide();
+    //     } else {
+    //         $('#type_category').addClass('ct-hidden').removeClass('ct-show').hide();
+    //     }
+    // } else {
+    //     if($('#type_category').hasClass('ct-show')) {
+    //         $('#type_category').show();
+    //     } else {
+    //         $('#type_category').addClass('ct-show').removeClass('ct-hidden').show();
+    //     }
+    // }
+
     var cdnUrl = '<?= $cdnUrl ?>';
     var imgUrl = '<?= $imgUrl ?>';
     var show_per_page = <?= \common\components\SystemConstant::LIMIT_PER_PAGE ?>;
@@ -219,14 +278,14 @@ $this->registerCss("
                 for (let i = 0; i < arrRes.product.length; i++) {
                     //format price
                     var regular_price = new Intl.NumberFormat(['ban', 'id']).format(arrRes.product[i].regular_price);
-                    result += '<div class="col-12 col-sm-6 col-lg-4 mx-0 my-4"><a href="' + cdnUrl + '/shop/product-detail?detail=' + arrRes.product[i].id + '" class="text-decoration-none text-dark px-0 w-100"><div class="position-relative product-card w-100 mb-2"><img class="img-product shadow" src="' + imgUrl + '/' + arrRes.product[i].image + '"></div>';
+                    result += '<div class="col-12 col-sm-6 col-lg-4 mx-0 my-4 position-relative"><a href="' + cdnUrl + '/shop/product-detail?detail=' + arrRes.product[i].id + '" class="text-decoration-none text-dark px-0 w-100" target="_blank"><div class="position-relative product-card w-100 mb-2"><img class="img-product shadow" src="' + imgUrl + '/' + arrRes.product[i].image + '"></div>';
                     if (arrRes.product[i].sale_price !== arrRes.product[i].regular_price) {
                         var sale_price = new Intl.NumberFormat(['ban', 'id']).format(arrRes.product[i].sale_price);
                         result += '<span class="px-0 fw-bold mt-2"><span class="text-decoration-line-through text-dark fw-light fs-regular-price">' + regular_price + '</span> ' + sale_price + ' VNĐ</span>';
                     } else {
                         result += '<span class="px-0 fw-bold mt-2">' + regular_price + ' VNĐ</span>';
                     }
-                    result += '<div class="row px-0 w-100 m-0"><div class="col-10 p-0 pe-1"><p class="fs-5 m-0 product-name">' + arrRes.product[i].name + '</p></div><div class="col-2 p-0"><button type="button" class="btn rounded-0 border-0 w-100 h-100 p-0 fs-4"><i class="far fa-heart"></i></button></div></div></a></div>';
+                    result += '<p class="fs-5 m-0 product-name">' + arrRes.product[i].name + '</p></a><button type="button" class="btn bg-white rounded-0 border p-2 py-1 fs-4 favor position-absolute"><i class="far fa-heart"></i></button></div>';
                 }
                 $("#result").html(result);
                 //show pagination
