@@ -19,8 +19,8 @@ use Yii;
  * @property int $quantity
  * @property string $image
  * @property string|null $images
- * @property int $category_id
- * @property int|null $trademark_id
+ * @property string $category_id
+ * @property string|null $trademark_id
  * @property int|null $viewed +1 each click to view
  * @property int|null $fake_sold client see this amount if sold < 1k
  * @property int|null $sold
@@ -48,9 +48,9 @@ class Product extends \common\models\Product
             [['name', 'slug', 'description', 'cost_price', 'regular_price', 'image', 'category_id'], 'required'],
             [['description', 'images'], 'string'],
             [['cost_price', 'regular_price', 'sale_price'], 'number'],
-            [['quantity', 'category_id', 'trademark_id', 'viewed', 'fake_sold', 'sold', 'status', 'admin_id'], 'integer'],
+            [['quantity', 'viewed', 'fake_sold', 'sold', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'slug', 'short_description', 'SKU', 'image'], 'string', 'max' => 255],
+            [['name', 'slug', 'short_description', 'SKU', 'image', 'category_id', 'trademark_id'], 'string', 'max' => 255],
             [['slug'], 'unique'],
         ];
     }
@@ -85,11 +85,11 @@ class Product extends \common\models\Product
         ];
     }
 
-    /**
-     * @return array|\yii\db\ActiveRecord[]
-     */
-    public static function getProductIntro()
-    {
-        return Product::find()->where(['status' => 1])->orderBy("updated_at DESC")->limit(8)->asArray()->all();
-    }
+//    /**
+//     * @return array|\yii\db\ActiveRecord[]
+//     */
+//    public static function getProductIntro()
+//    {
+//        return Product::find()->where(['status' => 1])->orderBy("updated_at DESC")->limit(8)->asArray()->all();
+//    }
 }

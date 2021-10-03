@@ -14,8 +14,8 @@ class m210828_020051_create_meta_table extends Migration
     {
         $this->createTable('{{%meta}}', [
             'id' => $this->primaryKey(),
-            'key' => $this->string()->unique(),
-            'value' => $this->string(),
+            'key' => $this->string()->unique()->notNull(),
+            'value' => $this->string()->notNull(),
         ]);
     }
 

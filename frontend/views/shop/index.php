@@ -28,7 +28,7 @@ $this->registerCss("
             <?php foreach ($slider as $key => $value): ?>
                 <!-- Single item -->
                 <div class="carousel-item <?= $key == 0 ? 'active' : '' ?>">
-                    <img src="<?= $imgUrl . '/slider' . $value['link'] ?>" class="d-block w-100" alt="..."/>
+                    <img src="<?= $imgUrl . '/' . $value['link'] ?>" class="d-block w-100" alt="..."/>
                     <div class="carousel-caption d-none d-md-block">
                         <h5><?= empty($value['slide_label']) ? '' : $value['slide_label'] ?></h5>
                         <p><?= empty($value['slide_text']) ? '' : $value['slide_text'] ?></p>
@@ -53,8 +53,7 @@ $this->registerCss("
 <div class="row p-0 my-5 h-100">
     <div class="col-6 px-1 ps-md-5 pe-md-3 mb-4 mb-md-5">
         <!--        TODO: LINKS-->
-<!--        <a href="--><?//= Url::toRoute(['shop/product', 'product_category' => \common\components\encrypt\CryptHelper::encryptString('men')]) ?><!--" class="text-decoration-none" target="_blank">-->
-        <a href="javascript:void(0)" class="text-decoration-none" target="_blank">
+        <a href="<?= Url::toRoute(['shop/product', 'product_category' => \common\components\encrypt\CryptHelper::encryptString('men')]) ?>" class="text-decoration-none" target="_blank">
             <div class="overflow-hidden w-100 shadow h-65 position-relative my-2 my-md-3">
                 <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', 'Men') ?></p>
                 <img src="<?= Url::toRoute('img/index/pronto-img-4.jpg') ?>" class="w-100 shadow object-fit-cover zoom"
@@ -77,8 +76,7 @@ $this->registerCss("
                      alt="...">
             </div>
         </a>
-<!--        <a href="--><?//= Url::toRoute(['shop/product', 'product_category' => \common\components\encrypt\CryptHelper::encryptString('women')]) ?><!--" class="text-decoration-none" target="_blank">-->
-        <a href="javascript:void(0)" class="text-decoration-none" target="_blank">
+        <a href="<?= Url::toRoute(['shop/product', 'product_category' => \common\components\encrypt\CryptHelper::encryptString('women')]) ?>" class="text-decoration-none" target="_blank">
             <div class="overflow-hidden w-100 shadow h-65 position-relative my-2 my-md-3">
                 <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', 'Women') ?></p>
                 <img src="<?= Url::toRoute('img/index/pronto-img-2.jpg') ?>" class="w-100 shadow object-fit-cover zoom"

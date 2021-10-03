@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace frontend\models;
 
 use Yii;
 
@@ -16,7 +16,7 @@ use Yii;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class ProductCategory extends \yii\db\ActiveRecord
+class ProductCategory extends \common\models\ProductCategory
 {
     /**
      * {@inheritdoc}
@@ -56,5 +56,18 @@ class ProductCategory extends \yii\db\ActiveRecord
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getTitleCategory()
+    {
+        return ProductCategory::find()->where(['like', 'code', '-0'])->asArray()->all();
+    }
+
+    public static function getAllCategoriesByCode($code)
+    {
+        return ProductCategory::find()->where(['like', 'code', $code])->andWhere(['not',['like', 'code', '-0']])->asArray()->all();
     }
 }

@@ -19,8 +19,8 @@ use Yii;
  * @property int $quantity
  * @property string $image
  * @property string|null $images
- * @property int $category_id
- * @property int|null $trademark_id
+ * @property string $category_id
+ * @property string|null $trademark_id
  * @property int|null $viewed +1 each click to view
  * @property int|null $fake_sold client see this amount if sold < 1k
  * @property int|null $sold
@@ -48,9 +48,9 @@ class Product extends \yii\db\ActiveRecord
             [['name', 'slug', 'description', 'cost_price', 'regular_price', 'image', 'category_id'], 'required'],
             [['description', 'images'], 'string'],
             [['cost_price', 'regular_price', 'sale_price'], 'number'],
-            [['quantity', 'category_id', 'trademark_id', 'viewed', 'fake_sold', 'sold', 'status', 'admin_id'], 'integer'],
+            [['quantity', 'viewed', 'fake_sold', 'sold', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'slug', 'short_description', 'SKU', 'image'], 'string', 'max' => 255],
+            [['name', 'slug', 'short_description', 'SKU', 'image', 'category_id', 'trademark_id'], 'string', 'max' => 255],
             [['slug'], 'unique'],
         ];
     }

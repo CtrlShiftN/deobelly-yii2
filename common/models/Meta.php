@@ -8,8 +8,8 @@ use Yii;
  * This is the model class for table "meta".
  *
  * @property int $id
- * @property string|null $key
- * @property string|null $value
+ * @property string $key
+ * @property string $value
  */
 class Meta extends \yii\db\ActiveRecord
 {
@@ -27,6 +27,7 @@ class Meta extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['key', 'value'], 'required'],
             [['key', 'value'], 'string', 'max' => 255],
             [['key'], 'unique'],
         ];
