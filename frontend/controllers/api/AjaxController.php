@@ -73,7 +73,7 @@ class AjaxController extends ActiveController
         };
 
         if (!empty($getCategory)) {
-            $rows->andWhere(['category_id' => $getCategory]);
+            $rows->andWhere(['like', 'category_id', $getCategory]);
         };
 
         $count = count($rows->all());
