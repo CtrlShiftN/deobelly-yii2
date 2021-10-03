@@ -64,6 +64,7 @@ class AjaxController extends ActiveController
         $getCategory = ParamHelper::getParamValue('cate');
         $getCursor = ParamHelper::getParamValue('cursor');
         $getBigCategory = ParamHelper::getParamValue('bigCate');
+        $getSort = ParamHelper::getParamValue('sort');
 
         $rows = (new \yii\db\Query())->from('product');
         $rows->where(["status" => 1]);
@@ -73,9 +74,10 @@ class AjaxController extends ActiveController
         };
 
         if (!empty($getCategory)) {
-            $rows->andWhere(['like', 'category_id', $getCategory]);
+            $rows->andWhere(['category_id' => $getCategory]);
         };
 
+        $sqlCm = $rows->createCommand()->rawSql;
         $count = count($rows->all());
 
         if (!empty($getCursor)) {
@@ -84,6 +86,16 @@ class AjaxController extends ActiveController
             $rows->limit($limit)->offset($offset);
         } else {
             $rows->limit(SystemConstant::LIMIT_PER_PAGE)->offset(0);
+        }
+
+        if (!empty($getSort)) {
+            if ($getSort == 1) {
+                $rows->orderBy("sale_price ASC");
+            } else if ($getSort == 2) {
+                $rows->orderBy('sale_price DESC');
+            } else {
+                $rows->orderBy("updated_at DESC");
+            }
         }
 
         $result = $rows->all();
@@ -104,6 +116,7 @@ class AjaxController extends ActiveController
                 'status' => SystemConstant::API_SUCCESS_STATUS,
                 'product' => $arrProduct,
                 'count' => $count,
+                'sqlCm' => $getCategory
             ];
         }
         echo json_encode($response);

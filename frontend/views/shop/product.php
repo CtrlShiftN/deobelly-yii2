@@ -10,7 +10,11 @@ $this->params['breadcrumbs'][] = $this->title;
 $cdnUrl = Yii::$app->params['frontend'];
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->registerCssFile(Url::toRoute('css/product.css'));
-$this->registerCss("");
+$this->registerCss("
+    button:focus {
+        box-shadow: none !important;
+    }
+");
 ?>
 <!-- Carousel wrapper -->
 <div class="full-width">
@@ -49,9 +53,13 @@ $this->registerCss("");
         </button>
     </div>
 </div>
-<div class="row">
+<div class="row m-0 p-0 pt-5">
+    <div class="col-12 d-md-none m-0 p-0">
+        <button type="button" id="btn-type" class="btn bg-transparent border-0 rounded-0 mt-3">Thể loại</button>
+    </div>
     <div class="col-12 col-md-3 m-0 p-0">
-        <div class="accordion accordion-flush" id="type_category">
+        <span class="fw-bold fs-5 px-3 py-2 border-bottom border-dark text-uppercase mb-2 d-md-block d-none">Thể loại</span>
+        <div class="accordion accordion-flush ct-show" id="type_category">
             <?php foreach ($bigCategory as $key => $value): ?>
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-heading-<?= $value['id'] ?>">
@@ -79,6 +87,30 @@ $this->registerCss("");
         </div>
     </div>
     <div class="col-12 col-md-9 m-0 p-0 row">
+        <div class="px-3 w-100 d-md-block d-none">
+            <div class="w-100 py-2 border-bottom border-dark mb-2">
+                <span class="fw-bold text-uppercase fs-5" id="category-name">abc</span>
+                <div class="dropdown float-end">
+                    <button class="btn bg-transparent border-0 rounded-0 p-0 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-sliders-h"></i> LỌC
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+<!--                        <li>-->
+<!--                            <a class="dropdown-item" href="javascript:void(0)" id="highToLow">Phổ biến</a>-->
+<!--                        </li>-->
+                        <li>
+                            <button class="dropdown-item btn border-0 rounded-0" id="sortByDate">Mới nhất</button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item btn border-0 rounded-0"  id="highToLow">Giá giảm dần</button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item btn border-0 rounded-0" id="lowToHigh">Giá tăng dần</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <input type='hidden' id='current_page' class="w-100">
         <div id="result" class="w-100 row m-0 p-0 my-3">
         </div>
@@ -91,10 +123,17 @@ $this->registerCss("");
 </div>
 
 <script>
+    $('#btn-type').click(function () {
+        if($('#type_category').hasClass('.ct-hidden')) {
+            $('#type_category').addClass('.ct-show').removeClass('.ct-hidden').show(300);
+        } else {
+            $('#type_category').addClass('.ct-hidden').removeClass('.ct-show').hide(300);
+        }
+    });
     var cdnUrl = '<?= $cdnUrl ?>';
     var imgUrl = '<?= $imgUrl ?>';
     var show_per_page = <?= \common\components\SystemConstant::LIMIT_PER_PAGE ?>;
-    var category, bigCate, cursor;
+    var category, bigCate, cursor, sort;
 
     <?php if(!empty($paramCate)): ?>
     var productCategory = '<?= $paramCate ?>';
@@ -111,7 +150,7 @@ $this->registerCss("");
     $('.accordion-button').click(function () {
         checkboxes.prop("checked", false);
         $('#current_page').val(0);
-        cursor = category = null;
+        cursor = category = sort = null;
         if (!$(this).hasClass('collapsed')) {
             bigCate = $(this).parent().children('.big-cate').val();
         } else {
@@ -128,6 +167,26 @@ $this->registerCss("");
         requestData();
     });
 
+    // sort
+    $("#lowToHigh").click(function () {
+        sort = 1;
+        $('#current_page').val(0);
+        cursor = null;
+        requestData();
+    });
+    $("#highToLow").click(function () {
+        sort = 2;
+        $('#current_page').val(0);
+        cursor = null;
+        requestData();
+    });
+    $("#sortByDate").click(function () {
+        sort = 3;
+        $('#current_page').val(0);
+        cursor = null;
+        requestData();
+    });
+
     //get value from checkboxes
     function getCheckedBoxes(checkbox) {
         return checkbox.filter(":checked")
@@ -141,11 +200,19 @@ $this->registerCss("");
         let request = $.ajax({
             url: "<?= $cdnUrl ?>/api/ajax/product-filter-ajax", // send request to
             method: "POST", // sending method
-            data: {cate: category, cursor: cursor, bigCate: bigCate}, // sending data
+            data: {
+                cate: category,
+                cursor: cursor,
+                bigCate: bigCate,
+                sort: sort,
+            }, // sending data
         });
 
         request.done(function (response) {
             let arrRes = $.parseJSON(response);
+            console.log(arrRes.sqlCm);
+            console.log(arrRes);
+            console.log(sort);
             if (arrRes.status === 1) {
                 $('#pagination').show();
                 let result = "";
@@ -153,7 +220,7 @@ $this->registerCss("");
                     //format price
                     var regular_price = new Intl.NumberFormat(['ban', 'id']).format(arrRes.product[i].regular_price);
                     result += '<div class="col-12 col-sm-6 col-lg-4 mx-0 my-4"><a href="' + cdnUrl + '/shop/product-detail?detail=' + arrRes.product[i].id + '" class="text-decoration-none text-dark px-0 w-100"><div class="position-relative product-card w-100 mb-2"><img class="img-product shadow" src="' + imgUrl + '/' + arrRes.product[i].image + '"></div>';
-                    if (arrRes.product[i].sale_price !== null) {
+                    if (arrRes.product[i].sale_price !== arrRes.product[i].regular_price) {
                         var sale_price = new Intl.NumberFormat(['ban', 'id']).format(arrRes.product[i].sale_price);
                         result += '<span class="px-0 fw-bold mt-2"><span class="text-decoration-line-through text-dark fw-light fs-regular-price">' + regular_price + '</span> ' + sale_price + ' VNĐ</span>';
                     } else {
