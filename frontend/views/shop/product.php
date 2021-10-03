@@ -162,8 +162,8 @@ $this->registerCss("
     var categoryCb = $('.category-checkbox input[type=checkbox]');
     categoryCb.change(function () {
         category = getCheckedBoxes(categoryCb);
-        // sort = cursor = null;
-        console.log(bigCate);
+        $('#current_page').val(0);
+        cursor = sort = null;
         requestData();
     });
 
