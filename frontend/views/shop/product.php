@@ -10,40 +10,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $cdnUrl = Yii::$app->params['frontend'];
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->registerCssFile(Url::toRoute('css/product.css'));
-$this->registerCss("
-.p-active {
-    border-color: #dc3545 !important;
-}
-
-#pagination .p-active a {
-    color: #fff !important;
-}
-
-.p-inactive {
-    cursor: not-allowed;
-}
-
-.p-inactive a, .p-inactive span {
-    color: #dee2e6 !important;
-    border-color: #dee2e6 !important;
-}
-
-.page_link, .previous_link, .next_link,
-.last_link, .first_link {
-    padding: 4px 8px;
-    text-decoration: none !important;
-    color: #000;
-}
-
-.page_link:hover, .previous_link:hover, .next_link:hover,
-.last_link:hover, .first_link:hover {
-    color: #000;
-}
-
-#page_navigation {
-    line-height: 42px;
-}
-");
+$this->registerCss("");
 ?>
 <!-- Carousel wrapper -->
 <div class="full-width">
@@ -85,7 +52,7 @@ $this->registerCss("
 <div class="row">
     <div class="col-12 col-md-3 m-0 p-0">
         <div class="accordion accordion-flush" id="type_category">
-            <?php foreach ($titleCategory as $key => $value): ?>
+            <?php foreach ($bigCategory as $key => $value): ?>
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-heading-<?= $value['id'] ?>">
                         <button class="accordion-button collapsed text-uppercase fw-light btn-title-category"
@@ -94,13 +61,13 @@ $this->registerCss("
                                 aria-expanded="false" aria-controls="flush-collapse-<?= $value['id'] ?>">
                             <?= Yii::t('app', $value['name']) ?>
                         </button>
+                        <input type='hidden' class="big-cate w-100" value="<?= str_split($value['code'], 3)[0] ?>">
                     </h2>
                     <?php $code = str_split($value['code'], 2)[0]; ?>
                     <div id="flush-collapse-<?= $value['id'] ?>" class="accordion-collapse collapse ps-4 ps-md-5 py-3"
                          aria-labelledby="flush-heading-<?= $value['id'] ?>" data-bs-parent="#type_category">
                         <?php foreach (\frontend\models\ProductCategory::getAllCategoriesByCode($code) as $key => $cate): ?>
                             <label class="category-checkbox"><?= $cate['name'] ?>
-                                <input type='hidden' class="big-cate w-100" value="<?= $code ?>">
                                 <?php $code_cate = str_split($cate['code'], 3)[0]; ?>
                                 <input type="checkbox" value="<?= $code_cate ?>">
                                 <span class="checkmark"></span>
@@ -119,25 +86,6 @@ $this->registerCss("
             <input type='hidden' id='current_page'>
             <div id='page_navigation' class="text-end"></div>
         </div>
-
-<!--        <div class="col-12 col-sm-6 col-lg-4 mx-0 my-4"><a href="javascript:void(0)"-->
-<!--                                                           class="text-decoration-none text-dark px-0 w-100">-->
-<!--                <div class="position-relative product-card w-100">-->
-<!--                    <img class="img-product shadow" src="--><?//= $cdnUrl ?><!--/img/index/slider-responsive-3.jpg">-->
-<!--                </div>-->
-<!--                <span class="px-0 fw-bold mt-2 w-100"><span class="text-decoration-line-through text-dark fw-light">100.000.000</span> 100.000.000 VNĐ</span>-->
-<!--                <div class="row px-0 w-100 m-0">-->
-<!--                    <div class="col-10 p-0 pe-1">-->
-<!--                        <p class="fs-5 m-0 product-name">Áo vest công sở</p>-->
-<!--                    </div>-->
-<!--                    <div class="col-2 p-0">-->
-<!--                        <button type="button" class="btn rounded-0 border-0 w-100 h-100 p-0 fs-4"><i-->
-<!--                                    class="far fa-heart"></i>-->
-<!--                        </button>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </a>-->
-<!--        </div>-->
     </div>
 </div>
 </div>
@@ -146,11 +94,10 @@ $this->registerCss("
     var cdnUrl = '<?= $cdnUrl ?>';
     var imgUrl = '<?= $imgUrl ?>';
     var show_per_page = <?= \common\components\SystemConstant::LIMIT_PER_PAGE ?>;
-    var category,bigCate, cursor;
+    var category, bigCate, cursor;
 
     <?php if(!empty($paramCate)): ?>
     var productCategory = '<?= $paramCate ?>';
-    //$('button[data-category=<?//= $paramCate ?>//]').attr("aria-expanded","true");
     <?php else: ?>
     var productCategory = null;
     <?php endif; ?>
@@ -163,15 +110,19 @@ $this->registerCss("
     var checkboxes = $('input[type=checkbox]');
     $('.accordion-button').click(function () {
         checkboxes.prop("checked", false);
-        cursor = category = bigCate = null;
+        $('#current_page').val(0);
+        cursor = category = null;
+        if (!$(this).hasClass('collapsed')) {
+            bigCate = $(this).parent().children('.big-cate').val();
+        } else {
+            bigCate = null;
+        }
         requestData();
     });
 
     var categoryCb = $('.category-checkbox input[type=checkbox]');
     categoryCb.change(function () {
         category = getCheckedBoxes(categoryCb);
-        // TODO: big cate
-        bigCate = $(this).siblings('.big-cate').val();
         // sort = cursor = null;
         console.log(bigCate);
         requestData();
@@ -195,7 +146,6 @@ $this->registerCss("
 
         request.done(function (response) {
             let arrRes = $.parseJSON(response);
-            console.log(arrRes.sqlCm);
             if (arrRes.status === 1) {
                 $('#pagination').show();
                 let result = "";
@@ -261,16 +211,13 @@ $this->registerCss("
                             $('#page' + (active - 1) + ',#page' + active + ',#page' + (active + 1) + '').removeClass('d-none');
                         }
                     }
-                    $('html').scrollTop(0);
                 });
             } else {
                 var result = '<div class="text-center col-12 p-0"><h1 class="mainColor"><i class="fab fa-sistrix"></i></h1><h5 class="mainColor"><i>Không có sản phẩm để hiển thị</i></h5><h5 class="mainColor"><i>Bạn hãy thử tìm kiếm lại!</i></h5></div>';
                 $('#pagination').hide();
                 $("#result").html(result);
-                $('html').scrollTop(0);
             }
         });
-
         request.fail(function (jqXHR, textStatus) {
             alert("Request failed: " + textStatus); // check errors
         });

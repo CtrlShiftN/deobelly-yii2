@@ -69,7 +69,7 @@ class AjaxController extends ActiveController
         $rows->where(["status" => 1]);
 
         if (!empty($getBigCategory)) {
-            $rows->andWhere(['like','category_id', $getBigCategory]);
+            $rows->andWhere(['like', 'product_category', $getBigCategory]);
         };
 
         if (!empty($getCategory)) {
@@ -77,7 +77,6 @@ class AjaxController extends ActiveController
         };
 
         $count = count($rows->all());
-        $sql = $rows->createCommand()->rawSql;
 
         if (!empty($getCursor)) {
             $limit = SystemConstant::LIMIT_PER_PAGE;
@@ -105,8 +104,6 @@ class AjaxController extends ActiveController
                 'status' => SystemConstant::API_SUCCESS_STATUS,
                 'product' => $arrProduct,
                 'count' => $count,
-                'sqlCm' => $sql,
-                'bigCategory' => $getBigCategory
             ];
         }
         echo json_encode($response);

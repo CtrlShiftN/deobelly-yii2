@@ -163,3 +163,36 @@ button:focus:not(:focus-visible) {
 .fs-regular-price {
     font-size: 14px !important;
 }
+
+.p-active {
+    border-color: #dc3545 !important;
+}
+
+#pagination .p-active a {
+    color: #fff !important;
+}
+
+.p-inactive {
+    cursor: not-allowed;
+}
+
+.p-inactive a, .p-inactive span {
+    color: #dee2e6 !important;
+    border-color: #dee2e6 !important;
+}
+
+.page_link, .previous_link, .next_link,
+.last_link, .first_link {
+    padding: 4px 8px;
+    text-decoration: none !important;
+    color: #000;
+}
+
+.page_link:hover, .previous_link:hover, .next_link:hover,
+.last_link:hover, .first_link:hover {
+    color: #000;
+}
+
+#page_navigation {
+    line-height: 42px;
+}

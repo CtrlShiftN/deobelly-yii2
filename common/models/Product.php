@@ -20,6 +20,8 @@ use Yii;
  * @property string $image
  * @property string|null $images
  * @property string $category_id
+ * @property string $product_category
+ * @property int|null $luxury_product 0:no, 1:yes
  * @property string|null $trademark_id
  * @property int|null $viewed +1 each click to view
  * @property int|null $fake_sold client see this amount if sold < 1k
@@ -45,12 +47,12 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'slug', 'description', 'cost_price', 'regular_price', 'image', 'category_id'], 'required'],
+            [['name', 'slug', 'description', 'cost_price', 'regular_price', 'image', 'category_id', 'product_category'], 'required'],
             [['description', 'images'], 'string'],
             [['cost_price', 'regular_price', 'sale_price'], 'number'],
-            [['quantity', 'viewed', 'fake_sold', 'sold', 'status', 'admin_id'], 'integer'],
+            [['quantity', 'luxury_product', 'viewed', 'fake_sold', 'sold', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'slug', 'short_description', 'SKU', 'image', 'category_id', 'trademark_id'], 'string', 'max' => 255],
+            [['name', 'slug', 'short_description', 'SKU', 'image', 'category_id', 'product_category', 'trademark_id'], 'string', 'max' => 255],
             [['slug'], 'unique'],
         ];
     }
@@ -74,6 +76,8 @@ class Product extends \yii\db\ActiveRecord
             'image' => Yii::t('app', 'Image'),
             'images' => Yii::t('app', 'Images'),
             'category_id' => Yii::t('app', 'Category ID'),
+            'product_category' => Yii::t('app', 'Product Category'),
+            'luxury_product' => Yii::t('app', 'Luxury Product'),
             'trademark_id' => Yii::t('app', 'Trademark ID'),
             'viewed' => Yii::t('app', 'Viewed'),
             'fake_sold' => Yii::t('app', 'Fake Sold'),

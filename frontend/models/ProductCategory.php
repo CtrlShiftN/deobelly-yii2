@@ -61,13 +61,13 @@ class ProductCategory extends \common\models\ProductCategory
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getTitleCategory()
+    public static function getBigCategory()
     {
-        return ProductCategory::find()->where(['like', 'code', '-0'])->asArray()->all();
+        return ProductCategory::find()->where(['like', 'code', '@0'])->asArray()->all();
     }
 
     public static function getAllCategoriesByCode($code)
     {
-        return ProductCategory::find()->where(['like', 'code', $code])->andWhere(['not',['like', 'code', '-0']])->asArray()->all();
+        return ProductCategory::find()->where(['like', 'code', $code])->andWhere(['not',['like', 'code', '@0']])->asArray()->all();
     }
 }

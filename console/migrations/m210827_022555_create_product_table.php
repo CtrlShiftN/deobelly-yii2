@@ -26,6 +26,8 @@ class m210827_022555_create_product_table extends Migration
             'image' => $this->string()->notNull(),
             'images' => $this->text()->null(),
             'category_id' => $this->string()->notNull(),
+            'product_category' => $this->string()->notNull(),
+            'luxury_product' => $this->integer()->defaultValue(0)->comment('0:no, 1:yes'),
             'trademark_id' => $this->string()->null(),
             'viewed' => $this->integer()->defaultValue(0)->comment('+1 each click to view'),
             'fake_sold' => $this->integer()->defaultValue(rand(999, 99999))->comment('client see this amount if sold < 1k'),

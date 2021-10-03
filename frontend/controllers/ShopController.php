@@ -87,10 +87,10 @@ class ShopController extends Controller
     {
         $slider = Slider::getSliderFromSite('index');
         $getParamCategory = CryptHelper::decryptString(ParamHelper::getParamValue('product_category'));
-        $getTitleCategory = ProductCategory::getTitleCategory();
+        $getBigCategory = ProductCategory::getBigCategory();
         return $this->render('product', [
             'paramCate' => $getParamCategory,
-            'titleCategory' => $getTitleCategory,
+            'bigCategory' => $getBigCategory,
             'slider' => $slider
         ]);
     }

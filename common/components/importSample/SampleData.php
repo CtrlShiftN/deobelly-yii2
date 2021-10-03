@@ -108,7 +108,8 @@ class SampleData
             'quantity' => 20,
             'image' => 'product/clothes/top/shirt1.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
-            'category_id' => '1-2,6-6,7-6',
+            'category_id' => '1-2',
+            'product_category' => '1@0,2@0,4@0',
             'trademark_id' => '1',
             'admin_id' => 1,
         ],
@@ -133,7 +134,8 @@ class SampleData
             'quantity' => 20,
             'image' => 'product/clothes/top/shirt6.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
-            'category_id' => '1-2,6-6,7-6',
+            'category_id' => '1-2',
+            'product_category' => '1@0,2@0,4@0',
             'trademark_id' => '1',
             'admin_id' => 1,
         ],
@@ -158,7 +160,8 @@ class SampleData
             'quantity' => 20,
             'image' => 'product/clothes/top/shirt3.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
-            'category_id' => '1-2,6-6,7-6',
+            'category_id' => '1-2',
+            'product_category' => '1@0,2@0,4@0',
             'trademark_id' => '1',
             'admin_id' => 1,
         ],
@@ -183,13 +186,14 @@ class SampleData
             'quantity' => 20,
             'image' => 'product/clothes/top/shirt5.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
-            'category_id' => '1-2,6-6,7-6',
+            'category_id' => '1-2',
+            'product_category' => '1@0,2@0,4@0',
             'trademark_id' => '1',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Áo thun không cổ',
-            'slug' => 'ao-thun-khong-co-3',
+            'name' => 'Áo thun không cổ nữ',
+            'slug' => 'ao-thun-khong-co-nu',
             'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
             'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
 <li>T-Shirts</li>
@@ -208,13 +212,14 @@ class SampleData
             'quantity' => 20,
             'image' => 'product/clothes/top/shirt4.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
-            'category_id' => '1-2,6-6,7-6',
+            'category_id' => '1-2',
+            'product_category' => '1@0,2@0,4@0',
             'trademark_id' => '1',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Áo thun không cổ',
-            'slug' => 'ao-thun-khong-co-4',
+            'name' => 'Áo thun không cổ nam',
+            'slug' => 'ao-thun-khong-co-nam',
             'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
             'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
 <li>T-Shirts</li>
@@ -233,7 +238,8 @@ class SampleData
             'quantity' => 20,
             'image' => 'product/clothes/top/shirt2.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
-            'category_id' => '1-2,6-6,7-6',
+            'category_id' => '1-2',
+            'product_category' => '1@0,2@0,4@0',
             'trademark_id' => '1',
             'admin_id' => 1,
         ],
@@ -256,7 +262,8 @@ class SampleData
             'quantity' => 30,
             'image' => 'product/clothes/shirt/ao-so-mi-lados.jpg',
             'images' => '',
-            'category_id' => '1-1,6-5,7-5',
+            'category_id' => '1-1',
+            'product_category' => '1@0,4@0',
             'trademark_id' => '2',
             'admin_id' => 1,
         ],
@@ -277,7 +284,8 @@ class SampleData
             'quantity' => 18,
             'image' => 'product/clothes/vest/vest-nam-han-quoc.jpg',
             'images' => '',
-            'category_id' => '1-3,6-7,7-7',
+            'category_id' => '1-3',
+            'product_category' => '1@0,4@0',
             'trademark_id' => '3',
             'admin_id' => 1,
         ],
@@ -307,6 +315,7 @@ class SampleData
             $product->image = $values['image'];
             $product->images = $values['images'];
             $product->category_id = $values['category_id'];
+            $product->product_category = $values['product_category'];
             $product->trademark_id = $values['trademark_id'];
             $product->created_at = date('Y-m-d H:m:s');
             $product->updated_at = date('Y-m-d H:m:s');
@@ -326,95 +335,95 @@ class SampleData
      */
     protected static $productCategoryInfoArr = [
         [
-            'name' => 'Áo',
-            'slug' => 'ao',
-            'code' => '1-0,5-1,6-1,7-1',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Quần',
-            'slug' => 'quan',
-            'code' => '2-0,5-2,6-2,7-2',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Giày',
-            'slug' => 'giay',
-            'code' => '3-0,5-3,6-3,7-4',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Phụ kiện',
-            'slug' => 'phu-kien',
-            'code' => '4-0,5-4,6-4,7-4',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Sản phẩm cao cấp',
-            'slug' => 'san-pham-cao-cap',
-            'code' => '5-0',
-            'admin_id' => 1,
-        ],
-        [
             'name' => 'Thời trang nam',
             'slug' => 'thoi-trang-nam',
-            'code' => '6-0',
+            'code' => '1@0',
             'admin_id' => 1,
         ],
         [
             'name' => 'Thời trang nữ',
             'slug' => 'thoi-trang-nu',
-            'code' => '7-0',
+            'code' => '2@0',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Áo sơ mi',
-            'slug' => 'ao-so-mi',
-            'code' => '1-1,6-5,7-5',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Áo thun',
-            'slug' => 'ao-thun',
-            'code' => '1-2,6-6,7-6',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Áo Vest',
-            'slug' => 'ao-vest',
-            'code' => '1-3,6-7,7-7',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Quần âu',
-            'slug' => 'quan-au',
-            'code' => '2-1,6-8,7-8',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Giày thể thao',
-            'slug' => 'giay-the-thao',
-            'code' => '3-1,6-9,7-9',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Dây lưng',
-            'slug' => 'day-lung',
-            'code' => '4-1,6-10,7-10',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Váy',
-            'slug' => 'vay',
-            'code' => '4-1,7-11',
+            'name' => 'Phụ kiện',
+            'slug' => 'phu-kien',
+            'code' => '3@0',
             'admin_id' => 1,
         ],
         [
             'name' => 'Quà tặng',
             'slug' => 'qua-tang',
-            'code' => '8-0',
+            'code' => '4@0',
             'admin_id' => 1,
         ],
+        [
+            'name' => 'Áo',
+            'slug' => 'ao',
+            'code' => '1-0,1@1,2@1,4@1',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Quần',
+            'slug' => 'quan',
+            'code' => '2-0,1@2,2@2,4@2',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Giày',
+            'slug' => 'giay',
+            'code' => '3-0,1@3,2@3,4@3',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Áo sơ mi',
+            'slug' => 'ao-so-mi',
+            'code' => '1-1,1@4,2@4',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Áo thun',
+            'slug' => 'ao-thun',
+            'code' => '1-2,1@5,2@5,4@4',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Áo Vest',
+            'slug' => 'ao-vest',
+            'code' => '1-3,1@6,2@6,4@5',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Quần âu',
+            'slug' => 'quan-au',
+            'code' => '2-1,1@7,2@7,4@6',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Giày thể thao',
+            'slug' => 'giay-the-thao',
+            'code' => '3-1,1@8,2@8,4@7',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Dây lưng',
+            'slug' => 'day-lung',
+            'code' => '3@1,1@9,2@9',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Váy',
+            'slug' => 'vay',
+            'code' => '4-1,2@10,4@8',
+            'admin_id' => 1,
+        ],
+//        [
+//            'name' => 'Sản phẩm cao cấp',
+//            'slug' => 'san-pham-cao-cap',
+//            'code' => '5-0',
+//            'admin_id' => 1,
+//        ],
     ];
 
     /**
@@ -680,7 +689,15 @@ class SampleData
     protected static $metaInfoArr = [
         [
             'key' => 'product_max_general_category',
-            'value' => '8',
+            'value' => '4',
+        ],
+        [
+            'key' => 'product_max_category_type',
+            'value' => '4@0',
+        ],
+        [
+            'key' => 'product_max_category_type',
+            'value' => '3-0',
         ],
         [
             'key' => 'product_max_category_type_top',
@@ -695,25 +712,25 @@ class SampleData
             'value' => '3-1',
         ],
         [
-            'key' => 'product_max_category_type_accessories',
-            'value' => '4-1',
-        ],
-        [
-            'key' => 'product_max_category_type_luxury_product',
-            'value' => '5-4',
-        ],
-        [
             'key' => 'product_max_category_type_man-fashion',
-            'value' => '6-10',
+            'value' => '1@9',
         ],
         [
             'key' => 'product_max_category_women_fashion',
-            'value' => '7-11',
+            'value' => '2@10',
+        ],
+        [
+            'key' => 'product_max_category_type_accessories',
+            'value' => '3@1',
         ],
         [
             'key' => 'product_max_category_type_gift',
-            'value' => '8-0',
+            'value' => '4@8',
         ],
+//        [
+//            'key' => 'product_max_category_type_luxury_product',
+//            'value' => '5-4',
+//        ],
     ];
 
     /**
