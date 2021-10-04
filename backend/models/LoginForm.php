@@ -17,6 +17,36 @@ class LoginForm extends Model
 
     private $_user;
 
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+
+        $behaviors[] = [
+            'class' => '\giannisdag\yii2CheckLoginAttempts\behaviors\LoginAttemptBehavior',
+
+            // Amount of attempts in the given time period
+            'attempts' => 3,
+
+            // the duration, in seconds, for a regular failure to be stored for
+            // resets on new failure
+            'duration' => 300,
+
+            // the duration, in seconds, to disable login after exceeding `attemps`
+            'disableDuration' => 900,
+
+            // the attribute used as the key in the database
+            // and add errors to
+            'usernameAttribute' => 'email',
+
+            // the attribute to check for errors
+            'passwordAttribute' => 'password',
+
+            // the validation message to return to `usernameAttribute`
+            'message' => Yii::t('app', 'The login function is temporarily disable.'),
+        ];
+
+        return $behaviors;
+    }
 
     /**
      * {@inheritdoc}
@@ -33,6 +63,19 @@ class LoginForm extends Model
         ];
     }
 
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'email' => Yii::t('app','Email'),
+            'password' => Yii::t('app','Password'),
+            'rememberMe' => Yii::t('app','Remember me'),
+        ];
+    }
+
     /**
      * Validates the password.
      * This method serves as the inline validation for password.
@@ -45,7 +88,7 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, Yii::t('app', 'Incorrect username or password.'));
             }
         }
     }
@@ -61,7 +104,7 @@ class LoginForm extends Model
         if ($this->validate() && $user->role > 0) {
             return Yii::$app->user->login($user, $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
-        $this->addError('email', 'This account does not exist');
+        $this->addError('email', Yii::t('app', 'This account does not exist'));
         return false;
     }
 
