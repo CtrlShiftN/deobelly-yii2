@@ -6,6 +6,7 @@ use common\components\encrypt\CryptHelper;
 use common\components\helpers\HeaderHelper;
 use common\components\helpers\ParamHelper;
 use common\components\SystemConstant;
+use frontend\models\ProductCategory;
 use Yii;
 use yii\rest\ActiveController;
 
@@ -77,7 +78,6 @@ class AjaxController extends ActiveController
             $rows->andWhere(['category_id' => $getCategory]);
         };
 
-        $sqlCm = $rows->createCommand()->rawSql;
         $count = count($rows->all());
 
         if (!empty($getCursor)) {
@@ -116,7 +116,6 @@ class AjaxController extends ActiveController
                 'status' => SystemConstant::API_SUCCESS_STATUS,
                 'product' => $arrProduct,
                 'count' => $count,
-                'sqlCm' => $getCategory
             ];
         }
         echo json_encode($response);

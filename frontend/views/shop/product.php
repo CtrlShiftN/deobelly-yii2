@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 
 use common\components\helpers\ParamHelper;
+use frontend\models\ProductCategory;
 use yii\helpers\Url;
 
 $this->title = Yii::t('app', 'Product');
@@ -19,8 +20,37 @@ $this->registerCss("
         right:12px;
         z-index: 3;
     }
+    @media (max-width: 567px) {
+        .fs-6 {
+            font-size: 0.88rem !important;
+        }
+    }
+
 ");
 ?>
+<style>
+    .h-tool {
+        height: 44px !important;
+    }
+    .btn-offcanvas,
+    #offcanvas-category-name,
+    .offcanvas-dropdown {
+        position: absolute;
+    }
+    .btn-offcanvas {
+        left: -7px;
+        top: 3px;
+    }
+    #offcanvas-category-name {
+        top: 3px;
+        left: 50%;
+        transform: translate(-46%);
+    }
+    .offcanvas-dropdown {
+        top: 0;
+        right: -7px;
+    }
+</style>
 <!-- Carousel wrapper -->
 <div class="full-width">
     <div id="sliderHeader" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -58,47 +88,73 @@ $this->registerCss("
         </button>
     </div>
 </div>
-<div class="row m-0 p-0 pt-5">
-    <div class="col-12 d-md-none m-0 p-0">
-        <button class="btn bg-transparent border-0 rounded-0 mt-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCategory" aria-controls="offcanvasCategory">
-            Thể loại
-        </button>
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasCategory" aria-labelledby="offcanvasCategoryLabel">
-            <div class="offcanvas-header border-bottom border-dark">
-                <h5 class="offcanvas-title text-uppercase" id="offcanvasCategoryLabel">Thể loại</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body p-0">
-                <div class="accordion accordion-flush ct-show" id="type_category_offcanvas">
-                    <?php foreach ($bigCategory as $key => $value): ?>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-heading-<?= $value['id'] ?>">
-                                <button class="accordion-button collapsed text-uppercase fw-light btn-title-category"
-                                        type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#flush-collapse-<?= $value['id'] ?>"
-                                        aria-expanded="false" aria-controls="flush-collapse-<?= $value['id'] ?>">
-                                    <?= Yii::t('app', $value['name']) ?>
-                                </button>
-                                <input type='hidden' class="big-cate w-100" value="<?= str_split($value['code'], 3)[0] ?>">
-                            </h2>
-                            <?php $code = str_split($value['code'], 2)[0]; ?>
-                            <div id="flush-collapse-<?= $value['id'] ?>" class="accordion-collapse collapse ps-4 ps-md-5 py-3"
-                                 aria-labelledby="flush-heading-<?= $value['id'] ?>" data-bs-parent="#type_category_offcanvas">
-                                <?php foreach (\frontend\models\ProductCategory::getAllCategoriesByCode($code) as $key => $cate): ?>
-                                    <label class="category-checkbox"><?= $cate['name'] ?>
-                                        <?php $code_cate = str_split($cate['code'], 3)[0]; ?>
-                                        <input type="checkbox" value="<?= $code_cate ?>">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                <?php endforeach; ?>
-                            </div>
+<div class="row m-0 p-0 pt-4 pt-md-5">
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasCategory"
+                                           aria-labelledby="offcanvasCategoryLabel">
+        <div class="offcanvas-header border-bottom border-dark">
+            <h5 class="offcanvas-title text-uppercase" id="offcanvasCategoryLabel">Thể loại</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body p-0">
+            <div class="accordion accordion-flush ct-show" id="type_category_offcanvas">
+                <?php foreach ($bigCategory as $key => $value): ?>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-heading-<?= $value['id'] ?>">
+                            <button class="accordion-button collapsed text-uppercase fw-light btn-title-category"
+                                    type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapse-<?= $value['id'] ?>"
+                                    aria-expanded="false" aria-controls="flush-collapse-<?= $value['id'] ?>">
+                                <?= Yii::t('app', $value['name']) ?>
+                            </button>
+                            <input type='hidden' class="big-cate w-100" value="<?= $value['code'] ?>">
+                            <input type='hidden' class="big-cate-name w-100"
+                                   value="<?= ProductCategory::getBigCategoryName($value['code']) ?>">
+                        </h2>
+                        <?php $code = str_split($value['code'], 2)[0]; ?>
+                        <div id="flush-collapse-<?= $value['id'] ?>"
+                             class="accordion-collapse collapse ps-4 ps-md-5 py-3"
+                             aria-labelledby="flush-heading-<?= $value['id'] ?>"
+                             data-bs-parent="#type_category_offcanvas">
+                            <?php foreach (\frontend\models\ProductCategory::getAllCategoriesByCode($code) as $key => $cate): ?>
+                                <label class="category-checkbox"><?= $cate['name'] ?>
+                                    <?php $code_cate = str_split($cate['code'], 3)[0]; ?>
+                                    <input type="checkbox" value="<?= $code_cate ?>">
+                                    <span class="checkmark"></span>
+                                </label>
+                            <?php endforeach; ?>
                         </div>
-                    <?php endforeach; ?>
-                </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
+    <div class="col-12 d-md-none m-0 p-0 text-center position-relative h-tool border-dark border-bottom">
+        <button class="btn bg-transparent border-0 rounded-0 float-start text-uppercase p-0 py-auto m-0 fs-6 fw-bold btn-offcanvas"
+                type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCategory"
+                aria-controls="offcanvasCategory">
+            Thể loại <i class="fas fa-caret-down"></i>
+        </button>
+        <span class="fw-bold text-uppercase fs-6" id="offcanvas-category-name">Sản phẩm</span>
+        <div class="dropdown float-end offcanvas-dropdown">
+            <button class="btn bg-transparent border-0 rounded-0 p-0 dropdown-toggle fs-6 fw-bold" type="button"
+                    id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-sliders-h"></i> LỌC
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li>
+                    <button class="dropdown-item btn border-0 rounded-0 sortByDate">Mới nhất</button>
+                </li>
+                <li>
+                    <button class="dropdown-item btn border-0 rounded-0 highToLow">Giá giảm dần</button>
+                </li>
+                <li>
+                    <button class="dropdown-item btn border-0 rounded-0 lowToHigh">Giá tăng dần</button>
+                </li>
+            </ul>
+        </div>
 
+    </div>
     <div class="col-12 col-md-3 m-0 p-0 d-md-block d-none">
         <div class="w-100 px-3 py-2 mb-2 border-bottom border-dark">
             <span class="fw-bold fs-5 p-0 text-uppercase">Thể loại</span>
@@ -109,14 +165,16 @@ $this->registerCss("
                     <h2 class="accordion-header" id="flush-heading-<?= $value['id'] ?>">
                         <button class="accordion-button collapsed text-uppercase fw-light btn-title-category"
                                 type="button"
-                                data-bs-toggle="collapse" data-bs-target="#flush-collapse-<?= $value['id'] ?>"
-                                aria-expanded="false" aria-controls="flush-collapse-<?= $value['id'] ?>">
+                                data-bs-toggle="collapse" data-bs-target="#flush-collapse-<?= $value['id'].$value['id'] ?>"
+                                aria-expanded="false" aria-controls="flush-collapse-<?= $value['id'].$value['id'] ?>">
                             <?= Yii::t('app', $value['name']) ?>
                         </button>
-                        <input type='hidden' class="big-cate w-100" value="<?= str_split($value['code'], 3)[0] ?>">
+                        <input type='hidden' class="big-cate w-100" value="<?= $value['code'] ?>">
+                        <input type='hidden' class="big-cate-name w-100"
+                               value="<?= ProductCategory::getBigCategoryName($value['code']) ?>">
                     </h2>
                     <?php $code = str_split($value['code'], 2)[0]; ?>
-                    <div id="flush-collapse-<?= $value['id'] ?>" class="accordion-collapse collapse ps-4 ps-md-5 py-3"
+                    <div id="flush-collapse-<?= $value['id'].$value['id'] ?>" class="accordion-collapse collapse ps-4 ps-md-5 py-3"
                          aria-labelledby="flush-heading-<?= $value['id'] ?>" data-bs-parent="#type_category">
                         <?php foreach (\frontend\models\ProductCategory::getAllCategoriesByCode($code) as $key => $cate): ?>
                             <label class="category-checkbox"><?= $cate['name'] ?>
@@ -133,23 +191,21 @@ $this->registerCss("
     <div class="col-12 col-md-9 m-0 p-0 row">
         <div class="px-3 w-100 d-md-block d-none">
             <div class="w-100 py-2 border-bottom border-dark mb-2">
-                <span class="fw-bold text-uppercase fs-5" id="category-name">abc</span>
+                <span class="fw-bold text-uppercase fs-5" id="category-name">Sản phẩm</span>
                 <div class="dropdown float-end">
-                    <button class="btn bg-transparent border-0 rounded-0 p-0 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn bg-transparent border-0 rounded-0 p-0 dropdown-toggle" type="button"
+                            id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-sliders-h"></i> LỌC
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-<!--                        <li>-->
-<!--                            <a class="dropdown-item" href="javascript:void(0)" id="highToLow">Phổ biến</a>-->
-<!--                        </li>-->
                         <li>
-                            <button class="dropdown-item btn border-0 rounded-0" id="sortByDate">Mới nhất</button>
+                            <button class="dropdown-item btn border-0 rounded-0 sortByDate">Mới nhất</button>
                         </li>
                         <li>
-                            <button class="dropdown-item btn border-0 rounded-0"  id="highToLow">Giá giảm dần</button>
+                            <button class="dropdown-item btn border-0 rounded-0 highToLow">Giá giảm dần</button>
                         </li>
                         <li>
-                            <button class="dropdown-item btn border-0 rounded-0" id="lowToHigh">Giá tăng dần</button>
+                            <button class="dropdown-item btn border-0 rounded-0 lowToHigh">Giá tăng dần</button>
                         </li>
                     </ul>
                 </div>
@@ -164,40 +220,17 @@ $this->registerCss("
         </div>
     </div>
 </div>
-</div>
 
 <script>
-    // $('#btn-type').click(function () {
-    //     if($('#type_category').hasClass('ct-hidden')) {
-    //         $('#type_category').addClass('ct-show').removeClass('ct-hidden').show(300);
-    //     } else {
-    //         $('#type_category').addClass('ct-hidden').removeClass('ct-show').hide(300);
-    //     }
-    // });
-
-    // if (window.matchMedia('(max-width: 768x)').matches) {
-    //     if($('#type_category').hasClass('ct-hidden')) {
-    //         $('#type_category').hide();
-    //     } else {
-    //         $('#type_category').addClass('ct-hidden').removeClass('ct-show').hide();
-    //     }
-    // } else {
-    //     if($('#type_category').hasClass('ct-show')) {
-    //         $('#type_category').show();
-    //     } else {
-    //         $('#type_category').addClass('ct-show').removeClass('ct-hidden').show();
-    //     }
-    // }
-
     var cdnUrl = '<?= $cdnUrl ?>';
     var imgUrl = '<?= $imgUrl ?>';
     var show_per_page = <?= \common\components\SystemConstant::LIMIT_PER_PAGE ?>;
-    var category, bigCate, cursor, sort;
+    var category, bigCate, bigCateName, cursor, sort, productCategory;
 
     <?php if(!empty($paramCate)): ?>
-    var productCategory = '<?= $paramCate ?>';
+    productCategory = '<?= $paramCate ?>';
     <?php else: ?>
-    var productCategory = null;
+    productCategory = null;
     <?php endif; ?>
 
     jQuery(document).ready(function () {
@@ -212,8 +245,9 @@ $this->registerCss("
         cursor = category = sort = null;
         if (!$(this).hasClass('collapsed')) {
             bigCate = $(this).parent().children('.big-cate').val();
+            bigCateName = $(this).parent().children('.big-cate-name').val();
         } else {
-            bigCate = null;
+            bigCate = bigCateName = null;
         }
         requestData();
     });
@@ -227,19 +261,19 @@ $this->registerCss("
     });
 
     // sort
-    $("#lowToHigh").click(function () {
+    $(".lowToHigh").click(function () {
         sort = 1;
         $('#current_page').val(0);
         cursor = null;
         requestData();
     });
-    $("#highToLow").click(function () {
+    $(".highToLow").click(function () {
         sort = 2;
         $('#current_page').val(0);
         cursor = null;
         requestData();
     });
-    $("#sortByDate").click(function () {
+    $(".sortByDate").click(function () {
         sort = 3;
         $('#current_page').val(0);
         cursor = null;
@@ -269,9 +303,13 @@ $this->registerCss("
 
         request.done(function (response) {
             let arrRes = $.parseJSON(response);
-            console.log(arrRes.sqlCm);
-            console.log(arrRes);
-            console.log(sort);
+            if (bigCateName !== null) {
+                $('#category-name').html(bigCateName);
+                $('#offcanvas-category-name').html(bigCateName);
+            } else {
+                $('#category-name').html('Sản phẩm');
+                $('#offcanvas-category-name').html('Sản phẩm');
+            }
             if (arrRes.status === 1) {
                 $('#pagination').show();
                 let result = "";
@@ -285,7 +323,7 @@ $this->registerCss("
                     } else {
                         result += '<span class="px-0 fw-bold mt-2">' + regular_price + ' VNĐ</span>';
                     }
-                    result += '<p class="fs-5 m-0 product-name">' + arrRes.product[i].name + '</p></a><button type="button" class="btn bg-white rounded-0 border p-2 py-1 fs-4 favor position-absolute"><i class="far fa-heart"></i></button></div>';
+                    result += '<p class="fs-5 m-0 product-name">' + arrRes.product[i].name + '</p></a><button type="button" class="btn bg-white rounded-0 border p-2 py-1 fs-4 favor position-absolute" onclick="favor()"><i class="far fa-heart"></i></button></div>';
                 }
                 $("#result").html(result);
                 //show pagination
@@ -381,5 +419,13 @@ $this->registerCss("
         cursor = page_num;
         $('#current_page').val(page_num);
         requestData();
+    }
+
+    function favor(){
+        if(!$(this).hasClass('favored')){
+            $(this).removeClass('bg-white').addClass('favored bg-danger text-light');
+        } else {
+            $(this).removeClass('favored bg-danger text-light').addClass('bg-white');
+        }
     }
 </script>
