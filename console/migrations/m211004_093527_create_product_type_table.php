@@ -1,0 +1,36 @@
+<?php
+
+use yii\db\Migration;
+
+/**
+ * Handles the creation of table `{{%product_type}}`.
+ */
+class m211004_093527_create_product_type_table extends Migration
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function safeUp()
+    {
+        $this->createTable('{{%product_type}}', [
+            'id' => $this->primaryKey(),
+            'name' => $this->string()->unique()->notNull(),
+            'slug' => $this->string()->unique()->notNull(),
+            'status' => $this->smallInteger()->defaultValue(1)->comment('0 for inactive, 1 for active'),
+            'admin_id' => $this->bigInteger(),
+            'created_at' => $this->dateTime(),
+            'updated_at' => $this->dateTime()
+        ]);
+        $this->addForeignKey('fk_product_type_admin_id', 'product_type', 'admin_id', 'user', 'id', 'CASCADE');
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function safeDown()
+    {
+        $this->dropForeignKey('fk_product_type_admin_id', 'product_type');
+        $this->dropTable('{{%product_type}}');
+    }
+}

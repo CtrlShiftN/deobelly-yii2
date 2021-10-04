@@ -9,6 +9,7 @@ use common\models\PostTag;
 use common\models\Meta;
 use common\models\Product;
 use common\models\ProductCategory;
+use common\models\ProductType;
 use common\models\TermsAndServices;
 use common\models\Trademark;
 use common\models\User;
@@ -340,7 +341,7 @@ class SampleData
         [
             'name' => 'Áo sơ mi',
             'slug' => 'ao-so-mi',
-            'code' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
+            'type_id' => '',
             'admin_id' => 1,
         ],
         [
@@ -841,20 +842,57 @@ class SampleData
         echo "Inserted " . $count . '/' . count(self::$arrSliderInfo) . ' slider links.' . PHP_EOL;
     }
 
+    protected static $arrProductType = [
+        [
+            'name' => 'Sản phẩn cao cấp',
+            'slug' => 'san-pham-cao-cap',
+        ],
+        [
+            'name' => 'Thời trang nam',
+            'slug' => 'thoi-trang-nam',
+        ],
+        [
+            'name' => 'Thời trang nữ',
+            'slug' => 'thoi-trang-nu',
+        ],
+        [
+            'name' => 'Phụ kiện',
+            'slug' => 'phu-kien',
+        ],
+    ];
+
+    public static function insertProductType()
+    {
+        $count = 0;
+        foreach (self::$arrProductType as $value) {
+            $model = new ProductType();
+            $model->name = $value['name'];
+            $model->slug = $value['slug'];
+            $model->admin_id = \Yii::$app->user->identity->getId();
+            $model->created_at = date('Y-m-d H:m:s');
+            $model->updated_at = date('Y-m-d H:m:s');
+            if ($model->save()) {
+                $count++;
+            }
+        }
+        echo "Inserted " . $count . '/' . count(self::$arrProductType) . ' product types.' . PHP_EOL;
+    }
+
     /**
      * @throws \yii\base\Exception
      */
     public static function importAllSampleData()
     {
         self::insertSampleUser();
-        self::insertSampleProductCategory();
         self::insertSampleTrademark();
-        self::insertSampleProduct();
         self::insertSamplePost();
         self::insertSampleTerms();
         self::insertSampleMeta();
         self::insertSamplePostTag();
         self::insertSamplePostCategory();
         self::insertSlider();
+        self::insertProductType();
+        self::insertSampleProductCategory();
+        self::insertSampleProduct();
     }
 }
