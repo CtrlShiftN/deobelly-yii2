@@ -2,18 +2,20 @@
 
 namespace common\components\importsample;
 
-use common\components\SystemConstant;
 use common\models\Post;
 use common\models\PostCategory;
 use common\models\PostTag;
 use common\models\Meta;
 use common\models\Product;
+use common\models\ProductAssoc;
 use common\models\ProductCategory;
 use common\models\ProductType;
 use common\models\TermsAndServices;
 use common\models\Trademark;
 use common\models\User;
 use frontend\models\Slider;
+use Yii;
+use yii\base\Exception;
 
 class SampleData
 {
@@ -58,7 +60,7 @@ class SampleData
 
     /**
      *
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public static function insertSampleUser()
     {
@@ -90,7 +92,7 @@ class SampleData
     protected static $productInforArr = [
         [
             'name' => 'Áo thun không cổ BOSS',
-            'slug' => 'ao-thun-khong-co-boss-1',
+            'slug' => 'ao-thun-khong-co-boss-0',
             'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
             'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
 <li>T-Shirts</li>
@@ -107,17 +109,17 @@ class SampleData
             'cost_price' => 150000,
             'regular_price' => 299000,
             'sale_price' => null,
-            'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
             'quantity' => 20,
             'image' => 'product/clothes/top/shirt1.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
-            'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
+            'is_luxury' => 0,
+            'gender' => '2',
             'trademark_id' => 1,
             'admin_id' => 1,
         ],
         [
             'name' => 'Áo thun không cổ HUGO-BOSS',
-            'slug' => 'ao-thun-khong-co-hugo-boss',
+            'slug' => 'ao-thun-khong-co-hugo-boss-1',
             'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
             'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
 <li>T-Shirts</li>
@@ -134,11 +136,11 @@ class SampleData
             'cost_price' => 200000,
             'regular_price' => 400000,
             'sale_price' => null,
-            'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
             'quantity' => 20,
             'image' => 'product/clothes/top/shirt6.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
-            'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
+            'is_luxury' => 0,
+            'gender' => '2',
             'trademark_id' => 1,
             'admin_id' => 1,
         ],
@@ -161,11 +163,11 @@ class SampleData
             'cost_price' => 200000,
             'regular_price' => 399000,
             'sale_price' => null,
-            'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
             'quantity' => 20,
             'image' => 'product/clothes/top/shirt3.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
-            'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
+            'is_luxury' => 0,
+            'gender' => '2',
             'trademark_id' => 1,
             'admin_id' => 1,
         ],
@@ -188,17 +190,17 @@ class SampleData
             'cost_price' => 200000,
             'regular_price' => 399000,
             'sale_price' => null,
-            'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
             'quantity' => 20,
             'image' => 'product/clothes/top/shirt5.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
-            'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
+            'is_luxury' => 0,
+            'gender' => '2',
             'trademark_id' => 1,
             'admin_id' => 1,
         ],
         [
-            'name' => 'Áo thun không cổ',
-            'slug' => 'ao-thun-khong-co-3',
+            'name' => 'Áo thun không cổ nam',
+            'slug' => 'ao-thun-khong-co-nam',
             'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
             'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
 <li>T-Shirts</li>
@@ -215,17 +217,17 @@ class SampleData
             'cost_price' => 300000,
             'regular_price' => 599000,
             'sale_price' => null,
-            'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
             'quantity' => 20,
             'image' => 'product/clothes/top/shirt4.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
-            'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
+            'is_luxury' => 0,
+            'gender' => '1',
             'trademark_id' => 1,
             'admin_id' => 1,
         ],
         [
-            'name' => 'Áo thun không cổ',
-            'slug' => 'ao-thun-khong-co-4',
+            'name' => 'Áo thun không cổ nữ',
+            'slug' => 'ao-thun-khong-co-nu',
             'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
             'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
 <li>T-Shirts</li>
@@ -242,11 +244,11 @@ class SampleData
             'cost_price' => 175000,
             'regular_price' => 349000,
             'sale_price' => null,
-            'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
             'quantity' => 20,
             'image' => 'product/clothes/top/shirt2.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
-            'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
+            'is_luxury' => 0,
+            'gender' => '0',
             'trademark_id' => 1,
             'admin_id' => 1,
         ],
@@ -266,11 +268,11 @@ class SampleData
             'cost_price' => 800000,
             'regular_price' => 1600000,
             'sale_price' => 1360000,
-            'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
             'quantity' => 30,
             'image' => 'product/clothes/shirt/ao-so-mi-lados.jpg',
             'images' => '',
-            'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '1',
+            'is_luxury' => 1,
+            'gender' => '1',
             'trademark_id' => 2,
             'admin_id' => 1,
         ],
@@ -288,11 +290,11 @@ class SampleData
             'cost_price' => 600000,
             'regular_price' => 11999000,
             'sale_price' => 10190000,
-            'SKU' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '3',
             'quantity' => 18,
             'image' => 'product/clothes/vest/vest-nam-han-quoc.jpg',
             'images' => '',
-            'category_id' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '3',
+            'is_luxury' => 1,
+            'gender' => '1',
             'trademark_id' => 3,
             'admin_id' => 1,
         ],
@@ -314,14 +316,23 @@ class SampleData
             $product->regular_price = $values['regular_price'];
             if (!empty($values['sale_price'])) {
                 $product->sale_price = $values['sale_price'];
+                $product->selling_price = $values['sale_price'];
             } else {
                 $product->sale_price = null;
+                $product->selling_price = $values['regular_price'];
             }
-            $product->SKU = $values['SKU'];
+            $product->SKU = null;
             $product->quantity = $values['quantity'];
             $product->image = $values['image'];
             $product->images = $values['images'];
-            $product->category_id = $values['category_id'];
+            if (!empty($values['related_product'])) {
+                $product->related_product = $values['related_product'];
+            } else {
+                $product->related_product = null;
+            }
+            if (!empty($values['gender'])) {
+                $product->gender = $values['gender'];
+            }
             $product->trademark_id = $values['trademark_id'];
             $product->created_at = date('Y-m-d H:m:s');
             $product->updated_at = date('Y-m-d H:m:s');
@@ -333,6 +344,75 @@ class SampleData
         echo "Inserted " . $countProduct . '/' . count(self::$productInforArr) . ' products.' . PHP_EOL;
     }
 
+    protected static $productAssocInfoArr = [
+        [
+            'product_id' => '1',
+            'type_id' => '2,3,4',
+            'category_id' => '2',
+            'admin_id' => 1,
+        ],
+        [
+            'product_id' => '2',
+            'type_id' => '2,3,4',
+            'category_id' => '2',
+            'admin_id' => 1,
+        ],
+        [
+            'product_id' => '3',
+            'type_id' => '2,3,4',
+            'category_id' => '2',
+            'admin_id' => 1,
+        ],
+        [
+            'product_id' => '4',
+            'type_id' => '2,3,4',
+            'category_id' => '2',
+            'admin_id' => 1,
+        ],
+        [
+            'product_id' => '5',
+            'type_id' => '2,3,4',
+            'category_id' => '2',
+            'admin_id' => 1,
+        ],
+        [
+            'product_id' => '6',
+            'type_id' => '2,3,4',
+            'category_id' => '2',
+            'admin_id' => 1,
+        ],
+        [
+            'product_id' => '7',
+            'type_id' => '2,3,4',
+            'category_id' => '1',
+            'admin_id' => 1,
+        ],
+        [
+            'product_id' => '8',
+            'type_id' => '2,3,4',
+            'category_id' => '3',
+            'admin_id' => 1,
+        ],
+    ];
+
+    public static function insertSampleProductAssoc()
+    {
+        $countAssoc = 0;
+        foreach (self::$productAssocInfoArr as $values) {
+            $assoc = new ProductAssoc();
+            $assoc->product_id = $values['product_id'];
+            $assoc->type_id = $values['type_id'];
+            $assoc->category_id = $values['category_id'];
+            $assoc->created_at = date('Y-m-d H:m:s');
+            $assoc->updated_at = date('Y-m-d H:m:s');
+            $assoc->admin_id = $values['admin_id'];
+            if ($assoc->save()) {
+                $countAssoc++;
+            }
+        }
+        echo "Inserted " . $countAssoc . '/' . count(self::$productAssocInfoArr) . ' product assoc.' . PHP_EOL;
+    }
+
     /**
      *  product category data
      * @var array[]
@@ -341,37 +421,37 @@ class SampleData
         [
             'name' => 'Áo sơ mi',
             'slug' => 'ao-so-mi',
-            'type_id' => '',
+            'type_id' => '2,3,4',
             'admin_id' => 1,
         ],
         [
             'name' => 'Áo thun',
             'slug' => 'ao-thun',
-            'code' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '2',
+            'type_id' => '2,3,4',
             'admin_id' => 1,
         ],
         [
             'name' => 'Áo Vest',
             'slug' => 'ao-vest',
-            'code' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '3',
+            'type_id' => '2,3,4',
             'admin_id' => 1,
         ],
         [
             'name' => 'Quần âu',
             'slug' => 'quan-au',
-            'code' => SystemConstant::PRODUCT_CATEGORY_TYPE_TROUSERS . '1',
+            'type_id' => '2,3,5',
             'admin_id' => 1,
         ],
         [
             'name' => 'Dây lưng',
             'slug' => 'day-lung',
-            'code' => SystemConstant::PRODUCT_CATEGORY_TYPE_ACCESSORIES . '1',
+            'type_id' => '2,3,7',
             'admin_id' => 1,
         ],
         [
             'name' => 'Giày thể thao',
             'slug' => 'giay-the-thao',
-            'code' => SystemConstant::PRODUCT_CATEGORY_TYPE_SHOES . '1',
+            'type_id' => '2,3,6',
             'admin_id' => 1,
         ],
     ];
@@ -386,7 +466,7 @@ class SampleData
             $category = new ProductCategory();
             $category->name = $values['name'];
             $category->slug = $values['slug'];
-            $category->code = $values['code'];
+            $category->type_id = $values['type_id'];
             $category->created_at = date('Y-m-d H:m:s');
             $category->updated_at = date('Y-m-d H:m:s');
             $category->admin_id = $values['admin_id'];
@@ -398,24 +478,82 @@ class SampleData
     }
 
     /**
+     * @var \string[][]
+     */
+    protected static $arrProductType = [
+        [
+            'name' => 'Sản phẩn cao cấp',
+            'slug' => 'san-pham-cao-cap',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Thời trang nam',
+            'slug' => 'thoi-trang-nam',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Thời trang nữ',
+            'slug' => 'thoi-trang-nu',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Áo',
+            'slug' => 'ao',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Quần',
+            'slug' => 'quan',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Giày',
+            'slug' => 'giay',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Phụ kiện',
+            'slug' => 'phu-kien',
+            'admin_id' => 1,
+        ],
+    ];
+
+    /**
+     *
+     */
+    public static function insertProductType()
+    {
+        $count = 0;
+        foreach (self::$arrProductType as $value) {
+            $model = new ProductType();
+            $model->name = $value['name'];
+            $model->slug = $value['slug'];
+            $model->admin_id = $value['admin_id'];
+            $model->created_at = date('Y-m-d H:m:s');
+            $model->updated_at = date('Y-m-d H:m:s');
+            if ($model->save()) {
+                $count++;
+            }
+        }
+        echo "Inserted " . $count . '/' . count(self::$arrProductType) . ' product types.' . PHP_EOL;
+    }
+
+    /**
      *  trademark data
      * @var array[]
      */
     protected static $trademarkInfoArr = [
         [
-            'id' => 1,
             'name' => 'HUGO',
             'slug' => 'hugo',
             'admin_id' => 1,
         ],
         [
-            'id' => 2,
             'name' => 'LADOS',
             'slug' => 'lados',
             'admin_id' => 1,
         ],
         [
-            'id' => 3,
             'name' => 'The Shirt Studio',
             'slug' => 'the-shirt-studio',
             'admin_id' => 1,
@@ -430,7 +568,6 @@ class SampleData
         $countTrademark = 0;
         foreach (self::$trademarkInfoArr as $values) {
             $trademark = new Trademark();
-            $trademark->id = $values['id'];
             $trademark->name = $values['name'];
             $trademark->slug = $values['slug'];
             $trademark->created_at = date('Y-m-d H:m:s');
@@ -442,6 +579,45 @@ class SampleData
         }
         echo "Inserted " . $countTrademark . '/' . count(self::$trademarkInfoArr) . ' trademarks.' . PHP_EOL;
     }
+
+//    /**
+//     * @var string[][]
+//     */
+//    protected static $metaInfoArr = [
+//        [
+//            'key' => 'product_category_max_top_code',
+//            'value' => '3',
+//        ],
+//        [
+//            'key' => 'product_category_max_trousers_code',
+//            'value' => '1',
+//        ],
+//        [
+//            'key' => 'product_category_max_accessories_code',
+//            'value' => '1',
+//        ],
+//        [
+//            'key' => 'product_category_max_shoes_code',
+//            'value' => '1',
+//        ],
+//    ];
+//
+//    /**
+//     *
+//     */
+//    protected static function insertSampleMeta()
+//    {
+//        $countMeta = 0;
+//        foreach (self::$metaInfoArr as $value) {
+//            $meta = new Meta();
+//            $meta->key = $value['key'];
+//            $meta->value = $value['value'];
+//            if ($meta->save()) {
+//                $countMeta++;
+//            }
+//        }
+//        echo "Inserted " . $countMeta . '/' . count(self::$metaInfoArr) . ' meta.' . PHP_EOL;
+//    }
 
     /**
      *  post data
@@ -626,46 +802,7 @@ class SampleData
     }
 
     /**
-     * @var array|\string[][]
-     */
-    protected static $metaInfoArr = [
-        [
-            'key' => 'product_category_max_top_code',
-            'value' => SystemConstant::PRODUCT_CATEGORY_TYPE_TOP . '3',
-        ],
-        [
-            'key' => 'product_category_max_trousers_code',
-            'value' => SystemConstant::PRODUCT_CATEGORY_TYPE_TROUSERS . '1',
-        ],
-        [
-            'key' => 'product_category_max_accessories_code',
-            'value' => SystemConstant::PRODUCT_CATEGORY_TYPE_ACCESSORIES . '1',
-        ],
-        [
-            'key' => 'product_category_max_shoes_code',
-            'value' => SystemConstant::PRODUCT_CATEGORY_TYPE_SHOES . '1',
-        ],
-    ];
-
-    /**
-     *
-     */
-    protected static function insertSampleMeta()
-    {
-        $countMeta = 0;
-        foreach (self::$metaInfoArr as $value) {
-            $meta = new Meta();
-            $meta->key = $value['key'];
-            $meta->value = $value['value'];
-            if ($meta->save()) {
-                $countMeta++;
-            }
-        }
-        echo "Inserted " . $countMeta . '/' . count(self::$metaInfoArr) . ' meta.' . PHP_EOL;
-    }
-
-    /**
-     * @var array|\string[][]
+     * @var array|string[][]
      */
     protected static $postTagInfoArr = [
         [
@@ -842,57 +979,22 @@ class SampleData
         echo "Inserted " . $count . '/' . count(self::$arrSliderInfo) . ' slider links.' . PHP_EOL;
     }
 
-    protected static $arrProductType = [
-        [
-            'name' => 'Sản phẩn cao cấp',
-            'slug' => 'san-pham-cao-cap',
-        ],
-        [
-            'name' => 'Thời trang nam',
-            'slug' => 'thoi-trang-nam',
-        ],
-        [
-            'name' => 'Thời trang nữ',
-            'slug' => 'thoi-trang-nu',
-        ],
-        [
-            'name' => 'Phụ kiện',
-            'slug' => 'phu-kien',
-        ],
-    ];
-
-    public static function insertProductType()
-    {
-        $count = 0;
-        foreach (self::$arrProductType as $value) {
-            $model = new ProductType();
-            $model->name = $value['name'];
-            $model->slug = $value['slug'];
-            $model->admin_id = \Yii::$app->user->identity->getId();
-            $model->created_at = date('Y-m-d H:m:s');
-            $model->updated_at = date('Y-m-d H:m:s');
-            if ($model->save()) {
-                $count++;
-            }
-        }
-        echo "Inserted " . $count . '/' . count(self::$arrProductType) . ' product types.' . PHP_EOL;
-    }
-
     /**
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public static function importAllSampleData()
     {
         self::insertSampleUser();
-        self::insertSampleTrademark();
-        self::insertSamplePost();
-        self::insertSampleTerms();
-        self::insertSampleMeta();
-        self::insertSamplePostTag();
-        self::insertSamplePostCategory();
-        self::insertSlider();
+        self::insertSampleProduct();
+        self::insertSampleProductAssoc();
         self::insertProductType();
         self::insertSampleProductCategory();
-        self::insertSampleProduct();
+        self::insertSampleTrademark();
+        self::insertSamplePost();
+        self::insertSamplePostTag();
+        self::insertSamplePostCategory();
+        self::insertSampleTerms();
+//        self::insertSampleMeta();
+        self::insertSlider();
     }
 }

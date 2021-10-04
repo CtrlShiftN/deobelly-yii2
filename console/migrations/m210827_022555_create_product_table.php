@@ -21,13 +21,14 @@ class m210827_022555_create_product_table extends Migration
             'cost_price' => $this->decimal(13, 0)->notNull(),
             'regular_price' => $this->decimal(13, 0)->notNull(),
             'sale_price' => $this->decimal(13, 0)->null(),
+            'selling_price' => $this->decimal(13, 0)->notNull(),
             'SKU' => $this->string()->null(),
             'quantity' => $this->integer()->defaultValue(0)->notNull(),
             'image' => $this->string()->notNull(),
             'images' => $this->text()->null(),
-            'is_luxury'=>$this->smallInteger(2)->defaultValue(1)->comment('0 for basic, 1 for luxury'),
+            'is_luxury' => $this->smallInteger(2)->defaultValue(1)->comment('0 for basic, 1 for luxury'),
             'related_product' => $this->string(),
-            'gender' => $this->smallInteger(2)->defaultValue(0)->comment('0 for female, 1 for male'),
+            'gender' => $this->smallInteger(2)->defaultValue(0)->comment('0 for female, 1 for male, 2 for both'),
             'trademark_id' => $this->bigInteger()->null(),
             'viewed' => $this->integer()->defaultValue(0)->comment('+1 each click to view'),
             'fake_sold' => $this->integer()->defaultValue(rand(999, 99999))->comment('client see this amount if sold < 1k'),
@@ -38,7 +39,6 @@ class m210827_022555_create_product_table extends Migration
             'updated_at' => $this->dateTime()
         ]);
         $this->createIndex('product_name_index', 'product', 'name');
-        $this->addForeignKey('fk_product_admin_id', 'product', 'admin_id', 'user', 'id', 'CASCADE');
     }
 
     /**
@@ -47,7 +47,6 @@ class m210827_022555_create_product_table extends Migration
     public function safeDown()
     {
         $this->dropIndex('product_name_index', 'product');
-        $this->dropForeignKey('fk_product_admin_id', 'product');
         $this->dropTable('{{%product}}');
     }
 }

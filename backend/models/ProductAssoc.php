@@ -1,29 +1,29 @@
 <?php
 
-namespace common\models;
+namespace backend\models;
 
 use Yii;
 
 /**
- * This is the model class for table "product_category".
+ * This is the model class for table "product_assoc".
  *
  * @property int $id
- * @property string $name
- * @property string $slug
- * @property string $type_id
+ * @property int $product_id
+ * @property string $type_id A product can have more than one type
+ * @property int $category_id
  * @property int|null $status 0 for inactive, 1 for active
  * @property int|null $admin_id
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class ProductCategory extends \yii\db\ActiveRecord
+class ProductAssoc extends \common\models\ProductAssoc
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'product_category';
+        return 'product_assoc';
     }
 
     /**
@@ -32,11 +32,11 @@ class ProductCategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'slug', 'type_id'], 'required'],
-            [['status', 'admin_id'], 'integer'],
+            [['product_id', 'type_id', 'category_id'], 'required'],
+            [['product_id', 'category_id', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'slug', 'type_id'], 'string', 'max' => 255],
-            [['slug'], 'unique'],
+            [['type_id'], 'string', 'max' => 255],
+            [['product_id'], 'unique'],
         ];
     }
 
@@ -47,9 +47,9 @@ class ProductCategory extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
-            'slug' => Yii::t('app', 'Slug'),
+            'product_id' => Yii::t('app', 'Product ID'),
             'type_id' => Yii::t('app', 'Type ID'),
+            'category_id' => Yii::t('app', 'Category ID'),
             'status' => Yii::t('app', 'Status'),
             'admin_id' => Yii::t('app', 'Admin ID'),
             'created_at' => Yii::t('app', 'Created At'),

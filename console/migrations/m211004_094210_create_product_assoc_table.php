@@ -25,9 +25,6 @@ class m211004_094210_create_product_assoc_table extends Migration
         $this->createIndex('product_assoc_product_id_index', 'product_assoc', 'product_id');
         $this->createIndex('product_assoc_type_id_index', 'product_assoc', 'type_id');
         $this->createIndex('product_assoc_category_id_index', 'product_assoc', 'category_id');
-        $this->addForeignKey('fk_product_assoc_product_id', 'product_assoc', 'product_id', 'product', 'id', 'CASCADE');
-        $this->addForeignKey('fk_product_assoc_type_id', 'product_assoc', 'type_id', 'product_type', 'id', 'CASCADE');
-        $this->addForeignKey('fk_product_assoc_category_id', 'product_assoc', 'category_id', 'product_category', 'id', 'CASCADE');
     }
 
     /**
@@ -38,9 +35,6 @@ class m211004_094210_create_product_assoc_table extends Migration
         $this->dropIndex('product_assoc_product_id_index', 'product_assoc');
         $this->dropIndex('product_assoc_type_id_index', 'product_assoc');
         $this->dropIndex('product_assoc_category_id_index', 'product_assoc');
-        $this->dropForeignKey('fk_product_assoc_product_id', 'product_assoc');
-        $this->dropForeignKey('fk_product_assoc_type_id', 'product_assoc');
-        $this->dropForeignKey('fk_product_assoc_category_id', 'product_assoc');
         $this->dropTable('{{%product_assoc}}');
     }
 }
