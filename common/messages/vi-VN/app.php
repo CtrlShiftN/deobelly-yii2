@@ -223,4 +223,5 @@ return [
     'Create' => 'Tạo mới',
     'luxury product' => 'sản phẩm cao cấp',
     "Women Fashion" => 'Thời Trang Nữ',
+    'Add to cart' => 'Thêm vào giỏ',
 ];

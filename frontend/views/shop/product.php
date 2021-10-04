@@ -32,23 +32,60 @@ $this->registerCss("
     .h-tool {
         height: 44px !important;
     }
+
     .btn-offcanvas,
     #offcanvas-category-name,
     .offcanvas-dropdown {
         position: absolute;
     }
+
     .btn-offcanvas {
         left: -7px;
         top: 3px;
     }
+
     #offcanvas-category-name {
         top: 3px;
         left: 50%;
         transform: translate(-46%);
     }
+
     .offcanvas-dropdown {
         top: 0;
         right: -7px;
+    }
+
+
+    .btnAdd, .btnBuyNow {
+        transition: 0.3s;
+        position: relative;
+    }
+
+    .btnAdd {
+        right: -120%;
+    }
+
+    .btnBuyNow {
+        right: 100%;
+    }
+
+    .product-button {
+        top: -40%;
+        position: relative;
+        overflow: hidden;
+        z-index: 5;
+        width: 100%;
+        height: 84px;
+    }
+
+    .product-card:hover > .product-button .btnAdd {
+        left: 50%;
+        transform: translate(-50%);
+    }
+
+    .product-card:hover > .product-button .btnBuyNow {
+        right: -50%;
+        transform: translate(-50%);
     }
 </style>
 <!-- Carousel wrapper -->
@@ -90,7 +127,7 @@ $this->registerCss("
 </div>
 <div class="row m-0 p-0 pt-4 pt-md-5">
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasCategory"
-                                           aria-labelledby="offcanvasCategoryLabel">
+         aria-labelledby="offcanvasCategoryLabel">
         <div class="offcanvas-header border-bottom border-dark">
             <h5 class="offcanvas-title text-uppercase" id="offcanvasCategoryLabel">Thể loại</h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
@@ -165,8 +202,9 @@ $this->registerCss("
                     <h2 class="accordion-header" id="flush-heading-<?= $value['id'] ?>">
                         <button class="accordion-button collapsed text-uppercase fw-light btn-title-category"
                                 type="button"
-                                data-bs-toggle="collapse" data-bs-target="#flush-collapse-<?= $value['id'].$value['id'] ?>"
-                                aria-expanded="false" aria-controls="flush-collapse-<?= $value['id'].$value['id'] ?>">
+                                data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapse-<?= $value['id'] . $value['id'] ?>"
+                                aria-expanded="false" aria-controls="flush-collapse-<?= $value['id'] . $value['id'] ?>">
                             <?= Yii::t('app', $value['name']) ?>
                         </button>
                         <input type='hidden' class="big-cate w-100" value="<?= $value['code'] ?>">
@@ -174,7 +212,8 @@ $this->registerCss("
                                value="<?= ProductCategory::getBigCategoryName($value['code']) ?>">
                     </h2>
                     <?php $code = str_split($value['code'], 2)[0]; ?>
-                    <div id="flush-collapse-<?= $value['id'].$value['id'] ?>" class="accordion-collapse collapse ps-4 ps-md-5 py-3"
+                    <div id="flush-collapse-<?= $value['id'] . $value['id'] ?>"
+                         class="accordion-collapse collapse ps-4 ps-md-5 py-3"
                          aria-labelledby="flush-heading-<?= $value['id'] ?>" data-bs-parent="#type_category">
                         <?php foreach (\frontend\models\ProductCategory::getAllCategoriesByCode($code) as $key => $cate): ?>
                             <label class="category-checkbox"><?= $cate['name'] ?>
@@ -220,10 +259,11 @@ $this->registerCss("
         </div>
     </div>
 </div>
-
 <script>
     var cdnUrl = '<?= $cdnUrl ?>';
     var imgUrl = '<?= $imgUrl ?>';
+    var buyNow = '<?= Yii::t('app', 'Buy now') ?>';
+    var addToCart = '<?= Yii::t('app', 'Add to cart') ?>';
     var show_per_page = <?= \common\components\SystemConstant::LIMIT_PER_PAGE ?>;
     var category, bigCate, bigCateName, cursor, sort, productCategory;
 
@@ -316,14 +356,14 @@ $this->registerCss("
                 for (let i = 0; i < arrRes.product.length; i++) {
                     //format price
                     var regular_price = new Intl.NumberFormat(['ban', 'id']).format(arrRes.product[i].regular_price);
-                    result += '<div class="col-12 col-sm-6 col-lg-4 mx-0 my-4 position-relative"><a href="' + cdnUrl + '/shop/product-detail?detail=' + arrRes.product[i].id + '" class="text-decoration-none text-dark px-0 w-100" target="_blank"><div class="position-relative product-card w-100 mb-2"><img class="img-product shadow" src="' + imgUrl + '/' + arrRes.product[i].image + '"></div>';
+                    result += '<div class="col-12 col-sm-6 col-lg-4 mx-0 my-4 position-relative product-card overflow-hidden"><a href="' + cdnUrl + '/shop/product-detail?detail=' + arrRes.product[i].id + '" class="text-decoration-none text-dark px-0 w-100" target="_blank"><div class="position-relative product-img w-100 mb-2"><img class="img-product shadow" src="' + imgUrl + '/' + arrRes.product[i].image + '"></div>';
                     if (arrRes.product[i].sale_price !== arrRes.product[i].regular_price) {
                         var sale_price = new Intl.NumberFormat(['ban', 'id']).format(arrRes.product[i].sale_price);
-                        result += '<span class="px-0 fw-bold mt-2"><span class="text-decoration-line-through text-dark fw-light fs-regular-price">' + regular_price + '</span> ' + sale_price + ' VNĐ</span>';
+                        result += '<span class="px-0 fw-bold mt-2 p-price"><span class="text-decoration-line-through text-dark fw-light fs-regular-price">' + regular_price + '</span> ' + sale_price + ' VNĐ</span>';
                     } else {
-                        result += '<span class="px-0 fw-bold mt-2">' + regular_price + ' VNĐ</span>';
+                        result += '<span class="px-0 fw-bold mt-2 p-price">' + regular_price + ' VNĐ</span>';
                     }
-                    result += '<p class="fs-5 m-0 product-name">' + arrRes.product[i].name + '</p></a><button type="button" class="btn bg-white rounded-0 border p-2 py-1 fs-4 favor position-absolute" onclick="favor()"><i class="far fa-heart"></i></button></div>';
+                    result += '<p class="fs-5 m-0 product-name">' + arrRes.product[i].name + '</p></a><div class="product-button"><a href="#" class="btn btn-dark rounded-0 btnBuyNow w-75">' + buyNow + '</a><a href="#" class="btn btn-dark rounded-0 btnAdd w-75 mt-2"><i class="fas fa-cart-plus"></i> ' + addToCart + '</a></div><button type="button" class="btn bg-white rounded-0 border p-2 py-1 fs-4 favor position-absolute" onclick="favor()"><i class="far fa-heart"></i></button></div>';
                 }
                 $("#result").html(result);
                 //show pagination
@@ -421,8 +461,8 @@ $this->registerCss("
         requestData();
     }
 
-    function favor(){
-        if(!$(this).hasClass('favored')){
+    function favor() {
+        if (!$(this).hasClass('favored')) {
             $(this).removeClass('bg-white').addClass('favored bg-danger text-light');
         } else {
             $(this).removeClass('favored bg-danger text-light').addClass('bg-white');
