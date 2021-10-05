@@ -228,4 +228,7 @@ return [
     'The login function is temporarily disable.' => 'Chức năng đăng nhập đang tạm thời bị khóa',
     'Recently Added Products' => 'Sản Phẩm Mới',
     'View All Products' => 'Tất Cả Sản Phẩm',
+    'luxury product' => 'sản phẩm cao cấp',
+    "Women Fashion" => 'Thời Trang Nữ',
+    'Add to cart' => 'Thêm vào giỏ',
 ];
