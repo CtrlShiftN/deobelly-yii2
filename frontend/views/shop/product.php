@@ -71,9 +71,11 @@ $this->registerCssFile(Url::toRoute('css/product.css'));
                                     aria-expanded="false" aria-controls="offcanvas-flush-collapse-<?= $idEncrypted ?>">
                                 <?= Yii::t('app', $value['name']) ?>
                             </button>
-<!--                            <input type='hidden' class="big-cate w-100" value="--><?//= $value['code'] ?><!--">-->
-<!--                            <input type='hidden' class="big-cate-name w-100"-->
-<!--                                   value="--><?//= ProductCategory::getBigCategoryName($value['code']) ?><!--">-->
+                            <!--                            <input type='hidden' class="big-cate w-100" value="-->
+                            <? //= $value['code'] ?><!--">-->
+                            <!--                            <input type='hidden' class="big-cate-name w-100"-->
+                            <!--                                   value="-->
+                            <? //= ProductCategory::getBigCategoryName($value['code']) ?><!--">-->
                         </h2>
                         <div id="offcanvas-flush-collapse-<?= $idEncrypted ?>"
                              class="accordion-collapse collapse ps-4 ps-md-5 py-3"
@@ -81,7 +83,8 @@ $this->registerCssFile(Url::toRoute('css/product.css'));
                              data-bs-parent="#type_category_offcanvas">
                             <?php foreach (\frontend\models\ProductCategory::getCategoryByTypeId($value['id']) as $key => $cate): ?>
                                 <label class="category-checkbox"><?= $cate['name'] ?>
-                                    <input type="checkbox" value="<?= \common\components\encrypt\CryptHelper::encryptString($cate['id']) ?>">
+                                    <input type="checkbox"
+                                           value="<?= \common\components\encrypt\CryptHelper::encryptString($cate['id']) ?>">
                                     <span class="checkmark"></span>
                                 </label>
                             <?php endforeach; ?>
@@ -134,16 +137,19 @@ $this->registerCssFile(Url::toRoute('css/product.css'));
                                 aria-expanded="false" aria-controls="flush-collapse-<?= $idEncrypted ?>">
                             <?= Yii::t('app', $value['name']) ?>
                         </button>
-<!--                        <input type='hidden' class="big-cate w-100" value="--><?//= $value['code'] ?><!--">-->
-<!--                        <input type='hidden' class="big-cate-name w-100"-->
-<!--                               value="--><?//= ProductCategory::getBigCategoryName($value['code']) ?><!--">-->
+                        <!--                        <input type='hidden' class="big-cate w-100" value="-->
+                        <? //= $value['code'] ?><!--">-->
+                        <!--                        <input type='hidden' class="big-cate-name w-100"-->
+                        <!--                               value="-->
+                        <? //= ProductCategory::getBigCategoryName($value['code']) ?><!--">-->
                     </h2>
                     <div id="flush-collapse-<?= $idEncrypted ?>"
                          class="accordion-collapse collapse ps-4 ps-md-5 py-3"
                          aria-labelledby="flush-heading-<?= $idEncrypted ?>" data-bs-parent="#type_category">
                         <?php foreach (\frontend\models\ProductCategory::getCategoryByTypeId($value['id']) as $key => $cate): ?>
                             <label class="category-checkbox"><?= $cate['name'] ?>
-                                <input type="checkbox" value="<?= \common\components\encrypt\CryptHelper::encryptString($cate['id']) ?>">
+                                <input type="checkbox"
+                                       value="<?= \common\components\encrypt\CryptHelper::encryptString($cate['id']) ?>">
                                 <span class="checkmark"></span>
                             </label>
                         <?php endforeach; ?>
