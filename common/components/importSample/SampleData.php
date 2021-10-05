@@ -580,45 +580,6 @@ class SampleData
         echo "Inserted " . $countTrademark . '/' . count(self::$trademarkInfoArr) . ' trademarks.' . PHP_EOL;
     }
 
-//    /**
-//     * @var string[][]
-//     */
-//    protected static $metaInfoArr = [
-//        [
-//            'key' => 'product_category_max_top_code',
-//            'value' => '3',
-//        ],
-//        [
-//            'key' => 'product_category_max_trousers_code',
-//            'value' => '1',
-//        ],
-//        [
-//            'key' => 'product_category_max_accessories_code',
-//            'value' => '1',
-//        ],
-//        [
-//            'key' => 'product_category_max_shoes_code',
-//            'value' => '1',
-//        ],
-//    ];
-//
-//    /**
-//     *
-//     */
-//    protected static function insertSampleMeta()
-//    {
-//        $countMeta = 0;
-//        foreach (self::$metaInfoArr as $value) {
-//            $meta = new Meta();
-//            $meta->key = $value['key'];
-//            $meta->value = $value['value'];
-//            if ($meta->save()) {
-//                $countMeta++;
-//            }
-//        }
-//        echo "Inserted " . $countMeta . '/' . count(self::$metaInfoArr) . ' meta.' . PHP_EOL;
-//    }
-
     /**
      *  post data
      * @var array[]
@@ -994,7 +955,6 @@ class SampleData
         self::insertSamplePostTag();
         self::insertSamplePostCategory();
         self::insertSampleTerms();
-//        self::insertSampleMeta();
         self::insertSlider();
     }
 }
