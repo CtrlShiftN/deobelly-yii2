@@ -56,4 +56,13 @@ class ProductCategory extends \common\models\ProductCategory
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
+
+    /**
+     * @param $code
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getCategoryByTypeId($id)
+    {
+        return ProductCategory::find()->where(['status' => 1])->andWhere(['like', 'type_id', $id])->asArray()->all();
+    }
 }

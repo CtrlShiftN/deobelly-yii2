@@ -944,8 +944,8 @@ class SampleData
         self::insertSampleUser();
         self::insertSampleProduct();
         self::insertSampleProductAssoc();
-        self::insertProductType();
         self::insertSampleProductCategory();
+        self::insertProductType();
         self::insertSampleTrademark();
         self::insertSamplePost();
         self::insertSamplePostTag();

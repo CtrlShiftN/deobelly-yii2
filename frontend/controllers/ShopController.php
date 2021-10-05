@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\components\encrypt\CryptHelper;
 use common\components\helpers\ParamHelper;
 use frontend\models\ProductCategory;
+use frontend\models\ProductType;
 use frontend\models\Slider;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -55,11 +56,9 @@ class ShopController extends Controller
     public function actionProduct()
     {
         $slider = Slider::getSliderFromSite('index');
-        $getParamCategory = CryptHelper::decryptString(ParamHelper::getParamValue('product_category'));
-        $getBigCategory = ProductCategory::getBigCategory();
+        $getProductType = ProductType::getProductType();
         return $this->render('product', [
-            'paramCate' => $getParamCategory,
-            'bigCategory' => $getBigCategory,
+            'productType' => $getProductType,
             'slider' => $slider
         ]);
     }
