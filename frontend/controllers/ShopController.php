@@ -79,4 +79,19 @@ class ShopController extends Controller
             'slider' => $slider
         ]);
     }
+
+    /**
+     * @return string
+     */
+    public function actionProduct()
+    {
+        $slider = Slider::getSliderFromSite('index');
+        $getParamCategory = CryptHelper::decryptString(ParamHelper::getParamValue('product_category'));
+        $getBigCategory = ProductCategory::getBigCategory();
+        return $this->render('product', [
+            'paramCate' => $getParamCategory,
+            'bigCategory' => $getBigCategory,
+            'slider' => $slider
+        ]);
+    }
 }

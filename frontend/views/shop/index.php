@@ -9,7 +9,6 @@ $this->params['breadcrumbs'][] = $this->title;
 $cdnUrl = Yii::$app->params['frontend'];
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->registerCssFile(Url::toRoute("/css/shop.css"));
-$this->registerCss("");
 ?>
 <!-- Carousel wrapper -->
 <div class="full-width">
