@@ -51,14 +51,14 @@ $this->registerCssFile(Url::toRoute("/css/shop.css"));
 <div class="row p-0 my-5 h-100">
     <div class="col-6 px-1 ps-md-5 pe-md-3 mb-4 mb-md-5">
         <!--        TODO: LINKS-->
-        <a href="<?= Url::toRoute(['shop/product', 'product_category' => \common\components\encrypt\CryptHelper::encryptString('men')]) ?>" class="text-decoration-none" target="_blank">
+        <a href="<?= Url::toRoute(['shop/product', 'product_type' => \common\components\encrypt\CryptHelper::encryptString('men')]) ?>" class="text-decoration-none" target="_blank">
             <div class="overflow-hidden w-100 shadow h-65 position-relative my-2 my-md-3">
                 <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', 'Men') ?></p>
                 <img src="<?= Url::toRoute('img/index/pronto-img-4.jpg') ?>" class="w-100 shadow object-fit-cover zoom"
                      alt="...">
             </div>
         </a>
-        <a href="<?= Url::toRoute(['shop/product', 'product_category' => \common\components\encrypt\CryptHelper::encryptString('accessory')]) ?>" class="text-decoration-none" target="_blank">
+        <a href="<?= Url::toRoute(['shop/product', 'product_type' => \common\components\encrypt\CryptHelper::encryptString('accessory')]) ?>" class="text-decoration-none" target="_blank">
             <div class="overflow-hidden w-100 shadow h-35 position-relative my-2 my-md-3">
                 <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', 'Accessory') ?></p>
                 <img src="<?= Url::toRoute('img/index/GLT_1219.jpeg') ?>" class="w-100 shadow object-fit-cover zoom"
@@ -67,14 +67,14 @@ $this->registerCssFile(Url::toRoute("/css/shop.css"));
         </a>
     </div>
     <div class="col-6 px-1 ps-md-3 pe-md-5 mb-4 mb-md-5">
-        <a href="<?= Url::toRoute(['shop/product', 'product_category' => \common\components\encrypt\CryptHelper::encryptString('new-product')]) ?>" class="text-decoration-none" target="_blank">
+        <a href="<?= Url::toRoute(['shop/product', 'product_type' => \common\components\encrypt\CryptHelper::encryptString('new-product')]) ?>" class="text-decoration-none" target="_blank">
             <div class="overflow-hidden w-100 shadow h-35 position-relative my-2 my-md-3">
                 <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', 'new product') ?></p>
                 <img src="<?= Url::toRoute('img/index/women.jpg') ?>" class="w-100 shadow object-fit-cover zoom"
                      alt="...">
             </div>
         </a>
-        <a href="<?= Url::toRoute(['shop/product', 'product_category' => \common\components\encrypt\CryptHelper::encryptString('women')]) ?>" class="text-decoration-none" target="_blank">
+        <a href="<?= Url::toRoute(['shop/product', 'product_type' => \common\components\encrypt\CryptHelper::encryptString('women')]) ?>" class="text-decoration-none" target="_blank">
             <div class="overflow-hidden w-100 shadow h-65 position-relative my-2 my-md-3">
                 <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', 'Women') ?></p>
                 <img src="<?= Url::toRoute('img/index/pronto-img-2.jpg') ?>" class="w-100 shadow object-fit-cover zoom"
@@ -83,7 +83,7 @@ $this->registerCssFile(Url::toRoute("/css/shop.css"));
         </a>
     </div>
     <div class="col-12 mb-md-5 px-1 px-md-5">
-        <a href="<?= Url::toRoute(['shop/product', 'product_category' => \common\components\encrypt\CryptHelper::encryptString('luxury-product')]) ?>" class="text-decoration-none" target="_blank">
+        <a href="<?= Url::toRoute(['shop/product', 'product_type' => \common\components\encrypt\CryptHelper::encryptString('luxury-product')]) ?>" class="text-decoration-none" target="_blank">
             <div class="overflow-hidden w-100 shadow position-relative mt-md-3">
                 <p class="position-absolute text-light fs-title last-category-title fw-bolder text-uppercase"><?= Yii::t('app', 'luxury product') ?></p>
                 <img src="<?= Url::toRoute('img/index/brand2.jpg') ?>" class="w-100 shadow object-fit-cover zoom"
