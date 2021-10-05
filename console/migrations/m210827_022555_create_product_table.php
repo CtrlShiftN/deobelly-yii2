@@ -28,7 +28,7 @@ class m210827_022555_create_product_table extends Migration
             'images' => $this->text()->null(),
             'is_luxury' => $this->smallInteger(2)->defaultValue(1)->comment('0 for basic, 1 for luxury'),
             'related_product' => $this->string(),
-            'gender' => $this->smallInteger(2)->defaultValue(0)->comment('0 for female, 1 for male, 2 for both'),
+            'gender' => $this->smallInteger(2)->defaultValue(2)->comment('0 for female, 1 for male, 2 for both'),
             'trademark_id' => $this->bigInteger()->null(),
             'viewed' => $this->integer()->defaultValue(0)->comment('+1 each click to view'),
             'fake_sold' => $this->integer()->defaultValue(rand(999, 99999))->comment('client see this amount if sold < 1k'),
