@@ -7,8 +7,6 @@ use yii\helpers\Url;
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->title = 'DE OBELLY';
 $this->registerCssFile(Url::toRoute("/css/index.css"));
-$this->registerCss("
-");
 ?>
 <!-- Carousel wrapper -->
 <div class="full-width">
