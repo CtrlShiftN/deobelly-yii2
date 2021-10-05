@@ -21,8 +21,6 @@ class m211004_093527_create_product_type_table extends Migration
             'created_at' => $this->dateTime(),
             'updated_at' => $this->dateTime()
         ]);
-        $this->addForeignKey('fk_product_type_admin_id', 'product_type', 'admin_id', 'user', 'id', 'CASCADE');
-
     }
 
     /**
@@ -30,7 +28,6 @@ class m211004_093527_create_product_type_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropForeignKey('fk_product_type_admin_id', 'product_type');
         $this->dropTable('{{%product_type}}');
     }
 }

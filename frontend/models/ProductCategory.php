@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace frontend\models;
 
 use Yii;
 
@@ -16,7 +16,7 @@ use Yii;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class ProductCategory extends \yii\db\ActiveRecord
+class ProductCategory extends \common\models\ProductCategory
 {
     /**
      * {@inheritdoc}
