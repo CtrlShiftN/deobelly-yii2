@@ -1,33 +1,28 @@
 <?php
 
-namespace common\models;
+namespace backend\models;
 
 use Yii;
 
 /**
- * This is the model class for table "product_category".
+ * This is the model class for table "product_type".
  *
  * @property int $id
  * @property string $name
  * @property string $slug
-<<<<<<< HEAD
- * @property string $code first letter is product type, the rest is code number
-=======
- * @property string $type_id
->>>>>>> 37a54b3d3d68ea6a47f198d34666835e534f0e43
  * @property int|null $status 0 for inactive, 1 for active
  * @property int|null $admin_id
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class ProductCategory extends \yii\db\ActiveRecord
+class ProductType extends \common\models\ProductType
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'product_category';
+        return 'product_type';
     }
 
     /**
@@ -36,17 +31,11 @@ class ProductCategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-<<<<<<< HEAD
-            [['name', 'slug', 'code'], 'required'],
+            [['name', 'slug'], 'required'],
             [['status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'slug', 'code'], 'string', 'max' => 255],
-=======
-            [['name', 'slug', 'type_id'], 'required'],
-            [['status', 'admin_id'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
-            [['name', 'slug', 'type_id'], 'string', 'max' => 255],
->>>>>>> 37a54b3d3d68ea6a47f198d34666835e534f0e43
+            [['name', 'slug'], 'string', 'max' => 255],
+            [['name'], 'unique'],
             [['slug'], 'unique'],
         ];
     }
@@ -60,7 +49,6 @@ class ProductCategory extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'slug' => Yii::t('app', 'Slug'),
-            'type_id' => Yii::t('app', 'Type ID'),
             'status' => Yii::t('app', 'Status'),
             'admin_id' => Yii::t('app', 'Admin ID'),
             'created_at' => Yii::t('app', 'Created At'),
