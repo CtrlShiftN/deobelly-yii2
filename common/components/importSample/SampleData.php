@@ -478,21 +478,21 @@ class SampleData
      */
     protected static $arrProductType = [
         [
-            'name' => 'Sản phẩn cao cấp',
+            'name' => 'Sản phẩm cao cấp',
             'slug' => 'san-pham-cao-cap',
-            'image' => 'index/brand2.jpg',
+            'image' => 'img/index/brand2.jpg',
             'admin_id' => 1,
         ],
         [
             'name' => 'Thời trang nam',
             'slug' => 'thoi-trang-nam',
-            'image' => 'index/pronto-img-4.jpg',
+            'image' => 'img/index/pronto-img-4.jpg',
             'admin_id' => 1,
         ],
         [
             'name' => 'Thời trang nữ',
             'slug' => 'thoi-trang-nu',
-            'image' => 'index/pronto-img-2.jpg',
+            'image' => 'img/index/pronto-img-2.jpg',
             'admin_id' => 1,
         ],
         [
@@ -510,19 +510,19 @@ class SampleData
         [
             'name' => 'Giày',
             'slug' => 'giay',
-            'image' => 'index/giay-derby-nam-1.jpg',
+            'image' => 'img/index/giay-derby-nam-1.jpg',
             'admin_id' => 1,
         ],
         [
             'name' => 'Phụ kiện',
             'slug' => 'phu-kien',
-            'image' => 'index/GLT_1219.jpeg',
+            'image' => 'img/index/GLT_1219.jpeg',
             'admin_id' => 1,
         ],
         [
             'name' => 'Sản phẩn mới',
             'slug' => 'san-pham-moi',
-            'image' => 'index/women.jpg',
+            'image' => 'img/index/women.jpg',
             'admin_id' => 1,
         ],
     ];

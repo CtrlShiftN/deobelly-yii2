@@ -7,6 +7,7 @@ use common\components\helpers\ParamHelper;
 use frontend\models\ProductCategory;
 use frontend\models\ProductType;
 use frontend\models\Slider;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -45,8 +46,11 @@ class ShopController extends Controller
     public function actionIndex()
     {
         $slider = Slider::getSliderFromSite('index');
+
+        $type = ArrayHelper::index(ProductType::getProductType(),null, 'slug');
         return $this->render('index', [
-            'slider' => $slider
+            'slider' => $slider,
+            'type' => $type
         ]);
     }
 

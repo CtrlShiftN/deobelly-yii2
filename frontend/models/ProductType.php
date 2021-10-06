@@ -59,6 +59,9 @@ class ProductType extends \backend\models\ProductType
         ];
     }
 
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
     public static function getProductType()
     {
         return ProductType::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
