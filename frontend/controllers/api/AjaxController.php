@@ -6,6 +6,7 @@ use common\components\encrypt\CryptHelper;
 use common\components\helpers\HeaderHelper;
 use common\components\helpers\ParamHelper;
 use common\components\SystemConstant;
+use frontend\models\Product;
 use frontend\models\ProductCategory;
 use Yii;
 use yii\rest\ActiveController;
@@ -59,26 +60,18 @@ class AjaxController extends ActiveController
     /**
      *
      *
+     * @throws \yii\db\Exception
      */
     public function actionProductFilterAjax()
     {
-        $getCategory = ParamHelper::getParamValue('cate');
+        $getProductCategory = ParamHelper::getParamValue('cate');
         $getCursor = ParamHelper::getParamValue('cursor');
-        $getBigCategory = ParamHelper::getParamValue('bigCate');
+        $getProductType = ParamHelper::getParamValue('type');
         $getSort = ParamHelper::getParamValue('sort');
 
-        $rows = (new \yii\db\Query())->from('product');
-        $rows->where(["status" => 1]);
+        $rows = Product::getAllProduct($getProductType, $getProductCategory);
 
-        if (!empty($getBigCategory)) {
-            $rows->andWhere(['like', 'product_category', $getBigCategory]);
-        };
-
-        if (!empty($getCategory)) {
-            $rows->andWhere(['category_id' => $getCategory]);
-        };
-
-        $count = count($rows->all());
+//        $count = count($rows->all());
 
         if (!empty($getCursor)) {
             $limit = SystemConstant::LIMIT_PER_PAGE;
@@ -98,13 +91,13 @@ class AjaxController extends ActiveController
             }
         }
 
-        $result = $rows->all();
+        $result = $rows->createCommand()->rawSql;
 
-        $arrProduct = [];
-        foreach ($result as $key => $value) {
-            $arrProduct[$key] = $value;
-            $arrProduct[$key]['id'] = CryptHelper::encryptString($value['id']);
-        }
+//        $arrProduct = [];
+//        foreach ($result as $key => $value) {
+//            $arrProduct[$key] = $value;
+//            $arrProduct[$key]['id'] = CryptHelper::encryptString($value['id']);
+//        }
 
         if (empty($result)) {
             $response = [
@@ -114,8 +107,10 @@ class AjaxController extends ActiveController
         } else {
             $response = [
                 'status' => SystemConstant::API_SUCCESS_STATUS,
-                'product' => $arrProduct,
-                'count' => $count,
+//                'product' => $arrProduct,
+                'product' => $rows->all(),
+                'sqlCm' => $result,
+//                'count' => $count,
             ];
         }
         echo json_encode($response);
