@@ -16,6 +16,7 @@ class m211004_093527_create_product_type_table extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string()->unique()->notNull(),
             'slug' => $this->string()->unique()->notNull(),
+            'image' => $this->string()->notNull(),
             'status' => $this->smallInteger()->defaultValue(1)->comment('0 for inactive, 1 for active'),
             'admin_id' => $this->bigInteger(),
             'created_at' => $this->dateTime(),

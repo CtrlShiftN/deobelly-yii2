@@ -478,38 +478,51 @@ class SampleData
      */
     protected static $arrProductType = [
         [
-            'name' => 'Sản phẩn cao cấp',
+            'name' => 'Sản phẩm cao cấp',
             'slug' => 'san-pham-cao-cap',
+            'image' => 'img/index/brand2.jpg',
             'admin_id' => 1,
         ],
         [
             'name' => 'Thời trang nam',
             'slug' => 'thoi-trang-nam',
+            'image' => 'img/index/pronto-img-4.jpg',
             'admin_id' => 1,
         ],
         [
             'name' => 'Thời trang nữ',
             'slug' => 'thoi-trang-nu',
+            'image' => 'img/index/pronto-img-2.jpg',
             'admin_id' => 1,
         ],
         [
             'name' => 'Áo',
             'slug' => 'ao',
+            'image' => 'img/vest-nam-den.jpg',
             'admin_id' => 1,
         ],
         [
             'name' => 'Quần',
             'slug' => 'quan',
+            'image' => 'image/quan-tay-ong-rong.jpg',
             'admin_id' => 1,
         ],
         [
             'name' => 'Giày',
             'slug' => 'giay',
+            'image' => 'img/index/giay-derby-nam-1.jpg',
             'admin_id' => 1,
         ],
         [
             'name' => 'Phụ kiện',
             'slug' => 'phu-kien',
+            'image' => 'img/index/GLT_1219.jpeg',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Sản phẩn mới',
+            'slug' => 'san-pham-moi',
+            'image' => 'img/index/women.jpg',
             'admin_id' => 1,
         ],
     ];
@@ -524,6 +537,7 @@ class SampleData
             $model = new ProductType();
             $model->name = $value['name'];
             $model->slug = $value['slug'];
+            $model->image = $value['image'];
             $model->admin_id = $value['admin_id'];
             $model->created_at = date('Y-m-d H:m:s');
             $model->updated_at = date('Y-m-d H:m:s');
