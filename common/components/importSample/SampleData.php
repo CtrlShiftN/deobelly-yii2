@@ -9,6 +9,8 @@ use common\models\Meta;
 use common\models\Product;
 use common\models\ProductAssoc;
 use common\models\ProductCategory;
+use common\models\ProductColor;
+use common\models\ProductSize;
 use common\models\ProductType;
 use common\models\TermsAndServices;
 use common\models\Trademark;
@@ -345,48 +347,64 @@ class SampleData
             'product_id' => '1',
             'type_id' => '2,3,4',
             'category_id' => '2',
+            'color_id' => '1,2',
+            'size_id' => '3,4,5,6',
             'admin_id' => 1,
         ],
         [
             'product_id' => '2',
             'type_id' => '2,3,4',
             'category_id' => '2',
+            'color_id' => '1,2',
+            'size_id' => '3,4,5,6',
             'admin_id' => 1,
         ],
         [
             'product_id' => '3',
             'type_id' => '2,3,4',
             'category_id' => '2',
+            'color_id' => '1,2',
+            'size_id' => '3,4,5,6',
             'admin_id' => 1,
         ],
         [
             'product_id' => '4',
             'type_id' => '2,3,4',
             'category_id' => '2',
+            'color_id' => '1,2',
+            'size_id' => '3,4,5,6',
             'admin_id' => 1,
         ],
         [
             'product_id' => '5',
             'type_id' => '2,3,4',
             'category_id' => '2',
+            'color_id' => '1,2',
+            'size_id' => '3,4,5,6,7',
             'admin_id' => 1,
         ],
         [
             'product_id' => '6',
             'type_id' => '2,3,4',
             'category_id' => '2',
+            'color_id' => '1,2,6',
+            'size_id' => '3,4,5,6',
             'admin_id' => 1,
         ],
         [
             'product_id' => '7',
             'type_id' => '2,3,4',
             'category_id' => '1',
+            'color_id' => '1,6,7',
+            'size_id' => '3,4,5,6',
             'admin_id' => 1,
         ],
         [
             'product_id' => '8',
             'type_id' => '2,3,4',
             'category_id' => '3',
+            'color_id' => '2,9,10',
+            'size_id' => '3,4,5,6',
             'admin_id' => 1,
         ],
     ];
@@ -399,6 +417,8 @@ class SampleData
             $assoc->product_id = $values['product_id'];
             $assoc->type_id = $values['type_id'];
             $assoc->category_id = $values['category_id'];
+            $assoc->color_id = $values['color_id'];
+            $assoc->size_id = $values['size_id'];
             $assoc->created_at = date('Y-m-d H:m:s');
             $assoc->updated_at = date('Y-m-d H:m:s');
             $assoc->admin_id = $values['admin_id'];
@@ -530,9 +550,9 @@ class SampleData
     /**
      *
      */
-    public static function insertProductType()
+    public static function insertSampleProductType()
     {
-        $count = 0;
+        $countType = 0;
         foreach (self::$arrProductType as $value) {
             $model = new ProductType();
             $model->name = $value['name'];
@@ -542,10 +562,204 @@ class SampleData
             $model->created_at = date('Y-m-d H:m:s');
             $model->updated_at = date('Y-m-d H:m:s');
             if ($model->save()) {
-                $count++;
+                $countType++;
             }
         }
-        echo "Inserted " . $count . '/' . count(self::$arrProductType) . ' product types.' . PHP_EOL;
+        echo "Inserted " . $countType . '/' . count(self::$arrProductType) . ' product types.' . PHP_EOL;
+    }
+
+    /**
+     * @var \string[][]
+     */
+    protected static $arrProductColor = [
+        [
+            'name' => 'White',
+            'slug' => 'white',
+            'color_code' => '#ffffff',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Black',
+            'slug' => 'black',
+            'color_code' => '#000000',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Red',
+            'slug' => 'red',
+            'color_code' => '#ff0000',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Green',
+            'slug' => 'green',
+            'color_code' => '#00cc00',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Yellow',
+            'slug' => 'yellow',
+            'color_code' => '#ffff00',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Blue',
+            'slug' => 'blue',
+            'color_code' => '#0000ff',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Light blue',
+            'slug' => 'light-blue',
+            'color_code' => '#33ccff',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Pink',
+            'slug' => 'pink',
+            'color_code' => '#ff99a8',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Gray',
+            'slug' => 'gray',
+            'color_code' => '#808080',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Brown',
+            'slug' => 'brown',
+            'color_code' => '#663300',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Orange',
+            'slug' => 'orange',
+            'color_code' => '#ffa500',
+            'admin_id' => 1,
+        ],
+    ];
+
+    /**
+     *
+     */
+    public static function insertSampleProductColor()
+    {
+        $countColor = 0;
+        foreach (self::$arrProductColor as $value) {
+            $color = new ProductColor();
+            $color->name = $value['name'];
+            $color->slug = $value['slug'];
+            $color->color_code = $value['color_code'];
+            $color->admin_id = $value['admin_id'];
+            $color->created_at = date('Y-m-d H:m:s');
+            $color->updated_at = date('Y-m-d H:m:s');
+            if ($color->save()) {
+                $countColor++;
+            }
+        }
+        echo "Inserted " . $countColor . '/' . count(self::$arrProductColor) . ' product colour.' . PHP_EOL;
+    }
+
+    /**
+     * @var \string[][]
+     */
+    protected static $arrProductSize = [
+        [
+            'name' => 'XXS',
+            'slug' => 'xxs',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'XS',
+            'slug' => 'xs',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'S',
+            'slug' => 's',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'M',
+            'slug' => 'm',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'L',
+            'slug' => 'l',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'XL',
+            'slug' => 'xl',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'XXL',
+            'slug' => 'xxl',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => '36',
+            'slug' => '36',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => '37',
+            'slug' => '37',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => '38',
+            'slug' => '38',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => '39',
+            'slug' => '39',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => '40',
+            'slug' => '40',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => '41',
+            'slug' => '41',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => '42',
+            'slug' => '42',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => '43',
+            'slug' => '43',
+            'admin_id' => 1,
+        ],
+    ];
+
+    /**
+     *
+     */
+    public static function insertSampleProductSize()
+    {
+        $countSize = 0;
+        foreach (self::$arrProductSize as $value) {
+            $size = new ProductSize();
+            $size->name = $value['name'];
+            $size->slug = $value['slug'];
+            $size->admin_id = $value['admin_id'];
+            $size->created_at = date('Y-m-d H:m:s');
+            $size->updated_at = date('Y-m-d H:m:s');
+            if ($size->save()) {
+                $countSize++;
+            }
+        }
+        echo "Inserted " . $countSize . '/' . count(self::$arrProductSize) . ' product sizes.' . PHP_EOL;
     }
 
     /**
@@ -958,8 +1172,10 @@ class SampleData
         self::insertSampleUser();
         self::insertSampleProduct();
         self::insertSampleProductAssoc();
-        self::insertProductType();
+        self::insertSampleProductType();
         self::insertSampleProductCategory();
+        self::insertSampleProductColor();
+        self::insertSampleProductSize();
         self::insertSampleTrademark();
         self::insertSamplePost();
         self::insertSamplePostTag();
