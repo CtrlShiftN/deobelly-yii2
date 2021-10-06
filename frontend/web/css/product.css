@@ -209,12 +209,12 @@ button:focus {
 
 @media (max-width: 567px) {
     .fs-6 {
-        font-size: 0.88rem !important;
+        font-size: 0.84rem !important;
     }
 }
 
 .h-tool {
-    height: 44px !important;
+    height: 49px !important;
 }
 
 .btn-offcanvas,
@@ -237,37 +237,4 @@ button:focus {
 .offcanvas-dropdown {
     top: 0;
     right: -7px;
-}
-
-
-.btnAdd, .btnBuyNow {
-    transition: 0.3s;
-    position: relative;
-}
-
-.btnAdd {
-    right: -120%;
-}
-
-.btnBuyNow {
-    right: 100%;
-}
-
-.product-button {
-    top: -40%;
-    position: relative;
-    overflow: hidden;
-    z-index: 5;
-    width: 100%;
-    height: 84px;
-}
-
-.product-card:hover > .product-button .btnAdd {
-    left: 50%;
-    transform: translate(-50%);
-}
-
-.product-card:hover > .product-button .btnBuyNow {
-    right: -50%;
-    transform: translate(-50%);
 }

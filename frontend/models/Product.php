@@ -94,20 +94,18 @@ class Product extends \common\models\Product
     }
 
     /**
-     * @param null $productType
-     * @param null $productCategory
      * @return Query
      */
-    public static function getAllProduct($productType = null, $productCategory = null)
+    public static function getAllProduct($productType, $productCategory)
     {
-        $query = (new Query())->from('product as pr')
-            ->leftJoin('product-assoc as pr-a', 'pr.id = pr-a.product_id')
-            ->where(['pr.status' => 1]);
+        $query = (new Query())->from('product')
+            ->leftJoin('product_assoc', 'product_assoc.product_id = product.id')
+            ->where(['product.status' => 1]);
         if(!empty($productType)){
-            $query->andWhere(['like', 'pr-a.type_id', $productType]);
+            $query->andWhere(['like', 'product_assoc.type_id', $productType]);
         }
         if (!empty($productCategory)) {
-            $query->andWhere(['pr-a.category_id' => $productCategory]);
+            $query->andWhere(['product_assoc.category_id' => $productCategory]);
         }
         return $query;
     }

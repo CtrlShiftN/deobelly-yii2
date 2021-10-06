@@ -66,12 +66,12 @@ class AjaxController extends ActiveController
     {
         $getProductCategory = ParamHelper::getParamValue('cate');
         $getCursor = ParamHelper::getParamValue('cursor');
-        $getProductType = ParamHelper::getParamValue('type');
+        $getProductType = CryptHelper::decryptString(ParamHelper::getParamValue('type'));
         $getSort = ParamHelper::getParamValue('sort');
 
         $rows = Product::getAllProduct($getProductType, $getProductCategory);
 
-//        $count = count($rows->all());
+        $count = count($rows->all());
 
         if (!empty($getCursor)) {
             $limit = SystemConstant::LIMIT_PER_PAGE;
@@ -83,21 +83,21 @@ class AjaxController extends ActiveController
 
         if (!empty($getSort)) {
             if ($getSort == 1) {
-                $rows->orderBy("sale_price ASC");
+                $rows->orderBy("product.selling_price ASC");
             } else if ($getSort == 2) {
-                $rows->orderBy('sale_price DESC');
+                $rows->orderBy('product.selling_price DESC');
             } else {
-                $rows->orderBy("updated_at DESC");
+                $rows->orderBy("product.updated_at DESC");
             }
         }
 
-        $result = $rows->createCommand()->rawSql;
+        $result = $rows->all();
 
-//        $arrProduct = [];
-//        foreach ($result as $key => $value) {
-//            $arrProduct[$key] = $value;
-//            $arrProduct[$key]['id'] = CryptHelper::encryptString($value['id']);
-//        }
+        $arrProduct = [];
+        foreach ($result as $key => $value) {
+            $arrProduct[$key] = $value;
+            $arrProduct[$key]['id'] = CryptHelper::encryptString($value['id']);
+        }
 
         if (empty($result)) {
             $response = [
@@ -107,10 +107,8 @@ class AjaxController extends ActiveController
         } else {
             $response = [
                 'status' => SystemConstant::API_SUCCESS_STATUS,
-//                'product' => $arrProduct,
-                'product' => $rows->all(),
-                'sqlCm' => $result,
-//                'count' => $count,
+                'product' => $arrProduct,
+                'count' => $count,
             ];
         }
         echo json_encode($response);
