@@ -74,7 +74,7 @@
 
 @media (max-width: 316px) {
     .category-title, .last-category-title {
-        top: 60%;
+        top: 78%;
     }
 }
 
@@ -94,11 +94,11 @@
     }
 
     .fs-title {
-        font-size: 1.05rem !important;
+        font-size: 0.8rem !important;
     }
 
     .category-title, .last-category-title {
-        padding: 0 10px;
+        padding: 0 6px;
     }
 }
 

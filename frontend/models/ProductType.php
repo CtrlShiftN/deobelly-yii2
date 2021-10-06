@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use common\components\SystemConstant;
 use Yii;
 
 /**
@@ -56,5 +57,13 @@ class ProductType extends \backend\models\ProductType
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getProductType()
+    {
+        return ProductType::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
     }
 }
