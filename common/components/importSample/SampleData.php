@@ -2,21 +2,19 @@
 
 namespace common\components\importsample;
 
+use common\models\Color;
 use common\models\Post;
 use common\models\PostCategory;
 use common\models\PostTag;
-use common\models\Meta;
 use common\models\Product;
 use common\models\ProductAssoc;
 use common\models\ProductCategory;
-use common\models\ProductColor;
-use common\models\ProductSize;
 use common\models\ProductType;
+use common\models\Size;
 use common\models\TermsAndServices;
 use common\models\Trademark;
 use common\models\User;
 use frontend\models\Slider;
-use Yii;
 use yii\base\Exception;
 
 class SampleData
@@ -377,7 +375,7 @@ class SampleData
         ],
         [
             'product_id' => '5',
-            'type_id' => '2,3,4',
+            'type_id' => '2,4',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6,7',
@@ -385,7 +383,7 @@ class SampleData
         ],
         [
             'product_id' => '6',
-            'type_id' => '2,3,4',
+            'type_id' => '3,4',
             'category_id' => '2',
             'color_id' => '1,2,6',
             'size_id' => '3,4,5,6',
@@ -393,7 +391,7 @@ class SampleData
         ],
         [
             'product_id' => '7',
-            'type_id' => '2,3,4',
+            'type_id' => '1,2,4',
             'category_id' => '1',
             'color_id' => '1,6,7',
             'size_id' => '3,4,5,6',
@@ -401,9 +399,9 @@ class SampleData
         ],
         [
             'product_id' => '8',
-            'type_id' => '2,3,4',
+            'type_id' => '1,2,4',
             'category_id' => '3',
-            'color_id' => '2,9,10',
+            'color_id' => '2,11,12',
             'size_id' => '3,4,5,6',
             'admin_id' => 1,
         ],
@@ -571,7 +569,7 @@ class SampleData
     /**
      * @var \string[][]
      */
-    protected static $arrProductColor = [
+    protected static $arrColor = [
         [
             'name' => 'White',
             'slug' => 'white',
@@ -593,31 +591,43 @@ class SampleData
         [
             'name' => 'Green',
             'slug' => 'green',
-            'color_code' => '#00cc00',
+            'color_code' => '#008000',
             'admin_id' => 1,
         ],
         [
             'name' => 'Yellow',
             'slug' => 'yellow',
-            'color_code' => '#ffff00',
+            'color_code' => '#FFFF00',
             'admin_id' => 1,
         ],
         [
             'name' => 'Blue',
             'slug' => 'blue',
-            'color_code' => '#0000ff',
+            'color_code' => '#0000FF',
             'admin_id' => 1,
         ],
         [
             'name' => 'Light blue',
             'slug' => 'light-blue',
-            'color_code' => '#33ccff',
+            'color_code' => '##ADD8E6',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Cyan',
+            'slug' => 'Cyan',
+            'color_code' => '#00FFFF',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Dark blue',
+            'slug' => 'dark-blue',
+            'color_code' => '##00008B',
             'admin_id' => 1,
         ],
         [
             'name' => 'Pink',
             'slug' => 'pink',
-            'color_code' => '#ff99a8',
+            'color_code' => '#FFC0CB',
             'admin_id' => 1,
         ],
         [
@@ -646,8 +656,8 @@ class SampleData
     public static function insertSampleProductColor()
     {
         $countColor = 0;
-        foreach (self::$arrProductColor as $value) {
-            $color = new ProductColor();
+        foreach (self::$arrColor as $value) {
+            $color = new Color();
             $color->name = $value['name'];
             $color->slug = $value['slug'];
             $color->color_code = $value['color_code'];
@@ -658,13 +668,13 @@ class SampleData
                 $countColor++;
             }
         }
-        echo "Inserted " . $countColor . '/' . count(self::$arrProductColor) . ' product colour.' . PHP_EOL;
+        echo "Inserted " . $countColor . '/' . count(self::$arrColor) . ' product colour.' . PHP_EOL;
     }
 
     /**
      * @var \string[][]
      */
-    protected static $arrProductSize = [
+    protected static $arrSize = [
         [
             'name' => 'XXS',
             'slug' => 'xxs',
@@ -745,11 +755,11 @@ class SampleData
     /**
      *
      */
-    public static function insertSampleProductSize()
+    public static function insertSampleSize()
     {
         $countSize = 0;
-        foreach (self::$arrProductSize as $value) {
-            $size = new ProductSize();
+        foreach (self::$arrSize as $value) {
+            $size = new Size();
             $size->name = $value['name'];
             $size->slug = $value['slug'];
             $size->admin_id = $value['admin_id'];
@@ -759,7 +769,7 @@ class SampleData
                 $countSize++;
             }
         }
-        echo "Inserted " . $countSize . '/' . count(self::$arrProductSize) . ' product sizes.' . PHP_EOL;
+        echo "Inserted " . $countSize . '/' . count(self::$arrSize) . ' product sizes.' . PHP_EOL;
     }
 
     /**
@@ -1174,8 +1184,8 @@ class SampleData
         self::insertSampleProductAssoc();
         self::insertSampleProductType();
         self::insertSampleProductCategory();
-        self::insertSampleProductColor();
-        self::insertSampleProductSize();
+        self::insertSampleColor();
+        self::insertSampleSize();
         self::insertSampleTrademark();
         self::insertSamplePost();
         self::insertSamplePostTag();

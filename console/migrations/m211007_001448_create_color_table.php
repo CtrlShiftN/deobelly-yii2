@@ -3,20 +3,20 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%product_color}}`.
+ * Handles the creation of table `{{%color}}`.
  */
-class m211006_134630_create_product_color_table extends Migration
+class m211007_001448_create_color_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%product_color}}', [
+        $this->createTable('{{%color}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string()->notNull(),
-            'slug' => $this->string()->notNull()->unique(),
-            'color_code' => $this->string()->notNull()->unique(),
+            'name' => $this->string(),
+            'slug' => $this->string()->unique(),
+            'color_code' => $this->string(),
             'status' => $this->smallInteger()->defaultValue(1)->comment('0 for inactive, 1 for active'),
             'admin_id' => $this->bigInteger(),
             'created_at' => $this->dateTime(),
@@ -29,6 +29,6 @@ class m211006_134630_create_product_color_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%product_color}}');
+        $this->dropTable('{{%color}}');
     }
 }
