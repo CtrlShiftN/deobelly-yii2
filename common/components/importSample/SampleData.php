@@ -353,8 +353,6 @@ class SampleData
             'product_id' => '2',
             'type_id' => '2,3,4',
             'category_id' => '2',
-            'color_id' => '1,2',
-            'size_id' => '3,4,5,6',
             'admin_id' => 1,
         ],
         [
@@ -415,8 +413,12 @@ class SampleData
             $assoc->product_id = $values['product_id'];
             $assoc->type_id = $values['type_id'];
             $assoc->category_id = $values['category_id'];
-            $assoc->color_id = $values['color_id'];
-            $assoc->size_id = $values['size_id'];
+            if (!empty($values['color_id'])) {
+                $assoc->color_id = $values['color_id'];
+            }
+            if (!empty($values['size_id'])) {
+                $assoc->size_id = $values['size_id'];
+            }
             $assoc->created_at = date('Y-m-d H:m:s');
             $assoc->updated_at = date('Y-m-d H:m:s');
             $assoc->admin_id = $values['admin_id'];
@@ -653,7 +655,7 @@ class SampleData
     /**
      *
      */
-    public static function insertSampleProductColor()
+    public static function insertSampleColor()
     {
         $countColor = 0;
         foreach (self::$arrColor as $value) {

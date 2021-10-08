@@ -11,8 +11,8 @@ use Yii;
  * @property int $product_id
  * @property string $type_id A product can have more than one type
  * @property int $category_id
- * @property string $color_id
- * @property string $size_id
+ * @property string|null $color_id
+ * @property string|null $size_id
  * @property int|null $status 0 for inactive, 1 for active
  * @property int|null $admin_id
  * @property string|null $created_at
@@ -34,7 +34,7 @@ class ProductAssoc extends \common\models\ProductAssoc
     public function rules()
     {
         return [
-            [['product_id', 'type_id', 'category_id', 'color_id', 'size_id'], 'required'],
+            [['product_id', 'type_id', 'category_id'], 'required'],
             [['product_id', 'category_id', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['type_id', 'color_id', 'size_id'], 'string', 'max' => 255],
