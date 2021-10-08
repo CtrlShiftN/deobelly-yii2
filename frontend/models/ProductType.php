@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use common\components\encrypt\CryptHelper;
 use common\components\SystemConstant;
 use Yii;
 
@@ -65,5 +66,9 @@ class ProductType extends \backend\models\ProductType
     public static function getProductType()
     {
         return ProductType::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
+    }
+
+    public static function getTypeNameById($id) {
+        return ProductType::find()->select('name')->where(['status' => SystemConstant::STATUS_ACTIVE])->andWhere(['id' => CryptHelper::decryptString($id)])->asArray()->all();
     }
 }

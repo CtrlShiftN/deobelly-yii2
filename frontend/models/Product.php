@@ -2,7 +2,9 @@
 
 namespace frontend\models;
 
+use common\components\encrypt\CryptHelper;
 use Yii;
+use yii\db\Query;
 
 /**
  * This is the model class for table "product".
@@ -89,5 +91,22 @@ class Product extends \common\models\Product
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
+    }
+
+    /**
+     * @return Query
+     */
+    public static function getAllProduct($productType, $productCategory)
+    {
+        $query = (new Query())->from('product')
+            ->leftJoin('product_assoc', 'product_assoc.product_id = product.id')
+            ->where(['product.status' => 1]);
+        if(!empty($productType)){
+            $query->andWhere(['like', 'product_assoc.type_id', $productType]);
+        }
+        if (!empty($productCategory)) {
+            $query->andWhere(['product_assoc.category_id' => $productCategory]);
+        }
+        return $query;
     }
 }

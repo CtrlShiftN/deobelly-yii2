@@ -4,12 +4,14 @@ namespace frontend\controllers;
 
 use frontend\models\Post;
 use frontend\models\Product;
+use frontend\models\ProductType;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\Slider;
 use frontend\models\TermsAndServices;
 use frontend\models\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
+use yii\helpers\ArrayHelper;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -84,12 +86,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-//        $getProductIntro = Product::getProductIntro();
-//        $getPostIntro = Post::getLatestPosts();
+        $type = ArrayHelper::index(ProductType::getProductType(),null, 'slug');
         $slider = Slider::getSliderFromSite('index');
         return $this->render('index', [
-//            'productIntro' => $getProductIntro,
-//            'post' => $getPostIntro,
+            'type' => $type,
             'slider' => $slider
         ]);
     }
