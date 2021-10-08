@@ -18,7 +18,7 @@ use Yii;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class ProductAssoc extends \yii\db\ActiveRecord
+class ProductAssoc extends \common\models\ProductAssoc
 {
     /**
      * {@inheritdoc}
