@@ -49,16 +49,6 @@ class AjaxController extends ActiveController
 
     /**
      *
-     */
-    public function actionTest()
-    {
-        $cate = CryptHelper::decryptAllElementInArray(ParamHelper::getParamValue('cate'));
-        echo json_encode($cate);
-        exit;
-    }
-
-    /**
-     *
      *
      * @throws \yii\db\Exception
      */

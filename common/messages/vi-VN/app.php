@@ -237,4 +237,6 @@ return [
     'Add New Type' => 'Thêm Thể Loại Mới',
     'Product Type List' => 'Danh Sách Loại Sản Phẩm',
     'Delete' => 'Xóa',
+    'Pants' => 'Quần',
+    'Top' => 'Áo',
 ];

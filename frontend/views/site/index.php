@@ -65,7 +65,8 @@ $this->registerCssFile(Url::toRoute("/css/index.css"));
         </div>
     </div>
     <div class="col-12 text-center mb-5 mt-4 my-md-5">
-        <a href="javascript:void(0)" class="btn btn-dark rounded-0 fs-4 fw-light px-4 px-lg-5">Xem thêm</a>
+        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['san-pham-moi'][0]['id'])]) ?>"
+           class="btn btn-dark rounded-0 fs-4 fw-light px-4 px-lg-5" target="_blank">Xem thêm</a>
     </div>
 </div>
 <div class="row px-lg-5 w-100 m-0 sereno">
@@ -132,7 +133,8 @@ $this->registerCssFile(Url::toRoute("/css/index.css"));
 <div class="row my-5 px-4 px-md-0">
     <div class="col-12 col-md-6 position-relative p-0 px-md-3">
         <div class="overflow-hidden w-100 shadow">
-            <a href="javascript:void(0)" class="text-decoration-none w-100">
+            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['thoi-trang-nam'][0]['id'])]) ?>"
+               class="text-decoration-none w-100" target="_blank">
                 <p class="position-absolute text-light fs-1 men-title fw-bolder text-uppercase">Men</p>
                 <img src="<?= Url::toRoute('img/index/men.jpg') ?>"
                      class="object-fit-cover position-relative gender-img" alt="...">
@@ -141,7 +143,8 @@ $this->registerCssFile(Url::toRoute("/css/index.css"));
     </div>
     <div class="col-12 col-md-6 mt-4 mt-md-0 position-relative overflow-hidden p-0 px-md-3">
         <div class="overflow-hidden w-100 shadow">
-            <a href="javascript:void(0)" class="text-decoration-none w-100">
+            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['thoi-trang-nu'][0]['id'])]) ?>"
+               class="text-decoration-none w-100" target="_blank">
                 <p class="position-absolute text-light fs-1 women-title fw-bolder text-uppercase">Women</p>
                 <img src="<?= Url::toRoute('img/index/women.jpg') ?>"
                      class="object-fit-cover position-relative gender-img" alt="...">

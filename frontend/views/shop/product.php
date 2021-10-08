@@ -195,10 +195,10 @@ $this->registerCssFile(Url::toRoute('css/product.css'));
     var category, type, typeName, cursor, sort;
     <?php $paramCate = ParamHelper::getParamValue('type'); ?>
     <?php if(!empty($paramCate)): ?>
-        type = '<?= $paramCate ?>';
-        typeName = '<?= ProductType::getTypeNameById($paramCate)[0]['name'] ?>';
-        $('#category-name').html(typeName);
-        $('#offcanvas-category-name').html(typeName);
+    type = '<?= $paramCate ?>';
+    typeName = '<?= ProductType::getTypeNameById(CryptHelper::decryptString($paramCate))[0]['name'] ?>';
+    $('#category-name').html(typeName);
+    $('#offcanvas-category-name').html(typeName);
     <?php endif; ?>
 </script>
 <script type="text/javascript" src="<?= Url::toRoute('js/product.js') ?>"></script>

@@ -69,6 +69,6 @@ class ProductType extends \backend\models\ProductType
     }
 
     public static function getTypeNameById($id) {
-        return ProductType::find()->select('name')->where(['status' => SystemConstant::STATUS_ACTIVE])->andWhere(['id' => CryptHelper::decryptString($id)])->asArray()->all();
+        return ProductType::find()->select('name')->where(['status' => SystemConstant::STATUS_ACTIVE])->andWhere(['id' => $id])->asArray()->all();
     }
 }

@@ -86,7 +86,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $type = ArrayHelper::index(ProductType::getProductType(),null, 'slug');
+        $type = ArrayHelper::index(ProductType::getProductType(), null, 'slug');
         $slider = Slider::getSliderFromSite('index');
         return $this->render('index', [
             'type' => $type,

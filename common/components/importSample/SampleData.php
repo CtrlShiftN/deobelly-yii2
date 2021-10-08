@@ -399,7 +399,7 @@ class SampleData
         ],
         [
             'product_id' => '8',
-            'type_id' => '1,2,4',
+            'type_id' => '1,2,4,9',
             'category_id' => '3',
             'color_id' => '2,11,12',
             'size_id' => '3,4,5,6',
@@ -545,6 +545,12 @@ class SampleData
             'name' => 'Sản phẩn mới',
             'slug' => 'san-pham-moi',
             'image' => 'type/women.jpg',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Quà tặng',
+            'slug' => 'qua-tang',
+            'image' => 'type/gift.jpg',
             'admin_id' => 1,
         ],
     ];

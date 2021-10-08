@@ -6,10 +6,12 @@
 
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
+use frontend\models\ProductType;
 use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
 $cdnUrl = Yii::$app->params['frontend'];
@@ -42,7 +44,7 @@ AppAsset::register($this);
     </head>
     <body>
     <?php $this->beginBody() ?>
-
+    <?php $mainType = ArrayHelper::index(ProductType::getProductType(), null, 'slug'); ?>
     <div id="wrapper">
         <div id="content">
             <div class="sticky-top">
@@ -158,7 +160,8 @@ AppAsset::register($this);
                                                     </a>
                                                 </li>
                                                 <li class="nav-item has-treeview">
-                                                    <a href="#" class="nav-link">
+                                                    <a href="<?= Url::toRoute(['shop/product']) ?>"
+                                                       class="nav-link d-inline-block">
                                                         <i class="nav-icon fas fa-th"></i>
                                                         <p>
                                                             <?= Yii::t('app', 'Product') ?>
@@ -167,14 +170,14 @@ AppAsset::register($this);
                                                     </a>
                                                     <ul class="nav nav-treeview" style="display: none;">
                                                         <li class="nav-item">
-                                                            <a href="#"
+                                                            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($mainType['thoi-trang-nam'][0]['id'])]) ?>"
                                                                class="nav-link ">
                                                                 <i class="far fa-circle nav-icon"></i>
                                                                 <p><?= Yii::t('app', 'Men') ?></p>
                                                             </a>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a href="#"
+                                                            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($mainType['thoi-trang-nu'][0]['id'])]) ?>"
                                                                class="nav-link ">
                                                                 <i class="far fa-circle nav-icon"></i>
                                                                 <p><?= Yii::t('app', 'Women') ?></p>
@@ -211,21 +214,33 @@ AppAsset::register($this);
                         </div>
                         <div class="main-nav-right col-1 col-sm-1 col-lg-10 text-end">
                             <ul class="site-nav mb-0 ps-0 d-none d-sm-none d-lg-inline" id="main-menu">
-                                <li><a href="#"
+                                <li>
+                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($mainType['san-pham-moi'][0]['id'])]) ?>"
                                        class="site-nav-link"><span><?= Yii::t('app', 'New product') ?></span></a>
                                 </li>
-                                <li><a href="#"
-                                       class="site-nav-link"><span><?= Yii::t('app', 'On Sale') ?></span></a></li>
-                                <li><a href="#"
-                                       class="site-nav-link"><span><?= Yii::t('app', 'Clothes') ?></span></a></li>
-                                <li><a href="#" class="site-nav-link"><span><?= Yii::t('app', 'Footwear') ?></span></a>
+                                <!--                                <li><a href="#"-->
+                                <!--                                       class="site-nav-link"><span>-->
+                                <?//= Yii::t('app', 'On Sale') ?><!--</span></a></li>-->
+                                <li>
+                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($mainType['quan'][0]['id'])]) ?>"
+                                       class="site-nav-link"><span><?= Yii::t('app', 'Pants') ?></span></a></li>
+                                <li>
+                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($mainType['ao'][0]['id'])]) ?>"
+                                       class="site-nav-link"><span><?= Yii::t('app', 'Top') ?></span></a></li>
+                                <li>
+                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($mainType['giay'][0]['id'])]) ?>"
+                                       class="site-nav-link"><span><?= Yii::t('app', 'Footwear') ?></span></a>
                                 </li>
-                                <li><a href="#" class="site-nav-link"><span><?= Yii::t('app', 'Accessory') ?></span></a>
+                                <li>
+                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($mainType['phu-kien'][0]['id'])]) ?>"
+                                       class="site-nav-link"><span><?= Yii::t('app', 'Accessory') ?></span></a>
                                 </li>
-                                <li><a href="#"
-                                       class="site-nav-link"><span><?= Yii::t('app', 'Suit') ?></span></a></li>
-                                <li class="pe-0"><a href="#"
-                                                    class="site-nav-link"><span><?= Yii::t('app', 'Gift') ?></span></a>
+                                <!--                                <li><a href="#"-->
+                                <!--                                       class="site-nav-link"><span>-->
+                                <?//= Yii::t('app', 'Suit') ?><!--</span></a></li>-->
+                                <li class="pe-0"><a
+                                            href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($mainType['qua-tang'][0]['id'])]) ?>"
+                                            class="site-nav-link"><span><?= Yii::t('app', 'Gift') ?></span></a>
                                 </li>
                                 <!-- TODO: Add search action -->
                                 <li class="pe-0 ps-1">
