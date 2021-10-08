@@ -153,6 +153,41 @@ AppAsset::register($this);
                                 </li>
                             </ul>
                         </li>
+                        <!-- Product -->
+                        <li class="nav-item <?= ($controller == 'product-type' || $controller == 'product-category' || $controller == 'product') ? 'menu-is-opening menu-open' : '' ?>">
+                            <a href="#"
+                               class="nav-link <?= ($controller == 'product-type' || $controller == 'product-category' || $controller == 'product') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-shopping-basket"></i>
+                                <p>
+                                    <?= Yii::t('app', 'Products') ?>
+                                    <i class="right fas fa-angle-right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?= Url::toRoute('product-type/') ?>"
+                                       class="nav-link <?= ($controller == 'product-type') ? 'active' : '' ?>">
+                                        <i class="nav-icon fas fa-user"></i>
+                                        <p><?= Yii::t('app', 'Product Types') ?></p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= Url::toRoute('product-category/') ?>"
+                                       class="nav-link <?= ($controller == 'product-category') ? 'active' : '' ?>">
+                                        <i class="nav-icon fas fa-user"></i>
+                                        <p><?= Yii::t('app', 'Product Category') ?></p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= Url::toRoute('product/') ?>"
+                                       class="nav-link <?= ($controller == 'product') ? 'active' : '' ?>">
+                                        <i class="nav-icon far fa-newspaper"></i>
+                                        <p><?= Yii::t('app', 'Product Management') ?></p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- End Product -->
                         <li class="nav-header text-uppercase font-weight-bold"><?= Yii::t('app', 'Others') ?></li>
                         <li class="nav-item">
                             <a href="<?= Url::toRoute('contact/') ?>" class="nav-link">
@@ -200,7 +235,8 @@ AppAsset::register($this);
 
         <!-- Main Footer -->
         <footer class="main-footer">
-            <strong><?= Yii::t('app', 'Copyright') ?> &copy; <?= date('Y') ?> <a href="<?= Yii::$app->params['frontend'] ?>">De
+            <strong><?= Yii::t('app', 'Copyright') ?> &copy; <?= date('Y') ?> <a
+                        href="<?= Yii::$app->params['frontend'] ?>">De
                     Obelly</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">

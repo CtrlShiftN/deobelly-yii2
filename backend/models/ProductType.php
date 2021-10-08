@@ -18,6 +18,8 @@ use Yii;
  */
 class ProductType extends \common\models\ProductType
 {
+    public $file;
+
     /**
      * {@inheritdoc}
      */
@@ -38,6 +40,8 @@ class ProductType extends \common\models\ProductType
             [['name', 'slug', 'image'], 'string', 'max' => 255],
             [['name'], 'unique'],
             [['slug'], 'unique'],
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
+            ['file', 'required']
         ];
     }
 
@@ -55,6 +59,18 @@ class ProductType extends \common\models\ProductType
             'admin_id' => Yii::t('app', 'Admin ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'file' => Yii::t('app', 'File'),
         ];
+    }
+
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
+    public static function updateProductType($id, $attribute, $value)
+    {
+        return \common\models\ProductType::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
     }
 }
