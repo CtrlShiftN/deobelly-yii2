@@ -1,6 +1,6 @@
 <?php
 return [
-    'Name' => 'Họ và tên',
+    'Name' => 'Tên',
     'Tel' => 'Số điện thoại',
     'Phone number' => 'Số điện thoại',
     'Address' => 'Địa chỉ',
@@ -231,4 +231,10 @@ return [
     'luxury product' => 'sản phẩm cao cấp',
     "Women Fashion" => 'Thời Trang Nữ',
     'Add to cart' => 'Thêm vào giỏ',
+    'Products' => 'Sản Phẩm',
+    'Product Types' => 'Loại Sản Phẩm',
+    'Image' => 'Hình Ảnh',
+    'Add New Type' => 'Thêm Thể Loại Mới',
+    'Product Type List' => 'Danh Sách Loại Sản Phẩm',
+    'Delete' => 'Xóa',
 ];
