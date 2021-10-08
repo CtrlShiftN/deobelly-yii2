@@ -13,12 +13,12 @@ class m211002_023321_create_login_attempt_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%login_attempt}}', [
-            'id' => $this->primaryKey(),
-            'key' => $this->string(),
-            'amount' => $this->integer(2),
-            'reset_at' => $this->integer(11),
-            'created_at' => $this->integer(11),
-            'updated_at' => $this->integer(11),
+            'id'=> $this->primaryKey(11),
+            'key'=> $this->string(255)->notNull(),
+            'amount'=> $this->integer(2)->null()->defaultValue(1),
+            'reset_at'=> $this->integer(11)->null()->defaultValue(null),
+            'updated_at'=> $this->integer(11)->null()->defaultValue(null),
+            'created_at'=> $this->integer(11)->null()->defaultValue(null),
         ]);
         $this->createIndex('login_attempt_key_index','login_attempt','key');
         $this->createIndex('login_attempt_amount_index','login_attempt','amount');
