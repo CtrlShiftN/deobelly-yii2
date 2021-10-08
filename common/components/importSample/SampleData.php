@@ -353,6 +353,8 @@ class SampleData
             'product_id' => '2',
             'type_id' => '2,3,4',
             'category_id' => '2',
+            'color_id' => '1,2',
+            'size_id' => '3,4,5,6',
             'admin_id' => 1,
         ],
         [
