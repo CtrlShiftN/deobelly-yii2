@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $cdnUrl = Yii::$app->params['frontend'];
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->registerCssFile(Url::toRoute('css/product.css'));
+$paramCate = ParamHelper::getParamValue('type');
 ?>
 <!-- Carousel wrapper -->
 <div class="full-width">
@@ -99,7 +100,12 @@ $this->registerCssFile(Url::toRoute('css/product.css'));
                 aria-controls="offcanvasCategory">
             Thể loại <i class="fas fa-caret-down"></i>
         </button>
-        <span class="fw-bold text-uppercase fs-6" id="offcanvas-category-name">Sản phẩm</span>
+        <?php if (!empty($paramCate)): ?>
+            <span class="fw-bold text-uppercase fs-6"
+                  id="offcanvas-category-name"><?= ProductType::getTypeNameById(CryptHelper::decryptString($paramCate))[0]['name'] ?></span>
+        <?php else: ?>
+            <span class="fw-bold text-uppercase fs-6" id="offcanvas-category-name">Sản phẩm</span>
+        <?php endif; ?>
         <div class="dropdown float-end offcanvas-dropdown">
             <button class="btn bg-transparent border-0 rounded-0 p-0 dropdown-toggle fs-6 fw-bold" type="button"
                     id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -157,7 +163,12 @@ $this->registerCssFile(Url::toRoute('css/product.css'));
     <div class="col-12 col-md-9 m-0 p-0 row">
         <div class="px-3 w-100 d-md-block d-none">
             <div class="w-100 py-2 border-bottom border-dark mb-2">
-                <span class="fw-bold text-uppercase fs-5" id="category-name">Sản phẩm</span>
+                <?php if (!empty($paramCate)): ?>
+                    <span class="fw-bold text-uppercase fs-5"
+                          id="category-name"><?= ProductType::getTypeNameById(CryptHelper::decryptString($paramCate))[0]['name'] ?></span>
+                <?php else: ?>
+                    <span class="fw-bold text-uppercase fs-5" id="category-name">Sản phẩm</span>
+                <?php endif; ?>
                 <div class="dropdown float-end">
                     <button class="btn bg-transparent border-0 rounded-0 p-0 dropdown-toggle" type="button"
                             id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -187,18 +198,5 @@ $this->registerCssFile(Url::toRoute('css/product.css'));
     </div>
 </div>
 <script>
-    var cdnUrl = '<?= $cdnUrl ?>';
-    var imgUrl = '<?= $imgUrl ?>';
-    var buyNow = '<?= Yii::t('app', 'Buy now') ?>';
-    var addToCart = '<?= Yii::t('app', 'Add to cart') ?>';
-    var show_per_page = <?= \common\components\SystemConstant::LIMIT_PER_PAGE ?>;
-    var category, type, typeName, cursor, sort;
-    <?php $paramCate = ParamHelper::getParamValue('type'); ?>
-    <?php if(!empty($paramCate)): ?>
-    type = '<?= $paramCate ?>';
-    typeName = '<?= ProductType::getTypeNameById(CryptHelper::decryptString($paramCate))[0]['name'] ?>';
-    $('#category-name').html(typeName);
-    $('#offcanvas-category-name').html(typeName);
-    <?php endif; ?>
 </script>
 <script type="text/javascript" src="<?= Url::toRoute('js/product.js') ?>"></script>

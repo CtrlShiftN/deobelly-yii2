@@ -49,6 +49,21 @@ class AjaxController extends ActiveController
 
     /**
      *
+     */
+    public function actionGetLink()
+    {
+        $response = [
+            'status' => SystemConstant::API_UNSUCCESS_STATUS,
+            'cdnUrl' => Yii::$app->params['frontend'],
+            'imgUrl' => Yii::$app->params['common'] . "/media",
+            'showPerPage' => \common\components\SystemConstant::LIMIT_PER_PAGE,
+        ];
+        echo json_encode($response);
+        exit;
+    }
+
+    /**
+     *
      *
      * @throws \yii\db\Exception
      */

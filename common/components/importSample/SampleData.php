@@ -542,7 +542,7 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'name' => 'Sản phẩn mới',
+            'name' => 'Sản phẩm mới',
             'slug' => 'san-pham-moi',
             'image' => 'type/women.jpg',
             'admin_id' => 1,
