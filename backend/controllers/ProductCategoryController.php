@@ -2,23 +2,18 @@
 
 namespace backend\controllers;
 
-use backend\models\Post;
-use backend\models\PostCategory;
-use backend\models\PostSearch;
-use backend\models\PostTag;
-use common\components\helpers\StringHelper;
+use backend\models\ProductCategory;
+use backend\models\ProductCategorySearch;
 use Yii;
 use yii\filters\AccessControl;
-use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
 
 /**
- * PostController implements the CRUD actions for Post model.
+ * ProductCategoryController implements the CRUD actions for ProductCategory model.
  */
-class PostController extends Controller
+class ProductCategoryController extends Controller
 {
     /**
      * @inheritDoc
@@ -62,12 +57,12 @@ class PostController extends Controller
     }
 
     /**
-     * Lists all Post models.
+     * Lists all ProductCategory models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PostSearch();
+        $searchModel = new ProductCategorySearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
         if (Yii::$app->request->post('hasEditable')) {
             // which rows has been edited?
@@ -75,13 +70,20 @@ class PostController extends Controller
             $_index = $_POST['editableIndex'];
             // which attribute has been edited?
             $attribute = $_POST['editableAttribute'];
-            // update to db
-            $value = $_POST['Post'][$_index][$attribute];
-            $result = Post::updatePost($_id, $attribute, $value);
-            // response to gridview
-            return json_encode($result);
+            if ($attribute == 'name') {
+                // update to db
+                $value = $_POST['ProductCategory'][$_index][$attribute];
+                $result = ProductCategory::updateProductCategoryTitle($_id, $attribute, $value);
+                // response to gridview
+                return json_encode($result);
+            } elseif ($attribute == 'status') {
+                // update to db
+                $value = $_POST['ProductCategory'][$_index][$attribute];
+                $result = ProductCategory::updateProductCategoryStatus($_id, $attribute, $value);
+                // response to gridview
+                return json_encode($result);
+            }
         }
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -89,7 +91,7 @@ class PostController extends Controller
     }
 
     /**
-     * Displays a single Post model.
+     * Displays a single ProductCategory model.
      * @param int $id ID
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -102,44 +104,29 @@ class PostController extends Controller
     }
 
     /**
-     * Creates a new Post model.
+     * Creates a new ProductCategory model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Post();
-        $arrTagId = PostTag::find()->where(['status' => 1])->asArray()->all();
-        $arrPostCategory = PostCategory::find()->where(['status' => 1])->asArray()->all();
+        $model = new ProductCategory();
+
         if ($this->request->isPost) {
-            if ($model->load($this->request->post())) {
-                $model->file = UploadedFile::getInstance($model, 'file');
-                $model->slug = trim(StringHelper::toSlug(trim($model->title)));
-                // TODO Change server save files to common/media
-                $fileName = $model->slug . '.' . $model->file->getExtension();
-                $isUploadedFile = $model->file->saveAs($_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $fileName);
-                if ($isUploadedFile) {
-                    $model->avatar = '/uploads/' . $fileName;
-                    $model->tag_id = implode( ",",$model->tags);
-                    $model->admin_id = Yii::$app->user->identity->getId();
-                    $model->created_at = date('Y-m-d H:i:s');
-                    $model->updated_at = date('Y-m-d H:i:s');
-                    if ($model->save(false)) {
-                        return $this->redirect(Url::toRoute('post/'));
-                    }
-                }
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
             }
+        } else {
+            $model->loadDefaultValues();
         }
 
         return $this->render('create', [
             'model' => $model,
-            'postTag' => $arrTagId,
-            'postCate' => $arrPostCategory
         ]);
     }
 
     /**
-     * Updates an existing Post model.
+     * Updates an existing ProductCategory model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return mixed
@@ -159,7 +146,7 @@ class PostController extends Controller
     }
 
     /**
-     * Deletes an existing Post model.
+     * Deletes an existing ProductCategory model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return mixed
@@ -173,19 +160,18 @@ class PostController extends Controller
     }
 
     /**
-     * Finds the Post model based on its primary key value.
+     * Finds the ProductCategory model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Post the loaded model
+     * @return ProductCategory the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Post::findOne($id)) !== null) {
+        if (($model = ProductCategory::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
-
 }
