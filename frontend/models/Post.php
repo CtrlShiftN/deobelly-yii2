@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use common\components\encrypt\CryptHelper;
+use common\components\SystemConstant;
 use Yii;
 use yii\db\Query;
 
@@ -97,5 +98,23 @@ class Post extends \common\models\Post
     public static function getLatestPosts()
     {
         return Post::find()->where(['status' => 1])->orderBy('updated_at DESC')->limit(5)->asArray()->all();
+    }
+
+    /**
+     * @param $postID
+     * @return array|\yii\db\ActiveRecord|null
+     */
+    public static function getPostDetailByID($postID)
+    {
+        return Post::find()->where(['id' => $postID, 'status' => SystemConstant::STATUS_ACTIVE])->asArray()->one();
+    }
+
+    /**
+     * @param $categoryID
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getAllRelatedPostByCateID($categoryID)
+    {
+        return Post::find()->where(['post_category_id' => $categoryID, 'status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
     }
 }

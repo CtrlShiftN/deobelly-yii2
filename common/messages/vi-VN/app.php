@@ -241,4 +241,6 @@ return [
     'Product Categories' => 'Danh Mục Sản Phẩm',
     'Choose product categories' => 'Chọn danh mục sản phẩm',
     'Choose product types' => 'Chọn thể loại sản phẩm',
+    'Created at ' => 'Đã tạo lúc ',
+    'Related news' => 'Tin tức liên quan',
 ];
