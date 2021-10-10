@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\components\SystemConstant;
 use Yii;
 
 /**
@@ -72,5 +73,13 @@ class ProductType extends \common\models\ProductType
     public static function updateProductType($id, $attribute, $value)
     {
         return \common\models\ProductType::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getAllTypes()
+    {
+        return ProductType::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
     }
 }

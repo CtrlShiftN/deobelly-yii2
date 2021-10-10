@@ -19,6 +19,7 @@ use Yii;
  */
 class ProductCategory extends \common\models\ProductCategory
 {
+    public $types;
     /**
      * {@inheritdoc}
      */
@@ -35,7 +36,7 @@ class ProductCategory extends \common\models\ProductCategory
         return [
             [['name', 'slug', 'type_id'], 'required'],
             [['status', 'admin_id'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['created_at', 'updated_at', 'types'], 'safe'],
             [['name', 'slug', 'type_id'], 'string', 'max' => 255],
             [['slug'], 'unique'],
         ];

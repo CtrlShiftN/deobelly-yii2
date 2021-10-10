@@ -12,7 +12,7 @@ use yii\widgets\LinkPager;
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->title = Yii::t('app','Fashion News');
 ?>
-<h2 class="d-none d-md-block">Tin tức</h2>
+<h2 class="d-none d-md-block"><?= Yii::t('app', 'News') ?></h2>
 <div class="row mb-3">
     <?php foreach ($post as $key => $value) : ?>
         <!-- Three in a row -->

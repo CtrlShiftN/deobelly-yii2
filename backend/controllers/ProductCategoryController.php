@@ -4,8 +4,12 @@ namespace backend\controllers;
 
 use backend\models\ProductCategory;
 use backend\models\ProductCategorySearch;
+use backend\models\ProductType;
+use common\components\helpers\StringHelper;
+use common\components\SystemConstant;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -111,17 +115,26 @@ class ProductCategoryController extends Controller
     public function actionCreate()
     {
         $model = new ProductCategory();
-
+        $productTypes = ProductType::getAllTypes();
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $model->slug = StringHelper::toSlug($model->name);
+                $model->created_at = date('Y-m-d H:m:s');
+                $model->updated_at = date('Y-m-d H:m:s');
+                $model->status = SystemConstant::STATUS_ACTIVE;
+                $model->type_id = implode(",", $model->types);
+                $model->admin_id = Yii::$app->user->identity->getId();
+                if ($model->save()) {
+                    return $this->redirect(Url::toRoute('product-category/'));
+                }
             }
         } else {
             $model->loadDefaultValues();
         }
 
-        return $this->render('create', [
+        return $this->renderAjax('create', [
             'model' => $model,
+            'types' => $productTypes
         ]);
     }
 
