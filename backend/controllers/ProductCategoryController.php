@@ -68,6 +68,7 @@ class ProductCategoryController extends Controller
     {
         $searchModel = new ProductCategorySearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        $productTypes = ProductType::getAllTypes();
         if (Yii::$app->request->post('hasEditable')) {
             // which rows has been edited?
             $_id = $_POST['editableKey'];
@@ -91,6 +92,7 @@ class ProductCategoryController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'productTypes' => $productTypes
         ]);
     }
 

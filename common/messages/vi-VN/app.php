@@ -240,4 +240,5 @@ return [
     'Product Category' => 'Danh Mục Sản Phẩm',
     'Product Categories' => 'Danh Mục Sản Phẩm',
     'Choose product categories' => 'Chọn danh mục sản phẩm',
+    'Choose product types' => 'Chọn thể loại sản phẩm',
 ];

@@ -1,6 +1,7 @@
 <?php
 
 use kartik\grid\GridView;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
@@ -65,6 +66,27 @@ $commonUrl = Yii::$app->params['common'];
                     return $model['slug'];
                 },
                 'filter' => false
+            ],
+            [
+                'attribute' => 'type_id',
+                'label' => Yii::t('app', 'Product Types'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'value' => function ($model, $key, $index, $widget) use ($productTypes) {
+                    $arrTypes = ArrayHelper::map($productTypes, 'id', 'name');
+                    $html = "";
+                    foreach (explode(',', $model['type_id']) as $type) {
+                        $html .= '<span class="badge bg-info me-2">' . $arrTypes[$type] . '</span>';
+                    }
+                    return $html;
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => ArrayHelper::map($productTypes, 'id', 'name'),
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => Yii::t('app', 'Choose product types')],
+                'format' => 'raw'
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
@@ -148,7 +170,7 @@ $commonUrl = Yii::$app->params['common'];
             'exportConfig' => $defaultExportConfig,
             'toolbar' => [
                 [
-                    'content' => Html::button('<i class="fas fa-plus"></i> '.Yii::t('app','Create new category'), [
+                    'content' => Html::button('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create new category'), [
                         'value' => Url::toRoute('product-category/create'),
                         'class' => 'btn btn-success',
                         'id' => 'modalProductCategoryButton',
