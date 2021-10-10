@@ -10,7 +10,8 @@ use yii\widgets\ActiveForm;
 $this->registerCss('.help-block, .fill-red {color: red}');
 $this->registerCss('.help-block {padding-left: 5px}');
 $this->title = Yii::t('app', 'Create new category');
-$this->registerCss('');
+$this->registerCss('.select2-search--inline{width: 100%}');
+$this->registerCss('.select2-search__field{width: 100% !important}');
 ?>
 
 <div class="product-category-form container p-3">
