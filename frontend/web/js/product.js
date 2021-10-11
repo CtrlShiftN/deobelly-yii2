@@ -169,10 +169,12 @@ function requestParam() {
                             }
                         }
                     });
+                    $('html').scrollTop(0);
                 } else {
                     var result = '<div class="text-center col-12 p-0"><h1 class="mainColor"><i class="fab fa-sistrix"></i></h1><h5 class="mainColor"><i>Không có sản phẩm để hiển thị</i></h5><h5 class="mainColor"><i>Bạn hãy thử tìm kiếm lại!</i></h5></div>';
                     $('#pagination').hide();
                     $("#result").html(result);
+                    $('html').scrollTop(0);
                 }
             });
             request.fail(function (jqXHR, textStatus) {
