@@ -1,6 +1,7 @@
 <?php
 
 use kartik\select2\Select2;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -30,8 +31,8 @@ $this->registerCss('.select2-search__field{width: 100% !important}');
                         class="fill-red fs-6">(*)</sup></h4></div>
         <div class="col-12 col-sm-6 col-md-5 col-lg-6">
             <?= $form->field($model, 'types')->widget(Select2::classname(), [
-                'data' => \yii\helpers\ArrayHelper::map($types, 'id', 'name'),
-                'options' => ['placeholder' => Yii::t('app', 'Choose product categories')],
+                'data' => \common\components\helpers\SystemArrayHelper::removeElementAt(ArrayHelper::map($types, 'id', 'name'), 8),
+                'options' => ['placeholder' => Yii::t('app', 'Choose product types')],
                 'pluginOptions' => [
                     'multiple' => true,
                     'allowClear' => true
