@@ -1,4 +1,4 @@
-var category, type, typeName, cursor, sort, show_per_page, cdnUrl, imgUrl;
+var category, type, typeName, cursor, sort, show_per_page, cdnUrl, imgUrl, buyNow;
 var query = window.location.search.substring(1);
 let myUrl = location;
 const parseUrlQuery = (value) => {
@@ -18,7 +18,7 @@ jQuery(document).ready(function () {
 
 function requestParam() {
     let request = $.ajax({
-        url: "/api/ajax/get-link", // send request to
+        url: "/api/ajax/get-data", // send request to
         method: "POST", // sending method
     });
     request.done(function (response) {
@@ -26,6 +26,7 @@ function requestParam() {
         cdnUrl = arrRes.cdnUrl;
         imgUrl = arrRes.imgUrl;
         show_per_page = arrRes.showPerPage;
+        buyNow = arrRes.buyNow;
         requestData();
 
         var checkboxes = $('input[type=checkbox]');
@@ -47,7 +48,6 @@ function requestParam() {
             category = getCheckedBoxes(categoryCb);
             $('#current_page').val(0);
             cursor = sort = null;
-            console.log(category)
             requestData();
         });
 
@@ -107,16 +107,17 @@ function requestParam() {
                     for (let i = 0; i < arrRes.product.length; i++) {
                         //format price
                         var selling_price = new Intl.NumberFormat(['ban', 'id']).format(arrRes.product[i].selling_price);
-                        result += '<div class="col-12 col-sm-6 col-lg-4 mx-0 my-4 position-relative product-card overflow-hidden"><a href="' + cdnUrl + '/shop/product-detail?detail=' + arrRes.product[i].id + '" class="text-decoration-none text-dark px-0 w-100" target="_blank"><div class="position-relative product-img w-100 mb-2"><img class="img-product shadow" src="' + imgUrl + '/' + arrRes.product[i].image + '"></div>';
+                        result += '<div class="col-12 col-sm-6 col-lg-4 mx-0 my-3 position-relative product-card overflow-hidden"><div class="position-relative overflow-hidden w-100 img-shadow"><a href="' + cdnUrl + '/shop/product-detail?detail=' + arrRes.product[i].id + '" class="text-decoration-none text-dark px-0 w-100 position-relative"><div class="position-relative product-img w-100 mb-2"><img class="img-product" src="' + imgUrl + '/' + arrRes.product[i].image + '"></div> <div class="pr-inf px-2 px-lg-1 px-xl-2 py-2 w-100 border-top">';
                         if (arrRes.product[i].sale_price !== null) {
                             var regular_price = new Intl.NumberFormat(['ban', 'id']).format(arrRes.product[i].regular_price);
                             result += '<span class="px-0 fw-bold mt-2 p-price"><span class="text-decoration-line-through text-dark fw-light fs-regular-price">' + regular_price + '</span> ' + selling_price + ' VNĐ</span>';
                         } else {
                             result += '<span class="px-0 fw-bold mt-2 p-price">' + selling_price + ' VNĐ</span>';
                         }
-                        result += '<p class="fs-5 m-0 product-name">' + arrRes.product[i].name + '</p></a><button type="button" class="btn bg-white rounded-0 border p-2 py-1 fs-4 favor position-absolute" onclick="favor()"><i class="far fa-heart"></i></button></div>';
+                        result += '<p class="m-0 product-name">' + arrRes.product[i].name + '</p></div></a></div><div class="product-button row m-0"><a href="javascript:void(0)" class="btn rounded-0 btnAdd col-4 col-md-3"><i class="fas fa-cart-plus"></i></a><a href="javascript:void(0)" class="btn rounded-0 btnBuyNow col-4 col-md-6"><i class="fas fa-dollar-sign d-md-none"></i><span class="d-none d-md-inline-block"><i class="fas fa-dollar-sign"></i> ' + buyNow + '</span></a><a href="javascript:void(0)" class="btn rounded-0 btnAdd col-4 col-md-3"><i class="far fa-heart"></i></a></div></div>';
                     }
                     $("#result").html(result);
+
                     //show pagination
                     var number_of_items = arrRes.count;
                     var number_of_pages = Math.ceil(number_of_items / show_per_page);

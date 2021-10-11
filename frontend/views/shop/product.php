@@ -126,10 +126,10 @@ $paramCate = ParamHelper::getParamValue('type');
     </div>
 
     <div class="col-12 col-md-3 m-0 p-0 d-md-block d-none">
-        <div class="w-100 px-3 py-2 mb-2 border-bottom border-dark">
+        <div class="w-100 px-3 py-2 m-0 border-bottom border-dark">
             <span class="fw-bold fs-5 p-0 text-uppercase">Thể loại</span>
         </div>
-        <div class="accordion accordion-flush w-100" id="type_category">
+        <div class="accordion accordion-flush w-100 pb-5" id="type_category">
             <?php foreach ($productType as $key => $value): ?>
                 <?php $idEncrypted = \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>
                 <div class="accordion-item">
@@ -160,8 +160,8 @@ $paramCate = ParamHelper::getParamValue('type');
         </div>
     </div>
 
-    <div class="col-12 col-md-9 m-0 p-0 row">
-        <div class="px-3 w-100 d-md-block d-none">
+    <div class="col-12 col-md-9 m-0 p-0">
+        <div class="px-3 w-100 d-md-block d-none" style="height:47px">
             <div class="w-100 py-2 border-bottom border-dark mb-2">
                 <?php if (!empty($paramCate)): ?>
                     <span class="fw-bold text-uppercase fs-5"
@@ -190,6 +190,32 @@ $paramCate = ParamHelper::getParamValue('type');
         </div>
         <input type='hidden' id='current_page' class="w-100">
         <div id="result" class="w-100 row m-0 p-0 my-3">
+
+
+<!--            <div class="col-12 col-sm-6 col-lg-4 mx-0 my-3 position-relative product-card overflow-hidden">-->
+<!--                <div class="position-relative overflow-hidden w-100">-->
+<!--                    <a href="javascript:void(0)"  class="text-decoration-none text-dark px-0 w-100 position-relative img-shadow">-->
+<!--                        <div class="position-relative product-img w-100">-->
+<!--                            <img class="img-product" src="--><?//= $imgUrl ?><!--/product/clothes/shirt/ao-so-mi-lados.jpg">-->
+<!--                        </div>-->
+<!--                        <div class="pr-inf px-2 px-lg-1 px-xl-2 py-2 w-100 border-top">-->
+<!--                            <span class="px-0 fw-bold mt-2 p-price"><span class="text-decoration-line-through text-dark fw-light fs-regular-price">100.000.000</span> 100.000.000 VNĐ</span>-->
+<!--                            <p class="m-0 product-name">arrRes.product[i]. name name name namename namename namename namename</p>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <div class="product-button row m-0">-->
+<!--                    <a href="javascript:void(0)" class="btn rounded-0 btnAdd col-4 col-md-3"><i class="fas fa-cart-plus"></i></a>-->
+<!--                    <a href="javascript:void(0)" class="btn rounded-0 btnBuyNow col-4 col-md-6"><i class="fas fa-dollar-sign d-md-none"></i><span class="d-none d-md-inline-block"><i class="fas fa-dollar-sign"></i> Mua ngay</span></a>-->
+<!--                    <a href="javascript:void(0)" class="btn rounded-0 btnAdd col-4 col-md-3"><i class="far fa-heart"></i></a>-->
+<!--                </div>-->
+<!--            </div>-->
+
+
+
+
+
+
         </div>
         <div class="mt-2 text-center w-100" id="pagination">
             <input type='hidden' id='current_page'>

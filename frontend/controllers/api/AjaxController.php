@@ -50,13 +50,14 @@ class AjaxController extends ActiveController
     /**
      *
      */
-    public function actionGetLink()
+    public function actionGetData()
     {
         $response = [
             'status' => SystemConstant::API_UNSUCCESS_STATUS,
             'cdnUrl' => Yii::$app->params['frontend'],
             'imgUrl' => Yii::$app->params['common'] . "/media",
             'showPerPage' => \common\components\SystemConstant::LIMIT_PER_PAGE,
+            'buyNow' => Yii::t('app', 'Buy now'),
         ];
         echo json_encode($response);
         exit;

@@ -343,7 +343,7 @@ class SampleData
     protected static $productAssocInfoArr = [
         [
             'product_id' => '1',
-            'type_id' => '2,3,4',
+            'type_id' => '3,4,5',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6',
@@ -351,7 +351,7 @@ class SampleData
         ],
         [
             'product_id' => '2',
-            'type_id' => '2,3,4',
+            'type_id' => '3,4,5',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6',
@@ -359,7 +359,7 @@ class SampleData
         ],
         [
             'product_id' => '3',
-            'type_id' => '2,3,4',
+            'type_id' => '3,4,5',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6',
@@ -367,7 +367,7 @@ class SampleData
         ],
         [
             'product_id' => '4',
-            'type_id' => '2,3,4',
+            'type_id' => '3,4,5',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6',
@@ -375,7 +375,7 @@ class SampleData
         ],
         [
             'product_id' => '5',
-            'type_id' => '2,4',
+            'type_id' => '3,5',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6,7',
@@ -383,7 +383,7 @@ class SampleData
         ],
         [
             'product_id' => '6',
-            'type_id' => '3,4',
+            'type_id' => '4,5',
             'category_id' => '2',
             'color_id' => '1,2,6',
             'size_id' => '3,4,5,6',
@@ -391,7 +391,7 @@ class SampleData
         ],
         [
             'product_id' => '7',
-            'type_id' => '1,2,4',
+            'type_id' => '1,3,5',
             'category_id' => '1',
             'color_id' => '1,6,7',
             'size_id' => '3,4,5,6',
@@ -399,7 +399,7 @@ class SampleData
         ],
         [
             'product_id' => '8',
-            'type_id' => '1,2,4,9',
+            'type_id' => '1,3,5,10',
             'category_id' => '3',
             'color_id' => '2,11,12',
             'size_id' => '3,4,5,6',
@@ -439,37 +439,37 @@ class SampleData
         [
             'name' => 'Áo sơ mi',
             'slug' => 'ao-so-mi',
-            'type_id' => '2,3,4',
+            'type_id' => '1,3,5',
             'admin_id' => 1,
         ],
         [
             'name' => 'Áo thun',
             'slug' => 'ao-thun',
-            'type_id' => '2,3,4',
+            'type_id' => '1,3,4,5',
             'admin_id' => 1,
         ],
         [
             'name' => 'Áo Vest',
             'slug' => 'ao-vest',
-            'type_id' => '2,3,4',
+            'type_id' => '1,3,5',
             'admin_id' => 1,
         ],
         [
             'name' => 'Quần âu',
             'slug' => 'quan-au',
-            'type_id' => '2,3,5',
+            'type_id' => '3,4,6',
             'admin_id' => 1,
         ],
         [
             'name' => 'Dây lưng',
             'slug' => 'day-lung',
-            'type_id' => '2,3,7',
+            'type_id' => '3,4,8',
             'admin_id' => 1,
         ],
         [
             'name' => 'Giày thể thao',
             'slug' => 'giay-the-thao',
-            'type_id' => '2,3,6',
+            'type_id' => '3,4,7',
             'admin_id' => 1,
         ],
     ];
@@ -506,6 +506,12 @@ class SampleData
             'admin_id' => 1,
         ],
         [
+            'name' => 'Sản phẩm mới',
+            'slug' => 'san-pham-moi',
+            'image' => 'type/women.jpg',
+            'admin_id' => 1,
+        ],
+        [
             'name' => 'Thời trang nam',
             'slug' => 'thoi-trang-nam',
             'image' => 'type/pronto-img-4.jpg',
@@ -539,12 +545,6 @@ class SampleData
             'name' => 'Phụ kiện',
             'slug' => 'phu-kien',
             'image' => 'type/GLT_1219.jpeg',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Sản phẩm mới',
-            'slug' => 'san-pham-moi',
-            'image' => 'type/women.jpg',
             'admin_id' => 1,
         ],
         [
