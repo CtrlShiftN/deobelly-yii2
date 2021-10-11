@@ -125,7 +125,7 @@ $paramCate = ParamHelper::getParamValue('type');
         </div>
     </div>
 
-    <div class="col-12 col-md-3 m-0 p-0 d-md-block d-none">
+    <div class="col-12 col-md-3 col-xl-2 m-0 p-0 d-md-block d-none">
         <div class="w-100 px-3 py-2 m-0 border-bottom border-dark">
             <span class="fw-bold fs-5 p-0 text-uppercase">Thể loại</span>
         </div>
@@ -160,7 +160,7 @@ $paramCate = ParamHelper::getParamValue('type');
         </div>
     </div>
 
-    <div class="col-12 col-md-9 m-0 p-0">
+    <div class="col-12 col-md-9 col-xl-10 m-0 p-0">
         <div class="px-3 w-100 d-md-block d-none" style="height:47px">
             <div class="w-100 py-2 border-bottom border-dark mb-2">
                 <?php if (!empty($paramCate)): ?>
@@ -189,7 +189,7 @@ $paramCate = ParamHelper::getParamValue('type');
             </div>
         </div>
         <input type='hidden' id='current_page' class="w-100">
-        <div id="result" class="w-100 row m-0 p-0 my-3">
+        <div id="result" class="w-100 row m-0 p-0 my-3 px-3">
         </div>
         <div class="mt-2 text-center w-100" id="pagination">
             <input type='hidden' id='current_page'>

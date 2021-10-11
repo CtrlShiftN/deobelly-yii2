@@ -50,7 +50,7 @@ class AjaxController extends ActiveController
     /**
      *
      */
-    public function actionGetData()
+    public function actionGetLinkAndTitle()
     {
         $response = [
             'status' => SystemConstant::API_UNSUCCESS_STATUS,
