@@ -51,42 +51,52 @@ $this->registerCssFile(Url::toRoute("/css/shop.css"));
 <div class="row p-0 my-5 h-100">
     <div class="col-6 px-1 ps-md-5 pe-md-3 mb-4 mb-md-5">
         <!--        TODO: LINKS-->
-        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['thoi-trang-nam'][0]['id'])]) ?>" class="text-decoration-none" target="_blank">
+        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['thoi-trang-nam']['id'])]) ?>"
+           class="text-decoration-none" target="_blank">
             <div class="overflow-hidden w-100 shadow h-65 position-relative my-2 my-md-3">
-                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['thoi-trang-nam'][0]['name']) ?></p>
-                <img src="<?= Url::toRoute($type['thoi-trang-nam'][0]['image']) ?>" class="w-100 shadow object-fit-cover zoom"
+                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['thoi-trang-nam']['name']) ?></p>
+                <img src="<?= $imgUrl . '/' . $type['thoi-trang-nam']['image'] ?>"
+                     class="w-100 shadow object-fit-cover zoom"
                      alt="...">
             </div>
         </a>
-        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['phu-kien'][0]['id'])]) ?>" class="text-decoration-none" target="_blank">
+        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['phu-kien']['id'])]) ?>"
+           class="text-decoration-none" target="_blank">
             <div class="overflow-hidden w-100 shadow h-35 position-relative my-2 my-md-3">
-                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['phu-kien'][0]['name']) ?></p>
-                <img src="<?= Url::toRoute($type['phu-kien'][0]['image']) ?>" class="w-100 shadow object-fit-cover zoom"
+                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['phu-kien']['name']) ?></p>
+                <img src="<?= $imgUrl . '/' . $type['phu-kien']['image'] ?>"
+                     class="w-100 shadow object-fit-cover zoom"
                      alt="...">
             </div>
         </a>
     </div>
     <div class="col-6 px-1 ps-md-3 pe-md-5 mb-4 mb-md-5">
-        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['san-pham-moi'][0]['id'])]) ?>" class="text-decoration-none" target="_blank">
+        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['san-pham-moi']['id'])]) ?>"
+           class="text-decoration-none" target="_blank">
             <div class="overflow-hidden w-100 shadow h-35 position-relative my-2 my-md-3">
-                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['san-pham-moi'][0]['name']) ?></p>
-                <img src="<?= Url::toRoute($type['san-pham-moi'][0]['image']) ?>" class="w-100 shadow object-fit-cover zoom"
+                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['san-pham-moi']['name']) ?></p>
+                <img src="<?= $imgUrl . '/' . $type['san-pham-moi']['image'] ?>"
+                     class="w-100 shadow object-fit-cover zoom"
                      alt="...">
             </div>
         </a>
-        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['thoi-trang-nu'][0]['id'])]) ?>" class="text-decoration-none" target="_blank">
+        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['thoi-trang-nu']['id'])]) ?>"
+           class="text-decoration-none" target="_blank">
             <div class="overflow-hidden w-100 shadow h-65 position-relative my-2 my-md-3">
-                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['thoi-trang-nu'][0]['name']) ?></p>
-                <img src="<?= Url::toRoute($type['thoi-trang-nu'][0]['image']) ?>" class="w-100 shadow object-fit-cover zoom"
+                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['thoi-trang-nu']['name']) ?></p>
+                <img src="<?= $imgUrl . '/' . $type['thoi-trang-nu']['image'] ?>"
+                     class="w-100 shadow object-fit-cover zoom"
                      alt="...">
             </div>
         </a>
     </div>
     <div class="col-12 mb-md-5 px-1 px-md-5">
-        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['san-pham-cao-cap'][0]['id'])]) ?>" class="text-decoration-none" target="_blank">
+        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['san-pham-cao-cap']['id'])]) ?>"
+           class="text-decoration-none" target="_blank">
             <div class="overflow-hidden w-100 shadow position-relative mt-md-3">
-                <p class="position-absolute text-light fs-title last-category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['san-pham-cao-cap'][0]['name']) ?></p>
-                <img src="<?= Url::toRoute($type['san-pham-cao-cap'][0]['image']) ?>" class="w-100 shadow object-fit-cover zoom"
+                <p class="position-absolute text-light fs-title last-category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['san-pham-cao-cap']['name']) ?></p>
+                <img src="<?= $imgUrl . '/' . $type['san-pham-cao-cap']['image'] ?>"
+                     class="w-100 shadow object-fit-cover zoom"
                      alt="...">
             </div>
         </a>

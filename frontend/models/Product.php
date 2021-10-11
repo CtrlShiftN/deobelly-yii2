@@ -2,7 +2,9 @@
 
 namespace frontend\models;
 
+use common\components\SystemConstant;
 use Yii;
+use yii\db\Query;
 
 /**
  * This is the model class for table "product".
@@ -22,7 +24,7 @@ use Yii;
  * @property string|null $images
  * @property int|null $is_luxury 0 for basic, 1 for luxury
  * @property string|null $related_product
- * @property int|null $gender 0 for female, 1 for male, 2 for both
+ * @property int|null $gender 0 for both, 1 for male, 2 for female
  * @property int|null $trademark_id
  * @property int|null $viewed +1 each click to view
  * @property int|null $fake_sold client see this amount if sold < 1k
@@ -89,5 +91,31 @@ class Product extends \common\models\Product
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
+    }
+    /**
+     * @return Query
+     */
+    public static function getAllProduct($productType, $productCategory)
+    {
+        $query = (new Query())->from('product')
+            ->leftJoin('product_assoc', 'product_assoc.product_id = product.id')
+            ->where(['product.status' => 1]);
+        if (!empty($productType)) {
+            if (intval($productType) == SystemConstant::PRODUCT_TYPE_LUXURY) {
+                $query->andWhere(['product.is_luxury' => intval($productType)]);
+            } elseif (intval($productType) == SystemConstant::PRODUCT_TYPE_NEW) {
+                $query->orderBy('product.updated_at DESC')->limit(SystemConstant::LIMIT_PER_PAGE);
+            } elseif (intval($productType) == SystemConstant::PRODUCT_TYPE_MEN) {
+                $query->andWhere(['product.gender' => [SystemConstant::GENDER_MALE,SystemConstant::GENDER_BOTH]]);
+            } elseif (intval($productType) == SystemConstant::PRODUCT_TYPE_WOMEN) {
+                $query->andWhere(['product.gender' => [SystemConstant::GENDER_FEMALE,SystemConstant::GENDER_BOTH]]);
+            } else {
+                $query->andWhere(['like', 'product_assoc.type_id', $productType]);
+            }
+        }
+        if (!empty($productCategory)) {
+            $query->andWhere(['product_assoc.category_id' => $productCategory]);
+        }
+        return $query;
     }
 }

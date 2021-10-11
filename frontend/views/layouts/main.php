@@ -6,10 +6,12 @@
 
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
+use frontend\models\ProductType;
 use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
 $cdnUrl = Yii::$app->params['frontend'];
@@ -42,7 +44,7 @@ AppAsset::register($this);
     </head>
     <body>
     <?php $this->beginBody() ?>
-
+    <?php $mainType = ArrayHelper::map(ProductType::getProductType(), 'id', 'name'); ?>
     <div id="wrapper">
         <div id="content">
             <div class="sticky-top">
@@ -158,28 +160,26 @@ AppAsset::register($this);
                                                     </a>
                                                 </li>
                                                 <li class="nav-item has-treeview">
-                                                    <a href="#" class="nav-link">
+                                                    <a href="<?= Url::toRoute(['shop/product']) ?>"
+                                                       class="nav-link d-inline-block">
                                                         <i class="nav-icon fas fa-th"></i>
                                                         <p>
                                                             <?= Yii::t('app', 'Product') ?>
                                                             <i class="right fas fa-angle-left"></i>
                                                         </p>
                                                     </a>
-                                                    <ul class="nav nav-treeview" style="display: none;">
-                                                        <li class="nav-item">
-                                                            <a href="#"
-                                                               class="nav-link ">
-                                                                <i class="far fa-circle nav-icon"></i>
-                                                                <p><?= Yii::t('app', 'Men') ?></p>
-                                                            </a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a href="#"
-                                                               class="nav-link ">
-                                                                <i class="far fa-circle nav-icon"></i>
-                                                                <p><?= Yii::t('app', 'Women') ?></p>
-                                                            </a>
-                                                        </li>
+                                                    <ul class="nav nav-treeview" style="display:none">
+                                                        <?php foreach ($mainType as $key => $value): ?>
+                                                            <?php if ($key == 3 || $key == 4): ?>
+                                                                <li class="nav-item">
+                                                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($key)]) ?>"
+                                                                       class="nav-link ">
+                                                                        <i class="far fa-circle nav-icon"></i>
+                                                                        <p><?= Yii::t('app', $value) ?></p>
+                                                                    </a>
+                                                                </li>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
                                                     </ul>
                                                 </li>
                                                 <li class="nav-item  ">
@@ -211,30 +211,15 @@ AppAsset::register($this);
                         </div>
                         <div class="main-nav-right col-1 col-sm-1 col-lg-10 text-end">
                             <ul class="site-nav mb-0 ps-0 d-none d-sm-none d-lg-inline" id="main-menu">
-                                <li><a href="#"
-                                       class="site-nav-link"><span><?= Yii::t('app', 'New product') ?></span></a>
-                                </li>
-                                <li><a href="#"
-                                       class="site-nav-link"><span><?= Yii::t('app', 'On Sale') ?></span></a></li>
-                                <li><a href="#"
-                                       class="site-nav-link"><span><?= Yii::t('app', 'Clothes') ?></span></a></li>
-                                <li><a href="#" class="site-nav-link"><span><?= Yii::t('app', 'Footwear') ?></span></a>
-                                </li>
-                                <li><a href="#" class="site-nav-link"><span><?= Yii::t('app', 'Accessory') ?></span></a>
-                                </li>
-                                <li><a href="#"
-                                       class="site-nav-link"><span><?= Yii::t('app', 'Suit') ?></span></a></li>
-                                <li class="pe-0"><a href="#"
-                                                    class="site-nav-link"><span><?= Yii::t('app', 'Gift') ?></span></a>
-                                </li>
-                                <!-- TODO: Add search action -->
-                                <li class="pe-0 ps-1">
-                                    <div class="searchBox d-inline">
-                                        <form action="#" method="POST" class="d-inline">
-                                            <input name="search" type="search">
-                                        </form>
-                                    </div>
-                                </li>
+                                <?php foreach ($mainType as $key => $value): ?>
+                                    <?php if ($key == 1 || $key == 2): ?>
+                                    <?php else: ?>
+                                        <li><a
+                                                    href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($key)]) ?>"
+                                                    class="site-nav-link"><span><?= Yii::t('app', $value) ?></span></a>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                                 <li class="pe-0">
                                     <div class="vr mx-2"></div>
                                 </li>

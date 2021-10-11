@@ -2,6 +2,7 @@
 
 namespace common\components\importsample;
 
+use common\components\SystemConstant;
 use common\models\Color;
 use common\models\Post;
 use common\models\PostCategory;
@@ -91,8 +92,8 @@ class SampleData
      */
     protected static $productInforArr = [
         [
-            'name' => 'Áo thun không cổ BOSS',
-            'slug' => 'ao-thun-khong-co-boss-0',
+            'name' => 'Áo thun UNISEX không cổ BOSS',
+            'slug' => 'ao-thun-unisex-khong-co-boss',
             'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
             'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
 <li>T-Shirts</li>
@@ -117,8 +118,8 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'name' => 'Áo thun không cổ HUGO-BOSS',
-            'slug' => 'ao-thun-khong-co-hugo-boss-1',
+            'name' => 'Áo thun không cổ HUGO-BOSS dành cho cả nam và nữ',
+            'slug' => 'ao-thun-khong-co-hugo-boss-danh-cho-ca-nam-va-nu',
             'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
             'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
 <li>T-Shirts</li>
@@ -143,8 +144,8 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'name' => 'Áo thun không cổ',
-            'slug' => 'ao-thun-khong-co',
+            'name' => 'Áo thun UNISEX không cổ',
+            'slug' => 'ao-thun-unisex-khong-co',
             'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
             'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
 <li>T-Shirts</li>
@@ -169,8 +170,8 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'name' => 'Áo thun không cổ',
-            'slug' => 'ao-thun-khong-co-2',
+            'name' => 'Áo thun không cổ dành cho cả nam và nữ',
+            'slug' => 'ao-thun-khong-co-danh-cho-ca-nam-va-nu',
             'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
             'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
 <li>T-Shirts</li>
@@ -217,7 +218,7 @@ class SampleData
             'image' => 'product/clothes/top/shirt4.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
             'is_luxury' => 0,
-            'gender' => '1',
+            'gender' => SystemConstant::GENDER_MALE,
             'trademark_id' => 1,
             'admin_id' => 1,
         ],
@@ -244,7 +245,7 @@ class SampleData
             'image' => 'product/clothes/top/shirt2.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
             'is_luxury' => 0,
-            'gender' => '0',
+            'gender' => SystemConstant::GENDER_FEMALE,
             'trademark_id' => 1,
             'admin_id' => 1,
         ],
@@ -268,7 +269,7 @@ class SampleData
             'image' => 'product/clothes/shirt/ao-so-mi-lados.jpg',
             'images' => '',
             'is_luxury' => 1,
-            'gender' => '1',
+            'gender' => SystemConstant::GENDER_MALE,
             'trademark_id' => 2,
             'admin_id' => 1,
         ],
@@ -290,7 +291,7 @@ class SampleData
             'image' => 'product/clothes/vest/vest-nam-han-quoc.jpg',
             'images' => '',
             'is_luxury' => 1,
-            'gender' => '1',
+            'gender' => SystemConstant::GENDER_MALE,
             'trademark_id' => 3,
             'admin_id' => 1,
         ],
@@ -326,6 +327,9 @@ class SampleData
             } else {
                 $product->related_product = null;
             }
+            if (!empty($values['is_luxury'])) {
+                $product->is_luxury = $values['is_luxury'];
+            }
             if (!empty($values['gender'])) {
                 $product->gender = $values['gender'];
             }
@@ -343,7 +347,7 @@ class SampleData
     protected static $productAssocInfoArr = [
         [
             'product_id' => '1',
-            'type_id' => '2,3,4',
+            'type_id' => '3,4,5',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6',
@@ -351,7 +355,7 @@ class SampleData
         ],
         [
             'product_id' => '2',
-            'type_id' => '2,3,4',
+            'type_id' => '3,4,5',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6',
@@ -359,7 +363,7 @@ class SampleData
         ],
         [
             'product_id' => '3',
-            'type_id' => '2,3,4',
+            'type_id' => '3,4,5',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6',
@@ -367,7 +371,7 @@ class SampleData
         ],
         [
             'product_id' => '4',
-            'type_id' => '2,3,4',
+            'type_id' => '3,4,5',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6',
@@ -375,7 +379,7 @@ class SampleData
         ],
         [
             'product_id' => '5',
-            'type_id' => '2,4',
+            'type_id' => '3,5',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6,7',
@@ -383,7 +387,7 @@ class SampleData
         ],
         [
             'product_id' => '6',
-            'type_id' => '3,4',
+            'type_id' => '4,5',
             'category_id' => '2',
             'color_id' => '1,2,6',
             'size_id' => '3,4,5,6',
@@ -391,7 +395,7 @@ class SampleData
         ],
         [
             'product_id' => '7',
-            'type_id' => '1,2,4',
+            'type_id' => '3,5',
             'category_id' => '1',
             'color_id' => '1,6,7',
             'size_id' => '3,4,5,6',
@@ -399,7 +403,7 @@ class SampleData
         ],
         [
             'product_id' => '8',
-            'type_id' => '1,2,4',
+            'type_id' => '3,5,10',
             'category_id' => '3',
             'color_id' => '2,11,12',
             'size_id' => '3,4,5,6',
@@ -439,37 +443,37 @@ class SampleData
         [
             'name' => 'Áo sơ mi',
             'slug' => 'ao-so-mi',
-            'type_id' => '2,3,4',
+            'type_id' => '3,5',
             'admin_id' => 1,
         ],
         [
             'name' => 'Áo thun',
             'slug' => 'ao-thun',
-            'type_id' => '2,3,4',
+            'type_id' => '3,4,5',
             'admin_id' => 1,
         ],
         [
             'name' => 'Áo Vest',
             'slug' => 'ao-vest',
-            'type_id' => '2,3,4',
+            'type_id' => '3,5',
             'admin_id' => 1,
         ],
         [
             'name' => 'Quần âu',
             'slug' => 'quan-au',
-            'type_id' => '2,3,5',
+            'type_id' => '3,4,6',
             'admin_id' => 1,
         ],
         [
             'name' => 'Dây lưng',
             'slug' => 'day-lung',
-            'type_id' => '2,3,7',
+            'type_id' => '3,4,8',
             'admin_id' => 1,
         ],
         [
             'name' => 'Giày thể thao',
             'slug' => 'giay-the-thao',
-            'type_id' => '2,3,6',
+            'type_id' => '3,4,7',
             'admin_id' => 1,
         ],
     ];
@@ -503,6 +507,12 @@ class SampleData
             'name' => 'Sản phẩm cao cấp',
             'slug' => 'san-pham-cao-cap',
             'image' => 'type/brand2.jpg',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Sản phẩm mới',
+            'slug' => 'san-pham-moi',
+            'image' => 'type/women.jpg',
             'admin_id' => 1,
         ],
         [
@@ -542,9 +552,9 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'name' => 'Sản phẩn mới',
-            'slug' => 'san-pham-moi',
-            'image' => 'type/women.jpg',
+            'name' => 'Quà tặng',
+            'slug' => 'qua-tang',
+            'image' => 'type/gift.jpg',
             'admin_id' => 1,
         ],
     ];
