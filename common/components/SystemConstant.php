@@ -14,8 +14,8 @@ class SystemConstant
     const PRODUCT_TYPE_NEW = 2;
     const PRODUCT_TYPE_MEN = 3;
     const PRODUCT_TYPE_WOMEN = 4;
-    const BOTH_GENDER_ID = 0;
-    const MALE_ID = 1;
-    const FEMALE_ID = 2;
+    const GENDER_BOTH = 0;
+    const GENDER_MALE = 1;
+    const GENDER_FEMALE = 2;
 
 }

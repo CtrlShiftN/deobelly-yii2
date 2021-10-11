@@ -104,11 +104,11 @@ class Product extends \common\models\Product
             if (intval($productType) == SystemConstant::PRODUCT_TYPE_LUXURY) {
                 $query->andWhere(['product.is_luxury' => intval($productType)]);
             } elseif (intval($productType) == SystemConstant::PRODUCT_TYPE_NEW) {
-                $query->orderBy('product.updated_at DESC')->limit(12);
+                $query->orderBy('product.updated_at DESC')->limit(SystemConstant::LIMIT_PER_PAGE);
             } elseif (intval($productType) == SystemConstant::PRODUCT_TYPE_MEN) {
-                $query->andWhere(['product.gender' => [SystemConstant::MALE_ID,SystemConstant::BOTH_GENDER_ID]]);
+                $query->andWhere(['product.gender' => [SystemConstant::GENDER_MALE,SystemConstant::GENDER_BOTH]]);
             } elseif (intval($productType) == SystemConstant::PRODUCT_TYPE_WOMEN) {
-                $query->andWhere(['product.gender' => [SystemConstant::FEMALE_ID,SystemConstant::BOTH_GENDER_ID]]);
+                $query->andWhere(['product.gender' => [SystemConstant::GENDER_FEMALE,SystemConstant::GENDER_BOTH]]);
             } else {
                 $query->andWhere(['like', 'product_assoc.type_id', $productType]);
             }

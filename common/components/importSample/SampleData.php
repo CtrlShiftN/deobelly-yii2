@@ -2,6 +2,7 @@
 
 namespace common\components\importsample;
 
+use common\components\SystemConstant;
 use common\models\Color;
 use common\models\Post;
 use common\models\PostCategory;
@@ -217,7 +218,7 @@ class SampleData
             'image' => 'product/clothes/top/shirt4.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
             'is_luxury' => 0,
-            'gender' => 1,
+            'gender' => SystemConstant::GENDER_MALE,
             'trademark_id' => 1,
             'admin_id' => 1,
         ],
@@ -244,7 +245,7 @@ class SampleData
             'image' => 'product/clothes/top/shirt2.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
             'is_luxury' => 0,
-            'gender' => 2,
+            'gender' => SystemConstant::GENDER_FEMALE,
             'trademark_id' => 1,
             'admin_id' => 1,
         ],
@@ -268,7 +269,7 @@ class SampleData
             'image' => 'product/clothes/shirt/ao-so-mi-lados.jpg',
             'images' => '',
             'is_luxury' => 1,
-            'gender' => 1,
+            'gender' => SystemConstant::GENDER_MALE,
             'trademark_id' => 2,
             'admin_id' => 1,
         ],
@@ -290,7 +291,7 @@ class SampleData
             'image' => 'product/clothes/vest/vest-nam-han-quoc.jpg',
             'images' => '',
             'is_luxury' => 1,
-            'gender' => 1,
+            'gender' => SystemConstant::GENDER_MALE,
             'trademark_id' => 3,
             'admin_id' => 1,
         ],
