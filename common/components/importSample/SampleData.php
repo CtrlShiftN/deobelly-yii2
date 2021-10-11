@@ -118,8 +118,8 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'name' => 'Áo thun không cổ HUGO-BOSS dành cho cả nam và nữ',
-            'slug' => 'ao-thun-khong-co-hugo-boss-danh-cho-ca-nam-va-nu',
+            'name' => 'Áo thun UNISEX không cổ HUGO-BOSS',
+            'slug' => 'ao-thun-unisex-khong-co-hugo-boss',
             'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
             'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
 <li>T-Shirts</li>
@@ -170,8 +170,8 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'name' => 'Áo thun không cổ dành cho cả nam và nữ',
-            'slug' => 'ao-thun-khong-co-danh-cho-ca-nam-va-nu',
+            'name' => 'Áo thun không cổ UNISEX',
+            'slug' => 'ao-thun-khong-co-unisex',
             'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
             'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
 <li>T-Shirts</li>
