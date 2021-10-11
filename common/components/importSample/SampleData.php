@@ -391,7 +391,7 @@ class SampleData
         ],
         [
             'product_id' => '7',
-            'type_id' => '1,3,5',
+            'type_id' => '3,5',
             'category_id' => '1',
             'color_id' => '1,6,7',
             'size_id' => '3,4,5,6',
@@ -399,7 +399,7 @@ class SampleData
         ],
         [
             'product_id' => '8',
-            'type_id' => '1,3,5,10',
+            'type_id' => '3,5,10',
             'category_id' => '3',
             'color_id' => '2,11,12',
             'size_id' => '3,4,5,6',
@@ -439,19 +439,19 @@ class SampleData
         [
             'name' => 'Áo sơ mi',
             'slug' => 'ao-so-mi',
-            'type_id' => '1,3,5',
+            'type_id' => '3,5',
             'admin_id' => 1,
         ],
         [
             'name' => 'Áo thun',
             'slug' => 'ao-thun',
-            'type_id' => '1,3,4,5',
+            'type_id' => '3,4,5',
             'admin_id' => 1,
         ],
         [
             'name' => 'Áo Vest',
             'slug' => 'ao-vest',
-            'type_id' => '1,3,5',
+            'type_id' => '3,5',
             'admin_id' => 1,
         ],
         [

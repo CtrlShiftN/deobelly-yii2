@@ -37,6 +37,7 @@ function requestParam() {
             if (!$(this).hasClass('collapsed')) {
                 type = $(this).attr('data-type');
                 typeName = $(this).attr('data-type-name');
+                console.log(type);
             } else {
                 type = typeName = null;
             }

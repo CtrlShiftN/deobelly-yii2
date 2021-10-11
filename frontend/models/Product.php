@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use common\components\encrypt\CryptHelper;
+use common\components\SystemConstant;
 use Yii;
 use yii\db\Query;
 
@@ -101,8 +102,14 @@ class Product extends \common\models\Product
         $query = (new Query())->from('product')
             ->leftJoin('product_assoc', 'product_assoc.product_id = product.id')
             ->where(['product.status' => 1]);
-        if(!empty($productType)){
-            $query->andWhere(['like', 'product_assoc.type_id', $productType]);
+        if (!empty($productType)) {
+            if (intval($productType) == 1) {
+                $query->andWhere(['product.is_luxury' => intval($productType)]);
+            } elseif (intval($productType) == 2) {
+                $query->orderBy('product.updated_at DESC')->limit(12);
+            } else {
+                $query->andWhere(['like', 'product_assoc.type_id', $productType]);
+            }
         }
         if (!empty($productCategory)) {
             $query->andWhere(['product_assoc.category_id' => $productCategory]);

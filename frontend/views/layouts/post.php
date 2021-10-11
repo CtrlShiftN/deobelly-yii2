@@ -8,10 +8,12 @@ use common\widgets\Alert;
 use frontend\assets\AppAsset;
 use frontend\models\Post;
 use frontend\models\PostCategory;
+use frontend\models\ProductType;
 use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
 $cdnUrl = Yii::$app->params['frontend'];
@@ -48,7 +50,7 @@ $postCategory = PostCategory::getAllPostCategory();
     </head>
     <body>
     <?php $this->beginBody() ?>
-    <?php $mainType = ArrayHelper::index(ProductType::getProductType(), null, 'slug'); ?>
+    <?php $mainType = ArrayHelper::map(ProductType::getProductType(), 'id', 'name'); ?>
     <div id="wrapper">
         <div id="content">
             <div class="sticky-top">
@@ -113,7 +115,7 @@ $postCategory = PostCategory::getAllPostCategory();
                                         <a class="text-decoration-none" href="<?php echo Url::home() ?>">
                                             <h3 class="offcanvas-title text-uppercase fw-bolder text-white"
                                                 id="offcanvasWithBackdropLabel"><i
-                                                        class=" fas fa-feather-alt fa-flip-horizontal"></i> De Obelly <i
+                                                        class=" fas fa-feather-alt fa-flip-horizontal"></i>De Obelly <i
                                                         class=" fas fa-feather-alt"></i></h3></a>
                                     </div>
                                     <button type="button" class="btn-close text-reset btn-close-white"
@@ -147,8 +149,8 @@ $postCategory = PostCategory::getAllPostCategory();
                                                 </div>
                                             </div>
                                             <div class="col-8 pe-0">
-                                                <p class="mb-0">Xin chào,</p>
-                                                <h3>Guest</h3>
+                                                <p class="mb-0"><?= Yii::t('app', 'Hi,') ?></p>
+                                                <h3><?= Yii::t('app', 'Guest') ?></h3>
                                             </div>
                                         </div>
                                     <?php endif; ?>
@@ -160,44 +162,42 @@ $postCategory = PostCategory::getAllPostCategory();
                                                 <li class="nav-item  ">
                                                     <a href="<?= Url::home() ?>" class="nav-link ">
                                                         <i class="nav-icon fas fa-handshake"></i>
-                                                        <p>Trang chủ</p>
+                                                        <p><?= Yii::t('app', 'Home') ?></p>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item has-treeview">
-                                                    <a href="<?= Url::toRoute(['shop/product']) ?>" class="nav-link">
+                                                    <a href="<?= Url::toRoute(['shop/product']) ?>"
+                                                       class="nav-link d-inline-block">
                                                         <i class="nav-icon fas fa-th"></i>
                                                         <p>
-                                                            Sản phẩm
+                                                            <?= Yii::t('app', 'Product') ?>
                                                             <i class="right fas fa-angle-left"></i>
                                                         </p>
                                                     </a>
-                                                    <ul class="nav nav-treeview" style="display: none;">
-                                                        <li class="nav-item">
-                                                            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($mainType['thoi-trang-nam'][0]['id'])]) ?>"
-                                                               class="nav-link ">
-                                                                <i class="far fa-circle nav-icon"></i>
-                                                                <p>Men</p>
-                                                            </a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($mainType['thoi-trang-nu'][0]['id'])]) ?>"
-                                                               class="nav-link ">
-                                                                <i class="far fa-circle nav-icon"></i>
-                                                                <p>Women</p>
-                                                            </a>
-                                                        </li>
+                                                    <ul class="nav nav-treeview" style="display:none">
+                                                        <?php foreach ($mainType as $key => $value): ?>
+                                                            <?php if ($key == 3 || $key == 4): ?>
+                                                                <li class="nav-item">
+                                                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($key)]) ?>"
+                                                                       class="nav-link ">
+                                                                        <i class="far fa-circle nav-icon"></i>
+                                                                        <p><?= Yii::t('app', $value) ?></p>
+                                                                    </a>
+                                                                </li>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
                                                     </ul>
                                                 </li>
                                                 <li class="nav-item  ">
                                                     <a href="#" class="nav-link ">
                                                         <i class="nav-icon fas fa-handshake"></i>
-                                                        <p>Chính sách</p>
+                                                        <p><?= Yii::t('app', 'Policy') ?></p>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item  ">
                                                     <a href="<?= Url::toRoute('site/contact') ?>" class="nav-link ">
                                                         <i class="nav-icon fas fa-handshake"></i>
-                                                        <p>Liên hệ</p>
+                                                        <p><?= Yii::t('app', 'Contact') ?></p>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -217,42 +217,15 @@ $postCategory = PostCategory::getAllPostCategory();
                         </div>
                         <div class="main-nav-right col-1 col-sm-1 col-lg-10 text-end">
                             <ul class="site-nav mb-0 ps-0 d-none d-sm-none d-lg-inline" id="main-menu">
-                                <li>
-                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($mainType['san-pham-moi'][0]['id'])]) ?>"
-                                       class="site-nav-link"><span><?= Yii::t('app', 'New product') ?></span></a>
-                                </li>
-                                <!--                                <li><a href="#"-->
-                                <!--                                       class="site-nav-link"><span>-->
-                                <?//= Yii::t('app', 'On Sale') ?><!--</span></a></li>-->
-                                <li>
-                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($mainType['quan'][0]['id'])]) ?>"
-                                       class="site-nav-link"><span><?= Yii::t('app', 'Pants') ?></span></a></li>
-                                <li>
-                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($mainType['ao'][0]['id'])]) ?>"
-                                       class="site-nav-link"><span><?= Yii::t('app', 'Top') ?></span></a></li>
-                                <li>
-                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($mainType['giay'][0]['id'])]) ?>"
-                                       class="site-nav-link"><span><?= Yii::t('app', 'Footwear') ?></span></a>
-                                </li>
-                                <li>
-                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($mainType['phu-kien'][0]['id'])]) ?>"
-                                       class="site-nav-link"><span><?= Yii::t('app', 'Accessory') ?></span></a>
-                                </li>
-                                <!--                                <li><a href="#"-->
-                                <!--                                       class="site-nav-link"><span>-->
-                                <?//= Yii::t('app', 'Suit') ?><!--</span></a></li>-->
-                                <li class="pe-0"><a
-                                            href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($mainType['qua-tang'][0]['id'])]) ?>"
-                                            class="site-nav-link"><span><?= Yii::t('app', 'Gift') ?></span></a>
-                                </li>
-                                <!-- TODO: Add search action -->
-                                <li class="pe-0 ps-1">
-                                    <div class="searchBox d-inline">
-                                        <form action="#" method="POST" class="d-inline">
-                                            <input name="search" type="search">
-                                        </form>
-                                    </div>
-                                </li>
+                                <?php foreach ($mainType as $key => $value): ?>
+                                    <?php if ($key == 1 || $key == 2): ?>
+                                    <?php else: ?>
+                                        <li><a
+                                                    href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($key)]) ?>"
+                                                    class="site-nav-link"><span><?= Yii::t('app', $value) ?></span></a>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                                 <li class="pe-0">
                                     <div class="vr mx-2"></div>
                                 </li>
@@ -265,23 +238,21 @@ $postCategory = PostCategory::getAllPostCategory();
                                         <div class="dropdown-menu" aria-labelledby="dropdownUserLogin">
                                             <?php if (!Yii::$app->user->isGuest) : ?>
                                                 <div class="dropdown-item"><?php Yii::$app->user->identity->name ?></div>
-                                                <form method="POST" action="<?= $cdnUrl ?>/logout">
-                                                    @csrf
-                                                    <a class="dropdown-item" href="<?= $cdnUrl ?>/logout"
-                                                       onclick="event.preventDefault(); this.closest('form').submit();">{{
-                                                        __('Log Out') }}
-                                                    </a>
-                                                </form>
+                                                <a class="dropdown-item"
+                                                   href="<?= Url::toRoute('site/logout') ?>"><?= Yii::t('app', 'Log out') ?></a>
                                             <?php else : ?>
-                                                <a class="dropdown-item" href="<?= $cdnUrl ?>/site/login">Đăng nhập</a>
-                                                <a class="dropdown-item" href="<?= $cdnUrl ?>/site/register">Đăng ký</a>
+                                                <a class="dropdown-item"
+                                                   href="<?= Url::toRoute('site/login') ?>"><?= Yii::t('app', 'Log in') ?></a>
+                                                <a class="dropdown-item"
+                                                   href="<?= Url::toRoute('site/signup') ?>"><?= Yii::t('app', 'Register') ?></a>
                                             <?php endif; ?>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="pe-0">
                                     <div class="shopping-cart d-inline pe-0">
-                                        <a href="<?= $cdnUrl ?>/#"><i class="fas fa-shopping-cart fa-lg"></i></a>
+                                        <a href="<?= Url::toRoute('/#') ?>"><i
+                                                    class="fas fa-shopping-cart fa-lg"></i></a>
                                     </div>
                                 </li>
                             </ul>
