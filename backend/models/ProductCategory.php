@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\components\helpers\StringHelper;
 use Yii;
 
 /**
@@ -18,6 +19,7 @@ use Yii;
  */
 class ProductCategory extends \common\models\ProductCategory
 {
+    public $types;
     /**
      * {@inheritdoc}
      */
@@ -34,7 +36,7 @@ class ProductCategory extends \common\models\ProductCategory
         return [
             [['name', 'slug', 'type_id'], 'required'],
             [['status', 'admin_id'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['created_at', 'updated_at', 'types'], 'safe'],
             [['name', 'slug', 'type_id'], 'string', 'max' => 255],
             [['slug'], 'unique'],
         ];
@@ -55,5 +57,28 @@ class ProductCategory extends \common\models\ProductCategory
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
+    }
+
+
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
+    public static function updateProductCategoryTitle($id, $attribute, $value)
+    {
+        $slug = StringHelper::toSlug($value);
+        return \common\models\PostCategory::updateAll([$attribute => $value, 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
+    }
+
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
+    public static function updateProductCategoryStatus($id, $attribute, $value){
+        return \common\models\PostCategory::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
     }
 }

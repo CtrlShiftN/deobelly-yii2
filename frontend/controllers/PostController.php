@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\components\encrypt\CryptHelper;
 use common\components\helpers\ParamHelper;
 use common\components\SystemConstant;
 use frontend\models\Post;
@@ -23,14 +24,14 @@ class PostController extends \yii\web\Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['?','@'],
+                        'roles' => ['?', '@'],
                     ],
                 ],
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['post', 'get'],
                 ],
             ],
         ];
@@ -56,18 +57,33 @@ class PostController extends \yii\web\Controller
             ],
         ];
     }
+
+    /**
+     * Show all post
+     * @return string
+     */
     public function actionIndex()
     {
         $paramPostTag = ParamHelper::getParamValue('post_tag');
         $paramPostCategory = ParamHelper::getParamValue('post_category');
-        $getQueryAllPost = Post::getAllPosts($paramPostTag,$paramPostCategory);
+        $getQueryAllPost = Post::getAllPosts($paramPostTag, $paramPostCategory);
         $pages = new Pagination(['totalCount' => $getQueryAllPost->count(), 'defaultPageSize' => SystemConstant::POST_PER_PAGE]);
         $post = $getQueryAllPost->offset($pages->offset)
-            ->limit( SystemConstant::POST_PER_PAGE)
+            ->limit(SystemConstant::POST_PER_PAGE)
             ->all();
         return $this->render('index', [
             'post' => $post,
             'pages' => $pages,
+        ]);
+    }
+
+    public function actionDetail()
+    {
+        $postID = ParamHelper::getParamValue('id');
+        $postID = CryptHelper::decryptString($postID);
+        $postDetail = Post::getPostDetailByID($postID);
+        return $this->render('detail', [
+            'postDetail' => $postDetail,
         ]);
     }
 
