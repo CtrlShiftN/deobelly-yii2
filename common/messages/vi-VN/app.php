@@ -237,6 +237,8 @@ return [
     'Add New Type' => 'Thêm Thể Loại Mới',
     'Product Type List' => 'Danh Sách Loại Sản Phẩm',
     'Delete' => 'Xóa',
+    'Pants' => 'Quần',
+    'Top' => 'Áo',
     'Product Category' => 'Danh Mục Sản Phẩm',
     'Product Categories' => 'Danh Mục Sản Phẩm',
     'Choose product categories' => 'Chọn danh mục sản phẩm',
