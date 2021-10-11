@@ -76,7 +76,7 @@ $commonUrl = Yii::$app->params['common'];
                     $arrTypes = ArrayHelper::map($productTypes, 'id', 'name');
                     $html = "";
                     foreach (explode(',', $model['type_id']) as $type) {
-                        if ($type != 8) { // ignore New product type
+                        if ($type != \common\components\SystemConstant::PRODUCT_TYPE_NEW) { // ignore New product type
                             $html .= '<span class="badge bg-info me-2">' . $arrTypes[$type] . '</span>';
                         }
                     }
@@ -84,7 +84,7 @@ $commonUrl = Yii::$app->params['common'];
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 // list all type except new
-                'filter' => \common\components\helpers\SystemArrayHelper::removeElementAt(ArrayHelper::map($productTypes, 'id', 'name'),8),
+                'filter' => \common\components\helpers\SystemArrayHelper::removeElementAt(ArrayHelper::map($productTypes, 'id', 'name'),\common\components\SystemConstant::PRODUCT_TYPE_NEW),
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],

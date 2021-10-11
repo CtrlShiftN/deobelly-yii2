@@ -91,8 +91,8 @@ class SampleData
      */
     protected static $productInforArr = [
         [
-            'name' => 'Áo thun không cổ BOSS',
-            'slug' => 'ao-thun-khong-co-boss-0',
+            'name' => 'Áo thun UNISEX không cổ BOSS',
+            'slug' => 'ao-thun-unisex-khong-co-boss',
             'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
             'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
 <li>T-Shirts</li>
@@ -117,8 +117,8 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'name' => 'Áo thun không cổ HUGO-BOSS',
-            'slug' => 'ao-thun-khong-co-hugo-boss-1',
+            'name' => 'Áo thun không cổ HUGO-BOSS dành cho cả nam và nữ',
+            'slug' => 'ao-thun-khong-co-hugo-boss-danh-cho-ca-nam-va-nu',
             'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
             'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
 <li>T-Shirts</li>
@@ -143,8 +143,8 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'name' => 'Áo thun không cổ',
-            'slug' => 'ao-thun-khong-co',
+            'name' => 'Áo thun UNISEX không cổ',
+            'slug' => 'ao-thun-unisex-khong-co',
             'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
             'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
 <li>T-Shirts</li>
@@ -169,8 +169,8 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'name' => 'Áo thun không cổ',
-            'slug' => 'ao-thun-khong-co-2',
+            'name' => 'Áo thun không cổ dành cho cả nam và nữ',
+            'slug' => 'ao-thun-khong-co-danh-cho-ca-nam-va-nu',
             'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
             'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
 <li>T-Shirts</li>
@@ -217,7 +217,7 @@ class SampleData
             'image' => 'product/clothes/top/shirt4.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
             'is_luxury' => 0,
-            'gender' => '1',
+            'gender' => 1,
             'trademark_id' => 1,
             'admin_id' => 1,
         ],
@@ -244,7 +244,7 @@ class SampleData
             'image' => 'product/clothes/top/shirt2.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
             'is_luxury' => 0,
-            'gender' => '0',
+            'gender' => 2,
             'trademark_id' => 1,
             'admin_id' => 1,
         ],
@@ -268,7 +268,7 @@ class SampleData
             'image' => 'product/clothes/shirt/ao-so-mi-lados.jpg',
             'images' => '',
             'is_luxury' => 1,
-            'gender' => '1',
+            'gender' => 1,
             'trademark_id' => 2,
             'admin_id' => 1,
         ],
@@ -290,7 +290,7 @@ class SampleData
             'image' => 'product/clothes/vest/vest-nam-han-quoc.jpg',
             'images' => '',
             'is_luxury' => 1,
-            'gender' => '1',
+            'gender' => 1,
             'trademark_id' => 3,
             'admin_id' => 1,
         ],
@@ -325,6 +325,9 @@ class SampleData
                 $product->related_product = $values['related_product'];
             } else {
                 $product->related_product = null;
+            }
+            if (!empty($values['is_luxury'])) {
+                $product->is_luxury = $values['is_luxury'];
             }
             if (!empty($values['gender'])) {
                 $product->gender = $values['gender'];

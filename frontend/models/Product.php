@@ -2,7 +2,6 @@
 
 namespace frontend\models;
 
-use common\components\encrypt\CryptHelper;
 use common\components\SystemConstant;
 use Yii;
 use yii\db\Query;
@@ -25,7 +24,7 @@ use yii\db\Query;
  * @property string|null $images
  * @property int|null $is_luxury 0 for basic, 1 for luxury
  * @property string|null $related_product
- * @property int|null $gender 0 for female, 1 for male, 2 for both
+ * @property int|null $gender 0 for both, 1 for male, 2 for female
  * @property int|null $trademark_id
  * @property int|null $viewed +1 each click to view
  * @property int|null $fake_sold client see this amount if sold < 1k
@@ -93,7 +92,6 @@ class Product extends \common\models\Product
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
-
     /**
      * @return Query
      */
@@ -103,10 +101,14 @@ class Product extends \common\models\Product
             ->leftJoin('product_assoc', 'product_assoc.product_id = product.id')
             ->where(['product.status' => 1]);
         if (!empty($productType)) {
-            if (intval($productType) == 1) {
+            if (intval($productType) == SystemConstant::PRODUCT_TYPE_LUXURY) {
                 $query->andWhere(['product.is_luxury' => intval($productType)]);
-            } elseif (intval($productType) == 2) {
+            } elseif (intval($productType) == SystemConstant::PRODUCT_TYPE_NEW) {
                 $query->orderBy('product.updated_at DESC')->limit(12);
+            } elseif (intval($productType) == SystemConstant::PRODUCT_TYPE_MEN) {
+                $query->andWhere(['product.gender' => [SystemConstant::MALE_ID,SystemConstant::BOTH_GENDER_ID]]);
+            } elseif (intval($productType) == SystemConstant::PRODUCT_TYPE_WOMEN) {
+                $query->andWhere(['product.gender' => [SystemConstant::FEMALE_ID,SystemConstant::BOTH_GENDER_ID]]);
             } else {
                 $query->andWhere(['like', 'product_assoc.type_id', $productType]);
             }

@@ -22,7 +22,7 @@ use Yii;
  * @property string|null $images
  * @property int|null $is_luxury 0 for basic, 1 for luxury
  * @property string|null $related_product
- * @property int|null $gender 0 for female, 1 for male, 2 for both
+ * @property int|null $gender 0 for both, 1 for male, 2 for female
  * @property int|null $trademark_id
  * @property int|null $viewed +1 each click to view
  * @property int|null $fake_sold client see this amount if sold < 1k

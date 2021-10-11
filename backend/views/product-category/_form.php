@@ -31,7 +31,7 @@ $this->registerCss('.select2-search__field{width: 100% !important}');
                         class="fill-red fs-6">(*)</sup></h4></div>
         <div class="col-12 col-sm-6 col-md-5 col-lg-6">
             <?= $form->field($model, 'types')->widget(Select2::classname(), [
-                'data' => \common\components\helpers\SystemArrayHelper::removeElementAt(ArrayHelper::map($types, 'id', 'name'), 8),
+                'data' => \common\components\helpers\SystemArrayHelper::removeElementAt(ArrayHelper::map($types, 'id', 'name'), \common\components\SystemConstant::PRODUCT_TYPE_NEW),
                 'options' => ['placeholder' => Yii::t('app', 'Choose product types')],
                 'pluginOptions' => [
                     'multiple' => true,
