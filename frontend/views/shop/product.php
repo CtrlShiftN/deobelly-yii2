@@ -145,10 +145,10 @@ $paramCate = ParamHelper::getParamValue('type');
                         </button>
                     </h2>
                     <div id="flush-collapse-<?= $idEncrypted ?>"
-                         class="accordion-collapse collapse ps-4 ps-md-5 py-3"
+                         class="accordion-collapse collapse ps-4 ps-md-5"
                          aria-labelledby="flush-heading-<?= $idEncrypted ?>" data-bs-parent="#type_category">
                         <?php foreach (\frontend\models\ProductCategory::getCategoryByTypeId($value['id']) as $key => $cate): ?>
-                            <label class="category-checkbox"><?= $cate['name'] ?>
+                            <label class="category-checkbox mt-2"><?= $cate['name'] ?>
                                 <input type="checkbox"
                                        value="<?= $cate['id'] ?>">
                                 <span class="checkmark"></span>
