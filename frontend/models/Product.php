@@ -127,6 +127,6 @@ class Product extends \common\models\Product
     {
         $query = (new Query())->from('product as pr')
             ->leftJoin('product_assoc as pr-a', 'pr-a.product_id = pr.id')
-            ->leftJoin('');
+            ->where(['product.status' => 1, 'id' => $id]);
     }
 }
