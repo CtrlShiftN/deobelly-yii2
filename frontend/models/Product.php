@@ -123,10 +123,15 @@ class Product extends \common\models\Product
         return $query;
     }
 
+    /**
+     * @param $id
+     * @return array
+     */
     public static function getProductById($id)
     {
         $query = (new Query())->from('product as pr')
             ->leftJoin('product_assoc as pr-a', 'pr-a.product_id = pr.id')
             ->where(['product.status' => 1, 'id' => $id]);
+        return $query->all();
     }
 }
