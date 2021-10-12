@@ -118,4 +118,11 @@ class Product extends \common\models\Product
         }
         return $query;
     }
+
+    public static function getProductById($id)
+    {
+        $query = (new Query())->from('product as pr')
+            ->leftJoin('product_assoc as pr-a', 'pr-a.product_id = pr.id')
+            ->leftJoin('');
+    }
 }

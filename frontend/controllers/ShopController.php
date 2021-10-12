@@ -63,4 +63,15 @@ class ShopController extends Controller
             'productType' => $getProductType,
         ]);
     }
+
+    public function actionProductDetail()
+    {
+        if(isset($_REQUEST['detail'])) {
+            $detailID = CryptHelper::decryptString($_REQUEST['detail']);
+
+        }
+        return $this->render('product-detail',[
+
+        ]);
+    }
 }
