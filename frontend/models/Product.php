@@ -19,7 +19,6 @@ use yii\db\Query;
  * @property float|null $sale_price
  * @property float $selling_price
  * @property string|null $SKU
- * @property int $quantity
  * @property string $image
  * @property string|null $images
  * @property int|null $is_luxury 0 for basic, 1 for luxury
@@ -29,7 +28,7 @@ use yii\db\Query;
  * @property int|null $viewed +1 each click to view
  * @property int|null $fake_sold client see this amount if sold < 1k
  * @property int|null $sold
- * @property int|null $amount
+ * @property int $amount
  * @property int|null $status 0 for inactive, 1 for active
  * @property int|null $admin_id
  * @property string|null $created_at
@@ -54,7 +53,7 @@ class Product extends \common\models\Product
             [['name', 'slug', 'description', 'cost_price', 'regular_price', 'selling_price', 'image'], 'required'],
             [['description', 'images'], 'string'],
             [['cost_price', 'regular_price', 'sale_price', 'selling_price'], 'number'],
-            [['quantity', 'is_luxury', 'gender', 'trademark_id', 'viewed', 'fake_sold', 'sold', 'amount', 'status', 'admin_id'], 'integer'],
+            [['is_luxury', 'gender', 'trademark_id', 'viewed', 'fake_sold', 'sold', 'amount', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'short_description', 'SKU', 'image', 'related_product'], 'string', 'max' => 255],
             [['slug'], 'unique'],
@@ -77,7 +76,6 @@ class Product extends \common\models\Product
             'sale_price' => Yii::t('app', 'Sale Price'),
             'selling_price' => Yii::t('app', 'Selling Price'),
             'SKU' => Yii::t('app', 'Sku'),
-            'quantity' => Yii::t('app', 'Quantity'),
             'image' => Yii::t('app', 'Image'),
             'images' => Yii::t('app', 'Images'),
             'is_luxury' => Yii::t('app', 'Is Luxury'),
@@ -94,7 +92,6 @@ class Product extends \common\models\Product
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
-
 
     /**
      * @return Query
