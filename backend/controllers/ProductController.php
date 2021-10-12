@@ -2,8 +2,11 @@
 
 namespace backend\controllers;
 
+use backend\models\Color;
 use backend\models\Product;
 use backend\models\ProductSearch;
+use backend\models\Size;
+use backend\models\Trademark;
 use common\components\encrypt\CryptHelper;
 use Yii;
 use yii\filters\AccessControl;
@@ -113,7 +116,9 @@ class ProductController extends Controller
     public function actionCreate()
     {
         $model = new Product();
-
+        $arrColor = Color::getAllColor();
+        $arrSize = Size::getAllSize();
+        $arrTrademark = Trademark::getAllTrademark();
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -124,6 +129,9 @@ class ProductController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'color' => $arrColor,
+            'size' => $arrSize,
+            'trademark' => $arrTrademark
         ]);
     }
 

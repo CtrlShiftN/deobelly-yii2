@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\components\SystemConstant;
 use Yii;
 
 /**
@@ -52,5 +53,9 @@ class Size extends \common\models\Size
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
+    }
+
+    public static function getAllSize(){
+        return \common\models\Size::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
     }
 }

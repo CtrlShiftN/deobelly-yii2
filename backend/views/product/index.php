@@ -12,6 +12,7 @@ use yii\widgets\Pjax;
 $this->title = Yii::t('app', 'Products');
 $this->params['breadcrumbs'][] = $this->title;
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
+$arrLuxury = [Yii::t('app', 'Basic'), Yii::t('app', 'Luxury')];
 $commonUrl = Yii::$app->params['common'];
 ?>
 <div class="product-index">
@@ -108,6 +109,7 @@ $commonUrl = Yii::$app->params['common'];
                 'label' => Yii::t('app', 'Description'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
+                'options' => ['style' => 'min-width:200px;'],
                 'value' => function ($model, $key, $index, $widget) {
                     return substr(strip_tags($model['description']), 0, 200) . '...';
                 },
@@ -122,6 +124,36 @@ $commonUrl = Yii::$app->params['common'];
                     return $model['quantity'];
                 },
                 'format' => 'raw'
+            ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'is_luxury',
+                'label' => Yii::t('app', 'Segment'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'width' => '150px',
+                'value' => function ($model, $key, $index, $widget) use ($arrLuxury) {
+                    return $arrLuxury[$model['is_luxury']];
+                },
+                'editableOptions' => function ($model, $key, $index) use ($arrLuxury) {
+                    return [
+                        'name' => 'is_luxury',
+                        'asPopover' => false,
+                        'header' => Yii::t('app', 'Segment'),
+                        'size' => 'md',
+                        'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
+                        'data' => $arrLuxury,
+                        // default value in the text box
+                        'value' => $arrLuxury[$model['is_luxury']],
+                        'displayValueConfig' => $arrLuxury
+                    ];
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => $arrLuxury,
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Segment') . ' --']
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
@@ -163,7 +195,7 @@ $commonUrl = Yii::$app->params['common'];
                 'format' => 'raw'
             ],
             [
-                'label' => Yii::t('app', 'Actions'),
+//                'label' => Yii::t('app', 'Actions'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',

@@ -35,6 +35,13 @@ use Yii;
  */
 class Product extends \common\models\Product
 {
+    public $file;
+    public $files;
+    public $color;
+    public $size;
+    public $type;
+    public $category;
+
     /**
      * {@inheritdoc}
      */
@@ -56,6 +63,11 @@ class Product extends \common\models\Product
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'short_description', 'SKU', 'image', 'related_product'], 'string', 'max' => 255],
             [['slug'], 'unique'],
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
+            ['file', 'required'],
+            ['files', 'file'],
+            [['color', 'size', 'type', 'category'], 'safe'],
+            [['color', 'size'], 'required'],
         ];
     }
 
@@ -78,10 +90,10 @@ class Product extends \common\models\Product
             'quantity' => Yii::t('app', 'Quantity'),
             'image' => Yii::t('app', 'Image'),
             'images' => Yii::t('app', 'Images'),
-            'is_luxury' => Yii::t('app', 'Is Luxury'),
+            'is_luxury' => Yii::t('app', 'Segment'),
             'related_product' => Yii::t('app', 'Related Product'),
             'gender' => Yii::t('app', 'Gender'),
-            'trademark_id' => Yii::t('app', 'Trademark ID'),
+            'trademark_id' => Yii::t('app', 'Trademark'),
             'viewed' => Yii::t('app', 'Viewed'),
             'fake_sold' => Yii::t('app', 'Fake Sold'),
             'sold' => Yii::t('app', 'Sold'),
@@ -89,6 +101,10 @@ class Product extends \common\models\Product
             'admin_id' => Yii::t('app', 'Admin ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'color' => Yii::t('app', 'Color'),
+            'size' => Yii::t('app', 'Size'),
+            'type' => Yii::t('app', 'Product Type'),
+            'category' => Yii::t('app', 'Product Category'),
         ];
     }
 
@@ -110,7 +126,8 @@ class Product extends \common\models\Product
      * @param $value
      * @return int
      */
-    public static function updateProductAttr($id, $attribute, $value){
+    public static function updateProductAttr($id, $attribute, $value)
+    {
         return \common\models\Product::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
     }
 }

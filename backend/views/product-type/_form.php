@@ -1,8 +1,8 @@
 <?php
 
 use kartik\file\FileInput;
+use kartik\form\ActiveForm;
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\ProductType */
