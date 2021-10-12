@@ -33,6 +33,7 @@ class m210827_022555_create_product_table extends Migration
             'viewed' => $this->integer()->defaultValue(0)->comment('+1 each click to view'),
             'fake_sold' => $this->integer()->defaultValue(rand(999, 99999))->comment('client see this amount if sold < 1k'),
             'sold' => $this->integer()->defaultValue(0),
+            'amount' => $this->integer()->defaultValue(0),
             'status' => $this->smallInteger()->defaultValue(1)->comment('0 for inactive, 1 for active'),
             'admin_id' => $this->bigInteger(),
             'created_at' => $this->dateTime(),

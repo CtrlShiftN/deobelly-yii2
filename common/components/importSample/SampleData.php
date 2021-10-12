@@ -115,6 +115,7 @@ class SampleData
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
             'is_luxury' => 0,
             'trademark_id' => 1,
+            'amount' => 82,
             'admin_id' => 1,
         ],
         [
@@ -193,6 +194,7 @@ class SampleData
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
             'is_luxury' => 0,
             'trademark_id' => 1,
+            'amount' => 142,
             'admin_id' => 1,
         ],
         [
@@ -247,6 +249,7 @@ class SampleData
             'is_luxury' => 0,
             'gender' => SystemConstant::GENDER_FEMALE,
             'trademark_id' => 1,
+            'amount' => 97,
             'admin_id' => 1,
         ],
         [
@@ -271,6 +274,7 @@ class SampleData
             'is_luxury' => 1,
             'gender' => SystemConstant::GENDER_MALE,
             'trademark_id' => 2,
+            'amount' => 31,
             'admin_id' => 1,
         ],
         [
@@ -334,6 +338,9 @@ class SampleData
                 $product->gender = $values['gender'];
             }
             $product->trademark_id = $values['trademark_id'];
+            if (!empty($values['amount'])) {
+                $product->amount = $values['amount'];
+            }
             $product->created_at = date('Y-m-d H:m:s');
             $product->updated_at = date('Y-m-d H:m:s');
             $product->admin_id = $values['admin_id'];
