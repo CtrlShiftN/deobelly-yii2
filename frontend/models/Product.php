@@ -92,6 +92,7 @@ class Product extends \common\models\Product
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
+
     /**
      * @return Query
      */
@@ -106,9 +107,9 @@ class Product extends \common\models\Product
             } elseif (intval($productType) == SystemConstant::PRODUCT_TYPE_NEW) {
                 $query->orderBy('product.updated_at DESC')->limit(SystemConstant::LIMIT_PER_PAGE);
             } elseif (intval($productType) == SystemConstant::PRODUCT_TYPE_MEN) {
-                $query->andWhere(['product.gender' => [SystemConstant::GENDER_MALE,SystemConstant::GENDER_BOTH]]);
+                $query->andWhere(['product.gender' => [SystemConstant::GENDER_MALE, SystemConstant::GENDER_BOTH]]);
             } elseif (intval($productType) == SystemConstant::PRODUCT_TYPE_WOMEN) {
-                $query->andWhere(['product.gender' => [SystemConstant::GENDER_FEMALE,SystemConstant::GENDER_BOTH]]);
+                $query->andWhere(['product.gender' => [SystemConstant::GENDER_FEMALE, SystemConstant::GENDER_BOTH]]);
             } else {
                 $query->andWhere(['like', 'product_assoc.type_id', $productType]);
             }
