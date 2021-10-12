@@ -136,7 +136,7 @@ $commonUrl = Yii::$app->params['common'];
                 'hAlign' => 'center',
                 'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) {
-                    return Html::a('Xóa', Url::toRoute(['product-category/delete', 'id' => $key]), ['class' => 'btn btn-danger', 'data' => [
+                    return Html::a('Xóa', Url::toRoute(['product-category/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger', 'data' => [
                         'method' => 'post',
                         'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                     ],]);

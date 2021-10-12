@@ -69,7 +69,7 @@ class ProductCategory extends \common\models\ProductCategory
     public static function updateProductCategoryTitle($id, $attribute, $value)
     {
         $slug = StringHelper::toSlug($value);
-        return \common\models\PostCategory::updateAll([$attribute => $value, 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
+        return \common\models\ProductCategory::updateAll([$attribute => $value, 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
     }
 
     /**
@@ -79,6 +79,6 @@ class ProductCategory extends \common\models\ProductCategory
      * @return int
      */
     public static function updateProductCategoryStatus($id, $attribute, $value){
-        return \common\models\PostCategory::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
+        return \common\models\ProductCategory::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
     }
 }

@@ -4,6 +4,8 @@ namespace backend\controllers;
 
 use backend\models\Product;
 use backend\models\ProductSearch;
+use common\components\encrypt\CryptHelper;
+use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -63,7 +65,26 @@ class ProductController extends Controller
     {
         $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-
+        if (Yii::$app->request->post('hasEditable')) {
+            // which rows has been edited?
+            $_id = $_POST['editableKey'];
+            $_index = $_POST['editableIndex'];
+            // which attribute has been edited?
+            $attribute = $_POST['editableAttribute'];
+            if ($attribute == 'name') {
+                // update to db
+                $value = $_POST['Product'][$_index][$attribute];
+                $result = Product::updateProductTitle($_id, $attribute, $value);
+                // response to gridview
+                return json_encode($result);
+            } elseif ($attribute == 'status' || $attribute == 'SKU') {
+                // update to db
+                $value = $_POST['Product'][$_index][$attribute];
+                $result = Product::updateProductAttr($_id, $attribute, $value);
+                // response to gridview
+                return json_encode($result);
+            }
+        }
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -78,6 +99,7 @@ class ProductController extends Controller
      */
     public function actionView($id)
     {
+        $id = CryptHelper::decryptString($id);
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -114,6 +136,7 @@ class ProductController extends Controller
      */
     public function actionUpdate($id)
     {
+        $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -134,6 +157,7 @@ class ProductController extends Controller
      */
     public function actionDelete($id)
     {
+        $id = CryptHelper::decryptString($id);
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
