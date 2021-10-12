@@ -110,12 +110,11 @@ class SampleData
             'cost_price' => 150000,
             'regular_price' => 299000,
             'sale_price' => null,
-            'quantity' => 20,
             'image' => 'product/clothes/top/shirt1.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
             'is_luxury' => 0,
             'trademark_id' => 1,
-            'amount' => 82,
+            'quantity' => 82,
             'admin_id' => 1,
         ],
         [
@@ -137,7 +136,6 @@ class SampleData
             'cost_price' => 200000,
             'regular_price' => 400000,
             'sale_price' => null,
-            'quantity' => 20,
             'image' => 'product/clothes/top/shirt6.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
             'is_luxury' => 0,
@@ -163,7 +161,6 @@ class SampleData
             'cost_price' => 200000,
             'regular_price' => 399000,
             'sale_price' => null,
-            'quantity' => 20,
             'image' => 'product/clothes/top/shirt3.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
             'is_luxury' => 0,
@@ -189,12 +186,11 @@ class SampleData
             'cost_price' => 200000,
             'regular_price' => 399000,
             'sale_price' => null,
-            'quantity' => 20,
             'image' => 'product/clothes/top/shirt5.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
             'is_luxury' => 0,
             'trademark_id' => 1,
-            'amount' => 142,
+            'quantity' => 142,
             'admin_id' => 1,
         ],
         [
@@ -216,7 +212,6 @@ class SampleData
             'cost_price' => 300000,
             'regular_price' => 599000,
             'sale_price' => null,
-            'quantity' => 20,
             'image' => 'product/clothes/top/shirt4.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
             'is_luxury' => 0,
@@ -243,13 +238,12 @@ class SampleData
             'cost_price' => 175000,
             'regular_price' => 349000,
             'sale_price' => null,
-            'quantity' => 20,
             'image' => 'product/clothes/top/shirt2.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/shirt/shirt2.png,product/clothes/top/shirt3.png',
             'is_luxury' => 0,
             'gender' => SystemConstant::GENDER_FEMALE,
             'trademark_id' => 1,
-            'amount' => 97,
+            'quantity' => 97,
             'admin_id' => 1,
         ],
         [
@@ -268,13 +262,12 @@ class SampleData
             'cost_price' => 800000,
             'regular_price' => 1600000,
             'sale_price' => 1360000,
-            'quantity' => 30,
             'image' => 'product/clothes/shirt/ao-so-mi-lados.jpg',
             'images' => '',
             'is_luxury' => 1,
             'gender' => SystemConstant::GENDER_MALE,
             'trademark_id' => 2,
-            'amount' => 31,
+            'quantity' => 31,
             'admin_id' => 1,
         ],
         [
@@ -291,7 +284,6 @@ class SampleData
             'cost_price' => 600000,
             'regular_price' => 11999000,
             'sale_price' => 10190000,
-            'quantity' => 18,
             'image' => 'product/clothes/vest/vest-nam-han-quoc.jpg',
             'images' => '',
             'is_luxury' => 1,
@@ -323,7 +315,6 @@ class SampleData
                 $product->selling_price = $values['regular_price'];
             }
             $product->SKU = null;
-            $product->quantity = $values['quantity'];
             $product->image = $values['image'];
             $product->images = $values['images'];
             if (!empty($values['related_product'])) {
@@ -338,8 +329,8 @@ class SampleData
                 $product->gender = $values['gender'];
             }
             $product->trademark_id = $values['trademark_id'];
-            if (!empty($values['amount'])) {
-                $product->amount = $values['amount'];
+            if (!empty($values['quantity'])) {
+                $product->quantity = $values['quantity'];
             }
             $product->created_at = date('Y-m-d H:m:s');
             $product->updated_at = date('Y-m-d H:m:s');
