@@ -59,7 +59,7 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
         </div>
     </div>
     <div class="col-12 col-md-6 px-3">
-        <span class="my-3 fs-3 m-0 fw-bolder text-uppercase d-block"><?= $detail['name'] ?></span>
+        <span class="my-3 fs-3 m-0 fw-bolder text-uppercase d-block"><?= $detail['name'] ?> <span class="badge rounded-0 bg-danger" id="outOfStock">Hết hàng</span></span>
         <?php if (!empty($detail['sale_price'])): ?>
             <span class="my-3 fs-4 m-0 fw-bolder d-block"><span
                         class="fw-light text-decoration-line-through"><?= number_format($detail['regular_price'], 0, ',', '.') ?>đ</span> <?= number_format($detail['selling_price'], 0, ',', '.') ?>đ</span>
@@ -329,36 +329,12 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
 </div>
 <script type="text/javascript" src="<?= Url::toRoute('js/product-detail.js') ?>"></script>
 <script type="text/javascript">
-    $('.btn-color').click(function () {
-        if (!$(this).hasClass('btn-color-selected')) {
-            $(this).addClass('btn-color-selected').css({}).siblings().removeClass('btn-color-selected');
-            $('#color').html($(this).attr('data-name-color'));
-        } else {
-            $(this).removeClass('btn-color-selected');
-            $('#color').html('');
-        }
-    });
-    $('.btn-size').click(function () {
-        if (!$(this).hasClass('btn-size-selected')) {
-            $(this).addClass('btn-size-selected').siblings().removeClass('btn-size-selected');
-            $('#size').html($(this).attr('data-size'));
-        } else {
-            $(this).removeClass('btn-size-selected');
-            $('#size').html('');
-        }
-    });
-    let items = document.querySelectorAll('.carouselProduct .carousel-item')
-    items.forEach((el) => {
-        const minPerSlide = 6
-        let next = el.nextElementSibling
-        for (var i = 1; i < minPerSlide; i++) {
-            if (!next) {
-                next = items[0]
-            }
-            let cloneChild = next.cloneNode(true)
-            el.appendChild(cloneChild.children[0])
-            next = next.nextElementSibling
-        }
-    });
+    if (parseInt($('#quantity').attr('data-quantity')) == 0) {
+        $('#btnAdd,#btnBuyNow').css('pointer-events', 'none');
+        $('#notify').html('Sản phẩm không đủ để đáp ứng yêu cầu!');
+        $('#outOfStock').addClass('d-inline-block');
+    } else {
+        $('#outOfStock').addClass('d-none');
+    }
 </script>
 
