@@ -2,6 +2,8 @@
 
 namespace backend\models;
 
+use common\components\helpers\StringHelper;
+use common\components\SystemConstant;
 use Yii;
 
 /**
@@ -34,6 +36,14 @@ use Yii;
  */
 class Product extends \common\models\Product
 {
+    public $file;
+    public $files;
+    public $color;
+    public $size;
+    public $type;
+    public $category;
+    public $relatedProduct;
+
     /**
      * {@inheritdoc}
      */
@@ -55,6 +65,12 @@ class Product extends \common\models\Product
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'short_description', 'SKU', 'image', 'related_product'], 'string', 'max' => 255],
             [['slug'], 'unique'],
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
+            ['file', 'required'],
+            [['files'], 'file', 'extensions' => 'png, jpg, jpeg', 'maxFiles' => 10],
+            [['color', 'size', 'type', 'category', 'relatedProduct'], 'safe'],
+            [['color', 'size', 'type', 'category'], 'required'],
+            ['quantity', 'integer', 'min' => 1],
         ];
     }
 
@@ -77,10 +93,11 @@ class Product extends \common\models\Product
             'quantity' => Yii::t('app', 'Quantity'),
             'image' => Yii::t('app', 'Image'),
             'images' => Yii::t('app', 'Images'),
-            'is_luxury' => Yii::t('app', 'Is Luxury'),
+            'is_luxury' => Yii::t('app', 'Segment'),
             'related_product' => Yii::t('app', 'Related Product'),
+            'relatedProduct' => Yii::t('app', 'Related Product'),
             'gender' => Yii::t('app', 'Gender'),
-            'trademark_id' => Yii::t('app', 'Trademark ID'),
+            'trademark_id' => Yii::t('app', 'Trademark'),
             'viewed' => Yii::t('app', 'Viewed'),
             'fake_sold' => Yii::t('app', 'Fake Sold'),
             'sold' => Yii::t('app', 'Sold'),
@@ -88,6 +105,40 @@ class Product extends \common\models\Product
             'admin_id' => Yii::t('app', 'Admin ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'color' => Yii::t('app', 'Color'),
+            'size' => Yii::t('app', 'Size'),
+            'type' => Yii::t('app', 'Product Type'),
+            'category' => Yii::t('app', 'Product Category'),
         ];
+    }
+
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
+    public static function updateProductTitle($id, $attribute, $value)
+    {
+        $slug = StringHelper::toSlug($value);
+        return \common\models\Product::updateAll([$attribute => $value, 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
+    }
+
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
+    public static function updateProductAttr($id, $attribute, $value)
+    {
+        return \common\models\Product::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getAllProduct(){
+        return Product::find()->where(['status'=>SystemConstant::STATUS_ACTIVE])->asArray()->all();
     }
 }

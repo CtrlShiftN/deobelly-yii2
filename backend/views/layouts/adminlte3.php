@@ -182,7 +182,7 @@ AppAsset::register($this);
                                     <a href="<?= Url::toRoute('product/') ?>"
                                        class="nav-link <?= ($controller == 'product') ? 'active' : '' ?>">
                                         <i class="nav-icon far fa-newspaper"></i>
-                                        <p><?= Yii::t('app', 'Product Management') ?></p>
+                                        <p><?= Yii::t('app', 'Products') ?></p>
                                     </a>
                                 </li>
                             </ul>
