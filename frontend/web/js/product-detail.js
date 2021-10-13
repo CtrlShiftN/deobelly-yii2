@@ -103,3 +103,11 @@ items.forEach((el) => {
         next = next.nextElementSibling
     }
 });
+
+if (parseInt($('#quantity').attr('data-quantity')) == 0) {
+    $('#btnAdd,#btnBuyNow').css('pointer-events', 'none');
+    $('#notify').html('Sản phẩm không đủ để đáp ứng yêu cầu!');
+    $('#outOfStock').addClass('d-inline-block');
+} else {
+    $('#outOfStock').addClass('d-none');
+}

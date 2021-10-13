@@ -59,7 +59,8 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
         </div>
     </div>
     <div class="col-12 col-md-6 px-3">
-        <span class="my-3 fs-3 m-0 fw-bolder text-uppercase d-block"><?= $detail['name'] ?> <span class="badge rounded-0 bg-danger" id="outOfStock">Hết hàng</span></span>
+        <span class="my-3 fs-3 m-0 fw-bolder text-uppercase d-block"><?= $detail['name'] ?> <span
+                    class="badge rounded-0 bg-danger" id="outOfStock">Hết hàng</span></span>
         <?php if (!empty($detail['sale_price'])): ?>
             <span class="my-3 fs-4 m-0 fw-bolder d-block"><span
                         class="fw-light text-decoration-line-through"><?= number_format($detail['regular_price'], 0, ',', '.') ?>đ</span> <?= number_format($detail['selling_price'], 0, ',', '.') ?>đ</span>
@@ -180,7 +181,8 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
                            class="btn rounded-0 btnAdd col-4 col-md-3"><i class="fas fa-cart-plus"></i></a>
                         <a href="javascript:void(0)"
                            data-id="<?= \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>"
-                           class="btn rounded-0 btnBuyNow col-4 col-md-6"><i class="fas fa-dollar-sign d-md-none"></i><span
+                           class="btn rounded-0 btnBuyNow col-4 col-md-6"><i
+                                    class="fas fa-dollar-sign d-md-none"></i><span
                                     class="d-none d-md-inline-block"><i
                                         class="fas fa-dollar-sign"></i> <?= Yii::t('app', 'Buy now') ?></span></a>
                         <a href="javascript:void(0)"
@@ -190,7 +192,8 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
                 </div>
             <?php endforeach; ?>
             <i class="col-12 p-0 m-0 text-end mb-3">
-                <a href="<?= Url::toRoute('shop/product') ?>" class="text-decoration-none text-dark">Xem toàn bộ sản phẩm >></a>
+                <a href="<?= Url::toRoute('shop/product') ?>" class="text-decoration-none text-dark">Xem toàn bộ sản
+                    phẩm >></a>
             </i>
         </div>
         <div class="w-100 row p-0 m-0 d-sm-none">
@@ -221,7 +224,8 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
                            class="btn rounded-0 btnAdd col-4 col-md-3"><i class="fas fa-cart-plus"></i></a>
                         <a href="javascript:void(0)"
                            data-id="<?= \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>"
-                           class="btn rounded-0 btnBuyNow col-4 col-md-6"><i class="fas fa-dollar-sign d-md-none"></i><span
+                           class="btn rounded-0 btnBuyNow col-4 col-md-6"><i
+                                    class="fas fa-dollar-sign d-md-none"></i><span
                                     class="d-none d-md-inline-block"><i
                                         class="fas fa-dollar-sign"></i> <?= Yii::t('app', 'Buy now') ?></span></a>
                         <a href="javascript:void(0)"
@@ -231,7 +235,8 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
                 </div>
             <?php endforeach; ?>
             <i class="col-12 p-0 m-0 text-end mb-3">
-                <a href="<?= Url::toRoute('shop/product') ?>" class="text-decoration-none text-dark">Xem toàn bộ sản phẩm >></a>
+                <a href="<?= Url::toRoute('shop/product') ?>" class="text-decoration-none text-dark">Xem toàn bộ sản
+                    phẩm >></a>
             </i>
         </div>
     </div>
@@ -271,7 +276,8 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
                            class="btn rounded-0 btnAdd col-4 col-md-3"><i class="fas fa-cart-plus"></i></a>
                         <a href="javascript:void(0)"
                            data-id="<?= \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>"
-                           class="btn rounded-0 btnBuyNow col-4 col-md-6"><i class="fas fa-dollar-sign d-md-none"></i><span
+                           class="btn rounded-0 btnBuyNow col-4 col-md-6"><i
+                                    class="fas fa-dollar-sign d-md-none"></i><span
                                     class="d-none d-md-inline-block"><i
                                         class="fas fa-dollar-sign"></i> <?= Yii::t('app', 'Buy now') ?></span></a>
                         <a href="javascript:void(0)"
@@ -281,7 +287,8 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
                 </div>
             <?php endforeach; ?>
             <i class="col-12 p-0 m-0 text-end mb-3">
-                <a href="<?= Url::toRoute('shop/product') ?>" class="text-decoration-none text-dark">Xem toàn bộ sản phẩm >></a>
+                <a href="<?= Url::toRoute('shop/product') ?>" class="text-decoration-none text-dark">Xem toàn bộ sản
+                    phẩm >></a>
             </i>
         </div>
         <div class="w-100 row p-0 m-0 d-sm-none">
@@ -312,7 +319,8 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
                            class="btn rounded-0 btnAdd col-4 col-md-3"><i class="fas fa-cart-plus"></i></a>
                         <a href="javascript:void(0)"
                            data-id="<?= \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>"
-                           class="btn rounded-0 btnBuyNow col-4 col-md-6"><i class="fas fa-dollar-sign d-md-none"></i><span
+                           class="btn rounded-0 btnBuyNow col-4 col-md-6"><i
+                                    class="fas fa-dollar-sign d-md-none"></i><span
                                     class="d-none d-md-inline-block"><i
                                         class="fas fa-dollar-sign"></i> <?= Yii::t('app', 'Buy now') ?></span></a>
                         <a href="javascript:void(0)"
@@ -322,19 +330,11 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
                 </div>
             <?php endforeach; ?>
             <i class="col-12 p-0 m-0 text-end mb-3">
-                <a href="<?= Url::toRoute('shop/product') ?>" class="text-decoration-none text-dark">Xem toàn bộ sản phẩm >></a>
+                <a href="<?= Url::toRoute('shop/product') ?>" class="text-decoration-none text-dark">Xem toàn bộ sản
+                    phẩm >></a>
             </i>
         </div>
     </div>
 </div>
 <script type="text/javascript" src="<?= Url::toRoute('js/product-detail.js') ?>"></script>
-<script type="text/javascript">
-    if (parseInt($('#quantity').attr('data-quantity')) == 0) {
-        $('#btnAdd,#btnBuyNow').css('pointer-events', 'none');
-        $('#notify').html('Sản phẩm không đủ để đáp ứng yêu cầu!');
-        $('#outOfStock').addClass('d-inline-block');
-    } else {
-        $('#outOfStock').addClass('d-none');
-    }
-</script>
 
