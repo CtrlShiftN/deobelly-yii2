@@ -153,32 +153,32 @@ class Product extends \common\models\Product
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getBestSellingProduct()
+    public static function getBestSellingProduct($otherId)
     {
-        return Product::find()->where(['status' => 1])->orderBy(['sold DESC'])->orderBy(new Expression('rand()'))->limit(6)->all();
+        return Product::find()->where(['status' => 1])->andWhere(['not', ['id' => $otherId]])->orderBy(['sold DESC'])->orderBy(new Expression('rand()'))->limit(6)->all();
     }
 
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getBestSellingProductMb()
+    public static function getBestSellingProductMb($otherId)
     {
-        return Product::find()->where(['status' => 1])->orderBy(['sold DESC'])->orderBy(new Expression('rand()'))->limit(3)->all();
+        return Product::find()->where(['status' => 1])->andWhere(['not', ['id' => $otherId]])->orderBy(['sold DESC'])->orderBy(new Expression('rand()'))->limit(3)->all();
     }
 
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getOnSaleProduct()
+    public static function getOnSaleProduct($otherId)
     {
-        return Product::find()->where(['status' => 1])->andWhere(['not', ['sale_price' => null]])->orderBy(new Expression('rand()'))->limit(6)->all();
+        return Product::find()->where(['status' => 1])->andWhere(['not', ['id' => $otherId]])->andWhere(['not', ['sale_price' => null]])->orderBy(new Expression('rand()'))->limit(6)->all();
     }
 
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getOnSaleProductMb()
+    public static function getOnSaleProductMb($otherId)
     {
-        return Product::find()->where(['status' => 1])->andWhere(['not', ['sale_price' => null]])->orderBy(new Expression('rand()'))->limit(3)->all();
+        return Product::find()->where(['status' => 1])->andWhere(['not', ['id' => $otherId]])->andWhere(['not', ['sale_price' => null]])->orderBy(new Expression('rand()'))->limit(3)->all();
     }
 }

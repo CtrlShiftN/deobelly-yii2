@@ -12,16 +12,6 @@ $this->registerCssFile(Url::toRoute("css/swiper.min.css"));
 $this->registerCssFile(Url::toRoute("css/product-detail.css"));
 $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
 ?>
-<style>
-    .full-width {
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        right: 49%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-    }
-</style>
 <script type="text/javascript" src="<?= Url::toRoute('js/easyzoom.js') ?>"></script>
 <script type="text/javascript" src="<?= Url::toRoute('js/swiper-bundle.min.js') ?>"></script>
 <div class="row py-3 p-md-3 p-lg-4 px-xl-5 py-xl-4">
@@ -30,7 +20,6 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
             <!-- Swiper and EasyZoom plugins start -->
             <div class="swiper-container gallery-top">
                 <div class="swiper-wrapper">
-
                     <div class="swiper-slide easyzoom easyzoom--overlay">
                         <a href="<?= $imgUrl . '/' . $detail['image'] ?>">
                             <img src="<?= $imgUrl . '/' . $detail['image'] ?>">
@@ -56,7 +45,6 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
                     <div class="swiper-slide">
                         <img src="<?= $imgUrl . '/' . $detail['image'] ?>">
                     </div>
-
                     <?php if (!empty($detail['images'])): ?>
                         <?php $imgArr = explode(',', $detail['images']);
                         foreach ($imgArr as $key => $value): ?>
@@ -74,9 +62,9 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
         <span class="my-3 fs-3 m-0 fw-bolder text-uppercase d-block"><?= $detail['name'] ?></span>
         <?php if (!empty($detail['sale_price'])): ?>
             <span class="my-3 fs-4 m-0 fw-bolder d-block"><span
-                        class="fw-light text-decoration-line-through"><?= number_format($detail['regular_price'], 0, ',', '.') ?> VND</span> <?= number_format($detail['selling_price'], 0, ',', '.') ?> VND</span>
+                        class="fw-light text-decoration-line-through"><?= number_format($detail['regular_price'], 0, ',', '.') ?>đ</span> <?= number_format($detail['selling_price'], 0, ',', '.') ?>đ</span>
         <?php else: ?>
-            <span class="my-3 fs-4 m-0 fw-bolder d-block"><?= number_format($detail['selling_price'], 0, ',', '.') ?> VND</span>
+            <span class="my-3 fs-4 m-0 fw-bolder d-block"><?= number_format($detail['selling_price'], 0, ',', '.') ?>đ</span>
         <?php endif; ?>
         <div class="w-100 my-3">
             <span class="fw-light fs-5 d-block mb-2">Color: <span id="color"></span></span>
@@ -166,7 +154,7 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
     <div class="row m-0 px-0 px-md-5">
         <div class="w-100 row p-0 m-0 d-none d-sm-flex">
             <?php foreach ($bestSellers as $key => $value): ?>
-                <div class="col-12 col-sm-4 col-lg-3 col-xl-3 col-xxl-2 mx-0 py-3 position-relative product-card overflow-hidden">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 col-xxl-2 mx-0 py-3 position-relative product-card overflow-hidden">
                     <div class="position-relative overflow-hidden w-100 img-shadow">
                         <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                            class="text-decoration-none text-dark px-0 w-100 position-relative">
@@ -177,10 +165,10 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
                             <div class="pr-inf px-2 px-lg-1 px-xl-2 py-2 w-100 border-top">
                                 <?php if (!empty($value['sale_price'])): ?>
                                     <span class="px-0 fw-bold mt-2 p-price">
-                                    <span class="text-decoration-line-through text-dark fw-light fs-regular-price"><?= $value['regular_price'] ?> đ</span> <?= $value['selling_price'] ?> đ
+                                    <span class="text-decoration-line-through text-dark fw-light fs-regular-price"><?= number_format($value['regular_price'], 0, ',', '.') ?>đ</span> <?= number_format($value['selling_price'], 0, ',', '.') ?>đ
                                 </span>
                                 <?php else: ?>
-                                    <span class="px-0 fw-bold mt-2 p-price"><?= $value['selling_price'] ?> đ</span>
+                                    <span class="px-0 fw-bold mt-2 p-price"><?= number_format($value['selling_price'], 0, ',', '.') ?>đ</span>
                                 <?php endif; ?>
                                 <p class="m-0 product-name"><?= $value['name'] ?></p>
                             </div>
@@ -207,7 +195,7 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
         </div>
         <div class="w-100 row p-0 m-0 d-sm-none">
             <?php foreach ($bestSellersMb as $key => $value): ?>
-                <div class="col-12 col-sm-4 col-lg-3 col-xl-3 col-xxl-2 mx-0 py-3 position-relative product-card overflow-hidden">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 col-xxl-2 mx-0 py-3 position-relative product-card overflow-hidden">
                     <div class="position-relative overflow-hidden w-100 img-shadow">
                         <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                            class="text-decoration-none text-dark px-0 w-100 position-relative">
@@ -218,10 +206,10 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
                             <div class="pr-inf px-2 px-lg-1 px-xl-2 py-2 w-100 border-top">
                                 <?php if (!empty($value['sale_price'])): ?>
                                     <span class="px-0 fw-bold mt-2 p-price">
-                                    <span class="text-decoration-line-through text-dark fw-light fs-regular-price"><?= $value['regular_price'] ?> đ</span> <?= $value['selling_price'] ?> đ
+                                    <span class="text-decoration-line-through text-dark fw-light fs-regular-price"><?= number_format($value['regular_price'], 0, ',', '.') ?>đ</span> <?= number_format($value['selling_price'], 0, ',', '.') ?>đ
                                 </span>
                                 <?php else: ?>
-                                    <span class="px-0 fw-bold mt-2 p-price"><?= $value['selling_price'] ?> đ</span>
+                                    <span class="px-0 fw-bold mt-2 p-price"><?= number_format($value['selling_price'], 0, ',', '.') ?>đ</span>
                                 <?php endif; ?>
                                 <p class="m-0 product-name"><?= $value['name'] ?></p>
                             </div>
@@ -253,11 +241,11 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
         sản phẩm đang sale
     </p>
 </div>
-<div class="full-width ">
+<div class="full-width pb-5">
     <div class="row m-0 px-0 px-md-5">
         <div class="w-100 row p-0 m-0 d-none d-sm-flex">
             <?php foreach ($onSale as $key => $value): ?>
-                <div class="col-12 col-sm-4 col-lg-3 col-xl-3 col-xxl-2 mx-0 py-3 position-relative product-card overflow-hidden">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 col-xxl-2 mx-0 py-3 position-relative product-card overflow-hidden">
                     <div class="position-relative overflow-hidden w-100 img-shadow">
                         <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                            class="text-decoration-none text-dark px-0 w-100 position-relative">
@@ -268,10 +256,10 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
                             <div class="pr-inf px-2 px-lg-1 px-xl-2 py-2 w-100 border-top">
                                 <?php if (!empty($value['sale_price'])): ?>
                                     <span class="px-0 fw-bold mt-2 p-price">
-                                    <span class="text-decoration-line-through text-dark fw-light fs-regular-price"><?= $value['regular_price'] ?> đ</span> <?= $value['selling_price'] ?> đ
+                                    <span class="text-decoration-line-through text-dark fw-light fs-regular-price"><?= number_format($value['regular_price'], 0, ',', '.') ?>đ</span> <?= number_format($value['selling_price'], 0, ',', '.') ?>đ
                                 </span>
                                 <?php else: ?>
-                                    <span class="px-0 fw-bold mt-2 p-price"><?= $value['selling_price'] ?> đ</span>
+                                    <span class="px-0 fw-bold mt-2 p-price"><?= number_format($value['selling_price'], 0, ',', '.') ?>đ</span>
                                 <?php endif; ?>
                                 <p class="m-0 product-name"><?= $value['name'] ?></p>
                             </div>
@@ -298,7 +286,7 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
         </div>
         <div class="w-100 row p-0 m-0 d-sm-none">
             <?php foreach ($onSaleMb as $key => $value): ?>
-                <div class="col-12 col-sm-4 col-lg-3 col-xl-3 col-xxl-2 mx-0 py-3 position-relative product-card overflow-hidden">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 col-xxl-2 mx-0 py-3 position-relative product-card overflow-hidden">
                     <div class="position-relative overflow-hidden w-100 img-shadow">
                         <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                            class="text-decoration-none text-dark px-0 w-100 position-relative">
@@ -309,10 +297,10 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
                             <div class="pr-inf px-2 px-lg-1 px-xl-2 py-2 w-100 border-top">
                                 <?php if (!empty($value['sale_price'])): ?>
                                     <span class="px-0 fw-bold mt-2 p-price">
-                                    <span class="text-decoration-line-through text-dark fw-light fs-regular-price"><?= $value['regular_price'] ?> đ</span> <?= $value['selling_price'] ?> đ
+                                    <span class="text-decoration-line-through text-dark fw-light fs-regular-price"><?= number_format($value['regular_price'], 0, ',', '.') ?>đ</span> <?= number_format($value['selling_price'], 0, ',', '.') ?>đ
                                 </span>
                                 <?php else: ?>
-                                    <span class="px-0 fw-bold mt-2 p-price"><?= $value['selling_price'] ?> đ</span>
+                                    <span class="px-0 fw-bold mt-2 p-price"><?= number_format($value['selling_price'], 0, ',', '.') ?>đ</span>
                                 <?php endif; ?>
                                 <p class="m-0 product-name"><?= $value['name'] ?></p>
                             </div>
@@ -339,9 +327,6 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
         </div>
     </div>
 </div>
-
-
-
 <script type="text/javascript" src="<?= Url::toRoute('js/product-detail.js') ?>"></script>
 <script type="text/javascript">
     $('.btn-color').click(function () {

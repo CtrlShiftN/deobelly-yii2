@@ -71,10 +71,10 @@ class ShopController extends Controller
             $detailID = CryptHelper::decryptString($_REQUEST['detail']);
             $productDetail = Product::getProductById($detailID);
             $otherProductDetail = Product::getProductOther($detailID);
-            $bestSellers = Product::getBestSellingProduct();
-            $bestSellersMb = Product::getBestSellingProductMb();
-            $onSale = Product::getOnSaleProduct();
-            $onSaleMb = Product::getOnSaleProductMb();
+            $bestSellers = Product::getBestSellingProduct($detailID);
+            $bestSellersMb = Product::getBestSellingProductMb($detailID);
+            $onSale = Product::getOnSaleProduct($detailID);
+            $onSaleMb = Product::getOnSaleProductMb($detailID);
             if(!empty($productDetail)) {
                 return $this->render('product-detail',[
                     'detail' => $productDetail,
