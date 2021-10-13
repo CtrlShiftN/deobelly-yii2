@@ -200,14 +200,10 @@ $commonUrl = Yii::$app->params['common'];
                 'hAlign' => 'center',
                 'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) {
-                    $htmlBtn = '';
-                    $htmlBtn .= Html::a('<i class="far fa-edit"></i> ' . Yii::t('app', 'Update'), Url::toRoute(['product/update', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-info']);
-                    $htmlBtn .= '</br>';
-                    $htmlBtn .= Html::a('<i class="far fa-trash-alt"></i> ' . Yii::t('app', 'Delete'), Url::toRoute(['product/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger mt-2', 'data' => [
+                    return Html::a('<i class="far fa-trash-alt"></i> ' . Yii::t('app', 'Delete'), Url::toRoute(['product/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger mt-2', 'data' => [
                         'method' => 'post',
                         'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                     ],]);
-                    return $htmlBtn;
                 },
                 'format' => 'raw'
             ]

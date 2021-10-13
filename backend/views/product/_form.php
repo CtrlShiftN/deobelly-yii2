@@ -5,6 +5,7 @@ use kartik\form\ActiveField;
 use kartik\form\ActiveForm;
 use kartik\money\MaskMoney;
 use kartik\select2\Select2;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\web\JsExpression;
 
@@ -12,6 +13,11 @@ use yii\web\JsExpression;
 /* @var $model backend\models\Product */
 /* @var $form yii\widgets\ActiveForm */
 $this->title = Yii::t('app', 'Add New Product');
+$arrLuxury = [Yii::t('app', 'Basic'), Yii::t('app', 'Luxury')];
+$arrGender = [Yii::t('app', 'All'), Yii::t('app', 'Male'), Yii::t('app', 'Female')];
+$arrProductType = ArrayHelper::map($type, 'id', 'name');
+$type = \common\components\helpers\SystemArrayHelper::removeElementAt($arrProductType, \common\components\SystemConstant::PRODUCT_TYPE_LUXURY);
+$type = \common\components\helpers\SystemArrayHelper::removeElementAt($type, \common\components\SystemConstant::PRODUCT_TYPE_NEW);
 ?>
 
 <div class="product-form container p-3">
@@ -80,11 +86,24 @@ $this->title = Yii::t('app', 'Add New Product');
                 'options' => ['placeholder' => Yii::t('app', 'Choose trademark')],
                 'pluginOptions' => [
                     'allowClear' => true,
-                    'multiple' => true,
                 ],
             ]) ?>
             <?= $form->field($model, 'quantity')->textInput(['type' => 'number']) ?>
-            <?= $form->field($model, 'related_product')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'type')->widget(Select2::classname(), [
+                'data' => $type,
+                'options' => ['placeholder' => Yii::t('app', 'Choose product type')],
+                'pluginOptions' => [
+                    'allowClear' => true,
+                    'multiple' => true
+                ],
+            ]) ?>
+            <?= $form->field($model, 'category')->widget(Select2::classname(), [
+                'data' => ArrayHelper::map($productCate, 'id', 'name'),
+                'options' => ['placeholder' => Yii::t('app', 'Choose product category')],
+                'pluginOptions' => [
+                    'allowClear' => true,
+                ],
+            ]) ?>
         </div>
         <div class="col-12 col-md-9 border-start ps-3">
             <?= $form->field($model, 'file')->widget(FileInput::classname(), [
@@ -92,22 +111,38 @@ $this->title = Yii::t('app', 'Add New Product');
                 'pluginOptions' => ['previewFileType' => 'image', 'showUpload' => false]
             ])->label(Yii::t('app', 'Image')); ?>
             <?= $form->field($model, 'files')->widget(FileInput::classname(), [
-                'options' => ['multiple' => true, 'accept' => 'image/*'],
-                'pluginOptions' => ['previewFileType' => 'image', 'showUpload' => false]
+                'options' => ['multiple' => true],
+                'pluginOptions' => ['previewFileType' => 'image', 'showUpload' => false, 'maxFileCount' => 10]
             ])->label(Yii::t('app', 'Related Images')); ?>
             <?= $form->field($model, 'description')->widget(\yii\redactor\widgets\Redactor::class) ?>
             <div class="row">
-                <div class="col-12 col-md-4">
-                    <?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
+                <div class="col-12 col-md-6">
+                    <?= $form->field($model, 'relatedProduct')->widget(Select2::classname(), [
+                        'data' => ArrayHelper::map($products, 'id', 'name'),
+                        'options' => ['placeholder' => Yii::t('app', 'Choose related product')],
+                        'pluginOptions' => [
+                            'allowClear' => true,
+                            'multiple' => true
+                        ],
+                    ]) ?>
                 </div>
-                <div class="col-12 col-md-4">
-                    <?= $form->field($model, 'category')->textInput(['maxlength' => true]) ?>
+                <div class="col-12 col-md-3">
+                    <?= $form->field($model, 'gender')->widget(Select2::classname(), [
+                        'data' => $arrGender,
+                        'options' => ['placeholder' => Yii::t('app', 'Choose gender')],
+                        'pluginOptions' => [
+                            'allowClear' => true,
+                        ],
+                    ]) ?>
                 </div>
-                <div class="col-12 col-md-2">
-                    <?= $form->field($model, 'gender')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-12 col-md-2">
-                    <?= $form->field($model, 'is_luxury')->textInput(['maxlength' => true]) ?>
+                <div class="col-12 col-md-3">
+                    <?= $form->field($model, 'is_luxury')->widget(Select2::classname(), [
+                        'data' => $arrLuxury,
+                        'options' => ['placeholder' => Yii::t('app', 'Choose segment')],
+                        'pluginOptions' => [
+                            'allowClear' => true,
+                        ],
+                    ]) ?>
                 </div>
             </div>
         </div>
