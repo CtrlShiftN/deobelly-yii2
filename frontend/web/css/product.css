@@ -4,7 +4,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     .btnAdd, .btnBuyNow {
         padding: 8px !important;
     }
@@ -13,7 +13,7 @@
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
     .btnAdd, .btnBuyNow {
         padding: 10px 8px !important;
     }

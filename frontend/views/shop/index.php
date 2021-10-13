@@ -4,10 +4,12 @@
 
 use yii\helpers\Url;
 
-$this->title = Yii::t('app', 'Shop');
+$this->title = Yii::t('app', 'Product');
 $this->params['breadcrumbs'][] = $this->title;
 $cdnUrl = Yii::$app->params['frontend'];
 $imgUrl = Yii::$app->params['common'] . "/media";
+$this->registerCssFile(Url::toRoute("/css/product-detail.css"));
+$this->registerCssFile(Url::toRoute("/css/shop.css"));
 $this->registerCssFile(Url::toRoute("/css/shop.css"));
 ?>
 <!-- Carousel wrapper -->
