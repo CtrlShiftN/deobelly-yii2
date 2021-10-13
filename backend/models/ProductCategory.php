@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use common\components\helpers\StringHelper;
+use common\components\SystemConstant;
 use Yii;
 
 /**
@@ -69,7 +70,7 @@ class ProductCategory extends \common\models\ProductCategory
     public static function updateProductCategoryTitle($id, $attribute, $value)
     {
         $slug = StringHelper::toSlug($value);
-        return \common\models\PostCategory::updateAll([$attribute => $value, 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
+        return \common\models\ProductCategory::updateAll([$attribute => $value, 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
     }
 
     /**
@@ -79,6 +80,13 @@ class ProductCategory extends \common\models\ProductCategory
      * @return int
      */
     public static function updateProductCategoryStatus($id, $attribute, $value){
-        return \common\models\PostCategory::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
+        return \common\models\ProductCategory::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getAllProductCategory(){
+        return \common\models\ProductCategory::find()->where(['status'=>SystemConstant::STATUS_ACTIVE])->asArray()->all();
     }
 }

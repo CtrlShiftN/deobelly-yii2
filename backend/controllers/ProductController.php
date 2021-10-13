@@ -2,23 +2,28 @@
 
 namespace backend\controllers;
 
+use backend\models\Color;
+use backend\models\Product;
+use backend\models\ProductAssoc;
 use backend\models\ProductCategory;
-use backend\models\ProductCategorySearch;
+use backend\models\ProductSearch;
 use backend\models\ProductType;
+use backend\models\Size;
+use backend\models\Trademark;
 use common\components\encrypt\CryptHelper;
 use common\components\helpers\StringHelper;
-use common\components\SystemConstant;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
- * ProductCategoryController implements the CRUD actions for ProductCategory model.
+ * ProductController implements the CRUD actions for Product model.
  */
-class ProductCategoryController extends Controller
+class ProductController extends Controller
 {
     /**
      * @inheritDoc
@@ -62,14 +67,13 @@ class ProductCategoryController extends Controller
     }
 
     /**
-     * Lists all ProductCategory models.
+     * Lists all Product models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ProductCategorySearch();
+        $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-        $productTypes = ProductType::getAllTypes();
         if (Yii::$app->request->post('hasEditable')) {
             // which rows has been edited?
             $_id = $_POST['editableKey'];
@@ -78,14 +82,14 @@ class ProductCategoryController extends Controller
             $attribute = $_POST['editableAttribute'];
             if ($attribute == 'name') {
                 // update to db
-                $value = $_POST['ProductCategory'][$_index][$attribute];
-                $result = ProductCategory::updateProductCategoryTitle($_id, $attribute, $value);
+                $value = $_POST['Product'][$_index][$attribute];
+                $result = Product::updateProductTitle($_id, $attribute, $value);
                 // response to gridview
                 return json_encode($result);
-            } elseif ($attribute == 'status') {
+            } elseif ($attribute == 'status' || $attribute == 'SKU') {
                 // update to db
-                $value = $_POST['ProductCategory'][$_index][$attribute];
-                $result = ProductCategory::updateProductCategoryStatus($_id, $attribute, $value);
+                $value = $_POST['Product'][$_index][$attribute];
+                $result = Product::updateProductAttr($_id, $attribute, $value);
                 // response to gridview
                 return json_encode($result);
             }
@@ -93,12 +97,11 @@ class ProductCategoryController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'productTypes' => $productTypes
         ]);
     }
 
     /**
-     * Displays a single ProductCategory model.
+     * Displays a single Product model.
      * @param int $id ID
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -112,38 +115,83 @@ class ProductCategoryController extends Controller
     }
 
     /**
-     * Creates a new ProductCategory model.
+     * Creates a new Product model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new ProductCategory();
-        $productTypes = ProductType::getAllTypes();
+        $model = new Product();
+        $assocModel = new ProductAssoc();
+        $arrColor = Color::getAllColor();
+        $arrSize = Size::getAllSize();
+        $arrTrademark = Trademark::getAllTrademark();
+        $arrType = ProductType::getAllTypes();
+        $arrCate = ProductCategory::getAllProductCategory();
+        $arrProduct = Product::getAllProduct();
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
+                $model->file = UploadedFile::getInstance($model, 'file');
+                $model->files = UploadedFile::getInstances($model, 'files');
+                if (!file_exists(Url::to('@common/media/product'))) {
+                    mkdir(Url::to('@common/media/product'), 0777, true);
+                }
+                $imageUrl = Url::to('@common/media');
+                $arrImages = [];
                 $model->slug = StringHelper::toSlug($model->name);
-                $model->created_at = date('Y-m-d H:m:s');
-                $model->updated_at = date('Y-m-d H:m:s');
-                $model->status = SystemConstant::STATUS_ACTIVE;
-                $model->type_id = implode(",", $model->types);
+                $model->selling_price = ($model->sale_price > $model->regular_price) ? $model->regular_price : $model->sale_price;
+                $model->related_product = implode(",", $model->relatedProduct);
+                $model->image = 'product/' . implode("-", $model->type) . '_' . $model->category . '_' . $model->slug . '.' . $model->file->getExtension();
                 $model->admin_id = Yii::$app->user->identity->getId();
-                if ($model->save()) {
-                    return $this->redirect(Url::toRoute('product-category/'));
+                $model->created_at = date('Y-m-d H:i:s');
+                $model->updated_at = date('Y-m-d H:i:s');
+                $model->fake_sold = rand(201, 996);
+                $model->file->saveAs($imageUrl . '/' . $model->image);
+                if ($model->files) {
+                    $count = 1;
+                    foreach ($model->files as $key => $file) {
+                        $imagePath = 'product/' . implode("-", $model->type) . '_' . $model->category . '_' . $model->slug . '_' . $count . '.' . $file->getExtension();
+                        $arrImages[$key] = $imagePath;
+                        $file->saveAs($imageUrl . '/' . $imagePath);
+                        $count++;
+                    }
+                }
+                $model->images = implode(",", $arrImages);
+                $typeStr = implode(",", $model->type);
+                $cateStr = $model->category;
+                $colorStr = implode(",", $model->color);
+                $sizeStr = implode(",", $model->size);
+                if ($model->save(false)) {
+                    $assocModel->product_id = $model->id;
+                    $assocModel->type_id = $typeStr;
+                    $assocModel->category_id = $cateStr;
+                    $assocModel->color_id = $colorStr;
+                    $assocModel->size_id = $sizeStr;
+                    $assocModel->admin_id = Yii::$app->user->identity->getId();
+                    $assocModel->created_at = date('Y-m-d H:i:s');
+                    $assocModel->updated_at = date('Y-m-d H:i:s');
+                    if ($assocModel->save(false)) {
+                        return $this->redirect(Url::toRoute('product/'));
+                    }
                 }
             }
         } else {
             $model->loadDefaultValues();
         }
 
-        return $this->renderAjax('create', [
+        return $this->render('create', [
             'model' => $model,
-            'types' => $productTypes
+            'color' => $arrColor,
+            'size' => $arrSize,
+            'trademark' => $arrTrademark,
+            'type' => $arrType,
+            'productCate' => $arrCate,
+            'products' => $arrProduct
         ]);
     }
 
     /**
-     * Updates an existing ProductCategory model.
+     * Updates an existing Product model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return mixed
@@ -164,7 +212,7 @@ class ProductCategoryController extends Controller
     }
 
     /**
-     * Deletes an existing ProductCategory model.
+     * Deletes an existing Product model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return mixed
@@ -179,15 +227,15 @@ class ProductCategoryController extends Controller
     }
 
     /**
-     * Finds the ProductCategory model based on its primary key value.
+     * Finds the Product model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return ProductCategory the loaded model
+     * @return Product the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = ProductCategory::findOne($id)) !== null) {
+        if (($model = Product::findOne($id)) !== null) {
             return $model;
         }
 

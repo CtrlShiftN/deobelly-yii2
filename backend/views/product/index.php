@@ -6,15 +6,16 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\PostSearch */
+/* @var $searchModel backend\models\ProductSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Posts');
+$this->title = Yii::t('app', 'Products');
 $this->params['breadcrumbs'][] = $this->title;
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
+$arrLuxury = [Yii::t('app', 'Basic'), Yii::t('app', 'Luxury')];
 $commonUrl = Yii::$app->params['common'];
 ?>
-<div class="posts-index">
+<div class="product-index">
     <div class="pt-3">
         <?php
         $defaultExportConfig = [
@@ -44,25 +45,25 @@ $commonUrl = Yii::$app->params['common'];
             ],
             [
                 'class' => 'kartik\grid\DataColumn',
-                'attribute' => 'avatar',
-                'label' => Yii::t('app', 'Avatar'),
+                'attribute' => 'image',
+                'label' => Yii::t('app', 'Image'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '140px',
                 'value' => function ($model, $key, $index, $widget) use ($commonUrl) {
-                    return Html::img($commonUrl . '/media/' . $model['avatar'], ['width' => '100%', 'alt' => $model['title']]);
+                    return Html::img($commonUrl . '/media/' . $model['image'], ['width' => '100%', 'alt' => $model['name']]);
                 },
                 'filter' => false,
                 'format' => 'raw'
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'title',
+                'attribute' => 'name',
                 'label' => Yii::t('app', 'Title'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) {
-                    return $model['title'];
+                    return $model['name'];
                 },
                 // edit field
                 'editableOptions' => [
@@ -71,33 +72,88 @@ $commonUrl = Yii::$app->params['common'];
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'slug',
-                'label' => Yii::t('app', 'Slug'),
+                'attribute' => 'SKU',
+                'label' => Yii::t('app', 'SKU'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) {
-                    return $model['slug'];
+                    return $model['SKU'];
                 },
-                // edit field
                 'editableOptions' => [
                     'asPopover' => false,
                 ],
-                'filter' => false
+                'format' => 'raw'
             ],
             [
-//                'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'content',
-                'label' => Yii::t('app', 'Content'),
+                'attribute' => 'regular_price',
+                'label' => Yii::t('app', 'Regular Price'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) {
-                    return substr($model['content'], 0, 200) . '...';
+                    return Yii::$app->formatter->asCurrency($model['regular_price']);
                 },
-                // edit field
-//                'editableOptions' => [
-//                    'asPopover' => false,
-//                ],
                 'format' => 'raw'
+            ],
+            [
+                'attribute' => 'sale_price',
+                'label' => Yii::t('app', 'Sale Price'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'value' => function ($model, $key, $index, $widget) {
+                    return Yii::$app->formatter->asCurrency($model['sale_price']);
+                },
+                'format' => 'raw'
+            ],
+            [
+                'attribute' => 'description',
+                'label' => Yii::t('app', 'Description'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'options' => ['style' => 'min-width:200px;'],
+                'value' => function ($model, $key, $index, $widget) {
+                    return substr(strip_tags($model['description']), 0, 200) . '...';
+                },
+                'format' => 'raw'
+            ],
+            [
+                'attribute' => 'quantity',
+                'label' => Yii::t('app', 'Quantity'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'value' => function ($model, $key, $index, $widget) {
+                    return $model['quantity'];
+                },
+                'format' => 'raw'
+            ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'is_luxury',
+                'label' => Yii::t('app', 'Segment'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'width' => '150px',
+                'value' => function ($model, $key, $index, $widget) use ($arrLuxury) {
+                    return $arrLuxury[$model['is_luxury']];
+                },
+                'editableOptions' => function ($model, $key, $index) use ($arrLuxury) {
+                    return [
+                        'name' => 'is_luxury',
+                        'asPopover' => false,
+                        'header' => Yii::t('app', 'Segment'),
+                        'size' => 'md',
+                        'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
+                        'data' => $arrLuxury,
+                        // default value in the text box
+                        'value' => $arrLuxury[$model['is_luxury']],
+                        'displayValueConfig' => $arrLuxury
+                    ];
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => $arrLuxury,
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Segment') . ' --']
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
@@ -139,12 +195,12 @@ $commonUrl = Yii::$app->params['common'];
                 'format' => 'raw'
             ],
             [
-                'label' => Yii::t('app', 'Actions'),
+//                'label' => Yii::t('app', 'Actions'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) {
-                    return Html::a('Xóa', Url::toRoute(['post/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger', 'data' => [
+                    return Html::a('<i class="far fa-trash-alt"></i> ' . Yii::t('app', 'Delete'), Url::toRoute(['product/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger mt-2', 'data' => [
                         'method' => 'post',
                         'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                     ],]);
@@ -182,7 +238,7 @@ $commonUrl = Yii::$app->params['common'];
             'exportConfig' => $defaultExportConfig,
             'toolbar' => [
                 [
-                    'content' => Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create new post'), ['create'], [
+                    'content' => Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Add New Product'), ['create'], [
                         'class' => 'btn btn-success',
                         'title' => 'Reset Grid',
                         'data-pjax' => 0,
@@ -195,7 +251,7 @@ $commonUrl = Yii::$app->params['common'];
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
-                'heading' => Yii::t('app', 'Posts list'),
+                'heading' => Yii::t('app', 'Product List'),
             ],
         ]);
         Pjax::end();

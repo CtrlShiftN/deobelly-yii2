@@ -1,11 +1,11 @@
 <?php
 
 use kartik\file\FileInput;
+use kartik\form\ActiveForm;
 use kartik\select2\Select2;
 use yii\bootstrap5\Modal;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Post */

@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\components\encrypt\CryptHelper;
 use common\models\Contact;
 use backend\models\ContactSearch;
 use Yii;
@@ -92,6 +93,7 @@ class ContactController extends Controller
      */
     public function actionDelete($id)
     {
+        $id = CryptHelper::decryptString($id);
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

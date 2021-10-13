@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\models\PostTag;
 use backend\models\PostTagSearch;
+use common\components\encrypt\CryptHelper;
 use common\components\helpers\StringHelper;
 use common\components\SystemConstant;
 use Yii;
@@ -103,6 +104,7 @@ class PostTagController extends Controller
      */
     public function actionView($id)
     {
+        $id = CryptHelper::decryptString($id);
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -145,6 +147,7 @@ class PostTagController extends Controller
      */
     public function actionUpdate($id)
     {
+        $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -165,6 +168,7 @@ class PostTagController extends Controller
      */
     public function actionDelete($id)
     {
+        $id = CryptHelper::decryptString($id);
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

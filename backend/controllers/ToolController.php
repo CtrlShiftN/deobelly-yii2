@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\models\Slider;
 use backend\models\SliderSearch;
+use common\components\encrypt\CryptHelper;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -88,6 +89,7 @@ class ToolController extends \yii\web\Controller
      */
     public function actionDeleteSlider($id)
     {
+        $id = CryptHelper::decryptString($id);
         $this->actionFindSlider($id)->delete();
 
         return $this->redirect(['slider']);
