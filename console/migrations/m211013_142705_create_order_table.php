@@ -20,12 +20,7 @@ class m211013_142705_create_order_table extends Migration
             'size' => $this->string()->null(),
             'quantity' => $this->integer()->notNull(),
             'address' => $this->string()->notNull(),
-            'is_order' => $this->smallInteger()->comment('0:no; 1:yes'),
-            'is_shipping' => $this->smallInteger()->comment('0:no; 1:yes'),
-            'is_delivered' => $this->smallInteger()->comment('0:no; 1:yes'),
-            'is_cancelled' => $this->smallInteger()->comment('0:no; 1:yes'),
-            'is_portpone' => $this->smallInteger()->comment('0:no; 1:yes'),
-            'status' => $this->smallInteger()->defaultValue(1)->comment('0 for inactive, 1 for active'),
+            'status' => $this->smallInteger()->defaultValue(0)->comment('0 - new,1 - processing,2 - approved,3 - shipping,4 - finished,5- cancelled,6 - expired,7 - returned,8 - postpone,9 - rejected,10 - failed,11 - fake'),
             'created_at' => $this->dateTime(),
             'updated_at' => $this->dateTime(),
         ]);

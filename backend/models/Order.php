@@ -14,12 +14,7 @@ use Yii;
  * @property string|null $size
  * @property int $quantity
  * @property string $address
- * @property int|null $is_order 0:no; 1:yes
- * @property int|null $is_shipping 0:no; 1:yes
- * @property int|null $is_delivered 0:no; 1:yes
- * @property int|null $is_cancelled 0:no; 1:yes
- * @property int|null $is_portpone 0:no; 1:yes
- * @property int|null $status 0 for inactive, 1 for active
+ * @property int|null $status 0 - new,1 - processing,2 - approved,3 - shipping,4 - finished,5- cancelled,6 - expired,7 - returned,8 - postpone,9 - rejected,10 - failed,11 - fake
  * @property string|null $created_at
  * @property string|null $updated_at
  */
@@ -40,7 +35,7 @@ class Order extends \common\models\Order
     {
         return [
             [['user_id', 'product_id', 'quantity', 'address'], 'required'],
-            [['user_id', 'product_id', 'quantity', 'is_order', 'is_shipping', 'is_delivered', 'is_cancelled', 'is_portpone', 'status'], 'integer'],
+            [['user_id', 'product_id', 'quantity', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['color', 'size', 'address'], 'string', 'max' => 255],
         ];
@@ -59,11 +54,6 @@ class Order extends \common\models\Order
             'size' => Yii::t('app', 'Size'),
             'quantity' => Yii::t('app', 'Quantity'),
             'address' => Yii::t('app', 'Address'),
-            'is_order' => Yii::t('app', 'Is Order'),
-            'is_shipping' => Yii::t('app', 'Is Shipping'),
-            'is_delivered' => Yii::t('app', 'Is Delivered'),
-            'is_cancelled' => Yii::t('app', 'Is Cancelled'),
-            'is_portpone' => Yii::t('app', 'Is Portpone'),
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
