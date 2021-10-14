@@ -38,6 +38,7 @@ class Color extends \common\models\Color
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'color_code'], 'string', 'max' => 255],
             [['slug'], 'unique'],
+            [['name', 'color_code'], 'required']
         ];
     }
 
@@ -48,7 +49,7 @@ class Color extends \common\models\Color
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
+            'name' => Yii::t('app', 'Title'),
             'slug' => Yii::t('app', 'Slug'),
             'color_code' => Yii::t('app', 'Color Code'),
             'status' => Yii::t('app', 'Status'),
