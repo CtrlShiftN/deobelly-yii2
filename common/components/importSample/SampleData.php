@@ -621,7 +621,7 @@ class SampleData
         [
             'name' => 'Light blue',
             'slug' => 'light-blue',
-            'color_code' => '##ADD8E6',
+            'color_code' => '#ADD8E6',
             'admin_id' => 1,
         ],
         [
@@ -633,7 +633,7 @@ class SampleData
         [
             'name' => 'Dark blue',
             'slug' => 'dark-blue',
-            'color_code' => '##00008B',
+            'color_code' => '#00008B',
             'admin_id' => 1,
         ],
         [

@@ -281,4 +281,9 @@ return [
     'All' => 'Tất Cả',
     'Male' => 'Nam',
     'Female' => 'Nữ',
+    'Color List' => 'Danh Sách Màu Sắc',
+    'Add New Color' => 'Thêm Màu Sắc',
+    'Black' => 'Màu đen',
+    'Color Code' => 'Mã Màu',
+    'Select color...' => 'Chọn màu...',
 ];
