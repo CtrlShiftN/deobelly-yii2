@@ -19,6 +19,7 @@ class m211013_142705_create_order_table extends Migration
             'color' => $this->string()->null(),
             'size' => $this->string()->null(),
             'quantity' => $this->integer()->notNull(),
+            'address' => $this->string()->notNull(),
             'is_order' => $this->smallInteger()->comment('0:no; 1:yes'),
             'is_shipping' => $this->smallInteger()->comment('0:no; 1:yes'),
             'is_delivered' => $this->smallInteger()->comment('0:no; 1:yes'),

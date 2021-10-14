@@ -280,5 +280,5 @@ return [
     'Gender' => 'Giới Tính',
     'All' => 'Tất Cả',
     'Male' => 'Nam',
-    'Female' => 'Nữ', 
+    'Female' => 'Nữ',
 ];

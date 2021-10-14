@@ -13,6 +13,7 @@ use Yii;
  * @property string|null $color
  * @property string|null $size
  * @property int $quantity
+ * @property string $address
  * @property int|null $is_order 0:no; 1:yes
  * @property int|null $is_shipping 0:no; 1:yes
  * @property int|null $is_delivered 0:no; 1:yes
@@ -22,7 +23,7 @@ use Yii;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class Order extends \yii\db\ActiveRecord
+class Order extends \common\models\Order
 {
     /**
      * {@inheritdoc}
@@ -38,10 +39,10 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'product_id', 'quantity'], 'required'],
+            [['user_id', 'product_id', 'quantity', 'address'], 'required'],
             [['user_id', 'product_id', 'quantity', 'is_order', 'is_shipping', 'is_delivered', 'is_cancelled', 'is_portpone', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['color', 'size'], 'string', 'max' => 255],
+            [['color', 'size', 'address'], 'string', 'max' => 255],
         ];
     }
 
@@ -57,6 +58,7 @@ class Order extends \yii\db\ActiveRecord
             'color' => Yii::t('app', 'Color'),
             'size' => Yii::t('app', 'Size'),
             'quantity' => Yii::t('app', 'Quantity'),
+            'address' => Yii::t('app', 'Address'),
             'is_order' => Yii::t('app', 'Is Order'),
             'is_shipping' => Yii::t('app', 'Is Shipping'),
             'is_delivered' => Yii::t('app', 'Is Delivered'),

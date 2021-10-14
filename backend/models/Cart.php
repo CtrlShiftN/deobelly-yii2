@@ -17,7 +17,7 @@ use Yii;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class Cart extends \yii\db\ActiveRecord
+class Cart extends \common\models\Cart
 {
     /**
      * {@inheritdoc}
