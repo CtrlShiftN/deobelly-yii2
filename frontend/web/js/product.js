@@ -100,7 +100,6 @@ function requestData() {
     });
 
     request.done(function (response) {
-        console.log(cdnUrl);
         let arrRes = $.parseJSON(response);
         if (typeName !== null) {
             $('#category-name').html(typeName);
