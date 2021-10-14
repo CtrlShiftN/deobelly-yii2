@@ -36,7 +36,7 @@
     "yiidoc/yii2-redactor": "^2.0",
     "giannisdag/yii2-check-login-attempts": "^1.1",
     "kartik-v/yii2-money": "^1.2",
-    "ext-http": "*"
+    "kartik-v/yii2-widget-colorinput": "^1.0"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",
