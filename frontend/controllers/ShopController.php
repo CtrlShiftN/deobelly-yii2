@@ -67,22 +67,15 @@ class ShopController extends Controller
 
     public function actionProductDetail()
     {
-        if (isset($_REQUEST['detail'])) {
-            $detailID = CryptHelper::decryptString($_REQUEST['detail']);
+        $getParamDetail = ParamHelper::getParamValue('detail');
+        if (!empty($getParamDetail)) {
+            $detailID = CryptHelper::decryptString($getParamDetail);
             $productDetail = Product::getProductById($detailID);
             $otherProductDetail = Product::getProductOther($detailID);
-            $bestSellers = Product::getBestSellingProduct($detailID);
-            $bestSellersMb = Product::getBestSellingProductMb($detailID);
-            $onSale = Product::getOnSaleProduct($detailID);
-            $onSaleMb = Product::getOnSaleProductMb($detailID);
             if (!empty($productDetail)) {
                 return $this->render('product-detail', [
                     'detail' => $productDetail,
                     'other' => $otherProductDetail,
-                    'bestSellers' => $bestSellers,
-                    'bestSellersMb' => $bestSellersMb,
-                    'onSale' => $onSale,
-                    'onSaleMb' => $onSaleMb
                 ]);
             } else {
                 return $this->render('index');

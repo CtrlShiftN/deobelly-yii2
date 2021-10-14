@@ -154,7 +154,7 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
 <div class="full-width ">
     <div class="row m-0 px-0 px-md-5">
         <div class="w-100 row p-0 m-0 d-none d-sm-flex">
-            <?php foreach ($bestSellers as $key => $value): ?>
+            <?php foreach (\frontend\models\Product::getBestSellingProduct($detail['id'],6) as $key => $value): ?>
                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3 col-xxl-2 mx-0 py-3 position-relative product-card overflow-hidden">
                     <div class="position-relative overflow-hidden w-100 img-shadow">
                         <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
@@ -197,7 +197,7 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
             </i>
         </div>
         <div class="w-100 row p-0 m-0 d-sm-none">
-            <?php foreach ($bestSellersMb as $key => $value): ?>
+            <?php foreach (\frontend\models\Product::getBestSellingProduct($detail['id'],3) as $key => $value): ?>
                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3 col-xxl-2 mx-0 py-3 position-relative product-card overflow-hidden">
                     <div class="position-relative overflow-hidden w-100 img-shadow">
                         <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
@@ -249,7 +249,7 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
 <div class="full-width pb-5">
     <div class="row m-0 px-0 px-md-5">
         <div class="w-100 row p-0 m-0 d-none d-sm-flex">
-            <?php foreach ($onSale as $key => $value): ?>
+            <?php foreach (\frontend\models\Product::getOnSaleProduct($detail['id'],6) as $key => $value): ?>
                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3 col-xxl-2 mx-0 py-3 position-relative product-card overflow-hidden">
                     <div class="position-relative overflow-hidden w-100 img-shadow">
                         <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
@@ -292,7 +292,7 @@ $this->registerCssFile(Url::toRoute("css/easyzoom.css"));
             </i>
         </div>
         <div class="w-100 row p-0 m-0 d-sm-none">
-            <?php foreach ($onSaleMb as $key => $value): ?>
+            <?php foreach (\frontend\models\Product::getOnSaleProduct($detail['id'],3) as $key => $value): ?>
                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3 col-xxl-2 mx-0 py-3 position-relative product-card overflow-hidden">
                     <div class="position-relative overflow-hidden w-100 img-shadow">
                         <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
