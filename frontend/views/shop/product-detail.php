@@ -128,14 +128,14 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
             <div class="accordion p-0" id="accordionInformation">
                 <div class="accordion-item border-0">
                     <h2 class="accordion-header" id="headingInf">
-                        <button class="fs-6 accordion-button text-uppercase bg-white fw-bold text-dark px-0 rounded-0 border-bottom border-dark collapsed"
+                        <button class="fs-6 accordion-button text-uppercase bg-white fw-bold text-dark px-0 rounded-0 border-bottom border-dark"
                                 type="button" data-bs-toggle="collapse" data-bs-target="#collapseInf"
-                                aria-expanded="false"
+                                aria-expanded="true"
                                 aria-controls="collapseInf">
                             chi tiết sản phẩm
                         </button>
                     </h2>
-                    <div id="collapseInf" class="accordion-collapse collapse" aria-labelledby="headingInf"
+                    <div id="collapseInf" class="accordion-collapse collapse show" aria-labelledby="headingInf"
                          data-bs-parent="#accordionInformation">
                         <div class="accordion-body fw-light">
                             <?= $detail['description'] ?>
@@ -144,6 +144,12 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                 </div>
             </div>
         </div>
+        <div class="w-100 my-3 mx-0 d-flex">
+            <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i class="fas fa-phone-alt"></i> hotline</a>
+            <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i class="fas fa-comments"></i> Chat Online</a>
+            <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i class="fas fa-share-alt"></i> Chia sẻ</a>
+        </div>
+
     </div>
 </div>
 <div class="w-100 my-2 mx-0 px-md-5">
