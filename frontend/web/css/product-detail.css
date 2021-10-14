@@ -85,10 +85,6 @@ h2 {
     max-width: 100%;
 }
 
-#btnAdd, #btnBuyNow {
-    border-radius: unset;
-}
-
 #amountInput {
     width: 72px;
     border: none !important;
@@ -133,7 +129,7 @@ h2 {
     height: 46px;
     box-sizing: border-box;
     padding: 6px 7px !important;
-    border-radius: unset;
+    border-radius: unset !important;
     margin: 0 10px 7px 0;
 }
 
@@ -156,20 +152,15 @@ h2 {
 
 .btn-size-selected {
     background-color: #000 !important;
-    color: #fff;
+    color: #fff !important;
 }
 
 .btn-size-selected:hover {
     color: #fff;
 }
 
-#btnAdd, #btnBuyNow {
+#btnBuyNow {
     border-radius: unset;
-}
-
-#btnAdd {
-    background-color: white !important;
-    color: black !important;
 }
 
 .accordion-button:not(.collapsed) {
@@ -217,6 +208,12 @@ h2 {
     }
 }
 
+@media (min-width: 1400px) {
+    .col-xxl-2_4 {
+        flex: 0 0 auto !important;
+        width: 20% !important;
+    }
+}
 
 .product-img {
     width: 100%;
