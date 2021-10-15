@@ -197,7 +197,7 @@ AppAsset::register($this);
                         </li>
                         <li class="nav-item">
                             <a href="<?= Url::toRoute('size/') ?>" class="nav-link <?= ($controller == 'size') ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-palette"></i>
+                                <i class="nav-icon fas fa-ruler-combined"></i>
                                 <p><?= Yii::t('app', 'Size') ?></p>
                             </a>
                         </li>
