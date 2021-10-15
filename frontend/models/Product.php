@@ -4,6 +4,7 @@ namespace frontend\models;
 
 use common\components\SystemConstant;
 use Yii;
+use yii\db\Expression;
 use yii\db\Query;
 
 /**
@@ -118,5 +119,50 @@ class Product extends \common\models\Product
             $query->andWhere(['product_assoc.category_id' => $productCategory]);
         }
         return $query;
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public static function getProductById($id)
+    {
+        $query = (new Query())->select(
+            [
+                'product.*',
+                'product_assoc.type_id as assoc_type_id',
+                'product_assoc.color_id as assoc_color_id',
+                'product_assoc.size_id as assoc_size_id',
+            ]
+        )->from('product')
+            ->leftJoin('product_assoc', 'product_assoc.product_id = product.id')
+            ->where(['product.status' => 1, 'product.id' => $id]);
+        return $query->one();
+    }
+
+    /**
+     * @param $otherId
+     * @param $type
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getProductOther($otherId)
+    {
+        return Product::find()->where(['status' => 1])->andWhere(['not', ['id' => $otherId]])->orderBy(new Expression('rand()'))->limit(6)->all();
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getBestSellingProduct($otherId, $limit)
+    {
+        return Product::find()->where(['status' => 1])->andWhere(['not', ['id' => $otherId]])->orderBy(['sold DESC'])->orderBy(new Expression('rand()'))->limit($limit)->all();
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getOnSaleProduct($otherId, $limit)
+    {
+        return Product::find()->where(['status' => 1])->andWhere(['not', ['id' => $otherId]])->andWhere(['not', ['sale_price' => null]])->orderBy(new Expression('rand()'))->limit($limit)->all();
     }
 }
