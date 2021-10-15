@@ -16,8 +16,8 @@ class m211013_142705_create_order_table extends Migration
             'id' => $this->primaryKey(),
             'user_id' => $this->bigInteger()->notNull(),
             'product_id' => $this->bigInteger()->notNull(),
-            'color' => $this->string()->null(),
-            'size' => $this->string()->null(),
+            'color_id' => $this->smallInteger()->null(),
+            'size_id' => $this->smallInteger()->null(),
             'quantity' => $this->integer()->notNull(),
             'province' => $this->string()->notNull(),
             'district' => $this->string()->notNull(),
@@ -30,6 +30,8 @@ class m211013_142705_create_order_table extends Migration
         ]);
         $this->createIndex('order_user_id_index','order','user_id');
         $this->createIndex('order_product_id_index','order','product_id');
+        $this->createIndex('order_color_id_index','order','color_id');
+        $this->createIndex('order_size_id_index','order','size_id');
     }
 
     /**
@@ -39,6 +41,8 @@ class m211013_142705_create_order_table extends Migration
     {
         $this->dropIndex('order_user_id_index','order');
         $this->dropIndex('order_product_id_index','order');
+        $this->dropIndex('order_color_id_index','order');
+        $this->dropIndex('order_size_id_index','order');
         $this->dropTable('{{%order}}');
     }
 }

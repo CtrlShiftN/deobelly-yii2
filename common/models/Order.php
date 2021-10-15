@@ -10,8 +10,8 @@ use Yii;
  * @property int $id
  * @property int $user_id
  * @property int $product_id
- * @property string|null $color
- * @property string|null $size
+ * @property int|null $color_id
+ * @property int|null $size_id
  * @property int $quantity
  * @property string $province
  * @property string $district
@@ -39,9 +39,9 @@ class Order extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'product_id', 'quantity', 'province', 'district', 'village', 'specific_address', 'tel'], 'required'],
-            [['user_id', 'product_id', 'quantity', 'status'], 'integer'],
+            [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['color', 'size', 'province', 'district', 'village', 'specific_address', 'tel'], 'string', 'max' => 255],
+            [['province', 'district', 'village', 'specific_address', 'tel'], 'string', 'max' => 255],
         ];
     }
 
@@ -54,8 +54,8 @@ class Order extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User ID'),
             'product_id' => Yii::t('app', 'Product ID'),
-            'color' => Yii::t('app', 'Color'),
-            'size' => Yii::t('app', 'Size'),
+            'color_id' => Yii::t('app', 'Color ID'),
+            'size_id' => Yii::t('app', 'Size ID'),
             'quantity' => Yii::t('app', 'Quantity'),
             'province' => Yii::t('app', 'Province'),
             'district' => Yii::t('app', 'District'),

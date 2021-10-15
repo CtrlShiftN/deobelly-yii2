@@ -1216,8 +1216,8 @@ class SampleData
         [
             'user_id' => 4,
             'product_id' => '7',
-            'color' => 'White',
-            'size' => 'XL',
+            'color_id' => 1,
+            'size_id' => 6,
             'quantity' => 3,
         ],
     ];
@@ -1232,11 +1232,11 @@ class SampleData
             $cart = new Cart();
             $cart->user_id = $value['user_id'];
             $cart->product_id = $value['product_id'];
-            if (!empty($value['color'])) {
-                $cart->color = $value['color'];
+            if (!empty($value['color_id'])) {
+                $cart->color_id = $value['color_id'];
             }
-            if (!empty($value['size'])) {
-                $cart->size = $value['size'];
+            if (!empty($value['size_id'])) {
+                $cart->size_id = $value['size_id'];
             }
             $cart->quantity = $value['quantity'];
             $cart->created_at = date('Y-m-d H:m:s');
@@ -1255,8 +1255,8 @@ class SampleData
         [
             'user_id' => 4,
             'product_id' => '7',
-            'color' => 'White',
-            'size' => 'XL',
+            'color_id' => 1,
+            'size_id' => 6,
             'quantity' => 3,
             'province' => 'Thái Bình',
             'district' => 'Huyện Hưng Hà',
@@ -1267,8 +1267,8 @@ class SampleData
         [
             'user_id' => 4,
             'product_id' => '8',
-            'color' => 'White',
-            'size' => 'L',
+            'color_id' => 1,
+            'size_id' => 5,
             'quantity' => 1,
             'province' => 'Thái Bình',
             'district' => 'Huyện Hưng Hà',
@@ -1279,8 +1279,8 @@ class SampleData
         [
             'user_id' => 4,
             'product_id' => '5',
-            'color' => 'Black',
-            'size' => 'XL',
+            'color_id' => 2,
+            'size_id' => 6,
             'quantity' => 6,
             'province' => 'Thái Bình',
             'district' => 'Huyện Hưng Hà',
@@ -1291,8 +1291,8 @@ class SampleData
         [
             'user_id' => 4,
             'product_id' => '3',
-            'color' => 'Black',
-            'size' => 'M',
+            'color_id' => 2,
+            'size_id' => 4,
             'quantity' => 1,
             'province' => 'Hà Nội',
             'district' => 'Cầu Giấy',
@@ -1303,8 +1303,8 @@ class SampleData
         [
             'user_id' => 5,
             'product_id' => '8',
-            'color' => 'Black',
-            'size' => 'L',
+            'color_id' => 2,
+            'size_id' => 5,
             'quantity' => 1,
             'province' => 'Hà Nội',
             'district' => 'Cầu Giấy',
@@ -1315,8 +1315,8 @@ class SampleData
         [
             'user_id' => 5,
             'product_id' => '6',
-            'color' => 'Black',
-            'size' => 'S',
+            'color_id' => 2,
+            'size_id' => 3,
             'quantity' => 2,
             'province' => 'Hà Nội',
             'district' => 'Cầu Giấy',
@@ -1327,8 +1327,8 @@ class SampleData
         [
             'user_id' => 5,
             'product_id' => '8',
-            'color' => 'Black',
-            'size' => 'XL',
+            'color_id' => 2,
+            'size_id' => 6,
             'quantity' => 1,
             'province' => 'Hà Nội',
             'district' => 'Cầu Giấy',
@@ -1339,8 +1339,8 @@ class SampleData
         [
             'user_id' => 5,
             'product_id' => '4',
-            'color' => 'Black',
-            'size' => 'XL',
+            'color_id' => 2,
+            'size_id' => 6,
             'quantity' => 1,
             'province' => 'Hà Nội',
             'district' => 'Cầu Giấy',
@@ -1360,11 +1360,11 @@ class SampleData
             $order = new Order();
             $order->user_id = $value['user_id'];
             $order->product_id = $value['product_id'];
-            if (!empty($value['color'])) {
-                $order->color = $value['color'];
+            if (!empty($value['color_id'])) {
+                $order->color_id = $value['color_id'];
             }
-            if (!empty($value['size'])) {
-                $order->size = $value['size'];
+            if (!empty($value['size_id'])) {
+                $order->size_id = $value['size_id'];
             }
             $order->quantity = $value['quantity'];
             $order->province = $value['province'];

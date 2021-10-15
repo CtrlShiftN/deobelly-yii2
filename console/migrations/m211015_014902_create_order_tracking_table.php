@@ -16,7 +16,7 @@ class m211015_014902_create_order_tracking_table extends Migration
             'id' => $this->primaryKey(),
             'order_id' => $this->bigInteger()->notNull(),
             'admin_id' => $this->bigInteger()->notNull(),
-            'action' => $this->smallInteger()->defaultValue(0)->comment('0 - new,1 - processing,2 - approved,3 - shipping,4 - finished,5- cancelled,6 - expired,7 - returned,8 - postpone,9 - rejected,10 - failed,11 - fake'),
+            'action' => $this->smallInteger()->notNull()->defaultValue(0)->comment('0 - new,1 - processing,2 - approved,3 - shipping,4 - finished,5- cancelled,6 - expired,7 - returned,8 - postpone,9 - rejected,10 - failed,11 - fake'),
             'created_at' => $this->dateTime(),
             'updated_at' => $this->dateTime(),
         ]);

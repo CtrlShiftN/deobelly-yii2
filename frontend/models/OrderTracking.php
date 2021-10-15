@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace frontend\models;
 
 use Yii;
 
@@ -14,7 +14,7 @@ use Yii;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class OrderTracking extends \yii\db\ActiveRecord
+class OrderTracking extends \common\models\OrderTracking
 {
     /**
      * {@inheritdoc}

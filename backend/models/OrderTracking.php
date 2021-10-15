@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property int $order_id
  * @property int $admin_id
- * @property int|null $action 0 - new,1 - processing,2 - approved,3 - shipping,4 - finished,5- cancelled,6 - expired,7 - returned,8 - postpone,9 - rejected,10 - failed,11 - fake
+ * @property int $action 0 - new,1 - processing,2 - approved,3 - shipping,4 - finished,5- cancelled,6 - expired,7 - returned,8 - postpone,9 - rejected,10 - failed,11 - fake
  * @property string|null $created_at
  * @property string|null $updated_at
  */
