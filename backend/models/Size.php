@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\components\helpers\StringHelper;
 use common\components\SystemConstant;
 use Yii;
 
@@ -36,7 +37,16 @@ class Size extends \common\models\Size
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug'], 'string', 'max' => 255],
             [['slug'], 'unique'],
+            ['name', 'checkDuplicatedSlug']
         ];
+    }
+
+    public function checkDuplicatedSlug()
+    {
+        $color = Size::find()->where(['slug' => StringHelper::toSlug($this->name)])->asArray()->all();
+        if ($color) {
+            $this->addError('name', Yii::t('app', 'This name has already been used.'));
+        }
     }
 
     /**
@@ -55,7 +65,35 @@ class Size extends \common\models\Size
         ];
     }
 
-    public static function getAllSize(){
+    public static function getAllSize()
+    {
         return \common\models\Size::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
+    }
+
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
+    public static function updateSizeName($id, $attribute, $value)
+    {
+        $slug = StringHelper::toSlug($value);
+        return \common\models\Size::updateAll([$attribute => $value, 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $id]);
+    }
+
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
+    public static function updateSizeStatus($id, $attribute, $value)
+    {
+        return \common\models\Size::updateAll([
+            $attribute => $value,
+            'updated_at' => date('Y-m-d H:i:s'),
+            'admin_id' => Yii::$app->user->identity->getId()
+        ], ['id' => $id]);
     }
 }

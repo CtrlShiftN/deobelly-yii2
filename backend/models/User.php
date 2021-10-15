@@ -41,10 +41,10 @@ class User extends \common\models\User
             [['tel'], 'string', 'max' => 12],
             ['tel', 'validateTel'],
             [['auth_key'], 'string', 'max' => 32],
-            [['username'], 'unique'],
-            [['email'], 'unique'],
-            [['referral_code'], 'unique'],
-            [['password_reset_token'], 'unique'],
+            [['username'], 'unique', 'targetClass' => User::className()],
+            [['email'], 'unique', 'targetClass' => User::className()],
+            [['referral_code'], 'unique', 'targetClass' => User::className()],
+            [['password_reset_token'], 'unique', 'targetClass' => User::className()],
         ];
     }
 
@@ -73,14 +73,15 @@ class User extends \common\models\User
         ];
     }
 
-    public function validateTel($attribute, $params, $validator){
-        if (!preg_match('/^(84|0[1-9])+([0-9]{8})$/', $this->tel)){
+    public function validateTel($attribute, $params, $validator)
+    {
+        if (!preg_match('/^(84|0[1-9])+([0-9]{8})$/', $this->tel)) {
             $this->addError($attribute, Yii::t('app', 'Invalid phone number.'));
         }
     }
 
     public static function updateUser($id, $attribute, $value)
     {
-        return \common\models\User::updateAll([$attribute=>$value],['id'=>$id]);
+        return \common\models\User::updateAll([$attribute => $value], ['id' => $id]);
     }
 }
