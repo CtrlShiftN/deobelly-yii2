@@ -30,7 +30,7 @@ class OrderTracking extends \common\models\OrderTracking
     public function rules()
     {
         return [
-            [['order_id', 'admin_id'], 'required'],
+            [['order_id', 'admin_id', 'action'], 'required'],
             [['order_id', 'admin_id', 'action'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
         ];

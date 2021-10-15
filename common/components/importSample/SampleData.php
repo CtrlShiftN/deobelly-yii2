@@ -1406,22 +1406,22 @@ class SampleData
             'action' => 0,
         ],
         [
-            'order_id' => 1,
+            'order_id' => 5,
             'admin_id' => '1',
             'action' => 4,
         ],
         [
-            'order_id' => 2,
+            'order_id' => 6,
             'admin_id' => '1',
             'action' => 5,
         ],
         [
-            'order_id' => 3,
+            'order_id' => 7,
             'admin_id' => '1',
             'action' => 10,
         ],
         [
-            'order_id' => 4,
+            'order_id' => 8,
             'admin_id' => '1',
             'action' => 1,
         ],
@@ -1437,9 +1437,7 @@ class SampleData
             $orderTracking = new OrderTracking();
             $orderTracking->order_id = $value['order_id'];
             $orderTracking->admin_id = $value['admin_id'];
-            if (!empty($value['action'])) {
-                $orderTracking->action = $value['action'];
-            }
+            $orderTracking->action = $value['action'];
             $orderTracking->created_at = date('Y-m-d H:m:s');
             $orderTracking->updated_at = date('Y-m-d H:m:s');
             if ($orderTracking->save()) {
