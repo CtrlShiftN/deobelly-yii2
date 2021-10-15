@@ -63,10 +63,10 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
         <span class="mt-3 mb-2 fs-3 m-0 fw-bolder text-uppercase d-block"><?= $detail['name'] ?> <span
                     class="badge rounded-0 bg-danger" id="outOfStock">Hết hàng</span></span>
         <?php if (!empty($detail['sale_price'])): ?>
-            <span class="my-2  fs-4 m-0 fw-bolder d-block"><span
-                        class="fw-light text-decoration-line-through"><?= number_format($detail['regular_price'], 0, ',', '.') ?>đ</span> <?= number_format($detail['selling_price'], 0, ',', '.') ?>đ</span>
+            <span class="my-2 fs-4 m-0 fw-bolder d-block text-danger"><span
+                        class="fw-light text-decoration-line-through text-dark"><?= number_format($detail['regular_price'], 0, ',', '.') ?>đ</span> <?= number_format($detail['selling_price'], 0, ',', '.') ?>đ</span>
         <?php else: ?>
-            <span class="my-2  fs-4 m-0 fw-bolder d-block"><?= number_format($detail['selling_price'], 0, ',', '.') ?>đ</span>
+            <span class="my-2 fs-4 m-0 fw-bolder d-block text-danger"><?= number_format($detail['selling_price'], 0, ',', '.') ?>đ</span>
         <?php endif; ?>
         <div class="w-100 my-3">
             <span class="fw-light fs-5 d-block mb-2">Color: <span id="color"></span></span>
@@ -124,6 +124,22 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
             </div>
             <small id="notify" class="text-danger"></small>
         </div>
+        <ul class="w-100 py-3 mx-0 px-0 list-unstyled">
+            <li class="d-flex my-2">
+               <img src="<?= Url::toRoute('img/box_ico.png') ?>" class="me-3 my-auto">
+                <p class="p-0 m-0 fw-light">Cam kết 100% chính hãng</p>
+            </li>
+            <li class="d-flex my-3">
+               <img src="<?= Url::toRoute('img/product_deliverly_ico.png') ?>" class="me-3 my-auto">
+                <p class="p-0 m-0 fw-light">Giao hàng dự kiến:<br>
+                    <span class="fw-bold">Thứ 2 - Thứ 6 từ 9h00 - 17h00</span></p>
+            </li>
+            <li class="d-flex my-2">
+               <img src="<?= Url::toRoute('img/tel_ico.png') ?>" class="me-3 my-auto">
+                <p class="p-0 m-0 fw-light">Hỗ trợ 24/7<br>
+                    Với các kênh chat, email & phone</p>
+            </li>
+        </ul>
         <div class="w-100 my-2 mx-0">
             <div class="accordion p-0" id="accordionInformation">
                 <div class="accordion-item border-0">
@@ -170,7 +186,7 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                         </div>
                         <div class="pr-inf px-2 px-lg-1 px-xl-2 py-2 w-100 border-top">
                             <?php if (!empty($value['sale_price'])): ?>
-                                <span class="px-0 fw-bold mt-2 p-price">
+                                <span class="px-0 fw-bold mt-2 p-price text-danger">
                                     <span class="text-decoration-line-through text-dark fw-light fs-regular-price"><?= number_format($value['regular_price'], 0, ',', '.') ?>đ</span> <?= number_format($value['selling_price'], 0, ',', '.') ?>đ
                                 </span>
                             <?php else: ?>
@@ -220,7 +236,7 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                         </div>
                         <div class="pr-inf px-2 px-lg-1 px-xl-2 py-2 w-100 border-top">
                             <?php if (!empty($value['sale_price'])): ?>
-                                <span class="px-0 fw-bold mt-2 p-price">
+                                <span class="px-0 fw-bold mt-2 p-price text-danger">
                                     <span class="text-decoration-line-through text-dark fw-light fs-regular-price"><?= number_format($value['regular_price'], 0, ',', '.') ?>đ</span> <?= number_format($value['selling_price'], 0, ',', '.') ?>đ
                                 </span>
                             <?php else: ?>

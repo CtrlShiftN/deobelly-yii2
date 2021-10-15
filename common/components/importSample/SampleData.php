@@ -28,7 +28,7 @@ class SampleData
         [
             'email' => 'admin.deobelly@gmail.com',
             'password_hash' => 'Iamadmin@1234',
-            'name' => "I'm Admin",
+            'name' => "Admin",
             'tel' => '0364752421',
             'username' => 'admin',
             'role' => User::ROLE_ADMIN,
@@ -36,7 +36,7 @@ class SampleData
         [
             'email' => 'editor.deobelly@gmail.com',
             'password_hash' => 'Iameditor@1234',
-            'name' => "I'm Writer God",
+            'name' => "Writer God",
             'tel' => '0334517566',
             'username' => 'editor',
             'role' => User::ROLE_EDITOR,
@@ -44,7 +44,7 @@ class SampleData
         [
             'email' => 'sale.deobelly@gmail.com',
             'password_hash' => 'Iamsale@1234',
-            'name' => "I'm Sale",
+            'name' => "Sale",
             'tel' => '0345678910',
             'username' => 'sale',
             'role' => User::ROLE_SALE,
@@ -52,9 +52,17 @@ class SampleData
         [
             'email' => 'customer.deobelly@gmail.com',
             'password_hash' => 'Iamcustomer@1234',
-            'name' => "I'm Customer",
+            'name' => "Customer",
             'tel' => '0333333333',
             'username' => 'customer',
+            'role' => User::ROLE_USER,
+        ],
+        [
+            'email' => 'customer2.deobelly@gmail.com',
+            'password_hash' => 'Iamcustomer@1234',
+            'name' => "Customer2",
+            'tel' => '0339583763',
+            'username' => 'customer2',
             'role' => User::ROLE_USER,
         ]
     ];
