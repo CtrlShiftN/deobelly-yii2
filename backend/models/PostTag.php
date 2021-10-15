@@ -35,7 +35,16 @@ class PostTag extends \yii\db\ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['title', 'slug'], 'string', 'max' => 255],
             [['slug'], 'unique'],
+            ['slug', 'checkDuplicatedSlug']
         ];
+    }
+
+    public function checkDuplicatedSlug()
+    {
+        $color = PostTag::find()->where(['slug' => StringHelper::toSlug($this->title)])->asArray()->all();
+        if ($color) {
+            $this->addError('name', Yii::t('app', 'This title has already been used.'));
+        }
     }
 
     /**

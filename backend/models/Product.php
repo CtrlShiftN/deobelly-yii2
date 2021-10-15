@@ -71,7 +71,16 @@ class Product extends \common\models\Product
             [['color', 'size', 'type', 'category', 'relatedProduct'], 'safe'],
             [['color', 'size', 'type', 'category'], 'required'],
             ['quantity', 'integer', 'min' => 1],
+            ['slug', 'checkDuplicatedSlug']
         ];
+    }
+
+    public function checkDuplicatedSlug()
+    {
+        $color = Product::find()->where(['slug' => StringHelper::toSlug($this->name)])->asArray()->all();
+        if ($color) {
+            $this->addError('title', Yii::t('app', 'This name has already been used.'));
+        }
     }
 
     /**
@@ -121,7 +130,7 @@ class Product extends \common\models\Product
     public static function updateProductTitle($id, $attribute, $value)
     {
         $slug = StringHelper::toSlug($value);
-        return \common\models\Product::updateAll([$attribute => $value, 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
+        return \common\models\Product::updateAll([$attribute => $value, 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $id]);
     }
 
     /**
@@ -132,13 +141,14 @@ class Product extends \common\models\Product
      */
     public static function updateProductAttr($id, $attribute, $value)
     {
-        return \common\models\Product::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
+        return \common\models\Product::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $id]);
     }
 
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getAllProduct(){
-        return Product::find()->where(['status'=>SystemConstant::STATUS_ACTIVE])->asArray()->all();
+    public static function getAllProduct()
+    {
+        return Product::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
     }
 }

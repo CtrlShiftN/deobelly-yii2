@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\components\helpers\StringHelper;
 use common\components\SystemConstant;
 use Yii;
 
@@ -36,7 +37,16 @@ class Trademark extends \common\models\Trademark
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug'], 'string', 'max' => 255],
             [['slug'], 'unique'],
+            ['slug', 'checkDuplicatedSlug']
         ];
+    }
+
+    public function checkDuplicatedSlug()
+    {
+        $color = Trademark::find()->where(['slug' => StringHelper::toSlug($this->name)])->asArray()->all();
+        if ($color) {
+            $this->addError('title', Yii::t('app', 'This name has already been used.'));
+        }
     }
 
     /**
@@ -58,7 +68,8 @@ class Trademark extends \common\models\Trademark
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getAllTrademark(){
+    public static function getAllTrademark()
+    {
         return \common\models\Trademark::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
     }
 }

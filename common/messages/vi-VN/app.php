@@ -286,4 +286,8 @@ return [
     'Black' => 'Màu đen',
     'Color Code' => 'Mã Màu',
     'Select color...' => 'Chọn màu...',
+    'Add New Size' => 'Thêm Kích Cỡ',
+    'Size List' => 'Danh Sách Kích Cỡ',
+    'This name has already been used.' => 'Tên này đã được sử dụng.',
+    'This title has already been used.' => 'Tiêu đề này đã được sử dụng.',
 ];

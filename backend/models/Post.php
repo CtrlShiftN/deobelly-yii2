@@ -72,6 +72,6 @@ class Post extends \common\models\Post
 
     public static function updatePost($id, $attribute, $value)
     {
-        return \common\models\Post::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
+        return \common\models\Post::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $id]);
     }
 }
