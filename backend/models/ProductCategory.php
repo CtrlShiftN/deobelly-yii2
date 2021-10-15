@@ -21,6 +21,7 @@ use Yii;
 class ProductCategory extends \common\models\ProductCategory
 {
     public $types;
+
     /**
      * {@inheritdoc}
      */
@@ -40,7 +41,16 @@ class ProductCategory extends \common\models\ProductCategory
             [['created_at', 'updated_at', 'types'], 'safe'],
             [['name', 'slug', 'type_id'], 'string', 'max' => 255],
             [['slug'], 'unique'],
+            ['slug', 'checkDuplicatedSlug']
         ];
+    }
+
+    public function checkDuplicatedSlug()
+    {
+        $color = ProductCategory::find()->where(['slug' => StringHelper::toSlug($this->name)])->asArray()->all();
+        if ($color) {
+            $this->addError('title', Yii::t('app', 'This name has already been used.'));
+        }
     }
 
     /**
@@ -70,7 +80,7 @@ class ProductCategory extends \common\models\ProductCategory
     public static function updateProductCategoryTitle($id, $attribute, $value)
     {
         $slug = StringHelper::toSlug($value);
-        return \common\models\ProductCategory::updateAll([$attribute => $value, 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
+        return \common\models\ProductCategory::updateAll([$attribute => $value, 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $id]);
     }
 
     /**
@@ -79,14 +89,16 @@ class ProductCategory extends \common\models\ProductCategory
      * @param $value
      * @return int
      */
-    public static function updateProductCategoryStatus($id, $attribute, $value){
-        return \common\models\ProductCategory::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
+    public static function updateProductCategoryStatus($id, $attribute, $value)
+    {
+        return \common\models\ProductCategory::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $id]);
     }
 
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getAllProductCategory(){
-        return \common\models\ProductCategory::find()->where(['status'=>SystemConstant::STATUS_ACTIVE])->asArray()->all();
+    public static function getAllProductCategory()
+    {
+        return \common\models\ProductCategory::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
     }
 }

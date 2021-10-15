@@ -35,7 +35,16 @@ class PostCategory extends \yii\db\ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['title', 'slug'], 'string', 'max' => 255],
             [['slug'], 'unique'],
+            ['slug', 'checkDuplicatedSlug']
         ];
+    }
+
+    public function checkDuplicatedSlug()
+    {
+        $color = PostCategory::find()->where(['slug' => StringHelper::toSlug($this->title)])->asArray()->all();
+        if ($color) {
+            $this->addError('title', Yii::t('app', 'This title has already been used.'));
+        }
     }
 
     /**
@@ -51,18 +60,6 @@ class PostCategory extends \yii\db\ActiveRecord
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
-    }
-
-    /**
-     * @param $attribute
-     * @param $params
-     * @param $validator
-     */
-    public function checkDuplicateSlug($attribute, $params, $validator)
-    {
-        if (\common\models\PostCategory::findOne(['slug' => StringHelper::toSlug($this->title)])) {
-            $this->addError($attribute, 'Danh mục đã tồn tại.');
-        }
     }
 
 
@@ -84,7 +81,8 @@ class PostCategory extends \yii\db\ActiveRecord
      * @param $value
      * @return int
      */
-    public static function updatePostCategoryStatus($id, $attribute, $value){
+    public static function updatePostCategoryStatus($id, $attribute, $value)
+    {
         return \common\models\PostCategory::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
     }
 }

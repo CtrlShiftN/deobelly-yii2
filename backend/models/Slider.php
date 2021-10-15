@@ -69,6 +69,6 @@ class Slider extends \common\models\Slider
      */
     public static function updateSlider($id, $attribute, $value)
     {
-        return \common\models\Slider::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
+        return \common\models\Slider::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $id]);
     }
 }

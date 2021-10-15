@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\components\encrypt\CryptHelper;
 use common\components\helpers\ParamHelper;
+use frontend\models\Product;
 use frontend\models\ProductCategory;
 use frontend\models\ProductType;
 use frontend\models\Slider;
@@ -62,5 +63,26 @@ class ShopController extends Controller
         return $this->render('product', [
             'productType' => $getProductType,
         ]);
+    }
+
+    public function actionProductDetail()
+    {
+        $getParamDetail = ParamHelper::getParamValue('detail');
+        if (!empty($getParamDetail)) {
+            $detailID = CryptHelper::decryptString($getParamDetail);
+            $productDetail = Product::getProductById($detailID);
+            $otherProductDetail = Product::getProductOther($detailID);
+            if (!empty($productDetail)) {
+                return $this->render('product-detail', [
+                    'detail' => $productDetail,
+                    'other' => $otherProductDetail,
+                ]);
+            } else {
+                return $this->render('index');
+            }
+        } else {
+            return $this->render('index');
+        }
+
     }
 }

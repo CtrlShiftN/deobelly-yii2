@@ -2,8 +2,8 @@
 
 namespace backend\controllers;
 
-use backend\models\Color;
-use backend\models\ColorSearch;
+use backend\models\Size;
+use backend\models\SizeSearch;
 use common\components\encrypt\CryptHelper;
 use common\components\helpers\StringHelper;
 use common\components\SystemConstant;
@@ -15,9 +15,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ColorController implements the CRUD actions for Color model.
+ * SizeController implements the CRUD actions for Size model.
  */
-class ColorController extends Controller
+class SizeController extends Controller
 {
     /**
      * @inheritDoc
@@ -61,33 +61,33 @@ class ColorController extends Controller
     }
 
     /**
-     * Lists all Color models.
+     * Lists all Size models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ColorSearch();
+        $searchModel = new SizeSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
         if (Yii::$app->request->post('hasEditable')) {
-            // which rows has been edited?
-            $_id = $_POST['editableKey'];
-            $_index = $_POST['editableIndex'];
-            // which attribute has been edited?
-            $attribute = $_POST['editableAttribute'];
-            if ($attribute == 'name') {
-                // update to db
-                $value = $_POST['Color'][$_index][$attribute];
-                $result = Color::updateColorName($_id, $attribute, $value);
-                // response to gridview
-                return json_encode($result);
-            } elseif ($attribute == 'status') {
-                // update to db
-                $value = $_POST['Color'][$_index][$attribute];
-                $result = Color::updateColorStatus($_id, $attribute, $value);
-                // response to gridview
-                return json_encode($result);
-            }
+        // which rows has been edited?
+        $_id = $_POST['editableKey'];
+        $_index = $_POST['editableIndex'];
+        // which attribute has been edited?
+        $attribute = $_POST['editableAttribute'];
+        if ($attribute == 'name') {
+            // update to db
+            $value = $_POST['Size'][$_index][$attribute];
+            $result = Size::updateSizeName($_id, $attribute, $value);
+            // response to gridview
+            return json_encode($result);
+        } elseif ($attribute == 'status') {
+            // update to db
+            $value = $_POST['Size'][$_index][$attribute];
+            $result = Size::updateSizeStatus($_id, $attribute, $value);
+            // response to gridview
+            return json_encode($result);
         }
+    }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -96,7 +96,7 @@ class ColorController extends Controller
     }
 
     /**
-     * Displays a single Color model.
+     * Displays a single Size model.
      * @param int $id ID
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -110,13 +110,13 @@ class ColorController extends Controller
     }
 
     /**
-     * Creates a new Color model.
+     * Creates a new Size model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Color();
+        $model = new Size();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
@@ -126,7 +126,7 @@ class ColorController extends Controller
                 $model->status = SystemConstant::STATUS_ACTIVE;
                 $model->admin_id = \Yii::$app->user->identity->getId();
                 if ($model->validate() && $model->save()) {
-                    return $this->redirect(Url::toRoute('color/'));
+                    return $this->redirect(Url::toRoute('size/'));
                 }
             }
         } else {
@@ -139,7 +139,7 @@ class ColorController extends Controller
     }
 
     /**
-     * Updates an existing Color model.
+     * Updates an existing Size model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return mixed
@@ -160,7 +160,7 @@ class ColorController extends Controller
     }
 
     /**
-     * Deletes an existing Color model.
+     * Deletes an existing Size model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return mixed
@@ -175,15 +175,15 @@ class ColorController extends Controller
     }
 
     /**
-     * Finds the Color model based on its primary key value.
+     * Finds the Size model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Color the loaded model
+     * @return Size the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Color::findOne($id)) !== null) {
+        if (($model = Size::findOne($id)) !== null) {
             return $model;
         }
 
