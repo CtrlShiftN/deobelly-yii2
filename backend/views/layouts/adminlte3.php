@@ -190,13 +190,19 @@ AppAsset::register($this);
                         <!-- End Product -->
                         <li class="nav-header text-uppercase font-weight-bold"><?= Yii::t('app', 'Others') ?></li>
                         <li class="nav-item">
-                            <a href="<?= Url::toRoute('contact/') ?>" class="nav-link">
+                            <a href="<?= Url::toRoute('color/') ?>" class="nav-link <?= ($controller == 'color') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-palette"></i>
+                                <p><?= Yii::t('app', 'Color') ?></p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= Url::toRoute('contact/') ?>" class="nav-link <?= ($controller == 'contact') ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-envelope"></i>
                                 <p><?= Yii::t('app', 'Contact') ?></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= Url::toRoute('tool/slider') ?>" class="nav-link">
+                            <a href="<?= Url::toRoute('tool/slider') ?>" class="nav-link <?= ($controller == 'tool') ? 'active' : '' ?>">
                                 <i class="nav-icon fab fa-slideshare"></i>
                                 <p><?= Yii::t('app', 'Slider') ?></p>
                             </a>
