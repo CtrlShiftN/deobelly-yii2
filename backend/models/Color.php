@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\components\helpers\StringHelper;
 use common\components\SystemConstant;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -37,9 +38,18 @@ class Color extends \common\models\Color
             [['status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'color_code'], 'string', 'max' => 255],
-            [['slug'], 'unique'],
-            [['name', 'color_code'], 'required']
+            [['slug'], 'unique', 'targetClass' => \common\models\Color::class],
+            [['name', 'color_code'], 'required'],
+            ['name', 'checkDuplicatedSlug']
         ];
+    }
+
+    public function checkDuplicatedSlug()
+    {
+        $color = Color::find()->where(['slug'=>StringHelper::toSlug($this->name)])->asArray()->all();
+        if ($color){
+            $this->addError('name', Yii::t('app','This name has already been used.'));
+        }
     }
 
     /**
@@ -65,5 +75,32 @@ class Color extends \common\models\Color
     public static function getAllColor()
     {
         return \common\models\Color::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
+    }
+
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
+    public static function updateColorName($id, $attribute, $value)
+    {
+        $slug = StringHelper::toSlug($value);
+        return \common\models\Color::updateAll([$attribute => $value, 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $id]);
+    }
+
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
+    public static function updateColorStatus($id, $attribute, $value)
+    {
+        return \common\models\Color::updateAll([
+            $attribute => $value,
+            'updated_at' => date('Y-m-d H:i:s'),
+            'admin_id' => Yii::$app->user->identity->getId()
+        ], ['id' => $id]);
     }
 }

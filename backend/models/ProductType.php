@@ -39,8 +39,8 @@ class ProductType extends \common\models\ProductType
             [['status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'image'], 'string', 'max' => 255],
-            [['name'], 'unique'],
-            [['slug'], 'unique'],
+            [['name'], 'unique', 'targetClass' => ProductType::className()],
+            [['slug'], 'unique', 'targetClass' => ProductType::className()],
             ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
             ['file', 'required']
         ];
@@ -72,7 +72,7 @@ class ProductType extends \common\models\ProductType
      */
     public static function updateProductType($id, $attribute, $value)
     {
-        return \common\models\ProductType::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
+        return \common\models\ProductType::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $id]);
     }
 
     /**

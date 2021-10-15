@@ -196,13 +196,19 @@ AppAsset::register($this);
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="<?= Url::toRoute('size/') ?>" class="nav-link <?= ($controller == 'size') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-palette"></i>
+                                <p><?= Yii::t('app', 'Size') ?></p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?= Url::toRoute('contact/') ?>" class="nav-link <?= ($controller == 'contact') ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-envelope"></i>
                                 <p><?= Yii::t('app', 'Contact') ?></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= Url::toRoute('tool/slider') ?>" class="nav-link <?= ($controller == 'tool') ? 'active' : '' ?>">
+                            <a href="<?= Url::toRoute('tool/slider') ?>" class="nav-link <?= ($controller == 'tool' && $action == 'slider') ? 'active' : '' ?>">
                                 <i class="nav-icon fab fa-slideshare"></i>
                                 <p><?= Yii::t('app', 'Slider') ?></p>
                             </a>
