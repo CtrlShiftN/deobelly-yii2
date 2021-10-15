@@ -13,7 +13,11 @@ use Yii;
  * @property string|null $color
  * @property string|null $size
  * @property int $quantity
- * @property string $address
+ * @property string $province
+ * @property string $district
+ * @property string $village
+ * @property string $specific_address
+ * @property string $tel
  * @property int|null $status 0 - new,1 - processing,2 - approved,3 - shipping,4 - finished,5- cancelled,6 - expired,7 - returned,8 - postpone,9 - rejected,10 - failed,11 - fake
  * @property string|null $created_at
  * @property string|null $updated_at
@@ -34,10 +38,10 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'product_id', 'quantity', 'address'], 'required'],
+            [['user_id', 'product_id', 'quantity', 'province', 'district', 'village', 'specific_address', 'tel'], 'required'],
             [['user_id', 'product_id', 'quantity', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['color', 'size', 'address'], 'string', 'max' => 255],
+            [['color', 'size', 'province', 'district', 'village', 'specific_address', 'tel'], 'string', 'max' => 255],
         ];
     }
 
@@ -53,7 +57,11 @@ class Order extends \yii\db\ActiveRecord
             'color' => Yii::t('app', 'Color'),
             'size' => Yii::t('app', 'Size'),
             'quantity' => Yii::t('app', 'Quantity'),
-            'address' => Yii::t('app', 'Address'),
+            'province' => Yii::t('app', 'Province'),
+            'district' => Yii::t('app', 'District'),
+            'village' => Yii::t('app', 'Village'),
+            'specific_address' => Yii::t('app', 'Specific Address'),
+            'tel' => Yii::t('app', 'Tel'),
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),

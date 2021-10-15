@@ -3,7 +3,10 @@
 namespace common\components\importsample;
 
 use common\components\SystemConstant;
+use common\models\Cart;
 use common\models\Color;
+use common\models\Order;
+use common\models\OrderTracking;
 use common\models\Post;
 use common\models\PostCategory;
 use common\models\PostTag;
@@ -1073,6 +1076,9 @@ class SampleData
         echo "Inserted " . $countTag . '/' . count(self::$postTagInfoArr) . ' post tag.' . PHP_EOL;
     }
 
+    /**
+     * @var \string[][]
+     */
     protected static $postCategoryInfoArr = [
         [
             'title' => 'Fashion Design',
@@ -1108,6 +1114,9 @@ class SampleData
         ],
     ];
 
+    /**
+     *
+     */
     protected static function insertSamplePostCategory()
     {
         $countPostCate = 0;
@@ -1124,6 +1133,9 @@ class SampleData
         echo "Inserted " . $countPostCate . '/' . count(self::$postCategoryInfoArr) . ' post category.' . PHP_EOL;
     }
 
+    /**
+     * @var array[]
+     */
     protected static $arrSliderInfo = [
         [
             'link' => 'slider/sliderItems1.jpg',
@@ -1169,6 +1181,9 @@ class SampleData
         ],
     ];
 
+    /**
+     *
+     */
     protected static function insertSlider()
     {
         $count = 0;
@@ -1184,6 +1199,174 @@ class SampleData
             }
         }
         echo "Inserted " . $count . '/' . count(self::$arrSliderInfo) . ' slider links.' . PHP_EOL;
+    }
+
+    /**
+     * @var array[]
+     */
+    protected static $arrCartInfo = [
+        [
+            'user_id' => 4,
+            'product_id' => '7',
+            'color' => 'White',
+            'size' => 'XL',
+            'quantity' => 3,
+        ],
+    ];
+
+    /**
+     *
+     */
+    protected static function insertSampleCart()
+    {
+        $countCart = 0;
+        foreach (self::$arrCartInfo as $value) {
+            $cart = new Cart();
+            $cart->user_id = $value['user_id'];
+            $cart->product_id = $value['product_id'];
+            if (!empty($value['color'])) {
+                $cart->color = $value['color'];
+            }
+            if (!empty($value['size'])) {
+                $cart->size = $value['size'];
+            }
+            $cart->quantity = $value['quantity'];
+            $cart->created_at = date('Y-m-d H:m:s');
+            $cart->updated_at = date('Y-m-d H:m:s');
+            if ($cart->save()) {
+                $countCart++;
+            }
+        }
+        echo "Inserted " . $countCart . '/' . count(self::$arrCartInfo) . ' carts.' . PHP_EOL;
+    }
+
+    /**
+     * @var array[]
+     */
+    protected static $arrOrderInfo = [
+        [
+            'user_id' => 4,
+            'product_id' => '7',
+            'color' => 'White',
+            'size' => 'XL',
+            'quantity' => 3,
+            'province' => 'Thái Bình',
+            'district' => 'Huyện Hưng Hà',
+            'village' => 'Thị trấn Hưng Hà',
+            'specific_address' => 'Tổ dân phố Đãn Chàng',
+            'tel' => '0334517566',
+        ],
+        [
+            'user_id' => 4,
+            'product_id' => '3',
+            'color' => 'Dark',
+            'size' => 'M',
+            'quantity' => 1,
+            'province' => 'Hà Nội',
+            'district' => 'Cầu Giấy',
+            'village' => 'Mai Dịch',
+            'specific_address' => '128A Hồ Tùng Mậu',
+            'tel' => '0394517406',
+        ],
+        [
+            'user_id' => 4,
+            'product_id' => '8',
+            'color' => 'Dark',
+            'size' => 'XL',
+            'quantity' => 1,
+            'province' => 'Hà Nội',
+            'district' => 'Cầu Giấy',
+            'village' => 'Mai Dịch',
+            'specific_address' => '37C1 Ngõ 20',
+            'tel' => '0394548299',
+        ],
+        [
+            'user_id' => 4,
+            'product_id' => '4',
+            'color' => 'Dark',
+            'size' => 'XL',
+            'quantity' => 1,
+            'province' => 'Hà Nội',
+            'district' => 'Cầu Giấy',
+            'village' => 'Mai Dịch',
+            'specific_address' => '105 Doãn Kế Thiện',
+            'tel' => '0398648729',
+        ],
+    ];
+
+    /**
+     *
+     */
+    protected static function insertSampleOrder()
+    {
+        $countOrder = 0;
+        foreach (self::$arrOrderInfo as $value) {
+            $order = new Order();
+            $order->user_id = $value['user_id'];
+            $order->product_id = $value['product_id'];
+            if (!empty($value['color'])) {
+                $order->color = $value['color'];
+            }
+            if (!empty($value['size'])) {
+                $order->size = $value['size'];
+            }
+            $order->quantity = $value['quantity'];
+            $order->province = $value['province'];
+            $order->district = $value['district'];
+            $order->village = $value['village'];
+            $order->specific_address = $value['specific_address'];
+            $order->tel = $value['tel'];
+            $order->created_at = date('Y-m-d H:m:s');
+            $order->updated_at = date('Y-m-d H:m:s');
+            if ($order->save()) {
+                $countOrder++;
+            }
+        }
+        echo "Inserted " . $countOrder . '/' . count(self::$arrOrderInfo) . ' orders.' . PHP_EOL;
+    }
+
+    /**
+     * @var array[]
+     */
+    protected static $arrOrderTrackingInfo = [
+        [
+            'order_id' => 1,
+            'admin_id' => '1',
+        ],
+        [
+            'order_id' => 2,
+            'admin_id' => '1',
+        ],
+        [
+            'order_id' => 3,
+            'admin_id' => '1',
+        ],
+        [
+            'order_id' => 4,
+            'admin_id' => '1',
+        ],
+    ];
+
+    /**
+     *
+     */
+    protected static function insertSampleOrderTracking()
+    {
+        $countOrderTracking = 0;
+        foreach (self::$arrOrderTrackingInfo as $value) {
+            $orderTracking = new OrderTracking();
+            $orderTracking->order_id = $value['order_id'];
+            $orderTracking->admin_id = $value['admin_id'];
+            if (!empty($value['action'])) {
+                $orderTracking->action = $value['action'];
+            }
+            $orderTracking->created_at = date('Y-m-d H:m:s');
+            $orderTracking->updated_at = date('Y-m-d H:m:s');
+            if ($orderTracking->save()) {
+                $countOrderTracking++;
+            }
+        }
+        echo "Inserted " . $countOrderTracking . '/' . count(self::$arrOrderTrackingInfo) . ' order tracking.' . PHP_EOL;
     }
 
     /**
@@ -1204,5 +1387,8 @@ class SampleData
         self::insertSamplePostCategory();
         self::insertSampleTerms();
         self::insertSlider();
+        self::insertSampleCart();
+        self::insertSampleOrder();
+        self::insertSampleOrderTracking();
     }
 }

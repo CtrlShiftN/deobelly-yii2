@@ -19,14 +19,17 @@ class m211013_142705_create_order_table extends Migration
             'color' => $this->string()->null(),
             'size' => $this->string()->null(),
             'quantity' => $this->integer()->notNull(),
-            'province/city' => $this->string()->notNull(),
+            'province' => $this->string()->notNull(),
             'district' => $this->string()->notNull(),
-            'Village' => $this->string()->notNull(),
+            'village' => $this->string()->notNull(),
             'specific_address' => $this->string()->notNull(),
+            'tel' => $this->string()->notNull(),
             'status' => $this->smallInteger()->defaultValue(0)->comment('0 - new,1 - processing,2 - approved,3 - shipping,4 - finished,5- cancelled,6 - expired,7 - returned,8 - postpone,9 - rejected,10 - failed,11 - fake'),
             'created_at' => $this->dateTime(),
             'updated_at' => $this->dateTime(),
         ]);
+        $this->createIndex('order_user_id_index','order','user_id');
+        $this->createIndex('order_product_id_index','order','product_id');
     }
 
     /**
@@ -34,6 +37,8 @@ class m211013_142705_create_order_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropIndex('order_user_id_index','order');
+        $this->dropIndex('order_product_id_index','order');
         $this->dropTable('{{%order}}');
     }
 }

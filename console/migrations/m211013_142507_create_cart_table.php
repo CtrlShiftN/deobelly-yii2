@@ -23,6 +23,8 @@ class m211013_142507_create_cart_table extends Migration
             'created_at' => $this->dateTime(),
             'updated_at' => $this->dateTime(),
         ]);
+        $this->createIndex('cart_user_id_index','cart','user_id');
+        $this->createIndex('cart_product_id_index','cart','product_id');
     }
 
     /**
@@ -30,6 +32,8 @@ class m211013_142507_create_cart_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropIndex('cart_user_id_index','cart');
+        $this->dropIndex('cart_product_id_index','cart');
         $this->dropTable('{{%cart}}');
     }
 }
