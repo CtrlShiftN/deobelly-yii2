@@ -1263,6 +1263,7 @@ class SampleData
             'village' => 'Thị trấn Hưng Hà',
             'specific_address' => 'Tổ dân phố Đãn Chàng',
             'tel' => '0334517566',
+            'admin_id' => 1,
         ],
         [
             'user_id' => 4,
@@ -1275,6 +1276,7 @@ class SampleData
             'village' => 'Thị trấn Hưng Hà',
             'specific_address' => 'Tổ dân phố Đãn Chàng',
             'tel' => '0334517566',
+            'admin_id' => 1,
         ],
         [
             'user_id' => 4,
@@ -1287,6 +1289,7 @@ class SampleData
             'village' => 'Thị trấn Hưng Hà',
             'specific_address' => 'Tổ dân phố Đãn Chàng',
             'tel' => '0334517566',
+            'admin_id' => 1,
         ],
         [
             'user_id' => 4,
@@ -1299,6 +1302,7 @@ class SampleData
             'village' => 'Mai Dịch',
             'specific_address' => '128A Hồ Tùng Mậu',
             'tel' => '0334517566',
+            'admin_id' => 1,
         ],
         [
             'user_id' => 5,
@@ -1311,6 +1315,7 @@ class SampleData
             'village' => 'Mai Dịch',
             'specific_address' => '37C1 Ngõ 20',
             'tel' => '0334517566',
+            'admin_id' => 1,
         ],
         [
             'user_id' => 5,
@@ -1323,6 +1328,7 @@ class SampleData
             'village' => 'Mai Dịch',
             'specific_address' => '37C1 Ngõ 20',
             'tel' => '0394548299',
+            'admin_id' => 1,
         ],
         [
             'user_id' => 5,
@@ -1335,6 +1341,7 @@ class SampleData
             'village' => 'Mai Dịch',
             'specific_address' => '37C1 Ngõ 20',
             'tel' => '0394548299',
+            'admin_id' => 1,
         ],
         [
             'user_id' => 5,
@@ -1347,6 +1354,7 @@ class SampleData
             'village' => 'Mai Dịch',
             'specific_address' => '105 Doãn Kế Thiện',
             'tel' => '0394548299',
+            'admin_id' => 1,
         ],
     ];
 
@@ -1372,6 +1380,7 @@ class SampleData
             $order->village = $value['village'];
             $order->specific_address = $value['specific_address'];
             $order->tel = $value['tel'];
+            $order->admin_id = $value['admin_id'];
             $order->created_at = date('Y-m-d H:m:s');
             $order->updated_at = date('Y-m-d H:m:s');
             if ($order->save()) {
