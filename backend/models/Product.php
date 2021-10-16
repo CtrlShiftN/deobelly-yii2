@@ -100,7 +100,7 @@ class Product extends \common\models\Product
             'quantity' => Yii::t('app', 'Quantity'),
             'image' => Yii::t('app', 'Image'),
             'images' => Yii::t('app', 'Images'),
-            'relate_Product' => Yii::t('app', 'Related Product'),
+            'relate_product' => Yii::t('app', 'Related Product'),
             'relatedProduct' => Yii::t('app', 'Related Product'),
             'trademark_id' => Yii::t('app', 'Trademark'),
             'viewed' => Yii::t('app', 'Viewed'),
