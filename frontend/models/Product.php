@@ -23,9 +23,7 @@ use yii\db\Query;
  * @property int $quantity
  * @property string $image
  * @property string|null $images
- * @property int|null $is_luxury 0 for basic, 1 for luxury
  * @property string|null $related_product
- * @property int|null $gender 0 for both, 1 for male, 2 for female
  * @property int|null $trademark_id
  * @property int|null $viewed +1 each click to view
  * @property int|null $fake_sold client see this amount if sold < 1k
@@ -54,7 +52,7 @@ class Product extends \common\models\Product
             [['name', 'slug', 'description', 'cost_price', 'regular_price', 'selling_price', 'image'], 'required'],
             [['description', 'images'], 'string'],
             [['cost_price', 'regular_price', 'sale_price', 'selling_price'], 'number'],
-            [['quantity', 'is_luxury', 'gender', 'trademark_id', 'viewed', 'fake_sold', 'sold', 'status', 'admin_id'], 'integer'],
+            [['quantity', 'trademark_id', 'viewed', 'fake_sold', 'sold', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'short_description', 'SKU', 'image', 'related_product'], 'string', 'max' => 255],
             [['slug'], 'unique'],
@@ -80,9 +78,7 @@ class Product extends \common\models\Product
             'quantity' => Yii::t('app', 'Quantity'),
             'image' => Yii::t('app', 'Image'),
             'images' => Yii::t('app', 'Images'),
-            'is_luxury' => Yii::t('app', 'Is Luxury'),
             'related_product' => Yii::t('app', 'Related Product'),
-            'gender' => Yii::t('app', 'Gender'),
             'trademark_id' => Yii::t('app', 'Trademark ID'),
             'viewed' => Yii::t('app', 'Viewed'),
             'fake_sold' => Yii::t('app', 'Fake Sold'),
@@ -103,14 +99,8 @@ class Product extends \common\models\Product
             ->leftJoin('product_assoc', 'product_assoc.product_id = product.id')
             ->where(['product.status' => 1]);
         if (!empty($productType)) {
-            if (intval($productType) == SystemConstant::PRODUCT_TYPE_LUXURY) {
-                $query->andWhere(['product.is_luxury' => intval($productType)]);
-            } elseif (intval($productType) == SystemConstant::PRODUCT_TYPE_NEW) {
+            if (intval($productType) == SystemConstant::PRODUCT_TYPE_NEW) {
                 $query->orderBy('product.updated_at DESC')->limit(SystemConstant::LIMIT_PER_PAGE);
-            } elseif (intval($productType) == SystemConstant::PRODUCT_TYPE_MEN) {
-                $query->andWhere(['product.gender' => [SystemConstant::GENDER_MALE, SystemConstant::GENDER_BOTH]]);
-            } elseif (intval($productType) == SystemConstant::PRODUCT_TYPE_WOMEN) {
-                $query->andWhere(['product.gender' => [SystemConstant::GENDER_FEMALE, SystemConstant::GENDER_BOTH]]);
             } else {
                 $query->andWhere(['like', 'product_assoc.type_id', $productType]);
             }
@@ -138,16 +128,6 @@ class Product extends \common\models\Product
             ->leftJoin('product_assoc', 'product_assoc.product_id = product.id')
             ->where(['product.status' => 1, 'product.id' => $id]);
         return $query->one();
-    }
-
-    /**
-     * @param $otherId
-     * @param $type
-     * @return array|\yii\db\ActiveRecord[]
-     */
-    public static function getProductOther($otherId)
-    {
-        return Product::find()->where(['status' => 1])->andWhere(['not', ['id' => $otherId]])->orderBy(new Expression('rand()'))->limit(6)->all();
     }
 
     /**

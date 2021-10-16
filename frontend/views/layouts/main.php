@@ -212,13 +212,10 @@ AppAsset::register($this);
                         <div class="main-nav-right col-1 col-sm-1 col-lg-10 text-end">
                             <ul class="site-nav mb-0 ps-0 d-none d-sm-none d-lg-inline" id="main-menu">
                                 <?php foreach ($mainType as $key => $value): ?>
-                                    <?php if ($key == 1 || $key == 2): ?>
-                                    <?php else: ?>
-                                        <li><a
-                                                    href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($key)]) ?>"
-                                                    class="site-nav-link"><span><?= Yii::t('app', $value) ?></span></a>
-                                        </li>
-                                    <?php endif; ?>
+                                    <li><a
+                                                href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($key)]) ?>"
+                                                class="site-nav-link"><span><?= Yii::t('app', $value) ?></span></a>
+                                    </li>
                                 <?php endforeach; ?>
                                 <li class="pe-0">
                                     <div class="vr mx-2"></div>

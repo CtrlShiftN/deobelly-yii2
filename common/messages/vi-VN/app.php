@@ -255,7 +255,6 @@ return [
     'Quantity' => 'Số Lượng',
     'Segment' => 'Phân Khúc',
     'Basic' => 'Phổ Thông',
-    'Luxury' => 'Cao Cấp',
     'Related Images' => 'Hình Ảnh Liên Quan',
     'Choose post tags' => 'Chọn thẻ bài viết',
     'Choose color' => 'Chọn màu sắc',

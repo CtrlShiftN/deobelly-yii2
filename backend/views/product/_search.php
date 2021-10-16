@@ -41,11 +41,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'images') ?>
 
-    <?php // echo $form->field($model, 'is_luxury') ?>
-
     <?php // echo $form->field($model, 'related_product') ?>
-
-    <?php // echo $form->field($model, 'gender') ?>
 
     <?php // echo $form->field($model, 'trademark_id') ?>
 
