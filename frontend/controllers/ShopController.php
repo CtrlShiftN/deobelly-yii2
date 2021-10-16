@@ -71,11 +71,9 @@ class ShopController extends Controller
         if (!empty($getParamDetail)) {
             $detailID = CryptHelper::decryptString($getParamDetail);
             $productDetail = Product::getProductById($detailID);
-            $otherProductDetail = Product::getProductOther($detailID);
             if (!empty($productDetail)) {
                 return $this->render('product-detail', [
                     'detail' => $productDetail,
-                    'other' => $otherProductDetail,
                 ]);
             } else {
                 return $this->render('index');

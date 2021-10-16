@@ -28,15 +28,29 @@ $paramCate = ParamHelper::getParamValue('type');
                     <?php $idEncrypted = \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="offcanvas-flush-heading-<?= $idEncrypted ?>">
-                            <button class="accordion-button collapsed text-uppercase fw-light btn-title-category"
-                                    type="button"
-                                    data-bs-toggle="collapse"
-                                    data-type="<?= $idEncrypted ?>"
-                                    data-type-name="<?= $value['name'] ?>"
-                                    data-bs-target="#offcanvas-flush-collapse-<?= $idEncrypted ?>"
-                                    aria-expanded="false" aria-controls="offcanvas-flush-collapse-<?= $idEncrypted ?>">
-                                <?= Yii::t('app', $value['name']) ?>
-                            </button>
+                            <?php if ($key == 0 || $key == 1): ?>
+                                <button class="accordion-button collapsed text-uppercase fw-light btn-title-category"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-type="<?= $idEncrypted ?>"
+                                        data-type-name="<?= $value['name'] ?>"
+                                        data-bs-target="#offcanvas-flush-collapse-<?= $idEncrypted ?>"
+                                        aria-expanded="false"
+                                        aria-controls="offcanvas-flush-collapse-<?= $idEncrypted ?>">
+                                    <?= $value['name'] ?>
+                                </button>
+                            <?php else: ?>
+                                <button class="accordion-button collapsed text-uppercase fw-light btn-title-category"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-type="<?= $idEncrypted ?>"
+                                        data-type-name="<?= $value['name'] ?>"
+                                        data-bs-target="#offcanvas-flush-collapse-<?= $idEncrypted ?>"
+                                        aria-expanded="false"
+                                        aria-controls="offcanvas-flush-collapse-<?= $idEncrypted ?>">
+                                    <?= Yii::t('app', $value['name']) ?>
+                                </button>
+                            <?php endif; ?>
                         </h2>
                         <div id="offcanvas-flush-collapse-<?= $idEncrypted ?>"
                              class="accordion-collapse collapse ps-4 ps-md-5 py-3"
@@ -96,15 +110,27 @@ $paramCate = ParamHelper::getParamValue('type');
                 <?php $idEncrypted = \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-heading-<?= $idEncrypted ?>">
-                        <button class="accordion-button collapsed text-uppercase fw-light btn-title-category"
-                                type="button"
-                                data-bs-toggle="collapse"
-                                data-type="<?= $idEncrypted ?>"
-                                data-type-name="<?= $value['name'] ?>"
-                                data-bs-target="#flush-collapse-<?= $idEncrypted ?>"
-                                aria-expanded="false" aria-controls="flush-collapse-<?= $idEncrypted ?>">
-                            <?= Yii::t('app', $value['name']) ?>
-                        </button>
+                        <?php if ($key == 0 || $key == 1): ?>
+                            <button class="accordion-button collapsed text-uppercase fw-light btn-title-category"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-type="<?= $idEncrypted ?>"
+                                    data-type-name="<?= $value['name'] ?>"
+                                    data-bs-target="#flush-collapse-<?= $idEncrypted ?>"
+                                    aria-expanded="false" aria-controls="flush-collapse-<?= $idEncrypted ?>">
+                                <?= $value['name'] ?>
+                            </button>
+                        <?php else: ?>
+                            <button class="accordion-button collapsed text-uppercase fw-light btn-title-category"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-type="<?= $idEncrypted ?>"
+                                    data-type-name="<?= $value['name'] ?>"
+                                    data-bs-target="#flush-collapse-<?= $idEncrypted ?>"
+                                    aria-expanded="false" aria-controls="flush-collapse-<?= $idEncrypted ?>">
+                                <?= Yii::t('app', $value['name']) ?>
+                            </button>
+                        <?php endif; ?>
                     </h2>
                     <div id="flush-collapse-<?= $idEncrypted ?>"
                          class="accordion-collapse collapse ps-4 ps-md-5"

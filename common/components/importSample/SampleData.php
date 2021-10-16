@@ -123,7 +123,6 @@ class SampleData
             'sale_price' => null,
             'image' => 'product/clothes/top/shirt1.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/top/shirt2.png,product/clothes/top/shirt3.png',
-            'is_luxury' => 0,
             'trademark_id' => 1,
             'quantity' => 82,
             'admin_id' => 1,
@@ -149,7 +148,6 @@ class SampleData
             'sale_price' => null,
             'image' => 'product/clothes/top/shirt6.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/top/shirt2.png,product/clothes/top/shirt3.png',
-            'is_luxury' => 0,
             'trademark_id' => 1,
             'admin_id' => 1,
         ],
@@ -174,7 +172,6 @@ class SampleData
             'sale_price' => null,
             'image' => 'product/clothes/top/shirt3.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/top/shirt2.png,product/clothes/top/shirt3.png',
-            'is_luxury' => 0,
             'trademark_id' => 1,
             'admin_id' => 1,
         ],
@@ -199,14 +196,13 @@ class SampleData
             'sale_price' => null,
             'image' => 'product/clothes/top/shirt5.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/top/shirt2.png,product/clothes/top/shirt3.png',
-            'is_luxury' => 0,
             'trademark_id' => 1,
             'quantity' => 142,
             'admin_id' => 1,
         ],
         [
-            'name' => 'Áo thun không cổ nam',
-            'slug' => 'ao-thun-khong-co-nam',
+            'name' => 'Áo thun không cổ HUGO BOSS',
+            'slug' => 'ao-thun-khong-co-hugo-boss',
             'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
             'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
 <li>T-Shirts</li>
@@ -225,14 +221,12 @@ class SampleData
             'sale_price' => null,
             'image' => 'product/clothes/top/shirt4.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/top/shirt2.png,product/clothes/top/shirt3.png',
-            'is_luxury' => 0,
-            'gender' => SystemConstant::GENDER_MALE,
             'trademark_id' => 1,
             'admin_id' => 1,
         ],
         [
-            'name' => 'Áo thun không cổ nữ',
-            'slug' => 'ao-thun-khong-co-nu',
+            'name' => 'Áo T-shirt HUGO BOSS',
+            'slug' => 'ao-t-shirt-hugo-boss',
             'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
             'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
 <li>T-Shirts</li>
@@ -251,8 +245,6 @@ class SampleData
             'sale_price' => null,
             'image' => 'product/clothes/top/shirt2.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/top/shirt2.png,product/clothes/top/shirt3.png',
-            'is_luxury' => 0,
-            'gender' => SystemConstant::GENDER_FEMALE,
             'trademark_id' => 1,
             'quantity' => 97,
             'admin_id' => 1,
@@ -275,8 +267,6 @@ class SampleData
             'sale_price' => 1360000,
             'image' => 'product/clothes/shirt/ao-so-mi-lados.jpg',
             'images' => '',
-            'is_luxury' => 1,
-            'gender' => SystemConstant::GENDER_MALE,
             'trademark_id' => 2,
             'quantity' => 31,
             'admin_id' => 1,
@@ -297,8 +287,6 @@ class SampleData
             'sale_price' => 10190000,
             'image' => 'product/clothes/vest/vest-nam-han-quoc.jpg',
             'images' => '',
-            'is_luxury' => 1,
-            'gender' => SystemConstant::GENDER_MALE,
             'trademark_id' => 3,
             'admin_id' => 1,
         ],
@@ -333,12 +321,6 @@ class SampleData
             } else {
                 $product->related_product = null;
             }
-            if (!empty($values['is_luxury'])) {
-                $product->is_luxury = $values['is_luxury'];
-            }
-            if (!empty($values['gender'])) {
-                $product->gender = $values['gender'];
-            }
             $product->trademark_id = $values['trademark_id'];
             if (!empty($values['quantity'])) {
                 $product->quantity = $values['quantity'];
@@ -356,7 +338,7 @@ class SampleData
     protected static $productAssocInfoArr = [
         [
             'product_id' => '1',
-            'type_id' => '3,4,5',
+            'type_id' => '2,4',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6',
@@ -364,7 +346,7 @@ class SampleData
         ],
         [
             'product_id' => '2',
-            'type_id' => '3,4,5',
+            'type_id' => '2,4',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6',
@@ -372,7 +354,7 @@ class SampleData
         ],
         [
             'product_id' => '3',
-            'type_id' => '3,4,5',
+            'type_id' => '2,4',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6',
@@ -380,7 +362,7 @@ class SampleData
         ],
         [
             'product_id' => '4',
-            'type_id' => '3,4,5',
+            'type_id' => '2,4',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6',
@@ -388,7 +370,7 @@ class SampleData
         ],
         [
             'product_id' => '5',
-            'type_id' => '3,5',
+            'type_id' => '2,4',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6,7',
@@ -396,7 +378,7 @@ class SampleData
         ],
         [
             'product_id' => '6',
-            'type_id' => '4,5',
+            'type_id' => '2,4',
             'category_id' => '2',
             'color_id' => '1,2,6',
             'size_id' => '3,4,5,6',
@@ -404,7 +386,7 @@ class SampleData
         ],
         [
             'product_id' => '7',
-            'type_id' => '3,5',
+            'type_id' => '1,4,8',
             'category_id' => '1',
             'color_id' => '1,6,7',
             'size_id' => '3,4,5,6',
@@ -412,7 +394,7 @@ class SampleData
         ],
         [
             'product_id' => '8',
-            'type_id' => '3,5,10',
+            'type_id' => '1,4,8',
             'category_id' => '3',
             'color_id' => '2,11,12',
             'size_id' => '3,4,5,6',
@@ -452,37 +434,37 @@ class SampleData
         [
             'name' => 'Áo sơ mi',
             'slug' => 'ao-so-mi',
-            'type_id' => '3,5',
+            'type_id' => '1,2,4,8',
             'admin_id' => 1,
         ],
         [
             'name' => 'Áo thun',
             'slug' => 'ao-thun',
-            'type_id' => '3,4,5',
+            'type_id' => '2,4',
             'admin_id' => 1,
         ],
         [
             'name' => 'Áo Vest',
             'slug' => 'ao-vest',
-            'type_id' => '3,5',
+            'type_id' => '1,2,4,8',
             'admin_id' => 1,
         ],
         [
             'name' => 'Quần âu',
             'slug' => 'quan-au',
-            'type_id' => '3,4,6',
+            'type_id' => '1,2,5,8',
             'admin_id' => 1,
         ],
         [
             'name' => 'Dây lưng',
             'slug' => 'day-lung',
-            'type_id' => '3,4,8',
+            'type_id' => '2,7,8',
             'admin_id' => 1,
         ],
         [
             'name' => 'Giày thể thao',
             'slug' => 'giay-the-thao',
-            'type_id' => '3,4,7',
+            'type_id' => '1,2,6,8',
             'admin_id' => 1,
         ],
     ];
@@ -513,27 +495,21 @@ class SampleData
      */
     protected static $arrProductType = [
         [
-            'name' => 'Sản phẩm cao cấp',
-            'slug' => 'san-pham-cao-cap',
-            'image' => 'type/brand2.jpg',
+            'name' => 'Luxury',
+            'slug' => 'luxury',
+            'image' => 'type/pronto-img-4.jpg',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Casual',
+            'slug' => 'casual',
+            'image' => 'type/pronto-img-2.jpg',
             'admin_id' => 1,
         ],
         [
             'name' => 'Sản phẩm mới',
             'slug' => 'san-pham-moi',
-            'image' => 'type/women.jpg',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Thời trang nam',
-            'slug' => 'thoi-trang-nam',
-            'image' => 'type/pronto-img-4.jpg',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Thời trang nữ',
-            'slug' => 'thoi-trang-nu',
-            'image' => 'type/pronto-img-2.jpg',
+            'image' => 'type/brand2.jpg',
             'admin_id' => 1,
         ],
         [

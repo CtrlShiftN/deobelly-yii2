@@ -53,11 +53,11 @@ $this->registerCssFile(Url::toRoute("/css/shop.css"));
 <div class="row p-0 my-5 h-100">
     <div class="col-6 px-1 ps-md-5 pe-md-3 mb-4 mb-md-5">
         <!--        TODO: LINKS-->
-        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['thoi-trang-nam']['id'])]) ?>"
+        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['luxury']['id'])]) ?>"
            class="text-decoration-none" target="_blank">
             <div class="overflow-hidden w-100 shadow h-65 position-relative my-2 my-md-3">
-                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['thoi-trang-nam']['name']) ?></p>
-                <img src="<?= $imgUrl . '/' . $type['thoi-trang-nam']['image'] ?>"
+                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['luxury']['name']) ?></p>
+                <img src="<?= $imgUrl . '/' . $type['luxury']['image'] ?>"
                      class="w-100 shadow object-fit-cover zoom"
                      alt="...">
             </div>
@@ -73,31 +73,31 @@ $this->registerCssFile(Url::toRoute("/css/shop.css"));
         </a>
     </div>
     <div class="col-6 px-1 ps-md-3 pe-md-5 mb-4 mb-md-5">
-        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['san-pham-moi']['id'])]) ?>"
+        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['qua-tang']['id'])]) ?>"
            class="text-decoration-none" target="_blank">
             <div class="overflow-hidden w-100 shadow h-35 position-relative my-2 my-md-3">
-                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['san-pham-moi']['name']) ?></p>
-                <img src="<?= $imgUrl . '/' . $type['san-pham-moi']['image'] ?>"
+                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['qua-tang']['name']) ?></p>
+                <img src="<?= $imgUrl . '/' . $type['qua-tang']['image'] ?>"
                      class="w-100 shadow object-fit-cover zoom"
                      alt="...">
             </div>
         </a>
-        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['thoi-trang-nu']['id'])]) ?>"
+        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['casual']['id'])]) ?>"
            class="text-decoration-none" target="_blank">
             <div class="overflow-hidden w-100 shadow h-65 position-relative my-2 my-md-3">
-                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['thoi-trang-nu']['name']) ?></p>
-                <img src="<?= $imgUrl . '/' . $type['thoi-trang-nu']['image'] ?>"
+                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['casual']['name']) ?></p>
+                <img src="<?= $imgUrl . '/' . $type['casual']['image'] ?>"
                      class="w-100 shadow object-fit-cover zoom"
                      alt="...">
             </div>
         </a>
     </div>
-    <div class="col-12 mb-md-5 px-1 px-md-5">
-        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['san-pham-cao-cap']['id'])]) ?>"
+    <div class="col-12 mb-md-5 px-1 px-md-5 h-25">
+        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['san-pham-moi']['id'])]) ?>"
            class="text-decoration-none" target="_blank">
             <div class="overflow-hidden w-100 shadow position-relative mt-md-3">
-                <p class="position-absolute text-light fs-title last-category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['san-pham-cao-cap']['name']) ?></p>
-                <img src="<?= $imgUrl . '/' . $type['san-pham-cao-cap']['image'] ?>"
+                <p class="position-absolute text-light fs-title last-category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['san-pham-moi']['name']) ?></p>
+                <img src="<?= $imgUrl . '/' . $type['san-pham-moi']['image'] ?>"
                      class="w-100 shadow object-fit-cover zoom"
                      alt="...">
             </div>

@@ -22,9 +22,7 @@ use Yii;
  * @property int $quantity
  * @property string $image
  * @property string|null $images
- * @property int|null $is_luxury 0 for basic, 1 for luxury
  * @property string|null $related_product
- * @property int|null $gender 0 for both, 1 for male, 2 for female
  * @property int|null $trademark_id
  * @property int|null $viewed +1 each click to view
  * @property int|null $fake_sold client see this amount if sold < 1k
@@ -61,7 +59,7 @@ class Product extends \common\models\Product
             [['name', 'slug', 'description', 'cost_price', 'regular_price', 'selling_price', 'image'], 'required'],
             [['description', 'images'], 'string'],
             [['cost_price', 'regular_price', 'sale_price', 'selling_price'], 'number'],
-            [['quantity', 'is_luxury', 'gender', 'trademark_id', 'viewed', 'fake_sold', 'sold', 'status', 'admin_id'], 'integer'],
+            [['quantity', 'trademark_id', 'viewed', 'fake_sold', 'sold', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'short_description', 'SKU', 'image', 'related_product'], 'string', 'max' => 255],
             [['slug'], 'unique'],
@@ -102,10 +100,8 @@ class Product extends \common\models\Product
             'quantity' => Yii::t('app', 'Quantity'),
             'image' => Yii::t('app', 'Image'),
             'images' => Yii::t('app', 'Images'),
-            'is_luxury' => Yii::t('app', 'Segment'),
             'related_product' => Yii::t('app', 'Related Product'),
             'relatedProduct' => Yii::t('app', 'Related Product'),
-            'gender' => Yii::t('app', 'Gender'),
             'trademark_id' => Yii::t('app', 'Trademark'),
             'viewed' => Yii::t('app', 'Viewed'),
             'fake_sold' => Yii::t('app', 'Fake Sold'),
