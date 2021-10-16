@@ -133,9 +133,9 @@ $this->registerCssFile(Url::toRoute("/css/index.css"));
 <div class="row my-5 px-4 px-md-0">
     <div class="col-12 col-md-6 position-relative p-0 px-md-3">
         <div class="overflow-hidden w-100 shadow">
-            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['thoi-trang-nam']['id'])]) ?>"
+            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['luxury']['id'])]) ?>"
                class="text-decoration-none w-100" target="_blank">
-                <p class="position-absolute text-light fs-1 men-title fw-bolder text-uppercase">Men</p>
+                <p class="position-absolute text-light fs-1 men-title fw-bolder text-uppercase"><?= $type['luxury']['name'] ?></p>
                 <img src="<?= Url::toRoute('img/index/men.jpg') ?>"
                      class="object-fit-cover position-relative gender-img" alt="...">
             </a>
@@ -143,9 +143,9 @@ $this->registerCssFile(Url::toRoute("/css/index.css"));
     </div>
     <div class="col-12 col-md-6 mt-4 mt-md-0 position-relative overflow-hidden p-0 px-md-3">
         <div class="overflow-hidden w-100 shadow">
-            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['thoi-trang-nu']['id'])]) ?>"
+            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['casual']['id'])]) ?>"
                class="text-decoration-none w-100" target="_blank">
-                <p class="position-absolute text-light fs-1 women-title fw-bolder text-uppercase">Women</p>
+                <p class="position-absolute text-light fs-1 women-title fw-bolder text-uppercase"><?= $type['casual']['name'] ?></p>
                 <img src="<?= Url::toRoute('img/index/women.jpg') ?>"
                      class="object-fit-cover position-relative gender-img" alt="...">
             </a>
