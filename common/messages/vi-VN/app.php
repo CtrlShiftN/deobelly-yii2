@@ -292,4 +292,12 @@ return [
     'Warehouse' => 'Nhà Kho',
     'Orders' => 'Đơn Hàng',
     'Customer Name' => 'Tên Khách Hàng',
+    'New' => 'Mới',
+    'Processing' => 'Đang xử lý',
+    'Approved' => 'Đã duyệt',
+    'Shipping' => 'Đang giao hàng',
+    'Finished' => 'Hoàn thành',
+    'Cancelled' => 'Đã hủy',
+    'Expired' => 'Hết hạn',
+    'Returned' => 'Đã trả hàng',
 ];
