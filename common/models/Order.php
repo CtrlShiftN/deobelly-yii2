@@ -76,8 +76,6 @@ class Order extends \yii\db\ActiveRecord
 
     public static function getAllStatus()
     {
-        // 0 - new,1 - processing,2 - approved,3 - shipping,4 - finished,
-        //5- cancelled,6 - expired,7 - returned,8 - postpone,9 - rejected,10 - failed,11 - fake
         return [
             Yii::t('app', 'New'),
             Yii::t('app', 'Processing'),

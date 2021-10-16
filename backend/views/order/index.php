@@ -114,6 +114,18 @@ $arrStatus = \common\models\Order::getAllStatus();
                 'format' => 'raw'
             ],
             [
+                'attribute' => 'address',
+                'label' => Yii::t('app', 'Customer Name'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'width' => '140px',
+                'value' => function ($model, $key, $index, $widget) {
+                    return $model['address'];
+                },
+                'filter' => false,
+                'format' => 'raw'
+            ],
+            [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'status',
                 'label' => Yii::t('app','Actions'),
@@ -142,6 +154,18 @@ $arrStatus = \common\models\Order::getAllStatus();
                     'pluginOptions' => ['allowClear' => true],
                 ],
                 'filterInputOptions' => ['placeholder' => '-- '.Yii::t('app','Status').' --']
+            ],
+            [
+                'attribute' => 'notes',
+                'label' => Yii::t('app', 'Customer Name'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'width' => '140px',
+                'value' => function ($model, $key, $index, $widget) {
+                    return $model['notes'];
+                },
+                'filter' => false,
+                'format' => 'raw'
             ],
         ];
         Pjax::begin();
