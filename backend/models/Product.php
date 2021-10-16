@@ -100,8 +100,8 @@ class Product extends \common\models\Product
             'quantity' => Yii::t('app', 'Quantity'),
             'image' => Yii::t('app', 'Image'),
             'images' => Yii::t('app', 'Images'),
-            'related_product' => Yii::t('app', 'Related Product'),
-            'trademark_id' => Yii::t('app', 'Trademark ID'),
+            'relatedProduct' => Yii::t('app', 'Related Product'),
+            'trademark_id' => Yii::t('app', 'Trademark'),
             'viewed' => Yii::t('app', 'Viewed'),
             'fake_sold' => Yii::t('app', 'Fake Sold'),
             'sold' => Yii::t('app', 'Sold'),
@@ -109,6 +109,10 @@ class Product extends \common\models\Product
             'admin_id' => Yii::t('app', 'Admin ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'color' => Yii::t('app', 'Color'),
+            'size' => Yii::t('app', 'Size'),
+            'type' => Yii::t('app', 'Product Type'),
+            'category' => Yii::t('app', 'Product Category'),
         ];
     }
 
