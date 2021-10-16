@@ -15,8 +15,8 @@ $this->registerJsFile(Url::toRoute('js/easyzoom.js'));
 $this->registerJsFile(Url::toRoute('js/swiper-bundle.min.js'));
 $this->registerJsFile(Url::toRoute('js/product-detail.js'));
 ?>
-<div class="row py-3 p-lg-4 px-xl-5 py-xl-4">
-    <div class="col-12 col-md-6 px-3">
+<div class="row py-3 p-lg-4 px-xl-4 px-xxl-5 py-xl-4">
+    <div class="col-12 col-md-5 px-0">
         <div class="product__carousel ps-md-3 ps-lg-4 ps-xl-5 mt-0">
             <!-- Swiper and EasyZoom plugins start -->
             <div class="swiper-container gallery-top">
@@ -59,88 +59,119 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
             <!-- Swiper and EasyZoom plugins end -->
         </div>
     </div>
-    <div class="col-12 col-md-6 px-3">
-        <span class="mt-3 mb-2 fs-3 m-0 fw-bolder text-uppercase d-block"><?= $detail['name'] ?> <span
-                    class="badge rounded-0 bg-danger" id="outOfStock">Hết hàng</span></span>
-        <?php if (!empty($detail['sale_price'])): ?>
-            <span class="my-2 fs-4 m-0 fw-bolder d-block text-danger"><span
-                        class="fw-light text-decoration-line-through text-dark"><?= number_format($detail['regular_price'], 0, ',', '.') ?>đ</span> <?= number_format($detail['selling_price'], 0, ',', '.') ?>đ</span>
-        <?php else: ?>
-            <span class="my-2 fs-4 m-0 fw-bolder d-block text-danger"><?= number_format($detail['selling_price'], 0, ',', '.') ?>đ</span>
-        <?php endif; ?>
-        <div class="w-100 my-3">
-            <span class="fw-light fs-5 d-block mb-2">Color: <span id="color"></span></span>
-            <?php if (!strpos($detail['assoc_color_id'], ',')): ?>
-                <button class="btn-color fw-bold fs-6"
-                        data-hex='<?= \frontend\models\Color::getColorCodeById($detail['assoc_color_id'])['color_code'] ?>'
-                        data-name-color="<?= \frontend\models\Color::getColorCodeById($detail['assoc_color_id'])['name'] ?>"
-                        style="background:<?= \frontend\models\Color::getColorCodeById($detail['assoc_color_id'])['color_code'] ?>"></button>
+    <div class="col-12 col-md-7 px-md-3">
+        <span class="mt-3 fs-3 m-0 fw-bolder text-uppercase d-block"><span
+                    class="badge rounded-0 bg-danger" id="outOfStock">Hết hàng</span> <?= $detail['name'] ?></span>
+        <div class="d-flex w-100 mb-3 mb-md-4">
+            <?php if ($detail['viewed'] >= 1000):?>
+            <span class="fw-light px-3 fs-6 border-end text-secondary"><span
+                        class="border-bottom border-dark text-danger fs-5"><?= number_format($detail['viewed']/1000, 1, ',', '.') ?>K</span> Đã xem</span>
             <?php else: ?>
-                <?php $colorArr = explode(',', $detail['assoc_color_id']);
-                foreach ($colorArr as $key => $color):?>
+                <span class="fw-light px-3 border-end fs-6 text-secondary"><span
+                            class="border-bottom border-dark text-danger fs-5"><?= $detail['viewed'] ?></span> Đã xem</span>
+            <?php endif; ?>
+            <?php if ($detail['fake_sold'] >= 1000):?>
+                <span class="fw-light px-3 fs-6 text-secondary"><span
+                            class="border-bottom border-dark text-danger fs-5"><?= number_format($detail['fake_sold']/1000, 1, ',', '.') ?>K</span> Đã bán</span>
+            <?php else: ?>
+                <span class="fw-light px-3 fs-6 text-secondary"><span
+                            class="border-bottom border-dark text-danger fs-5"><?= $detail['fake_sold'] ?></span> Đã bán</span>
+            <?php endif; ?>
+        </div>
+        <div class="w-100 my-3 py-2 py-md-3 px-1 px-md-3 bg-lighter-gray">
+            <?php if (!empty($detail['sale_price'])): ?>
+                <div class="my-2 fs-3 m-0 fw-bold text-danger">
+                    <span class="fw-light text-decoration-line-through text-dark fs-6"><?= number_format($detail['regular_price'], 0, ',', '.') ?>đ</span> <?= number_format($detail['selling_price'], 0, ',', '.') ?>
+                    đ
+                    <span class="badge bg-danger fs-6 text-light text-uppercase fw-light mx-md-3"><?= number_format(100 - $detail['selling_price'] / $detail['regular_price'] * 100, 0, ',', '.') ?>% giảm</span>
+                </div>
+            <?php else: ?>
+                <span class="my-2 fs-4 m-0 fw-bold d-block text-danger"><?= number_format($detail['selling_price'], 0, ',', '.') ?>đ</span>
+            <?php endif; ?>
+        </div>
+        <div class="w-100 row m-0 p-0">
+            <span class="fw-light col-12 col-sm-3 px-0 fs-5 d-block mb-2">Cam kết:</span>
+            <ul class="col-12 col-sm-9 mx-0 px-0 list-unstyled">
+                <li class="d-flex my-2">
+                    <img src="<?= Url::toRoute('img/box_ico.png') ?>" class="me-3 my-auto">
+                    <p class="p-0 m-0 fw-light">Cam kết 100% chính hãng</p>
+                </li>
+                <li class="d-flex my-3">
+                    <img src="<?= Url::toRoute('img/product_deliverly_ico.png') ?>" class="me-3 my-auto">
+                    <p class="p-0 m-0 fw-light">Giao hàng dự kiến:<br>
+                        <span class="fw-bold">Thứ 2 - Thứ 6 từ 9h00 - 17h00</span></p>
+                </li>
+                <li class="d-flex my-2">
+                    <img src="<?= Url::toRoute('img/tel_ico.png') ?>" class="me-3 my-auto">
+                    <p class="p-0 m-0 fw-light">Hỗ trợ 24/7<br>
+                        Với các kênh chat, email & phone</p>
+                </li>
+            </ul>
+        </div>
+        <div class="w-100 row mx-0 my-2 p-0">
+            <span class="fw-light fs-5 col-12 col-sm-3 px-0 mb-2">Color:</span>
+            <div class="col-12 col-sm-9 m-0 p-0">
+                <span id="color" class="fs-6 d-block mb-2 text-danger"></span>
+                <?php if (!strpos($detail['assoc_color_id'], ',')): ?>
                     <button class="btn-color fw-bold fs-6"
-                            data-hex='<?= \frontend\models\Color::getColorCodeById($color)['color_code'] ?>'
-                            data-name-color="<?= \frontend\models\Color::getColorCodeById($color)['name'] ?>"
-                            style="background:<?= \frontend\models\Color::getColorCodeById($color)['color_code'] ?>"></button>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </div>
-        <div class="w-100 my-3">
-            <span class="fw-light fs-5 d-block mb-2">Size: <span id="size"></span></span>
-            <?php if (!strpos($detail['assoc_size_id'], ',')): ?>
-                <button class="btn-size btn fw-bold fs-6"
-                        data-size="<?= \frontend\models\Size::getSizeById($detail['assoc_size_id']) ?>"><?= \frontend\models\Size::getSizeById($detail['assoc_size_id']) ?></button>
-            <?php else: ?>
-                <?php $sizeArr = explode(',', $detail['assoc_size_id']);
-                foreach ($sizeArr as $key => $size):?>
-                    <button class="btn-size btn fw-bold fs-6"
-                            data-size="<?= \frontend\models\Size::getSizeById($size) ?>"><?= \frontend\models\Size::getSizeById($size) ?></button>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </div>
-        <div class="w-100 my-3">
-            <span class="fw-light fs-5 d-block mb-2">Số lượng:</span>
-            <div class="w-100 row m-0 p-0">
-                <div class="col-12 col-sm-5 col-md-12 col-lg-5 mx-0 pe-0 pe-sm-2 pe-md-0 pe-lg-2 ps-0">
-                    <div class="w-100 d-flex">
-                        <button type="button" onclick="reduceProductQuantity()" id="btnDESC"
-                                class="btn btn-gray d-inline-block fw-bolder border-top-0 border-bottom-0 border-start-0 border-dark">
-                            -
-                        </button>
-                        <input type="text" id="amountInput" value="1" class="text-center d-inline-block">
-                        <button type="button" onclick="increaseProductQuantity()" id="btnASC"
-                                class="btn btn-gray d-inline-block fw-bolder border-top-0 border-bottom-0 border-end-0 border-dark">
-                            +
-                        </button>
-                    </div>
-                    <i class="notifyColor mt-md-2 mt-lg-2 mt-xl-0 ml-2 d-block" id="quantity"
-                       data-quantity="<?= $detail['quantity'] ?>">Hiện
-                        còn <?= $detail['quantity'] ?> sản phẩm.</i>
-                </div>
-                <div class="col-12 col-sm-7 col-md-12 col-lg-7 mx-0 ps-0 ps-sm-2 ps-md-0 ps-lg-2 pe-0 mt-2 mt-sm-0 mt-md-2 mt-lg-0">
-                    <a class="btn p-2 btn-dark text-light w-100" href="#" id="btnBuyNow"><i
-                                class="fas fa-dollar-sign text-light"></i> Mua ngay</a>
-                </div>
+                            data-hex='<?= \frontend\models\Color::getColorCodeById($detail['assoc_color_id'])['color_code'] ?>'
+                            data-name-color="<?= \frontend\models\Color::getColorCodeById($detail['assoc_color_id'])['name'] ?>"
+                            style="background:<?= \frontend\models\Color::getColorCodeById($detail['assoc_color_id'])['color_code'] ?>"></button>
+                <?php else: ?>
+                    <?php $colorArr = explode(',', $detail['assoc_color_id']);
+                    foreach ($colorArr as $key => $color):?>
+                        <button class="btn-color fw-bold fs-6"
+                                data-hex='<?= \frontend\models\Color::getColorCodeById($color)['color_code'] ?>'
+                                data-name-color="<?= \frontend\models\Color::getColorCodeById($color)['name'] ?>"
+                                style="background:<?= \frontend\models\Color::getColorCodeById($color)['color_code'] ?>"></button>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
-            <small id="notify" class="text-danger"></small>
         </div>
-        <ul class="w-100 py-3 mx-0 px-0 list-unstyled">
-            <li class="d-flex my-2">
-               <img src="<?= Url::toRoute('img/box_ico.png') ?>" class="me-3 my-auto">
-                <p class="p-0 m-0 fw-light">Cam kết 100% chính hãng</p>
-            </li>
-            <li class="d-flex my-3">
-               <img src="<?= Url::toRoute('img/product_deliverly_ico.png') ?>" class="me-3 my-auto">
-                <p class="p-0 m-0 fw-light">Giao hàng dự kiến:<br>
-                    <span class="fw-bold">Thứ 2 - Thứ 6 từ 9h00 - 17h00</span></p>
-            </li>
-            <li class="d-flex my-2">
-               <img src="<?= Url::toRoute('img/tel_ico.png') ?>" class="me-3 my-auto">
-                <p class="p-0 m-0 fw-light">Hỗ trợ 24/7<br>
-                    Với các kênh chat, email & phone</p>
-            </li>
-        </ul>
-        <div class="w-100 my-2 mx-0">
+        <div class="w-100 row my-2 mx-0 p-0">
+            <span class="fw-light col-12 col-sm-3 px-0 fs-5 d-block mb-2">Size:</span>
+            <div class="col-12 col-sm-9 m-0 p-0">
+                <span id="size" class="fs-6 d-block mb-2 text-danger"></span>
+                <?php if (!strpos($detail['assoc_size_id'], ',')): ?>
+                    <button class="btn-size btn fw-bold fs-6"
+                            data-size="<?= \frontend\models\Size::getSizeById($detail['assoc_size_id']) ?>"><?= \frontend\models\Size::getSizeById($detail['assoc_size_id']) ?></button>
+                <?php else: ?>
+                    <?php $sizeArr = explode(',', $detail['assoc_size_id']);
+                    foreach ($sizeArr as $key => $size):?>
+                        <button class="btn-size btn fw-bold fs-6"
+                                data-size="<?= \frontend\models\Size::getSizeById($size) ?>"><?= \frontend\models\Size::getSizeById($size) ?></button>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="w-100 row mx-0 my-2 p-0">
+            <span class="fw-light col-12 col-sm-3 px-0 fs-5">Số lượng:</span>
+            <div class="col-12 col-sm-9 m-0 p-0">
+                <div class="w-100 d-flex">
+                    <button type="button" onclick="reduceProductQuantity()" id="btnDESC"
+                            class="btn btn-gray d-inline-block fw-bolder border-top-0 border-bottom-0 border-start-0 border-dark">
+                        -
+                    </button>
+                    <input type="text" id="amountInput" value="1" class="text-center d-inline-block">
+                    <button type="button" onclick="increaseProductQuantity()" id="btnASC"
+                            class="btn btn-gray d-inline-block fw-bolder border-top-0 border-bottom-0 border-end-0 border-dark">
+                        +
+                    </button>
+                </div>
+                <i class="notifyColor mt-md-2 mt-lg-2 mt-xl-0 ml-2 d-block" id="quantity"
+                   data-quantity="<?= $detail['quantity'] ?>">Hiện
+                    còn <?= $detail['quantity'] ?> sản phẩm.</i>
+                <small id="notify" class="text-danger w-100 my-2"></small>
+            </div>
+        </div>
+        <div class="w-100 my-2 d-flex row mx-0 p-0">
+            <a class="btn btn-outline-danger p-2 me-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger"
+               href="#"
+               id="btnBuyNow"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>
+            <a class="btn p-2 btn-danger text-light col-12 col-sm-6 col-md-12 col-lg-5 text-light bg-danger" href="#"
+               id="btnBuyNow">Mua ngay</a>
+        </div>
+        <div class="w-100 my-2 mx-0 px-md-3">
             <div class="accordion p-0" id="accordionInformation">
                 <div class="accordion-item border-0">
                     <h2 class="accordion-header" id="headingInf">
@@ -153,19 +184,21 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                     </h2>
                     <div id="collapseInf" class="accordion-collapse collapse show" aria-labelledby="headingInf"
                          data-bs-parent="#accordionInformation">
-                        <div class="accordion-body fw-light">
+                        <div class="accordion-body fw-light border-bottom border-dark">
                             <?= $detail['description'] ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="w-100 my-3 mx-0 d-flex">
-            <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i class="fas fa-phone-alt"></i> hotline</a>
-            <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i class="fas fa-comments"></i> Chat Online</a>
-            <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i class="fas fa-share-alt"></i> Chia sẻ</a>
+        <div class="w-100 py-2 mx-0 d-flex px-md-3">
+            <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i
+                        class="fas fa-phone-alt"></i> Hotline</a>
+            <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i
+                        class="fas fa-comments"></i> Chat Online</a>
+            <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i
+                        class="fas fa-share-alt"></i> Chia sẻ</a>
         </div>
-
     </div>
 </div>
 <div class="w-100 my-2 mx-0 px-md-5">
