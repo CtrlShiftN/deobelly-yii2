@@ -1379,6 +1379,7 @@ class SampleData
             $order->district = $value['district'];
             $order->village = $value['village'];
             $order->specific_address = $value['specific_address'];
+            $order->address = $value['specific_address'].', '.$value['village'].', '.$value['district'].', '.$value['province'];
             $order->tel = $value['tel'];
             $order->admin_id = $value['admin_id'];
             $order->created_at = date('Y-m-d H:m:s');
