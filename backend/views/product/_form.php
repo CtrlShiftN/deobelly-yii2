@@ -14,8 +14,7 @@ use yii\web\JsExpression;
 /* @var $form yii\widgets\ActiveForm */
 $this->title = Yii::t('app', 'Add New Product');
 $arrProductType = ArrayHelper::map($type, 'id', 'name');
-$type = \common\components\helpers\SystemArrayHelper::removeElementAt($arrProductType, \common\components\SystemConstant::PRODUCT_TYPE_LUXURY);
-$type = \common\components\helpers\SystemArrayHelper::removeElementAt($type, \common\components\SystemConstant::PRODUCT_TYPE_NEW);
+$type = \common\components\helpers\SystemArrayHelper::removeElementAt($arrProductType, \common\components\SystemConstant::PRODUCT_TYPE_NEW);
 ?>
 
 <div class="product-form container p-3">

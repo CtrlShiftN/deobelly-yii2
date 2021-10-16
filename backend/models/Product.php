@@ -34,6 +34,14 @@ use Yii;
  */
 class Product extends \common\models\Product
 {
+    public $file;
+    public $files;
+    public $color;
+    public $size;
+    public $type;
+    public $category;
+    public $relatedProduct;
+
     /**
      * {@inheritdoc}
      */
@@ -55,7 +63,22 @@ class Product extends \common\models\Product
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'short_description', 'SKU', 'image', 'related_product'], 'string', 'max' => 255],
             [['slug'], 'unique'],
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
+            ['file', 'required'],
+            [['files'], 'file', 'extensions' => 'png, jpg, jpeg', 'maxFiles' => 10],
+            [['color', 'size', 'type', 'category', 'relatedProduct'], 'safe'],
+            [['color', 'size', 'type', 'category'], 'required'],
+            ['quantity', 'integer', 'min' => 1],
+            ['slug', 'checkDuplicatedSlug']
         ];
+    }
+
+    public function checkDuplicatedSlug()
+    {
+        $color = Product::find()->where(['slug' => StringHelper::toSlug($this->name)])->asArray()->all();
+        if ($color) {
+            $this->addError('title', Yii::t('app', 'This name has already been used.'));
+        }
     }
 
     /**
