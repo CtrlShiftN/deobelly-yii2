@@ -79,7 +79,7 @@ class Size extends \common\models\Size
     public static function updateSizeName($id, $attribute, $value)
     {
         $slug = StringHelper::toSlug($value);
-        return \common\models\Size::updateAll([$attribute => $value, 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $id]);
+        return \common\models\Size::updateAll([$attribute => mb_strtoupper($value), 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $id]);
     }
 
     /**

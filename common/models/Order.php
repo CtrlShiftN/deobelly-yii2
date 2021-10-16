@@ -69,4 +69,24 @@ class Order extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
+
+    public static function getAllStatus()
+    {
+        // 0 - new,1 - processing,2 - approved,3 - shipping,4 - finished,
+        //5- cancelled,6 - expired,7 - returned,8 - postpone,9 - rejected,10 - failed,11 - fake
+        return [
+            Yii::t('app', 'New'),
+            Yii::t('app', 'Processing'),
+            Yii::t('app', 'Approved'),
+            Yii::t('app', 'Shipping'),
+            Yii::t('app', 'Finished'),
+            Yii::t('app', 'Cancelled'),
+            Yii::t('app', 'Expired'),
+            Yii::t('app', 'Returned'),
+            Yii::t('app', 'Postpone'),
+            Yii::t('app', 'Rejected'),
+            Yii::t('app', 'Failed'),
+            Yii::t('app', 'Fake'),
+        ];
+    }
 }
