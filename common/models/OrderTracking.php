@@ -33,8 +33,8 @@ class OrderTracking extends \yii\db\ActiveRecord
         return [
             [['order_id', 'admin_id', 'action'], 'required'],
             [['order_id', 'admin_id', 'action'], 'integer'],
+            [['notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['notes'], 'string', 'max' => 255],
         ];
     }
 
