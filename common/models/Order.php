@@ -43,8 +43,9 @@ class Order extends \yii\db\ActiveRecord
         return [
             [['user_id', 'product_id', 'quantity', 'province', 'district', 'village', 'specific_address', 'address', 'tel', 'admin_id'], 'required'],
             [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'admin_id', 'status'], 'integer'],
+            [['address', 'notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['province', 'district', 'village', 'specific_address', 'address', 'notes', 'tel'], 'string', 'max' => 255],
+            [['province', 'district', 'village', 'specific_address', 'tel'], 'string', 'max' => 255],
         ];
     }
 
@@ -64,7 +65,7 @@ class Order extends \yii\db\ActiveRecord
             'district' => Yii::t('app', 'District'),
             'village' => Yii::t('app', 'Village'),
             'specific_address' => Yii::t('app', 'Specific Address'),
-            'address' => Yii::t('app', 'General Address'),
+            'address' => Yii::t('app', 'Address'),
             'notes' => Yii::t('app', 'Notes'),
             'tel' => Yii::t('app', 'Tel'),
             'admin_id' => Yii::t('app', 'Admin ID'),

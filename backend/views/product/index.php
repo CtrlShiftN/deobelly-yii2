@@ -127,36 +127,6 @@ $commonUrl = Yii::$app->params['common'];
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'is_luxury',
-                'label' => Yii::t('app', 'Segment'),
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'width' => '150px',
-                'value' => function ($model, $key, $index, $widget) use ($arrLuxury) {
-                    return $arrLuxury[$model['is_luxury']];
-                },
-                'editableOptions' => function ($model, $key, $index) use ($arrLuxury) {
-                    return [
-                        'name' => 'is_luxury',
-                        'asPopover' => false,
-                        'header' => Yii::t('app', 'Segment'),
-                        'size' => 'md',
-                        'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
-                        'data' => $arrLuxury,
-                        // default value in the text box
-                        'value' => $arrLuxury[$model['is_luxury']],
-                        'displayValueConfig' => $arrLuxury
-                    ];
-                },
-                'filterType' => GridView::FILTER_SELECT2,
-                'filter' => $arrLuxury,
-                'filterWidgetOptions' => [
-                    'pluginOptions' => ['allowClear' => true],
-                ],
-                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Segment') . ' --']
-            ],
-            [
-                'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'status',
                 'label' => Yii::t('app', 'Status'),
                 'vAlign' => 'middle',

@@ -13,11 +13,8 @@ use yii\web\JsExpression;
 /* @var $model backend\models\Product */
 /* @var $form yii\widgets\ActiveForm */
 $this->title = Yii::t('app', 'Add New Product');
-$arrLuxury = [Yii::t('app', 'Basic'), Yii::t('app', 'Luxury')];
-$arrGender = [Yii::t('app', 'All'), Yii::t('app', 'Male'), Yii::t('app', 'Female')];
 $arrProductType = ArrayHelper::map($type, 'id', 'name');
-$type = \common\components\helpers\SystemArrayHelper::removeElementAt($arrProductType, \common\components\SystemConstant::PRODUCT_TYPE_LUXURY);
-$type = \common\components\helpers\SystemArrayHelper::removeElementAt($type, \common\components\SystemConstant::PRODUCT_TYPE_NEW);
+$type = \common\components\helpers\SystemArrayHelper::removeElementAt($arrProductType, \common\components\SystemConstant::PRODUCT_TYPE_NEW);
 ?>
 
 <div class="product-form container p-3">
@@ -123,24 +120,6 @@ $type = \common\components\helpers\SystemArrayHelper::removeElementAt($type, \co
                         'pluginOptions' => [
                             'allowClear' => true,
                             'multiple' => true
-                        ],
-                    ]) ?>
-                </div>
-                <div class="col-12 col-md-3">
-                    <?= $form->field($model, 'gender')->widget(Select2::classname(), [
-                        'data' => $arrGender,
-                        'options' => ['placeholder' => Yii::t('app', 'Choose gender')],
-                        'pluginOptions' => [
-                            'allowClear' => true,
-                        ],
-                    ]) ?>
-                </div>
-                <div class="col-12 col-md-3">
-                    <?= $form->field($model, 'is_luxury')->widget(Select2::classname(), [
-                        'data' => $arrLuxury,
-                        'options' => ['placeholder' => Yii::t('app', 'Choose segment')],
-                        'pluginOptions' => [
-                            'allowClear' => true,
                         ],
                     ]) ?>
                 </div>
