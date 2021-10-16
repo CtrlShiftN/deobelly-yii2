@@ -58,32 +58,24 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
             </div>
             <!-- Swiper and EasyZoom plugins end -->
         </div>
-        <div class="w-100 py-2 mx-0 d-flex px-md-3 fs-5 border-top">
-            <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i
-                        class="fas fa-phone-alt text-success"></i> hotline</a>
-            <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i
-                        class="fas fa-comments text-danger"></i> Chat Online</a>
-            <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i
-                        class="fas fa-share-alt text-primary"></i> Chia sẻ</a>
-        </div>
     </div>
     <div class="col-12 col-md-7 px-md-3">
         <span class="mt-3 fs-3 m-0 fw-bolder text-uppercase d-block"><span
                     class="badge rounded-0 bg-danger" id="outOfStock">Hết hàng</span> <?= $detail['name'] ?></span>
-        <div class="d-flex w-100 mb-3 mb-md-4 fs-5">
+        <div class="d-flex w-100 mb-3 mb-md-4">
             <?php if ($detail['viewed'] >= 1000):?>
-            <span class="fw-light text-danger me-5"><span
-                        class="border-bottom border-2 border-dark text-dark fw-bold fs-6"><i class="fas fa-eye"></i> :</span> <?= number_format($detail['viewed']/1000, 1, ',', '.') ?>K</span>
+            <span class="fw-light px-3 fs-note border-end text-secondary"><span
+                        class="border-bottom border-dark text-danger fs-6"><i class="fas fa-eye"></i> :</span> <?= number_format($detail['viewed']/1000, 1, ',', '.') ?>K</span>
             <?php else: ?>
-                <span class="fw-light text-danger me-5"><span
-                            class="border-bottom border-2 border-dark text-dark fw-bold fs-6"><i class="fas fa-eye"></i> :</span> <?= $detail['viewed'] ?></span>
+                <span class="fw-light px-3 border-end fs-note text-secondary"><span
+                            class="border-bottom border-dark text-danger fs-6"><?= $detail['viewed'] ?></span><i class="fas fa-eye ps-2"></i></span>
             <?php endif; ?>
             <?php if ($detail['fake_sold'] >= 1000):?>
-                <span class="fw-light text-danger"><span
-                            class="border-bottom border-2 border-dark text-dark fw-bold fs-6">Đã bán:</span> <?= number_format($detail['fake_sold']/1000, 1, ',', '.') ?>K</span>
+                <span class="fw-light px-3 fs-note text-secondary"><span
+                            class="border-bottom border-dark text-danger fs-6"><?= number_format($detail['fake_sold']/1000, 1, ',', '.') ?>K</span> Đã bán</span>
             <?php else: ?>
-                <span class="fw-light text-danger"><span
-                            class="border-bottom border-2 border-dark text-dark fw-bold fs-6">Đã bán:</span> <?= $detail['fake_sold'] ?></span>
+                <span class="fw-light px-3 fs-note text-secondary"><span
+                            class="border-bottom border-dark text-danger fs-6"><?= $detail['fake_sold'] ?></span> Đã bán</span>
             <?php endif; ?>
         </div>
         <div class="w-100 my-3 py-2 py-md-3 px-1 px-md-3 bg-lighter-gray">
@@ -193,12 +185,20 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                     </h2>
                     <div id="collapseInf" class="accordion-collapse collapse show" aria-labelledby="headingInf"
                          data-bs-parent="#accordionInformation">
-                        <div class="accordion-body fw-light">
+                        <div class="accordion-body fw-light border-bottom border-dark">
                             <?= $detail['description'] ?>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="w-100 py-2 mx-0 d-flex px-md-3">
+            <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i
+                        class="fas fa-phone-alt"></i> Hotline</a>
+            <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i
+                        class="fas fa-comments"></i> Chat Online</a>
+            <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i
+                        class="fas fa-share-alt"></i> Chia sẻ</a>
         </div>
     </div>
 </div>
