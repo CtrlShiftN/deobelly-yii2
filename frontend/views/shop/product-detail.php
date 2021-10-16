@@ -68,13 +68,23 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
         </div>
     </div>
     <div class="col-12 col-md-7 px-md-3">
-        <span class="mt-3 mb-2 fs-3 m-0 fw-bolder text-uppercase d-block"><span
+        <span class="mt-3 fs-3 m-0 fw-bolder text-uppercase d-block"><span
                     class="badge rounded-0 bg-danger" id="outOfStock">Hết hàng</span> <?= $detail['name'] ?></span>
-        <div class="d-flex w-100 fs-5">
+        <div class="d-flex w-100 mb-3 mb-md-4 fs-5">
+            <?php if ($detail['viewed'] >= 1000):?>
             <span class="fw-light text-danger me-5"><span
-                        class="border-bottom border-2 border-dark text-dark fw-bold"><i class="fas fa-eye"></i> :</span> <?= $detail['viewed'] ?></span>
-            <span class="fw-light text-danger"><span
-                        class="border-bottom border-2 border-dark text-dark fw-bold">Đã bán:</span> <?= $detail['fake_sold'] ?></span>
+                        class="border-bottom border-2 border-dark text-dark fw-bold fs-6"><i class="fas fa-eye"></i> :</span> <?= number_format($detail['viewed']/1000, 1, ',', '.') ?>K</span>
+            <?php else: ?>
+                <span class="fw-light text-danger me-5"><span
+                            class="border-bottom border-2 border-dark text-dark fw-bold fs-6"><i class="fas fa-eye"></i> :</span> <?= $detail['viewed'] ?></span>
+            <?php endif; ?>
+            <?php if ($detail['fake_sold'] >= 1000):?>
+                <span class="fw-light text-danger"><span
+                            class="border-bottom border-2 border-dark text-dark fw-bold fs-6">Đã bán:</span> <?= number_format($detail['fake_sold']/1000, 1, ',', '.') ?>K</span>
+            <?php else: ?>
+                <span class="fw-light text-danger"><span
+                            class="border-bottom border-2 border-dark text-dark fw-bold fs-6">Đã bán:</span> <?= $detail['fake_sold'] ?></span>
+            <?php endif; ?>
         </div>
         <div class="w-100 my-3 py-2 py-md-3 px-1 px-md-3 bg-lighter-gray">
             <?php if (!empty($detail['sale_price'])): ?>
@@ -107,8 +117,9 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
             </ul>
         </div>
         <div class="w-100 row mx-0 my-2 p-0">
-            <span class="fw-light fs-5 col-12 col-sm-3 px-0 mb-2">Color: <span id="color"></span></span>
+            <span class="fw-light fs-5 col-12 col-sm-3 px-0 mb-2">Color:</span>
             <div class="col-12 col-sm-9 m-0 p-0">
+                <span id="color" class="fs-6 d-block mb-2 text-danger"></span>
                 <?php if (!strpos($detail['assoc_color_id'], ',')): ?>
                     <button class="btn-color fw-bold fs-6"
                             data-hex='<?= \frontend\models\Color::getColorCodeById($detail['assoc_color_id'])['color_code'] ?>'
@@ -126,8 +137,9 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
             </div>
         </div>
         <div class="w-100 row my-2 mx-0 p-0">
-            <span class="fw-light col-12 col-sm-3 px-0 fs-5 d-block mb-2">Size: <span id="size"></span></span>
+            <span class="fw-light col-12 col-sm-3 px-0 fs-5 d-block mb-2">Size:</span>
             <div class="col-12 col-sm-9 m-0 p-0">
+                <span id="size" class="fs-6 d-block mb-2 text-danger"></span>
                 <?php if (!strpos($detail['assoc_size_id'], ',')): ?>
                     <button class="btn-size btn fw-bold fs-6"
                             data-size="<?= \frontend\models\Size::getSizeById($detail['assoc_size_id']) ?>"><?= \frontend\models\Size::getSizeById($detail['assoc_size_id']) ?></button>
@@ -157,11 +169,11 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                 <i class="notifyColor mt-md-2 mt-lg-2 mt-xl-0 ml-2 d-block" id="quantity"
                    data-quantity="<?= $detail['quantity'] ?>">Hiện
                     còn <?= $detail['quantity'] ?> sản phẩm.</i>
+                <small id="notify" class="text-danger w-100 my-2"></small>
             </div>
-            <small id="notify" class="text-danger w-100 my-2"></small>
         </div>
         <div class="w-100 my-2 d-flex row mx-0 p-0">
-            <a class="btn btn-outline-danger p-2 mx-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger"
+            <a class="btn btn-outline-danger p-2 me-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger"
                href="#"
                id="btnBuyNow"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>
             <a class="btn p-2 btn-danger text-light col-12 col-sm-6 col-md-12 col-lg-5 text-light bg-danger" href="#"
