@@ -11,6 +11,7 @@ use Yii;
  * @property int $order_id
  * @property int $admin_id
  * @property int $action 0 - new,1 - processing,2 - approved,3 - shipping,4 - finished,5- cancelled,6 - expired,7 - returned,8 - postpone,9 - rejected,10 - failed,11 - fake
+ * @property string|null $notes
  * @property string|null $created_at
  * @property string|null $updated_at
  */
@@ -33,6 +34,7 @@ class OrderTracking extends \common\models\OrderTracking
             [['order_id', 'admin_id', 'action'], 'required'],
             [['order_id', 'admin_id', 'action'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
+            [['notes'], 'string', 'max' => 255],
         ];
     }
 
@@ -46,6 +48,7 @@ class OrderTracking extends \common\models\OrderTracking
             'order_id' => Yii::t('app', 'Order ID'),
             'admin_id' => Yii::t('app', 'Admin ID'),
             'action' => Yii::t('app', 'Action'),
+            'notes' => Yii::t('app', 'Notes'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
