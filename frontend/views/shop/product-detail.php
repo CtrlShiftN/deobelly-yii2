@@ -71,10 +71,10 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
         <span class="mt-3 mb-2 fs-3 m-0 fw-bolder text-uppercase d-block"><span
                     class="badge rounded-0 bg-danger" id="outOfStock">Hết hàng</span> <?= $detail['name'] ?></span>
         <div class="d-flex w-100 fs-5">
-            <span class="text-warning fw-light me-4"><span class="border-bottom border-warning border-2">4.5</span> <i
-                        class="fas fa-star"></i></span>
-            <span class="fw-light me-1"><span
-                        class="border-bottom border-2 border-dark"><?= $detail['fake_sold'] ?></span> Đã bán</i></span>
+            <span class="fw-light text-danger me-5"><span
+                        class="border-bottom border-2 border-dark text-dark fw-bold"><i class="fas fa-eye"></i> :</span> <?= $detail['viewed'] ?></span>
+            <span class="fw-light text-danger"><span
+                        class="border-bottom border-2 border-dark text-dark fw-bold">Đã bán:</span> <?= $detail['fake_sold'] ?></span>
         </div>
         <div class="w-100 my-3 py-2 py-md-3 px-1 px-md-3 bg-lighter-gray">
             <?php if (!empty($detail['sale_price'])): ?>
@@ -161,9 +161,11 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
             <small id="notify" class="text-danger w-100 my-2"></small>
         </div>
         <div class="w-100 my-2 d-flex row mx-0 p-0">
-            <a class="btn btn-outline-danger p-2 mx-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger" href="#"
+            <a class="btn btn-outline-danger p-2 mx-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger"
+               href="#"
                id="btnBuyNow"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>
-            <a class="btn p-2 btn-danger text-light col-12 col-sm-6 col-md-12 col-lg-5 text-light bg-danger" href="#" id="btnBuyNow"><i
+            <a class="btn p-2 btn-danger text-light col-12 col-sm-6 col-md-12 col-lg-5 text-light bg-danger" href="#"
+               id="btnBuyNow"><i
                         class="fas fa-dollar-sign"></i> Mua ngay</a>
         </div>
         <div class="w-100 my-2 mx-0 px-md-3">
