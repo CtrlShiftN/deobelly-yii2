@@ -185,4 +185,3 @@ $paramCate = ParamHelper::getParamValue('type');
         </div>
     </div>
 </div>
-<script type="text/javascript" src="<?= Url::toRoute('js/product.js') ?>"></script>
