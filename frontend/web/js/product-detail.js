@@ -1,3 +1,16 @@
+var toastTrigger = document.getElementById('btnAddToCart')
+var toastLiveExample = document.getElementById('liveToast')
+if (toastTrigger) {
+    toastTrigger.addEventListener('click', function () {
+        var toast = new bootstrap.Toast(toastLiveExample)
+        $('#toastNotify').html('<i class="fas fa-check-circle"></i> Đã thêm vào giỏ hàng.');
+        toast.show();
+        setTimeout(function () {
+            toast.hide(200);
+            $('#toastNotify').html('');
+        }, 2000);
+    })
+}
 function responsive() {
     $('#bestsellers .product-card').removeClass('d-none');
     $('#onSale .product-card').removeClass('d-none');

@@ -13,6 +13,7 @@ $cdnUrl = Yii::$app->params['frontend'];
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->registerCssFile(Url::toRoute('css/product.css'));
 $paramCate = ParamHelper::getParamValue('type');
+$this->registerJsFile(Url::toRoute('js/product.js'));
 ?>
 <div class="row m-0 p-0 pt-4 pt-md-5">
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasCategory"
@@ -183,5 +184,10 @@ $paramCate = ParamHelper::getParamValue('type');
             <input type='hidden' id='current_page'>
             <div id='page_navigation' class="text-end"></div>
         </div>
+    </div>
+</div>
+<div class="position-fixed bg-success rounded" style="z-index: 9999; bottom: 5px; right:77px; width: 190px">
+    <div id="liveToast" class="toast py-3 px-2 text-light bg-success border-2 fw-bold" role="alert" aria-live="assertive" aria-atomic="true">
+        <span id="toastNotify"></span>
     </div>
 </div>

@@ -8,6 +8,7 @@ use common\components\helpers\ParamHelper;
 use common\components\SystemConstant;
 use frontend\models\Product;
 use frontend\models\ProductCategory;
+use http\Url;
 use Yii;
 use yii\rest\ActiveController;
 
@@ -69,6 +70,11 @@ class AjaxController extends ActiveController
      */
     public function actionProductFilterAjax()
     {
+        if (Yii::$app->user->isGuest){
+            $addLink = $buyLink = $favorLink = \yii\helpers\Url::toRoute('site/login');
+        } else {
+            $addLink = $favorLink = 'javascript:void(0)';
+        }
         $getProductCategory = ParamHelper::getParamValue('cate');
         $getCursor = ParamHelper::getParamValue('cursor');
         $getProductType = CryptHelper::decryptString(ParamHelper::getParamValue('type'));
@@ -116,6 +122,8 @@ class AjaxController extends ActiveController
                 'status' => SystemConstant::API_SUCCESS_STATUS,
                 'product' => $arrProduct,
                 'count' => $count,
+                'addLink' => $addLink,
+                'favorLink' => $favorLink,
             ];
         }
         echo json_encode($response);

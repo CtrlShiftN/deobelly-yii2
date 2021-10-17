@@ -165,10 +165,17 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
             </div>
         </div>
         <div class="w-100 my-2 d-flex row mx-0 p-0">
-            <button type="button" class="btn btn-outline-danger p-2 me-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger"
-               id="btnAddToCart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-            <a class="btn p-2 btn-danger text-light col-12 col-sm-6 col-md-12 col-lg-5 text-light bg-danger" href="#"
-               id="btnBuyNow">Mua ngay</a>
+            <?php if (Yii::$app->user->isGuest): ?>
+                <a href="<?= Url::toRoute('site/login') ?>" class="btn btn-outline-danger p-2 me-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger"
+                   id="btnAddToCart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>
+                <a class="btn p-2 btn-danger text-light col-12 col-sm-6 col-md-12 col-lg-5 text-light bg-danger" href="<?= Url::toRoute('site/login') ?>"
+                   id="btnBuyNow">Mua ngay</a>
+            <?php else: ?>
+                <a href="javascript:void(0)" class="btn btn-outline-danger p-2 me-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger"
+                   id="btnAddToCart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>
+                <a class="btn p-2 btn-danger text-light col-12 col-sm-6 col-md-12 col-lg-5 text-light bg-danger" href="<?= Url::toRoute('checkout/cart') ?>"
+                   id="btnBuyNow">Mua ngay</a>
+            <?php endif; ?>
         </div>
         <div class="w-100 my-2 mx-0 px-md-3">
             <div class="accordion p-0" id="accordionInformation">
@@ -302,16 +309,6 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
 </div>
 <div class="position-fixed bg-success rounded" style="z-index: 9999; bottom: 5px; right:77px; width: 190px">
     <div id="liveToast" class="toast py-3 px-2 text-light bg-success border-2 fw-bold" role="alert" aria-live="assertive" aria-atomic="true">
-        <i class="fas fa-check-circle"></i> Đã thêm vào giỏ hàng.
+        <span id="toastNotify"></span>
     </div>
 </div>
-<script>
-    var toastTrigger = document.getElementById('btnAddToCart')
-    var toastLiveExample = document.getElementById('liveToast')
-    if (toastTrigger) {
-        toastTrigger.addEventListener('click', function () {
-            var toast = new bootstrap.Toast(toastLiveExample)
-            toast.show();
-        })
-    }
-</script>

@@ -121,10 +121,20 @@ function requestData() {
                 } else {
                     result += '<span class="px-0 fw-bold mt-2 p-price">' + selling_price + ' VNĐ</span>';
                 }
-                result += '<p class="m-0 product-name">' + arrRes.product[i].name + '</p></div></a></div><div class="product-button row m-0"><a href="javascript:void(0)" data-id="' + arrRes.product[i].id + '" class="btn rounded-0 btnAdd col-4 col-md-3"><i class="fas fa-cart-plus"></i></a><a href="javascript:void(0)" data-id="' + arrRes.product[i].id + '" class="btn rounded-0 btnBuyNow col-4 col-md-6"><i class="fas fa-dollar-sign d-md-none"></i><span class="d-none d-md-inline-block"><i class="fas fa-dollar-sign"></i> ' + buyNow + '</span></a><a href="javascript:void(0)" data-id="' + arrRes.product[i].id + '" class="btn rounded-0 btnAdd col-4 col-md-3"><i class="far fa-heart"></i></a></div></div>';
+                result += '<p class="m-0 product-name">' + arrRes.product[i].name + '</p></div></a></div><div class="product-button row m-0"><a href="'+ arrRes.addLink +'" data-id="' + arrRes.product[i].id + '" class="btn rounded-0 btnAdd col-4 col-md-3"><i class="fas fa-cart-plus"></i></a><a href="' + cdnUrl + '/shop/cart?detail=' + arrRes.product[i].id + '" data-id="' + arrRes.product[i].id + '" class="btn rounded-0 btnBuyNow col-4 col-md-6"><i class="fas fa-dollar-sign d-md-none"></i><span class="d-none d-md-inline-block"><i class="fas fa-dollar-sign"></i> ' + buyNow + '</span></a><a href="'+ arrRes.favorLink +'" data-id="' + arrRes.product[i].id + '" class="btn rounded-0 btnAdd col-4 col-md-3"><i class="far fa-heart"></i></a></div></div>';
             }
             $("#result").html(result);
-
+            const btnAdd = document.querySelectorAll('.btnAdd');
+            let toastLive = document.getElementById('liveToast');
+            btnAdd.forEach(el => el.addEventListener('click', e => {
+                let toast = new bootstrap.Toast(toastLive);
+                $('#toastNotify').html('<i class="fas fa-check-circle"></i> Đã thêm vào giỏ hàng.');
+                toast.show();
+                setTimeout(function () {
+                    toast.hide(200);
+                    $('#toastNotify').html('');
+                }, 2000);
+            }));
             //show pagination
             let number_of_items = arrRes.count;
             let number_of_pages = Math.ceil(number_of_items / show_per_page);
