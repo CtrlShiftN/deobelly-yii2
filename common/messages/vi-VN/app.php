@@ -304,5 +304,7 @@ return [
     'Rejected' => 'Từ chối',
     'Failed' => 'Thất bại',
     'Add notes' => 'Thêm ghi chú',
-    'Order notes' => 'Ghi chú đơn hàng'
+    'Order notes' => 'Ghi chú đơn hàng',
+    'Add New Order' => 'Thêm Đơn Hàng',
+    'Order List' => 'Danh Sách Đơn Hàng',
 ];

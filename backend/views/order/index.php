@@ -220,7 +220,7 @@ $arrStatus = \yii\helpers\ArrayHelper::map($arrStatus, 'id', 'name');
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
-                'heading' => Yii::t('app', 'Posts list'),
+                'heading' => Yii::t('app', 'Order List'),
             ],
         ]);
         Pjax::end();

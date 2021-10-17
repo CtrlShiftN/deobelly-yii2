@@ -65,21 +65,24 @@ class OrderController extends Controller
     {
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        $arrOrder = $dataProvider->query->all();
         if (Yii::$app->request->post('hasEditable')) {
             // which rows has been edited?
-            $_id = $_POST['editableKey'];
+            $_key = $_POST['editableKey'];
+            // get order id from the array
+            $_id = $arrOrder[$_key]['id'];
             $_index = $_POST['editableIndex'];
             // which attribute has been edited?
             $attribute = $_POST['editableAttribute'];
             if ($attribute == 'notes') {
                 // update to db
-                $value = $_POST['Order'][$_index][$attribute];
+                $value = $_POST[$attribute];
                 $result = Order::updateOrderNotes($_id, $attribute, $value);
                 // response to gridview
                 return json_encode($result);
             } elseif ($attribute == 'status') {
                 // update to db
-                $value = $_POST['Order'][$_index][$attribute];
+                $value = $_POST[$attribute];
                 $result = Order::updateOrderStatus($_id, $attribute, $value);
                 // response to gridview
                 return json_encode($result);
