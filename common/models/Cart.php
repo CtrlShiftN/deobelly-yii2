@@ -13,6 +13,7 @@ use Yii;
  * @property int|null $color_id
  * @property int|null $size_id
  * @property int $quantity
+ * @property int $total_price
  * @property int|null $status 0 for inactive, 1 for active
  * @property string|null $created_at
  * @property string|null $updated_at
@@ -33,8 +34,8 @@ class Cart extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'product_id', 'quantity'], 'required'],
-            [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'status'], 'integer'],
+            [['user_id', 'product_id', 'quantity', 'total_price'], 'required'],
+            [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'total_price', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -51,6 +52,7 @@ class Cart extends \yii\db\ActiveRecord
             'color_id' => Yii::t('app', 'Color ID'),
             'size_id' => Yii::t('app', 'Size ID'),
             'quantity' => Yii::t('app', 'Quantity'),
+            'total_price' => Yii::t('app', 'Total Price'),
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
