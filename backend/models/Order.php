@@ -74,4 +74,77 @@ class Order extends \common\models\Order
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
+
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return bool|void
+     */
+    public static function updateOrderNotes($id, $attribute, $value)
+    {
+        $updateStatus = \common\models\Order::updateAll([
+            $attribute => $value,
+            'updated_at' => date('Y-m-d H:i:s'),
+            'admin_id' => Yii::$app->user->identity->getId()
+        ], ['id' => $id]);
+        $model = \common\models\Order::findOne($id);
+        if (!empty($model)) {
+            $status = $model->status;
+            $adminID = $model->admin_id;
+            return self::updateOrCreateOrderTrackingNote($id, $adminID, $status, $value);
+        }
+    }
+
+    /**
+     * @param $orderID
+     * @param $adminID
+     * @param $actionID
+     * @param $note
+     * @return bool
+     */
+    private static function updateOrCreateOrderTrackingNote($orderID, $adminID, $actionID, $note){
+        $model = \common\models\OrderTracking::findOne([
+            'order_id' => $orderID,
+            'admin_id' => $adminID,
+            'action' => $actionID
+        ]);
+        if (!empty($model)){
+            $model->notes = $note;
+            $model->updated_at = date('Y-m-d H:i:s');
+            return $model->save();
+        }else{
+            $orderTrackingModel = new \common\models\OrderTracking();
+            $orderTrackingModel->order_id = $orderID;
+            $orderTrackingModel->admin_id = $adminID;
+            $orderTrackingModel->action = $actionID;
+            $orderTrackingModel->notes = $note;
+            $orderTrackingModel->created_at = date('Y-m-d H:i:s');
+            $orderTrackingModel->updated_at = date('Y-m-d H:i:s');
+            return $orderTrackingModel->save();
+        }
+    }
+
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return int|void
+     */
+    public static function updateOrderStatus($id, $attribute, $value)
+    {
+        $model = new \common\models\OrderTracking();
+        $model->admin_id = Yii::$app->user->identity->getId();
+        $model->order_id = $id;
+        $model->action = $value;
+        $model->created_at = date('Y-m-d H:i:s');
+        $model->updated_at = date('Y-m-d H:i:s');
+        if ($model->save()) {
+            return \common\models\Order::updateAll([
+                $attribute => $value,
+                'updated_at' => date('Y-m-d H:i:s'),
+                'admin_id' => Yii::$app->user->identity->getId()
+            ], ['id' => $id]);
+        }
+    }
 }

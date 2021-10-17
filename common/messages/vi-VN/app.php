@@ -296,8 +296,13 @@ return [
     'Processing' => 'Đang xử lý',
     'Approved' => 'Đã duyệt',
     'Shipping' => 'Đang giao hàng',
-    'Finished' => 'Hoàn thành',
+    'Delivered' => 'Hoàn thành',
     'Cancelled' => 'Đã hủy',
     'Expired' => 'Hết hạn',
-    'Returned' => 'Đã trả hàng',
+    'Refunded' => 'Đã trả hàng',
+    'Postpone' => 'Tạm hoãn',
+    'Rejected' => 'Từ chối',
+    'Failed' => 'Thất bại',
+    'Add notes' => 'Thêm ghi chú',
+    'Order notes' => 'Ghi chú đơn hàng'
 ];

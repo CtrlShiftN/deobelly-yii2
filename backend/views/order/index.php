@@ -11,7 +11,8 @@ use yii\widgets\Pjax;
 
 $this->title = Yii::t('app', 'Orders');
 $this->params['breadcrumbs'][] = $this->title;
-$arrStatus = \common\models\Order::getAllStatus();
+$arrStatus = \backend\models\TrackingStatus::getAllStatus();
+$arrStatus = \yii\helpers\ArrayHelper::map($arrStatus, 'id', 'name');
 ?>
 <div class="order-index">
     <div class="pt-3">
@@ -127,24 +128,45 @@ $arrStatus = \common\models\Order::getAllStatus();
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'notes',
+                'label' => Yii::t('app', 'Title'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'value' => function ($model, $key, $index, $widget) {
+                    return $model['notes'];
+                },
+                'editableOptions' => function ($model, $key, $index) use ($arrStatus) {
+                    return [
+                        'name' => 'notes',
+                        'asPopover' => false,
+                        'header' => Yii::t('app', 'Notes'),
+                        'size' => 'md',
+                        'inputType' => \kartik\editable\Editable::INPUT_TEXT,
+                        // default value in the text box
+                        'value' => $model['notes'],
+                    ];
+                },
+            ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'status',
-                'label' => Yii::t('app','Actions'),
+                'label' => Yii::t('app', 'Actions'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) use ($arrStatus) {
-                    return $arrStatus[$model['status']];
+                    return Yii::t('app', $arrStatus[$model['status']]);
                 },
                 'editableOptions' => function ($model, $key, $index) use ($arrStatus) {
                     return [
                         'name' => 'status',
                         'asPopover' => false,
-                        'header' => Yii::t('app','Status'),
+                        'header' => Yii::t('app', 'Status'),
                         'size' => 'md',
                         'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
                         'data' => $arrStatus,
                         // default value in the text box
-                        'value' => $arrStatus[$model['status']],
+                        'value' => Yii::t('app', $arrStatus[$model['status']]),
                         'displayValueConfig' => $arrStatus
                     ];
                 },
@@ -153,19 +175,7 @@ $arrStatus = \common\models\Order::getAllStatus();
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
-                'filterInputOptions' => ['placeholder' => '-- '.Yii::t('app','Status').' --']
-            ],
-            [
-                'attribute' => 'notes',
-                'label' => Yii::t('app', 'Customer Name'),
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'width' => '140px',
-                'value' => function ($model, $key, $index, $widget) {
-                    return $model['notes'];
-                },
-                'filter' => false,
-                'format' => 'raw'
+                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Status') . ' --']
             ],
         ];
         Pjax::begin();
@@ -197,7 +207,7 @@ $arrStatus = \common\models\Order::getAllStatus();
             'exportConfig' => $defaultExportConfig,
             'toolbar' => [
                 [
-                    'content' => Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create new post'), ['create'], [
+                    'content' => Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Add New Order'), ['create'], [
                         'class' => 'btn btn-success',
                         'title' => 'Reset Grid',
                         'data-pjax' => 0,

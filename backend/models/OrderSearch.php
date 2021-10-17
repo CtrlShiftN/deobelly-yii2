@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\components\SystemConstant;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\Order;
@@ -19,7 +20,7 @@ class OrderSearch extends Order
     {
         return [
             [['id', 'user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'admin_id', 'status'], 'integer'],
-            [['province', 'district', 'village', 'specific_address', 'tel', 'created_at', 'updated_at'], 'safe'],
+            [['province', 'district', 'village', 'specific_address', 'address', 'notes', 'tel', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -86,6 +87,8 @@ class OrderSearch extends Order
             ->andFilterWhere(['like', 'district', $this->district])
             ->andFilterWhere(['like', 'village', $this->village])
             ->andFilterWhere(['like', 'specific_address', $this->specific_address])
+            ->andFilterWhere(['like', 'address', $this->address])
+            ->andFilterWhere(['like', 'notes', $this->notes])
             ->andFilterWhere(['like', 'tel', $this->tel]);
 
         return $dataProvider;
