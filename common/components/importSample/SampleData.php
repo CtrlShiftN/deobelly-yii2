@@ -1215,6 +1215,7 @@ class SampleData
                 $cart->size_id = $value['size_id'];
             }
             $cart->quantity = $value['quantity'];
+            $cart->total_price = $value['quantity'] * \frontend\models\Product::getPriceProductById($value['product_id']);
             $cart->created_at = date('Y-m-d H:m:s');
             $cart->updated_at = date('Y-m-d H:m:s');
             if ($cart->save()) {

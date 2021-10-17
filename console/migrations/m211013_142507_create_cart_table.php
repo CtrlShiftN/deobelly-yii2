@@ -19,6 +19,7 @@ class m211013_142507_create_cart_table extends Migration
             'color_id' => $this->smallInteger()->null(),
             'size_id' => $this->smallInteger()->null(),
             'quantity' => $this->integer()->notNull(),
+            'total_price' => $this->integer()->notNull(),
             'status' => $this->smallInteger()->defaultValue(1)->comment('0 for inactive, 1 for active'),
             'created_at' => $this->dateTime(),
             'updated_at' => $this->dateTime(),

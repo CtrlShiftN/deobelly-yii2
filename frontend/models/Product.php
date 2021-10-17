@@ -145,4 +145,13 @@ class Product extends \common\models\Product
     {
         return Product::find()->where(['status' => 1])->andWhere(['not', ['id' => $otherId]])->andWhere(['not', ['sale_price' => null]])->orderBy(new Expression('rand()'))->limit($limit)->all();
     }
+
+    /**
+     * @param $id
+     * @return array|\yii\db\ActiveRecord|null
+     */
+    public static function getPriceProductById($id)
+    {
+        return Product::find()->select('selling_price')->where(['status' => SystemConstant::STATUS_ACTIVE, 'id' => $id])->asArray()->one()['selling_price'];
+    }
 }
