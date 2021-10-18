@@ -1196,6 +1196,13 @@ class SampleData
             'size_id' => 6,
             'quantity' => 3,
         ],
+        [
+            'user_id' => 4,
+            'product_id' => '3',
+            'color_id' => 4,
+            'size_id' => 3,
+            'quantity' => 4,
+        ],
     ];
 
     /**

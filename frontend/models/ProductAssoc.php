@@ -3,28 +3,30 @@
 namespace frontend\models;
 
 use Yii;
+use yii\db\Query;
 
 /**
- * This is the model class for table "cart".
+ * This is the model class for table "product_assoc".
  *
  * @property int $id
- * @property int $user_id
  * @property int $product_id
- * @property int|null $color_id
- * @property int|null $size_id
- * @property int $quantity
+ * @property string $type_id A product can have more than one type
+ * @property int $category_id
+ * @property string|null $color_id
+ * @property string|null $size_id
  * @property int|null $status 0 for inactive, 1 for active
+ * @property int|null $admin_id
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class Cart extends \common\models\Cart
+class ProductAssoc extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'cart';
+        return 'product_assoc';
     }
 
     /**
@@ -33,9 +35,11 @@ class Cart extends \common\models\Cart
     public function rules()
     {
         return [
-            [['user_id', 'product_id', 'quantity'], 'required'],
-            [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'status'], 'integer'],
+            [['product_id', 'type_id', 'category_id'], 'required'],
+            [['product_id', 'category_id', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
+            [['type_id', 'color_id', 'size_id'], 'string', 'max' => 255],
+            [['product_id'], 'unique'],
         ];
     }
 
@@ -46,12 +50,13 @@ class Cart extends \common\models\Cart
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
             'product_id' => Yii::t('app', 'Product ID'),
+            'type_id' => Yii::t('app', 'Type ID'),
+            'category_id' => Yii::t('app', 'Category ID'),
             'color_id' => Yii::t('app', 'Color ID'),
             'size_id' => Yii::t('app', 'Size ID'),
-            'quantity' => Yii::t('app', 'Quantity'),
             'status' => Yii::t('app', 'Status'),
+            'admin_id' => Yii::t('app', 'Admin ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];

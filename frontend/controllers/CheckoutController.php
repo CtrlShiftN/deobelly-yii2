@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use frontend\models\Cart;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
@@ -53,8 +54,10 @@ class CheckoutController extends \yii\web\Controller
     }
     public function actionCart()
     {
-
-        return $this->render('cart');
+        $cart = Cart::getCartByUserId(\Yii::$app->user->id);
+        return $this->render('cart',[
+            'cart' => $cart,
+        ]);
     }
 
 }

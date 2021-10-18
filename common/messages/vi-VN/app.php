@@ -289,4 +289,5 @@ return [
     'Size List' => 'Danh Sách Kích Cỡ',
     'This name has already been used.' => 'Tên này đã được sử dụng.',
     'This title has already been used.' => 'Tiêu đề này đã được sử dụng.',
+    'Cart' => 'Giỏ Hàng'
 ];
