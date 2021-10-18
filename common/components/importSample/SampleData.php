@@ -1468,6 +1468,24 @@ class SampleData
         echo "Inserted " . $count . '/' . count(self::$arrTrackingStatus) . ' tracking status.' . PHP_EOL;
     }
 
+    protected static $arrWardDistrictProvince = [
+        'Thành phố Hà Nội' => [
+            'Quận Ba Đình' => 'Phường Phúc Xá,Phường Trúc Bạch,Phường Vĩnh Phúc,Phường Cống Vị,Phường Liễu Giai,Phường Nguyễn Trung Trực,Phường Quán Thánh,Phường Ngọc Hà,Phường Điện Biên,Phường Đội Cấn,Phường Ngọc Khánh,Phường Kim Mã,Phường Giảng Võ,Phường Thành Công',
+            'Quận Hoàn Kiếm' => 'Phường Phúc Tân,Phường Đồng Xuân,Phường Hàng Mã,Phường Hàng Buồm,Phường Hàng Đào,Phường Hàng Bồ,Phường Cửa Đông,Phường Lý Thái Tổ,Phường Hàng Bạc,Phường Hàng Gai,Phường Chương Dương,Phường Hàng Trống,Phường Cửa Nam,Phường Hàng Bông,Phường Tràng Tiền,Phường Trần Hưng Đạo,Phường Phan Chu Trinh,Phường Hàng Bài',
+            'Quận Tây Hồ' => 'Phường Phú Thượng,Phường Nhật Tân,Phường Tứ Liên,Phường Quảng An,Phường Xuân La,Phường Yên Phụ,Phường Bưởi,Phường Thụy Khuê',
+            'Quận Long Biên' => 'Phường Thượng Thanh,Phường Ngọc Thụy,Phường Giang Biên,Phường Đức Giang,Phường Việt Hưng,Phường Gia Thụy,Phường Ngọc Lâm,Phường Phúc Lợi,Phường Bồ Đề,Phường Sài Đồng,Phường Long Biên,Phường Thạch Bàn,Phường Phúc Đồng,Phường Cự Khối',
+            'Quận Cầu Giấy' => 'Phường Nghĩa Đô,Phường Nghĩa Tân,Phường Mai Dịch,Phường Dịch Vọng,Phường Dịch Vọng Hậu,Phường Quan Hoa,Phường Yên Hoà,Phường Trung Hoà',
+            'Quận Đống Đa' => 'Phường Cát Linh,Phường Văn Miếu,Phường Quốc Tử Giám,Phường Láng Thượng,Phường Ô Chợ Dừa,Phường Văn Chương,Phường Hàng Bột,Phường Láng Hạ,Phường Khâm Thiên,Phường Thổ Quan,Phường Nam Đồng,Phường Trung Phụng,Phường Quang Trung,Phường Trung Liệt,Phường Phương Liên,Phường Thịnh Quang,Phường Trung Tự,Phường Kim Liên,Phường Phương Mai,Phường Ngã Tư Sở,Phường Khương Thượng',
+
+        ]
+    ];
+
+    public static function insertSampleGeoLocation(){
+        $count = 0;
+
+        echo "Inserted " . $count . '/' . count(self::$arrWardDistrictProvince) . ' geo location.' . PHP_EOL;
+    }
+
     /**
      * @throws Exception
      */
@@ -1490,5 +1508,6 @@ class SampleData
         self::insertSampleOrder();
         self::insertSampleOrderTracking();
         self::insertSampleTrackingStatus();
+
     }
 }

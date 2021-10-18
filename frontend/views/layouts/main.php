@@ -252,7 +252,7 @@ AppAsset::register($this);
                 </nav>
                 <!-- End navs -->
             </div>
-            <div class="container">
+            <div class="container px-0">
                 <?= $content ?>
             </div>
             <footer class="footer">

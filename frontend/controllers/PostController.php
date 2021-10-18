@@ -39,7 +39,7 @@ class PostController extends \yii\web\Controller
 
     public function beforeAction($action)
     {
-        $this->layout = 'post';
+        $this->layout = 'main';
         if (!parent::beforeAction($action)) {
             return false;
         }
