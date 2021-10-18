@@ -2,23 +2,22 @@
 
 namespace backend\controllers;
 
-use backend\models\Color;
-use backend\models\Order;
-use backend\models\OrderSearch;
-use backend\models\Product;
-use backend\models\Size;
-use backend\models\User;
+use backend\models\TrackingStatus;
+use backend\models\TrackingStatusSearch;
 use common\components\encrypt\CryptHelper;
+use common\components\helpers\StringHelper;
+use common\components\SystemConstant;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * OrderController implements the CRUD actions for Order model.
+ * TrackingStatusController implements the CRUD actions for TrackingStatus model.
  */
-class OrderController extends Controller
+class TrackingStatusController extends Controller
 {
     /**
      * @inheritDoc
@@ -62,32 +61,29 @@ class OrderController extends Controller
     }
 
     /**
-     * Lists all Order models.
+     * Lists all TrackingStatus models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new OrderSearch();
+        $searchModel = new TrackingStatusSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-        $arrOrder = $dataProvider->query->all();
         if (Yii::$app->request->post('hasEditable')) {
             // which rows has been edited?
-            $_key = $_POST['editableKey'];
-            // get order id from the array
-            $_id = $arrOrder[$_key]['id'];
+            $_id = $_POST['editableKey'];
             $_index = $_POST['editableIndex'];
             // which attribute has been edited?
             $attribute = $_POST['editableAttribute'];
-            if ($attribute == 'notes') {
+            if ($attribute == 'name') {
                 // update to db
-                $value = $_POST[$attribute];
-                $result = Order::updateOrderNotes($_id, $attribute, $value);
+                $value = $_POST['TrackingStatus'][$_index][$attribute];
+                $result = TrackingStatus::updateTitle($_id, $attribute, $value);
                 // response to gridview
                 return json_encode($result);
             } elseif ($attribute == 'status') {
                 // update to db
-                $value = $_POST[$attribute];
-                $result = Order::updateOrderStatus($_id, $attribute, $value);
+                $value = $_POST['TrackingStatus'][$_index][$attribute];
+                $result = TrackingStatus::updateStatus($_id, $attribute, $value);
                 // response to gridview
                 return json_encode($result);
             }
@@ -100,7 +96,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Displays a single Order model.
+     * Displays a single TrackingStatus model.
      * @param int $id ID
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -114,37 +110,36 @@ class OrderController extends Controller
     }
 
     /**
-     * Creates a new Order model.
+     * Creates a new TrackingStatus model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Order();
-        $users = User::getAllUser();
-        $products = Product::getAllProduct();
-        $colors = Color::getAllColor();
-        $sizes = Size::getAllSize();
+        $model = new TrackingStatus();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
-
+                $model->slug = StringHelper::toSlug($model->name);
+                $model->created_at = date('Y-m-d H:m:s');
+                $model->updated_at = date('Y-m-d H:m:s');
+                $model->status = SystemConstant::STATUS_ACTIVE;
+                $model->admin_id = Yii::$app->user->identity->getId();
+                if ($model->save()) {
+                    return $this->redirect(Url::toRoute('tracking-status/'));
+                }
             }
         } else {
             $model->loadDefaultValues();
         }
 
-        return $this->render('create', [
+        return $this->renderAjax('create', [
             'model' => $model,
-            'users' => $users,
-            'products' => $products,
-            'colors' => $colors,
-            'sizes' => $sizes
         ]);
     }
 
     /**
-     * Updates an existing Order model.
+     * Updates an existing TrackingStatus model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return mixed
@@ -165,7 +160,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Deletes an existing Order model.
+     * Deletes an existing TrackingStatus model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return mixed
@@ -180,15 +175,15 @@ class OrderController extends Controller
     }
 
     /**
-     * Finds the Order model based on its primary key value.
+     * Finds the TrackingStatus model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Order the loaded model
+     * @return TrackingStatus the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Order::findOne($id)) !== null) {
+        if (($model = TrackingStatus::findOne($id)) !== null) {
             return $model;
         }
 

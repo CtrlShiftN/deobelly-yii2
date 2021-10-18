@@ -206,6 +206,13 @@ AppAsset::register($this);
                                         <p><?= Yii::t('app', 'Orders') ?></p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="<?= Url::toRoute('tracking-status/') ?>"
+                                       class="nav-link <?= ($controller == 'tracking-status') ? 'active' : '' ?>">
+                                        <i class="nav-icon fas fa-user"></i>
+                                        <p><?= Yii::t('app', 'Order Status') ?></p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <!-- End warehouse -->
