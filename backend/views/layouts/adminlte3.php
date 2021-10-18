@@ -188,6 +188,27 @@ AppAsset::register($this);
                             </ul>
                         </li>
                         <!-- End Product -->
+                        <!-- Warehouse -->
+                        <li class="nav-item <?= ($controller == 'order' || $controller == 'cart') ? 'menu-is-opening menu-open' : '' ?>">
+                            <a href="#"
+                               class="nav-link <?= ($controller == 'order' || $controller == 'cart') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-warehouse"></i>
+                                <p>
+                                    <?= Yii::t('app', 'Warehouse') ?>
+                                    <i class="right fas fa-angle-right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?= Url::toRoute('order/') ?>"
+                                       class="nav-link <?= ($controller == 'order') ? 'active' : '' ?>">
+                                        <i class="nav-icon fas fa-user"></i>
+                                        <p><?= Yii::t('app', 'Orders') ?></p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- End warehouse -->
                         <li class="nav-header text-uppercase font-weight-bold"><?= Yii::t('app', 'Others') ?></li>
                         <li class="nav-item">
                             <a href="<?= Url::toRoute('color/') ?>" class="nav-link <?= ($controller == 'color') ? 'active' : '' ?>">
@@ -197,7 +218,7 @@ AppAsset::register($this);
                         </li>
                         <li class="nav-item">
                             <a href="<?= Url::toRoute('size/') ?>" class="nav-link <?= ($controller == 'size') ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-palette"></i>
+                                <i class="nav-icon fas fa-ruler-combined"></i>
                                 <p><?= Yii::t('app', 'Size') ?></p>
                             </a>
                         </li>
