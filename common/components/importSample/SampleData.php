@@ -2,6 +2,7 @@
 
 namespace common\components\importsample;
 
+use common\components\helpers\StringHelper;
 use common\components\SystemConstant;
 use common\models\Cart;
 use common\models\Color;
@@ -16,6 +17,7 @@ use common\models\ProductCategory;
 use common\models\ProductType;
 use common\models\Size;
 use common\models\TermsAndServices;
+use common\models\TrackingStatus;
 use common\models\Trademark;
 use common\models\User;
 use frontend\models\Slider;
@@ -1356,11 +1358,12 @@ class SampleData
             $order->district = $value['district'];
             $order->village = $value['village'];
             $order->specific_address = $value['specific_address'];
-            $order->address = $value['specific_address'].', '.$value['village'].', '.$value['district'].', '.$value['province'];
+            $order->address = $value['specific_address'] . ', ' . $value['village'] . ', ' . $value['district'] . ', ' . $value['province'];
             $order->tel = $value['tel'];
             $order->admin_id = $value['admin_id'];
             $order->created_at = date('Y-m-d H:m:s');
             $order->updated_at = date('Y-m-d H:m:s');
+            $order->status = rand(1, 8);
             if ($order->save()) {
                 $countOrder++;
             }
@@ -1434,6 +1437,37 @@ class SampleData
         echo "Inserted " . $countOrderTracking . '/' . count(self::$arrOrderTrackingInfo) . ' order tracking.' . PHP_EOL;
     }
 
+    protected static $arrTrackingStatus = [
+        'New',
+        'Processing',
+        'Approved',
+        'Shipping',
+        'Delivered',
+        'Cancelled',
+        'Expired',
+        'Refunded',
+        'Postpone',
+        'Rejected',
+        'Failed',
+    ];
+
+    public static function insertSampleTrackingStatus()
+    {
+        $count = 0;
+        foreach (self::$arrTrackingStatus as $status) {
+            $model = new TrackingStatus();
+            $model->name = $status;
+            $model->slug = StringHelper::toSlug($status);
+            $model->admin_id = 1;
+            $model->created_at = date('Y-m-d H:m:s');
+            $model->updated_at = date('Y-m-d H:m:s');
+            if ($model->save()) {
+                $count++;
+            }
+        }
+        echo "Inserted " . $count . '/' . count(self::$arrTrackingStatus) . ' tracking status.' . PHP_EOL;
+    }
+
     /**
      * @throws Exception
      */
@@ -1455,5 +1489,6 @@ class SampleData
         self::insertSampleCart();
         self::insertSampleOrder();
         self::insertSampleOrderTracking();
+        self::insertSampleTrackingStatus();
     }
 }

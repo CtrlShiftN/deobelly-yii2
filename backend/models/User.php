@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\components\SystemConstant;
 use Yii;
 
 /**
@@ -73,6 +74,11 @@ class User extends \common\models\User
         ];
     }
 
+    /**
+     * @param $attribute
+     * @param $params
+     * @param $validator
+     */
     public function validateTel($attribute, $params, $validator)
     {
         if (!preg_match('/^(84|0[1-9])+([0-9]{8})$/', $this->tel)) {
@@ -80,8 +86,21 @@ class User extends \common\models\User
         }
     }
 
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
     public static function updateUser($id, $attribute, $value)
     {
         return \common\models\User::updateAll([$attribute => $value], ['id' => $id]);
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getAllUser(){
+        return \common\models\User::find()->where(['status'=>SystemConstant::STATUS_ACTIVE])->asArray()->all();
     }
 }

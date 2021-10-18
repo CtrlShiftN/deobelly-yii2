@@ -46,7 +46,20 @@ class Order extends \common\models\Order
             [['address', 'notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['province', 'district', 'village', 'specific_address', 'tel'], 'string', 'max' => 255],
+            ['tel', 'validateTel'],
         ];
+    }
+
+    /**
+     * @param $attribute
+     * @param $params
+     * @param $validator
+     */
+    public function validateTel($attribute, $params, $validator)
+    {
+        if (!preg_match('/^(84|0[1-9])+([0-9]{8})$/', $this->tel)) {
+            $this->addError($attribute, Yii::t('app', 'Invalid phone number.'));
+        }
     }
 
     /**
@@ -56,10 +69,10 @@ class Order extends \common\models\Order
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'product_id' => Yii::t('app', 'Product ID'),
-            'color_id' => Yii::t('app', 'Color ID'),
-            'size_id' => Yii::t('app', 'Size ID'),
+            'user_id' => Yii::t('app', 'User'),
+            'product_id' => Yii::t('app', 'Product'),
+            'color_id' => Yii::t('app', 'Color'),
+            'size_id' => Yii::t('app', 'Size'),
             'quantity' => Yii::t('app', 'Quantity'),
             'province' => Yii::t('app', 'Province'),
             'district' => Yii::t('app', 'District'),
@@ -68,10 +81,83 @@ class Order extends \common\models\Order
             'address' => Yii::t('app', 'Address'),
             'notes' => Yii::t('app', 'Notes'),
             'tel' => Yii::t('app', 'Tel'),
-            'admin_id' => Yii::t('app', 'Admin ID'),
+            'admin_id' => Yii::t('app', 'Admin'),
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
+    }
+
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return bool|void
+     */
+    public static function updateOrderNotes($id, $attribute, $value)
+    {
+        $updateStatus = \common\models\Order::updateAll([
+            $attribute => $value,
+            'updated_at' => date('Y-m-d H:i:s'),
+            'admin_id' => Yii::$app->user->identity->getId()
+        ], ['id' => $id]);
+        $model = \common\models\Order::findOne($id);
+        if (!empty($model)) {
+            $status = $model->status;
+            $adminID = $model->admin_id;
+            return self::updateOrCreateOrderTrackingNote($id, $adminID, $status, $value);
+        }
+    }
+
+    /**
+     * @param $orderID
+     * @param $adminID
+     * @param $actionID
+     * @param $note
+     * @return bool
+     */
+    private static function updateOrCreateOrderTrackingNote($orderID, $adminID, $actionID, $note){
+        $model = \common\models\OrderTracking::findOne([
+            'order_id' => $orderID,
+            'admin_id' => $adminID,
+            'action' => $actionID
+        ]);
+        if (!empty($model)){
+            $model->notes = $note;
+            $model->updated_at = date('Y-m-d H:i:s');
+            return $model->save();
+        }else{
+            $orderTrackingModel = new \common\models\OrderTracking();
+            $orderTrackingModel->order_id = $orderID;
+            $orderTrackingModel->admin_id = $adminID;
+            $orderTrackingModel->action = $actionID;
+            $orderTrackingModel->notes = $note;
+            $orderTrackingModel->created_at = date('Y-m-d H:i:s');
+            $orderTrackingModel->updated_at = date('Y-m-d H:i:s');
+            return $orderTrackingModel->save();
+        }
+    }
+
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return int|void
+     */
+    public static function updateOrderStatus($id, $attribute, $value)
+    {
+        $model = new \common\models\OrderTracking();
+        $model->admin_id = Yii::$app->user->identity->getId();
+        $model->order_id = $id;
+        $model->action = $value;
+        $model->created_at = date('Y-m-d H:i:s');
+        $model->updated_at = date('Y-m-d H:i:s');
+        if ($model->save()) {
+            return \common\models\Order::updateAll([
+                $attribute => $value,
+                'updated_at' => date('Y-m-d H:i:s'),
+                'admin_id' => Yii::$app->user->identity->getId()
+            ], ['id' => $id]);
+        }
     }
 }
