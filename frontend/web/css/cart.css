@@ -81,14 +81,14 @@ a:focus, input:focus, button:focus {
 
 .amountInput, .btnDESC, .btnASC {
     height: 36px !important;
-    border-radius: 0;
-    background-color: #dbd9dc;
-    border: 1px solid #dbd9dc;
+    border-radius: 0  !important;
+    background-color: #dbd9dc !important;
+    border: 1px solid #dbd9dc  !important;
     margin: 0 !important;
 }
 
 .btnDESC, .btnASC {
-    width: 36px;
+    width: 36px !important;
 }
 
 .bg-lighter-gray {
