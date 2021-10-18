@@ -307,4 +307,8 @@ return [
     'Order notes' => 'Ghi chú đơn hàng',
     'Add New Order' => 'Thêm Đơn Hàng',
     'Order List' => 'Danh Sách Đơn Hàng',
+    'Order Status' => 'Trạng Thái Đơn Hàng',
+    'Order Statuses' => 'Trạng Thái Đơn Hàng',
+    'Order Status List' => 'Danh Sách Trạng Thái Đơn Hàng',
+    'Add New Status' => 'Thêm Mới Trạng Thái',
 ];
