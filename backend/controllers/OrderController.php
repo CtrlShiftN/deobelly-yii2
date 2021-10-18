@@ -2,8 +2,12 @@
 
 namespace backend\controllers;
 
+use backend\models\Color;
 use backend\models\Order;
 use backend\models\OrderSearch;
+use backend\models\Product;
+use backend\models\Size;
+use backend\models\User;
 use common\components\encrypt\CryptHelper;
 use Yii;
 use yii\filters\AccessControl;
@@ -117,10 +121,14 @@ class OrderController extends Controller
     public function actionCreate()
     {
         $model = new Order();
+        $users = User::getAllUser();
+        $products = Product::getAllProduct();
+        $colors = Color::getAllColor();
+        $sizes = Size::getAllSize();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+
             }
         } else {
             $model->loadDefaultValues();

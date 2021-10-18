@@ -46,7 +46,20 @@ class Order extends \common\models\Order
             [['address', 'notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['province', 'district', 'village', 'specific_address', 'tel'], 'string', 'max' => 255],
+            ['tel', 'validateTel'],
         ];
+    }
+
+    /**
+     * @param $attribute
+     * @param $params
+     * @param $validator
+     */
+    public function validateTel($attribute, $params, $validator)
+    {
+        if (!preg_match('/^(84|0[1-9])+([0-9]{8})$/', $this->tel)) {
+            $this->addError($attribute, Yii::t('app', 'Invalid phone number.'));
+        }
     }
 
     /**
@@ -56,10 +69,10 @@ class Order extends \common\models\Order
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'product_id' => Yii::t('app', 'Product ID'),
-            'color_id' => Yii::t('app', 'Color ID'),
-            'size_id' => Yii::t('app', 'Size ID'),
+            'user_id' => Yii::t('app', 'User'),
+            'product_id' => Yii::t('app', 'Product'),
+            'color_id' => Yii::t('app', 'Color'),
+            'size_id' => Yii::t('app', 'Size'),
             'quantity' => Yii::t('app', 'Quantity'),
             'province' => Yii::t('app', 'Province'),
             'district' => Yii::t('app', 'District'),
@@ -68,7 +81,7 @@ class Order extends \common\models\Order
             'address' => Yii::t('app', 'Address'),
             'notes' => Yii::t('app', 'Notes'),
             'tel' => Yii::t('app', 'Tel'),
-            'admin_id' => Yii::t('app', 'Admin ID'),
+            'admin_id' => Yii::t('app', 'Admin'),
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),

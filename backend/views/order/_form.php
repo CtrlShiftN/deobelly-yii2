@@ -1,47 +1,42 @@
 <?php
 
+use kartik\form\ActiveForm;
+use kartik\select2\Select2;
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Order */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="order-form">
+<div class="order-form container p-3">
+    <h3 class="text-uppercase pb-4"><?= Yii::t('app', 'Add New Order') ?></h3>
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'user_id')->textInput() ?>
+    <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Enter post title')]) ?>
 
-    <?= $form->field($model, 'product_id')->textInput() ?>
+    <?= $form->field($model, 'tags')->widget(Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map($postTag, 'id', 'title'),
+        'options' => ['placeholder' => Yii::t('app', 'Choose post tags')],
+        'pluginOptions' => [
+            'multiple' => true,
+            'allowClear' => true
+        ],
+    ]); ?>
 
-    <?= $form->field($model, 'color_id')->textInput() ?>
+    <?= $form->field($model, 'post_category_id')->widget(Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map($postCate, 'id', 'title'),
+        'options' => ['placeholder' => Yii::t('app', 'Choose post category')],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]); ?>
 
-    <?= $form->field($model, 'size_id')->textInput() ?>
-
-    <?= $form->field($model, 'quantity')->textInput() ?>
-
-    <?= $form->field($model, 'province')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'district')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'village')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'specific_address')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'tel')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'admin_id')->textInput() ?>
-
-    <?= $form->field($model, 'status')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
+    <?= $form->field($model, 'content')->widget(\yii\redactor\widgets\Redactor::class) ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Create new post'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
