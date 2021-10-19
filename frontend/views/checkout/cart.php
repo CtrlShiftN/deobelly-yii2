@@ -34,15 +34,7 @@ $this->registerJsFile(Url::toRoute('js/cart.js'));
     <?php $idEncrypt = CryptHelper::encryptString($value['id']) ?>
     <div class="w-100 row mx-0 py-2 my-3 my-md-2 border-bottom border-top p-0 row-product" data-id="<?= $value['id'] ?>">
         <div class="col-2 row m-0 px-0 d-flex justify-content-center align-items-center">
-            <div class="col-5 px-2 d-flex justify-content-center align-items-center">
-                <label class="category-checkbox">
-                    <input type="checkbox" value="<?= $idEncrypt ?>">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-            <div class="col-7 px-0 px-md-2">
                 <img src="<?= $imgUrl . '/' . $value['p-img'] ?>" class="object-fit-cover w-100">
-            </div>
         </div>
         <!--information-->
         <div class="col-10 m-0 px-0 row d-flex justify-content-center align-items-center fs__14px">
@@ -87,7 +79,7 @@ $this->registerJsFile(Url::toRoute('js/cart.js'));
             </div>
             <!--price-->
             <div class="col-3 col-lg-4 row m-0 p-0">
-                <div class="col-lg-6 d-none d-lg-flex p-0 text-md-center price_<?= $idEncrypt ?>" data-price="<?= $value['p-price'] ?>">
+                <div class="col-lg-6 d-none d-lg-flex p-0 justify-content-center price_<?= $idEncrypt ?>" data-price="<?= $value['p-price'] ?>">
                     <span class="d-md-none me-2">Giá:</span>
                     <?= number_format($value['p-price'], 0, ',', '.') ?>đ
                 </div>
@@ -95,30 +87,30 @@ $this->registerJsFile(Url::toRoute('js/cart.js'));
                 <div class="col-12 col-lg-6 p-0">
                     <div class="d-flex justify-content-center">
                         <button type="button" onclick="reduceProductQuantity()" id=""
-                                class="btn btn-gray d-inline-block fw-bolder border-top-0 border-bottom-0 border-start-0 border-dark btnDESC d-md-flex d-none">
-                            -
+                                class="fs-5 btn btn-gray border-top-0 border-bottom-0 border-start-0 border-dark btnDESC d-md-flex d-none justify-content-center align-items-center">
+                            <i class="fas fa-minus"></i>
                         </button>
                         <label for="amount<?= $idEncrypt ?>" class="my-auto d-md-none me-2">Số lượng: </label>
                         <input type="text" id="amount<?= $idEncrypt ?>" value="<?= $value['quantity'] ?>"
                                onchange="totalPrice()"
                                class="text-center d-inline-block amountInput quantity_<?= $idEncrypt ?>">
                         <button type="button" onclick="increaseProductQuantity()" id=""
-                                class="btn btn-gray d-inline-block fw-bolder border-top-0 border-bottom-0 border-end-0 border-dark btnASC d-md-flex d-none">
-                            +
+                                class="btn btn-gray fw-light border-top-0 border-bottom-0 border-end-0 border-dark btnASC d-md-flex d-none justify-content-center align-items-center">
+                            <i class="fas fa-plus"></i>
                         </button>
                     </div>
                 </div>
             </div>
             <!--total price-->
             <div class="col-5 col-lg-4 row m-0 p-0">
-                <div class="col-8 p-0 text-md-center total-price_<?= $idEncrypt ?>"
+                <div class="col-9 p-0 text-md-center total-price_<?= $idEncrypt ?>"
                      data-total-price="<?= $value['total_price'] ?>">
                     <span class="d-md-none me-2">Tổng:</span>
                     <?= number_format($value['total_price'], 0, ',', '.') ?>đ
                 </div>
                 <!--action-->
-                <div class="col-4 p-0 text-md-center">
-                    <button class="btn btn-dark w-100"><?= Yii::t('app', 'Delete') ?></button>
+                <div class="col-3 p-0 text-md-center">
+                    <button class="btn bg-transparent w-100"><i class="far fa-trash-alt"></i></button>
                 </div>
             </div>
         </div>
