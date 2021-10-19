@@ -79,6 +79,12 @@ AppAsset::register($this);
                                     <li class="site-nav-top">
                                         <div class="vr mx-2"></div>
                                     </li>
+                                    <li class="site-nav-top"><a href="<?= Url::toRoute('gallery/') ?>"
+                                                                class="site-nav-top-link"><span><?= Yii::t('app', 'Galery') ?></span></a>
+                                    </li>
+                                    <li class="site-nav-top">
+                                        <div class="vr mx-2"></div>
+                                    </li>
                                     <li class="site-nav-top"><a href="<?= Url::toRoute('site/terms') ?>"
                                                                 class="site-nav-top-link"><span><?= Yii::t('app', 'Terms & Service') ?></span></a>
                                     </li>

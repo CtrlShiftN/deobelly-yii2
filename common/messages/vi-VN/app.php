@@ -311,4 +311,5 @@ return [
     'Order Statuses' => 'Trạng Thái Đơn Hàng',
     'Order Status List' => 'Danh Sách Trạng Thái Đơn Hàng',
     'Add New Status' => 'Thêm Mới Trạng Thái',
+    'No 19, 29 alley, 460 lane, Khuong Dinh street' => 'Số 19, ngách 29, ngõ 460, đường Khương Đình'
 ];

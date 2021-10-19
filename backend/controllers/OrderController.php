@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\models\Color;
+use backend\models\GeoLocation;
 use backend\models\Order;
 use backend\models\OrderSearch;
 use backend\models\Product;
@@ -11,6 +12,7 @@ use backend\models\User;
 use common\components\encrypt\CryptHelper;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -125,7 +127,8 @@ class OrderController extends Controller
         $products = Product::getAllProduct();
         $colors = Color::getAllColor();
         $sizes = Size::getAllSize();
-
+        $provinces = ArrayHelper::map(GeoLocation::getAllProvince(), 'id','name');
+        $provinces[-1] = Yii::t('app','Chooser a province');
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
 
@@ -139,7 +142,8 @@ class OrderController extends Controller
             'users' => $users,
             'products' => $products,
             'colors' => $colors,
-            'sizes' => $sizes
+            'sizes' => $sizes,
+            'provinces' => $provinces
         ]);
     }
 
@@ -193,5 +197,39 @@ class OrderController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+    /**
+     * @return array|string[]
+     */
+    public function actionGetDistrict(){
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $province_id = $parents[0];
+                $out = GeoLocation::getDistrictByProvinceID($province_id);
+                return ['output'=>$out, 'selected'=>''];
+            }
+        }
+        return ['output'=>'', 'selected'=>''];
+    }
+
+    /**
+     * @return array|string[]
+     */
+    public function actionGetVillage(){
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $district_id = $parents[0];
+                $out = GeoLocation::getDistrictByProvinceID($district_id);
+                return ['output'=>$out, 'selected'=>''];
+            }
+        }
+        return ['output'=>'', 'selected'=>''];
     }
 }
