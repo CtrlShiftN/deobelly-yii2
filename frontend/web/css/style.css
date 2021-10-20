@@ -26,6 +26,10 @@ body {
     background-color: #fff;
 }
 
+.p-home {
+    padding: 25px;
+}
+
 .topbar > ul > li > a {
     text-decoration: none;
     color: white;
@@ -57,8 +61,8 @@ body {
 }
 
 .logo-align > img {
-    height: 70px;
-    max-height: 70px;
+    height: 80px;
+    max-height: 80px;
 }
 
 .main-site-nav {
@@ -69,6 +73,16 @@ body {
 #main-menu > li {
     display: inline;
     padding-right: 15px;
+}
+
+#main-menu > li > .btn {
+    vertical-align: baseline !important;
+    border: none;
+}
+
+#main-menu > li > .btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 #main-menu > li > a {
@@ -282,6 +296,7 @@ footer .footer-content {
     color: white;
     font-weight: bolder;
 }
+
 /* Phone call btn */
 .phone-call {
     width: 50px;
@@ -363,4 +378,5 @@ footer .footer-content {
         opacity: 0;
     }
 }
+
 /* End Phone call btn */
