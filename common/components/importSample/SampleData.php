@@ -437,7 +437,7 @@ class SampleData
         [
             'name' => 'Áo sơ mi',
             'slug' => 'ao-so-mi',
-            'type_id' => '1,2,4,8',
+            'type_id' => '1,2,4,7',
             'admin_id' => 1,
         ],
         [
@@ -449,25 +449,25 @@ class SampleData
         [
             'name' => 'Áo Vest',
             'slug' => 'ao-vest',
-            'type_id' => '1,2,4,8',
+            'type_id' => '1,2,4,7',
             'admin_id' => 1,
         ],
         [
             'name' => 'Quần âu',
             'slug' => 'quan-au',
-            'type_id' => '1,2,5,8',
+            'type_id' => '1,2,5,7',
             'admin_id' => 1,
         ],
         [
             'name' => 'Dây lưng',
             'slug' => 'day-lung',
-            'type_id' => '2,7,8',
+            'type_id' => '2,6,7',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Giày thể thao',
-            'slug' => 'giay-the-thao',
-            'type_id' => '1,2,6,8',
+            'name' => 'Giày',
+            'slug' => 'giay',
+            'type_id' => '1,2,6,7',
             'admin_id' => 1,
         ],
     ];
@@ -525,12 +525,6 @@ class SampleData
             'name' => 'Quần',
             'slug' => 'quan',
             'image' => 'type/quan-tay-ong-rong.jpg',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Giày',
-            'slug' => 'giay',
-            'image' => 'type/giay-derby-nam-1.jpg',
             'admin_id' => 1,
         ],
         [
