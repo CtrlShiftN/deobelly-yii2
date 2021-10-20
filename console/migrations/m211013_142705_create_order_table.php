@@ -19,9 +19,9 @@ class m211013_142705_create_order_table extends Migration
             'color_id' => $this->smallInteger()->null(),
             'size_id' => $this->smallInteger()->null(),
             'quantity' => $this->integer()->notNull(),
-            'province' => $this->string()->notNull(),
-            'district' => $this->string()->notNull(),
-            'village' => $this->string()->notNull(),
+            'province_id' => $this->bigInteger()->notNull(),
+            'district_id' => $this->bigInteger()->notNull(),
+            'village_id' => $this->bigInteger()->notNull(),
             'specific_address' => $this->string()->notNull(),
             'address' => $this->text()->notNull(),
             'notes' => $this->text()->null(),
@@ -35,7 +35,10 @@ class m211013_142705_create_order_table extends Migration
         $this->createIndex('order_product_id_index','order','product_id');
         $this->createIndex('order_color_id_index','order','color_id');
         $this->createIndex('order_size_id_index','order','size_id');
-        $this->createIndex('order_admin_id_id_index','order','admin_id');
+        $this->createIndex('order_province_id_index','order','province_id');
+        $this->createIndex('order_district_id_index','order','district_id');
+        $this->createIndex('order_village_id_index','order','village_id');
+        $this->createIndex('order_admin_id_index','order','admin_id');
     }
 
     /**
@@ -48,6 +51,9 @@ class m211013_142705_create_order_table extends Migration
         $this->dropIndex('order_color_id_index','order');
         $this->dropIndex('order_size_id_index','order');
         $this->dropIndex('order_admin_id_index','order');
+        $this->dropIndex('order_province_id_index','order');
+        $this->dropIndex('order_district_id_index','order');
+        $this->dropIndex('order_village_id_index','order');
         $this->dropTable('{{%order}}');
     }
 }

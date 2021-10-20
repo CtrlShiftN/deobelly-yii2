@@ -68,10 +68,10 @@ use yii\helpers\Url;
 
     <div class="row">
         <div class="col-12 col-md-4">
-            <?= $form->field($model, 'province')->dropDownList($provinces, ['id' => 'province-id', 'prompt' => Yii::t('app', '- Choose province/city -')]) ?>
+            <?= $form->field($model, 'province_id')->dropDownList($provinces, ['id' => 'province-id', 'prompt' => Yii::t('app', '- Choose province/city -')]) ?>
         </div>
         <div class="col-12 col-md-4">
-            <?= $form->field($model, 'district')->widget(DepDrop::classname(), [
+            <?= $form->field($model, 'district_id')->widget(DepDrop::classname(), [
                 'options' => ['id' => 'district-id'],
                 'pluginOptions' => [
                     'depends' => ['province-id'],
@@ -81,7 +81,7 @@ use yii\helpers\Url;
             ]); ?>
         </div>
         <div class="col-12 col-md-4">
-            <?= $form->field($model, 'village')->widget(DepDrop::classname(), [
+            <?= $form->field($model, 'village_id')->widget(DepDrop::classname(), [
                 'options' => ['id' => 'village-id'],
                 'pluginOptions' => [
                     'depends' => ['district-id'],

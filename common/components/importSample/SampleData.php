@@ -1238,10 +1238,10 @@ class SampleData
             'color_id' => 1,
             'size_id' => 6,
             'quantity' => 3,
-            'province' => 'Thái Bình',
-            'district' => 'Huyện Hưng Hà',
-            'village' => 'Thị trấn Hưng Hà',
-            'specific_address' => 'Tổ dân phố Đãn Chàng',
+            'province_id' => 1,
+            'district_id' => 63,
+            'village_id' => 60,
+            'specific_address' => '128A Hồ Tùng Mậu',
             'tel' => '0334517566',
             'admin_id' => 1,
         ],
@@ -1251,10 +1251,10 @@ class SampleData
             'color_id' => 1,
             'size_id' => 5,
             'quantity' => 1,
-            'province' => 'Thái Bình',
-            'district' => 'Huyện Hưng Hà',
-            'village' => 'Thị trấn Hưng Hà',
-            'specific_address' => 'Tổ dân phố Đãn Chàng',
+            'province_id' => 1,
+            'district_id' => 63,
+            'village_id' => 60,
+            'specific_address' => '128A Hồ Tùng Mậu',
             'tel' => '0334517566',
             'admin_id' => 1,
         ],
@@ -1264,10 +1264,10 @@ class SampleData
             'color_id' => 2,
             'size_id' => 6,
             'quantity' => 6,
-            'province' => 'Thái Bình',
-            'district' => 'Huyện Hưng Hà',
-            'village' => 'Thị trấn Hưng Hà',
-            'specific_address' => 'Tổ dân phố Đãn Chàng',
+            'province_id' => 1,
+            'district_id' => 63,
+            'village_id' => 60,
+            'specific_address' => '128A Hồ Tùng Mậu',
             'tel' => '0334517566',
             'admin_id' => 1,
         ],
@@ -1277,9 +1277,9 @@ class SampleData
             'color_id' => 2,
             'size_id' => 4,
             'quantity' => 1,
-            'province' => 'Hà Nội',
-            'district' => 'Cầu Giấy',
-            'village' => 'Mai Dịch',
+            'province_id' => 1,
+            'district_id' => 63,
+            'village_id' => 60,
             'specific_address' => '128A Hồ Tùng Mậu',
             'tel' => '0334517566',
             'admin_id' => 1,
@@ -1290,9 +1290,9 @@ class SampleData
             'color_id' => 2,
             'size_id' => 5,
             'quantity' => 1,
-            'province' => 'Hà Nội',
-            'district' => 'Cầu Giấy',
-            'village' => 'Mai Dịch',
+            'province_id' => 1,
+            'district_id' => 63,
+            'village_id' => 60,
             'specific_address' => '37C1 Ngõ 20',
             'tel' => '0334517566',
             'admin_id' => 1,
@@ -1303,9 +1303,9 @@ class SampleData
             'color_id' => 2,
             'size_id' => 3,
             'quantity' => 2,
-            'province' => 'Hà Nội',
-            'district' => 'Cầu Giấy',
-            'village' => 'Mai Dịch',
+            'province_id' => 1,
+            'district_id' => 63,
+            'village_id' => 60,
             'specific_address' => '37C1 Ngõ 20',
             'tel' => '0394548299',
             'admin_id' => 1,
@@ -1316,9 +1316,9 @@ class SampleData
             'color_id' => 2,
             'size_id' => 6,
             'quantity' => 1,
-            'province' => 'Hà Nội',
-            'district' => 'Cầu Giấy',
-            'village' => 'Mai Dịch',
+            'province_id' => 1,
+            'district_id' => 63,
+            'village_id' => 60,
             'specific_address' => '37C1 Ngõ 20',
             'tel' => '0394548299',
             'admin_id' => 1,
@@ -1329,9 +1329,9 @@ class SampleData
             'color_id' => 2,
             'size_id' => 6,
             'quantity' => 1,
-            'province' => 'Hà Nội',
-            'district' => 'Cầu Giấy',
-            'village' => 'Mai Dịch',
+            'province_id' => 1,
+            'district_id' => 63,
+            'village_id' => 60,
             'specific_address' => '105 Doãn Kế Thiện',
             'tel' => '0394548299',
             'admin_id' => 1,
@@ -1355,11 +1355,11 @@ class SampleData
                 $order->size_id = $value['size_id'];
             }
             $order->quantity = $value['quantity'];
-            $order->province = $value['province'];
-            $order->district = $value['district'];
-            $order->village = $value['village'];
+            $order->province_id = $value['province_id'];
+            $order->district_id = $value['district_id'];
+            $order->village_id = $value['village_id'];
             $order->specific_address = $value['specific_address'];
-            $order->address = $value['specific_address'] . ', ' . $value['village'] . ', ' . $value['district'] . ', ' . $value['province'];
+            $order->address = $value['specific_address'] . ', ' . \frontend\models\GeoLocation::getNameGeoLocationById($value['village_id']) . ', ' . \frontend\models\GeoLocation::getNameGeoLocationById($value['district_id']) . ', ' . \frontend\models\GeoLocation::getNameGeoLocationById($value['province_id']);
             $order->tel = $value['tel'];
             $order->admin_id = $value['admin_id'];
             $order->created_at = date('Y-m-d H:m:s');
@@ -2360,10 +2360,10 @@ class SampleData
         self::insertSamplePostCategory();
         self::insertSampleTerms();
         self::insertSlider();
+        self::insertSampleGeoLocation();
         self::insertSampleCart();
         self::insertSampleOrder();
         self::insertSampleOrderTracking();
         self::insertSampleTrackingStatus();
-        self::insertSampleGeoLocation();
     }
 }

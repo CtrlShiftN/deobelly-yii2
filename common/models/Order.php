@@ -13,9 +13,9 @@ use Yii;
  * @property int|null $color_id
  * @property int|null $size_id
  * @property int $quantity
- * @property string $province
- * @property string $district
- * @property string $village
+ * @property int $province_id
+ * @property int $district_id
+ * @property int $village_id
  * @property string $specific_address
  * @property string $address
  * @property string|null $notes
@@ -41,11 +41,11 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'product_id', 'quantity', 'province', 'district', 'village', 'specific_address', 'address', 'tel', 'admin_id'], 'required'],
-            [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'admin_id', 'status'], 'integer'],
+            [['user_id', 'product_id', 'quantity', 'province_id', 'district_id', 'village_id', 'specific_address', 'address', 'tel', 'admin_id'], 'required'],
+            [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'admin_id', 'status'], 'integer'],
             [['address', 'notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['province', 'district', 'village', 'specific_address', 'tel'], 'string', 'max' => 255],
+            [['specific_address', 'tel'], 'string', 'max' => 255],
         ];
     }
 
@@ -61,9 +61,9 @@ class Order extends \yii\db\ActiveRecord
             'color_id' => Yii::t('app', 'Color ID'),
             'size_id' => Yii::t('app', 'Size ID'),
             'quantity' => Yii::t('app', 'Quantity'),
-            'province' => Yii::t('app', 'Province'),
-            'district' => Yii::t('app', 'District'),
-            'village' => Yii::t('app', 'Village'),
+            'province_id' => Yii::t('app', 'Province ID'),
+            'district_id' => Yii::t('app', 'District ID'),
+            'village_id' => Yii::t('app', 'Village ID'),
             'specific_address' => Yii::t('app', 'Specific Address'),
             'address' => Yii::t('app', 'Address'),
             'notes' => Yii::t('app', 'Notes'),
