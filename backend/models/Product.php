@@ -2,9 +2,9 @@
 
 namespace backend\models;
 
+use common\components\helpers\StringHelper;
 use common\components\SystemConstant;
 use Yii;
-use yii\helpers\StringHelper;
 
 /**
  * This is the model class for table "product".
