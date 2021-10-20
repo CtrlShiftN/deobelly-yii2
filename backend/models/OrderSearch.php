@@ -19,8 +19,8 @@ class OrderSearch extends Order
     public function rules()
     {
         return [
-            [['id', 'user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'admin_id', 'status'], 'integer'],
-            [['province', 'district', 'village', 'specific_address', 'address', 'notes', 'tel', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'admin_id', 'status'], 'integer'],
+            [['specific_address', 'address', 'notes', 'tel', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -83,9 +83,9 @@ class OrderSearch extends Order
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'province', $this->province])
-            ->andFilterWhere(['like', 'district', $this->district])
-            ->andFilterWhere(['like', 'village', $this->village])
+        $query->andFilterWhere(['province_id' => $this->province_id])
+            ->andFilterWhere(['district_id' => $this->district_id])
+            ->andFilterWhere(['village_id' => $this->village_id])
             ->andFilterWhere(['like', 'specific_address', $this->specific_address])
             ->andFilterWhere(['like', 'address', $this->address])
             ->andFilterWhere(['like', 'notes', $this->notes])
