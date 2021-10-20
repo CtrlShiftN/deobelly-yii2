@@ -11,7 +11,8 @@ use yii\widgets\Pjax;
 
 $this->title = Yii::t('app', 'Color');
 $this->params['breadcrumbs'][] = $this->title;
-$arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
+$arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
+$imgUrl = Yii::$app->params['common'] . '/media';
 ?>
 <div class="color-index">
     <div class="pt-3">
@@ -26,7 +27,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
                 'showFooter' => true,
                 'showCaption' => true,
                 'filename' => 'grid-export',
-                'alertMsg' => Yii::t('app','The EXCEL export file will be generated for download.'),
+                'alertMsg' => Yii::t('app', 'The EXCEL export file will be generated for download.'),
                 'options' => ['title' => 'Microsoft Excel 95+'],
                 'mime' => 'application/vnd.ms-excel',
                 'config' => [
@@ -42,19 +43,20 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
                 'headerOptions' => ['class' => 'kartik-sheet-style']
             ],
             [
-                'class' => 'kartik\grid\DataColumn',
-                'label' => Yii::t('app','Sample'),
+                'attribute' => 'image',
+                'label' => Yii::t('app', 'Image'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
-                'value' => function ($model, $key, $index, $widget) {
-                    return "<span class='badge border border-dark' style='background-color: ".$model['color_code'].";width: 50px;height: 50px;'> </span>";
+                'value' => function ($model, $key, $index, $widget) use ($imgUrl) {
+                    return Html::img($imgUrl . '/' . $model['image'], ['width' => '50px', 'alt' => $model['name']]);
                 },
+                'filter' => false,
                 'format' => 'raw'
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'name',
-                'label' => Yii::t('app','Title'),
+                'label' => Yii::t('app', 'Title'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) {
@@ -66,19 +68,9 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
                 ],
             ],
             [
-                'attribute' => 'color_code',
-                'label' => Yii::t('app','Color Code'),
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'value' => function ($model, $key, $index, $widget) {
-                    return $model['color_code'];
-                },
-                'filter' => false
-            ],
-            [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'status',
-                'label' => Yii::t('app','Status'),
+                'label' => Yii::t('app', 'Status'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',
@@ -89,7 +81,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
                     return [
                         'name' => 'status',
                         'asPopover' => false,
-                        'header' => Yii::t('app','Status'),
+                        'header' => Yii::t('app', 'Status'),
                         'size' => 'md',
                         'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
                         'data' => $arrStatus,
@@ -103,11 +95,11 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
-                'filterInputOptions' => ['placeholder' => '-- '.Yii::t('app','Status').' --']
+                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Status') . ' --']
             ],
             [
                 'attribute' => 'created_at',
-                'label' => Yii::t('app','Created_at'),
+                'label' => Yii::t('app', 'Created_at'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'filter' => false,
@@ -115,14 +107,14 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
                 'format' => 'raw'
             ],
             [
-                'label' => Yii::t('app','Actions'),
+                'label' => Yii::t('app', 'Actions'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) {
                     return Html::a('Xóa', Url::toRoute(['color/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger', 'data' => [
                         'method' => 'post',
-                        'confirm' => Yii::t('app','Are you sure you want to delete this item?'),
+                        'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                     ],]);
                 },
                 'format' => 'raw'
@@ -141,7 +133,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
             // set export properties
             'export' => [
                 'fontAwesome' => true,
-                'label' => '<i class="far fa-file-alt"></i>  '.Yii::t('app','Export files'),
+                'label' => '<i class="far fa-file-alt"></i>  ' . Yii::t('app', 'Export files'),
             ],
             'responsive' => true,
             'persistResize' => false,
@@ -157,7 +149,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
             'exportConfig' => $defaultExportConfig,
             'toolbar' => [
                 [
-                    'content' => Html::button('<i class="fas fa-plus"></i> '.Yii::t('app','Add New Color'), [
+                    'content' => Html::button('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Add New Color'), [
                         'value' => Url::toRoute('color/create'),
                         'class' => 'btn btn-success',
                         'id' => 'modalColorButton',
@@ -171,7 +163,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
-                'heading' => Yii::t('app','Color List'),
+                'heading' => Yii::t('app', 'Color List'),
             ],
         ]);
         Pjax::end();

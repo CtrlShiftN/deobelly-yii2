@@ -1,6 +1,7 @@
 <?php
 
 use kartik\color\ColorInput;
+use kartik\file\FileInput;
 use kartik\form\ActiveForm;
 use yii\helpers\Html;
 
@@ -13,24 +14,13 @@ $this->registerCss('.help-block {padding-left: 5px}');
 
 <div class="color-form container p-3">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <div class="row pb-3">
-        <div class="col-12 col-sm-4 col-md-4 col-lg-4"><h4><?= Yii::t('app', 'Title') ?> <sup
-                        class="fill-red fs-6">(*)</sup></h4></div>
-        <div class="col-12 col-sm-6 col-md-5 col-lg-6">
-            <?= $form->field($model, 'name')->textInput(['placeholder' => Yii::t('app', 'Black')])->label(false) ?>
-        </div>
-    </div>
-    <div class="row pb-3">
-        <div class="col-12 col-sm-4 col-md-4 col-lg-4"><h4><?= Yii::t('app', 'Color Code') ?> <sup
-                        class="fill-red fs-6">(*)</sup></h4></div>
-        <div class="col-12 col-sm-6 col-md-5 col-lg-6">
-            <?= $form->field($model, 'color_code')->widget(ColorInput::classname(), [
-                'options' => ['placeholder' => Yii::t('app', 'Select color ...')],
-            ])->label(false) ?>
-        </div>
-    </div>
+    <?= $form->field($model, 'file')->widget(FileInput::classname(), [
+        'options' => ['multiple' => false, 'accept' => 'image/*'],
+        'pluginOptions' => ['previewFileType' => 'image', 'showUpload' => false]
+    ])->label(Yii::t('app', 'Image')); ?>
+    <?= $form->field($model, 'name')->textInput(['placeholder' => Yii::t('app', 'Black')]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Add New Color'), ['class' => 'btn btn-success']) ?>

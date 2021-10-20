@@ -16,5 +16,6 @@ class SystemConstant
     const GENDER_BOTH = 0;
     const GENDER_MALE = 1;
     const GENDER_FEMALE = 2;
+    const SHOWROOM_PER_PAGE = 30;
 
 }
