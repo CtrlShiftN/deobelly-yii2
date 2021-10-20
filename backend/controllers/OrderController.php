@@ -2,15 +2,8 @@
 
 namespace backend\controllers;
 
-use backend\models\Color;
 use backend\models\Order;
 use backend\models\OrderSearch;
-use backend\models\Product;
-use backend\models\Size;
-use backend\models\User;
-use common\components\encrypt\CryptHelper;
-use Yii;
-use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -28,37 +21,14 @@ class OrderController extends Controller
         return array_merge(
             parent::behaviors(),
             [
-                'access' => [
-                    'class' => AccessControl::className(),
-                    'rules' => [
-                        [
-                            'allow' => true,
-                            'roles' => ['@'],
-                        ]
-                    ],
-                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
-                        'delete' => ['POST', 'GET'],
+                        'delete' => ['POST'],
                     ],
                 ],
             ]
         );
-    }
-
-    /**
-     * @param \yii\base\Action $action
-     * @return bool
-     * @throws \yii\web\BadRequestHttpException
-     */
-    public function beforeAction($action)
-    {
-        $this->layout = 'adminlte3';
-        if (!parent::beforeAction($action)) {
-            return false;
-        }
-        return true; // or false to not run the action
     }
 
     /**
@@ -69,29 +39,6 @@ class OrderController extends Controller
     {
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-        $arrOrder = $dataProvider->query->all();
-        if (Yii::$app->request->post('hasEditable')) {
-            // which rows has been edited?
-            $_key = $_POST['editableKey'];
-            // get order id from the array
-            $_id = $arrOrder[$_key]['id'];
-            $_index = $_POST['editableIndex'];
-            // which attribute has been edited?
-            $attribute = $_POST['editableAttribute'];
-            if ($attribute == 'notes') {
-                // update to db
-                $value = $_POST[$attribute];
-                $result = Order::updateOrderNotes($_id, $attribute, $value);
-                // response to gridview
-                return json_encode($result);
-            } elseif ($attribute == 'status') {
-                // update to db
-                $value = $_POST[$attribute];
-                $result = Order::updateOrderStatus($_id, $attribute, $value);
-                // response to gridview
-                return json_encode($result);
-            }
-        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -107,7 +54,6 @@ class OrderController extends Controller
      */
     public function actionView($id)
     {
-        $id = CryptHelper::decryptString($id);
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -121,14 +67,10 @@ class OrderController extends Controller
     public function actionCreate()
     {
         $model = new Order();
-        $users = User::getAllUser();
-        $products = Product::getAllProduct();
-        $colors = Color::getAllColor();
-        $sizes = Size::getAllSize();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post())) {
-
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();
@@ -136,10 +78,6 @@ class OrderController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            'users' => $users,
-            'products' => $products,
-            'colors' => $colors,
-            'sizes' => $sizes
         ]);
     }
 
@@ -152,7 +90,6 @@ class OrderController extends Controller
      */
     public function actionUpdate($id)
     {
-        $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -173,7 +110,6 @@ class OrderController extends Controller
      */
     public function actionDelete($id)
     {
-        $id = CryptHelper::decryptString($id);
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
