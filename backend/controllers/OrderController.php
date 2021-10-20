@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\models\Color;
+use backend\models\GeoLocation;
 use backend\models\Order;
 use backend\models\OrderSearch;
 use backend\models\Product;
@@ -11,6 +12,8 @@ use backend\models\User;
 use common\components\encrypt\CryptHelper;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -125,10 +128,28 @@ class OrderController extends Controller
         $products = Product::getAllProduct();
         $colors = Color::getAllColor();
         $sizes = Size::getAllSize();
-
+        $provinces = ArrayHelper::map(GeoLocation::getAllProvince(), 'id', 'name');
+        $locations = ArrayHelper::map(GeoLocation::getAllGeoLocation(), 'id', 'name');
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
-
+                $model->user_id = $model['user_id'];
+                $model->product_id = $model['product_id'];
+                $model->color_id = $model['color_id'];
+                $model->size_id = $model['size_id'];
+                $model->quantity = $model['quantity'];
+                $model->province = $model['province'];
+                $model->district = $model['district'];
+                $model->village = $model['village'];
+                $model->specific_address = $model['specific_address'];
+                $model->address = $model['specific_address'] . ', ' . $locations[$model['village']] . ', ' . $locations[$model['district']] . ', ' . $locations[$model['province']];
+                $model->notes = $model['notes'];
+                $model->tel = $model['tel'];
+                $model->admin_id = Yii::$app->user->identity->getId();
+                $model->created_at = date('Y-m-d H:i:s');
+                $model->updated_at = date('Y-m-d H:i:s');
+                if ($model->save()) {
+                    return $this->redirect(Url::toRoute('order/'));
+                }
             }
         } else {
             $model->loadDefaultValues();
@@ -139,7 +160,8 @@ class OrderController extends Controller
             'users' => $users,
             'products' => $products,
             'colors' => $colors,
-            'sizes' => $sizes
+            'sizes' => $sizes,
+            'provinces' => $provinces
         ]);
     }
 
@@ -193,5 +215,41 @@ class OrderController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+    /**
+     * @return array|string[]
+     */
+    public function actionGetDistrict()
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $province_id = $parents[0];
+                $out = GeoLocation::getDistrictByProvinceID($province_id);
+                return ['output' => $out, 'selected' => ''];
+            }
+        }
+        return ['output' => '', 'selected' => ''];
+    }
+
+    /**
+     * @return array|string[]
+     */
+    public function actionGetVillage()
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $district_id = $parents[0];
+                $out = GeoLocation::getDistrictByProvinceID($district_id);
+                return ['output' => $out, 'selected' => ''];
+            }
+        }
+        return ['output' => '', 'selected' => ''];
     }
 }

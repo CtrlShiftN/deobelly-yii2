@@ -189,9 +189,9 @@ AppAsset::register($this);
                         </li>
                         <!-- End Product -->
                         <!-- Warehouse -->
-                        <li class="nav-item <?= ($controller == 'order' || $controller == 'cart') ? 'menu-is-opening menu-open' : '' ?>">
+                        <li class="nav-item <?= ($controller == 'order' || $controller == 'cart' || $controller == 'tracking-status') ? 'menu-is-opening menu-open' : '' ?>">
                             <a href="#"
-                               class="nav-link <?= ($controller == 'order' || $controller == 'cart') ? 'active' : '' ?>">
+                               class="nav-link <?= ($controller == 'order' || $controller == 'cart' || $controller == 'tracking-status') ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-warehouse"></i>
                                 <p>
                                     <?= Yii::t('app', 'Warehouse') ?>
