@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\components\SystemConstant;
 use Yii;
 
 /**
@@ -19,6 +20,8 @@ use Yii;
  */
 class ProductType extends \common\models\ProductType
 {
+    public $file;
+
     /**
      * {@inheritdoc}
      */
@@ -37,8 +40,10 @@ class ProductType extends \common\models\ProductType
             [['segment', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'image'], 'string', 'max' => 255],
-            [['name'], 'unique'],
-            [['slug'], 'unique'],
+            [['name'], 'unique', 'targetClass' => ProductType::className()],
+            [['slug'], 'unique', 'targetClass' => ProductType::className()],
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
+            ['file', 'required']
         ];
     }
 
@@ -57,6 +62,26 @@ class ProductType extends \common\models\ProductType
             'admin_id' => Yii::t('app', 'Admin ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'file' => Yii::t('app', 'File'),
         ];
+    }
+
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
+    public static function updateProductType($id, $attribute, $value)
+    {
+        return \common\models\ProductType::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $id]);
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getAllTypes()
+    {
+        return ProductType::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
     }
 }

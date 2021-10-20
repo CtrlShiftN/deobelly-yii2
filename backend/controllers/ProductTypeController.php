@@ -4,9 +4,15 @@ namespace backend\controllers;
 
 use backend\models\ProductType;
 use backend\models\ProductTypeSearch;
+use common\components\encrypt\CryptHelper;
+use common\components\helpers\StringHelper;
+use Yii;
+use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ProductTypeController implements the CRUD actions for ProductType model.
@@ -21,14 +27,37 @@ class ProductTypeController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ]
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
-                        'delete' => ['POST'],
+                        'delete' => ['POST', 'GET'],
                     ],
                 ],
             ]
         );
+    }
+
+    /**
+     * @param \yii\base\Action $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action)
+    {
+        $this->layout = 'adminlte3';
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+        return true; // or false to not run the action
     }
 
     /**
@@ -39,6 +68,18 @@ class ProductTypeController extends Controller
     {
         $searchModel = new ProductTypeSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        if (Yii::$app->request->post('hasEditable')) {
+            // which rows has been edited?
+            $_id = $_POST['editableKey'];
+            $_index = $_POST['editableIndex'];
+            // which attribute has been edited?
+            $attribute = $_POST['editableAttribute'];
+            // update to db
+            $value = $_POST['ProductType'][$_index][$attribute];
+            $result = ProductType::updateProductType($_id, $attribute, $value);
+            // response to gridview
+            return json_encode($result);
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -69,8 +110,21 @@ class ProductTypeController extends Controller
         $model = new ProductType();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $model->file = UploadedFile::getInstance($model, 'file');
+                $model->slug = trim(StringHelper::toSlug(trim($model->name)));
+                // TODO Change server save files to common/media
+                $fileName = $model->slug . '.' . $model->file->getExtension();
+                $isUploadedFile = $model->file->saveAs($_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $fileName);
+                if ($isUploadedFile) {
+                    $model->image = '/uploads/' . $fileName;
+                    $model->admin_id = Yii::$app->user->identity->getId();
+                    $model->created_at = date('Y-m-d H:i:s');
+                    $model->updated_at = date('Y-m-d H:i:s');
+                    if ($model->save(false)) {
+                        return $this->redirect(Url::toRoute('product-type/'));
+                    }
+                }
             }
         } else {
             $model->loadDefaultValues();
@@ -90,6 +144,7 @@ class ProductTypeController extends Controller
      */
     public function actionUpdate($id)
     {
+        $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -110,6 +165,7 @@ class ProductTypeController extends Controller
      */
     public function actionDelete($id)
     {
+        $id = CryptHelper::decryptString($id);
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
