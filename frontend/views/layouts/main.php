@@ -216,10 +216,10 @@ AppAsset::register($this);
                                     <img src="<?= $cdnUrl ?>/img/home.png" class="p-3">
                                 </a>
                                 <a href="<?php echo Url::toRoute('site/luxury') ?>" class="logo-align <?= ($controller == 'site' && $action == 'casual') ?  'd-none':''?>">
-                                    <img src="<?= $cdnUrl ?>/img/luxury.jpg">
+                                    <img src="<?= $cdnUrl ?>/img/luxury.png">
                                 </a>
                                 <a href="<?php echo Url::toRoute('site/casual') ?>" class="logo-align <?= ($controller == 'site' && $action == 'luxury') ?  'd-none':''?>">
-                                    <img src="<?= $cdnUrl ?>/img/casual.jpg">
+                                    <img src="<?= $cdnUrl ?>/img/casual.png">
                                 </a>
                             </div>
                         </div>
