@@ -66,6 +66,13 @@ class Product extends \common\models\Product
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'short_description', 'SKU', 'image', 'related_product'], 'string', 'max' => 255],
             [['slug'], 'unique'],
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
+            ['file', 'required'],
+            [['files'], 'file', 'extensions' => 'png, jpg, jpeg', 'maxFiles' => 10],
+            [['color', 'size', 'type', 'category', 'relatedProduct'], 'safe'],
+            [['color', 'size', 'type', 'category'], 'required'],
+            ['quantity', 'integer', 'min' => 1],
+            ['slug', 'checkDuplicatedSlug']
         ];
     }
 
@@ -108,6 +115,10 @@ class Product extends \common\models\Product
             'admin_id' => Yii::t('app', 'Admin ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'color' => Yii::t('app', 'Color'),
+            'size' => Yii::t('app', 'Size'),
+            'type' => Yii::t('app', 'Product Type'),
+            'category' => Yii::t('app', 'Product Category'),
         ];
     }
 
