@@ -83,9 +83,9 @@ class OrderSearch extends Order
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'province', $this->province_id])
-            ->andFilterWhere(['like', 'district', $this->district_id])
-            ->andFilterWhere(['like', 'village', $this->village_id])
+        $query->andFilterWhere(['province_id' => $this->province_id])
+            ->andFilterWhere(['district_id' => $this->district_id])
+            ->andFilterWhere(['village_id' => $this->village_id])
             ->andFilterWhere(['like', 'specific_address', $this->specific_address])
             ->andFilterWhere(['like', 'address', $this->address])
             ->andFilterWhere(['like', 'notes', $this->notes])
