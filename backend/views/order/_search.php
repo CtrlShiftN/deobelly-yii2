@@ -35,10 +35,6 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'specific_address') ?>
 
-    <?php // echo $form->field($model, 'address') ?>
-
-    <?php // echo $form->field($model, 'notes') ?>
-
     <?php // echo $form->field($model, 'tel') ?>
 
     <?php // echo $form->field($model, 'admin_id') ?>

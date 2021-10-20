@@ -1217,7 +1217,7 @@ class SampleData
                 $cart->size_id = $value['size_id'];
             }
             $cart->quantity = $value['quantity'];
-            $cart->total_price = $value['quantity'] * \frontend\models\Product::getPriceProductById($value['product_id']);
+//            $cart->total_price = $value['quantity'] * \frontend\models\Product::getPriceProductById($value['product_id']);
             $cart->created_at = date('Y-m-d H:m:s');
             $cart->updated_at = date('Y-m-d H:m:s');
             if ($cart->save()) {
@@ -1354,9 +1354,9 @@ class SampleData
                 $order->size_id = $value['size_id'];
             }
             $order->quantity = $value['quantity'];
-            $order->province = $value['province'];
-            $order->district = $value['district'];
-            $order->village = $value['village'];
+            $order->province_id = $value['province_id'];
+            $order->district_id = $value['district_id'];
+            $order->village_id = $value['village_id'];
             $order->specific_address = $value['specific_address'];
             $order->address = $value['specific_address'] . ', ' . $value['village'] . ', ' . $value['district'] . ', ' . $value['province'];
             $order->tel = $value['tel'];
@@ -1487,7 +1487,7 @@ class SampleData
         self::insertSampleTerms();
         self::insertSlider();
         self::insertSampleCart();
-        self::insertSampleOrder();
+//        self::insertSampleOrder();
         self::insertSampleOrderTracking();
         self::insertSampleTrackingStatus();
     }
