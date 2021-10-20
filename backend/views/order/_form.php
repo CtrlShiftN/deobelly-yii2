@@ -16,61 +16,81 @@ use yii\helpers\Url;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'user_id')->widget(Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map($users, 'id', 'name'),
-        'options' => ['placeholder' => Yii::t('app', 'Choose a customer')],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ]); ?>
+    <div class="row">
+        <div class="col-12 col-md-3">
+            <?= $form->field($model, 'user_id')->widget(Select2::classname(), [
+                'data' => \yii\helpers\ArrayHelper::map($users, 'id', 'name'),
+                'options' => ['placeholder' => Yii::t('app', 'Choose a customer')],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ])->label(Yii::t('app', 'Customer')); ?>
+        </div>
+        <div class="col-12 col-md-3">
+            <?= $form->field($model, 'tel')->textInput(['placeholder' => Yii::t('app', '0397 742 291')]) ?>
+        </div>
+        <div class="col-12 col-md-6">
+            <?= $form->field($model, 'product_id')->widget(Select2::classname(), [
+                'data' => \yii\helpers\ArrayHelper::map($products, 'id', 'name'),
+                'options' => ['placeholder' => Yii::t('app', 'Choose a product')],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]); ?>
+        </div>
+    </div>
 
-    <?= $form->field($model,'tel')->textInput(['placeholder'=>Yii::t('app', '0397 742 291')]) ?>
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <?= $form->field($model, 'quantity')->textInput(['type' => 'number', 'placeholder' => Yii::t('app', 'Enter a number, ex: 300')]) ?>
+        </div>
+        <div class="col-12 col-md-4">
+            <?= $form->field($model, 'color_id')->widget(Select2::classname(), [
+                'data' => \yii\helpers\ArrayHelper::map($colors, 'id', 'name'),
+                'options' => ['placeholder' => Yii::t('app', 'Choose a color')],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]); ?>
+        </div>
+        <div class="col-12 col-md-4">
+            <?= $form->field($model, 'size_id')->widget(Select2::classname(), [
+                'data' => \yii\helpers\ArrayHelper::map($sizes, 'id', 'name'),
+                'options' => ['placeholder' => Yii::t('app', 'Choose a size')],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]); ?>
 
-    <?= $form->field($model, 'product_id')->widget(Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map($products, 'id', 'name'),
-        'options' => ['placeholder' => Yii::t('app', 'Choose a product')],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ]); ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'color_id')->widget(Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map($colors, 'id', 'name'),
-        'options' => ['placeholder' => Yii::t('app', 'Choose a color')],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ]); ?>
 
-    <?= $form->field($model, 'size_id')->widget(Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map($sizes, 'id', 'name'),
-        'options' => ['placeholder' => Yii::t('app', 'Choose a size')],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ]); ?>
-
-    <?= $form->field($model, 'quantity')->textInput(['type' => 'number']) ?>
-
-    <?= $form->field($model, 'province')->dropDownList($provinces, ['id' => 'province-id', 'prompt' => '- Select category -']) ?>
-
-    <?= $form->field($model, 'district')->widget(DepDrop::classname(), [
-        'options' => ['id' => 'district-id'],
-        'pluginOptions' => [
-            'depends' => ['province-id'],
-            'placeholder' => 'Select...',
-            'url' => Url::to(['/order/get-district'])
-        ]
-    ]); ?>
-
-    <?= $form->field($model, 'village')->widget(DepDrop::classname(), [
-        'options' => ['id' => 'village-id'],
-        'pluginOptions' => [
-            'depends' => ['district-id'],
-            'placeholder' => 'Select...',
-            'url' => Url::to(['/order/get-village'])
-        ]
-    ]); ?>
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <?= $form->field($model, 'province')->dropDownList($provinces, ['id' => 'province-id', 'prompt' => Yii::t('app', '- Choose province/city -')]) ?>
+        </div>
+        <div class="col-12 col-md-4">
+            <?= $form->field($model, 'district')->widget(DepDrop::classname(), [
+                'options' => ['id' => 'district-id'],
+                'pluginOptions' => [
+                    'depends' => ['province-id'],
+                    'placeholder' => Yii::t('app', '- Choose district -'),
+                    'url' => Url::to(['/order/get-district'])
+                ]
+            ]); ?>
+        </div>
+        <div class="col-12 col-md-4">
+            <?= $form->field($model, 'village')->widget(DepDrop::classname(), [
+                'options' => ['id' => 'village-id'],
+                'pluginOptions' => [
+                    'depends' => ['district-id'],
+                    'placeholder' => Yii::t('app', '- Choose village/ward -'),
+                    'url' => Url::to(['/order/get-village'])
+                ]
+            ]); ?>
+        </div>
+    </div>
 
     <?= $form->field($model, 'specific_address')->textInput(['placeholder' => Yii::t('app', 'No 19, 29 alley, 460 lane, Khuong Dinh street')]) ?>
 
