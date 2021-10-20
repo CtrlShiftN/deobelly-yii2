@@ -89,14 +89,14 @@ $arrFeature = [Yii::t('app', 'No'), Yii::t('app', 'Yes')];
             ]) ?>
             <?= $form->field($model, 'hide')->widget(Select2::classname(), [
                 'data' => $arrStatus,
-                'options' => ['placeholder' => Yii::t('app', 'Choose to hide or not')],
+                'options' => ['placeholder' => Yii::t('app', 'Choose to hide or show')],
                 'pluginOptions' => [
                     'allowClear' => true,
                 ],
             ]) ?>
             <?= $form->field($model, 'is_feature')->widget(Select2::classname(), [
                 'data' => $arrFeature,
-                'options' => ['placeholder' => Yii::t('app', 'Choose feature or not')],
+                'options' => ['placeholder' => Yii::t('app', 'Is feature?')],
                 'pluginOptions' => [
                     'allowClear' => true,
                 ],
