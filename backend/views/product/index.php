@@ -12,7 +12,7 @@ use yii\widgets\Pjax;
 $this->title = Yii::t('app', 'Products');
 $this->params['breadcrumbs'][] = $this->title;
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
-$arrFeature = ['Không', 'Có'];
+$arrFeature = [Yii::t('app', 'No'), Yii::t('app', 'Yes')];
 $commonUrl = Yii::$app->params['common'];
 ?>
 <div class="product-index">

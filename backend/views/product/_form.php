@@ -16,7 +16,7 @@ $this->title = Yii::t('app', 'Add New Product');
 $arrProductType = ArrayHelper::map($type, 'id', 'name');
 $type = \common\components\helpers\SystemArrayHelper::removeElementAt($arrProductType, \common\components\SystemConstant::PRODUCT_TYPE_NEW);
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
-$arrFeature = ['Không', 'Có'];
+$arrFeature = [Yii::t('app', 'No'), Yii::t('app', 'Yes')];
 ?>
 
 <div class="product-form container p-3">
