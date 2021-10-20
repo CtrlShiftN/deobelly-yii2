@@ -2,6 +2,7 @@
 
 use kartik\file\FileInput;
 use kartik\form\ActiveForm;
+use kartik\select2\Select2;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
@@ -9,7 +10,8 @@ use yii\helpers\Html;
 /* @var $form yii\widgets\ActiveForm */
 $this->registerCss("
 .help-block{color: red}
-")
+");
+$arrSegment = [Yii::t('app', 'Casual'), Yii::t('app', 'Luxury')];
 ?>
 
 <div class="container product-type-form p-3">
@@ -23,7 +25,15 @@ $this->registerCss("
     ])->label(Yii::t('app', 'Image'));
     ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true, 'placeholder'=>Yii::t('app','Men Fashion')]) ?>
+    <?= $form->field($model, 'segment')->widget(Select2::classname(), [
+        'data' => $arrSegment,
+        'options' => ['placeholder' => Yii::t('app', 'Choose segemnt')],
+        'pluginOptions' => [
+            'allowClear' => true,
+        ],
+    ]) ?>
+
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Men Fashion')]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-success']) ?>

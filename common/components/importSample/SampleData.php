@@ -498,18 +498,6 @@ class SampleData
      */
     protected static $arrProductType = [
         [
-            'name' => 'Luxury',
-            'slug' => 'luxury',
-            'image' => 'type/pronto-img-4.jpg',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Casual',
-            'slug' => 'casual',
-            'image' => 'type/pronto-img-2.jpg',
-            'admin_id' => 1,
-        ],
-        [
             'name' => 'Sản phẩm mới',
             'slug' => 'san-pham-moi',
             'image' => 'type/brand2.jpg',
@@ -539,6 +527,20 @@ class SampleData
             'image' => 'type/gift.jpg',
             'admin_id' => 1,
         ],
+        [
+            'name' => 'May mặc',
+            'slug' => 'may-mac',
+            'image' => 'type/gift.jpg',
+            'segment' => 1,
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Mix and match',
+            'slug' => 'mix-and-match',
+            'image' => 'type/gift.jpg',
+            'segment' => 1,
+            'admin_id' => 1,
+        ],
     ];
 
     /**
@@ -552,6 +554,9 @@ class SampleData
             $model->name = $value['name'];
             $model->slug = $value['slug'];
             $model->image = $value['image'];
+            if (!empty($value['segment'])) {
+                $model->segment = $value['segment'];
+            }
             $model->admin_id = $value['admin_id'];
             $model->created_at = date('Y-m-d H:m:s');
             $model->updated_at = date('Y-m-d H:m:s');
