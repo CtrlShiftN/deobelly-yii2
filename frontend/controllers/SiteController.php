@@ -95,6 +95,36 @@ class SiteController extends Controller
     }
 
     /**
+     * Displays homepage.
+     *
+     * @return mixed
+     */
+    public function actionLuxury()
+    {
+        $type = ArrayHelper::index(ProductType::getProductType(), 'slug');
+        $slider = Slider::getSliderFromSite('index');
+        return $this->render('index', [
+            'type' => $type,
+            'slider' => $slider
+        ]);
+    }
+
+    /**
+     * Displays homepage.
+     *
+     * @return mixed
+     */
+    public function actionCasual()
+    {
+        $type = ArrayHelper::index(ProductType::getProductType(), 'slug');
+        $slider = Slider::getSliderFromSite('index');
+        return $this->render('index', [
+            'type' => $type,
+            'slider' => $slider
+        ]);
+    }
+
+    /**
      * Logs in a user.
      *
      * @return mixed

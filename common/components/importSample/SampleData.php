@@ -270,6 +270,8 @@ class SampleData
             'image' => 'product/clothes/shirt/ao-so-mi-lados.jpg',
             'images' => '',
             'trademark_id' => 2,
+            'segment' => 1,
+            'is_feature' => 1,
             'quantity' => 31,
             'admin_id' => 1,
         ],
@@ -290,6 +292,8 @@ class SampleData
             'image' => 'product/clothes/vest/vest-nam-han-quoc.jpg',
             'images' => '',
             'trademark_id' => 3,
+            'segment' => 1,
+            'is_feature' => 1,
             'admin_id' => 1,
         ],
     ];
@@ -326,6 +330,15 @@ class SampleData
             $product->trademark_id = $values['trademark_id'];
             if (!empty($values['quantity'])) {
                 $product->quantity = $values['quantity'];
+            }
+            if (!empty($values['hide'])) {
+                $product->hide = $values['hide'];
+            }
+            if (!empty($values['segment'])) {
+                $product->segment = $values['segment'];
+            }
+            if (!empty($values['is_feature'])) {
+                $product->is_feature = $values['is_feature'];
             }
             $product->created_at = date('Y-m-d H:m:s');
             $product->updated_at = date('Y-m-d H:m:s');
