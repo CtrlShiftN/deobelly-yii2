@@ -16,6 +16,7 @@ use common\models\Product;
 use common\models\ProductAssoc;
 use common\models\ProductCategory;
 use common\models\ProductType;
+use common\models\Showroom;
 use common\models\Size;
 use common\models\TermsAndServices;
 use common\models\TrackingStatus;
@@ -2336,14 +2337,14 @@ class SampleData
                     if ($districtModel->save()) {
                         $count++;
                         $arrVillage = explode(",", $ward);
-                        foreach ($arrVillage as $village){
+                        foreach ($arrVillage as $village) {
                             $villageModel = new GeoLocation();
                             $villageModel->name = $village;
                             $villageModel->slug = StringHelper::toSlug($village);
                             $villageModel->parent = $districtModel->id;
                             $villageModel->created_at = date('Y-m-d H:i:s');
                             $villageModel->updated_at = date('Y-m-d H:i:s');
-                            if ($villageModel->save()){
+                            if ($villageModel->save()) {
                                 $count++;
                             }
                         }
@@ -2352,6 +2353,71 @@ class SampleData
             }
         }
         echo "Inserted " . $count . '/' . count(self::$arrWardDistrictProvince) . ' geo location.' . PHP_EOL;
+    }
+
+    protected static $arrShowroom = [
+        [
+            'name' => 'SHOWROOM VINCOM BÀ TRIỆU',
+            'image' => 'showroom/showroom-ba-trieu.png',
+            'address' => '191 Bà Triệu, Lê Đại Hành, Hai Bà Trưng, Hà Nội',
+            'tel' => '024 7102 8686',
+            'gps_link' => 'https://goo.gl/maps/4azB8afpttbvdGtD9',
+        ],
+        [
+            'name' => 'SHOWROOM Thái Hà',
+            'image' => 'showroom/showroom-thai-ha.png',
+            'address' => 'Số 159 Thái Hà, Đống Đa, Hà Nội',
+            'tel' => '024 3222 2638',
+            'gps_link' => 'https://goo.gl/maps/k1hugAF831m1BGGX6',
+        ],
+        [
+            'name' => 'SHOWROOM Cầu Giấy',
+            'image' => 'showroom/showroom-cau-giay.png',
+            'address' => '111 Nguyễn Văn Huyên, Cầu Giấy, Hà Nội',
+            'tel' => '024 6261 2555',
+            'gps_link' => 'https://goo.gl/maps/87xbnXKMDEsmwwCk8',
+        ],
+        [
+            'name' => 'SHOWROOM Từ Sơn',
+            'image' => 'showroom/showroom-tu-son.png',
+            'address' => '270 Trần Phú, Từ Sơn, Bắc Ninh',
+            'tel' => '0222 376 0166',
+            'gps_link' => 'https://goo.gl/maps/3NH1bdHJaUB2JTtA6',
+        ],
+        [
+            'name' => 'SHOWROOM TP Thanh Hóa',
+            'image' => 'showroom/showroom-tp-thanh-hoa.png',
+            'address' => '168-170 Lê Hoàn, Thành phố Thanh Hóa',
+            'tel' => '0237 371 6886',
+            'gps_link' => 'https://goo.gl/maps/1nqPWEksqEDn3pp67',
+        ],
+        [
+            'name' => 'SHOWROOM Hải Phòng',
+            'image' => 'showroom/showroom-hai-phong.png',
+            'address' => '59 - 60 Nguyễn Đức Cảnh, Hải Phòng',
+            'tel' => '0225 351 0966',
+            'gps_link' => 'https://goo.gl/maps/4RKScLXVZvsYkASx5',
+        ]
+    ];
+
+    public static function insertSampleShowroom(){
+        $count = 0;
+        foreach (self::$arrShowroom as $showroom){
+            $model = new Showroom();
+            $model->name = $showroom['name'];
+            $model->slug = StringHelper::toSlug($showroom['name']);
+            $model->image = $showroom['image'];
+            $model->address = $showroom['address'];
+            $model->tel = $showroom['tel'];
+            $model->gps_link = $showroom['gps_link'];
+            $model->admin_id = 1;
+            $model->created_at = date('Y-m-d H:i:s');
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save()){
+                $count++;
+            }
+        }
+        echo "Inserted " . $count . '/' . count(self::$arrShowroom) . ' showrooms.' . PHP_EOL;
     }
 
     /**
@@ -2372,10 +2438,11 @@ class SampleData
         self::insertSamplePostCategory();
         self::insertSampleTerms();
         self::insertSlider();
-        self::insertSampleGeoLocation();
         self::insertSampleCart();
+        self::insertSampleGeoLocation();
         self::insertSampleOrder();
         self::insertSampleOrderTracking();
         self::insertSampleTrackingStatus();
+        self::insertSampleShowroom();
     }
 }
