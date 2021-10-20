@@ -1217,7 +1217,7 @@ class SampleData
                 $cart->size_id = $value['size_id'];
             }
             $cart->quantity = $value['quantity'];
-//            $cart->total_price = $value['quantity'] * \frontend\models\Product::getPriceProductById($value['product_id']);
+            $cart->total_price = $value['quantity'] * \frontend\models\Product::getPriceProductById($value['product_id']);
             $cart->created_at = date('Y-m-d H:m:s');
             $cart->updated_at = date('Y-m-d H:m:s');
             if ($cart->save()) {
@@ -1358,7 +1358,7 @@ class SampleData
             $order->district_id = $value['district_id'];
             $order->village_id = $value['village_id'];
             $order->specific_address = $value['specific_address'];
-            $order->address = $value['specific_address'] . ', ' . $value['village'] . ', ' . $value['district'] . ', ' . $value['province'];
+//            $order->address = $value['specific_address'] . ', ' . $value['village'] . ', ' . $value['district'] . ', ' . $value['province'];
             $order->tel = $value['tel'];
             $order->admin_id = $value['admin_id'];
             $order->created_at = date('Y-m-d H:m:s');
