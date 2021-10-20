@@ -15,9 +15,6 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
 $cdnUrl = Yii::$app->params['frontend'];
-$controller = Yii::$app->controller->id;
-$action = Yii::$app->controller->action->id;
-
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
