@@ -56,7 +56,7 @@ $arrStatus = \yii\helpers\ArrayHelper::map($arrStatus, 'id', 'name');
             ],
             [
                 'attribute' => 'product_name',
-                'label' => Yii::t('app', 'Customer Name'),
+                'label' => Yii::t('app', 'Product'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '140px',
@@ -68,7 +68,7 @@ $arrStatus = \yii\helpers\ArrayHelper::map($arrStatus, 'id', 'name');
             ],
             [
                 'attribute' => 'color_name',
-                'label' => Yii::t('app', 'Customer Name'),
+                'label' => Yii::t('app', 'Color'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '140px',
@@ -80,7 +80,7 @@ $arrStatus = \yii\helpers\ArrayHelper::map($arrStatus, 'id', 'name');
             ],
             [
                 'attribute' => 'size_name',
-                'label' => Yii::t('app', 'Customer Name'),
+                'label' => Yii::t('app', 'Size'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '140px',
@@ -92,7 +92,7 @@ $arrStatus = \yii\helpers\ArrayHelper::map($arrStatus, 'id', 'name');
             ],
             [
                 'attribute' => 'quantity',
-                'label' => Yii::t('app', 'Customer Name'),
+                'label' => Yii::t('app', 'Quantity'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '140px',
@@ -104,7 +104,7 @@ $arrStatus = \yii\helpers\ArrayHelper::map($arrStatus, 'id', 'name');
             ],
             [
                 'attribute' => 'tel',
-                'label' => Yii::t('app', 'Customer Name'),
+                'label' => Yii::t('app', 'Tel'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '140px',
@@ -116,7 +116,7 @@ $arrStatus = \yii\helpers\ArrayHelper::map($arrStatus, 'id', 'name');
             ],
             [
                 'attribute' => 'address',
-                'label' => Yii::t('app', 'Customer Name'),
+                'label' => Yii::t('app', 'Address'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '140px',
@@ -129,7 +129,7 @@ $arrStatus = \yii\helpers\ArrayHelper::map($arrStatus, 'id', 'name');
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'notes',
-                'label' => Yii::t('app', 'Title'),
+                'label' => Yii::t('app', 'Notes'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) {

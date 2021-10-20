@@ -573,81 +573,93 @@ class SampleData
      */
     protected static $arrColor = [
         [
-            'name' => 'White',
-            'slug' => 'white',
-            'color_code' => '#ffffff',
+            'name' => 'Cam đậm',
+            'slug' => 'cam-dam',
+            'image' => 'color/cam-dam.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Black',
-            'slug' => 'black',
-            'color_code' => '#000000',
+            'name' => 'Cam tươi',
+            'slug' => 'cam-tuoi',
+            'image' => 'color/cam-tuoi.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Red',
-            'slug' => 'red',
-            'color_code' => '#ff0000',
+            'name' => 'Đen',
+            'slug' => 'den',
+            'image' => 'color/den.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Green',
-            'slug' => 'green',
-            'color_code' => '#008000',
+            'name' => 'Đỏ',
+            'slug' => 'do',
+            'image' => 'color/do.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Yellow',
-            'slug' => 'yellow',
-            'color_code' => '#FFFF00',
+            'name' => 'Hồng phấn',
+            'slug' => 'hong-phan',
+            'image' => 'color/hong-phan.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Blue',
-            'slug' => 'blue',
-            'color_code' => '#0000FF',
+            'name' => 'Kem',
+            'slug' => 'kem',
+            'image' => 'color/kem.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Light blue',
-            'slug' => 'light-blue',
-            'color_code' => '#ADD8E6',
+            'name' => 'Muối tiêu',
+            'slug' => 'muoi-tieu',
+            'image' => 'color/muoi-tieu.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Cyan',
-            'slug' => 'Cyan',
-            'color_code' => '#00FFFF',
+            'name' => 'Nâu',
+            'slug' => 'nau',
+            'image' => 'color/nau.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Dark blue',
-            'slug' => 'dark-blue',
-            'color_code' => '#00008B',
+            'name' => 'Thiên thanh',
+            'slug' => 'thien-thanh',
+            'image' => 'color/thien-thanh.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Pink',
-            'slug' => 'pink',
-            'color_code' => '#FFC0CB',
+            'name' => 'Tím huế',
+            'slug' => 'tim-hue',
+            'image' => 'color/tim-hue.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Gray',
-            'slug' => 'gray',
-            'color_code' => '#808080',
+            'name' => 'Trắng',
+            'slug' => 'trang',
+            'image' => 'color/trang.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Brown',
-            'slug' => 'brown',
-            'color_code' => '#663300',
+            'name' => 'Vàng chanh',
+            'slug' => 'vang-chanh',
+            'image' => 'color/vang-chanh.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Orange',
-            'slug' => 'orange',
-            'color_code' => '#ffa500',
+            'name' => 'Vàng đậm',
+            'slug' => 'vang-dam',
+            'image' => 'color/vang-dam.jpg',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Xanh đen',
+            'slug' => 'xanh-den',
+            'image' => 'color/xanh-den.jpg',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Xanh da',
+            'slug' => 'xanh-da',
+            'image' => 'color/xanh-da.jpg',
             'admin_id' => 1,
         ],
     ];
@@ -662,7 +674,7 @@ class SampleData
             $color = new Color();
             $color->name = $value['name'];
             $color->slug = $value['slug'];
-            $color->color_code = $value['color_code'];
+            $color->image = $value['image'];
             $color->admin_id = $value['admin_id'];
             $color->created_at = date('Y-m-d H:m:s');
             $color->updated_at = date('Y-m-d H:m:s');
