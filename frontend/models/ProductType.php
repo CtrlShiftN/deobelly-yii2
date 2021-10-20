@@ -2,7 +2,6 @@
 
 namespace frontend\models;
 
-use common\components\encrypt\CryptHelper;
 use common\components\SystemConstant;
 use Yii;
 
@@ -13,12 +12,13 @@ use Yii;
  * @property string $name
  * @property string $slug
  * @property string $image
+ * @property int|null $segment 0:casual, 1:luxury
  * @property int|null $status 0 for inactive, 1 for active
  * @property int|null $admin_id
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class ProductType extends \backend\models\ProductType
+class ProductType extends \common\models\ProductType
 {
     /**
      * {@inheritdoc}
@@ -35,7 +35,7 @@ class ProductType extends \backend\models\ProductType
     {
         return [
             [['name', 'slug', 'image'], 'required'],
-            [['status', 'admin_id'], 'integer'],
+            [['segment', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'image'], 'string', 'max' => 255],
             [['name'], 'unique'],
@@ -53,6 +53,7 @@ class ProductType extends \backend\models\ProductType
             'name' => Yii::t('app', 'Name'),
             'slug' => Yii::t('app', 'Slug'),
             'image' => Yii::t('app', 'Image'),
+            'segment' => Yii::t('app', 'Segment'),
             'status' => Yii::t('app', 'Status'),
             'admin_id' => Yii::t('app', 'Admin ID'),
             'created_at' => Yii::t('app', 'Created At'),
@@ -68,6 +69,10 @@ class ProductType extends \backend\models\ProductType
         return ProductType::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
     }
 
+    /**
+     * @param $id
+     * @return array|\yii\db\ActiveRecord[]
+     */
     public static function getTypeNameById($id) {
         return ProductType::find()->select('name')->where(['status' => SystemConstant::STATUS_ACTIVE])->andWhere(['id' => $id])->asArray()->all();
     }
