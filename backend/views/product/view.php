@@ -46,7 +46,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'trademark_id',
             'hide',
             'is_feature',
-            'segment',
             'viewed',
             'fake_sold',
             'sold',
