@@ -181,16 +181,16 @@ AppAsset::register($this);
                                                             <?php if ($value['segment'] == SystemConstant::SEGMENT_LUXURY): ?>
                                                                 <li class="nav-item">
                                                                     <a href="<?= Url::toRoute(['site/'.$value['slug']]) ?>"
-                                                                       class="nav-link <?= ($controller == 'site' && $action == 'luxury') ? '':'d-none' ?>">
-                                                                        <i class="far fa-circle nav-icon"></i>
+                                                                       class="nav-link d-flex <?= ($controller == 'site' && $action == 'luxury') ? '':'d-none' ?>">
+                                                                        <i class="far fa-circle nav-icon me-2"></i>
                                                                         <p><?= Yii::t('app', $value['name']) ?></p>
                                                                     </a>
                                                                 </li>
                                                             <?php else: ?>
                                                                 <li class="nav-item">
                                                                     <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
-                                                                       class="nav-link">
-                                                                        <i class="far fa-circle nav-icon"></i>
+                                                                       class="nav-link d-flex">
+                                                                        <i class="far fa-circle nav-icon me-2"></i>
                                                                         <p><?= Yii::t('app', $value['name']) ?></p>
                                                                     </a>
                                                                 </li>
