@@ -79,9 +79,9 @@ class ProductType extends \common\models\ProductType
 
     /**
      * @param $id
-     * @return array|\yii\db\ActiveRecord[]
+     * @return false|int|string|null
      */
     public static function getTypeNameById($id) {
-        return ProductType::find()->select('name')->where(['status' => SystemConstant::STATUS_ACTIVE])->andWhere(['id' => $id])->one()['name'];
+        return ProductType::find()->select('name')->where(['status' => SystemConstant::STATUS_ACTIVE])->andWhere(['id' => $id])->scalar();
     }
 }

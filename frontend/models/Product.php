@@ -148,10 +148,10 @@ class Product extends \common\models\Product
 
     /**
      * @param $id
-     * @return array|\yii\db\ActiveRecord|null
+     * @return false|int|string|null
      */
     public static function getPriceProductById($id)
     {
-        return Product::find()->select('selling_price')->where(['status' => SystemConstant::STATUS_ACTIVE, 'id' => $id])->asArray()->one()['selling_price'];
+        return Product::find()->select('selling_price')->where(['status' => SystemConstant::STATUS_ACTIVE, 'id' => $id])->asArray()->scalar();
     }
 }
