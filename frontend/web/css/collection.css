@@ -1,0 +1,14 @@
+.previous-collection__title {
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #b80a0d;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.collection-content{
+    text-align: justify;
+}

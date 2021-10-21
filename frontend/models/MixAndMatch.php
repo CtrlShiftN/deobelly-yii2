@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use common\components\SystemConstant;
 use Yii;
 
 /**
@@ -60,5 +61,12 @@ class MixAndMatch extends \common\models\MixAndMatch
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
+    }
+
+    public static function getAllCollections(){
+        return \common\models\MixAndMatch::find()
+            ->where(['status'=>SystemConstant::STATUS_ACTIVE])
+            ->orderBy('updated_at DESC, created_at DESC')
+            ->asArray()->all();
     }
 }
