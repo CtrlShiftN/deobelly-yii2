@@ -86,7 +86,7 @@ $this->registerJsFile(Url::toRoute('js/cart.js'));
                 <!--quantity-->
                 <div class="col-12 col-lg-6 p-0">
                     <div class="d-flex justify-content-center">
-                        <button type="button" onclick="reduceProductQuantity()" id=""
+                        <button type="button" onclick="reduceProductQuantity()" data-id="<?= $idEncrypt ?>"
                                 class="fs-5 btn btn-gray border-top-0 border-bottom-0 border-start-0 border-dark btnDESC d-md-flex d-none justify-content-center align-items-center">
                             <i class="fas fa-minus"></i>
                         </button>
@@ -94,7 +94,7 @@ $this->registerJsFile(Url::toRoute('js/cart.js'));
                         <input type="text" id="amount<?= $idEncrypt ?>" value="<?= $value['quantity'] ?>"
                                onchange="totalPrice()"
                                class="text-center d-inline-block amountInput quantity_<?= $idEncrypt ?>">
-                        <button type="button" onclick="increaseProductQuantity()" id=""
+                        <button type="button" onclick="increaseProductQuantity()" data-id="<?= $idEncrypt ?>"
                                 class="btn btn-gray fw-light border-top-0 border-bottom-0 border-end-0 border-dark btnASC d-md-flex d-none justify-content-center align-items-center">
                             <i class="fas fa-plus"></i>
                         </button>

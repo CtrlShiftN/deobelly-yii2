@@ -1,3 +1,8 @@
+$(".amountInput").keypress(function (e) {
+    if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        return false;
+    }
+});
 let product;
 let total_price = 0;
 let productCb = $('.row-product input[type=checkbox]');

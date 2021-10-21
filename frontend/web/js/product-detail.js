@@ -1,3 +1,9 @@
+//accept press number into input
+$("#amountInput").keypress(function (e) {
+    if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        return false;
+    }
+});
 var toastTrigger = document.getElementById('btnAddToCart')
 var toastLiveExample = document.getElementById('liveToast')
 if (toastTrigger) {
