@@ -12,7 +12,7 @@ use yii\widgets\Pjax;
 $this->title = Yii::t('app', 'Products');
 $this->params['breadcrumbs'][] = $this->title;
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
-$arrLuxury = [Yii::t('app', 'Basic'), Yii::t('app', 'Luxury')];
+$arrFeature = [Yii::t('app', 'No'), Yii::t('app', 'Yes')];
 $commonUrl = Yii::$app->params['common'];
 ?>
 <div class="product-index">
@@ -127,11 +127,71 @@ $commonUrl = Yii::$app->params['common'];
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'hide',
+                'label' => Yii::t('app', 'Hide'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'width' => '75px',
+                'value' => function ($model, $key, $index, $widget) use ($arrStatus) {
+                    return $arrStatus[$model['hide']];
+                },
+                'editableOptions' => function ($model, $key, $index) use ($arrStatus) {
+                    return [
+                        'name' => 'hide',
+                        'asPopover' => false,
+                        'header' => Yii::t('app', 'Hide'),
+                        'size' => 'md',
+                        'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
+                        'data' => $arrStatus,
+                        // default value in the text box
+                        'value' => $arrStatus[$model['hide']],
+                        'displayValueConfig' => $arrStatus
+                    ];
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => $arrStatus,
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Hide') . ' --']
+            ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'is_feature',
+                'label' => Yii::t('app', 'Feature'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'width' => '75px',
+                'value' => function ($model, $key, $index, $widget) use ($arrFeature) {
+                    return $arrFeature[$model['is_feature']];
+                },
+                'editableOptions' => function ($model, $key, $index) use ($arrFeature) {
+                    return [
+                        'name' => 'is_feature',
+                        'asPopover' => false,
+                        'header' => Yii::t('app', 'Feature'),
+                        'size' => 'md',
+                        'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
+                        'data' => $arrFeature,
+                        // default value in the text box
+                        'value' => $arrFeature[$model['is_feature']],
+                        'displayValueConfig' => $arrFeature
+                    ];
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => $arrFeature,
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Feature') . ' --']
+            ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'status',
                 'label' => Yii::t('app', 'Status'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
-                'width' => '150px',
+                'width' => '75px',
                 'value' => function ($model, $key, $index, $widget) use ($arrStatus) {
                     return $arrStatus[$model['status']];
                 },

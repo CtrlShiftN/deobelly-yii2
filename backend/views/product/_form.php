@@ -15,6 +15,8 @@ use yii\web\JsExpression;
 $this->title = Yii::t('app', 'Add New Product');
 $arrProductType = ArrayHelper::map($type, 'id', 'name');
 $type = \common\components\helpers\SystemArrayHelper::removeElementAt($arrProductType, \common\components\SystemConstant::PRODUCT_TYPE_NEW);
+$arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
+$arrFeature = [Yii::t('app', 'No'), Yii::t('app', 'Yes')];
 ?>
 
 <div class="product-form container p-3">
@@ -81,6 +83,20 @@ $type = \common\components\helpers\SystemArrayHelper::removeElementAt($arrProduc
             <?= $form->field($model, 'trademark_id')->widget(Select2::classname(), [
                 'data' => \yii\helpers\ArrayHelper::map($trademark, 'id', 'name'),
                 'options' => ['placeholder' => Yii::t('app', 'Choose trademark')],
+                'pluginOptions' => [
+                    'allowClear' => true,
+                ],
+            ]) ?>
+            <?= $form->field($model, 'hide')->widget(Select2::classname(), [
+                'data' => $arrStatus,
+                'options' => ['placeholder' => Yii::t('app', 'Choose to hide or show')],
+                'pluginOptions' => [
+                    'allowClear' => true,
+                ],
+            ]) ?>
+            <?= $form->field($model, 'is_feature')->widget(Select2::classname(), [
+                'data' => $arrFeature,
+                'options' => ['placeholder' => Yii::t('app', 'Is feature?')],
                 'pluginOptions' => [
                     'allowClear' => true,
                 ],
