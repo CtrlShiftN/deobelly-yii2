@@ -117,14 +117,13 @@ body {
 }
 
 .header_login, .shopping-cart {
-    font-size: 18px;
     padding: 0 5px;
     display: inline-block;
 }
 
 .header_login > a, .shopping-cart > a {
     text-decoration: none;
-    color: #000000;
+    color: white;
 }
 
 .header_login:hover > .dropdown-menu {

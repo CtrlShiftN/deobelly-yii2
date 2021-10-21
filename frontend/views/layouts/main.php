@@ -49,10 +49,10 @@ AppAsset::register($this);
         <div id="content">
             <div class="sticky-top">
                 <!-- Top nav -->
-                <nav class="bg-dark d-none d-lg-block">
+                <nav class="bg-dark d-none d-md-block">
                     <div class="container">
                         <div class="topbar-content row">
-                            <div class="topbar col-xs-5 col-md-5 col-lg-5 text-white py-1 text-start">
+                            <div class="topbar col-md-12 col-lg-5 d-none d-lg-block text-white py-1 text-start">
                                 <ul class="menu-topbar-left my-0">
                                     <li class="site-nav-top"><strong>SĐT: </strong><a class="phone-num"
                                                                                       href="tel:19001089">
@@ -65,7 +65,7 @@ AppAsset::register($this);
                                     </li>
                                 </ul>
                             </div>
-                            <div class="topbar col-xs-7 col-md-7 col-lg-7 text-white py-1 text-end text-uppercase">
+                            <div class="topbar col-md-12 col-lg-7 text-white py-1 text-center text-lg-end text-uppercase">
                                 <ul class="menu-topbar-right my-0">
                                     <li class="site-nav-top"><a href="<?= Url::toRoute('site/our-stories') ?>"
                                                                 class="site-nav-top-link"><span><?= Yii::t('app', 'Introduction') ?></span></a>
@@ -94,6 +94,36 @@ AppAsset::register($this);
                                     <li class="site-nav-top"><a href="<?= Url::toRoute('site/contact') ?>"
                                                                 class="site-nav-top-link"><span><?= Yii::t('app', 'Contact') ?></span></a>
                                     </li>
+                                    <?php if (!Yii::$app->user->isGuest) : ?>
+                                        <li class="site-nav-top">
+                                            <div class="vr mx-2"></div>
+                                        </li>
+                                        <li class="site-nav-top">
+                                            <div class="dropdown header_login ps-2">
+                                                <a class="dropdown-toggle" type="button" id="dropdownUserLogin"
+                                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="far fa-user"></i> <?= Yii::$app->user->identity->name ?>
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownUserLogin">
+                                                    <a class="dropdown-item"
+                                                       href="<?= Url::toRoute('site/logout') ?>"><?= Yii::t('app', 'Log out') ?></a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    <?php else : ?>
+                                        <li class="site-nav-top">
+                                            <div class="vr mx-2"></div>
+                                        </li>
+                                        <li class="site-nav-top"><a href="<?= Url::toRoute('site/login') ?>"
+                                                                    class="site-nav-top-link"><span><?= Yii::t('app', 'Login') ?></span></a>
+                                        </li>
+                                        <li class="site-nav-top">
+                                            <div class="vr mx-2"></div>
+                                        </li>
+                                        <li class="site-nav-top"><a href="<?= Url::toRoute('site/signup') ?>"
+                                                                    class="site-nav-top-link"><span><?= Yii::t('app', 'Signup') ?></span></a>
+                                        </li>
+                                    <?php endif; ?>
                                 </ul>
                             </div>
                         </div>
@@ -223,35 +253,6 @@ AppAsset::register($this);
                                                 class="site-nav-link"><span><?= Yii::t('app', $value) ?></span></a>
                                     </li>
                                 <?php endforeach; ?>
-                                <li class="pe-0">
-                                    <div class="vr mx-2"></div>
-                                </li>
-                                <li>
-                                    <div class="dropdown header_login ps-2">
-                                        <a class="dropdown-toggle" type="button" id="dropdownUserLogin"
-                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-user fa-lg"></i>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownUserLogin">
-                                            <?php if (!Yii::$app->user->isGuest) : ?>
-                                                <div class="dropdown-item"><?php Yii::$app->user->identity->name ?></div>
-                                                <a class="dropdown-item"
-                                                   href="<?= Url::toRoute('site/logout') ?>"><?= Yii::t('app', 'Log out') ?></a>
-                                            <?php else : ?>
-                                                <a class="dropdown-item"
-                                                   href="<?= Url::toRoute('site/login') ?>"><?= Yii::t('app', 'Log in') ?></a>
-                                                <a class="dropdown-item"
-                                                   href="<?= Url::toRoute('site/signup') ?>"><?= Yii::t('app', 'Register') ?></a>
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="pe-0">
-                                    <div class="shopping-cart d-inline pe-0">
-                                        <a href="<?= Url::toRoute('/#') ?>"><i
-                                                    class="fas fa-shopping-cart fa-lg"></i></a>
-                                    </div>
-                                </li>
                             </ul>
                         </div>
                     </div>
