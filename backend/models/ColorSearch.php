@@ -18,7 +18,7 @@ class ColorSearch extends Color
     {
         return [
             [['id', 'status', 'admin_id'], 'integer'],
-            [['name', 'slug', 'color_code', 'created_at', 'updated_at'], 'safe'],
+            [['name', 'slug', 'image', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -67,7 +67,7 @@ class ColorSearch extends Color
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'slug', $this->slug])
-            ->andFilterWhere(['like', 'color_code', $this->color_code]);
+            ->andFilterWhere(['like', 'image', $this->image]);
 
         return $dataProvider;
     }

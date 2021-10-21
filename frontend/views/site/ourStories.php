@@ -92,7 +92,7 @@ $this->registerCss(".intro-quote{
                     trội và phong cách thanh lịch tự nhiên. Sự tập trung vào việc đổi mới liên tục giúp chúng tôi phục
                     vụ khách
                     hàng ngày càng hiệu quả hơn.”</p>
-                <p>Ông Nguyễn Trọng Phi – Chủ tịch Hội đồng quản trị De Obelly chia sẻ</p>
+                <p>Ông Nguyễn V.A – Chủ tịch Hội đồng quản trị De Obelly chia sẻ</p>
             </div>
             <div class="col-12 col-md-1"></div>
         </div>
