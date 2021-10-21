@@ -54,14 +54,18 @@ AppAsset::register($this);
                         <div class="topbar-content row">
                             <div class="topbar col-md-12 col-lg-5 col-xl-4 d-none d-lg-block text-white py-1 text-start">
                                 <ul class="menu-topbar-left my-0">
-                                    <li class="site-nav-top"><strong>SĐT: </strong><a class="phone-num"
-                                                                                      href="tel:19001089">
-                                            19001089</a></li>
+                                    <li class="site-nav-top">
+                                        <strong>SĐT: </strong><a class="phone-num"
+                                                                 href="tel:<?= Yii::$app->params['adminTel'] ?>">
+                                            <?= Yii::$app->params['adminTel'] ?></a>
+                                    </li>
                                     <li class="site-nav-top">
                                         <div class="vr mx-2"></div>
                                     </li>
-                                    <li class="site-nav-top"><strong>Email: </strong> <a class="mail-num"
-                                                                                         href="mailto:nobita.nguyen0902@gmail.com">nobita.nguyen0902@gmail.com </a>
+                                    <li class="site-nav-top">
+                                        <strong>Email: </strong> <a class="mail-num"
+                                                                    href="mailto:<?= Yii::$app->params['supportEmail'] ?>">
+                                            <?= Yii::$app->params['supportEmail'] ?> </a>
                                     </li>
                                 </ul>
                             </div>
