@@ -64,9 +64,17 @@ class ProductType extends \common\models\ProductType
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getProductType()
+    public static function getAllProductType()
     {
         return ProductType::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getCasualProductType()
+    {
+        return ProductType::find()->where(['status' => SystemConstant::STATUS_ACTIVE,'segment' => SystemConstant::SEGMENT_CASUAL])->asArray()->all();
     }
 
     /**
@@ -74,6 +82,6 @@ class ProductType extends \common\models\ProductType
      * @return array|\yii\db\ActiveRecord[]
      */
     public static function getTypeNameById($id) {
-        return ProductType::find()->select('name')->where(['status' => SystemConstant::STATUS_ACTIVE])->andWhere(['id' => $id])->asArray()->all();
+        return ProductType::find()->select('name')->where(['status' => SystemConstant::STATUS_ACTIVE])->andWhere(['id' => $id])->one()['name'];
     }
 }

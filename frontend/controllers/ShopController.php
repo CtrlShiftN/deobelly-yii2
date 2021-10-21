@@ -47,7 +47,7 @@ class ShopController extends Controller
     public function actionIndex()
     {
         $slider = Slider::getSliderFromSite('index');
-        $type = ArrayHelper::index(ProductType::getProductType(), 'slug');
+        $type = ArrayHelper::index(ProductType::getCasualProductType(), 'slug');
         return $this->render('index', [
             'slider' => $slider,
             'type' => $type,
@@ -59,9 +59,11 @@ class ShopController extends Controller
      */
     public function actionProduct()
     {
-        $getProductType = ProductType::getProductType();
+        $paramCate = ParamHelper::getParamValue('type');
+        $getProductType = ProductType::getCasualProductType();
         return $this->render('product', [
             'productType' => $getProductType,
+            'paramCate' => $paramCate,
         ]);
     }
 

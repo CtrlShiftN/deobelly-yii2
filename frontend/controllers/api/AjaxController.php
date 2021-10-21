@@ -78,7 +78,7 @@ class AjaxController extends ActiveController
 
         $count = count($rows->all());
 
-        if (intval($getProductType) !== 2) {
+        if (intval($getProductType) !== SystemConstant::PRODUCT_TYPE_NEW) {
             if (!empty($getCursor)) {
                 $limit = SystemConstant::LIMIT_PER_PAGE;
                 $offset = intval($getCursor) * $limit;

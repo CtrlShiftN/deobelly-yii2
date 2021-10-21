@@ -46,7 +46,7 @@ AppAsset::register($this);
     </head>
     <body>
     <?php $this->beginBody() ?>
-    <?php $mainType = ArrayHelper::map(ProductType::getProductType(), 'id', 'name'); ?>
+    <?php $mainType = ProductType::getAllProductType(); ?>
     <div id="wrapper">
         <div id="content">
             <div class="sticky-top">
@@ -178,12 +178,20 @@ AppAsset::register($this);
                                                     </a>
                                                     <ul class="nav nav-treeview" style="display:none">
                                                         <?php foreach ($mainType as $key => $value): ?>
-                                                            <?php if ($key != SystemConstant::PRODUCT_TYPE_LUXURY && $key != SystemConstant::PRODUCT_TYPE_CASUAL): ?>
+                                                            <?php if ($value['segment'] == SystemConstant::SEGMENT_LUXURY): ?>
                                                                 <li class="nav-item">
-                                                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($key)]) ?>"
-                                                                       class="nav-link ">
+                                                                    <a href="<?= Url::toRoute(['site/'.$value['slug']]) ?>"
+                                                                       class="nav-link <?= ($controller == 'site' && $action == 'luxury') ? '':'d-none' ?>">
                                                                         <i class="far fa-circle nav-icon"></i>
-                                                                        <p><?= Yii::t('app', $value) ?></p>
+                                                                        <p><?= Yii::t('app', $value['name']) ?></p>
+                                                                    </a>
+                                                                </li>
+                                                            <?php else: ?>
+                                                                <li class="nav-item">
+                                                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                                                                       class="nav-link">
+                                                                        <i class="far fa-circle nav-icon"></i>
+                                                                        <p><?= Yii::t('app', $value['name']) ?></p>
                                                                     </a>
                                                                 </li>
                                                             <?php endif; ?>
@@ -229,37 +237,22 @@ AppAsset::register($this);
                         <div class="main-nav-right col-1 col-sm-1 col-lg-10 text-end">
                             <ul class="site-nav mb-0 ps-0 d-none d-sm-none d-lg-inline-block" id="main-menu">
                                 <?php foreach ($mainType as $key => $value): ?>
-                                    <?php if ($key == SystemConstant::PRODUCT_TYPE_NEW): ?>
-                                        <li>
-                                            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($key)]) ?>"
-                                               class="site-nav-link"><span><?= Yii::t('app', $value) ?></span></a>
+                                    <?php if ($value['segment'] == SystemConstant::SEGMENT_LUXURY): ?>
+                                        <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '':'d-none' ?>">
+                                            <a href="<?= Url::toRoute(['site/'.$value['slug']]) ?>"
+                                               class="site-nav-link">
+                                                <span><?= Yii::t('app', $value['name']) ?></span>
+                                            </a>
+                                        </li>
+                                    <?php else: ?>
+                                        <li class="nav-item">
+                                            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                                               class="site-nav-link">
+                                                <span><?= Yii::t('app', $value['name']) ?></span>
+                                            </a>
                                         </li>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
-
-                                <li>
-                                    <a href="javascript:void(0)" type="button"
-                                       class="btn p-0 m-0 bg-transparent dropdown-toggle site-nav-link"
-                                       data-bs-toggle="dropdown" aria-expanded="false">
-                                        DE-OBELLY
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <?php foreach ($mainType as $key => $value): ?>
-                                            <?php if ($key != SystemConstant::PRODUCT_TYPE_LUXURY && $key != SystemConstant::PRODUCT_TYPE_CASUAL && $key != SystemConstant::PRODUCT_TYPE_NEW): ?>
-                                                <li>
-                                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($key)]) ?>"
-                                                       class="dropdown-item"><span><?= Yii::t('app', $value) ?></span></a>
-                                                </li>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </li>
-                                <li><a href="<?= Url::toRoute('/#') ?>"
-                                       class="site-nav-link <?= ($controller == 'site' && $action == 'casual' || $action == 'index') ? 'd-none' : '' ?>"><span>May mặc</span></a>
-                                </li>
-                                <li><a href="<?= Url::toRoute('/#') ?>"
-                                       class="site-nav-link"><span>Showroom</span></a>
-                                </li>
                                 <li class="pe-0">
                                     <div class="vr mx-2"></div>
                                 </li>
