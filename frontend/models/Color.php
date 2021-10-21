@@ -59,6 +59,6 @@ class Color extends \common\models\Color
 
     public static function getColorCodeById($id)
     {
-        return Color::find()->select(['color_code', 'name'])->where(['status' => SystemConstant::STATUS_ACTIVE, 'id' => $id])->asArray()->one();
+        return Color::find()->select(['image', 'name'])->where(['status' => SystemConstant::STATUS_ACTIVE, 'id' => $id])->asArray()->one();
     }
 }
