@@ -54,21 +54,25 @@ AppAsset::register($this);
                 <nav class="bg-dark d-none d-md-block">
                     <div class="container">
                         <div class="topbar-content row">
-                            <div class="topbar col-md-12 col-lg-5 d-none d-lg-block text-white py-1 text-start">
+                            <div class="topbar col-md-12 col-lg-5 col-xl-4 d-none d-lg-block text-white py-1 text-start">
                                 <ul class="menu-topbar-left my-0">
-                                    <li class="site-nav-top"><strong>SĐT: </strong><a class="phone-num"
-                                                                                      href="tel:19001089">
-                                            19001089</a></li>
+                                    <li class="site-nav-top">
+                                        <strong>SĐT: </strong><a class="phone-num"
+                                                                 href="tel:<?= Yii::$app->params['adminTel'] ?>">
+                                            <?= Yii::$app->params['adminTel'] ?></a>
+                                    </li>
                                     <li class="site-nav-top">
                                         <div class="vr mx-2"></div>
                                     </li>
-                                    <li class="site-nav-top"><strong>Email: </strong> <a class="mail-num"
-                                                                                         href="mailto:nobita.nguyen0902@gmail.com">nobita.nguyen0902@gmail.com </a>
+                                    <li class="site-nav-top">
+                                        <strong>Email: </strong> <a class="mail-num"
+                                                                    href="mailto:<?= Yii::$app->params['supportEmail'] ?>">
+                                            <?= Yii::$app->params['supportEmail'] ?> </a>
                                     </li>
                                 </ul>
                             </div>
-                            <div class="topbar col-md-12 col-lg-7 text-white py-1 text-center text-lg-end text-uppercase">
-                                <ul class="menu-topbar-right my-0">
+                            <div class="topbar col-md-12 col-lg-7 col-xl-8 text-white py-1 text-center text-lg-end text-uppercase">
+                                <ul class="menu-topbar-right my-0 ps-0">
                                     <li class="site-nav-top"><a href="<?= Url::toRoute('site/our-stories') ?>"
                                                                 class="site-nav-top-link"><span><?= Yii::t('app', 'Introduction') ?></span></a>
                                     </li>
@@ -126,17 +130,19 @@ AppAsset::register($this);
                                                                     class="site-nav-top-link"><span><?= Yii::t('app', 'Signup') ?></span></a>
                                         </li>
                                     <?php endif; ?>
-                                    <li class="site-nav-top">
-                                        <div class="vr mx-2"></div>
-                                    </li>
-                                    <li class="site-nav-top">
-                                        <div class="shopping-cart d-inline pe-0">
-                                            <a href="<?= Url::toRoute('cart/') ?>" class="site-nav-top-link">
-                                                <i class="fas fa-shopping-cart"></i>
-                                                <span class='badge badge-warning' id='lblCartCount'> 0 </span>
-                                            </a>
-                                        </div>
-                                    </li>
+                                    <?php if (!Yii::$app->user->isGuest) : ?>
+                                        <li class="site-nav-top">
+                                            <div class="vr mx-2"></div>
+                                        </li>
+                                        <li class="site-nav-top">
+                                            <div class="shopping-cart d-inline pe-0">
+                                                <a href="<?= Url::toRoute('cart/') ?>" class="site-nav-top-link">
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                    <span class='badge badge-warning' id='lblCartCount'> 0 </span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    <?php endif; ?>
                                 </ul>
                             </div>
                         </div>
