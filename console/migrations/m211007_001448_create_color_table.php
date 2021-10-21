@@ -16,7 +16,7 @@ class m211007_001448_create_color_table extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string(),
             'slug' => $this->string()->unique(),
-            'color_code' => $this->string(),
+            'image' => $this->string(),
             'status' => $this->smallInteger()->defaultValue(1)->comment('0 for inactive, 1 for active'),
             'admin_id' => $this->bigInteger(),
             'created_at' => $this->dateTime(),

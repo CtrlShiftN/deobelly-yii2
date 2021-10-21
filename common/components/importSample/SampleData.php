@@ -16,6 +16,7 @@ use common\models\Product;
 use common\models\ProductAssoc;
 use common\models\ProductCategory;
 use common\models\ProductType;
+use common\models\Showroom;
 use common\models\Size;
 use common\models\TermsAndServices;
 use common\models\TrackingStatus;
@@ -572,81 +573,93 @@ class SampleData
      */
     protected static $arrColor = [
         [
-            'name' => 'White',
-            'slug' => 'white',
-            'color_code' => '#ffffff',
+            'name' => 'Cam đậm',
+            'slug' => 'cam-dam',
+            'image' => 'color/cam-dam.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Black',
-            'slug' => 'black',
-            'color_code' => '#000000',
+            'name' => 'Cam tươi',
+            'slug' => 'cam-tuoi',
+            'image' => 'color/cam-tuoi.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Red',
-            'slug' => 'red',
-            'color_code' => '#ff0000',
+            'name' => 'Đen',
+            'slug' => 'den',
+            'image' => 'color/den.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Green',
-            'slug' => 'green',
-            'color_code' => '#008000',
+            'name' => 'Đỏ',
+            'slug' => 'do',
+            'image' => 'color/do.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Yellow',
-            'slug' => 'yellow',
-            'color_code' => '#FFFF00',
+            'name' => 'Hồng phấn',
+            'slug' => 'hong-phan',
+            'image' => 'color/hong-phan.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Blue',
-            'slug' => 'blue',
-            'color_code' => '#0000FF',
+            'name' => 'Kem',
+            'slug' => 'kem',
+            'image' => 'color/kem.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Light blue',
-            'slug' => 'light-blue',
-            'color_code' => '#ADD8E6',
+            'name' => 'Muối tiêu',
+            'slug' => 'muoi-tieu',
+            'image' => 'color/muoi-tieu.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Cyan',
-            'slug' => 'Cyan',
-            'color_code' => '#00FFFF',
+            'name' => 'Nâu',
+            'slug' => 'nau',
+            'image' => 'color/nau.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Dark blue',
-            'slug' => 'dark-blue',
-            'color_code' => '#00008B',
+            'name' => 'Thiên thanh',
+            'slug' => 'thien-thanh',
+            'image' => 'color/thien-thanh.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Pink',
-            'slug' => 'pink',
-            'color_code' => '#FFC0CB',
+            'name' => 'Tím huế',
+            'slug' => 'tim-hue',
+            'image' => 'color/tim-hue.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Gray',
-            'slug' => 'gray',
-            'color_code' => '#808080',
+            'name' => 'Trắng',
+            'slug' => 'trang',
+            'image' => 'color/trang.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Brown',
-            'slug' => 'brown',
-            'color_code' => '#663300',
+            'name' => 'Vàng chanh',
+            'slug' => 'vang-chanh',
+            'image' => 'color/vang-chanh.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Orange',
-            'slug' => 'orange',
-            'color_code' => '#ffa500',
+            'name' => 'Vàng đậm',
+            'slug' => 'vang-dam',
+            'image' => 'color/vang-dam.jpg',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Xanh đen',
+            'slug' => 'xanh-den',
+            'image' => 'color/xanh-den.jpg',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Xanh da',
+            'slug' => 'xanh-da',
+            'image' => 'color/xanh-da.jpg',
             'admin_id' => 1,
         ],
     ];
@@ -661,7 +674,7 @@ class SampleData
             $color = new Color();
             $color->name = $value['name'];
             $color->slug = $value['slug'];
-            $color->color_code = $value['color_code'];
+            $color->image = $value['image'];
             $color->admin_id = $value['admin_id'];
             $color->created_at = date('Y-m-d H:m:s');
             $color->updated_at = date('Y-m-d H:m:s');
@@ -2323,14 +2336,14 @@ class SampleData
                     if ($districtModel->save()) {
                         $count++;
                         $arrVillage = explode(",", $ward);
-                        foreach ($arrVillage as $village){
+                        foreach ($arrVillage as $village) {
                             $villageModel = new GeoLocation();
                             $villageModel->name = $village;
                             $villageModel->slug = StringHelper::toSlug($village);
                             $villageModel->parent = $districtModel->id;
                             $villageModel->created_at = date('Y-m-d H:i:s');
                             $villageModel->updated_at = date('Y-m-d H:i:s');
-                            if ($villageModel->save()){
+                            if ($villageModel->save()) {
                                 $count++;
                             }
                         }
@@ -2339,6 +2352,71 @@ class SampleData
             }
         }
         echo "Inserted " . $count . '/' . count(self::$arrWardDistrictProvince) . ' geo location.' . PHP_EOL;
+    }
+
+    protected static $arrShowroom = [
+        [
+            'name' => 'SHOWROOM VINCOM BÀ TRIỆU',
+            'image' => 'showroom/showroom-ba-trieu.png',
+            'address' => '191 Bà Triệu, Lê Đại Hành, Hai Bà Trưng, Hà Nội',
+            'tel' => '024 7102 8686',
+            'gps_link' => 'https://goo.gl/maps/4azB8afpttbvdGtD9',
+        ],
+        [
+            'name' => 'SHOWROOM Thái Hà',
+            'image' => 'showroom/showroom-thai-ha.png',
+            'address' => 'Số 159 Thái Hà, Đống Đa, Hà Nội',
+            'tel' => '024 3222 2638',
+            'gps_link' => 'https://goo.gl/maps/k1hugAF831m1BGGX6',
+        ],
+        [
+            'name' => 'SHOWROOM Cầu Giấy',
+            'image' => 'showroom/showroom-cau-giay.png',
+            'address' => '111 Nguyễn Văn Huyên, Cầu Giấy, Hà Nội',
+            'tel' => '024 6261 2555',
+            'gps_link' => 'https://goo.gl/maps/87xbnXKMDEsmwwCk8',
+        ],
+        [
+            'name' => 'SHOWROOM Từ Sơn',
+            'image' => 'showroom/showroom-tu-son.png',
+            'address' => '270 Trần Phú, Từ Sơn, Bắc Ninh',
+            'tel' => '0222 376 0166',
+            'gps_link' => 'https://goo.gl/maps/3NH1bdHJaUB2JTtA6',
+        ],
+        [
+            'name' => 'SHOWROOM TP Thanh Hóa',
+            'image' => 'showroom/showroom-tp-thanh-hoa.png',
+            'address' => '168-170 Lê Hoàn, Thành phố Thanh Hóa',
+            'tel' => '0237 371 6886',
+            'gps_link' => 'https://goo.gl/maps/1nqPWEksqEDn3pp67',
+        ],
+        [
+            'name' => 'SHOWROOM Hải Phòng',
+            'image' => 'showroom/showroom-hai-phong.png',
+            'address' => '59 - 60 Nguyễn Đức Cảnh, Hải Phòng',
+            'tel' => '0225 351 0966',
+            'gps_link' => 'https://goo.gl/maps/4RKScLXVZvsYkASx5',
+        ]
+    ];
+
+    public static function insertSampleShowroom(){
+        $count = 0;
+        foreach (self::$arrShowroom as $showroom){
+            $model = new Showroom();
+            $model->name = $showroom['name'];
+            $model->slug = StringHelper::toSlug($showroom['name']);
+            $model->image = $showroom['image'];
+            $model->address = $showroom['address'];
+            $model->tel = $showroom['tel'];
+            $model->gps_link = $showroom['gps_link'];
+            $model->admin_id = 1;
+            $model->created_at = date('Y-m-d H:i:s');
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save()){
+                $count++;
+            }
+        }
+        echo "Inserted " . $count . '/' . count(self::$arrShowroom) . ' showrooms.' . PHP_EOL;
     }
 
     /**
@@ -2359,10 +2437,11 @@ class SampleData
         self::insertSamplePostCategory();
         self::insertSampleTerms();
         self::insertSlider();
-        self::insertSampleGeoLocation();
         self::insertSampleCart();
+        self::insertSampleGeoLocation();
         self::insertSampleOrder();
         self::insertSampleOrderTracking();
         self::insertSampleTrackingStatus();
+        self::insertSampleShowroom();
     }
 }

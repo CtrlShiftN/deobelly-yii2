@@ -13,6 +13,7 @@ use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ColorController implements the CRUD actions for Color model.
@@ -120,12 +121,19 @@ class ColorController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
+                $model->file = UploadedFile::getInstance($model, 'file');
+//                if (!file_exists(Url::to('@common/media/color'))) {
+//                    mkdir(Url::to('@common/media/color'), 0777, true);
+//                }
+                $imageUrl = Url::to('@common/media');
                 $model->slug = StringHelper::toSlug($model->name);
+                $model->image = 'color/' . $model->slug . '.' . $model->file->getExtension();
                 $model->created_at = date('Y-m-d H:m:s');
                 $model->updated_at = date('Y-m-d H:m:s');
                 $model->status = SystemConstant::STATUS_ACTIVE;
                 $model->admin_id = \Yii::$app->user->identity->getId();
-                if ($model->validate() && $model->save()) {
+                $model->file->saveAs($imageUrl . '/' . $model->image);
+                if ($model->save(false)) {
                     return $this->redirect(Url::toRoute('color/'));
                 }
             }

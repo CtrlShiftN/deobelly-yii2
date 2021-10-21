@@ -321,4 +321,5 @@ return [
     '- Choose district -' => '- Chọn quận huyện -',
     '- Choose village/ward -' => '- Chọn quận xã/phường -',
     'Enter a number, ex: 300' => 'Nhập vào một số, vd: 300',
+    'Showroom Series' => 'Hệ Thống Showroom',
 ];
