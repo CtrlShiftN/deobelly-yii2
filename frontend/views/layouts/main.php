@@ -267,15 +267,17 @@ AppAsset::register($this);
                         </div>
                         <div class="main-nav-left col-10 col-sm-10 col-lg-2 text-center text-sm-center text-lg-start">
                             <div class="d-flex align-items-center justify-content-center">
-                                <a href="<?php echo Url::home() ?>"
-                                   class="logo-align <?= ($controller == 'site' && $action == 'index') ? 'd-none' : '' ?>">
+                                <?php if($controller != 'site' && $action != 'index'): ?>
+                                <a href="<?= Url::home() ?>"
+                                   class="logo-align">
                                     <img src="<?= $cdnUrl ?>/img/home.png" class="p-home">
                                 </a>
-                                <a href="<?php echo Url::toRoute('site/luxury') ?>"
+                                <?php endif; ?>
+                                <a href="<?= Url::toRoute('site/luxury') ?>"
                                    class="logo-align <?= ($controller == 'site' && $action == 'casual') ? 'd-none' : '' ?>">
                                     <img src="<?= $cdnUrl ?>/img/luxury.png" class="p-1">
                                 </a>
-                                <a href="<?php echo Url::toRoute('site/casual') ?>"
+                                <a href="<?= Url::toRoute('site/casual') ?>"
                                    class="logo-align <?= ($controller == 'site' && $action == 'luxury') ? 'd-none' : '' ?>">
                                     <img src="<?= $cdnUrl ?>/img/casual.png">
                                 </a>
