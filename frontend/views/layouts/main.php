@@ -52,7 +52,7 @@ AppAsset::register($this);
                 <nav class="bg-dark d-none d-md-block">
                     <div class="container">
                         <div class="topbar-content row">
-                            <div class="topbar col-md-12 col-lg-5 d-none d-lg-block text-white py-1 text-start">
+                            <div class="topbar col-md-12 col-lg-4 d-none d-lg-block text-white py-1 text-start">
                                 <ul class="menu-topbar-left my-0">
                                     <li class="site-nav-top"><strong>SĐT: </strong><a class="phone-num"
                                                                                       href="tel:19001089">
@@ -65,7 +65,7 @@ AppAsset::register($this);
                                     </li>
                                 </ul>
                             </div>
-                            <div class="topbar col-md-12 col-lg-7 text-white py-1 text-center text-lg-end text-uppercase">
+                            <div class="topbar col-md-12 col-lg-8 text-white py-1 text-center text-lg-end text-uppercase">
                                 <ul class="menu-topbar-right my-0">
                                     <li class="site-nav-top"><a href="<?= Url::toRoute('site/our-stories') ?>"
                                                                 class="site-nav-top-link"><span><?= Yii::t('app', 'Introduction') ?></span></a>
