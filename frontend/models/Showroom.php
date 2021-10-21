@@ -1,29 +1,33 @@
 <?php
 
-namespace common\models;
+namespace frontend\models;
 
+use common\components\SystemConstant;
 use Yii;
 
 /**
- * This is the model class for table "color".
+ * This is the model class for table "showroom".
  *
  * @property int $id
- * @property string|null $name
- * @property string|null $slug
- * @property string|null $image
- * @property int|null $status 0 for inactive, 1 for active
+ * @property string $name
+ * @property string $slug
+ * @property string $image
+ * @property string $address
+ * @property string $tel
+ * @property string $gps_link
+ * @property int|null $status 0 for inactive 1 for active
  * @property int|null $admin_id
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class Color extends \yii\db\ActiveRecord
+class Showroom extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'color';
+        return 'showroom';
     }
 
     /**
@@ -32,10 +36,11 @@ class Color extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name', 'slug', 'image', 'address', 'tel', 'gps_link'], 'required'],
             [['status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'slug', 'image'], 'string', 'max' => 255],
-            [['slug'], 'unique'],
+            [['name', 'slug', 'image', 'address', 'tel', 'gps_link'], 'string', 'max' => 255],
+            [['name'], 'unique'],
         ];
     }
 
@@ -49,10 +54,18 @@ class Color extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
             'slug' => Yii::t('app', 'Slug'),
             'image' => Yii::t('app', 'Image'),
+            'address' => Yii::t('app', 'Address'),
+            'tel' => Yii::t('app', 'Tel'),
+            'gps_link' => Yii::t('app', 'Gps Link'),
             'status' => Yii::t('app', 'Status'),
             'admin_id' => Yii::t('app', 'Admin ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
+    }
+
+    public static function getAllShowroom()
+    {
+        return Showroom::find()->where(['status' => SystemConstant::STATUS_ACTIVE]);
     }
 }
