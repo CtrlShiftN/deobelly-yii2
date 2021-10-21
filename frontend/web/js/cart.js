@@ -5,24 +5,8 @@ $(".amountInput").keypress(function (e) {
 });
 let product;
 let total_price = 0;
-let productCb = $('.row-product input[type=checkbox]');
-product = getCheckedBoxes(productCb);
+product = $('.row-product');
 totalPrice();
-$('#checkAll').change(function () {
-    if ($('#checkAll').prop('checked') === false) {
-        productCb.prop('checked', false);
-        product = getCheckedBoxes(productCb);
-        totalPrice();
-    } else {
-        productCb.prop('checked', true);
-        product = getCheckedBoxes(productCb);
-        totalPrice();
-    }
-});
-productCb.change(function () {
-    product = getCheckedBoxes(productCb);
-    totalPrice();
-});
 
 //get value from checkboxes
 function getCheckedBoxes(checkbox) {
@@ -36,15 +20,13 @@ function getCheckedBoxes(checkbox) {
 function totalPrice() {
     let total_price = 0;
     if (product.length < 1) {
-        $("#totalProduct").html(product.length);
         $("#totalPrice").html(total_price + 'đ');
     } else {
         total_price = 0;
-        for (let i = 0; i < product.length; i++) {
-            total_price += parseInt($('.total-price_' + product[i]).attr('data-total-price'));
+        for (let i = 0; i < product.length; i++) {78
+            total_price += parseInt($('.total-price_' + i).attr('data-total-price'));
         }
         let total_price_format = new Intl.NumberFormat(['ban', 'id']).format(total_price);
-        $("#totalProduct").html(product.length);
         $("#totalPrice").html(total_price_format + 'đ');
     }
 }

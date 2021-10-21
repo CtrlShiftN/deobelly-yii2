@@ -103,7 +103,7 @@ $this->registerJsFile(Url::toRoute('js/cart.js'));
             </div>
             <!--total price-->
             <div class="col-5 col-lg-4 row m-0 p-0">
-                <div class="col-9 p-0 text-md-center total-price_<?= $idEncrypt ?>"
+                <div class="col-9 p-0 text-md-center total-price_<?= $key ?>"
                      data-total-price="<?= $value['total_price'] ?>">
                     <span class="d-md-none me-2">Tổng:</span>
                     <?= number_format($value['total_price'], 0, ',', '.') ?>đ
@@ -118,15 +118,11 @@ $this->registerJsFile(Url::toRoute('js/cart.js'));
 <?php endforeach; ?>
 <div class="w-100 row mx-0 px-2 mt-4 d-flex align-items-center justify-content-center bg-lighter-gray">
     <div class="col-12 col-md-6 m-0 px-0 py-3 d-flex">
-        <label class="category-checkbox text-uppercase my-auto">
-            <input type="checkbox" id="checkAll">Chọn tất cả (<?= count($cart) ?>) sản phẩm
-            <span class="checkmark"></span>
-        </label>
-        <button class="btn btn-dark text-uppercase mx-3">Xóa</button>
+        aaaaaaa
     </div>
     <div class="col-12 col-md-6 m-0 px-0 py-3 row">
         <div class="col-12 col-sm-7 px-0">
-            <p class="m-0 text-uppercase fs-5">tổng thanh toán (<span id="totalProduct"></span>):</p>
+            <p class="m-0 text-uppercase fs-5">tổng thanh toán:</p>
             <span class="fs-2 text-danger" id="totalPrice"></span>
         </div>
         <div class="col-12 col-sm-5 text-uppercase d-flex align-items-center justify-content-center">
