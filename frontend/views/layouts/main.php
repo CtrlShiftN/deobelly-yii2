@@ -327,6 +327,9 @@ AppAsset::register($this);
                             </li>
                         <?php endif; ?>
                     <?php endforeach; ?>
+                    <li><a href="<?= Url::toRoute('mix-and-match/') ?>"
+                           class="site-nav-link"><span><?= Yii::t('app', 'Collections') ?></span></a>
+                    </li>
                 </nav>
                 <!-- End navs -->
             </div>
