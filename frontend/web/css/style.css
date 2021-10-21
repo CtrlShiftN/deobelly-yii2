@@ -19,6 +19,11 @@
     background: #555;
 }
 
+.btn-sidebar:focus {
+    outline: unset !important;
+    box-shadow: unset !important;
+}
+
 body {
     overflow-x: hidden !important;
     overflow-y: scroll;
@@ -70,22 +75,12 @@ body {
     align-items: center;
 }
 
-#main-menu > li {
+#main-menu > li, .nav-tablet > li {
     display: inline;
-    padding-right: 15px;
+    padding: 20px 10px;
 }
 
-#main-menu > li > .btn {
-    vertical-align: baseline !important;
-    border: none;
-}
-
-#main-menu > li > .btn:focus {
-    outline: none !important;
-    box-shadow: none !important;
-}
-
-#main-menu > li > a {
+#main-menu > li > a, .nav-tablet > li > a {
     text-decoration: none;
     text-transform: uppercase;
     color: #333333;
@@ -93,7 +88,7 @@ body {
     font-size: 14px;
 }
 
-#main-menu > li > a:hover {
+#main-menu > li > a:hover, .nav-tablet > li > a:hover {
     color: #1aada3;
 }
 
