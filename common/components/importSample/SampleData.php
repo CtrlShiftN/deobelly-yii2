@@ -444,12 +444,6 @@ class SampleData
      */
     protected static $productCategoryInfoArr = [
         [
-            'name' => 'Áo sơ mi',
-            'slug' => 'ao-so-mi',
-            'type_id' => '2,5',
-            'admin_id' => 1,
-        ],
-        [
             'name' => 'Áo thun',
             'slug' => 'ao-thun',
             'type_id' => '2',
@@ -513,8 +507,8 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'name' => 'Áo',
-            'slug' => 'ao',
+            'name' => 'Áo sơ mi',
+            'slug' => 'ao-so-mi',
             'image' => 'type/vest-nam-den.jpg',
             'admin_id' => 1,
         ],
