@@ -124,6 +124,17 @@ AppAsset::register($this);
                                                                     class="site-nav-top-link"><span><?= Yii::t('app', 'Signup') ?></span></a>
                                         </li>
                                     <?php endif; ?>
+                                    <li class="site-nav-top">
+                                        <div class="vr mx-2"></div>
+                                    </li>
+                                    <li class="site-nav-top">
+                                        <div class="shopping-cart d-inline pe-0">
+                                            <a href="<?= Url::toRoute('cart/') ?>" class="site-nav-top-link">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                <span class='badge badge-warning' id='lblCartCount'> 0 </span>
+                                            </a>
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -466,6 +477,9 @@ AppAsset::register($this);
                 return false;
             })
         });
+    </script>
+    <script>
+
     </script>
 
     <?php $this->endBody() ?>
