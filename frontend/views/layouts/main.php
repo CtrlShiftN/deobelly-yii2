@@ -267,7 +267,7 @@ AppAsset::register($this);
                         </div>
                         <div class="main-nav-left col-10 col-sm-10 col-lg-2 text-center text-sm-center text-lg-start">
                             <div class="d-flex align-items-center justify-content-center">
-                                <?php if($action != 'index'): ?>
+                                <?php if($controller == 'site' && $action != 'index'): ?>
                                 <a href="<?= Url::home() ?>"
                                    class="logo-align">
                                     <img src="<?= $cdnUrl ?>/img/home.png" class="p-home">
