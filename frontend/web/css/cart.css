@@ -82,16 +82,16 @@ a:focus, input:focus, button:focus {
 .amountInput, .btnDESC, .btnASC {
     height: 36px !important;
     border-radius: 0  !important;
-    background-color: #dbd9dc !important;
-    border: 1px solid #dbd9dc  !important;
     margin: 0 !important;
 }
 
 .btnDESC, .btnASC {
+    box-sizing: border-box !important;
     width: 36px !important;
+    padding: 6px 10px !important;
 }
 
-.bg-lighter-gray {
+.bg-lighter-gray,.amountInput, .btnDESC, .btnASC  {
     background-color: #f5f5f5 !important;
 }
 
@@ -103,4 +103,12 @@ select {
 
 select:focus {
     outline: none;
+}
+
+.text-red {
+    color: red !important;
+}
+
+.fs-name {
+    font-size: 16px !important;
 }

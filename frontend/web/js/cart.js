@@ -8,15 +8,6 @@ let total_price = 0;
 product = $('.row-product');
 totalPrice();
 
-//get value from checkboxes
-function getCheckedBoxes(checkbox) {
-    return checkbox.filter(":checked")
-        .map(function () {
-            return this.value;
-        })
-        .get();
-}
-
 function totalPrice() {
     let total_price = 0;
     if (product.length < 1) {
@@ -31,20 +22,20 @@ function totalPrice() {
     }
 }
 
-//reduce the number of
-function reduceProductQuantity() {
-    if ($('#amountInput').val() > 1) {
-        let amount = parseInt($('#amountInput').val());
-        $('#amountInput').val(amount - 1);
-        totalPrice();
-    }
-}
+document.querySelectorAll('.btnDESC').forEach(item => {
+    item.addEventListener('click', event => {
+        let id = item.getAttribute("data-id");
+        if ($('#amount'+id).val() > 1) {
+            $('#amount'+id).val(parseInt($('#amount'+id).val()) - 1);
+        }
+    });
+});
 
-//increase the number
-function increaseProductQuantity() {
-    // if ($('#amountInput').val() < parseInt($('#quantity').attr('data-quantity'))) {
-    let amount = parseInt($('#amountInput').val());
-    $('#amountInput').val(amount + 1);
-    // }
-    totalPrice()
-}
+document.querySelectorAll('.btnASC').forEach(item => {
+    item.addEventListener('click', event => {
+        let id = item.getAttribute("data-id");
+        // if ($('#amountInput').val() < parseInt($('#quantity').attr('data-quantity'))) {
+        $('#amount'+id).val(parseInt($('#amount'+id).val()) + 1);
+        // }
+    });
+});
