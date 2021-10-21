@@ -44,6 +44,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'images:ntext',
             'related_product',
             'trademark_id',
+            'hide',
+            'is_feature',
             'viewed',
             'fake_sold',
             'sold',
