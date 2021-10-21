@@ -117,14 +117,13 @@ body {
 }
 
 .header_login, .shopping-cart {
-    font-size: 18px;
     padding: 0 5px;
     display: inline-block;
 }
 
 .header_login > a, .shopping-cart > a {
     text-decoration: none;
-    color: #000000;
+    color: white;
 }
 
 .header_login:hover > .dropdown-menu {
@@ -364,3 +363,20 @@ footer .footer-content {
     }
 }
 /* End Phone call btn */
+/* Shopping cart */
+#lblCartCount {
+    font-size: 10px;
+    background: #ff0000;
+    color: #fff;
+    padding: 0 5px;
+    vertical-align: top;
+    margin-left: -10px;
+}
+.shopping-cart .badge {
+    padding-left: 9px;
+    padding-right: 9px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+}
+/* End Shopping cart */
