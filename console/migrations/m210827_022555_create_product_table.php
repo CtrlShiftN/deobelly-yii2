@@ -28,6 +28,8 @@ class m210827_022555_create_product_table extends Migration
             'images' => $this->text()->null(),
             'related_product' => $this->string(),
             'trademark_id' => $this->bigInteger()->null(),
+            'hide' => $this->integer()->defaultValue(0)->comment('0 for show, 1 for hide'),
+            'is_feature' => $this->integer()->defaultValue(0)->comment('0 for no, 1 for yes'),
             'viewed' => $this->integer()->defaultValue(0)->comment('+1 each click to view'),
             'fake_sold' => $this->integer()->defaultValue(rand(999, 99999))->comment('client see this amount if sold < 1k'),
             'sold' => $this->integer()->defaultValue(0),

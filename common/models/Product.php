@@ -22,6 +22,8 @@ use Yii;
  * @property string|null $images
  * @property string|null $related_product
  * @property int|null $trademark_id
+ * @property int|null $hide 0 for hide, 1 for show
+ * @property int|null $is_feature 0 for no, 1 for yes
  * @property int|null $viewed +1 each click to view
  * @property int|null $fake_sold client see this amount if sold < 1k
  * @property int|null $sold
@@ -49,7 +51,7 @@ class Product extends \yii\db\ActiveRecord
             [['name', 'slug', 'description', 'cost_price', 'regular_price', 'selling_price', 'image'], 'required'],
             [['description', 'images'], 'string'],
             [['cost_price', 'regular_price', 'sale_price', 'selling_price'], 'number'],
-            [['quantity', 'trademark_id', 'viewed', 'fake_sold', 'sold', 'status', 'admin_id'], 'integer'],
+            [['quantity', 'trademark_id', 'hide', 'is_feature', 'viewed', 'fake_sold', 'sold', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'short_description', 'SKU', 'image', 'related_product'], 'string', 'max' => 255],
             [['slug'], 'unique'],
@@ -77,6 +79,8 @@ class Product extends \yii\db\ActiveRecord
             'images' => Yii::t('app', 'Images'),
             'related_product' => Yii::t('app', 'Related Product'),
             'trademark_id' => Yii::t('app', 'Trademark ID'),
+            'hide' => Yii::t('app', 'Hide'),
+            'is_feature' => Yii::t('app', 'Is Feature'),
             'viewed' => Yii::t('app', 'Viewed'),
             'fake_sold' => Yii::t('app', 'Fake Sold'),
             'sold' => Yii::t('app', 'Sold'),

@@ -45,6 +45,10 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'trademark_id') ?>
 
+    <?php // echo $form->field($model, 'hide') ?>
+
+    <?php // echo $form->field($model, 'is_feature') ?>
+
     <?php // echo $form->field($model, 'viewed') ?>
 
     <?php // echo $form->field($model, 'fake_sold') ?>

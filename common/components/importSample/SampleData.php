@@ -7,6 +7,7 @@ use common\components\SystemConstant;
 use common\models\Cart;
 use common\models\Color;
 use common\models\GeoLocation;
+use common\models\MixAndMatch;
 use common\models\Order;
 use common\models\OrderTracking;
 use common\models\Post;
@@ -272,6 +273,7 @@ class SampleData
             'image' => 'product/clothes/shirt/ao-so-mi-lados.jpg',
             'images' => '',
             'trademark_id' => 2,
+            'is_feature' => 1,
             'quantity' => 31,
             'admin_id' => 1,
         ],
@@ -290,6 +292,97 @@ class SampleData
             'regular_price' => 11999000,
             'sale_price' => 10190000,
             'image' => 'product/clothes/vest/vest-nam-han-quoc.jpg',
+            'images' => '',
+            'trademark_id' => 3,
+            'is_feature' => 1,
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Quần tây nam co giãn nhẹ Lados',
+            'slug' => 'quan-tay-nam-co-gian-nhe-lados',
+            'short_description' => "",
+            'description' => "<h3>Quần tây nam chất lượng LADOS - 327, chất vải dày dặn co giãn nhẹ, form slimfit </h3>
+                <h4>⏩ Thông tin sản phẩm:</h4>
+                👉 Chất liệu: Chất Vải dày, Không nhăn <br>
+                👉 Co giãn nhẹ, đặc biệt không nhăn<br>
+                👉 Chất vải đẹp, không xù lông, không phai màu<br>
+                👉 Đường may cực tỉ mỉ cực đẹp<br>
+                👉 Có thể mặc đi làm, đi chơi, dễ phối đồ, không kén người mặc<br>
+                👉 Kiểu dáng: Thiết kế theo form Slimfit , dáng gọn, tôn dám trẻ trung- thông số phù hợp với người việt nam<br>
+                ⏩Được sản xuất và bảo hành bởi Công ty TNHH MTV LADOS VIỆT NAM<br>
+                <br><br>
+                <h4>XEM CÁCH CHỌN SIZE TRÊN HÌNH ĐỂ ĐƯỢC CHÍNH XÁC NHẤT</h4>
+                ⏩  Cách chọn size: Shop có bảng size mẫu. <br>
+                Size 28 : 47kg-52kg<br>
+                Size 29 : 50kg-57kg<br>
+                Size 30 : 55kg-62kg<br>
+                Size 31 : 60kg-67kg<br>
+                Size 32 : 65kg-70kg<br>
+                Size 34 : 67kg-72kg<br>
+                Size 36 : 72kg-78kg",
+            'cost_price' => 100000,
+            'regular_price' => 299000,
+            'sale_price' => 170000,
+            'image' => 'product/quan-tay-nam-co-gian-nhe-lados.jpg',
+            'images' => '',
+            'trademark_id' => 3,
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Quần tây kẻ kiểu dáng Hàn Quốc',
+            'slug' => 'quan-tay-ke-kieu-dang-han-quoc',
+            'short_description' => "",
+            'description' => "<h3>Quần tây nam kẻ kiểu dáng Hàn Quốc </h3>
+                <h4>⏩ Thông tin sản phẩm:</h4>
+                👉 Chất liệu: Chất Vải dày, Không nhăn <br>
+                👉 Co giãn nhẹ, đặc biệt không nhăn<br>
+                👉 Chất vải đẹp, không xù lông, không phai màu<br>
+                👉 Đường may cực tỉ mỉ cực đẹp<br>
+                👉 Có thể mặc đi làm, đi chơi, dễ phối đồ, không kén người mặc<br>
+                👉 Kiểu dáng: Thiết kế theo form Slimfit , dáng gọn, tôn dám trẻ trung- thông số phù hợp với người việt nam<br>
+                <br><br>
+                <h4>XEM CÁCH CHỌN SIZE TRÊN HÌNH ĐỂ ĐƯỢC CHÍNH XÁC NHẤT</h4>
+                ⏩  Cách chọn size: Shop có bảng size mẫu. <br>
+                Size 28 : 47kg-52kg<br>
+                Size 29 : 50kg-57kg<br>
+                Size 30 : 55kg-62kg<br>
+                Size 31 : 60kg-67kg<br>
+                Size 32 : 65kg-70kg<br>
+                Size 34 : 67kg-72kg<br>
+                Size 36 : 72kg-78kg",
+            'cost_price' => 150000,
+            'regular_price' => 350000,
+            'sale_price' => 199000,
+            'image' => 'product/quan-tay-ke-kieu-dang-han-quoc.jpg',
+            'images' => '',
+            'trademark_id' => 3,
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Áo vest nam The Shirt Studio F4',
+            'slug' => 'ao-vest-nam-the-shirt-studio-f4',
+            'short_description' => "",
+            'description' => "<h3>Áo vest nam The Shirt Studio F4 </h3>
+                <h4>⏩ Thông tin sản phẩm:</h4>
+                👉 Chất liệu: Chất Vải dày, Không nhăn <br>
+                👉 Chất vải đẹp, không xù, không phai màu<br>
+                👉 Đường may cực tỉ mỉ cực đẹp<br>
+                👉 Có thể mặc đi làm, đi chơi, dễ phối đồ, không kén người mặc<br>
+                👉 Kiểu dáng: Thiết kế dáng gọn, tôn dáng trẻ trung- thông số phù hợp với người Việt Nam<br>
+                <br><br>
+                <h4>XEM CÁCH CHỌN SIZE TRÊN HÌNH ĐỂ ĐƯỢC CHÍNH XÁC NHẤT</h4>
+                ⏩  Cách chọn size: Shop có bảng size mẫu. <br>
+                Size 28 : 47kg-52kg<br>
+                Size 29 : 50kg-57kg<br>
+                Size 30 : 55kg-62kg<br>
+                Size 31 : 60kg-67kg<br>
+                Size 32 : 65kg-70kg<br>
+                Size 34 : 67kg-72kg<br>
+                Size 36 : 72kg-78kg",
+            'cost_price' => 140000,
+            'regular_price' => 290000,
+            'sale_price' => 230000,
+            'image' => 'product/ao-vest-nam-the-shirt-studio-f4.jpg',
             'images' => '',
             'trademark_id' => 3,
             'admin_id' => 1,
@@ -328,6 +421,12 @@ class SampleData
             $product->trademark_id = $values['trademark_id'];
             if (!empty($values['quantity'])) {
                 $product->quantity = $values['quantity'];
+            }
+            if (!empty($values['hide'])) {
+                $product->hide = $values['hide'];
+            }
+            if (!empty($values['is_feature'])) {
+                $product->is_feature = $values['is_feature'];
             }
             $product->created_at = date('Y-m-d H:m:s');
             $product->updated_at = date('Y-m-d H:m:s');
@@ -402,6 +501,30 @@ class SampleData
             'category_id' => '3',
             'color_id' => '2,11,12',
             'size_id' => '3,4,5,6',
+            'admin_id' => 1,
+        ],
+        [
+            'product_id' => '9',
+            'type_id' => '1,4,8',
+            'category_id' => '4',
+            'color_id' => '3,7',
+            'size_id' => '8,9,10',
+            'admin_id' => 1,
+        ],
+        [
+            'product_id' => '10',
+            'type_id' => '1,4,8',
+            'category_id' => '4',
+            'color_id' => '7',
+            'size_id' => '8,9,10',
+            'admin_id' => 1,
+        ],
+        [
+            'product_id' => '11',
+            'type_id' => '1,4,8',
+            'category_id' => '4',
+            'color_id' => '8,14',
+            'size_id' => '8,9,10',
             'admin_id' => 1,
         ],
     ];
@@ -2407,9 +2530,10 @@ class SampleData
         ]
     ];
 
-    public static function insertSampleShowroom(){
+    public static function insertSampleShowroom()
+    {
         $count = 0;
-        foreach (self::$arrShowroom as $showroom){
+        foreach (self::$arrShowroom as $showroom) {
             $model = new Showroom();
             $model->name = $showroom['name'];
             $model->slug = StringHelper::toSlug($showroom['name']);
@@ -2420,11 +2544,55 @@ class SampleData
             $model->admin_id = 1;
             $model->created_at = date('Y-m-d H:i:s');
             $model->updated_at = date('Y-m-d H:i:s');
-            if ($model->save()){
+            if ($model->save()) {
                 $count++;
             }
         }
         echo "Inserted " . $count . '/' . count(self::$arrShowroom) . ' showrooms.' . PHP_EOL;
+    }
+
+    protected static $arrMixes = [
+        [
+            'title' => 'Bộ trang phục công sở Lados 2021',
+            'slug' => 'bo-trang-phuc-cong-so-lados-2021',
+            'image' => 'product/mixes/bo-trang-phuc-cong-so-lados-2021.jpg',
+            'mixed_product_id' => '7,9',
+            'content' => '<li> Chất vải sờ mịn không phai, không nhăn, không xù.</li><li> Chất liệu thoáng mái.</li>
+                <li> Mếch cổ và tay làm bằng chất liệu cao cấp, không bị bong tróc.</li>
+                <li> Fom Body cực chuẩn, ôm chọn bờ vai mặc cực trẻ trung và phong cách phù hợp với mọi hoàn cảnh kể cả đi chơi và đi làm.</li>
+                <li> Hàng có sẵn, đủ size: M, L, XL, 2XL, 3XL</li><li> Màu sắc: Theo bộ(1 quần+ 1 áo)</li>',
+            'admin_id' => 1,
+        ],
+        [
+            'title' => 'Bộ vest nam The Shirt Studio F4',
+            'slug' => 'bo-vest-nam-the-shirt-studio-f4',
+            'image' => 'product/mixes/bo-vest-nam-the-shirt-studio-f4.jpg',
+            'mixed_product_id' => '10,11',
+            'content' => '<li> Chất vải sờ mịn không phai, không nhăn, không xù.</li><li> Chất liệu thoáng mái.</li>
+                <li> Mếch cổ và tay làm bằng chất liệu cao cấp, không bị bong tróc.</li>
+                <li> Fom Body cực chuẩn, ôm chọn bờ vai mặc cực trẻ trung và phong cách phù hợp với mọi hoàn cảnh kể cả đi chơi và đi làm.</li>
+                <li> Hàng có sẵn, đủ size: M, L, XL, 2XL, 3XL</li><li> Màu sắc: Theo bộ(1 quần+ 1 áo)</li>',
+            'admin_id' => 1,
+        ]
+    ];
+
+    public static function insertSampleMixes(){
+        $count = 0;
+        foreach (self::$arrMixes as $mixes){
+            $model = new MixAndMatch();
+            $model->title = $mixes['title'];
+            $model->slug = StringHelper::toSlug($mixes['title']);
+            $model->image = $mixes['image'];
+            $model->mixed_product_id = $mixes['mixed_product_id'];
+            $model->content = $mixes['content'];
+            $model->admin_id = $mixes['admin_id'];
+            $model->created_at = date('Y-m-d H:i:s');
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save()){
+                $count++;
+            }
+        }
+        echo "Inserted " . $count . '/' . count(self::$arrMixes) . ' mixes.' . PHP_EOL;
     }
 
     /**
@@ -2451,5 +2619,6 @@ class SampleData
         self::insertSampleOrderTracking();
         self::insertSampleTrackingStatus();
         self::insertSampleShowroom();
+        self::insertSampleMixes();
     }
 }
