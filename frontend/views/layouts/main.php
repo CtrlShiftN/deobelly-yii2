@@ -180,8 +180,8 @@ AppAsset::register($this);
                                                         <?php foreach ($mainType as $key => $value): ?>
                                                             <?php if ($value['segment'] == SystemConstant::SEGMENT_LUXURY): ?>
                                                                 <li class="nav-item">
-                                                                    <a href="<?= Url::toRoute(['site/'.$value['slug']]) ?>"
-                                                                       class="nav-link d-flex <?= ($controller == 'site' && $action == 'luxury') ? '':'d-none' ?>">
+                                                                    <a href="<?= Url::toRoute(['site/' . $value['slug']]) ?>"
+                                                                       class="nav-link d-flex <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
                                                                         <i class="far fa-circle nav-icon me-2"></i>
                                                                         <p><?= Yii::t('app', $value['name']) ?></p>
                                                                     </a>
@@ -238,8 +238,8 @@ AppAsset::register($this);
                             <ul class="site-nav mb-0 ps-0 d-none d-sm-none d-lg-inline-block" id="main-menu">
                                 <?php foreach ($mainType as $key => $value): ?>
                                     <?php if ($value['segment'] == SystemConstant::SEGMENT_LUXURY): ?>
-                                        <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '':'d-none' ?>">
-                                            <a href="<?= Url::toRoute(['site/'.$value['slug']]) ?>"
+                                        <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
+                                            <a href="<?= Url::toRoute(['site/' . $value['slug']]) ?>"
                                                class="site-nav-link">
                                                 <span><?= Yii::t('app', $value['name']) ?></span>
                                             </a>

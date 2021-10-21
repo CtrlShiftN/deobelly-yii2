@@ -250,7 +250,7 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                                     class="fas fa-dollar-sign"></i> <?= Yii::t('app', 'Buy now') ?></span></a>
                     <a href="javascript:void(0)"
                        data-id="<?= \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>"
-                    class="btn rounded-0 btnAdd col-4 col-md-3"><i class="far fa-heart"></i></a>
+                       class="btn rounded-0 btnAdd col-4 col-md-3"><i class="far fa-heart"></i></a>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -300,7 +300,7 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                                     class="fas fa-dollar-sign"></i> <?= Yii::t('app', 'Buy now') ?></span></a>
                     <a href="javascript:void(0)"
                        data-id="<?= \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>"
-                    class="btn rounded-0 btnAdd col-4 col-md-3"><i class="far fa-heart"></i></a>
+                       class="btn rounded-0 btnAdd col-4 col-md-3"><i class="far fa-heart"></i></a>
                 </div>
             </div>
         <?php endforeach; ?>

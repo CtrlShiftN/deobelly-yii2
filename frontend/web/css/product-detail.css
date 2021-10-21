@@ -130,12 +130,14 @@ h2 {
     border-radius: unset !important;
     margin: 0 10px 7px 0;
 }
+
 .btn-color {
     height: 46px;
     box-sizing: border-box;
     margin: 0 10px 7px 0;
 }
-.btn-color,.btn-size,#amountInput, #btnDESC, #btnASC  {
+
+.btn-color, .btn-size, #amountInput, #btnDESC, #btnASC {
     background-color: #eeeeee !important;
 }
 
