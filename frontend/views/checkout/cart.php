@@ -20,14 +20,19 @@ $this->registerJsFile(Url::toRoute('js/cart.js'));
             class="fw-bold d-inline-block fs-2">DE-OBELY</span> / Giỏ hàng
 </div>
 <div class="w-100 row mx-0 px-2 py-2 my-2 border-bottom d-none d-lg-flex">
-    <div class="col-4 col-lg-5 col-xl-3 m-0 px-0 py-3 d-flex">
+    <div class="col-4 col-sm-3 col-md-2 col-xxl-1 m-0 px-0 py-3 d-flex">
         <span class="text-uppercase fs-5 fw-bold"> sản phẩm</span>
     </div>
-    <div class="col-8 col-lg-7 col-xl-9 m-0 px-0 py-3 row mx-0">
-        <div class="col-3 text-uppercase text-end">đơn giá</div>
-        <div class="col-3 text-uppercase text-end">số lượng</div>
-        <div class="col-3 text-uppercase text-end">số tiền</div>
-        <div class="col-3 text-uppercase text-end">thao tác</div>
+    <div class="col-8 col-sm-9 col-md-10 col-xxl-11 m-0 px-0 py-3 row mx-0">
+        <div class="col-4 col-xl-3 col-xxl-4 row m-0 p-0"></div>
+        <div class="col-4 col-xl-5 col-xxl-4 row m-0 p-0">
+            <div class="col-6 text-uppercase pe-0">đơn giá</div>
+            <div class="col-6 text-uppercase pe-0">số lượng</div>
+        </div>
+        <div class="col-4 row m-0 p-0">
+            <div class="col-8 p-0 text-uppercase text-center">số tiền</div>
+            <div class="col-4 p-0 text-uppercase text-center">thao tác</div>
+        </div>
     </div>
 </div>
 <?php foreach ($cart as $key => $value): ?>
@@ -103,13 +108,13 @@ $this->registerJsFile(Url::toRoute('js/cart.js'));
             </div>
             <!--total price-->
             <div class="col-12 col-md-5 col-lg-4 row m-0 p-0 my-1">
-                <div class="col-9 p-0 text-md-center text-red total-price_<?= $key ?>"
+                <div class="col-8 p-0 text-md-center text-red total-price_<?= $key ?>"
                      data-total-price="<?= $value['total_price'] ?>">
                     <p class="d-lg-none d-inline-block d-md-block text-black my-0">Tổng:</p>
                     <?= number_format($value['total_price'], 0, ',', '.') ?>đ
                 </div>
                 <!--action-->
-                <div class="col-3 p-0 text-md-center">
+                <div class="col-4 p-0 text-md-center">
                     <button class="btn bg-transparent w-100 p-0"><i class="far fa-trash-alt"></i></button>
                 </div>
             </div>
