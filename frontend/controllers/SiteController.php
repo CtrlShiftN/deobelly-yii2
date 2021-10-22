@@ -86,7 +86,37 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $type = ArrayHelper::index(ProductType::getProductType(), 'slug');
+        $type = ArrayHelper::index(ProductType::getAllProductType(), 'slug');
+        $slider = Slider::getSliderFromSite('index');
+        return $this->render('index', [
+            'type' => $type,
+            'slider' => $slider
+        ]);
+    }
+
+    /**
+     * Displays homepage.
+     *
+     * @return mixed
+     */
+    public function actionLuxury()
+    {
+        $type = ArrayHelper::index(ProductType::getAllProductType(), 'slug');
+        $slider = Slider::getSliderFromSite('index');
+        return $this->render('index', [
+            'type' => $type,
+            'slider' => $slider
+        ]);
+    }
+
+    /**
+     * Displays homepage.
+     *
+     * @return mixed
+     */
+    public function actionCasual()
+    {
+        $type = ArrayHelper::index(ProductType::getAllProductType(), 'slug');
         $slider = Slider::getSliderFromSite('index');
         return $this->render('index', [
             'type' => $type,

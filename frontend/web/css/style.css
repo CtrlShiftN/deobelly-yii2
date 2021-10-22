@@ -19,11 +19,20 @@
     background: #555;
 }
 
+.btn-sidebar:focus {
+    outline: unset !important;
+    box-shadow: unset !important;
+}
+
 body {
     overflow-x: hidden !important;
     overflow-y: scroll;
     box-sizing: border-box;
     background-color: #fff;
+}
+
+.p-home {
+    padding: 25px;
 }
 
 .topbar > ul > li > a {
@@ -66,12 +75,12 @@ body {
     align-items: center;
 }
 
-#main-menu > li {
+#main-menu > li, .nav-tablet > li {
     display: inline;
-    padding-right: 15px;
+    padding: 20px 10px;
 }
 
-#main-menu > li > a {
+#main-menu > li > a, .nav-tablet > li > a {
     text-decoration: none;
     text-transform: uppercase;
     color: #333333;
@@ -79,7 +88,7 @@ body {
     font-size: 14px;
 }
 
-#main-menu > li > a:hover {
+#main-menu > li > a:hover, .nav-tablet > li > a:hover {
     color: #1aada3;
 }
 
@@ -256,7 +265,7 @@ footer .footer-content {
 
 #back-to-top {
     position: fixed;
-    bottom: 55px;
+    bottom: 5px;
     right: 15px;
     height: 40px;
     width: 40px;
@@ -281,11 +290,12 @@ footer .footer-content {
     color: white;
     font-weight: bolder;
 }
+
 /* Phone call btn */
 .phone-call {
     width: 50px;
     height: 50px;
-    right: 20px;
+    right: 15px;
     bottom: 50px;
     background: #10b418;
     position: fixed;
@@ -362,6 +372,7 @@ footer .footer-content {
         opacity: 0;
     }
 }
+
 /* End Phone call btn */
 /* Shopping cart */
 #lblCartCount {

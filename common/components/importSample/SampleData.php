@@ -441,7 +441,7 @@ class SampleData
     protected static $productAssocInfoArr = [
         [
             'product_id' => '1',
-            'type_id' => '2,4',
+            'type_id' => '2',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6',
@@ -449,7 +449,7 @@ class SampleData
         ],
         [
             'product_id' => '2',
-            'type_id' => '2,4',
+            'type_id' => '2',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6',
@@ -457,7 +457,7 @@ class SampleData
         ],
         [
             'product_id' => '3',
-            'type_id' => '2,4',
+            'type_id' => '2',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6',
@@ -465,7 +465,7 @@ class SampleData
         ],
         [
             'product_id' => '4',
-            'type_id' => '2,4',
+            'type_id' => '2',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6',
@@ -473,7 +473,7 @@ class SampleData
         ],
         [
             'product_id' => '5',
-            'type_id' => '2,4',
+            'type_id' => '2',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6,7',
@@ -481,7 +481,7 @@ class SampleData
         ],
         [
             'product_id' => '6',
-            'type_id' => '2,4',
+            'type_id' => '2',
             'category_id' => '2',
             'color_id' => '1,2,6',
             'size_id' => '3,4,5,6',
@@ -489,7 +489,7 @@ class SampleData
         ],
         [
             'product_id' => '7',
-            'type_id' => '1,4,8',
+            'type_id' => '2,5',
             'category_id' => '1',
             'color_id' => '1,6,7',
             'size_id' => '3,4,5,6',
@@ -497,7 +497,7 @@ class SampleData
         ],
         [
             'product_id' => '8',
-            'type_id' => '1,4,8',
+            'type_id' => '2,5',
             'category_id' => '3',
             'color_id' => '2,11,12',
             'size_id' => '3,4,5,6',
@@ -559,39 +559,33 @@ class SampleData
      */
     protected static $productCategoryInfoArr = [
         [
-            'name' => 'Áo sơ mi',
-            'slug' => 'ao-so-mi',
-            'type_id' => '1,2,4,8',
-            'admin_id' => 1,
-        ],
-        [
             'name' => 'Áo thun',
             'slug' => 'ao-thun',
-            'type_id' => '2,4',
+            'type_id' => '2',
             'admin_id' => 1,
         ],
         [
             'name' => 'Áo Vest',
             'slug' => 'ao-vest',
-            'type_id' => '1,2,4,8',
+            'type_id' => '2,5',
             'admin_id' => 1,
         ],
         [
             'name' => 'Quần âu',
             'slug' => 'quan-au',
-            'type_id' => '1,2,5,8',
+            'type_id' => '3,5',
             'admin_id' => 1,
         ],
         [
             'name' => 'Dây lưng',
             'slug' => 'day-lung',
-            'type_id' => '2,7,8',
+            'type_id' => '4,5',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Giày thể thao',
-            'slug' => 'giay-the-thao',
-            'type_id' => '1,2,6,8',
+            'name' => 'Giày',
+            'slug' => 'giay',
+            'type_id' => '4,5',
             'admin_id' => 1,
         ],
     ];
@@ -622,26 +616,14 @@ class SampleData
      */
     protected static $arrProductType = [
         [
-            'name' => 'Luxury',
-            'slug' => 'luxury',
-            'image' => 'type/pronto-img-4.jpg',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Casual',
-            'slug' => 'casual',
-            'image' => 'type/pronto-img-2.jpg',
-            'admin_id' => 1,
-        ],
-        [
             'name' => 'Sản phẩm mới',
             'slug' => 'san-pham-moi',
             'image' => 'type/brand2.jpg',
             'admin_id' => 1,
         ],
         [
-            'name' => 'Áo',
-            'slug' => 'ao',
+            'name' => 'Áo sơ mi',
+            'slug' => 'ao-so-mi',
             'image' => 'type/vest-nam-den.jpg',
             'admin_id' => 1,
         ],
@@ -649,12 +631,6 @@ class SampleData
             'name' => 'Quần',
             'slug' => 'quan',
             'image' => 'type/quan-tay-ong-rong.jpg',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Giày',
-            'slug' => 'giay',
-            'image' => 'type/giay-derby-nam-1.jpg',
             'admin_id' => 1,
         ],
         [
@@ -667,6 +643,13 @@ class SampleData
             'name' => 'Quà tặng',
             'slug' => 'qua-tang',
             'image' => 'type/gift.jpg',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'May mặc',
+            'slug' => 'may-mac',
+            'image' => 'type/gift.jpg',
+            'segment' => 1,
             'admin_id' => 1,
         ],
     ];
@@ -682,6 +665,9 @@ class SampleData
             $model->name = $value['name'];
             $model->slug = $value['slug'];
             $model->image = $value['image'];
+            if (!empty($value['segment'])) {
+                $model->segment = $value['segment'];
+            }
             $model->admin_id = $value['admin_id'];
             $model->created_at = date('Y-m-d H:m:s');
             $model->updated_at = date('Y-m-d H:m:s');
