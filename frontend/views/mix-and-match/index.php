@@ -22,7 +22,7 @@ $this->registerCssFile('/css/collection.css');
     </div>
     <div class="col-12 col-lg-3 col-xl-2 px-5 px-md-3 m-0">
         <div class="w-100 mt-3 fs-4"><h2
-                    class="previous-collection__title text-uppercase"><?= Yii::t('app', 'Previous Collections') ?></h2>
+                    class="previous-collection__title text-uppercase"><?= Yii::t('app', 'Weekly Collections') ?></h2>
         </div>
         <img src="<?= $imgUrl.'/'.$mixes[0]['image'] ?>" class="w-100">
     </div>

@@ -325,4 +325,5 @@ return [
     'No' => 'Không',
     'Feature' => 'Nổi bật',
     'Showroom Series' => 'Hệ Thống Showroom',
+    ''
 ];
