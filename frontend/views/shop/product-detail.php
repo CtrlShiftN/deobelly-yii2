@@ -16,11 +16,6 @@ $this->registerJsFile(Url::toRoute('js/easyzoom.js'));
 $this->registerJsFile(Url::toRoute('js/swiper-bundle.min.js'));
 $this->registerJsFile(Url::toRoute('js/product-detail.js'));
 ?>
-<style>
-    .object-fit-cover {
-        object-fit: cover !important;
-    }
-</style>
 <div class="row py-3 p-lg-4 px-xl-4 px-xxl-5 py-xl-4">
     <div class="col-12 col-md-5 px-0">
         <div class="product__carousel ps-md-3 ps-lg-4 ps-xl-5 mt-0">

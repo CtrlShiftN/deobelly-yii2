@@ -106,9 +106,13 @@ select:focus {
 }
 
 .text-red {
-    color: red !important;
+    color: #e80000 !important;
 }
 
 .fs-name {
     font-size: 16px !important;
+}
+
+.bg-red {
+    background-color: #e80000 !important;
 }

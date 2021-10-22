@@ -6,7 +6,7 @@ use frontend\models\Cart;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
-class CheckoutController extends \yii\web\Controller
+class CartController extends \yii\web\Controller
 {
     /**
      * {@inheritdoc}
@@ -54,7 +54,10 @@ class CheckoutController extends \yii\web\Controller
     }
     public function actionIndex()
     {
-        return $this->render('index');
+        $cart = Cart::getCartByUserId(\Yii::$app->user->id);
+        return $this->render('index',[
+            'cart' => $cart,
+        ]);
     }
 
 }
