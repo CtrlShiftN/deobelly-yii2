@@ -292,7 +292,7 @@ AppAsset::register($this);
                                 <?php foreach ($mainType as $key => $value): ?>
                                     <?php if ($value['segment'] == SystemConstant::SEGMENT_LUXURY): ?>
                                         <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?> px-2">
-                                            <a href="<?= Url::toRoute(['site/' . $value['slug']]) ?>"
+                                            <a href="<?= Url::toRoute([$value['slug'].'/#']) ?>"
                                                class="site-nav-link">
                                                 <span><?= Yii::t('app', $value['name']) ?></span>
                                             </a>
@@ -314,7 +314,7 @@ AppAsset::register($this);
                     <?php foreach ($mainType as $key => $value): ?>
                         <?php if ($value['segment'] == SystemConstant::SEGMENT_LUXURY): ?>
                             <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
-                                <a href="<?= Url::toRoute(['site/' . $value['slug']]) ?>"
+                                <a href="<?= Url::toRoute([$value['slug'].'/#']) ?>"
                                    class="site-nav-link">
                                     <span><?= Yii::t('app', $value['name']) ?></span>
                                 </a>
