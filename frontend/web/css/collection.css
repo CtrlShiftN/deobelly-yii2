@@ -75,3 +75,23 @@
     box-shadow: 5px 10px 18px #888888;
 }
 /* End Carousel */
+.zoom{
+    overflow: hidden;
+    width: 100%;
+}
+.zoom img {
+    width: 100%;
+    transition: 0.5s all ease-in-out;
+}
+
+.zoom:hover img {
+    transform: scale(1.5);
+}
+
+.link-title {
+    background-color: rgba(192, 192, 192, 0.3);
+    color: #000000;
+}
+.link-title:hover {
+    color: #e21b76;
+}

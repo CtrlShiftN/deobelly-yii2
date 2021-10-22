@@ -2559,6 +2559,17 @@ class SampleData
                 <li> Fom Body cực chuẩn, ôm chọn bờ vai mặc cực trẻ trung và phong cách phù hợp với mọi hoàn cảnh kể cả đi chơi và đi làm.</li>
                 <li> Hàng có sẵn, đủ size: M, L, XL, 2XL, 3XL</li><li> Màu sắc: Theo bộ(1 quần+ 1 áo)</li>',
             'admin_id' => 1,
+        ],
+        [
+            'title' => 'Bộ vest nam The Shirt Studio F45',
+            'slug' => 'bo-vest-nam-the-shirt-studio-f45',
+            'image' => 'product/mixes/bo-trang-phuc-cong-so-lados-2021.jpg',
+            'mixed_product_id' => '7,9',
+            'content' => '<li> Chất vải sờ mịn không phai, không nhăn, không xù.</li><li> Chất liệu thoáng mái.</li>
+                <li> Mếch cổ và tay làm bằng chất liệu cao cấp, không bị bong tróc.</li>
+                <li> Fom Body cực chuẩn, ôm chọn bờ vai mặc cực trẻ trung và phong cách phù hợp với mọi hoàn cảnh kể cả đi chơi và đi làm.</li>
+                <li> Hàng có sẵn, đủ size: M, L, XL, 2XL, 3XL</li><li> Màu sắc: Theo bộ(1 quần+ 1 áo)</li>',
+            'admin_id' => 1,
         ]
     ];
 
