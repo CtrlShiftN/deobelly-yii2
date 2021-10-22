@@ -652,6 +652,13 @@ class SampleData
             'segment' => 1,
             'admin_id' => 1,
         ],
+        [
+            'name' => 'Mix-and-match',
+            'slug' => 'mix-and-match',
+            'image' => 'type/gift.jpg',
+            'segment' => 1,
+            'admin_id' => 1,
+        ],
     ];
 
     /**

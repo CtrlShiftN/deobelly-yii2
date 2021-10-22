@@ -273,14 +273,18 @@ AppAsset::register($this);
                                     <img src="<?= $cdnUrl ?>/img/home.png" class="p-home">
                                 </a>
                                 <?php endif; ?>
-                                <a href="<?= Url::toRoute('site/luxury') ?>"
-                                   class="logo-align <?= ($controller == 'site' && $action == 'casual') ? 'd-none' : '' ?>">
-                                    <img src="<?= $cdnUrl ?>/img/luxury.png" class="p-1">
-                                </a>
-                                <a href="<?= Url::toRoute('site/casual') ?>"
-                                   class="logo-align <?= ($controller == 'site' && $action == 'luxury') ? 'd-none' : '' ?>">
-                                    <img src="<?= $cdnUrl ?>/img/casual.png">
-                                </a>
+                                <?php if($controller == 'site' && $action != 'casual'): ?>
+                                    <a href="<?= Url::toRoute('site/luxury') ?>"
+                                       class="logo-align">
+                                        <img src="<?= $cdnUrl ?>/img/luxury.png" class="p-1">
+                                    </a>
+                                <?php endif; ?>
+                                <?php if($controller == 'site' && $action != 'luxury'): ?>
+                                    <a href="<?= Url::toRoute('site/casual') ?>"
+                                       class="logo-align">
+                                        <img src="<?= $cdnUrl ?>/img/casual.png">
+                                    </a>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="main-nav-right col-1 col-sm-1 col-lg-10 text-end">
@@ -302,9 +306,6 @@ AppAsset::register($this);
                                         </li>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
-                                <li><a href="<?= Url::toRoute('mix-and-match/') ?>"
-                                            class="site-nav-link"><span><?= Yii::t('app', 'Collections') ?></span></a>
-                                </li>
                             </ul>
                         </div>
                     </div>
@@ -327,9 +328,6 @@ AppAsset::register($this);
                             </li>
                         <?php endif; ?>
                     <?php endforeach; ?>
-                    <li><a href="<?= Url::toRoute('mix-and-match/') ?>"
-                           class="site-nav-link"><span><?= Yii::t('app', 'Collections') ?></span></a>
-                    </li>
                 </nav>
                 <!-- End navs -->
             </div>
