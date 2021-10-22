@@ -19,6 +19,11 @@ $this->registerJsFile(Url::toRoute('js/cart.js'));
 <div class="w-100 mx-0 fs-4 pb-2 pt-3 pt-md-4 my-2 my-lg-3 border-bottom text-uppercase px-2"><span
             class="fw-bold d-inline-block fs-2">DE-OBELY</span> / Giỏ hàng
 </div>
+<?php if(empty($cart)): ?>
+    <div class="w-100 mx-0 fs-3 text-uppercase text-center h-50">
+        giỏ hàng của bạn đang trống
+    </div>
+<?php else: ?>
 <div class="w-100 row mx-0 px-2 py-2 my-2 border-bottom d-none d-lg-flex">
     <div class="col-4 col-sm-3 col-md-2 col-xxl-1 m-0 px-0 py-3 d-flex">
         <span class="text-uppercase fs-5 fw-bold"> sản phẩm</span>
@@ -135,3 +140,4 @@ $this->registerJsFile(Url::toRoute('js/cart.js'));
         </div>
     </div>
 </div>
+<?php endif; ?>
