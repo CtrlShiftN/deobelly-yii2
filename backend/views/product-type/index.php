@@ -12,6 +12,7 @@ use yii\widgets\Pjax;
 $this->title = Yii::t('app', 'Product Types');
 $this->params['breadcrumbs'][] = $this->title;
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
+$arrSegment = [Yii::t('app', 'Casual'), Yii::t('app', 'Luxury')];
 $commonUrl = Yii::$app->params['common'];
 ?>
 <div class="product-type-index">
@@ -86,6 +87,36 @@ $commonUrl = Yii::$app->params['common'];
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'segment',
+                'label' => Yii::t('app', 'Segment'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'width' => '150px',
+                'value' => function ($model, $key, $index, $widget) use ($arrSegment) {
+                    return $arrSegment[$model['segment']];
+                },
+                'editableOptions' => function ($model, $key, $index) use ($arrSegment) {
+                    return [
+                        'name' => 'segment',
+                        'asPopover' => false,
+                        'header' => Yii::t('app', 'Segment'),
+                        'size' => 'md',
+                        'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
+                        'data' => $arrSegment,
+                        // default value in the text box
+                        'value' => $arrSegment[$model['segment']],
+                        'displayValueConfig' => $arrSegment
+                    ];
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => $arrSegment,
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Segment') . ' --']
+            ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'status',
                 'label' => Yii::t('app', 'Status'),
                 'vAlign' => 'middle',
@@ -129,7 +160,7 @@ $commonUrl = Yii::$app->params['common'];
                 'hAlign' => 'center',
                 'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) {
-                    return Html::a(Yii::t('app', 'Delete'), Url::toRoute(['post-type/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger', 'data' => [
+                    return Html::a(Yii::t('app', 'Delete'), Url::toRoute(['product-type/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger', 'data' => [
                         'method' => 'post',
                         'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                     ],]);

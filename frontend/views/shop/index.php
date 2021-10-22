@@ -53,11 +53,11 @@ $this->registerCssFile(Url::toRoute("/css/shop.css"));
 <div class="row p-0 my-5 h-100">
     <div class="col-6 px-1 ps-md-5 pe-md-3 mb-4 mb-md-5">
         <!--        TODO: LINKS-->
-        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['luxury']['id'])]) ?>"
+        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['ao']['id'])]) ?>"
            class="text-decoration-none" target="_blank">
             <div class="overflow-hidden w-100 shadow h-65 position-relative my-2 my-md-3">
-                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['luxury']['name']) ?></p>
-                <img src="<?= $imgUrl . '/' . $type['luxury']['image'] ?>"
+                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['ao']['name']) ?></p>
+                <img src="<?= $imgUrl . '/' . $type['ao']['image'] ?>"
                      class="w-100 shadow object-fit-cover zoom"
                      alt="...">
             </div>
@@ -82,11 +82,11 @@ $this->registerCssFile(Url::toRoute("/css/shop.css"));
                      alt="...">
             </div>
         </a>
-        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['casual']['id'])]) ?>"
+        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['quan']['id'])]) ?>"
            class="text-decoration-none" target="_blank">
             <div class="overflow-hidden w-100 shadow h-65 position-relative my-2 my-md-3">
-                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['casual']['name']) ?></p>
-                <img src="<?= $imgUrl . '/' . $type['casual']['image'] ?>"
+                <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['quan']['name']) ?></p>
+                <img src="<?= $imgUrl . '/' . $type['quan']['image'] ?>"
                      class="w-100 shadow object-fit-cover zoom"
                      alt="...">
             </div>

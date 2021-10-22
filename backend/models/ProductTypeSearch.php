@@ -17,7 +17,7 @@ class ProductTypeSearch extends ProductType
     public function rules()
     {
         return [
-            [['id', 'status', 'admin_id'], 'integer'],
+            [['id', 'segment', 'status', 'admin_id'], 'integer'],
             [['name', 'slug', 'image', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -59,6 +59,7 @@ class ProductTypeSearch extends ProductType
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'segment' => $this->segment,
             'status' => $this->status,
             'admin_id' => $this->admin_id,
             'created_at' => $this->created_at,

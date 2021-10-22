@@ -98,7 +98,6 @@ h2 {
 #amountInput, #btnDESC, #btnASC {
     height: 36px !important;
     border-radius: 0;
-    background-color: #dbd9dc;
     border: 1px solid #dbd9dc;
     margin: 0 !important;
 }
@@ -124,7 +123,6 @@ h2 {
 }
 
 .btn-size {
-    background-color: #dbd9dc !important;
     width: 46px;
     height: 46px;
     box-sizing: border-box;
@@ -134,29 +132,17 @@ h2 {
 }
 
 .btn-color {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    border: 1px solid black;
+    height: 46px;
+    box-sizing: border-box;
     margin: 0 10px 7px 0;
 }
 
-.btn-color-selected {
-    border: 2px solid black !important;
-    box-shadow: 0 0 0.6rem black;
+.btn-color, .btn-size, #amountInput, #btnDESC, #btnASC {
+    background-color: #eeeeee !important;
 }
 
-.btn-size:hover {
-    background-color: #b0b0b0;
-}
-
-.btn-size-selected {
-    background-color: #000 !important;
-    color: #fff !important;
-}
-
-.btn-size-selected:hover {
-    color: #fff;
+.btn-selected {
+    border: 2px solid orangered !important;
 }
 
 #btnBuyNow {

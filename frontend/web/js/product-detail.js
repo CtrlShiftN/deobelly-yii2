@@ -118,20 +118,20 @@ $('.gallery-thumbs').css('height', productCarouselThumbsItemWith);
 var $easyzoom = $('.easyzoom').easyZoom();
 
 $('.btn-color').click(function () {
-    if (!$(this).hasClass('btn-color-selected')) {
-        $(this).addClass('btn-color-selected').css({}).siblings().removeClass('btn-color-selected');
+    if (!$(this).hasClass('btn-selected')) {
+        $(this).addClass('btn-selected').siblings().removeClass('btn-selected');
         $('#color').html("<span class='text-dark fw-bold fs-note'>Màu:</span> " + $(this).attr('data-name-color'));
     } else {
-        $(this).removeClass('btn-color-selected');
+        $(this).removeClass('btn-selected');
         $('#color').html('');
     }
 });
 $('.btn-size').click(function () {
-    if (!$(this).hasClass('btn-size-selected')) {
-        $(this).addClass('btn-size-selected').siblings().removeClass('btn-size-selected');
+    if (!$(this).hasClass('btn-selected')) {
+        $(this).addClass('btn-selected').siblings().removeClass('btn-selected');
         $('#size').html("<span class='text-dark fw-bold fs-note'>Size:</span> " + $(this).attr('data-size'));
     } else {
-        $(this).removeClass('btn-size-selected');
+        $(this).removeClass('btn-selected');
         $('#size').html('');
     }
 });
