@@ -325,4 +325,6 @@ return [
     'No' => 'Không',
     'Feature' => 'Nổi bật',
     'Showroom Series' => 'Hệ Thống Showroom',
+    'Tailor-made' => 'May đo',
+    'Collections' => 'Bộ sưu tập'
 ];
