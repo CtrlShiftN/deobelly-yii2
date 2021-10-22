@@ -4,6 +4,7 @@
 
 /* @var $content string */
 
+use common\components\SystemConstant;
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
 use frontend\models\ProductType;
@@ -15,7 +16,8 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
 $cdnUrl = Yii::$app->params['frontend'];
-
+$controller = Yii::$app->controller->id;
+$action = Yii::$app->controller->action->id;
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -44,7 +46,7 @@ AppAsset::register($this);
     </head>
     <body>
     <?php $this->beginBody() ?>
-    <?php $mainType = ArrayHelper::map(ProductType::getProductType(), 'id', 'name'); ?>
+    <?php $mainType = ProductType::getAllProductType(); ?>
     <div id="wrapper">
         <div id="content">
             <div class="sticky-top">
@@ -148,9 +150,9 @@ AppAsset::register($this);
                 </nav>
                 <!-- Main nav -->
                 <nav class="bg-white shadow">
-                    <div class="main-site-nav container">
+                    <div class="main-site-nav container p-0">
                         <div class="col-1 col-sm-1 d-block d-lg-none">
-                            <button class="btn btn-light" type="button" data-bs-toggle="offcanvas"
+                            <button class="btn btn-white btn-sidebar" type="button" data-bs-toggle="offcanvas"
                                     data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"><i
                                         class="fas fa-align-justify"></i>
                             </button>
@@ -223,12 +225,20 @@ AppAsset::register($this);
                                                     </a>
                                                     <ul class="nav nav-treeview" style="display:none">
                                                         <?php foreach ($mainType as $key => $value): ?>
-                                                            <?php if ($key == 3 || $key == 4): ?>
+                                                            <?php if ($value['segment'] == SystemConstant::SEGMENT_LUXURY): ?>
                                                                 <li class="nav-item">
-                                                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($key)]) ?>"
-                                                                       class="nav-link ">
-                                                                        <i class="far fa-circle nav-icon"></i>
-                                                                        <p><?= Yii::t('app', $value) ?></p>
+                                                                    <a href="<?= Url::toRoute(['site/' . $value['slug']]) ?>"
+                                                                       class="nav-link d-flex <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
+                                                                        <i class="far fa-circle nav-icon me-2"></i>
+                                                                        <p><?= Yii::t('app', $value['name']) ?></p>
+                                                                    </a>
+                                                                </li>
+                                                            <?php else: ?>
+                                                                <li class="nav-item">
+                                                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                                                                       class="nav-link d-flex">
+                                                                        <i class="far fa-circle nav-icon me-2"></i>
+                                                                        <p><?= Yii::t('app', $value['name']) ?></p>
                                                                     </a>
                                                                 </li>
                                                             <?php endif; ?>
@@ -256,19 +266,41 @@ AppAsset::register($this);
                             <!-- End Sidebar -->
                         </div>
                         <div class="main-nav-left col-10 col-sm-10 col-lg-2 text-center text-sm-center text-lg-start">
-                            <div class="py-2">
-                                <a href="<?php echo Url::home() ?>" class="logo-align">
-                                    <img src="<?= $cdnUrl ?>/img/logo.png">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <?php if($controller == 'site' && $action != 'index'): ?>
+                                <a href="<?= Url::home() ?>"
+                                   class="logo-align">
+                                    <img src="<?= $cdnUrl ?>/img/home.png" class="p-home">
+                                </a>
+                                <?php endif; ?>
+                                <a href="<?= Url::toRoute('site/luxury') ?>"
+                                   class="logo-align <?= ($controller == 'site' && $action == 'casual') ? 'd-none' : '' ?>">
+                                    <img src="<?= $cdnUrl ?>/img/luxury.png" class="p-1">
+                                </a>
+                                <a href="<?= Url::toRoute('site/casual') ?>"
+                                   class="logo-align <?= ($controller == 'site' && $action == 'luxury') ? 'd-none' : '' ?>">
+                                    <img src="<?= $cdnUrl ?>/img/casual.png">
                                 </a>
                             </div>
                         </div>
                         <div class="main-nav-right col-1 col-sm-1 col-lg-10 text-end">
-                            <ul class="site-nav mb-0 ps-0 d-none d-sm-none d-lg-inline" id="main-menu">
+                            <ul class="site-nav mb-0 ps-0 d-none d-sm-none d-lg-inline-block" id="main-menu">
                                 <?php foreach ($mainType as $key => $value): ?>
-                                    <li><a
-                                                href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($key)]) ?>"
-                                                class="site-nav-link"><span><?= Yii::t('app', $value) ?></span></a>
-                                    </li>
+                                    <?php if ($value['segment'] == SystemConstant::SEGMENT_LUXURY): ?>
+                                        <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?> px-2">
+                                            <a href="<?= Url::toRoute(['site/' . $value['slug']]) ?>"
+                                               class="site-nav-link">
+                                                <span><?= Yii::t('app', $value['name']) ?></span>
+                                            </a>
+                                        </li>
+                                    <?php else: ?>
+                                        <li class="nav-item px-2">
+                                            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                                               class="site-nav-link">
+                                                <span><?= Yii::t('app', $value['name']) ?></span>
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                                 <li><a href="<?= Url::toRoute('mix-and-match/') ?>"
                                             class="site-nav-link"><span><?= Yii::t('app', 'Collections') ?></span></a>
@@ -276,6 +308,28 @@ AppAsset::register($this);
                             </ul>
                         </div>
                     </div>
+                </nav>
+                <nav class="d-none d-md-flex d-lg-none align-items-center justify-content-center nav-tablet bg-white border-top">
+                    <?php foreach ($mainType as $key => $value): ?>
+                        <?php if ($value['segment'] == SystemConstant::SEGMENT_LUXURY): ?>
+                            <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
+                                <a href="<?= Url::toRoute(['site/' . $value['slug']]) ?>"
+                                   class="site-nav-link">
+                                    <span><?= Yii::t('app', $value['name']) ?></span>
+                                </a>
+                            </li>
+                        <?php else: ?>
+                            <li class="nav-item">
+                                <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                                   class="site-nav-link">
+                                    <span><?= Yii::t('app', $value['name']) ?></span>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    <li><a href="<?= Url::toRoute('mix-and-match/') ?>"
+                           class="site-nav-link"><span><?= Yii::t('app', 'Collections') ?></span></a>
+                    </li>
                 </nav>
                 <!-- End navs -->
             </div>

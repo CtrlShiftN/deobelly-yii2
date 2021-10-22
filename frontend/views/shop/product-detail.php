@@ -2,6 +2,7 @@
 
 /* @var $this yii\web\View */
 
+use frontend\models\Color;
 use yii\helpers\Url;
 
 $this->title = Yii::t('app', 'Shop');
@@ -15,6 +16,11 @@ $this->registerJsFile(Url::toRoute('js/easyzoom.js'));
 $this->registerJsFile(Url::toRoute('js/swiper-bundle.min.js'));
 $this->registerJsFile(Url::toRoute('js/product-detail.js'));
 ?>
+<style>
+    .object-fit-cover {
+        object-fit: cover !important;
+    }
+</style>
 <div class="row py-3 p-lg-4 px-xl-4 px-xxl-5 py-xl-4">
     <div class="col-12 col-md-5 px-0">
         <div class="product__carousel ps-md-3 ps-lg-4 ps-xl-5 mt-0">
@@ -63,16 +69,16 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
         <span class="mt-3 fs-3 m-0 fw-bolder text-uppercase d-block"><span
                     class="badge rounded-0 bg-danger" id="outOfStock">Hết hàng</span> <?= $detail['name'] ?></span>
         <div class="d-flex w-100 mb-3 mb-md-4">
-            <?php if ($detail['viewed'] >= 1000):?>
-            <span class="fw-light px-3 fs-6 border-end text-secondary"><span
-                        class="border-bottom border-dark text-danger fs-5"><?= number_format($detail['viewed']/1000, 1, ',', '.') ?>K</span> Đã xem</span>
+            <?php if ($detail['viewed'] >= 1000): ?>
+                <span class="fw-light px-3 fs-6 border-end text-secondary"><span
+                            class="border-bottom border-dark text-danger fs-5"><?= number_format($detail['viewed'] / 1000, 1, ',', '.') ?>K</span> Đã xem</span>
             <?php else: ?>
                 <span class="fw-light px-3 border-end fs-6 text-secondary"><span
                             class="border-bottom border-dark text-danger fs-5"><?= $detail['viewed'] ?></span> Đã xem</span>
             <?php endif; ?>
-            <?php if ($detail['fake_sold'] >= 1000):?>
+            <?php if ($detail['fake_sold'] >= 1000): ?>
                 <span class="fw-light px-3 fs-6 text-secondary"><span
-                            class="border-bottom border-dark text-danger fs-5"><?= number_format($detail['fake_sold']/1000, 1, ',', '.') ?>K</span> Đã bán</span>
+                            class="border-bottom border-dark text-danger fs-5"><?= number_format($detail['fake_sold'] / 1000, 1, ',', '.') ?>K</span> Đã bán</span>
             <?php else: ?>
                 <span class="fw-light px-3 fs-6 text-secondary"><span
                             class="border-bottom border-dark text-danger fs-5"><?= $detail['fake_sold'] ?></span> Đã bán</span>
@@ -113,17 +119,20 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
             <div class="col-12 col-sm-9 m-0 p-0">
                 <span id="color" class="fs-6 d-block mb-2 text-danger"></span>
                 <?php if (!strpos($detail['assoc_color_id'], ',')): ?>
-                    <button class="btn-color fw-bold fs-6"
-                            data-hex='<?= \frontend\models\Color::getColorCodeById($detail['assoc_color_id'])['color_code'] ?>'
-                            data-name-color="<?= \frontend\models\Color::getColorCodeById($detail['assoc_color_id'])['name'] ?>"
-                            style="background:<?= \frontend\models\Color::getColorCodeById($detail['assoc_color_id'])['color_code'] ?>"></button>
+                    <button class="btn-color btn rounded-0 p-2 overflow-hidden"
+                            data-color='<?= Color::getColorCodeById($detail['assoc_color_id'])['slug'] ?>'
+                            data-name-color="<?= Color::getColorCodeById($detail['assoc_color_id'])['name'] ?>">
+                        <?= Color::getColorCodeById($detail['assoc_color_id'])['name'] ?>
+                    </button>
                 <?php else: ?>
                     <?php $colorArr = explode(',', $detail['assoc_color_id']);
                     foreach ($colorArr as $key => $color):?>
-                        <button class="btn-color fw-bold fs-6"
-                                data-hex='<?= \frontend\models\Color::getColorCodeById($color)['color_code'] ?>'
-                                data-name-color="<?= \frontend\models\Color::getColorCodeById($color)['name'] ?>"
-                                style="background:<?= \frontend\models\Color::getColorCodeById($color)['color_code'] ?>"></button>
+                        <button class="btn-color btn rounded-0 overflow-hidden"
+                                data-color='<?= Color::getColorCodeById($color)['slug'] ?>'
+                                data-name-color="<?= Color::getColorCodeById($color)['name'] ?>"
+                                style="">
+                            <?= Color::getColorCodeById($color)['name'] ?>
+                        </button>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </div>
@@ -133,12 +142,12 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
             <div class="col-12 col-sm-9 m-0 p-0">
                 <span id="size" class="fs-6 d-block mb-2 text-danger"></span>
                 <?php if (!strpos($detail['assoc_size_id'], ',')): ?>
-                    <button class="btn-size btn fw-bold fs-6"
+                    <button class="btn-size btn fs-6"
                             data-size="<?= \frontend\models\Size::getSizeById($detail['assoc_size_id']) ?>"><?= \frontend\models\Size::getSizeById($detail['assoc_size_id']) ?></button>
                 <?php else: ?>
                     <?php $sizeArr = explode(',', $detail['assoc_size_id']);
                     foreach ($sizeArr as $key => $size):?>
-                        <button class="btn-size btn fw-bold fs-6"
+                        <button class="btn-size btn fs-6"
                                 data-size="<?= \frontend\models\Size::getSizeById($size) ?>"><?= \frontend\models\Size::getSizeById($size) ?></button>
                     <?php endforeach; ?>
                 <?php endif; ?>
@@ -240,8 +249,8 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                                 class="d-none d-md-inline-block"><i
                                     class="fas fa-dollar-sign"></i> <?= Yii::t('app', 'Buy now') ?></span></a>
                     <a href="javascript:void(0)"
-                       data-id=""<?= \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>"
-                    class="btn rounded-0 btnAdd col-4 col-md-3"><i class="far fa-heart"></i></a>
+                       data-id="<?= \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>"
+                       class="btn rounded-0 btnAdd col-4 col-md-3"><i class="far fa-heart"></i></a>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -290,8 +299,8 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                                 class="d-none d-md-inline-block"><i
                                     class="fas fa-dollar-sign"></i> <?= Yii::t('app', 'Buy now') ?></span></a>
                     <a href="javascript:void(0)"
-                       data-id=""<?= \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>"
-                    class="btn rounded-0 btnAdd col-4 col-md-3"><i class="far fa-heart"></i></a>
+                       data-id="<?= \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>"
+                       class="btn rounded-0 btnAdd col-4 col-md-3"><i class="far fa-heart"></i></a>
                 </div>
             </div>
         <?php endforeach; ?>

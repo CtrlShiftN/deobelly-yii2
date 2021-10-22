@@ -88,6 +88,19 @@ class ProductTypeController extends Controller
     }
 
     /**
+     * Displays a single ProductType model.
+     * @param int $id ID
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+    /**
      * Creates a new ProductType model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
