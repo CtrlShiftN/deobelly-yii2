@@ -2,7 +2,9 @@
 
 namespace frontend\models;
 
+use common\components\SystemConstant;
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "mix_and_match".
@@ -60,5 +62,38 @@ class MixAndMatch extends \common\models\MixAndMatch
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getAllCollections(){
+        return \common\models\MixAndMatch::find()
+            ->where(['status'=>SystemConstant::STATUS_ACTIVE])
+            ->orderBy('updated_at DESC, created_at DESC')
+            ->asArray()->all();
+    }
+
+    /**
+     * @param $id
+     * @return array|\yii\db\ActiveRecord|null
+     */
+    public static function getCollectionByID($id){
+        return \common\models\MixAndMatch::find()->where([
+            'id' => $id,
+            'status' => SystemConstant::STATUS_ACTIVE
+        ])->asArray()->one();
+    }
+
+    /**
+     * @param $elementIDCSV
+     * @return array
+     */
+    public static function getAllCollectionElements($elementIDCSV){
+        $arrProduct = \common\models\Product::find()->where([
+            'id' => explode(',',$elementIDCSV),
+            'status'=>SystemConstant::STATUS_ACTIVE
+        ])->asArray()->all();
+        return ArrayHelper::index($arrProduct, 'id');
     }
 }
