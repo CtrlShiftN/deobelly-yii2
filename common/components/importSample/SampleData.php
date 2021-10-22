@@ -646,8 +646,15 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'name' => 'May mặc',
-            'slug' => 'may-mac',
+            'name' => 'Tailor-made',
+            'slug' => 'tailor-made',
+            'image' => 'type/gift.jpg',
+            'segment' => 1,
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Collections',
+            'slug' => 'mix-and-match',
             'image' => 'type/gift.jpg',
             'segment' => 1,
             'admin_id' => 1,

@@ -227,7 +227,7 @@ AppAsset::register($this);
                                                         <?php foreach ($mainType as $key => $value): ?>
                                                             <?php if ($value['segment'] == SystemConstant::SEGMENT_LUXURY): ?>
                                                                 <li class="nav-item">
-                                                                    <a href="<?= Url::toRoute(['site/' . $value['slug']]) ?>"
+                                                                    <a href="<?= Url::toRoute([$value['slug'].'/']) ?>"
                                                                        class="nav-link d-flex <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
                                                                         <i class="far fa-circle nav-icon me-2"></i>
                                                                         <p><?= Yii::t('app', $value['name']) ?></p>
@@ -273,14 +273,18 @@ AppAsset::register($this);
                                     <img src="<?= $cdnUrl ?>/img/home.png" class="p-home">
                                 </a>
                                 <?php endif; ?>
-                                <a href="<?= Url::toRoute('site/luxury') ?>"
-                                   class="logo-align <?= ($controller == 'site' && $action == 'casual') ? 'd-none' : '' ?>">
-                                    <img src="<?= $cdnUrl ?>/img/luxury.png" class="p-1">
-                                </a>
-                                <a href="<?= Url::toRoute('site/casual') ?>"
-                                   class="logo-align <?= ($controller == 'site' && $action == 'luxury') ? 'd-none' : '' ?>">
-                                    <img src="<?= $cdnUrl ?>/img/casual.png">
-                                </a>
+                                <?php if($controller == 'site' && $action != 'casual'): ?>
+                                    <a href="<?= Url::toRoute('site/luxury') ?>"
+                                       class="logo-align">
+                                        <img src="<?= $cdnUrl ?>/img/luxury.png" class="p-1">
+                                    </a>
+                                <?php endif; ?>
+                                <?php if($controller == 'site' && $action != 'luxury'): ?>
+                                    <a href="<?= Url::toRoute('site/casual') ?>"
+                                       class="logo-align">
+                                        <img src="<?= $cdnUrl ?>/img/casual.png">
+                                    </a>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="main-nav-right col-1 col-sm-1 col-lg-10 text-end">
@@ -288,7 +292,7 @@ AppAsset::register($this);
                                 <?php foreach ($mainType as $key => $value): ?>
                                     <?php if ($value['segment'] == SystemConstant::SEGMENT_LUXURY): ?>
                                         <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?> px-2">
-                                            <a href="<?= Url::toRoute(['site/' . $value['slug']]) ?>"
+                                            <a href="<?= Url::toRoute([$value['slug'].'/']) ?>"
                                                class="site-nav-link">
                                                 <span><?= Yii::t('app', $value['name']) ?></span>
                                             </a>
@@ -302,9 +306,6 @@ AppAsset::register($this);
                                         </li>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
-                                <li><a href="<?= Url::toRoute('mix-and-match/') ?>"
-                                            class="site-nav-link"><span><?= Yii::t('app', 'Collections') ?></span></a>
-                                </li>
                             </ul>
                         </div>
                     </div>
@@ -313,7 +314,7 @@ AppAsset::register($this);
                     <?php foreach ($mainType as $key => $value): ?>
                         <?php if ($value['segment'] == SystemConstant::SEGMENT_LUXURY): ?>
                             <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
-                                <a href="<?= Url::toRoute(['site/' . $value['slug']]) ?>"
+                                <a href="<?= Url::toRoute([$value['slug'].'/']) ?>"
                                    class="site-nav-link">
                                     <span><?= Yii::t('app', $value['name']) ?></span>
                                 </a>
@@ -327,9 +328,6 @@ AppAsset::register($this);
                             </li>
                         <?php endif; ?>
                     <?php endforeach; ?>
-                    <li><a href="<?= Url::toRoute('mix-and-match/') ?>"
-                           class="site-nav-link"><span><?= Yii::t('app', 'Collections') ?></span></a>
-                    </li>
                 </nav>
                 <!-- End navs -->
             </div>
