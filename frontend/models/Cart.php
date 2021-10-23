@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use common\components\SystemConstant;
 use Yii;
 use yii\db\Query;
 
@@ -84,5 +85,42 @@ class Cart extends \common\models\Cart
             ->leftJoin('color as co', 'co.id = c.color_id')
             ->leftJoin('size as s', 's.id = c.size_id')
             ->where(['c.status' => 1,'c.user_id' => $id])->all();
+    }
+
+    /**
+     * @param $user_id
+     * @param $id
+     * @param $color
+     * @param $size
+     * @param $amount
+     * @param $price
+     * @return bool
+     */
+    public static function addProductToCart($user_id,$id,$color,$size,$amount,$price)
+    {
+        $availableCart = Cart::find()->where([
+            'user_id' => $user_id,
+            'product_id' => $id,
+            'color_id' => $color,
+            'size_id' => $size,
+            'status' => SystemConstant::STATUS_ACTIVE
+        ])->scalar();
+        if(empty($availableCart)) {
+            $cartModel = new \common\models\Cart();
+            $cartModel->user_id = $user_id;
+            $cartModel->product_id = $id;
+            $cartModel->color_id = $color;
+            $cartModel->size_id = $size;
+            $cartModel->quantity = $amount;
+            $cartModel->total_price = $amount * $price;
+            $cartModel->created_at = date('Y-m-d H:i:s');
+            $cartModel->updated_at = date('Y-m-d H:i:s');
+            return $cartModel->save();
+        } else {
+            $cart = \common\models\Cart::findOne($id);
+            $cart->quantity += $amount;
+            $cart->total_price = $cart->quantity * $price;
+            return $cart->save();
+        }
     }
 }

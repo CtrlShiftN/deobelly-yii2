@@ -2,6 +2,7 @@
 
 /* @var $this yii\web\View */
 
+use common\components\encrypt\CryptHelper;
 use frontend\models\Color;
 use yii\helpers\Url;
 
@@ -16,6 +17,11 @@ $this->registerJsFile(Url::toRoute('js/easyzoom.js'));
 $this->registerJsFile(Url::toRoute('js/swiper-bundle.min.js'));
 $this->registerJsFile(Url::toRoute('js/product-detail.js'));
 ?>
+<style>
+    .bg-lighter-danger {
+        background-color: rgba(255, 0, 0, 0.06) !important;
+    }
+</style>
 <div class="row py-3 p-lg-4 px-xl-4 px-xxl-5 py-xl-4">
     <div class="col-12 col-md-5 px-0">
         <div class="product__carousel ps-md-3 ps-lg-4 ps-xl-5 mt-0">
@@ -60,7 +66,7 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
             <!-- Swiper and EasyZoom plugins end -->
         </div>
     </div>
-    <div class="col-12 col-md-7 px-md-3">
+    <div class="col-12 col-md-7 px-md-3 product-information" data-id="<?= CryptHelper::encryptString($detail['id']) ?>">
         <span class="mt-3 fs-3 m-0 fw-bolder text-uppercase d-block"><span
                     class="badge rounded-0 bg-danger" id="outOfStock">Hết hàng</span> <?= $detail['name'] ?></span>
         <div class="d-flex w-100 mb-3 mb-md-4">
@@ -82,16 +88,18 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
         <div class="w-100 my-3 py-2 py-md-3 px-1 px-md-3 bg-lighter-gray">
             <?php if (!empty($detail['sale_price'])): ?>
                 <div class="my-2 fs-3 m-0 fw-bold text-danger">
-                    <span class="fw-light text-decoration-line-through text-dark fs-6"><?= number_format($detail['regular_price'], 0, ',', '.') ?>đ</span> <?= number_format($detail['selling_price'], 0, ',', '.') ?>
+                    <span class="fw-light price text-decoration-line-through text-dark fs-6"
+                          data-price="<?= $detail['selling_price'] ?>"><?= number_format($detail['regular_price'], 0, ',', '.') ?>đ</span> <?= number_format($detail['selling_price'], 0, ',', '.') ?>
                     đ
                     <span class="badge bg-danger fs-6 text-light text-uppercase fw-light mx-md-3"><?= number_format(100 - $detail['selling_price'] / $detail['regular_price'] * 100, 0, ',', '.') ?>% giảm</span>
                 </div>
             <?php else: ?>
-                <span class="my-2 fs-4 m-0 fw-bold d-block text-danger"><?= number_format($detail['selling_price'], 0, ',', '.') ?>đ</span>
+                <span class="my-2 fs-4 m-0 fw-bold price d-block text-danger"
+                      data-price="<?= $detail['selling_price'] ?>"><?= number_format($detail['selling_price'], 0, ',', '.') ?>đ</span>
             <?php endif; ?>
         </div>
         <div class="w-100 row m-0 p-0">
-            <span class="fw-light col-12 col-sm-3 px-0 fs-5 d-block mb-2">Cam kết:</span>
+            <span class="fw-light col-12 col-sm-3 px-1 fs-5 d-block mb-2">Cam kết:</span>
             <ul class="col-12 col-sm-9 mx-0 px-0 list-unstyled">
                 <li class="d-flex my-2">
                     <img src="<?= Url::toRoute('img/box_ico.png') ?>" class="me-3 my-auto">
@@ -109,47 +117,49 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                 </li>
             </ul>
         </div>
-        <div class="w-100 row mx-0 my-2 p-0">
-            <span class="fw-light fs-5 col-12 col-sm-3 px-0 mb-2">Color:</span>
-            <div class="col-12 col-sm-9 m-0 p-0">
-                <span id="color" class="fs-6 d-block mb-2 text-danger"></span>
-                <?php if (!strpos($detail['assoc_color_id'], ',')): ?>
-                    <button class="btn-color btn rounded-0 p-2 overflow-hidden"
-                            data-color='<?= Color::getColorCodeById($detail['assoc_color_id'])['slug'] ?>'
-                            data-name-color="<?= Color::getColorCodeById($detail['assoc_color_id'])['name'] ?>">
-                        <?= Color::getColorCodeById($detail['assoc_color_id'])['name'] ?>
-                    </button>
-                <?php else: ?>
-                    <?php $colorArr = explode(',', $detail['assoc_color_id']);
-                    foreach ($colorArr as $key => $color):?>
-                        <button class="btn-color btn rounded-0 overflow-hidden"
-                                data-color='<?= Color::getColorCodeById($color)['slug'] ?>'
-                                data-name-color="<?= Color::getColorCodeById($color)['name'] ?>"
-                                style="">
-                            <?= Color::getColorCodeById($color)['name'] ?>
+        <div class="w-100 mx-0 my-2 p-0" id="classify">
+            <div class="w-100 row mx-0 my-2 p-0">
+                <span class="fw-light fs-5 col-12 col-sm-3 px-1 mb-2">Color:</span>
+                <div class="col-12 col-sm-9 m-0 p-0">
+                    <span id="color" class="fs-6 d-block mb-2 text-danger" data-color=""></span>
+                    <?php if (!strpos($detail['assoc_color_id'], ',')): ?>
+                        <button class="btn-color btn rounded-0 p-2 overflow-hidden fw-bold"
+                                data-color='<?= CryptHelper::encryptString($detail['assoc_color_id']) ?>'
+                                data-name-color="<?= Color::getColorCodeById($detail['assoc_color_id'])['name'] ?>">
+                            <?= Color::getColorCodeById($detail['assoc_color_id'])['name'] ?>
                         </button>
-                    <?php endforeach; ?>
-                <?php endif; ?>
+                    <?php else: ?>
+                        <?php $colorArr = explode(',', $detail['assoc_color_id']);
+                        foreach ($colorArr as $key => $color):?>
+                            <button class="btn-color btn rounded-0 overflow-hidden fw-bold"
+                                    data-color='<?= CryptHelper::encryptString($color) ?>'
+                                    data-name-color="<?= Color::getColorCodeById($color)['name'] ?>"
+                                    style="">
+                                <?= Color::getColorCodeById($color)['name'] ?>
+                            </button>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
             </div>
-        </div>
-        <div class="w-100 row my-2 mx-0 p-0">
-            <span class="fw-light col-12 col-sm-3 px-0 fs-5 d-block mb-2">Size:</span>
-            <div class="col-12 col-sm-9 m-0 p-0">
-                <span id="size" class="fs-6 d-block mb-2 text-danger"></span>
-                <?php if (!strpos($detail['assoc_size_id'], ',')): ?>
-                    <button class="btn-size btn fs-6"
-                            data-size="<?= \frontend\models\Size::getSizeById($detail['assoc_size_id']) ?>"><?= \frontend\models\Size::getSizeById($detail['assoc_size_id']) ?></button>
-                <?php else: ?>
-                    <?php $sizeArr = explode(',', $detail['assoc_size_id']);
-                    foreach ($sizeArr as $key => $size):?>
-                        <button class="btn-size btn fs-6"
-                                data-size="<?= \frontend\models\Size::getSizeById($size) ?>"><?= \frontend\models\Size::getSizeById($size) ?></button>
-                    <?php endforeach; ?>
-                <?php endif; ?>
+            <div class="w-100 row my-2 mx-0 p-0">
+                <span class="fw-light col-12 col-sm-3 px-1 fs-5 d-block mb-2">Size:</span>
+                <div class="col-12 col-sm-9 m-0 p-0">
+                    <span id="size" class="fs-6 d-block mb-2 text-danger" data-size=""></span>
+                    <?php if (!strpos($detail['assoc_size_id'], ',')): ?>
+                        <button class="btn-size btn fs-6 fw-bold"
+                                data-size="<?= CryptHelper::encryptString($detail['assoc_size_id']) ?>"><?= \frontend\models\Size::getSizeById($detail['assoc_size_id']) ?></button>
+                    <?php else: ?>
+                        <?php $sizeArr = explode(',', $detail['assoc_size_id']);
+                        foreach ($sizeArr as $key => $size):?>
+                            <button class="btn-size btn fs-6 fw-bold"
+                                    data-size="<?= CryptHelper::encryptString($size) ?>" data-name-size="<?= \frontend\models\Size::getSizeById($size) ?>"><?= \frontend\models\Size::getSizeById($size) ?></button>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
         <div class="w-100 row mx-0 my-2 p-0">
-            <span class="fw-light col-12 col-sm-3 px-0 fs-5">Số lượng:</span>
+            <span class="fw-light col-12 col-sm-3 px-1 fs-5">Số lượng:</span>
             <div class="col-12 col-sm-9 m-0 p-0">
                 <div class="w-100 d-flex">
                     <button type="button" onclick="reduceProductQuantity()" id="btnDESC"
@@ -170,14 +180,18 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
         </div>
         <div class="w-100 my-2 d-flex row mx-0 p-0">
             <?php if (Yii::$app->user->isGuest): ?>
-                <a href="<?= Url::toRoute('site/login') ?>" class="btn btn-outline-danger p-2 me-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger"
-                   id="btnAddToCart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>
-                <a class="btn p-2 btn-danger text-light col-12 col-sm-6 col-md-12 col-lg-5 text-light bg-danger" href="<?= Url::toRoute('site/login') ?>"
-                   id="btnBuyNow">Mua ngay</a>
+                <a href="<?= Url::toRoute('site/login') ?>"
+                   class="btn btn-outline-danger p-2 me-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger rounded-0"
+                   target="_blank"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>
+                <a class="btn p-2 btn-danger text-light col-12 col-sm-6 col-md-12 col-lg-5 text-light bg-danger rounded-0"
+                   href="<?= Url::toRoute('site/login') ?>"
+                   target="_blank">Mua ngay</a>
             <?php else: ?>
-                <a href="javascript:void(0)" class="btn btn-outline-danger p-2 me-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger"
+                <a href="javascript:void(0)"
+                   class="btn btn-outline-danger p-2 me-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger rounded-0"
                    id="btnAddToCart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>
-                <a class="btn p-2 btn-danger text-light col-12 col-sm-6 col-md-12 col-lg-5 text-light bg-danger" href="<?= Url::toRoute('checkout/cart') ?>"
+                <a class="btn p-2 btn-danger text-light col-12 col-sm-6 col-md-12 col-lg-5 text-light bg-danger rounded-0"
+                   href="<?= Url::toRoute('checkout/cart') ?>"
                    id="btnBuyNow">Mua ngay</a>
             <?php endif; ?>
         </div>
@@ -312,7 +326,11 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
     </div>
 </div>
 <div class="position-fixed bg-success rounded" style="z-index: 9999; bottom: 5px; right:77px; width: 190px">
-    <div id="liveToast" class="toast py-3 px-2 text-light bg-success border-2 fw-bold" role="alert" aria-live="assertive" aria-atomic="true">
+    <div id="liveToast" class="toast py-3 px-2 text-light bg-success border-2 fw-bold" role="alert"
+         aria-live="assertive" aria-atomic="true">
         <span id="toastNotify"></span>
     </div>
 </div>
+<script>
+
+</script>

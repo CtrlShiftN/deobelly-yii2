@@ -356,6 +356,7 @@ class SampleData
             'image' => 'product/quan-tay-ke-kieu-dang-han-quoc.jpg',
             'images' => '',
             'trademark_id' => 3,
+            'hide' => 1,
             'admin_id' => 1,
         ],
         [
@@ -385,6 +386,7 @@ class SampleData
             'image' => 'product/ao-vest-nam-the-shirt-studio-f4.jpg',
             'images' => '',
             'trademark_id' => 3,
+            'hide' => 1,
             'admin_id' => 1,
         ],
     ];

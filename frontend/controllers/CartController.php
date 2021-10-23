@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\components\encrypt\CryptHelper;
 use frontend\models\Cart;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -52,6 +53,10 @@ class CartController extends \yii\web\Controller
             ],
         ];
     }
+
+    /**
+     * @return string
+     */
     public function actionIndex()
     {
         $cart = Cart::getCartByUserId(\Yii::$app->user->id);
@@ -60,4 +65,11 @@ class CartController extends \yii\web\Controller
         ]);
     }
 
+    public function actionDeleteCart($id)
+    {
+        $id = CryptHelper::decryptString($id);
+        $model = new \common\models\Cart();
+        $model->findOne($id)->delete();
+        return $this->redirect(['index']);
+    }
 }

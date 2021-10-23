@@ -6,6 +6,7 @@ use common\components\encrypt\CryptHelper;
 use common\components\helpers\HeaderHelper;
 use common\components\helpers\ParamHelper;
 use common\components\SystemConstant;
+use frontend\models\Cart;
 use frontend\models\Product;
 use frontend\models\ProductCategory;
 use http\Url;
@@ -127,6 +128,19 @@ class AjaxController extends ActiveController
             ];
         }
         echo json_encode($response);
+        exit;
+    }
+
+    public function actionAddProductToCart ()
+    {
+        $user_id = Yii::$app->user->id;
+        $id = intval(CryptHelper::decryptString(ParamHelper::getParamValue('id')));
+        $color = intval(CryptHelper::decryptString(ParamHelper::getParamValue('color')));
+        $size = intval(CryptHelper::decryptString(ParamHelper::getParamValue('size')));
+        $amount = intval(ParamHelper::getParamValue('amount'));
+        $price = intval(ParamHelper::getParamValue('price'));
+        $model = new Cart();
+        $model::addProductToCart($user_id,$id,$color,$size,$amount,$price);
         exit;
     }
 }
