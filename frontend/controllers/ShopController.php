@@ -92,6 +92,9 @@ class ShopController extends Controller
         ]);
     }
 
+    /**
+     * @return string
+     */
     public function actionProductDetail()
     {
         $getParamDetail = ParamHelper::getParamValue('detail');

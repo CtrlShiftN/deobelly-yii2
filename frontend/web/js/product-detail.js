@@ -16,18 +16,10 @@ $('#btnAddToCart').click(function () {
             }, 2000);
         } else {
             requestData();
-            let toast = new bootstrap.Toast(document.getElementById('liveToast'));
-            $('#toastNotify').html('<i class="fas fa-check-circle"></i> Đã thêm vào giỏ hàng.');
-            toast.show();
-            setTimeout(function () {
-                toast.hide(200);
-                $('#toastNotify').html('');
-                location.reload();
-            }, 2000);
         }
     }
 });
-$('#btnBuyNow').click(function () {
+$('').click(function () {
     if ($('#color').attr('data-color') == '' || $('#size').attr('data-size') == '') {
         $('#classify').addClass('bg-lighter-danger');
         $('#notify').html('Vui lòng chọn Phân loại hàng');
@@ -37,13 +29,6 @@ $('#btnBuyNow').click(function () {
         }, 2000);
     } else {
         requestData();
-        let toast = new bootstrap.Toast(document.getElementById('liveToast'));
-        $('#toastNotify').html('<i class="fas fa-check-circle"></i> Đã thêm vào giỏ hàng.');
-        toast.show();
-        setTimeout(function () {
-            toast.hide(200);
-            $('#toastNotify').html('');
-        }, 2000);
     }
 });
 
@@ -53,8 +38,8 @@ function requestData() {
     size = $('#size').attr('data-size');
     amount = $('#amountInput').val();
     price = $('.price').attr('data-price');
-    $.ajax({
-        url: "/api/ajax/add-product-to-cart",
+    let request = $.ajax({
+        url: "/api/ajax/update-or-create-cart",
         method: "POST",
         data: {
             id: id,
@@ -63,6 +48,31 @@ function requestData() {
             amount: amount,
             price: price,
         },
+    });
+    request.done(function (response) {
+        let arrRes = $.parseJSON(response);
+        let toast = new bootstrap.Toast(document.getElementById('liveToast'));
+        $('#toastNotify').html('<i class="fas fa-check-circle"></i> '+arrRes.notify);
+        toast.show();
+        $('#toastBoard, #liveToast').addClass('bg-success text-light');
+        $('#lblCartCount').html(arrRes.count);
+        setTimeout(function () {
+            toast.hide(200);
+            $('#toastNotify').html('');
+            $('#toastBoard, #liveToast').removeClass('bg-success text-light');
+        }, 2000);
+    });
+    request.fail(function (response) {
+        let arrRes = $.parseJSON(response);
+        let toast = new bootstrap.Toast(document.getElementById('liveToast'));
+        $('#toastNotify').html('<i class="far fa-times-circle"></i> '+arrRes.notify);
+        toast.show();
+        $('#toastBoard, #liveToast').addClass('bg-danger text-light');
+        setTimeout(function () {
+            toast.hide(200);
+            $('#toastNotify').html('');
+        }, 2000);
+        $('#toastBoard, #liveToast').removeClass('bg-danger text-light');
     });
 }
 

@@ -16,14 +16,11 @@ $imgUrl = Yii::$app->params['common'] . "/media";
 $this->registerCssFile(Url::toRoute("css/cart.css"));
 $this->registerJsFile(Url::toRoute('js/cart.js'));
 ?>
-    <div class="w-100 mx-0 fs-4 pb-2 pt-3 pt-md-4 my-2 my-lg-3 border-bottom text-uppercase px-2"><span
-                class="fw-bold d-inline-block fs-2">DE-OBELY</span> / Giỏ hàng
-    </div>
 <?php if (empty($cart)): ?>
-    <div class="w-100 mx-0 fs-5 fw-light text-uppercase text-center my-3 my-md-4">
-        <img src="<?= Url::toRoute('img/cart.png') ?>" class="w-25"><br>
-        giỏ hàng của bạn đang trống<br>
-        <a href="<?= Url::toRoute('shop/product') ?>" class="btn bg-black rounded-0 text-white px-3 py-2">mua ngay</a>
+    <div class="w-100 mx-0 text-center my-4 my-md-5">
+        <img src="<?= Url::toRoute('img/cart.png') ?>" class="w-25 my-2"><br>
+        <a href="<?= Url::toRoute('shop/product') ?>" class="text-decoration-none"><small class="text-dark">Tiếp tục
+                mua hàng <i class="fas fa-arrow-right"></i></small></a>
     </div>
 <?php else: ?>
     <div class="w-100 row mx-0 px-2 py-2 my-2 border-bottom d-none d-lg-flex">
@@ -93,10 +90,10 @@ $this->registerJsFile(Url::toRoute('js/cart.js'));
                 </div>
                 <!--total price-->
                 <div class="col-12 col-md-5 col-lg-4 row m-0 p-0 my-1">
-                    <div class="col-8 p-0 text-md-center text-red total-price_<?= $key ?>"
-                         data-total-price="<?= $value['total_price'] ?>">
+                    <div class="col-8 p-0 text-md-center text-red">
                         <p class="d-lg-none d-inline-block d-md-block text-black my-0">Tổng:</p>
-                        <?= number_format($value['total_price'], 0, ',', '.') ?>đ
+                        <span id="total_price_product<?= $idEncrypt ?>" class="total-price_<?= $key ?>"
+                              data-total-price="<?= $value['total_price'] ?>"><?= number_format($value['total_price'], 0, ',', '.') ?>đ</span>
                     </div>
                     <!--action-->
                     <div class="col-4 p-0 text-md-center">

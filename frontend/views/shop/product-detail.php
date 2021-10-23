@@ -321,8 +321,8 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
         </i>
     </div>
 </div>
-<div class="position-fixed bg-success rounded" style="z-index: 9999; bottom: 5px; right:77px; width: 190px">
-    <div id="liveToast" class="toast py-3 px-2 text-light bg-success border-2 fw-bold" role="alert"
+<div id="toastBoard" class="position-fixed rounded" style="z-index: 9999; bottom: 5px; right:77px; width: 190px">
+    <div id="liveToast" class="toast py-3 px-2 text-light border-2 fw-bold" role="alert"
          aria-live="assertive" aria-atomic="true">
         <span id="toastNotify"></span>
     </div>

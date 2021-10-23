@@ -134,7 +134,7 @@ class AjaxController extends ActiveController
     /**
      *
      */
-    public function actionAddProductToCart()
+    public function actionUpdateOrCreateCart()
     {
         $user_id = Yii::$app->user->id;
         $id = intval(CryptHelper::decryptString(ParamHelper::getParamValue('id')));
@@ -143,7 +143,19 @@ class AjaxController extends ActiveController
         $amount = intval(ParamHelper::getParamValue('amount'));
         $price = intval(ParamHelper::getParamValue('price'));
         $model = new Cart();
-        $model::addProductToCart($user_id, $id, $color, $size, $amount, $price);
+        if ($model::addProductToCart($user_id, $id, $color, $size, $amount, $price)) {
+            $response = [
+                'status' => SystemConstant::API_SUCCESS_STATUS,
+                'notify' => 'Đã thêm vào giỏ hàng!',
+                'count' => count(Cart::getCartByUserId(Yii::$app->user->identity->getId())),
+            ];
+        } else {
+            $response = [
+                'status' => SystemConstant::API_UNSUCCESS_STATUS,
+                'notify' => 'Thêm thất bại!',
+            ];
+        }
+        echo json_encode($response);
         exit;
     }
 
@@ -156,7 +168,17 @@ class AjaxController extends ActiveController
         $amount = intval(ParamHelper::getParamValue('amount'));
         $price = intval(ParamHelper::getParamValue('price'));
         $model = new Cart();
-        $model::updateAmountCart($id, $amount, $price);
+        if ($model::updateAmountCart($id, $amount, $price)) {
+            $response = [
+                'status' => SystemConstant::API_SUCCESS_STATUS,
+            ];
+        } else {
+            $response = [
+                'status' => SystemConstant::API_UNSUCCESS_STATUS,
+                'notify' => 'Đã có lỗi xảy ra! Hãy thử lại.',
+            ];
+        }
+        echo json_encode($response);
         exit;
     }
 }
