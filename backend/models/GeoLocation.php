@@ -71,7 +71,7 @@ class GeoLocation extends \common\models\GeoLocation
         return GeoLocation::find()->where([
             'status' => SystemConstant::STATUS_ACTIVE,
             'parent' => 0
-        ])->asArray()->all();
+        ])->orderBy('name ASC')->asArray()->all();
     }
 
     /**

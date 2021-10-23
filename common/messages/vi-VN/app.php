@@ -329,4 +329,5 @@ return [
     'Collections' => 'Bộ sưu tập',
     'Weekly Collections' => 'Bộ Sưu Tập Tuần',
     'Payment' => 'Thanh toán',
+    'Specific Address' => 'Địa Chỉ Cụ Thể',
 ];
