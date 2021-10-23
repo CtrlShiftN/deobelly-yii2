@@ -327,5 +327,6 @@ return [
     'Feature' => 'Nổi bật',
     'Showroom Series' => 'Hệ Thống Showroom',
     'Tailor-made' => 'May đo',
-    'Collections' => 'Bộ sưu tập'
+    'Collections' => 'Bộ sưu tập',
+    'Weekly Collections' => 'Bộ Sưu Tập Tuần'
 ];
