@@ -60,6 +60,6 @@ class GeoLocation extends \common\models\GeoLocation
      * @return mixed
      */
     public static function getNameGeoLocationById($id) {
-        return GeoLocation::find()->select('name')->where(['id' => $id, 'status' => SystemConstant::STATUS_ACTIVE])->one()['name'];
+        return GeoLocation::find()->select('name')->where(['id' => $id, 'status' => SystemConstant::STATUS_ACTIVE])->scalar();
     }
 }
