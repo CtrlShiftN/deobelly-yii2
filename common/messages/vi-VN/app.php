@@ -327,5 +327,6 @@ return [
     'Showroom Series' => 'Hệ Thống Showroom',
     'Tailor-made' => 'May đo',
     'Collections' => 'Bộ sưu tập',
-    'Weekly Collections' => 'Bộ Sưu Tập Tuần'
+    'Weekly Collections' => 'Bộ Sưu Tập Tuần',
+    'Payment' => 'Thanh toán',
 ];
