@@ -71,7 +71,7 @@ class AjaxController extends ActiveController
      */
     public function actionProductFilterAjax()
     {
-        if (Yii::$app->user->isGuest){
+        if (Yii::$app->user->isGuest) {
             $addLink = $buyLink = $favorLink = \yii\helpers\Url::toRoute('site/login');
         } else {
             $addLink = $favorLink = 'javascript:void(0)';
@@ -134,7 +134,7 @@ class AjaxController extends ActiveController
     /**
      *
      */
-    public function actionAddProductToCart ()
+    public function actionAddProductToCart()
     {
         $user_id = Yii::$app->user->id;
         $id = intval(CryptHelper::decryptString(ParamHelper::getParamValue('id')));
@@ -143,23 +143,20 @@ class AjaxController extends ActiveController
         $amount = intval(ParamHelper::getParamValue('amount'));
         $price = intval(ParamHelper::getParamValue('price'));
         $model = new Cart();
-        $model::addProductToCart($user_id,$id,$color,$size,$amount,$price);
+        $model::addProductToCart($user_id, $id, $color, $size, $amount, $price);
         exit;
     }
 
     /**
      *
      */
-    public function actionUpdateAmountProductInCart ()
+    public function actionUpdateAmountProductInCart()
     {
         $id = intval(CryptHelper::decryptString(ParamHelper::getParamValue('id')));
         $amount = intval(ParamHelper::getParamValue('amount'));
         $price = intval(ParamHelper::getParamValue('price'));
         $model = new Cart();
-        $model::updateAmountCart($id,$amount,$price);
+        $model::updateAmountCart($id, $amount, $price);
         exit;
     }
-
-
-
 }

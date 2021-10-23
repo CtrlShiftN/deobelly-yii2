@@ -53,8 +53,10 @@ $this->registerJsFile(Url::toRoute('js/cart.js'));
             <div class="col-8 col-sm-9 col-md-10 col-xl-11 m-0 px-0 row d-flex justify-content-center align-items-center px-2 px-md-0 px-md-0">
                 <div class="col-12 col-md-4 fs__14px px-0 px-md-3 my-1">
                     <p class="w-100 fs-name m-0"><?= $value['p-name'] ?></p>
-                    <p class="w-100 fs-classify m-0 fw-light"><?= Yii::t('app','Color') ?>: <?= Color::getColorCodeById($value['color_id'])['name'] ?></p>
-                    <p class="w-100 fs-classify m-0 fw-light"><?= Yii::t('app','Size') ?>: <?= Size::getSizeById($value['size_id']) ?></p>
+                    <p class="w-100 fs-classify m-0 fw-light"><?= Yii::t('app', 'Color') ?>
+                        : <?= Color::getColorCodeById($value['color_id'])['name'] ?></p>
+                    <p class="w-100 fs-classify m-0 fw-light"><?= Yii::t('app', 'Size') ?>
+                        : <?= Size::getSizeById($value['size_id']) ?></p>
                 </div>
                 <!--price-->
                 <div class="col-12 col-md-3 col-lg-4 row m-0 my-1 p-0 align-items-center justify-content-center">
@@ -81,8 +83,11 @@ $this->registerJsFile(Url::toRoute('js/cart.js'));
                             </button>
                         </div>
                         <div class="d-block w-100 text-start">
-                            <small class="existing-product<?= $idEncrypt ?> w-100 text-md-center text-lg-start d-block" data-existing-product="<?= $value['p-quantity'] ?>">Còn <?= $value['p-quantity'] ?> sản phẩm</small>
-                            <small id="notify_<?= $idEncrypt ?>" class="d-none text-md-center text-lg-start text-danger">Sản phẩm không đủ</small>
+                            <small class="existing-product<?= $idEncrypt ?> w-100 text-md-center text-lg-start d-block"
+                                   data-existing-product="<?= $value['p-quantity'] ?>">Còn <?= $value['p-quantity'] ?>
+                                sản phẩm</small>
+                            <small id="notify_<?= $idEncrypt ?>"
+                                   class="d-none text-md-center text-lg-start text-danger">Sản phẩm không đủ</small>
                         </div>
                     </div>
                 </div>

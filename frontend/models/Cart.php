@@ -104,7 +104,7 @@ class Cart extends \common\models\Cart
         return $cartModel->save();
     }
 
-    public static function updateAmountCart($id,$amount,$price)
+    public static function updateAmountCart($id, $amount, $price)
     {
         $cartModel = \common\models\Cart::findOne($id);
         $cartModel->quantity = $amount;

@@ -1,4 +1,4 @@
-let id,size, color,amount, price;
+let id, size, color, amount, price;
 //accept press number into input
 $("#amountInput").keypress(function (e) {
     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
@@ -6,7 +6,7 @@ $("#amountInput").keypress(function (e) {
     }
 });
 $('#btnAddToCart').click(function () {
-    if ($('#quantity').attr('data-quantity') != 0){
+    if ($('#quantity').attr('data-quantity') != 0) {
         if ($('#color').attr('data-color') == '' || $('#size').attr('data-size') == '') {
             $('#classify').addClass('bg-lighter-danger');
             $('#notify').html('Vui lòng chọn Phân loại hàng');
@@ -46,6 +46,7 @@ $('#btnBuyNow').click(function () {
         }, 2000);
     }
 });
+
 function requestData() {
     id = $('.product-information').attr('data-id');
     color = $('#color').attr('data-color');
@@ -64,6 +65,7 @@ function requestData() {
         },
     });
 }
+
 function responsive() {
     $('#bestsellers .product-card').removeClass('d-none');
     $('#onSale .product-card').removeClass('d-none');

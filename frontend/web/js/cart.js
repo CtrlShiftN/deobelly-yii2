@@ -61,7 +61,7 @@ document.querySelectorAll('.amountInput').forEach(item => {
         let idAmount = $('#amount' + id);
         if (idAmount.val() == 0) {
             idAmount.val(1);
-            $('#notify_'+id).addClass('d-none');
+            $('#notify_' + id).addClass('d-none');
             updateAmount(id, idAmount.val(), $('.price_' + id).attr('data-price'));
             location.reload();
         } else if(idAmount.val() > parseInt($('.existing-product' + id).attr('data-existing-product')))

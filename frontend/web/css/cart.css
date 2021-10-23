@@ -81,7 +81,7 @@ a:focus, input:focus, button:focus {
 
 .amountInput, .btnDESC, .btnASC {
     height: 36px !important;
-    border-radius: 0  !important;
+    border-radius: 0 !important;
     margin: 0 !important;
 }
 
@@ -91,7 +91,7 @@ a:focus, input:focus, button:focus {
     padding: 6px 10px !important;
 }
 
-.bg-lighter-gray,.amountInput, .btnDESC, .btnASC  {
+.bg-lighter-gray, .amountInput, .btnDESC, .btnASC {
     background-color: #f5f5f5 !important;
 }
 
