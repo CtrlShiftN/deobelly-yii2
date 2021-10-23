@@ -78,8 +78,6 @@ class Cart extends \common\models\Cart
         )->from('cart as c')
             ->leftJoin('product as p', 'p.id = c.product_id')
             ->leftJoin('product_assoc as pa', 'pa.product_id = c.product_id')
-            ->leftJoin('color as co', 'co.id = c.color_id')
-            ->leftJoin('size as s', 's.id = c.size_id')
             ->where(['c.status' => 1, 'c.user_id' => $id])->all();
     }
 
