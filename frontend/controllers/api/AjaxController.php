@@ -131,6 +131,9 @@ class AjaxController extends ActiveController
         exit;
     }
 
+    /**
+     *
+     */
     public function actionAddProductToCart ()
     {
         $user_id = Yii::$app->user->id;
@@ -143,4 +146,20 @@ class AjaxController extends ActiveController
         $model::addProductToCart($user_id,$id,$color,$size,$amount,$price);
         exit;
     }
+
+    /**
+     *
+     */
+    public function actionUpdateAmountProductInCart ()
+    {
+        $id = intval(CryptHelper::decryptString(ParamHelper::getParamValue('id')));
+        $amount = intval(ParamHelper::getParamValue('amount'));
+        $price = intval(ParamHelper::getParamValue('price'));
+        $model = new Cart();
+        $model::updateAmountCart($id,$amount,$price);
+        exit;
+    }
+
+
+
 }

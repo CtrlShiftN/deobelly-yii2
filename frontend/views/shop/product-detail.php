@@ -152,7 +152,8 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                         <?php $sizeArr = explode(',', $detail['assoc_size_id']);
                         foreach ($sizeArr as $key => $size):?>
                             <button class="btn-size btn fs-6 fw-bold"
-                                    data-size="<?= CryptHelper::encryptString($size) ?>" data-name-size="<?= \frontend\models\Size::getSizeById($size) ?>"><?= \frontend\models\Size::getSizeById($size) ?></button>
+                                    data-size="<?= CryptHelper::encryptString($size) ?>"
+                                    data-name-size="<?= \frontend\models\Size::getSizeById($size) ?>"><?= \frontend\models\Size::getSizeById($size) ?></button>
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </div>
@@ -187,11 +188,11 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                    href="<?= Url::toRoute('site/login') ?>"
                    target="_blank">Mua ngay</a>
             <?php else: ?>
-                <a href="javascript:void(0)"
-                   class="btn btn-outline-danger p-2 me-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger rounded-0"
-                   id="btnAddToCart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>
+                <btn class="btn btn-outline-danger p-2 me-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger rounded-0"
+                     id="btnAddToCart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+                </btn>
                 <a class="btn p-2 btn-danger text-light col-12 col-sm-6 col-md-12 col-lg-5 text-light bg-danger rounded-0"
-                   href="<?= Url::toRoute('checkout/cart') ?>"
+                   href="<?= Url::toRoute('checkout/') ?>"
                    id="btnBuyNow">Mua ngay</a>
             <?php endif; ?>
         </div>

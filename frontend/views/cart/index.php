@@ -16,9 +16,9 @@ $imgUrl = Yii::$app->params['common'] . "/media";
 $this->registerCssFile(Url::toRoute("css/cart.css"));
 $this->registerJsFile(Url::toRoute('js/cart.js'));
 ?>
-<div class="w-100 mx-0 fs-4 pb-2 pt-3 pt-md-4 my-2 my-lg-3 border-bottom text-uppercase px-2"><span
-            class="fw-bold d-inline-block fs-2">DE-OBELY</span> / Giỏ hàng
-</div>
+    <div class="w-100 mx-0 fs-4 pb-2 pt-3 pt-md-4 my-2 my-lg-3 border-bottom text-uppercase px-2"><span
+                class="fw-bold d-inline-block fs-2">DE-OBELY</span> / Giỏ hàng
+    </div>
 <?php if (empty($cart)): ?>
     <div class="w-100 mx-0 fs-5 fw-light text-uppercase text-center my-3 my-md-4">
         <img src="<?= Url::toRoute('img/cart.png') ?>" class="w-25"><br>
@@ -33,8 +33,8 @@ $this->registerJsFile(Url::toRoute('js/cart.js'));
         <div class="col-8 col-sm-9 col-md-10 col-xxl-11 m-0 px-0 py-3 row mx-0">
             <div class="col-4 col-xl-3 col-xxl-4 row m-0 p-0"></div>
             <div class="col-4 col-xl-5 col-xxl-4 row m-0 p-0">
-                <div class="col-6 text-uppercase pe-0">đơn giá</div>
-                <div class="col-6 text-uppercase pe-0">số lượng</div>
+                <div class="col-6 text-uppercase px-0">đơn giá</div>
+                <div class="col-6 text-uppercase px-0">số lượng</div>
             </div>
             <div class="col-4 row m-0 p-0">
                 <div class="col-8 p-0 text-uppercase text-center">số tiền</div>
@@ -52,46 +52,12 @@ $this->registerJsFile(Url::toRoute('js/cart.js'));
             <!--information-->
             <div class="col-8 col-sm-9 col-md-10 col-xl-11 m-0 px-0 row d-flex justify-content-center align-items-center px-2 px-md-0 px-md-0">
                 <div class="col-12 col-md-4 fs__14px px-0 px-md-3 my-1">
-                    <span class="w-100 fw-light fs-name"><?= $value['p-name'] ?></span>
-                    <div class="w-100 col-md-4 mx-0 px-0">
-                        <div class="dropdown">
-                            <button class="btn rounded-0 bg-lighter-gray p-1 dropdown-toggle fs__14px" type="button"
-                                    id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                Phân loại
-                            </button>
-                            <ul class="dropdown-menu m-0 p-0 rounded-0" aria-labelledby="dropdownMenuButton1">
-                                <li>
-                                    <?php if (!empty($value['color_id'])): ?>
-                                        <?php $colorArr = explode(',', $value['pa-color']) ?>
-                                        <select class="w-100 fs__14px mb-1">
-                                            <option value="<?= $value['color_id'] ?>"><?= Color::getColorCodeById($value['color_id'])['name'] ?></option>
-                                            <?php foreach ($colorArr as $color): ?>
-                                                <?php if ($color != $value['color_id']): ?>
-                                                    <option value="<?= $color ?>"><?= Color::getColorCodeById($color)['name'] ?></option>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    <?php endif; ?>
-                                </li>
-                                <li>
-                                    <?php if (!empty($value['size_id'])): ?>
-                                        <?php $sizeArr = explode(',', $value['pa-size']) ?>
-                                        <select class="w-100 fs__14px">
-                                            <option value="<?= $value['size_id'] ?>"><?= Size::getSizeById($value['size_id']) ?></option>
-                                            <?php foreach ($sizeArr as $size): ?>
-                                                <?php if ($size != $value['size_id']): ?>
-                                                    <option value="<?= $size ?>"><?= Size::getSizeById($size) ?></option>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    <?php endif; ?>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <p class="w-100 fs-name m-0"><?= $value['p-name'] ?></p>
+                    <p class="w-100 fs-classify m-0 fw-light"><?= Yii::t('app','Color') ?>: <?= Color::getColorCodeById($value['color_id'])['name'] ?></p>
+                    <p class="w-100 fs-classify m-0 fw-light"><?= Yii::t('app','Size') ?>: <?= Size::getSizeById($value['size_id']) ?></p>
                 </div>
                 <!--price-->
-                <div class="col-12 col-md-3 col-lg-4 row m-0 my-1 p-0">
+                <div class="col-12 col-md-3 col-lg-4 row m-0 my-1 p-0 align-items-center justify-content-center">
                     <div class="col-lg-6 d-none d-lg-flex p-0 justify-sm-content-center price_<?= $idEncrypt ?>"
                          data-price="<?= $value['p-price'] ?>">
                         <span class="d-md-none me-2">Giá:</span>
@@ -100,18 +66,23 @@ $this->registerJsFile(Url::toRoute('js/cart.js'));
                     <!--quantity-->
                     <div class="col-12 col-lg-6 p-0 text-md-center">
                         <p class="d-lg-none my-0">Số lượng: </p>
-                        <div class="d-flex justify-md-content-center">
+                        <div class="d-flex justify-content-md-center justify-content-lg-start">
                             <button type="button" data-id="<?= $idEncrypt ?>"
                                     class="btn btn-gray border-end border-0 border-dark btnDESC d-md-flex justify-content-center align-items-center">
                                 <i class="fas fa-minus"></i>
                             </button>
-                            <input type="text" id="amount<?= $idEncrypt ?>" value="<?= $value['quantity'] ?>"
+                            <input type="text" id="amount<?= $idEncrypt ?>" data-id="<?= $idEncrypt ?>"
+                                   value="<?= $value['quantity'] ?>"
                                    onchange="totalPrice()"
-                                   class="text-center d-inline-block amountInput quantity_<?= $idEncrypt ?>">
+                                   class="text-center d-inline-block amountInput">
                             <button type="button" data-id="<?= $idEncrypt ?>"
                                     class="btn btn-gray border-start border-0 border-dark btnASC d-md-flex justify-content-center align-items-center">
                                 <i class="fas fa-plus"></i>
                             </button>
+                        </div>
+                        <div class="d-block w-100 text-start">
+                            <small class="existing-product<?= $idEncrypt ?> w-100 text-md-center text-lg-start d-block" data-existing-product="<?= $value['p-quantity'] ?>">Còn <?= $value['p-quantity'] ?> sản phẩm</small>
+                            <small id="notify_<?= $idEncrypt ?>" class="d-none text-md-center text-lg-start text-danger">Sản phẩm không đủ</small>
                         </div>
                     </div>
                 </div>
@@ -141,7 +112,6 @@ $this->registerJsFile(Url::toRoute('js/cart.js'));
 
             </div>
             <div class="col-12 text-uppercase p-0">
-                <a href="javascript:void(0)" class="btn bg-black text-white fw-light me-1">Cập nhật</a>
                 <a href="javascript:void(0)" class="btn bg-black text-white fw-light">Thanh toán</a>
             </div>
         </div>

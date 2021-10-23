@@ -65,6 +65,10 @@ class CartController extends \yii\web\Controller
         ]);
     }
 
+    /**
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
+     */
     public function actionDeleteCart($id)
     {
         $id = CryptHelper::decryptString($id);

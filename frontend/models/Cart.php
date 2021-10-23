@@ -74,17 +74,13 @@ class Cart extends \common\models\Cart
                 'p.image as p-img',
                 'p.quantity as p-quantity',
                 'p.selling_price as p-price',
-                'pa.color_id as pa-color',
-                'pa.size_id as pa-size',
-                's.name as s-name',
-                'co.name as co-name',
             ]
         )->from('cart as c')
             ->leftJoin('product as p', 'p.id = c.product_id')
             ->leftJoin('product_assoc as pa', 'pa.product_id = c.product_id')
             ->leftJoin('color as co', 'co.id = c.color_id')
             ->leftJoin('size as s', 's.id = c.size_id')
-            ->where(['c.status' => 1,'c.user_id' => $id])->all();
+            ->where(['c.status' => 1, 'c.user_id' => $id])->all();
     }
 
     /**
@@ -96,31 +92,25 @@ class Cart extends \common\models\Cart
      * @param $price
      * @return bool
      */
-    public static function addProductToCart($user_id,$id,$color,$size,$amount,$price)
+    public static function addProductToCart($user_id, $id, $color, $size, $amount, $price)
     {
-        $availableCart = Cart::find()->where([
-            'user_id' => $user_id,
-            'product_id' => $id,
-            'color_id' => $color,
-            'size_id' => $size,
-            'status' => SystemConstant::STATUS_ACTIVE
-        ])->scalar();
-        if(empty($availableCart)) {
-            $cartModel = new \common\models\Cart();
-            $cartModel->user_id = $user_id;
-            $cartModel->product_id = $id;
-            $cartModel->color_id = $color;
-            $cartModel->size_id = $size;
-            $cartModel->quantity = $amount;
-            $cartModel->total_price = $amount * $price;
-            $cartModel->created_at = date('Y-m-d H:i:s');
-            $cartModel->updated_at = date('Y-m-d H:i:s');
-            return $cartModel->save();
-        } else {
-            $cart = \common\models\Cart::findOne($id);
-            $cart->quantity += $amount;
-            $cart->total_price = $cart->quantity * $price;
-            return $cart->save();
-        }
+        $cartModel = new \common\models\Cart();
+        $cartModel->user_id = $user_id;
+        $cartModel->product_id = $id;
+        $cartModel->color_id = $color;
+        $cartModel->size_id = $size;
+        $cartModel->quantity = $amount;
+        $cartModel->total_price = $amount * $price;
+        $cartModel->created_at = date('Y-m-d H:i:s');
+        $cartModel->updated_at = date('Y-m-d H:i:s');
+        return $cartModel->save();
+    }
+
+    public static function updateAmountCart($id,$amount,$price)
+    {
+        $cartModel = \common\models\Cart::findOne($id);
+        $cartModel->quantity = $amount;
+        $cartModel->total_price = $amount * $price;
+        return $cartModel->save();
     }
 }

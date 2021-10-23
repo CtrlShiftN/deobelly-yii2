@@ -5,7 +5,29 @@ $("#amountInput").keypress(function (e) {
         return false;
     }
 });
-$('#btnAddToCart,#btnBuyNow').click(function () {
+$('#btnAddToCart').click(function () {
+    if ($('#quantity').attr('data-quantity') != 0){
+        if ($('#color').attr('data-color') == '' || $('#size').attr('data-size') == '') {
+            $('#classify').addClass('bg-lighter-danger');
+            $('#notify').html('Vui lòng chọn Phân loại hàng');
+            setTimeout(function () {
+                $('#classify').removeClass('bg-lighter-danger');
+                $('#notify').html('');
+            }, 2000);
+        } else {
+            requestData();
+            let toast = new bootstrap.Toast(document.getElementById('liveToast'));
+            $('#toastNotify').html('<i class="fas fa-check-circle"></i> Đã thêm vào giỏ hàng.');
+            toast.show();
+            setTimeout(function () {
+                toast.hide(200);
+                $('#toastNotify').html('');
+                location.reload();
+            }, 2000);
+        }
+    }
+});
+$('#btnBuyNow').click(function () {
     if ($('#color').attr('data-color') == '' || $('#size').attr('data-size') == '') {
         $('#classify').addClass('bg-lighter-danger');
         $('#notify').html('Vui lòng chọn Phân loại hàng');
@@ -30,7 +52,7 @@ function requestData() {
     size = $('#size').attr('data-size');
     amount = $('#amountInput').val();
     price = $('.price').attr('data-price');
-    let request = $.ajax({
+    $.ajax({
         url: "/api/ajax/add-product-to-cart",
         method: "POST",
         data: {
