@@ -181,4 +181,33 @@ class AjaxController extends ActiveController
         echo json_encode($response);
         exit;
     }
+
+    public function actionAddToCart()
+    {
+        $productID = intval(CryptHelper::decryptString(ParamHelper::getParamValue('id')));
+        $pricePerProduct = \common\models\Product::find()->select('selling_price')->where([
+            'id' => $productID,
+            'status' => SystemConstant::STATUS_ACTIVE
+        ])->asArray()->one()['selling_price'];
+        $cartModel = new \common\models\Cart();
+        $cartModel->user_id = Yii::$app->user->identity->getId();
+        $cartModel->product_id = $productID;
+        $cartModel->quantity = 1;
+        $cartModel->total_price = intval($pricePerProduct);
+        $cartModel->created_at = date('Y-m-d H:i:s');
+        $cartModel->updated_at = date('Y-m-d H:i:s');
+        if ($cartModel->save()) {
+            $response = [
+                'status' => SystemConstant::API_SUCCESS_STATUS,
+                'message' => Yii::t('app', 'Add to cart successfully!'),
+            ];
+        } else {
+            $response = [
+                'status' => SystemConstant::API_UNSUCCESS_STATUS,
+                'message' => Yii::t('app', 'Can not add this product to cart.'),
+            ];
+        }
+        echo json_encode($response);
+        exit;
+    }
 }

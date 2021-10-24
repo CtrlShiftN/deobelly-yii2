@@ -2,6 +2,7 @@
 
 /* @var $this yii\web\View */
 
+use common\components\SystemConstant;
 use frontend\models\ProductType;
 use common\components\encrypt\CryptHelper;
 use common\components\helpers\ParamHelper;
@@ -15,6 +16,7 @@ $this->registerCssFile(Url::toRoute('css/product.css'));
 $paramCate = ParamHelper::getParamValue('type');
 $this->registerJsFile(Url::toRoute('js/product.js'));
 ?>
+<div class="visually-hidden" id="sth" data-id="<?= Yii::$app->user->isGuest ? 1 : 0 ?>"></div>
 <div class="row m-0 p-0 pt-4 pt-md-5">
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasCategory"
          aria-labelledby="offcanvasCategoryLabel">
