@@ -210,4 +210,22 @@ class AjaxController extends ActiveController
         echo json_encode($response);
         exit;
     }
+
+    public function actionAddToFavorite()
+    {
+        $productID = intval(CryptHelper::decryptString(ParamHelper::getParamValue('id')));
+        if (1 == 1) { // TODO add this
+            $response = [
+                'status' => SystemConstant::API_SUCCESS_STATUS,
+                'message' => Yii::t('app', 'Add to cart successfully!'),
+            ];
+        } else {
+            $response = [
+                'status' => SystemConstant::API_UNSUCCESS_STATUS,
+                'message' => Yii::t('app', 'Can not add this product to cart.'),
+            ];
+        }
+        echo json_encode($response);
+        exit;
+    }
 }
