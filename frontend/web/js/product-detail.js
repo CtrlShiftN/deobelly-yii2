@@ -6,7 +6,27 @@ $("#amountInput").keypress(function (e) {
     }
 });
 $('#btnAddToCart').click(function () {
-    if ($('#quantity').attr('data-quantity') != 0) {
+    if ($('#sth').attr('data-id') == 1) {
+        window.location.href = "/site/login?ref=" + window.location.pathname;
+    } else {
+        if ($('#quantity').attr('data-quantity') != 0) {
+            if ($('#color').attr('data-color') == '' || $('#size').attr('data-size') == '') {
+                $('#classify').addClass('bg-lighter-danger');
+                $('#notify').html('Vui lòng chọn Phân loại hàng');
+                setTimeout(function () {
+                    $('#classify').removeClass('bg-lighter-danger');
+                    $('#notify').html('');
+                }, 2000);
+            } else {
+                requestData();
+            }
+        }
+    }
+});
+$('#btnBuyNow').click(function () {
+    if ($('#sth').attr('data-id') == 1) {
+        window.location.href = "/site/login?ref=" + window.location.pathname;
+    } else {
         if ($('#color').attr('data-color') == '' || $('#size').attr('data-size') == '') {
             $('#classify').addClass('bg-lighter-danger');
             $('#notify').html('Vui lòng chọn Phân loại hàng');
@@ -15,20 +35,8 @@ $('#btnAddToCart').click(function () {
                 $('#notify').html('');
             }, 2000);
         } else {
-            requestData();
+            // TODO: function send request to payment page
         }
-    }
-});
-$('').click(function () {
-    if ($('#color').attr('data-color') == '' || $('#size').attr('data-size') == '') {
-        $('#classify').addClass('bg-lighter-danger');
-        $('#notify').html('Vui lòng chọn Phân loại hàng');
-        setTimeout(function () {
-            $('#classify').removeClass('bg-lighter-danger');
-            $('#notify').html('');
-        }, 2000);
-    } else {
-        requestData();
     }
 });
 
@@ -52,7 +60,7 @@ function requestData() {
     request.done(function (response) {
         let arrRes = $.parseJSON(response);
         let toast = new bootstrap.Toast(document.getElementById('liveToast'));
-        $('#toastNotify').html('<i class="fas fa-check-circle"></i> '+arrRes.notify);
+        $('#toastNotify').html('<i class="fas fa-check-circle"></i> ' + arrRes.notify);
         toast.show();
         $('#toastBoard, #liveToast').addClass('bg-success text-light');
         $('#lblCartCount').html(arrRes.count);
@@ -65,7 +73,7 @@ function requestData() {
     request.fail(function (response) {
         let arrRes = $.parseJSON(response);
         let toast = new bootstrap.Toast(document.getElementById('liveToast'));
-        $('#toastNotify').html('<i class="far fa-times-circle"></i> '+arrRes.notify);
+        $('#toastNotify').html('<i class="far fa-times-circle"></i> ' + arrRes.notify);
         toast.show();
         $('#toastBoard, #liveToast').addClass('bg-danger text-light');
         setTimeout(function () {

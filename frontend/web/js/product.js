@@ -124,9 +124,8 @@ function requestData() {
                 }
                 result += '<p class="m-0 product-name">' + arrRes.product[i].name + '</p></div></a></div>' +
                     '<div class="product-button row m-0">' +
-                    '<div data-id="' + arrRes.product[i].id + '" class="btn rounded-0 btnAdd col-4 col-md-3" onclick="addToCart(this)"><i class="fas fa-cart-plus"></i></div>' +
-                    '<a href="/shop/cart?detail=' + arrRes.product[i].id + '" data-id="' + arrRes.product[i].id + '" class="btn rounded-0 btnBuyNow col-4 col-md-6"><i class="fas fa-dollar-sign d-md-none"></i><span class="d-none d-md-inline-block"><i class="fas fa-dollar-sign"></i> ' + buyNow + '</span></a>' +
-                    '<div data-id="' + arrRes.product[i].id + '" class="btn rounded-0 btnAdd col-4 col-md-3" onclick="addToFavorite(this)"><i class="far fa-heart"></i></div></div></div>';
+                    '<a href="/shop/cart?detail=' + arrRes.product[i].id + '" data-id="' + arrRes.product[i].id + '" class="btn rounded-0 btnBuyNow col-6 col-md-8"><i class="fas fa-dollar-sign d-md-none"></i><span class="d-none d-md-inline-block"><i class="fas fa-dollar-sign"></i> ' + buyNow + '</span></a>' +
+                    '<div data-id="' + arrRes.product[i].id + '" class="btn rounded-0 btnAdd col-6 col-md-4" onclick="addToFavorite(this)"><i class="far fa-heart"></i></div></div></div>';
             }
             $("#result").html(result);
             //show pagination
@@ -190,48 +189,6 @@ function requestData() {
     request.fail(function (jqXHR, textStatus) {
         alert("Request failed: " + textStatus); // check errors
     });
-}
-
-function addToCart(obj) {
-    var productID = obj.getAttribute('data-id');
-    if ($('#sth').attr('data-id') == 1) {
-        window.location.href = "/site/login?ref=" + window.location.pathname;
-    } else {
-        let request = $.ajax({
-            url: "/api/ajax/add-to-cart", // send request to
-            method: "POST", // sending method
-            data: {
-                id: productID
-            },
-        });
-        request.done(function (response) {
-            let arrRes = $.parseJSON(response);
-            if (arrRes.status === 1) {
-                let toast = new bootstrap.Toast(toastLive);
-                $('#toastNotify').html('<i class="fas fa-check-circle"></i> ' + arrRes.message);
-                toast.show();
-                setTimeout(function () {
-                    toast.hide(200);
-                    $('#toastNotify').html('');
-                }, 2000);
-                var countCart = $('#lblCartCount').text();
-                $('#lblCartCount').html(parseInt(countCart) + 1);
-            } else {
-                let toast = new bootstrap.Toast(toastLive);
-                $('#toastNotify').html('<i class="far fa-frown-open"></i> ' + arrRes.message);
-                toast.show();
-                setTimeout(function () {
-                    toast.hide(200);
-                    $('#toastNotify').html('');
-                }, 2000);
-            }
-        });
-        request.fail(function (jqXHR, textStatus) {
-            // alert("Request failed: " + textStatus); // check errors
-            console.log('jq', jqXHR);
-            console.log('sta', textStatus);
-        });
-    }
 }
 
 function addToFavorite(obj) {

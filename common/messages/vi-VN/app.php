@@ -330,5 +330,6 @@ return [
     'Collections' => 'Bộ sưu tập',
     'Weekly Collections' => 'Bộ Sưu Tập Tuần',
     'Add to cart successfully!' => 'Thêm vào giỏ hàng thành công!',
+    'Add to favorite successfully!' => 'Thêm vào mục yêu thích thành công!',
     'Can not add this product to cart.' => 'Không thể thêm sản phẩm vào giỏ hàng.',
 ];

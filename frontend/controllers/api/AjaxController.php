@@ -6,6 +6,7 @@ use common\components\encrypt\CryptHelper;
 use common\components\helpers\HeaderHelper;
 use common\components\helpers\ParamHelper;
 use common\components\SystemConstant;
+use common\models\Favorite;
 use frontend\models\Cart;
 use frontend\models\Product;
 use frontend\models\ProductCategory;
@@ -142,18 +143,50 @@ class AjaxController extends ActiveController
         $size = intval(CryptHelper::decryptString(ParamHelper::getParamValue('size')));
         $amount = intval(ParamHelper::getParamValue('amount'));
         $price = intval(ParamHelper::getParamValue('price'));
-        $model = new Cart();
-        if ($model::addProductToCart($user_id, $id, $color, $size, $amount, $price)) {
-            $response = [
-                'status' => SystemConstant::API_SUCCESS_STATUS,
-                'notify' => 'Đã thêm vào giỏ hàng!',
-                'count' => count(Cart::getCartByUserId(Yii::$app->user->identity->getId())),
-            ];
+        $cart = \common\models\Cart::findOne([
+            'user_id' => $user_id,
+            'product_id' => $id,
+            'color_id' => $color,
+            'size_id' => $size,
+        ]);
+        if(!empty($cart)){
+            $cart->quantity += $amount;
+            $cart->total_price = $cart->quantity * $price;
+            $cart->updated_at = date('Y-m-d H:i:s');
+            if ($cart->save()) {
+                $response = [
+                    'status' => SystemConstant::API_SUCCESS_STATUS,
+                    'notify' =>  Yii::t('app', 'Add to cart successfully!'),
+                    'count' => count(Cart::getCartByUserId(Yii::$app->user->identity->getId())),
+                ];
+            } else {
+                $response = [
+                    'status' => SystemConstant::API_UNSUCCESS_STATUS,
+                    'notify' =>  Yii::t('app', 'Can not add this product to cart.'),
+                ];
+            }
         } else {
-            $response = [
-                'status' => SystemConstant::API_UNSUCCESS_STATUS,
-                'notify' => 'Thêm thất bại!',
-            ];
+            $cartModel = new \common\models\Cart();
+            $cartModel->user_id = $user_id;
+            $cartModel->product_id = $id;
+            $cartModel->color_id = $color;
+            $cartModel->size_id = $size;
+            $cartModel->quantity = $amount;
+            $cartModel->total_price = $amount * $price;
+            $cartModel->created_at = date('Y-m-d H:i:s');
+            $cartModel->updated_at = date('Y-m-d H:i:s');
+            if ($cartModel->save()) {
+                $response = [
+                    'status' => SystemConstant::API_SUCCESS_STATUS,
+                    'notify' =>  Yii::t('app', 'Add to cart successfully!'),
+                    'count' => count(Cart::getCartByUserId(Yii::$app->user->identity->getId())),
+                ];
+            } else {
+                $response = [
+                    'status' => SystemConstant::API_UNSUCCESS_STATUS,
+                    'notify' =>  Yii::t('app', 'Can not add this product to cart.'),
+                ];
+            }
         }
         echo json_encode($response);
         exit;
@@ -167,8 +200,10 @@ class AjaxController extends ActiveController
         $id = intval(CryptHelper::decryptString(ParamHelper::getParamValue('id')));
         $amount = intval(ParamHelper::getParamValue('amount'));
         $price = intval(ParamHelper::getParamValue('price'));
-        $model = new Cart();
-        if ($model::updateAmountCart($id, $amount, $price)) {
+        $cartModel = \common\models\Cart::findOne($id);
+        $cartModel->quantity = $amount;
+        $cartModel->total_price = $amount * $price;
+        if ($cartModel->save()) {
             $response = [
                 'status' => SystemConstant::API_SUCCESS_STATUS,
             ];
@@ -182,47 +217,35 @@ class AjaxController extends ActiveController
         exit;
     }
 
-    public function actionAddToCart()
-    {
-        $productID = intval(CryptHelper::decryptString(ParamHelper::getParamValue('id')));
-        $pricePerProduct = \common\models\Product::find()->select('selling_price')->where([
-            'id' => $productID,
-            'status' => SystemConstant::STATUS_ACTIVE
-        ])->asArray()->one()['selling_price'];
-        $cartModel = new \common\models\Cart();
-        $cartModel->user_id = Yii::$app->user->identity->getId();
-        $cartModel->product_id = $productID;
-        $cartModel->quantity = 1;
-        $cartModel->total_price = intval($pricePerProduct);
-        $cartModel->created_at = date('Y-m-d H:i:s');
-        $cartModel->updated_at = date('Y-m-d H:i:s');
-        if ($cartModel->save()) {
-            $response = [
-                'status' => SystemConstant::API_SUCCESS_STATUS,
-                'message' => Yii::t('app', 'Add to cart successfully!'),
-            ];
-        } else {
-            $response = [
-                'status' => SystemConstant::API_UNSUCCESS_STATUS,
-                'message' => Yii::t('app', 'Can not add this product to cart.'),
-            ];
-        }
-        echo json_encode($response);
-        exit;
-    }
-
     public function actionAddToFavorite()
     {
         $productID = intval(CryptHelper::decryptString(ParamHelper::getParamValue('id')));
-        if (1 == 1) { // TODO add this
-            $response = [
-                'status' => SystemConstant::API_SUCCESS_STATUS,
-                'message' => Yii::t('app', 'Add to cart successfully!'),
-            ];
+        $model = Favorite::findOne([
+            'product_id' => $productID,
+            'user_id' => Yii::$app->user->identity->getId(),
+            'status' => SystemConstant::STATUS_ACTIVE
+        ]);
+        if (empty($model)) {
+            $favor =  new Favorite();
+            $favor->user_id = Yii::$app->user->identity->getId();
+            $favor->product_id = $productID;
+            $favor->created_at = date('Y-m-d H:i:s');
+            $favor->updated_at = date('Y-m-d H:i:s');
+            if ($favor->save()){
+                $response = [
+                    'status' => SystemConstant::API_SUCCESS_STATUS,
+                    'message' => Yii::t('app', 'Add to favorite successfully!'),
+                ];
+            } else {
+                $response = [
+                    'status' => SystemConstant::API_UNSUCCESS_STATUS,
+                    'message' => Yii::t('app', 'Can not add this product to favorite.'),
+                ];
+            }
         } else {
             $response = [
-                'status' => SystemConstant::API_UNSUCCESS_STATUS,
-                'message' => Yii::t('app', 'Can not add this product to cart.'),
+                'status' => SystemConstant::API_SUCCESS_STATUS,
+                'message' => Yii::t('app', 'Add to favorite successfully!'),
             ];
         }
         echo json_encode($response);

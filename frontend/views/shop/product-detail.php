@@ -17,8 +17,9 @@ $this->registerJsFile(Url::toRoute('js/easyzoom.js'));
 $this->registerJsFile(Url::toRoute('js/swiper-bundle.min.js'));
 $this->registerJsFile(Url::toRoute('js/product-detail.js'));
 ?>
-<div class="row py-3 p-lg-4 px-xl-4 px-xxl-5 py-xl-4">
-    <div class="col-12 col-md-5 px-0">
+<div class="visually-hidden" id="sth" data-id="<?= Yii::$app->user->isGuest ? 1 : 0 ?>"></div>
+<div class="row py-3 m-0 px-auto w-100 overflow-hidden justify-content-center">
+    <div class="col-12 col-md-5 px-auto">
         <div class="product__carousel ps-md-3 ps-lg-4 ps-xl-5 mt-0">
             <!-- Swiper and EasyZoom plugins start -->
             <div class="swiper-container gallery-top">
@@ -61,7 +62,7 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
             <!-- Swiper and EasyZoom plugins end -->
         </div>
     </div>
-    <div class="col-12 col-md-7 px-md-3 product-information" data-id="<?= CryptHelper::encryptString($detail['id']) ?>">
+    <div class="col-12 col-md-7 product-information" data-id="<?= CryptHelper::encryptString($detail['id']) ?>">
         <span class="mt-3 fs-3 m-0 fw-bolder text-uppercase d-block"><span
                     class="badge rounded-0 bg-danger" id="outOfStock">Hết hàng</span> <?= $detail['name'] ?></span>
         <div class="d-flex w-100 mb-3 mb-md-4">
@@ -174,54 +175,43 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                 <small id="notify" class="text-danger w-100 my-2"></small>
             </div>
         </div>
-        <div class="w-100 my-2 d-flex row mx-0 p-0">
-            <?php if (Yii::$app->user->isGuest): ?>
-                <a href="<?= Url::toRoute('site/login?ref='.Yii::$app->request->url) ?>"
-                   class="btn btn-outline-danger p-2 me-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger rounded-0"
-                   target="_blank"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>
-                <a class="btn p-2 btn-danger text-light col-12 col-sm-6 col-md-12 col-lg-5 text-light bg-danger rounded-0"
-                   href="<?= Url::toRoute('site/login?ref='.Yii::$app->request->url) ?>"
-                   target="_blank">Mua ngay</a>
-            <?php else: ?>
-                <btn class="btn btn-outline-danger p-2 me-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger rounded-0"
-                     id="btnAddToCart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
-                </btn>
-                <a class="btn p-2 btn-danger text-light col-12 col-sm-6 col-md-12 col-lg-5 text-light bg-danger rounded-0"
-                   href="<?= Url::toRoute('checkout/') ?>"
-                   id="btnBuyNow">Mua ngay</a>
-            <?php endif; ?>
-        </div>
-        <div class="w-100 my-2 mx-0 px-md-3">
-            <div class="accordion p-0" id="accordionInformation">
-                <div class="accordion-item border-0">
-                    <h2 class="accordion-header" id="headingInf">
-                        <button class="fs-6 accordion-button text-uppercase bg-white fw-bold text-dark px-0 rounded-0 border-bottom border-dark"
-                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseInf"
-                                aria-expanded="true"
-                                aria-controls="collapseInf">
-                            chi tiết sản phẩm
-                        </button>
-                    </h2>
-                    <div id="collapseInf" class="accordion-collapse collapse show" aria-labelledby="headingInf"
-                         data-bs-parent="#accordionInformation">
-                        <div class="accordion-body fw-light border-bottom border-dark">
-                            <?= $detail['description'] ?>
-                        </div>
+        <button class="btn btn-outline-danger p-2 me-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger rounded-0"
+             id="btnAddToCart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+        </button>
+        <a class="btn p-2 btn-danger text-light col-12 col-sm-6 col-md-12 col-lg-5 text-light bg-danger rounded-0"
+           href="<?= Url::toRoute('checkout/') ?>"
+           id="btnBuyNow">Mua ngay</a>
+    </div>
+    <div class="w-100 my-2 mx-0 px-md-3">
+        <div class="accordion p-0" id="accordionInformation">
+            <div class="accordion-item border-0">
+                <h2 class="accordion-header" id="headingInf">
+                    <button class="fs-6 accordion-button text-uppercase bg-white fw-bold text-dark px-0 rounded-0 border-bottom border-dark"
+                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseInf"
+                            aria-expanded="true"
+                            aria-controls="collapseInf">
+                        chi tiết sản phẩm
+                    </button>
+                </h2>
+                <div id="collapseInf" class="accordion-collapse collapse show" aria-labelledby="headingInf"
+                     data-bs-parent="#accordionInformation">
+                    <div class="accordion-body fw-light border-bottom border-dark">
+                        <?= $detail['description'] ?>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="w-100 py-2 mx-0 d-flex px-md-3">
-            <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i
-                        class="fas fa-phone-alt"></i> Hotline</a>
-            <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i
-                        class="fas fa-comments"></i> Chat Online</a>
-            <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i
-                        class="fas fa-share-alt"></i> Chia sẻ</a>
-        </div>
+    </div>
+    <div class="w-100 py-2 mx-0 d-flex px-md-3">
+        <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i
+                    class="fas fa-phone-alt"></i> Hotline</a>
+        <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i
+                    class="fas fa-comments"></i> Chat Online</a>
+        <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i
+                    class="fas fa-share-alt"></i> Chia sẻ</a>
     </div>
 </div>
-<div class="w-100 my-2 mx-0 px-md-5">
+<div class="w-100 my-2 mx-0 px-3 px-md-5">
     <p class="m-0 text-uppercase border-bottom border-dark px-0 fw-bolder fs-4 pt-3 pb-2">
         sản phẩm bán chạy
     </p>
@@ -271,7 +261,7 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
         </i>
     </div>
 </div>
-<div class="w-100 my-2 mx-0 px-md-5">
+<div class="w-100 my-2 mx-0 px-3 px-md-5">
     <p class="m-0 text-uppercase border-bottom border-dark px-0 fw-bolder fs-4 pt-3 pb-2">
         sản phẩm đang sale
     </p>
@@ -321,7 +311,7 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
         </i>
     </div>
 </div>
-<div id="toastBoard" class="position-fixed rounded" style="z-index: 9999; bottom: 5px; right:77px; width: 190px">
+<div id="toastBoard" class="position-fixed rounded" style="z-index: 9999; bottom: 5px; right:70px; width: 260px">
     <div id="liveToast" class="toast py-3 px-2 text-light border-2 fw-bold" role="alert"
          aria-live="assertive" aria-atomic="true">
         <span id="toastNotify"></span>
