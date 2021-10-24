@@ -176,11 +176,11 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
         </div>
         <div class="w-100 my-2 d-flex row mx-0 p-0">
             <?php if (Yii::$app->user->isGuest): ?>
-                <a href="<?= Url::toRoute('site/login') ?>"
+                <a href="<?= Url::toRoute('site/login?ref='.Yii::$app->request->url) ?>"
                    class="btn btn-outline-danger p-2 me-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger rounded-0"
                    target="_blank"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>
                 <a class="btn p-2 btn-danger text-light col-12 col-sm-6 col-md-12 col-lg-5 text-light bg-danger rounded-0"
-                   href="<?= Url::toRoute('site/login') ?>"
+                   href="<?= Url::toRoute('site/login?ref='.Yii::$app->request->url) ?>"
                    target="_blank">Mua ngay</a>
             <?php else: ?>
                 <btn class="btn btn-outline-danger p-2 me-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger rounded-0"

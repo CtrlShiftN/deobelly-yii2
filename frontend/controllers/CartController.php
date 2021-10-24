@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\components\encrypt\CryptHelper;
 use frontend\models\Cart;
+use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
@@ -36,6 +37,10 @@ class CartController extends \yii\web\Controller
     public function beforeAction($action)
     {
         $this->layout = 'main';
+        if (Yii::$app->user->isGuest) {
+            $currentUrl = Yii::$app->request->getUrl();
+            return $this->redirect('/site/login?ref=' . $currentUrl);
+        }
         if (!parent::beforeAction($action)) {
             return false;
         }

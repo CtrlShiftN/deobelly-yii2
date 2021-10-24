@@ -138,8 +138,8 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            Yii::$app->session->setFlash('abc','test');
-            return $this->goBack(Yii::$app->request->referrer);
+            $url = !empty($_REQUEST['ref']) ? $_REQUEST['ref'] : '/';
+            return $this->redirect($url);
         }
 
         $model->password = '';
@@ -158,7 +158,8 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        $url = !empty($_REQUEST['ref']) ? $_REQUEST['ref'] : '/';
+        return $this->redirect($url);
     }
 
     /**

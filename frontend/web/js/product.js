@@ -195,7 +195,7 @@ function requestData() {
 function addToCart(obj) {
     var productID = obj.getAttribute('data-id');
     if ($('#sth').attr('data-id') == 1) {
-        window.location.href = "/site/login";
+        window.location.href = "/site/login?ref="+window.location.pathname;
     } else {
         let request = $.ajax({
             url: "/api/ajax/add-to-cart", // send request to
