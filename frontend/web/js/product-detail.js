@@ -16,24 +16,25 @@ $('#btnAddToCart').click(function () {
                 setTimeout(function () {
                     $('#classify').removeClass('bg-lighter-danger');
                     $('#notify').html('');
-                }, 2000);
+                }, 3000);
             } else {
                 requestData();
             }
         }
     }
 });
-$('#btnBuyNow').click(function () {
+$('#btnBuyNow').click(function (e) {
     if ($('#sth').attr('data-id') == 1) {
         window.location.href = "/site/login?ref=" + window.location.pathname;
     } else {
         if ($('#color').attr('data-color') == '' || $('#size').attr('data-size') == '') {
+            e.preventDefault();
             $('#classify').addClass('bg-lighter-danger');
             $('#notify').html('Vui lòng chọn Phân loại hàng');
             setTimeout(function () {
                 $('#classify').removeClass('bg-lighter-danger');
                 $('#notify').html('');
-            }, 2000);
+            }, 3000);
         } else {
             // TODO: function send request to payment page
         }
@@ -64,10 +65,14 @@ function requestData() {
         toast.show();
         $('#toastBoard, #liveToast').addClass('bg-success text-light');
         $('#lblCartCount').html(arrRes.count);
+        $('#back-to-top').css('bottom','65px');
+        $('.phone-call').css('bottom','110px');
         setTimeout(function () {
             toast.hide(200);
             $('#toastNotify').html('');
             $('#toastBoard, #liveToast').removeClass('bg-success text-light');
+            $('#back-to-top').css('bottom','5px');
+            $('.phone-call').css('bottom','50px');
         }, 2000);
     });
     request.fail(function (response) {
@@ -223,4 +228,57 @@ if (parseInt($('#quantity').attr('data-quantity')) == 0) {
     $('#outOfStock').addClass('d-inline-block');
 } else {
     $('#outOfStock').addClass('d-none');
+}
+
+function addToFavorite(obj) {
+    var productID = obj.getAttribute('data-id');
+    if ($('#sth').attr('data-id') == 1) {
+        window.location.href = "/site/login?ref=" + window.location.pathname;
+    } else {
+        let request = $.ajax({
+            url: "/api/ajax/add-to-favorite", // send request to
+            method: "POST", // sending method
+            data: {
+                id: productID,
+            },
+        });
+        request.done(function (response) {
+            let arrRes = $.parseJSON(response);
+            let toast = new bootstrap.Toast(document.getElementById('liveToast'));
+            if (arrRes.status === 1) {
+                $('#toastNotify').html('<i class="fas fa-check-circle"></i> ' + arrRes.message);
+                toast.show();
+                $('#toastBoard, #liveToast').addClass('bg-success text-light');
+                $('#toastBoard').css('width','300px');
+                $('#back-to-top').css('bottom','65px');
+                $('.phone-call').css('bottom','110px');
+                setTimeout(function () {
+                    toast.hide(200);
+                    $('#toastNotify').html('');
+                    $('#toastBoard').css('width','260px');
+                    $('#back-to-top').css('bottom','5px');
+                    $('.phone-call').css('bottom','50px');
+                }, 2000);
+            } else {
+                $('#toastNotify').html('<i class="far fa-times-circle"></i> ' + arrRes.message);
+                toast.show();
+                $('#toastBoard, #liveToast').addClass('bg-danger text-light');
+                $('#toastBoard').css('width','300px');
+                $('#back-to-top').css('bottom','65px');
+                $('.phone-call').css('bottom','110px');
+                setTimeout(function () {
+                    toast.hide(200);
+                    $('#toastNotify').html('');
+                    $('#toastBoard').css('width','260px');
+                    $('#back-to-top').css('bottom','65px');
+                    $('.phone-call').css('bottom','110px');
+                }, 2000);
+            }
+        });
+        request.fail(function (jqXHR, textStatus) {
+            // alert("Request failed: " + textStatus); // check errors
+            console.log('jq', jqXHR);
+            console.log('sta', textStatus);
+        });
+    }
 }

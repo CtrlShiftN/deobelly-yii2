@@ -276,9 +276,10 @@ footer .footer-content {
     text-align: center;
     font-size: 24px;
     z-index: 9999;
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .offcanvas-start {
@@ -305,6 +306,7 @@ footer .footer-content {
     border-radius: 50%;
     z-index: 99;
     display: inline-block;
+    transition: 0.3s;
     /*line-height: 65px;*/
 }
 

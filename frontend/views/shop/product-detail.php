@@ -211,7 +211,7 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                     class="fas fa-share-alt"></i> Chia sẻ</a>
     </div>
 </div>
-<div class="w-100 my-2 mx-0 px-3 px-md-5">
+<div class="w-100 my-2 mx-0 px-3 px-md-0">
     <p class="m-0 text-uppercase border-bottom border-dark px-0 fw-bolder fs-4 pt-3 pb-2">
         sản phẩm bán chạy
     </p>
@@ -242,16 +242,13 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                 <div class="product-button row m-0">
                     <a href="javascript:void(0)"
                        data-id="<?= \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>"
-                       class="btn rounded-0 btnAdd col-4 col-md-3"><i class="fas fa-cart-plus"></i></a>
-                    <a href="javascript:void(0)"
-                       data-id="<?= \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>"
-                       class="btn rounded-0 btnBuyNow col-4 col-md-6"><i
+                       class="btn rounded-0 btnBuyNow col-6 col-md-8"><i
                                 class="fas fa-dollar-sign d-md-none"></i><span
                                 class="d-none d-md-inline-block"><i
                                     class="fas fa-dollar-sign"></i> <?= Yii::t('app', 'Buy now') ?></span></a>
-                    <a href="javascript:void(0)"
+                    <button onclick="addToFavorite(this)"
                        data-id="<?= \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>"
-                       class="btn rounded-0 btnAdd col-4 col-md-3"><i class="far fa-heart"></i></a>
+                       class="btn rounded-0 btnAdd col-6 col-md-4"><i class="far fa-heart"></i></button>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -261,7 +258,7 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
         </i>
     </div>
 </div>
-<div class="w-100 my-2 mx-0 px-3 px-md-5">
+<div class="w-100 my-2 mx-0 px-3 px-md-0">
     <p class="m-0 text-uppercase border-bottom border-dark px-0 fw-bolder fs-4 pt-3 pb-2">
         sản phẩm đang sale
     </p>
@@ -292,16 +289,13 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                 <div class="product-button row m-0">
                     <a href="javascript:void(0)"
                        data-id="<?= \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>"
-                       class="btn rounded-0 btnAdd col-4 col-md-3"><i class="fas fa-cart-plus"></i></a>
-                    <a href="javascript:void(0)"
-                       data-id="<?= \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>"
-                       class="btn rounded-0 btnBuyNow col-4 col-md-6"><i
+                       class="btn rounded-0 btnBuyNow col-6 col-md-8"><i
                                 class="fas fa-dollar-sign d-md-none"></i><span
                                 class="d-none d-md-inline-block"><i
                                     class="fas fa-dollar-sign"></i> <?= Yii::t('app', 'Buy now') ?></span></a>
-                    <a href="javascript:void(0)"
+                    <button onclick="addToFavorite(this)"
                        data-id="<?= \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>"
-                       class="btn rounded-0 btnAdd col-4 col-md-3"><i class="far fa-heart"></i></a>
+                       class="btn rounded-0 btnAdd col-6 col-md-4"><i class="far fa-heart"></i></button>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -311,7 +305,7 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
         </i>
     </div>
 </div>
-<div id="toastBoard" class="position-fixed rounded" style="z-index: 9999; bottom: 5px; right:70px; width: 260px">
+<div id="toastBoard" class="position-fixed rounded" style="z-index: 9999; bottom: 5px; right:15px; width: 280px">
     <div id="liveToast" class="toast py-3 px-2 text-light border-2 fw-bold" role="alert"
          aria-live="assertive" aria-atomic="true">
         <span id="toastNotify"></span>
