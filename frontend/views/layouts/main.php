@@ -137,7 +137,7 @@ AppAsset::register($this);
                                         </li>
                                         <li class="site-nav-top">
                                             <div class="shopping-cart d-inline pe-0">
-                                                <a href="<?= Url::toRoute('cart/index') ?>" class="site-nav-top-link">
+                                                <a href="<?= Url::toRoute('cart/') ?>" class="site-nav-top-link">
                                                     <i class="fas fa-shopping-cart"></i>
                                                     <span class='badge badge-warning'
                                                           id='lblCartCount'><?= count(\frontend\models\Cart::getCartByUserId(Yii::$app->user->identity->getId())) ?></span>

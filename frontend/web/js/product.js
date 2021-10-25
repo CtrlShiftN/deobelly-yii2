@@ -124,8 +124,8 @@ function requestData() {
                 }
                 result += '<p class="m-0 product-name">' + arrRes.product[i].name + '</p></div></a></div>' +
                     '<div class="product-button row m-0">' +
-                    '<a href="/shop/cart?detail=' + arrRes.product[i].id + '" data-id="' + arrRes.product[i].id + '" class="btn rounded-0 btnBuyNow col-6 col-md-8"><i class="fas fa-dollar-sign d-md-none"></i><span class="d-none d-md-inline-block"><i class="fas fa-dollar-sign"></i> ' + buyNow + '</span></a>' +
-                    '<div data-id="' + arrRes.product[i].id + '" class="btn rounded-0 btnAdd col-6 col-md-4" onclick="addToFavorite(this)"><i class="far fa-heart"></i></div></div></div>';
+                    '<a href="' + cdnUrl + '/shop/product-detail?detail=' + arrRes.product[i].id + '" class="btn rounded-0 btnBuyNow col-6 col-md-8"><i class="fas fa-dollar-sign d-md-none"></i><span class="d-none d-md-inline-block"><i class="fas fa-dollar-sign"></i> ' + buyNow + '</span></a>' +
+                    '<button data-id="' + arrRes.product[i].id + '" class="btn rounded-0 btnAdd col-6 col-md-4" onclick="addToFavorite(this)"><i class="far fa-heart"></i></button></div></div>';
             }
             $("#result").html(result);
             //show pagination

@@ -6,7 +6,7 @@ use common\components\encrypt\CryptHelper;
 use frontend\models\Color;
 use yii\helpers\Url;
 
-$this->title = Yii::t('app', 'Shop');
+$this->title = Yii::t('app', $detail['name']);
 $this->params['breadcrumbs'][] = $this->title;
 $cdnUrl = Yii::$app->params['frontend'];
 $imgUrl = Yii::$app->params['common'] . "/media";
