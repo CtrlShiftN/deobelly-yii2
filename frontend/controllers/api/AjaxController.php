@@ -142,20 +142,20 @@ class AjaxController extends ActiveController
             'color_id' => $color,
             'size_id' => $size,
         ]);
-        if(!empty($cart)){
+        if (!empty($cart)) {
             $cart->quantity += $amount;
             $cart->total_price = $cart->quantity * $price;
             $cart->updated_at = date('Y-m-d H:i:s');
             if ($cart->save()) {
                 $response = [
                     'status' => SystemConstant::API_SUCCESS_STATUS,
-                    'notify' =>  Yii::t('app', 'Add to cart successfully!'),
+                    'notify' => Yii::t('app', 'Add to cart successfully!'),
                     'count' => count(Cart::getCartByUserId(Yii::$app->user->identity->getId())),
                 ];
             } else {
                 $response = [
                     'status' => SystemConstant::API_UNSUCCESS_STATUS,
-                    'notify' =>  Yii::t('app', 'Can not add this product to cart.'),
+                    'notify' => Yii::t('app', 'Can not add this product to cart.'),
                 ];
             }
         } else {
@@ -171,13 +171,13 @@ class AjaxController extends ActiveController
             if ($cartModel->save()) {
                 $response = [
                     'status' => SystemConstant::API_SUCCESS_STATUS,
-                    'notify' =>  Yii::t('app', 'Add to cart successfully!'),
+                    'notify' => Yii::t('app', 'Add to cart successfully!'),
                     'count' => count(Cart::getCartByUserId(Yii::$app->user->identity->getId())),
                 ];
             } else {
                 $response = [
                     'status' => SystemConstant::API_UNSUCCESS_STATUS,
-                    'notify' =>  Yii::t('app', 'Can not add this product to cart.'),
+                    'notify' => Yii::t('app', 'Can not add this product to cart.'),
                 ];
             }
         }
@@ -219,12 +219,12 @@ class AjaxController extends ActiveController
             'status' => SystemConstant::STATUS_ACTIVE
         ]);
         if (empty($model)) {
-            $favor =  new Favorite();
+            $favor = new Favorite();
             $favor->user_id = Yii::$app->user->identity->getId();
             $favor->product_id = $productID;
             $favor->created_at = date('Y-m-d H:i:s');
             $favor->updated_at = date('Y-m-d H:i:s');
-            if ($favor->save()){
+            if ($favor->save()) {
                 $response = [
                     'status' => SystemConstant::API_SUCCESS_STATUS,
                     'message' => Yii::t('app', 'Add to favorite successfully!'),

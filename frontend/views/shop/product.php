@@ -17,7 +17,7 @@ $paramCate = ParamHelper::getParamValue('type');
 $this->registerJsFile(Url::toRoute('js/product.js'));
 ?>
 <div class="visually-hidden" id="sth" data-id="<?= Yii::$app->user->isGuest ? 1 : 0 ?>"></div>
-<div class="row m-0 p-0 pt-4 pt-md-5">
+<div class="row m-0 p-0 pt-4 pt-md-5 w-100">
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasCategory"
          aria-labelledby="offcanvasCategoryLabel">
         <div class="offcanvas-header border-bottom border-dark">
@@ -60,7 +60,7 @@ $this->registerJsFile(Url::toRoute('js/product.js'));
         </div>
     </div>
 
-    <div class="col-12 d-md-none m-0 p-0 text-center position-relative h-tool border-dark border-bottom">
+    <div class="w-100 d-md-none m-0 p-0 text-center position-relative h-tool border-dark border-bottom">
         <button class="btn bg-transparent border-0 rounded-0 float-start text-uppercase p-0 py-auto m-0 fs-6 fw-bold btn-offcanvas"
                 type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCategory"
                 aria-controls="offcanvasCategory">
@@ -163,7 +163,7 @@ $this->registerJsFile(Url::toRoute('js/product.js'));
         </div>
     </div>
 </div>
-<div class="position-fixed bg-success rounded" style="z-index: 9999; bottom: 5px; right:15px; width: 300px">
+<div id="toastBoard" class="position-fixed bg-success rounded">
     <div id="liveToast" class="toast py-3 px-2 text-light bg-success border-2 fw-bold" role="alert" aria-live="assertive" aria-atomic="true">
         <span id="toastNotify"></span>
     </div>

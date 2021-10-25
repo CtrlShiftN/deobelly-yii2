@@ -278,3 +278,10 @@ h2 {
 .bg-lighter-danger {
     background-color: rgba(255, 0, 0, 0.06) !important;
 }
+
+#toastBoard {
+    z-index: 9999;
+    bottom: 5px;
+    right:15px;
+    width: 260px;
+}
