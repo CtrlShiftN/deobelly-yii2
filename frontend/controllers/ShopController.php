@@ -92,12 +92,18 @@ class ShopController extends Controller
         ]);
     }
 
+    /**
+     * @return string
+     */
     public function actionProductDetail()
     {
         $getParamDetail = ParamHelper::getParamValue('detail');
         if (!empty($getParamDetail)) {
             $detailID = CryptHelper::decryptString($getParamDetail);
             $productDetail = Product::getProductById($detailID);
+            $model = \common\models\Product::findOne($detailID);
+            $model->viewed += 1;
+            $model->save();
             if (!empty($productDetail)) {
                 return $this->render('product-detail', [
                     'detail' => $productDetail,

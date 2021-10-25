@@ -1,3 +1,94 @@
+let id, size, color, amount, price;
+//accept press number into input
+$("#amountInput").keypress(function (e) {
+    if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        return false;
+    }
+});
+$('#btnAddToCart').click(function () {
+    if ($('#sth').attr('data-id') == 1) {
+        window.location.href = "/site/login?ref=" + window.location.pathname + '?detail=' + $('.product-information').attr('data-id');
+    } else {
+        if ($('#quantity').attr('data-quantity') != 0) {
+            if ($('#color').attr('data-color') == '' || $('#size').attr('data-size') == '') {
+                $('#classify').addClass('bg-lighter-danger');
+                $('#notify').html('Vui lòng chọn Phân loại hàng');
+                setTimeout(function () {
+                    $('#classify').removeClass('bg-lighter-danger');
+                    $('#notify').html('');
+                }, 3000);
+            } else {
+                requestData();
+            }
+        }
+    }
+});
+$('#btnBuyNow').click(function (e) {
+    if ($('#sth').attr('data-id') == 1) {
+        window.location.href = "/site/login?ref=" + window.location.pathname;
+    } else {
+        if ($('#color').attr('data-color') == '' || $('#size').attr('data-size') == '') {
+            e.preventDefault();
+            $('#classify').addClass('bg-lighter-danger');
+            $('#notify').html('Vui lòng chọn Phân loại hàng');
+            setTimeout(function () {
+                $('#classify').removeClass('bg-lighter-danger');
+                $('#notify').html('');
+            }, 3000);
+        } else {
+            // TODO: function send request to payment page
+        }
+    }
+});
+
+function requestData() {
+    id = $('.product-information').attr('data-id');
+    color = $('#color').attr('data-color');
+    size = $('#size').attr('data-size');
+    amount = $('#amountInput').val();
+    price = $('.price').attr('data-price');
+    let request = $.ajax({
+        url: "/api/ajax/update-or-create-cart",
+        method: "POST",
+        data: {
+            id: id,
+            color: color,
+            size: size,
+            amount: amount,
+            price: price,
+        },
+    });
+    request.done(function (response) {
+        let arrRes = $.parseJSON(response);
+        let toast = new bootstrap.Toast(document.getElementById('liveToast'));
+        $('#toastNotify').html('<i class="fas fa-check-circle"></i> ' + arrRes.notify);
+        toast.show();
+        $('#toastBoard, #liveToast').addClass('bg-success text-light');
+        $('#lblCartCount').html(arrRes.count);
+        $('#back-to-top').css('bottom', '65px');
+        $('.phone-call').css('bottom', '110px');
+        setTimeout(function () {
+            toast.hide(200);
+            $('#toastNotify').html('');
+            $('#toastBoard, #liveToast').removeClass('bg-success text-light');
+            $('#back-to-top').css('bottom', '5px');
+            $('.phone-call').css('bottom', '50px');
+        }, 2000);
+    });
+    request.fail(function (response) {
+        let arrRes = $.parseJSON(response);
+        let toast = new bootstrap.Toast(document.getElementById('liveToast'));
+        $('#toastNotify').html('<i class="far fa-times-circle"></i> ' + arrRes.notify);
+        toast.show();
+        $('#toastBoard, #liveToast').addClass('bg-danger text-light');
+        setTimeout(function () {
+            toast.hide(200);
+            $('#toastNotify').html('');
+        }, 2000);
+        $('#toastBoard, #liveToast').removeClass('bg-danger text-light');
+    });
+}
+
 function responsive() {
     $('#bestsellers .product-card').removeClass('d-none');
     $('#onSale .product-card').removeClass('d-none');
@@ -42,6 +133,7 @@ $('#amountInput').change(function () {
             $('#notify').html('');
         }, 3000);
     } else {
+        $(this).val(parseInt($(this).val()));
         $('#notify').html('');
     }
 });
@@ -101,19 +193,19 @@ var $easyzoom = $('.easyzoom').easyZoom();
 $('.btn-color').click(function () {
     if (!$(this).hasClass('btn-selected')) {
         $(this).addClass('btn-selected').siblings().removeClass('btn-selected');
-        $('#color').html("<span class='text-dark fw-bold fs-note'>Màu:</span> " + $(this).attr('data-name-color'));
+        $('#color').attr('data-color', $(this).attr('data-color')).html("<span class='text-dark fw-bold fs-note'>Màu:</span> " + $(this).attr('data-name-color'));
     } else {
         $(this).removeClass('btn-selected');
-        $('#color').html('');
+        $('#color').attr('data-color', '').html('');
     }
 });
 $('.btn-size').click(function () {
     if (!$(this).hasClass('btn-selected')) {
         $(this).addClass('btn-selected').siblings().removeClass('btn-selected');
-        $('#size').html("<span class='text-dark fw-bold fs-note'>Size:</span> " + $(this).attr('data-size'));
+        $('#size').attr('data-size', $(this).attr('data-size')).html("<span class='text-dark fw-bold fs-note'>Size:</span> " + $(this).attr('data-name-size'));
     } else {
         $(this).removeClass('btn-selected');
-        $('#size').html('');
+        $('#size').attr('data-size', '').html('');
     }
 });
 let items = document.querySelectorAll('.carouselProduct .carousel-item')
@@ -136,4 +228,57 @@ if (parseInt($('#quantity').attr('data-quantity')) == 0) {
     $('#outOfStock').addClass('d-inline-block');
 } else {
     $('#outOfStock').addClass('d-none');
+}
+
+function addToFavorite(obj) {
+    var productID = obj.getAttribute('data-id');
+    if ($('#sth').attr('data-id') == 1) {
+        window.location.href = "/site/login?ref=" + window.location.pathname;
+    } else {
+        let request = $.ajax({
+            url: "/api/ajax/add-to-favorite", // send request to
+            method: "POST", // sending method
+            data: {
+                id: productID,
+            },
+        });
+        request.done(function (response) {
+            let arrRes = $.parseJSON(response);
+            let toast = new bootstrap.Toast(document.getElementById('liveToast'));
+            if (arrRes.status === 1) {
+                $('#toastNotify').html('<i class="fas fa-check-circle"></i> ' + arrRes.message);
+                toast.show();
+                $('#toastBoard, #liveToast').addClass('bg-success text-light');
+                $('#toastBoard').css('width', '300px');
+                $('#back-to-top').css('bottom', '65px');
+                $('.phone-call').css('bottom', '110px');
+                setTimeout(function () {
+                    toast.hide(200);
+                    $('#toastNotify').html('');
+                    $('#toastBoard').css('width', '260px');
+                    $('#back-to-top').css('bottom', '5px');
+                    $('.phone-call').css('bottom', '50px');
+                }, 2000);
+            } else {
+                $('#toastNotify').html('<i class="far fa-times-circle"></i> ' + arrRes.message);
+                toast.show();
+                $('#toastBoard, #liveToast').addClass('bg-danger text-light');
+                $('#toastBoard').css('width', '300px');
+                $('#back-to-top').css('bottom', '65px');
+                $('.phone-call').css('bottom', '110px');
+                setTimeout(function () {
+                    toast.hide(200);
+                    $('#toastNotify').html('');
+                    $('#toastBoard').css('width', '260px');
+                    $('#back-to-top').css('bottom', '65px');
+                    $('.phone-call').css('bottom', '110px');
+                }, 2000);
+            }
+        });
+        request.fail(function (jqXHR, textStatus) {
+            // alert("Request failed: " + textStatus); // check errors
+            console.log('jq', jqXHR);
+            console.log('sta', textStatus);
+        });
+    }
 }
