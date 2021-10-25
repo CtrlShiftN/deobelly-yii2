@@ -356,6 +356,7 @@ class SampleData
             'image' => 'product/quan-tay-ke-kieu-dang-han-quoc.jpg',
             'images' => '',
             'trademark_id' => 3,
+            'hide' => 1,
             'admin_id' => 1,
         ],
         [
@@ -385,6 +386,7 @@ class SampleData
             'image' => 'product/ao-vest-nam-the-shirt-studio-f4.jpg',
             'images' => '',
             'trademark_id' => 3,
+            'hide' => 1,
             'admin_id' => 1,
         ],
     ];
@@ -1327,6 +1329,20 @@ class SampleData
             'color_id' => 1,
             'size_id' => 6,
             'quantity' => 3,
+        ],
+        [
+            'user_id' => 4,
+            'product_id' => '3',
+            'color_id' => 4,
+            'size_id' => 3,
+            'quantity' => 4,
+        ],
+        [
+            'user_id' => 4,
+            'product_id' => '5',
+            'color_id' => 2,
+            'size_id' => 5,
+            'quantity' => 2,
         ],
     ];
 

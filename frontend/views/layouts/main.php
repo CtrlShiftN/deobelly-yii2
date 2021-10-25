@@ -112,7 +112,7 @@ AppAsset::register($this);
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownUserLogin">
                                                     <a class="dropdown-item"
-                                                       href="<?= Url::toRoute('site/logout') ?>"><?= Yii::t('app', 'Log out') ?></a>
+                                                       href="<?= Url::toRoute('site/logout?ref=' . Yii::$app->request->url) ?>"><?= Yii::t('app', 'Log out') ?></a>
                                                 </div>
                                             </div>
                                         </li>
@@ -120,8 +120,9 @@ AppAsset::register($this);
                                         <li class="site-nav-top">
                                             <div class="vr mx-2"></div>
                                         </li>
-                                        <li class="site-nav-top"><a href="<?= Url::toRoute('site/login') ?>"
-                                                                    class="site-nav-top-link"><span><?= Yii::t('app', 'Login') ?></span></a>
+                                        <li class="site-nav-top"><a
+                                                    href="<?= Url::toRoute('site/login?ref=' . Yii::$app->request->url) ?>"
+                                                    class="site-nav-top-link"><span><?= Yii::t('app', 'Login') ?></span></a>
                                         </li>
                                         <li class="site-nav-top">
                                             <div class="vr mx-2"></div>
@@ -138,7 +139,8 @@ AppAsset::register($this);
                                             <div class="shopping-cart d-inline pe-0">
                                                 <a href="<?= Url::toRoute('cart/') ?>" class="site-nav-top-link">
                                                     <i class="fas fa-shopping-cart"></i>
-                                                    <span class='badge badge-warning' id='lblCartCount'> 0 </span>
+                                                    <span class='badge badge-warning'
+                                                          id='lblCartCount'><?= count(\frontend\models\Cart::getCartByUserId(Yii::$app->user->identity->getId())) ?></span>
                                                 </a>
                                             </div>
                                         </li>

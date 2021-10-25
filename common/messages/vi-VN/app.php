@@ -289,6 +289,7 @@ return [
     'Size List' => 'Danh Sách Kích Cỡ',
     'This name has already been used.' => 'Tên này đã được sử dụng.',
     'This title has already been used.' => 'Tiêu đề này đã được sử dụng.',
+    'Cart' => 'Giỏ Hàng',
     'Warehouse' => 'Nhà Kho',
     'Orders' => 'Đơn Hàng',
     'Customer Name' => 'Tên Khách Hàng',
@@ -328,6 +329,7 @@ return [
     'Tailor-made' => 'May đo',
     'Collections' => 'Bộ sưu tập',
     'Weekly Collections' => 'Bộ Sưu Tập Tuần',
-    'Payment' => 'Thanh toán',
-    'Specific Address' => 'Địa Chỉ Cụ Thể',
+    'Add to cart successfully!' => 'Thêm vào giỏ hàng thành công!',
+    'Add to favorite successfully!' => 'Thêm vào mục yêu thích thành công!',
+    'Can not add this product to cart.' => 'Không thể thêm sản phẩm vào giỏ hàng.',
 ];
