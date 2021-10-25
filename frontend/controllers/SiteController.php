@@ -102,8 +102,8 @@ class SiteController extends Controller
     public function actionLuxury()
     {
         $type = ArrayHelper::index(ProductType::getAllProductType(), 'slug');
-        $slider = Slider::getSliderFromSite('index');
-        return $this->render('index', [
+        $slider = Slider::getSliderFromSite('our-stories');
+        return $this->render('luxury', [
             'type' => $type,
             'slider' => $slider
         ]);

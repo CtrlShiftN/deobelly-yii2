@@ -332,4 +332,6 @@ return [
     'Add to cart successfully!' => 'Thêm vào giỏ hàng thành công!',
     'Add to favorite successfully!' => 'Thêm vào mục yêu thích thành công!',
     'Can not add this product to cart.' => 'Không thể thêm sản phẩm vào giỏ hàng.',
+    'See more' => 'Xem thêm',
+    'Tailor Made' => 'Thiết Kế Riêng',
 ];
