@@ -42,12 +42,26 @@ class OrderForm extends Order
     public function rules()
     {
         return [
-            [['user_id', 'product_id', 'quantity', 'province_id', 'district_id', 'village_id', 'specific_address', 'address', 'tel', 'admin_id'], 'required'],
+            [['user_id', 'product_id', 'quantity', 'province_id', 'district_id', 'village_id', 'specific_address', 'address', 'admin_id'], 'required'],
             [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'admin_id', 'status'], 'integer'],
             [['address', 'notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['specific_address', 'tel'], 'string', 'max' => 255],
+            ['tel', 'required', 'message' => Yii::t('app', 'Phone number can not be blank.')],
+            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app', 'Includes 10 digits starting with 0 or 84.')],
         ];
+    }
+
+    /**
+     * @param $attribute
+     * @param $params
+     * @param $validator
+     */
+    public function validateTel($attribute, $params, $validator)
+    {
+        if (!preg_match('/^(84|0)+([0-9]{9})$/', $this->tel)) {
+            $this->addError($attribute, Yii::t('app', 'Invalid phone number.'));
+        }
     }
 
     /**
@@ -58,18 +72,18 @@ class OrderForm extends Order
         return [
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User ID'),
-            'product_id' => Yii::t('app', 'Product ID'),
-            'color_id' => Yii::t('app', 'Color ID'),
-            'size_id' => Yii::t('app', 'Size ID'),
+            'product_id' => Yii::t('app', 'Product'),
+            'color_id' => Yii::t('app', 'Color'),
+            'size_id' => Yii::t('app', 'Size'),
             'quantity' => Yii::t('app', 'Quantity'),
-            'province_id' => Yii::t('app', 'Province ID'),
-            'district_id' => Yii::t('app', 'District ID'),
-            'village_id' => Yii::t('app', 'Village ID'),
-            'specific_address' => Yii::t('app', 'Specific Address'),
+            'province_id' => Yii::t('app', 'Province'),
+            'district_id' => Yii::t('app', 'District'),
+            'village_id' => Yii::t('app', 'Village'),
+            'specific_address' => Yii::t('app', 'Address'),
             'address' => Yii::t('app', 'Address'),
             'notes' => Yii::t('app', 'Notes'),
             'tel' => Yii::t('app', 'Tel'),
-            'admin_id' => Yii::t('app', 'Admin ID'),
+            'admin_id' => Yii::t('app', 'Admin'),
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),

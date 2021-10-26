@@ -4,7 +4,9 @@ namespace frontend\controllers;
 
 use backend\models\GeoLocation;
 use common\components\encrypt\CryptHelper;
+use frontend\models\Cart;
 use frontend\models\OrderForm;
+use http\Url;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -38,7 +40,7 @@ class CheckoutController extends \yii\web\Controller
 
     public function beforeAction($action)
     {
-        $this->layout = 'blank';
+        $this->layout = 'main';
         if (!parent::beforeAction($action)) {
             return false;
         }
@@ -58,16 +60,22 @@ class CheckoutController extends \yii\web\Controller
     }
 
     /**
-     * @return string
+     * @return string|\yii\web\Response
      */
     public function actionIndex()
     {
         $model = new OrderForm();
         $provinces = ArrayHelper::map(GeoLocation::getAllProvince(), 'id', 'name');
-        return $this->render('index',[
-            'model' => $model,
-            'provinces' => $provinces,
-        ]);
+        $cart = Cart::getCartByUserId(Yii::$app->user->identity->getId());
+        if(count($cart) < 1) {
+            return $this->redirect(\yii\helpers\Url::toRoute('cart/index'));
+        } else {
+            return $this->render('index',[
+                'model' => $model,
+                'provinces' => $provinces,
+                'cart' => $cart
+            ]);
+        }
     }
 
     /**

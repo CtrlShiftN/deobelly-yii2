@@ -116,7 +116,7 @@ $this->registerJsFile(Url::toRoute('js/cart.js'));
 
             </div>
             <div class="col-12 text-uppercase p-0">
-                <a href="javascript:void(0)" class="btn bg-black text-white fw-light">Thanh toán</a>
+                <a href="<?= Url::toRoute('checkout/') ?>" class="btn bg-black text-white fw-light">Thanh toán</a>
             </div>
         </div>
     </div>

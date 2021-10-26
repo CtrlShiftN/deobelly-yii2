@@ -35,8 +35,6 @@ $('#btnBuyNow').click(function (e) {
                 $('#classify').removeClass('bg-lighter-danger');
                 $('#notify').html('');
             }, 3000);
-        } else {
-            // TODO: function send request to payment page
         }
     }
 });
@@ -281,4 +279,15 @@ function addToFavorite(obj) {
             console.log('sta', textStatus);
         });
     }
+}
+
+function requestPayment()
+{
+    $.ajax({
+        url: "/api/ajax/get-and-send-product-to-payment", // send request to
+        method: "POST", // sending method
+        data: {
+            id: 1,
+        },
+    });
 }

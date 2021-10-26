@@ -160,4 +160,13 @@ class Product extends \common\models\Product
     {
         return Product::find()->select('selling_price')->where(['status' => SystemConstant::STATUS_ACTIVE, 'id' => $id])->asArray()->scalar();
     }
+
+    /**
+     * @param $id
+     * @return false|int|string|null
+     */
+    public static function getQuantityProductById($id)
+    {
+        return Product::find()->select('quantity')->where(['status' => SystemConstant::STATUS_ACTIVE, 'id' => $id])->asArray()->scalar();
+    }
 }

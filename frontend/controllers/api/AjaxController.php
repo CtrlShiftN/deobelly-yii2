@@ -132,6 +132,7 @@ class AjaxController extends ActiveController
     {
         $user_id = Yii::$app->user->id;
         $id = intval(CryptHelper::decryptString(ParamHelper::getParamValue('id')));
+        $productQuantity = Product::getQuantityProductById($id);
         $color = intval(CryptHelper::decryptString(ParamHelper::getParamValue('color')));
         $size = intval(CryptHelper::decryptString(ParamHelper::getParamValue('size')));
         $amount = intval(ParamHelper::getParamValue('amount'));
@@ -143,7 +144,11 @@ class AjaxController extends ActiveController
             'size_id' => $size,
         ]);
         if (!empty($cart)) {
-            $cart->quantity += $amount;
+            if(($productQuantity - $cart->quantity) >= $amount) {
+                $cart->quantity += $amount;
+            } else {
+                $cart->quantity = $productQuantity;
+            }
             $cart->total_price = $cart->quantity * $price;
             $cart->updated_at = date('Y-m-d H:i:s');
             if ($cart->save()) {
@@ -210,6 +215,9 @@ class AjaxController extends ActiveController
         exit;
     }
 
+    /**
+     *
+     */
     public function actionAddToFavorite()
     {
         $productID = intval(CryptHelper::decryptString(ParamHelper::getParamValue('id')));
@@ -243,5 +251,9 @@ class AjaxController extends ActiveController
         }
         echo json_encode($response);
         exit;
+    }
+
+    public function actionGetAndSendProductToPayment() {
+
     }
 }
