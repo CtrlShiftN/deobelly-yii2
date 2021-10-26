@@ -84,7 +84,7 @@ $this->registerCssFile(Url::toRoute("/css/luxury.css"));
         <div class="container px-0">
             <div class="row">
                 <?php foreach ($featuredProducts as $key => $products): ?>
-                    <div class="col-12 col-sm-6 col-md-4 text-center pb-3">
+                    <div class="col-12 col-sm-6 col-md-4 text-center pb-3 px-4">
                         <div class="card box-shadow">
                             <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($products['id'])]) ?>"
                                target="_blank" class="text-decoration-none">
@@ -159,7 +159,7 @@ $this->registerCssFile(Url::toRoute("/css/luxury.css"));
         <div class="container px-0">
             <div class="row">
                 <?php foreach ($newProducts as $key => $products): ?>
-                    <div class="col-12 col-sm-6 col-md-4 text-center pb-3">
+                    <div class="col-12 col-sm-6 col-md-4 text-center pb-3 px-4">
                         <div class="card box-shadow">
                             <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($products['id'])]) ?>"
                                target="_blank" class="text-decoration-none">
@@ -208,7 +208,7 @@ $this->registerCssFile(Url::toRoute("/css/luxury.css"));
         <div class="container px-0">
             <div class="row">
                 <?php foreach ($latestNews as $key => $value) : ?>
-                    <div class="col-12 col-sm-6 col-md-4 text-center pb-3">
+                    <div class="col-12 col-sm-6 col-lg-4 text-center pb-3 px-4 ">
                         <div class="card box-shadow h-100">
                             <a href="<?= Url::toRoute(['post/detail', 'id' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                                target="_blank" class="text-decoration-none">
