@@ -337,4 +337,9 @@ return [
     'Featured Products' => 'Sản Phẩm Nổi Bật',
     'New-arrival Products' => 'Sản Phẩm Mới',
     'Latest News' => 'Tin Tức Mới Nhất',
+    'Make an appointment' => 'Đặt lịch hẹn',
+    'Competitive prices' => 'Giá cạnh tranh',
+    'Quality guaranteed' => 'Chất lượng tốt',
+    'Home services' => 'Dịch vụ tại gia',
+    'Quick turnaround' => 'Nhanh chóng'
 ];

@@ -1,0 +1,17 @@
+.tailor-made{
+    font-family: "SVN Veneer";
+}
+.full-width {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 49%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+.page-head{
+    background: #e0e0e2;
+}
+.text-justify{
+    text-align: justify;
+}
