@@ -101,11 +101,11 @@ class SiteController extends Controller
      */
     public function actionLuxury()
     {
-        $type = ArrayHelper::index(ProductType::getAllProductType(), 'slug');
+        $featuredProduct = Product::getFeaturedProduct();
         $slider = Slider::getSliderFromSite('our-stories');
         return $this->render('luxury', [
-            'type' => $type,
-            'slider' => $slider
+            'slider' => $slider,
+            'featuredProducts' => $featuredProduct
         ]);
     }
 

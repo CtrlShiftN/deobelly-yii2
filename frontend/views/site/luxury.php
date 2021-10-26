@@ -75,7 +75,50 @@ $this->registerCssFile(Url::toRoute("/css/luxury.css"));
             </div>
         </div>
     </div>
-    <section class="home-feature-product">
+    <section class="home-feature-product pb-5 pt-0 pt-md-5">
+        <div class="section-heading text-center">
+            <h2 class="section-title">
+                <span class="text-uppercase"><?= Yii::t('app', 'Featured Products') ?></span>
+            </h2>
+        </div>
+        <div class="container">
+            <?php foreach ($featuredProducts as $key => $products): ?>
+            <div class="col-6 col-sm-4 text-center">
+                <div class="product-item">
+                    <div class="product-img ">
+                        <div class="product-sale"><span>Sale</span></div>
+                        <a href="<?= Url::toRoute(['shop/product-detail','detail'=>\common\components\encrypt\CryptHelper::encryptString($products['id'])]) ?>" title="<?= $products['name'] ?>">
+                            <img src="<?= $imgUrl. ?>">
+                        </a>
 
+                        <button type="button" class="btnQuickView quick-view d-none d-lg-block" data-handle="/products/ao-co-slogan" data-tooltip="Xem nhanh"><span>Xem nhanh</span></button>
+
+                    </div>
+                    <div class="product-detail">
+                        <div class="box-pro-detail">
+                            <h3 class="pro-name">
+                                <a href="/products/ao-co-slogan" title="Áo có slogan">
+                                    Áo có slogan
+                                </a>
+                            </h3>
+                            <div class="box-pro-prices">
+                                <p class="pro-price highlight">
+                                    <span class="current-price">360,000₫</span>
+
+                                    <span class="pro-price-del">
+						<del class="compare-price">
+							460,000₫
+						</del>
+					</span>
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
     </section>
 </div>
