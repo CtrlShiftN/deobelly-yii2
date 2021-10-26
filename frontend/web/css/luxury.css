@@ -118,9 +118,11 @@ body {
 .img-overlay:hover {
     background: rgba(0, 0, 0, .5);
 }
-.section-heading{
+
+.section-heading {
     margin-bottom: 50px;
 }
+
 .section-heading .section-title {
     font-family: "SVN Veneer", sans-serif;
     font-weight: bolder;
@@ -132,7 +134,8 @@ body {
     padding-bottom: 15px;
     font-size: 24px;
 }
-.section-heading .section-title:after{
+
+.section-heading .section-title:after {
     content: '';
     position: absolute;
     left: 0;
@@ -154,4 +157,110 @@ body {
     .section-heading .section-title {
         font-size: calc(2.74914vw + 2.91409px);
     }
+}
+
+.box-shadow:hover {
+    box-shadow: 0 0.5rem 1rem #5a6268;
+}
+
+.pro-price-del {
+    color: #939393;
+}
+
+.img-overlay__see-more {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0);
+    justify-content: center;
+    align-items: center;
+    transition: 1s;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: white;
+    font-weight: bold;
+    display: none;
+}
+
+.image-holder:hover .img-overlay__see-more {
+    background: rgba(0, 0, 0, .5);
+    display: flex;
+}
+/* View all feature product btn */
+.btnx {
+    border-radius: 4px;
+    border: 2px solid #000000;
+    color: #000000;
+    display: inline-block;
+    margin: 0 0.25em;
+    overflow: hidden;
+    padding: 10px 57px 10px 16px;
+    position: relative;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.view-all-product a {
+    transition: opacity 150ms linear, color 150ms linear, background 150ms linear;
+}
+.btnx .btn-content {
+    font-size: 1em;
+    line-height: 1.2;
+    padding: 0 26px;
+    position: relative;
+    right: 0;
+    transition: right 300ms ease;
+    display: block;
+    text-align: left;
+}
+.btnx .icon {
+    border-left: 1px solid #000000;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 50%;
+    transition: all 300ms ease;
+    transform: translateY(-50%);
+    width: 58px;
+    height: 70%;
+    color: #000000;
+}
+.btnx .icon i {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    font-size: 22px;
+}
+.btnx:hover {
+    background: #000000;
+}
+.view-all-product a:hover, .view-all-product a:focus {
+    color: #86590d;
+    text-decoration: none;
+    outline: none;
+}
+.btnx:hover .btn-content {
+    right: 100%;
+}
+.btnx:hover .icon {
+    border-left: 0;
+    font-size: 14px;
+    width: 100%;
+}
+.btnx:hover .icon i {
+    color: #fff;
+}
+/* End view all feature product btn */
+.article-content {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-align: justify;
+    text-justify: inter-word;
+}
+.text-justify{
+    text-align: justify !important;
 }

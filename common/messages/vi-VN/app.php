@@ -335,4 +335,6 @@ return [
     'See more' => 'Xem thêm',
     'Tailor Made' => 'Thiết Kế Riêng',
     'Featured Products' => 'Sản Phẩm Nổi Bật',
+    'New-arrival Products' => 'Sản Phẩm Mới',
+    'Latest News' => 'Tin Tức Mới Nhất',
 ];

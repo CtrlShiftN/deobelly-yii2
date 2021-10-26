@@ -81,44 +81,156 @@ $this->registerCssFile(Url::toRoute("/css/luxury.css"));
                 <span class="text-uppercase"><?= Yii::t('app', 'Featured Products') ?></span>
             </h2>
         </div>
-        <div class="container">
-            <?php foreach ($featuredProducts as $key => $products): ?>
-            <div class="col-6 col-sm-4 text-center">
-                <div class="product-item">
-                    <div class="product-img ">
-                        <div class="product-sale"><span>Sale</span></div>
-                        <a href="<?= Url::toRoute(['shop/product-detail','detail'=>\common\components\encrypt\CryptHelper::encryptString($products['id'])]) ?>" title="<?= $products['name'] ?>">
-                            <img src="<?= $imgUrl. ?>">
-                        </a>
-
-                        <button type="button" class="btnQuickView quick-view d-none d-lg-block" data-handle="/products/ao-co-slogan" data-tooltip="Xem nhanh"><span>Xem nhanh</span></button>
-
-                    </div>
-                    <div class="product-detail">
-                        <div class="box-pro-detail">
-                            <h3 class="pro-name">
-                                <a href="/products/ao-co-slogan" title="Áo có slogan">
-                                    Áo có slogan
-                                </a>
-                            </h3>
-                            <div class="box-pro-prices">
-                                <p class="pro-price highlight">
-                                    <span class="current-price">360,000₫</span>
-
-                                    <span class="pro-price-del">
-						<del class="compare-price">
-							460,000₫
-						</del>
-					</span>
-
-                                </p>
-                            </div>
+        <div class="container px-0">
+            <div class="row">
+                <?php foreach ($featuredProducts as $key => $products): ?>
+                    <div class="col-12 col-sm-6 col-md-4 text-center pb-3">
+                        <div class="card box-shadow">
+                            <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($products['id'])]) ?>"
+                               target="_blank" class="text-decoration-none">
+                                <div class="image-holder">
+                                    <img src="<?= $imgUrl . '/' . $products['image'] ?>" class="card-img-top"
+                                         title="<?= $products['name'] ?>" alt="<?= $products['name'] ?>">
+                                    <div class="img-overlay__see-more">
+                                        <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($products['id'])]) ?>"
+                                           target="_blank"
+                                           class="text-decoration-none text-white text-uppercase"><?= Yii::t('app', 'See more') ?></a>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="feature-product__detail">
+                                        <p><?= $products['name'] ?></p>
+                                        <p class="pro-price highlight fw-bolder text-black">
+                                            <span class="current-price fs-5"><?= Yii::$app->formatter->asCurrency($products['selling_price']) ?></span>
+                                            <?php if ($products['selling_price'] < $products['regular_price']) : ?>
+                                                <span class="pro-price-del"><del
+                                                            class="compare-price"><?= Yii::$app->formatter->asCurrency($products['regular_price']) ?></del></span>
+                                            <?php endif; ?>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
-
-                </div>
+                <?php endforeach; ?>
             </div>
-            <?php endforeach; ?>
+        </div>
+        <div class="view-all-product text-center mt-3">
+            <a title="Xem tất cả" href="<?= Url::toRoute('shop/') ?>" class="btnx">
+                <span class="btn-content"><?= Yii::t('app', "See more") ?></span>
+                <span class="icon"><i class="fa fa-arrow-right"></i></span>
+            </a>
+        </div>
+    </section>
+    <div class="row">
+        <div class="col-12 col-md-6 px-5 px-md-2 pb-3 pb-md-0">
+            <div class="image-holder h-100">
+                <a class="text-decoration-none " href="<?= Url::toRoute('mix-and-match/') ?>" target="_blank"
+                   title="<?= Yii::t('app', 'Collections') ?>">
+                    <img src="<?= $imgUrl . '/collections.png' ?>" class="img-fluid h-100 object-fit-cover">
+                    <div class="type-tailor-made__title">
+                        <p class="text-uppercase fs-4 fw-bolder"><?= Yii::t('app', 'Collections') ?></p>
+                        <p class="text-uppercase see-more"><?= Yii::t('app', 'See more') ?></p>
+                    </div>
+                    <div class="img-overlay"></div>
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 px-5 px-md-2 pb-3 pb-md-0">
+            <div class="image-holder h-100">
+                <a class="text-decoration-none " href="<?= Url::toRoute('tailor-made/') ?>" target="_blank"
+                   title="<?= Yii::t('app', 'Tailor Made') ?>">
+                    <img src="<?= $imgUrl . '/tailor-made.jpg' ?>" class="img-fluid h-100 object-fit-cover">
+                    <div class="type-tailor-made__title">
+                        <p class="text-uppercase fs-4 fw-bolder"><?= Yii::t('app', 'Tailor Made') ?></p>
+                        <p class="text-uppercase see-more"><?= Yii::t('app', 'See more') ?></p>
+                    </div>
+                    <div class="img-overlay"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <section class="home-new-product pb-5 pt-0 pt-md-5">
+        <div class="section-heading text-center">
+            <h2 class="section-title">
+                <span class="text-uppercase"><?= Yii::t('app', 'New-arrival Products') ?></span>
+            </h2>
+        </div>
+        <div class="container px-0">
+            <div class="row">
+                <?php foreach ($newProducts as $key => $products): ?>
+                    <div class="col-12 col-sm-6 col-md-4 text-center pb-3">
+                        <div class="card box-shadow">
+                            <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($products['id'])]) ?>"
+                               target="_blank" class="text-decoration-none">
+                                <div class="image-holder">
+                                    <img src="<?= $imgUrl . '/' . $products['image'] ?>" class="card-img-top"
+                                         title="<?= $products['name'] ?>" alt="<?= $products['name'] ?>">
+                                    <div class="img-overlay__see-more">
+                                        <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($products['id'])]) ?>"
+                                           target="_blank"
+                                           class="text-decoration-none text-white text-uppercase"><?= Yii::t('app', 'See more') ?></a>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="feature-product__detail">
+                                        <p><?= $products['name'] ?></p>
+                                        <p class="pro-price highlight fw-bolder text-black">
+                                            <span class="current-price fs-5"><?= Yii::$app->formatter->asCurrency($products['selling_price']) ?></span>
+                                            <?php if ($products['selling_price'] < $products['regular_price']) : ?>
+                                                <span class="pro-price-del"><del
+                                                            class="compare-price"><?= Yii::$app->formatter->asCurrency($products['regular_price']) ?></del></span>
+                                            <?php endif; ?>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <div class="view-all-product text-center mt-3">
+            <a title="Xem tất cả"
+               href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString(\common\components\SystemConstant::PRODUCT_TYPE_NEW)]) ?>"
+               class="btnx">
+                <span class="btn-content"><?= Yii::t('app', "See more") ?></span>
+                <span class="icon"><i class="fa fa-arrow-right"></i></span>
+            </a>
+        </div>
+    </section>
+    <section class="home-latest-news pb-5">
+        <div class="section-heading text-center">
+            <h2 class="section-title">
+                <span class="text-uppercase"><?= Yii::t('app', 'Latest News') ?></span>
+            </h2>
+        </div>
+        <div class="container px-0">
+            <div class="row">
+                <?php foreach ($latestNews as $key => $value) : ?>
+                    <div class="col-12 col-sm-6 col-md-4 text-center pb-3">
+                        <div class="card box-shadow h-100">
+                            <a href="<?= Url::toRoute(['post/detail', 'id' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                               target="_blank" class="text-decoration-none">
+                                <img src="<?= $imgUrl . '/' . $value['avatar'] ?>" class="card-img-top img-fluid"
+                                     title="<?= $value['title'] ?>" alt="<?= $value['title'] ?>">
+                                <div class="card-body">
+                                    <h4 class="text-black"><?= $value['title'] ?></h4>
+                                    <div class="article-content text-black text-justify">
+                                        <?= $value['content'] ?>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <div class="view-all-product text-center mt-3">
+            <a title="Xem tất cả" href="<?= Url::toRoute('post/') ?>" class="btnx">
+                <span class="btn-content"><?= Yii::t('app', "See more") ?></span>
+                <span class="icon"><i class="fa fa-arrow-right"></i></span>
+            </a>
         </div>
     </section>
 </div>

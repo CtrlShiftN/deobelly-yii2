@@ -172,4 +172,15 @@ class Product extends \common\models\Product
         ])->orderBy('created_at DESC')
             ->limit(6)->asArray()->all();
     }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getLatestProduct()
+    {
+        return Product::find()->where([
+            'status' => SystemConstant::STATUS_ACTIVE
+        ])->orderBy('created_at DESC')
+            ->limit(6)->asArray()->all();
+    }
 }

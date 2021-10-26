@@ -95,17 +95,21 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays homepage.
+     * Displays luxury homepage.
      *
      * @return mixed
      */
     public function actionLuxury()
     {
         $featuredProduct = Product::getFeaturedProduct();
+        $newProduct = Product::getLatestProduct();
+        $latestNews = Post::getLatestPosts(3);
         $slider = Slider::getSliderFromSite('our-stories');
         return $this->render('luxury', [
             'slider' => $slider,
-            'featuredProducts' => $featuredProduct
+            'featuredProducts' => $featuredProduct,
+            'newProducts' => $newProduct,
+            'latestNews' => $latestNews
         ]);
     }
 
