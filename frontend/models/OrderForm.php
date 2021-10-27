@@ -13,11 +13,11 @@ use Yii;
  * @property int|null $color_id
  * @property int|null $size_id
  * @property int $quantity
- * @property int $province_id
- * @property int $district_id
- * @property int $village_id
- * @property string $specific_address
- * @property string $address
+ * @property int|null $province_id
+ * @property int|null $district_id
+ * @property int|null $village_id
+ * @property string|null $specific_address
+ * @property string|null $address
  * @property string|null $notes
  * @property string $tel
  * @property int $admin_id
@@ -42,7 +42,7 @@ class OrderForm extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'product_id', 'quantity', 'province_id', 'district_id', 'village_id', 'specific_address', 'address', 'tel', 'admin_id', 'delivery'], 'required'],
+            [['user_id', 'product_id', 'quantity', 'tel', 'admin_id', 'delivery'], 'required'],
             [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'admin_id', 'delivery', 'status'], 'integer'],
             [['address', 'notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
