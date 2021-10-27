@@ -13,120 +13,9 @@ $this->title = Yii::t('app', 'Payment');
 $this->params['breadcrumbs'][] = $this->title;
 $cdnUrl = Yii::$app->params['frontend'];
 $imgUrl = Yii::$app->params['common'] . "/media";
+$this->registerCssFile(Url::toRoute("css/check-out.css"));
+$this->registerJsFile(Url::toRoute('js/check-out.js'));
 ?>
-<style>
-    .product-quantity {
-        height: 25px;
-        max-height: 25px;
-        width: 25px;
-        max-width: 25px;
-        border-radius: 50%;
-        position: absolute;
-        background-color: #ec0000;
-        color: #fff;
-        text-align: center;
-        top: 0;
-        right: -11px;
-        z-index: 2;
-        font-size: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .product-name {
-        display: block;
-        display: -webkit-box;
-        margin: 0 !important;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        -webkit-line-clamp: 2;
-    }
-
-    .bg-lighter-gray {
-        background-color: rgba(222, 222, 222, 0.26) !important;
-    }
-
-    .bg-red {
-        background-color: #e80000 !important;
-    }
-
-    .product-in-cart {
-        height: 350px;
-        overflow: scroll;
-        padding: 0 !important;
-    }
-
-    @media (max-width: 576px) {
-        .fs-xsm__12px {
-            font-size: 12px !important;
-        }
-    }
-
-    .container-label {
-        display: block;
-        position: relative;
-        padding-left: 27px;
-        cursor: pointer;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-
-    /* Hide the browser's default radio button */
-    .container-label input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-    }
-
-    /* Create a custom radio button */
-    .checkmark {
-        position: absolute;
-        top: 2px;
-        left: 0;
-        height: 20px;
-        width: 20px;
-        background-color: #cecece;
-        border-radius: 50%;
-    }
-
-    /* When the radio button is checked, add a blue background */
-    .container-label input:checked ~ .checkmark {
-        background-color: #e80000;
-    }
-
-    /* Create the indicator (the dot/circle - hidden when not checked) */
-    .checkmark:after {
-        content: "";
-        position: absolute;
-        display: none;
-    }
-
-    /* Show the indicator (dot/circle) when checked */
-    .container-label input:checked ~ .checkmark:after {
-        display: block;
-    }
-
-    /* Style the indicator (dot/circle) */
-    .container-label .checkmark:after {
-        top: 7px;
-        left: 7px;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: white;
-    }
-    a:focus, button:focus {
-        outline: none !important;
-        box-shadow: none !important;
-    }
-    .bg-lighter-danger {
-        background-color: rgba(255, 0, 0, 0.06) !important;
-    }
-</style>
 <div class="w-100 row mx-0 px-1 pt-3 pt-md-5 pt-lg-5 px-sm-0 d-flex">
     <div class="col-12 col-lg-6 order-1 order-lg-0 mx-0 d-flex p-0 mt-4 mt-lg-0">
         <?php $form = ActiveForm::begin(['id' => 'contact-form', 'options' => ['class' => 'w-100 m-0 p-0']]); ?>
@@ -134,6 +23,8 @@ $imgUrl = Yii::$app->params['common'] . "/media";
             <h3 class="w-100 pb-1 border-bottom px-0"><?= Yii::t('app', 'Billing information') ?>:</h3>
 
             <div class="w-100 row py-3 px-1 m-0" id="consignee-contact">
+                <small id="notify-consignee-information" class="d-none"><i class="text-danger">*Bạn phải điền đủ
+                        thông tin</i></small>
                 <div class="col-12 col-sm-6 px-1">
                     <?= $form->field($model, 'name')->label(Yii::t('app', "Consignee's name")) ?>
                 </div>
@@ -150,7 +41,8 @@ $imgUrl = Yii::$app->params['common'] . "/media";
                     <p class="accordion-header px-2 py-3 bg-lighter-gray" id="flush-heading-home-delivery">
                         <label class="container-label w-100 m-0" for='sm-home-delivery'>
                             <?= Yii::t('app', 'Home delivery') ?>
-                            <input type='radio' name="payment-methods" id='sm-home-delivery' checked="checked">
+                            <input type='radio' name="payment-methods" id='sm-home-delivery' checked="checked"
+                                   value="0">
                             <span class="checkmark"></span>
                             <button class="accordion-button" hidden type="button" data-bs-toggle="collapse"
                                     data-bs-target="#flush-home-delivery" aria-expanded="true"
@@ -160,6 +52,8 @@ $imgUrl = Yii::$app->params['common'] . "/media";
                     </p>
                     <div id="flush-home-delivery" class="accordion-collapse collapse border-top show"
                          aria-labelledby="flush-heading-home-delivery" data-bs-parent="#accordionPaymentOnDelivery">
+                        <small id="notify-consignee-address" class="d-none"><i class="text-danger">*Bạn phải điền đủ
+                                thông tin</i></small>
                         <div class="accordion-body row m-0 p-2">
                             <div class="col-12 col-sm-6 px-1">
                                 <?= $form->field($model, 'province_id')->dropDownList($provinces, ['id' => 'province-id', 'prompt' => Yii::t('app', '- Choose province/city -')])->label(Yii::t('app', 'Province')) ?>
@@ -196,8 +90,8 @@ $imgUrl = Yii::$app->params['common'] . "/media";
                 <div class="accordion-item border">
                     <p class="accordion-header px-2 py-3 bg-lighter-gray" id="flush-heading-receive-at-store">
                         <label class="container-label w-100 m-0"
-                               for='sm-receive-at-store'><?= Yii::t('app','Receive products at the store') ?>
-                            <input type='radio' name="payment-methods" id='sm-receive-at-store'>
+                               for='sm-receive-at-store'><?= Yii::t('app', 'Receive products at the store') ?>
+                            <input type='radio' name="payment-methods" id='sm-receive-at-store' value="1">
                             <span class="checkmark"></span>
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#flush-receive-at-store" aria-expanded="false"
@@ -218,19 +112,22 @@ $imgUrl = Yii::$app->params['common'] . "/media";
         <h3 class="pb-1 border-bottom px-0"><?= Yii::t('app', 'Cart') ?>:</h3>
         <div class="w-100 m-0 p-0 <?= (count($cart) > 3) ? 'product-in-cart' : '' ?>">
             <?php foreach ($cart as $key => $value): ?>
-                <div class="w-100 row m-0 pb-2 p-0 d-flex align-items-center border-bottom row-product" data-id="<?= \common\components\encrypt\CryptHelper::encryptString($cart[$key]['p-id']) ?>">
+                <div class="w-100 row m-0 pb-2 p-0 d-flex align-items-center border-bottom row-product"
+                     data-id="<?= \common\components\encrypt\CryptHelper::encryptString($cart[$key]['p-id']) ?>"
+                     data-cart-id="<?= \common\components\encrypt\CryptHelper::encryptString($cart[$key]['id']) ?>">
                     <div class="col-8 col-sm-6 col-md-7 col-lg-8 row m-0 p-0">
                         <div class="col-4 col-md-2 position-relative p-0">
                             <img src="<?= $imgUrl . '/' . $cart[$key]['p-img'] ?>" class="w-100 position-relative">
-                            <span class="product-quantity"><?= $cart[$key]['quantity'] ?></span>
+                            <span class="product-quantity"
+                                  data-quantity="<?= $cart[$key]['quantity'] ?>"><?= $cart[$key]['quantity'] ?></span>
                         </div>
                         <div class="col-8 col-md-10 ps-3 d-flex align-items-center">
                             <div class="w-100">
                                 <p class="m-0 product-name"><?= $cart[$key]['p-name'] ?></p>
-                                <span class="fs__14px"
+                                <span class="fs__14px product-color"
                                       data-color="<?= $cart[$key]['color_id'] ?>"><?= Color::getColorCodeById($cart[$key]['color_id'])['name'] ?></span>,
-                                <span class="fs__14px"
-                                      data-color="<?= $cart[$key]['size_id'] ?>"><?= \frontend\models\Size::getSizeById($cart[$key]['size_id']) ?></span>
+                                <span class="fs__14px product-size"
+                                      data-size="<?= $cart[$key]['size_id'] ?>"><?= \frontend\models\Size::getSizeById($cart[$key]['size_id']) ?></span>
                             </div>
                         </div>
                     </div>
@@ -270,71 +167,12 @@ $imgUrl = Yii::$app->params['common'] . "/media";
         </div>
     </div>
 </div>
-<script>
-
-    let total_price = 0;
-    for (let i = 0; i < $('.price').length; i++) {
-        total_price += parseInt($('#total_price_' + i).attr('data-total-price'));
-    }
-    $('#total_price_cart,#total_price_product').html(new Intl.NumberFormat(['ban', 'id']).format(total_price) + 'đ');
-    $('#shipping_fee').html($('#shipping_fee').attr('data-fee') + 'đ');
-    $('#total_price').html(new Intl.NumberFormat(['ban', 'id']).format(parseInt($('#shipping_fee').attr('data-fee')) + total_price) + 'đ')
-
-    $("#telInput").keypress(function (e) {
-        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-            return false;
-        }
-    });
-    $('#sm-home-delivery,#sm-receive-at-store').on('click', function () {
-        $(this).parent().find('button').trigger('click')
-    })
-    let nameOrder, telOrder, emailOrder, specificAddressOrder, province, district,village, productId;
-
-    function validateConsigneeContact() {
-        if(nameOrder === '' || telOrder === '' || emailOrder === '') {
-            $('#consignee-contact').addClass('bg-lighter-danger');
-            setTimeout(function (){
-                $('#consignee-contact').removeClass('bg-lighter-danger');
-            },3000)
-            return false;
-        }
-        return true;
-    }
-
-    function validateInformationDelivery() {
-        if(province === '' || province === null || district === '' || district === null || village === '' || village === null || specificAddressOrder === '') {
-            $('#flush-home-delivery').addClass('bg-lighter-danger');
-            setTimeout(function (){
-                $('#flush-home-delivery').removeClass('bg-lighter-danger');
-            },3000)
-            return false;
-        }
-        return true;
-    }
-
-    $('#order').click(function (){
-        nameOrder = $('#orderform-name').val();
-        telOrder = $('#orderform-tel').val();
-        emailOrder = $('#orderform-email').val();
-
-        province = $('#province-id').val();
-        district = $('#district-id').val();
-        village = $('#village-id').val();
-        specificAddressOrder = $('#orderform-specific_address').val();
-        if($('#sm-home-delivery').prop('checked')) {
-            if(validateConsigneeContact() && validateInformationDelivery()){
-                console.log('oke');
-            }
-        } else {
-            if(validateConsigneeContact()){
-                console.log('oke');
-            }
-        }
-    });
-    productId = $('.row-product').map(function () {
-        return this.getAttribute('data-id');
-    }).get();
-</script>
+<!--<div id="toastBoard" class="position-fixed rounded">-->
+<!--    <div id="liveToast" class="toast py-3 px-2 text-light border-2 fw-bold" role="alert"-->
+<!--         aria-live="assertive" aria-atomic="true">-->
+<!--        <span id="toastNotify"></span>-->
+<!--    </div>-->
+<!--</div>-->
 
 
 

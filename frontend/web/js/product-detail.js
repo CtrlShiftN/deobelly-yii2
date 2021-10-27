@@ -280,14 +280,3 @@ function addToFavorite(obj) {
         });
     }
 }
-
-function requestPayment()
-{
-    $.ajax({
-        url: "/api/ajax/get-and-send-product-to-payment", // send request to
-        method: "POST", // sending method
-        data: {
-            id: 1,
-        },
-    });
-}
