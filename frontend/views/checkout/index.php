@@ -5,8 +5,6 @@
 use frontend\models\Color;
 use kartik\depdrop\DepDrop;
 use kartik\form\ActiveForm;
-use kartik\label\LabelInPlace;
-use yii\helpers\Html;
 use yii\helpers\Url;
 
 $this->title = Yii::t('app', 'Payment');
@@ -16,6 +14,7 @@ $imgUrl = Yii::$app->params['common'] . "/media";
 $this->registerCssFile(Url::toRoute("css/check-out.css"));
 $this->registerJsFile(Url::toRoute('js/check-out.js'));
 ?>
+
 <div class="w-100 row mx-0 px-1 pt-3 pt-md-5 pt-lg-5 px-sm-0 d-flex">
     <div class="col-12 col-lg-6 order-1 order-lg-0 mx-0 d-flex p-0 mt-4 mt-lg-0">
         <?php $form = ActiveForm::begin(['id' => 'contact-form', 'options' => ['class' => 'w-100 m-0 p-0']]); ?>

@@ -179,7 +179,7 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
              id="btnAddToCart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
         </button>
         <a class="btn p-2 btn-danger text-light col-12 col-sm-6 col-md-12 col-lg-5 text-light bg-danger rounded-0"
-           href="<?= Url::toRoute(['checkout/','id' => CryptHelper::encryptString($detail['id'])]) ?>"
+           href="<?= Url::toRoute('checkout/')?>"
            id="btnBuyNow">Mua ngay</a>
     </div>
     <div class="w-100 my-2 mx-0 px-md-3">

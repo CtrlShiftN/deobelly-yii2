@@ -35,6 +35,8 @@ $('#btnBuyNow').click(function (e) {
                 $('#classify').removeClass('bg-lighter-danger');
                 $('#notify').html('');
             }, 3000);
+        } else {
+            requestData();
         }
     }
 });
