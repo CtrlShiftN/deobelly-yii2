@@ -21,6 +21,7 @@ use Yii;
  * @property string|null $notes
  * @property string $tel
  * @property int $admin_id
+ * @property int $delivery 0:home delivery, 1:receive at store
  * @property int|null $status 0 - new,1 - processing,2 - approved,3 - shipping,4 - finished,5- cancelled,6 - expired,7 - returned,8 - postpone,9 - rejected,10 - failed,11 - fake
  * @property string|null $created_at
  * @property string|null $updated_at
@@ -41,8 +42,8 @@ class OrderForm extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'product_id', 'quantity', 'province_id', 'district_id', 'village_id', 'specific_address', 'address', 'tel', 'admin_id'], 'required'],
-            [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'admin_id', 'status'], 'integer'],
+            [['user_id', 'product_id', 'quantity', 'province_id', 'district_id', 'village_id', 'specific_address', 'address', 'tel', 'admin_id', 'delivery'], 'required'],
+            [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'admin_id', 'delivery', 'status'], 'integer'],
             [['address', 'notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['specific_address', 'tel'], 'string', 'max' => 255],
@@ -69,6 +70,7 @@ class OrderForm extends \yii\db\ActiveRecord
             'notes' => Yii::t('app', 'Notes'),
             'tel' => Yii::t('app', 'Tel'),
             'admin_id' => Yii::t('app', 'Admin ID'),
+            'delivery' => Yii::t('app', 'Delivery'),
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
