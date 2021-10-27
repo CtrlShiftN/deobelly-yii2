@@ -268,7 +268,7 @@ AppAsset::register($this);
                             <!-- End Sidebar -->
                         </div>
                         <div class="main-nav-left col-10 col-sm-10 col-lg-2 text-center text-sm-center text-lg-start">
-                            <div class="d-flex align-items-center justify-content-center">
+                            <div class="d-flex align-items-center">
                                 <a href="<?= Url::home() ?>"
                                    class="logo-align <?= ($action != 'casual' && $action != 'luxury') ? 'd-none' : '' ?>">
                                     <img src="<?= $cdnUrl ?>/img/home.png" class="p-home">

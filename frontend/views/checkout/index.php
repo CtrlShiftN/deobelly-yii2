@@ -119,6 +119,13 @@ $imgUrl = Yii::$app->params['common'] . "/media";
         border-radius: 50%;
         background: white;
     }
+    a:focus, button:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+    .bg-lighter-danger {
+        background-color: rgba(255, 0, 0, 0.06) !important;
+    }
 </style>
 <div class="w-100 row mx-0 px-1 pt-3 pt-md-5 pt-lg-5 px-sm-0 d-flex">
     <div class="col-12 col-lg-6 order-1 order-lg-0 mx-0 d-flex p-0 mt-4 mt-lg-0">
@@ -126,7 +133,7 @@ $imgUrl = Yii::$app->params['common'] . "/media";
         <div class="w-100 m-0 p-0">
             <h3 class="w-100 pb-1 border-bottom px-0"><?= Yii::t('app', 'Billing information') ?>:</h3>
 
-            <div class="w-100 row py-3 px-1 m-0">
+            <div class="w-100 row py-3 px-1 m-0" id="consignee-contact">
                 <div class="col-12 col-sm-6 px-1">
                     <?= $form->field($model, 'name')->label(Yii::t('app', "Consignee's name")) ?>
                 </div>
@@ -178,7 +185,7 @@ $imgUrl = Yii::$app->params['common'] . "/media";
                                 ])->label(Yii::t('app', 'Village')); ?>
                             </div>
                             <div class="col-12 col-sm-6 px-1">
-                                <?= $form->field($model, 'specific_address')->textInput(['id' => 'address'])->label(Yii::t('app', 'Specific address')) ?>
+                                <?= $form->field($model, 'specific_address')->label(Yii::t('app', 'Specific address')) ?>
                             </div>
                             <div class="col-12 px-1">
                                 <?= $form->field($model, 'notes', ['options' => ['class' => 'm-0']])->textarea(['placeholder' => Yii::t('app', 'Note to the seller'), 'class' => 'm-0'])->label(Yii::t('app', 'Message') . ' (' . Yii::t('app', 'Optional') . '):') ?>
@@ -211,7 +218,7 @@ $imgUrl = Yii::$app->params['common'] . "/media";
         <h3 class="pb-1 border-bottom px-0"><?= Yii::t('app', 'Cart') ?>:</h3>
         <div class="w-100 m-0 p-0 <?= (count($cart) > 3) ? 'product-in-cart' : '' ?>">
             <?php foreach ($cart as $key => $value): ?>
-                <div class="w-100 row m-0 pb-2 p-0 d-flex align-items-center border-bottom">
+                <div class="w-100 row m-0 pb-2 p-0 d-flex align-items-center border-bottom row-product" data-id="<?= \common\components\encrypt\CryptHelper::encryptString($cart[$key]['p-id']) ?>">
                     <div class="col-8 col-sm-6 col-md-7 col-lg-8 row m-0 p-0">
                         <div class="col-4 col-md-2 position-relative p-0">
                             <img src="<?= $imgUrl . '/' . $cart[$key]['p-img'] ?>" class="w-100 position-relative">
@@ -264,7 +271,7 @@ $imgUrl = Yii::$app->params['common'] . "/media";
     </div>
 </div>
 <script>
-    if($('#sm-home-delivery').prop('checked'));
+
     let total_price = 0;
     for (let i = 0; i < $('.price').length; i++) {
         total_price += parseInt($('#total_price_' + i).attr('data-total-price'));
@@ -281,6 +288,52 @@ $imgUrl = Yii::$app->params['common'] . "/media";
     $('#sm-home-delivery,#sm-receive-at-store').on('click', function () {
         $(this).parent().find('button').trigger('click')
     })
+    let nameOrder, telOrder, emailOrder, specificAddressOrder, province, district,village, productId;
+
+    function validateConsigneeContact() {
+        if(nameOrder === '' || telOrder === '' || emailOrder === '') {
+            $('#consignee-contact').addClass('bg-lighter-danger');
+            setTimeout(function (){
+                $('#consignee-contact').removeClass('bg-lighter-danger');
+            },3000)
+            return false;
+        }
+        return true;
+    }
+
+    function validateInformationDelivery() {
+        if(province === '' || province === null || district === '' || district === null || village === '' || village === null || specificAddressOrder === '') {
+            $('#flush-home-delivery').addClass('bg-lighter-danger');
+            setTimeout(function (){
+                $('#flush-home-delivery').removeClass('bg-lighter-danger');
+            },3000)
+            return false;
+        }
+        return true;
+    }
+
+    $('#order').click(function (){
+        nameOrder = $('#orderform-name').val();
+        telOrder = $('#orderform-tel').val();
+        emailOrder = $('#orderform-email').val();
+
+        province = $('#province-id').val();
+        district = $('#district-id').val();
+        village = $('#village-id').val();
+        specificAddressOrder = $('#orderform-specific_address').val();
+        if($('#sm-home-delivery').prop('checked')) {
+            if(validateConsigneeContact() && validateInformationDelivery()){
+                console.log('oke');
+            }
+        } else {
+            if(validateConsigneeContact()){
+                console.log('oke');
+            }
+        }
+    });
+    productId = $('.row-product').map(function () {
+        return this.getAttribute('data-id');
+    }).get();
 </script>
 
 
