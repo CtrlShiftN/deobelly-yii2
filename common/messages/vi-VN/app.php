@@ -342,7 +342,7 @@ return [
     'Message' => 'Lời nhắn',
     'Note to the seller' => 'Lưu ý cho người bán',
     'Order' => 'Đặt hàng',
-    'Clicking "Place Order" means you agree to abide by' => 'Nhấp vào "Đặt hàng" có nghĩa là bạn đồng ý tuân theo',
+    'Clicking "Order" means you agree to abide by' => 'Nhấp vào "Đặt hàng" có nghĩa là bạn đồng ý tuân theo',
     'the De Obelly terms' => 'các điều khoản của De Obelly',
     'Optional' => 'Không bắt buộc',
     'Payment on delivery' => 'Thanh toán khi nhận hàng',
@@ -354,4 +354,7 @@ return [
     "Total product's price" => 'Tổng tiền hàng',
     'Total price' => 'Tổng số tiền',
     'Consignee' => 'Người nhận hàng',
+    "Consignee's name" => 'Tên người nhận hàng',
+    'Home delivery' => 'Giao hàng tận nhà',
+    'Receive products at the store' => 'Nhận tại cửa hàng'
 ];

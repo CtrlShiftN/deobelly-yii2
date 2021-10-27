@@ -28,6 +28,8 @@ use Yii;
  */
 class OrderForm extends Order
 {
+    public $name;
+    public $email;
     /**
      * {@inheritdoc}
      */
@@ -42,6 +44,11 @@ class OrderForm extends Order
     public function rules()
     {
         return [
+            ['email', 'required', 'message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
+            ['email', 'email'],
+            ['email', 'string', 'max' => 255],
+            ['name', 'required', 'message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
+            ['name', 'string', 'max' => 100],
             [['user_id', 'product_id', 'quantity', 'province_id', 'district_id', 'village_id', 'specific_address', 'address', 'admin_id'], 'required'],
             [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'admin_id', 'status'], 'integer'],
             [['address', 'notes'], 'string'],
@@ -53,18 +60,6 @@ class OrderForm extends Order
     }
 
     /**
-     * @param $attribute
-     * @param $params
-     * @param $validator
-     */
-    public function validateTel($attribute, $params, $validator)
-    {
-        if (!preg_match('/^(84|0)+([0-9]{9})$/', $this->tel)) {
-            $this->addError($attribute, Yii::t('app', 'Invalid phone number.'));
-        }
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function attributeLabels()
@@ -72,6 +67,8 @@ class OrderForm extends Order
         return [
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User ID'),
+            'name' => Yii::t('app', "Consignee's name"),
+            'email' => Yii::t('app', 'Email'),
             'product_id' => Yii::t('app', 'Product'),
             'color_id' => Yii::t('app', 'Color'),
             'size_id' => Yii::t('app', 'Size'),
