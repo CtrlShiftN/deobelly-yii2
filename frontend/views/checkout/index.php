@@ -166,15 +166,3 @@ $this->registerJsFile(Url::toRoute('js/check-out.js'));
         </div>
     </div>
 </div>
-<!--<div id="toastBoard" class="position-fixed rounded">-->
-<!--    <div id="liveToast" class="toast py-3 px-2 text-light border-2 fw-bold" role="alert"-->
-<!--         aria-live="assertive" aria-atomic="true">-->
-<!--        <span id="toastNotify"></span>-->
-<!--    </div>-->
-<!--</div>-->
-
-
-
-
-
-
