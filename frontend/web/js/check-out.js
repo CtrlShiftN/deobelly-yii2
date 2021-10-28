@@ -1,5 +1,5 @@
 let consigneeName, consigneeTel, consigneeEmail, specificAddressOrder, province, district, village, productId,
-    colorId, sizeId, quantity, delivery, notes, cartId;
+    colorId, sizeId, quantity, logistic_method, notes, cartId;
 cartId = $('.row-product').map(function () {
     return this.getAttribute('data-cart-id');
 }).get();
@@ -62,7 +62,7 @@ function validateInformationDelivery() {
 }
 
 $('#order').click(function () {
-    delivery = $('input[name=payment-methods]:checked').val();
+    logistic_method = $('input[name=payment-methods]:checked').val();
     consigneeName = $('#orderform-name').val();
     consigneeTel = $('#orderform-tel').val();
     consigneeEmail = $('#orderform-email').val();
@@ -96,7 +96,7 @@ function createOrder() {
             name: consigneeName,
             tel: consigneeTel,
             email: consigneeEmail,
-            delivery: delivery,
+            logistic_method: logistic_method,
             province: province,
             district: district,
             village: village,

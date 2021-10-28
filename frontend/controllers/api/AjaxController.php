@@ -267,7 +267,7 @@ class AjaxController extends ActiveController
         $tel = ParamHelper::getParamValue('tel');
         $email = ParamHelper::getParamValue('email');
         $notes = ParamHelper::getParamValue('notes');
-        $delivery = ParamHelper::getParamValue('delivery');
+        $logistic_method = ParamHelper::getParamValue('logistic_method');
         $province = ParamHelper::getParamValue('province');
         $district = ParamHelper::getParamValue('district');
         $village = ParamHelper::getParamValue('village');
@@ -290,7 +290,7 @@ class AjaxController extends ActiveController
             $model->notes = $notes;
             $model->tel = $tel;
             $model->admin_id = 1;
-            $model->delivery = $delivery;
+            $model->logistic_method = $logistic_method;
             $model->created_at = date('Y-m-d H:i:s');
             $model->updated_at = date('Y-m-d H:i:s');
             if($model->save()) {
