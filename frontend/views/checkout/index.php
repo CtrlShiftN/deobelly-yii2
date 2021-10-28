@@ -33,22 +33,22 @@ $this->registerJsFile(Url::toRoute('js/check-out.js'));
                 <div class="col-12 px-1">
                     <?= $form->field($model, 'email')->label(Yii::t('app', 'Email address')) ?>
                 </div>
+                <?= $form->field($model, 'cart', ['options' => ['class' => 'm-0','id' => 'cart_id']])->hiddenInput()->label(false) ?>
+                <?= $form->field($model, 'quantity', ['options' => ['class' => 'm-0','id' => 'quantity']])->hiddenInput()->label(false) ?>
+                <?= $form->field($model, 'product_id', ['options' => ['class' => 'm-0','id' => 'product_id']])->hiddenInput()->label(false) ?>
+                <?= $form->field($model, 'color_id', ['options' => ['class' => 'm-0','id' => 'color_id']])->hiddenInput()->label(false) ?>
+                <?= $form->field($model, 'size_id', ['options' => ['class' => 'm-0','id' => 'size_id']])->hiddenInput()->label(false) ?>
             </div>
-            <!--form-->
+
             <div class="accordion accordion-flush w-100 px-1 my-1" id="accordionPaymentOnDelivery">
                 <div class="accordion-item border rounded-0">
-                    <p class="accordion-header px-2 py-3 bg-lighter-gray" id="flush-heading-home-delivery">
-                        <label class="container-label w-100 m-0" for='sm-home-delivery'>
-                            <?= Yii::t('app', 'Home delivery') ?>
-                            <input type='radio' name="payment-methods" id='sm-home-delivery' checked="checked"
-                                   value="0">
-                            <span class="checkmark"></span>
-                            <button class="accordion-button" hidden type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-home-delivery" aria-expanded="true"
-                                    aria-controls="flush-home-delivery">
-                            </button>
-                        </label>
-                    </p>
+                    <div class="accordion-header px-2 py-3 bg-lighter-gray w-100" id="flush-heading-home-delivery">
+                        <?= $form->field($model, 'logistic_method', ['options' => ['class' => 'm-0']])->radio(['label' => Yii::t('app', 'Home delivery'), 'id' => 'sm-home-delivery', 'value' => 0,'checked' => 'checked', 'onClick' => '$(this).parent().closest(".accordion-header").find("button").trigger("click");']) ?>
+                        <button class="accordion-button" hidden type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-home-delivery" aria-expanded="true"
+                                aria-controls="flush-home-delivery">
+                        </button>
+                    </div>
                     <div id="flush-home-delivery" class="accordion-collapse collapse border-top show"
                          aria-labelledby="flush-heading-home-delivery" data-bs-parent="#accordionPaymentOnDelivery">
                         <small id="notify-consignee-address" class="d-none"><i class="text-danger">*Bạn phải điền đủ
@@ -87,17 +87,13 @@ $this->registerJsFile(Url::toRoute('js/check-out.js'));
                     </div>
                 </div>
                 <div class="accordion-item border">
-                    <p class="accordion-header px-2 py-3 bg-lighter-gray" id="flush-heading-receive-at-store">
-                        <label class="container-label w-100 m-0"
-                               for='sm-receive-at-store'><?= Yii::t('app', 'Receive products at the store') ?>
-                            <input type='radio' name="payment-methods" id='sm-receive-at-store' value="1">
-                            <span class="checkmark"></span>
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-receive-at-store" aria-expanded="false"
-                                    aria-controls="flush-receive-at-store" hidden>
-                            </button>
-                        </label>
-                    </p>
+                    <div class="accordion-header px-2 py-3 bg-lighter-gray" id="flush-heading-receive-at-store">
+                        <?= $form->field($model, 'logistic_method',['options' => ['class' => 'm-0']])->radio(['label' => Yii::t('app', 'Receive products at the store'), 'value' => 1, 'id' => 'sm-receive-at-store', 'onClick' => '$(this).parent().closest(".accordion-header").find("button").trigger("click");']) ?>
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-receive-at-store" aria-expanded="false"
+                                aria-controls="flush-receive-at-store" hidden>
+                        </button>
+                    </div>
                     <div id="flush-receive-at-store" class="accordion-collapse collapse"
                          aria-labelledby="flush-heading-receive-at-store" data-bs-parent="#accordionPaymentOnDelivery">
                         <div class="accordion-body row m-0 p-2 text-center" hidden></div>
@@ -166,3 +162,6 @@ $this->registerJsFile(Url::toRoute('js/check-out.js'));
         </div>
     </div>
 </div>
+<script>
+
+</script>

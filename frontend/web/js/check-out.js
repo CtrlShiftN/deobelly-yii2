@@ -15,6 +15,11 @@ sizeId = $('.product-size').map(function () {
 quantity = $('.product-quantity').map(function () {
     return this.getAttribute('data-quantity');
 }).get();
+$('#cart_id').children('input').val(cartId.toString());
+$('#quantity').children('input').val(quantity.toString());
+$('#product_id').children('input').val(productId.toString());
+$('#color_id').children('input').val(colorId.toString());
+$('#size_id').children('input').val(sizeId.toString());
 let total_price = 0;
 for (let i = 0; i < $('.price').length; i++) {
     total_price += parseInt($('#total_price_' + i).attr('data-total-price'));
@@ -28,10 +33,6 @@ $("#telInput").keypress(function (e) {
         return false;
     }
 });
-$('#sm-home-delivery,#sm-receive-at-store').on('click', function () {
-    $(this).parent().find('button').trigger('click')
-})
-
 
 function validateConsigneeContact() {
     if (consigneeName === '' || consigneeTel === '' || consigneeEmail === '') {

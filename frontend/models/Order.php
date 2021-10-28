@@ -26,7 +26,7 @@ use Yii;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class OrderForm extends \yii\db\ActiveRecord
+class Order extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}

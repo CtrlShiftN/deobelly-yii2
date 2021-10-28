@@ -1519,7 +1519,7 @@ class SampleData
             $order->created_at = date('Y-m-d H:m:s');
             $order->updated_at = date('Y-m-d H:m:s');
             $order->status = rand(1, 8);
-            if ($order->save()) {
+            if ($order->save(false)) {
                 $countOrder++;
             }
         }

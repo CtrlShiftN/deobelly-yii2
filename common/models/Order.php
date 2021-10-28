@@ -10,14 +10,14 @@ use Yii;
  * @property int $id
  * @property int $user_id
  * @property int $product_id
- * @property int|null $color_id
- * @property int|null $size_id
+ * @property int $color_id
+ * @property int $size_id
  * @property int $quantity
- * @property int|null $province_id
- * @property int|null $district_id
- * @property int|null $village_id
- * @property string|null $specific_address
- * @property string|null $address
+ * @property int $province_id
+ * @property int $district_id
+ * @property int $village_id
+ * @property string $specific_address
+ * @property string $address
  * @property string|null $notes
  * @property string $tel
  * @property int $admin_id
@@ -42,7 +42,7 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'product_id', 'quantity', 'tel', 'admin_id', 'logistic_method'], 'required'],
+            [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'specific_address', 'address', 'tel', 'admin_id', 'logistic_method'], 'required'],
             [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'admin_id', 'logistic_method', 'status'], 'integer'],
             [['address', 'notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
@@ -70,7 +70,7 @@ class Order extends \yii\db\ActiveRecord
             'notes' => Yii::t('app', 'Notes'),
             'tel' => Yii::t('app', 'Tel'),
             'admin_id' => Yii::t('app', 'Admin ID'),
-            'logistic_method' => Yii::t('app', 'Logistic method'),
+            'logistic_method' => Yii::t('app', 'Logistic Method'),
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
