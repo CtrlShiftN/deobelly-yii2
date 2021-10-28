@@ -2,6 +2,9 @@
 
 namespace frontend\controllers;
 
+use frontend\models\Post;
+use frontend\models\TailorMadeOrderForm;
+use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
@@ -62,7 +65,20 @@ class TailorMadeController extends \yii\web\Controller
      */
     public function actionIndex()
     {
+        $latestNews = Post::getLatestPosts(3);
         return $this->render('index', [
+            'latestNews' => $latestNews,
+        ]);
+    }
+
+    public function actionTop()
+    {
+        $model = new TailorMadeOrderForm();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+
+        }
+        return $this->render('top', [
+            'model' => $model,
         ]);
     }
 
