@@ -61,54 +61,47 @@ function validateInformationDelivery() {
     }
     return true;
 }
-
+$("#order-form").submit(function(e){
+    e.preventDefault();
+});
 $('#order').click(function () {
-    logistic_method = $('input[name=payment-methods]:checked').val();
-    consigneeName = $('#orderform-name').val();
-    consigneeTel = $('#orderform-tel').val();
-    consigneeEmail = $('#orderform-email').val();
-    if ($('#sm-home-delivery').prop('checked')) {
-        province = $('#province-id').val();
-        district = $('#district-id').val();
-        village = $('#village-id').val();
-        specificAddressOrder = $('#orderform-specific_address').val();
-        notes = $('#orderform-notes').val();
-        if (validateConsigneeContact() && validateInformationDelivery()) {
-            createOrder();
-        }
-    } else {
-        province = district = village = specificAddressOrder = null;
-        if (validateConsigneeContact()) {
-            createOrder();
-        }
-    }
+    // logistic_method = $('input[name=payment-methods]:checked').val();
+    // consigneeName = $('#orderform-name').val();
+    // consigneeTel = $('#orderform-tel').val();
+    // consigneeEmail = $('#orderform-email').val();
+    // if ($('#sm-home-delivery').prop('checked')) {
+    //     province = $('#province-id').val();
+    //     district = $('#district-id').val();
+    //     village = $('#village-id').val();
+    //     specificAddressOrder = $('#orderform-specific_address').val();
+    //     notes = $('#orderform-notes').val();
+    //     if (validateConsigneeContact() && validateInformationDelivery()) {
+    //         createOrder();
+    //     }
+    // } else {
+    //     province = district = village = specificAddressOrder = null;
+    //     if (validateConsigneeContact()) {
+    //         createOrder();
+    //     }
+    // }
+
 });
 
 function createOrder() {
     let request = $.ajax({
         url: '/api/ajax/create-order',
         method: 'POST',
-        data: {
-            cartId: cartId,
-            productId: productId,
-            colorId: colorId,
-            sizeId: sizeId,
-            quantity: quantity,
-            name: consigneeName,
-            tel: consigneeTel,
-            email: consigneeEmail,
-            logistic_method: logistic_method,
-            province: province,
-            district: district,
-            village: village,
-            specificAddress: specificAddressOrder,
-            notes: notes,
-        },
     });
-    request.done(function (response) {
-        // TODO: return done or fail
-        alert('Đặt hàng thành công');
-        window.location.href = "/site";
+    request.done(function (jqXHR,textStatus,response) {
+        console.log('jq', jqXHR);
+        console.log('sta', textStatus);
+        let arrRes = $.parseJSON(response);
+        if (arrRes.status === 1) {
+            alert('Đặt hàng thành công');
+        } else {
+            alert('error');
+        }
+            // window.location.href = "/site";
     });
     request.fail(function (jqXHR, textStatus, response) {
         console.log('jq', jqXHR);

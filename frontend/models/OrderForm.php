@@ -2,6 +2,9 @@
 
 namespace frontend\models;
 
+use common\components\encrypt\CryptHelper;
+use common\components\SystemConstant;
+use common\models\Order;
 use Yii;
 
 /**
@@ -26,8 +29,11 @@ use Yii;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class OrderForm extends \yii\db\ActiveRecord
+class OrderForm extends Order
 {
+    public $name;
+    public $email;
+    public $cart;
     /**
      * {@inheritdoc}
      */
@@ -42,12 +48,27 @@ class OrderForm extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'specific_address', 'address', 'tel', 'admin_id', 'logistic_method'], 'required'],
-            [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'admin_id', 'logistic_method', 'status'], 'integer'],
+            ['email', 'required', 'message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
+            ['email', 'email'],
+            ['email', 'string', 'max' => 255],
+            ['cart', 'string', 'max' => 255],
+            ['name', 'required', 'message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
+            ['name', 'string', 'max' => 100],
+            [['user_id', 'admin_id', 'logistic_method'], 'required'],
+            [['user_id', 'province_id', 'district_id', 'village_id', 'admin_id', 'logistic_method', 'status'], 'integer'],
+            [['province_id', 'district_id', 'village_id', 'specific_address', 'address'], 'required', 'when' => function($model) {return $model->logistic_method == 0;}, 'whenClient' => "function (attribute, value) {return $('#sm-home-delivery').prop('checked');}"],
+            ['logistic_method', 'checkLogisticMethod'],
             [['address', 'notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['specific_address', 'tel'], 'string', 'max' => 255],
+            ['tel', 'required', 'message' => Yii::t('app', 'Phone number can not be blank.')],
+            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app', 'Includes 10 digits starting with 0 or 84.')],
         ];
+    }
+
+    public function checkLogisticMethod()
+    {
+
     }
 
     /**
@@ -56,24 +77,63 @@ class OrderForm extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'cart' => Yii::t('app', 'Cart'),
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User ID'),
-            'product_id' => Yii::t('app', 'Product ID'),
-            'color_id' => Yii::t('app', 'Color ID'),
-            'size_id' => Yii::t('app', 'Size ID'),
+            'name' => Yii::t('app', "Consignee's name"),
+            'email' => Yii::t('app', 'Email'),
+            'product_id' => Yii::t('app', 'Product'),
+            'color_id' => Yii::t('app', 'Color'),
+            'size_id' => Yii::t('app', 'Size'),
             'quantity' => Yii::t('app', 'Quantity'),
-            'province_id' => Yii::t('app', 'Province ID'),
-            'district_id' => Yii::t('app', 'District ID'),
-            'village_id' => Yii::t('app', 'Village ID'),
-            'specific_address' => Yii::t('app', 'Specific Address'),
+            'province_id' => Yii::t('app', 'Province'),
+            'district_id' => Yii::t('app', 'District'),
+            'village_id' => Yii::t('app', 'Village'),
+            'specific_address' => Yii::t('app', 'Address'),
             'address' => Yii::t('app', 'Address'),
             'notes' => Yii::t('app', 'Notes'),
             'tel' => Yii::t('app', 'Tel'),
-            'admin_id' => Yii::t('app', 'Admin ID'),
-            'logistic_method' => Yii::t('app', 'Logistic Method'),
+            'admin_id' => Yii::t('app', 'Admin'),
+            'logistic_method' => Yii::t('app', 'Logistic method'),
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
+    }
+
+    public function createOrder($count,$arrCartId,$arrProductId,$arrQuantity,$arrColorId,$arrSizeId)
+    {
+        for($i = 0; $i<$count;$i++) {
+            $model = new OrderForm();
+            $model->user_id = Yii::$app->user->identity->getId();
+            $model->product_id = $arrProductId[$i];
+            $model->color_id = $arrColorId[$i];
+            $model->size_id = $arrSizeId[$i];
+            $model->quantity = $arrQuantity[$i];
+            $model->province_id = $this->province_id;
+            $model->district_id = $this->district_id;
+            $model->village_id = $this->village_id;
+            $model->specific_address = $this->specific_address;
+            if ($this->logistic_method == 1) {
+                $model->address = $this->name . ' (' . $this->email . '), ' . $this->specific_address . ', ' . GeoLocation::getNameGeoLocationById($this->village_id) . ', ' . GeoLocation::getNameGeoLocationById($this->district_id) . ', ' . GeoLocation::getNameGeoLocationById($this->province_id);
+            } else {
+                $model->address = null;
+            }
+            $model->tel = $this->tel;
+            $model->admin_id = 1;
+            $model->logistic_method = $this->logistic_method;
+            $model->created_at = date('Y-m-d H:i:s');
+            $model->updated_at = date('Y-m-d H:i:s');
+            if($model->save(false)){
+                $cart = \common\models\Cart::findOne($arrCartId[$i]);
+                $cart->status = SystemConstant::STATUS_INACTIVE;
+                $cart->save();
+            }
+        }
+//        if($countOrder = $count - 1) {
+            return true;
+//        } else {
+//            return false;
+//        }
     }
 }

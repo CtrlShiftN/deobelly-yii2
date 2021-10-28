@@ -14,10 +14,23 @@ $imgUrl = Yii::$app->params['common'] . "/media";
 $this->registerCssFile(Url::toRoute("css/check-out.css"));
 $this->registerJsFile(Url::toRoute('js/check-out.js'));
 ?>
-
+<?php if (Yii::$app->session->hasFlash('creatOrderSuccess')): ?>
+    <div class="alert alert-success alert-dismissible fade show my-3">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <h4><i class="icon fa fa-check"></i> <?= Yii::t('app', 'SUCCESS') ?>!</h4>
+        <?= Yii::t('app', Yii::$app->session->getFlash('creatOrderSuccess')) ?>
+    </div>
+<?php endif; ?>
+<?php if (Yii::$app->session->hasFlash('creatOrderError')): ?>
+    <div class="alert alert-danger alert-dismissible fade show my-3">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <h4><i class="fas fa-times"></i> <?= Yii::t('app', 'ERROR') ?>!</h4>
+        <?= Yii::t('app', Yii::$app->session->getFlash('creatOrderError')) ?>
+    </div>
+<?php endif; ?>
+<?php $form = ActiveForm::begin(['id' => 'order-form', 'options' => ['class' => 'w-100 m-0 p-0']]); ?>
 <div class="w-100 row mx-0 px-1 pt-3 pt-md-5 pt-lg-5 px-sm-0 d-flex">
     <div class="col-12 col-lg-6 order-1 order-lg-0 mx-0 d-flex p-0 mt-4 mt-lg-0">
-        <?php $form = ActiveForm::begin(['id' => 'contact-form', 'options' => ['class' => 'w-100 m-0 p-0']]); ?>
         <div class="w-100 m-0 p-0">
             <h3 class="w-100 pb-1 border-bottom px-0"><?= Yii::t('app', 'Billing information') ?>:</h3>
 
@@ -101,7 +114,6 @@ $this->registerJsFile(Url::toRoute('js/check-out.js'));
                 </div>
             </div>
         </div>
-        <?php ActiveForm::end(); ?>
     </div>
     <div class="col-12 col-lg-6 order-0 order-lg-1 p-0 ps-lg-4 ps-xl-5 m-0 my-4 my-lg-0">
         <h3 class="pb-1 border-bottom px-0"><?= Yii::t('app', 'Cart') ?>:</h3>
@@ -157,11 +169,9 @@ $this->registerJsFile(Url::toRoute('js/check-out.js'));
                     class="text-decoration-none text-primary"><?= Yii::t('app', 'the De Obelly terms') ?>.</a>
         </div>
         <div class="col-5 col-sm-4 px-2">
-            <button type="button" class="btn bg-red rounded-0 px-3 px-sm-4 py-2 text-white float-end"
+            <button type="submit" class="btn bg-red rounded-0 px-3 px-sm-4 py-2 text-white float-end"
                     id="order"><?= Yii::t('app', 'Order') ?></button>
         </div>
     </div>
 </div>
-<script>
-
-</script>
+<?php ActiveForm::end(); ?>
