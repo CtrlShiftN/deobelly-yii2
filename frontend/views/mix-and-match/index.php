@@ -36,7 +36,7 @@ $this->registerCssFile('/css/collection.css');
                                      aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                     <div class="accordion-body row mx-0 pb-4 d-flex align-items-stretch">
                                         <?php foreach ($topMix['element_products'] as $key => $products) : ?>
-                                            <div class="col-12 col-md-6">
+                                            <div class="col-12 col-md-6 pb-3">
                                                 <div class="card card-shadow h-100">
                                                     <a href="<?= \yii\helpers\Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($products['id'])]) ?>"
                                                        target="_blank" title="<?= $products['name'] ?>">
