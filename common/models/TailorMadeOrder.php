@@ -97,4 +97,12 @@ class TailorMadeOrder extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
+
+    /**
+     * @return array
+     */
+    public static function getOrderType()
+    {
+        return [Yii::t('app', 'Top'), Yii::t('app', 'Pants'), Yii::t('app', 'Set')];
+    }
 }

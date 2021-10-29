@@ -12,10 +12,9 @@ use yii\helpers\Url;
 
 $imgUrl = Yii::$app->params['common'] . '/media';
 $this->registerCssFile(Url::toRoute('css/tailor-made-measure.css'));
-$this->title = Yii::t('app', 'Top Measurements');
+$this->title = Yii::t('app', 'Set Measurements');
 ?>
 <div class="top pt-4 pt-lg-5">
-
     <div class="row">
         <h3 class="title-svn px-0 pb-4 fs-1"><?= $this->title ?></h3>
         <div class="col-12 col-lg-8 px-4 ps-lg-0 pe-lg-4">
@@ -61,8 +60,26 @@ $this->title = Yii::t('app', 'Top Measurements');
                 <div class="col-6 col-md-4 col-lg-3">
                     <?= $form->field($model, 'biceps', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Số đo bắp tay, đơn vị: cm') ?>
                 </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <?= $form->field($model, 'waist_to_floor', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Đo từ phần phần thắt lưng đến chấm gót chân. Đơn vị: cm') ?>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <?= $form->field($model, 'waist_to_knee', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Đo từ phần thắt lưng đến đầu gối. Đơn vị: cm') ?>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <?= $form->field($model, 'ankle', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Đo một vòng quanh mắt cá chân, đơn vị: cm') ?>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <?= $form->field($model, 'buttock', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Số đo vòng 3, đơn vị: cm') ?>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <?= $form->field($model, 'knee', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Đo một vòng quanh đầu gối, đơn vị: cm') ?>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <?= $form->field($model, 'thigh', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Đo một vòng quanh phần đùi, đơn vị: cm') ?>
+                </div>
                 <div class="col-12">
-                    <?= $form->field($model, 'notes', ['hintType' => ActiveField::HINT_SPECIAL])->widget(\yii\redactor\widgets\Redactor::class)->hint('Hãy mô tả thêm về yêu cầu của bạn. Kiểu áo nào, sơ mi hay vest? Chất liệu vải như thế nào, cotton hay vải lụa? Mục đích may áo là gì, đi chơi hay đi làm? v.v...') ?>
+                    <?= $form->field($model, 'notes', ['hintType' => ActiveField::HINT_SPECIAL])->widget(\yii\redactor\widgets\Redactor::class)->hint('Hãy mô tả thêm về yêu cầu của bạn. Chất liệu vải như thế nào, cotton hay vải bò? Mục đích may quần là gì, đi chơi hay đi làm? v.v...') ?>
                 </div>
             </div>
             <div class="form-group">

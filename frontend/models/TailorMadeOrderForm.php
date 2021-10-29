@@ -72,7 +72,7 @@ class TailorMadeOrderForm extends TailorMadeOrder
      */
     public function validateTel($attribute, $params, $validator)
     {
-        if (!preg_match('/^(84|0[1-9])+([0-9]{8})$/', $this->tel)) {
+        if (!preg_match('/^(84|0[1-9])+([0-9]{8})$/', $this->customer_tel)) {
             $this->addError($attribute, Yii::t('app', 'Invalid phone number.'));
         }
     }
