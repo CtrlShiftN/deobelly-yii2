@@ -36,7 +36,7 @@ $('#btnBuyNow').click(function (e) {
                 $('#notify').html('');
             }, 3000);
         } else {
-            // TODO: function send request to payment page
+            requestData();
         }
     }
 });

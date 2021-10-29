@@ -1388,7 +1388,10 @@ class SampleData
             'village_id' => 60,
             'specific_address' => '128A Hồ Tùng Mậu',
             'tel' => '0334517566',
+            'name' => 'Hoàng Thị Lý',
+            'email' => 'hoangly94@gmail.com',
             'admin_id' => 1,
+            'logistic_method' => 1,
         ],
         [
             'user_id' => 4,
@@ -1401,7 +1404,10 @@ class SampleData
             'village_id' => 60,
             'specific_address' => '128A Hồ Tùng Mậu',
             'tel' => '0334517566',
+            'name' => 'Hoàng Thị Lý',
+            'email' => 'hoangly94@gmail.com',
             'admin_id' => 1,
+            'logistic_method' => 1,
         ],
         [
             'user_id' => 4,
@@ -1414,7 +1420,10 @@ class SampleData
             'village_id' => 60,
             'specific_address' => '128A Hồ Tùng Mậu',
             'tel' => '0334517566',
+            'name' => 'Hoàng Thị Lý',
+            'email' => 'hoangly94@gmail.com',
             'admin_id' => 1,
+            'logistic_method' => 1,
         ],
         [
             'user_id' => 4,
@@ -1427,7 +1436,10 @@ class SampleData
             'village_id' => 60,
             'specific_address' => '128A Hồ Tùng Mậu',
             'tel' => '0334517566',
+            'name' => 'Hoàng Thị Lý',
+            'email' => 'hoangly94@gmail.com',
             'admin_id' => 1,
+            'logistic_method' => 1,
         ],
         [
             'user_id' => 5,
@@ -1440,7 +1452,10 @@ class SampleData
             'village_id' => 60,
             'specific_address' => '37C1 Ngõ 20',
             'tel' => '0334517566',
+            'name' => 'Hoàng Thị Lý',
+            'email' => 'hoangly94@gmail.com',
             'admin_id' => 1,
+            'logistic_method' => 1,
         ],
         [
             'user_id' => 5,
@@ -1453,7 +1468,10 @@ class SampleData
             'village_id' => 60,
             'specific_address' => '37C1 Ngõ 20',
             'tel' => '0394548299',
+            'name' => 'Nguyễn Văn Sơn',
+            'email' => 'vanson246@gmail.com',
             'admin_id' => 1,
+            'logistic_method' => 1,
         ],
         [
             'user_id' => 5,
@@ -1466,7 +1484,10 @@ class SampleData
             'village_id' => 60,
             'specific_address' => '37C1 Ngõ 20',
             'tel' => '0394548299',
+            'name' => 'Nguyễn Văn Sơn',
+            'email' => 'vanson246@gmail.com',
             'admin_id' => 1,
+            'logistic_method' => 1,
         ],
         [
             'user_id' => 5,
@@ -1479,7 +1500,10 @@ class SampleData
             'village_id' => 60,
             'specific_address' => '105 Doãn Kế Thiện',
             'tel' => '0394548299',
+            'name' => 'Nguyễn Văn Sơn',
+            'email' => 'vanson246@gmail.com',
             'admin_id' => 1,
+            'logistic_method' => 1,
         ],
     ];
 
@@ -1506,7 +1530,10 @@ class SampleData
             $order->specific_address = $value['specific_address'];
             $order->address = $value['specific_address'] . ', ' . \frontend\models\GeoLocation::getNameGeoLocationById($value['village_id']) . ', ' . \frontend\models\GeoLocation::getNameGeoLocationById($value['district_id']) . ', ' . \frontend\models\GeoLocation::getNameGeoLocationById($value['province_id']);
             $order->tel = $value['tel'];
+            $order->name = $value['name'];
+            $order->email = $value['email'];
             $order->admin_id = $value['admin_id'];
+            $order->logistic_method = $value['logistic_method'];
             $order->created_at = date('Y-m-d H:m:s');
             $order->updated_at = date('Y-m-d H:m:s');
             $order->status = rand(1, 8);

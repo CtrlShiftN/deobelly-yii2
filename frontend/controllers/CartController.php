@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\components\encrypt\CryptHelper;
 use frontend\models\Cart;
+use frontend\models\OrderForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;

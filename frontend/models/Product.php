@@ -161,6 +161,11 @@ class Product extends \common\models\Product
         return Product::find()->select('selling_price')->where(['status' => SystemConstant::STATUS_ACTIVE, 'id' => $id])->asArray()->scalar();
     }
 
+    public static function getProductQuantityById($id)
+    {
+        return Product::find()->select('quantity')->where(['status' => SystemConstant::STATUS_ACTIVE, 'id' => $id])->asArray()->scalar();
+    }
+
     /**
      * @return array|\yii\db\ActiveRecord[]
      */

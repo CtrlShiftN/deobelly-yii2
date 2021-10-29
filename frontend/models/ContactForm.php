@@ -91,17 +91,4 @@ class ContactForm extends Contact
         $contactModel->updated_at = date('Y-m-d H:i:s');
         return $contactModel->save();
     }
-
-    /**
-     * @return bool
-     */
-    public static function sendReplyContact()
-    {
-        return Yii::$app->mailer->compose()
-            ->setFrom(Yii::$app->params['supportEmail'])
-            ->setTo(Yii::$app->params['adminEmail'])
-            ->setSubject('Bạn có 1 phản hồi mới!')
-            ->setHtmlBody('Bạn vừa nhận được phản hồi từ người dùng. <b><i>Hãy kiểm tra!</i></b><br>')
-            ->send();
-    }
 }

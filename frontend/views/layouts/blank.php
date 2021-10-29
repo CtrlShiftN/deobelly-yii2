@@ -6,7 +6,6 @@
 
 use frontend\assets\AppAsset;
 use yii\bootstrap5\Html;
-use yii\helpers\Url;
 
 $cdnUrl = Yii::$app->params['frontend'];
 $imgUrl = Yii::$app->params['common'] . "/media";

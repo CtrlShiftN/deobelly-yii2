@@ -7,10 +7,11 @@ use common\components\helpers\HeaderHelper;
 use common\components\helpers\ParamHelper;
 use common\components\SystemConstant;
 use common\models\Favorite;
+use common\models\Order;
 use frontend\models\Cart;
+use frontend\models\GeoLocation;
+use frontend\models\OrderForm;
 use frontend\models\Product;
-use frontend\models\ProductCategory;
-use http\Url;
 use Yii;
 use yii\rest\ActiveController;
 
@@ -132,6 +133,7 @@ class AjaxController extends ActiveController
     {
         $user_id = Yii::$app->user->id;
         $id = intval(CryptHelper::decryptString(ParamHelper::getParamValue('id')));
+        $productQuantity = Product::getProductQuantityById($id);
         $color = intval(CryptHelper::decryptString(ParamHelper::getParamValue('color')));
         $size = intval(CryptHelper::decryptString(ParamHelper::getParamValue('size')));
         $amount = intval(ParamHelper::getParamValue('amount'));
@@ -143,7 +145,11 @@ class AjaxController extends ActiveController
             'size_id' => $size,
         ]);
         if (!empty($cart)) {
-            $cart->quantity += $amount;
+            if (($productQuantity - $cart->quantity) >= $amount) {
+                $cart->quantity += $amount;
+            } else {
+                $cart->quantity = $productQuantity;
+            }
             $cart->total_price = $cart->quantity * $price;
             $cart->updated_at = date('Y-m-d H:i:s');
             if ($cart->save()) {
@@ -210,6 +216,9 @@ class AjaxController extends ActiveController
         exit;
     }
 
+    /**
+     *
+     */
     public function actionAddToFavorite()
     {
         $productID = intval(CryptHelper::decryptString(ParamHelper::getParamValue('id')));
@@ -237,8 +246,8 @@ class AjaxController extends ActiveController
             }
         } else {
             $response = [
-                'status' => SystemConstant::API_SUCCESS_STATUS,
-                'message' => Yii::t('app', 'Add to favorite successfully!'),
+                'status' => SystemConstant::API_UNSUCCESS_STATUS,
+                'message' => Yii::t('app', 'Can not add this product to favorite.'),
             ];
         }
         echo json_encode($response);
