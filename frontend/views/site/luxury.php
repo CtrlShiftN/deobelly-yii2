@@ -85,7 +85,7 @@ $this->registerCssFile(Url::toRoute("/css/luxury.css"));
             <div class="row">
                 <?php foreach ($featuredProducts as $key => $products): ?>
                     <div class="col-12 col-sm-6 col-md-4 text-center pb-3 px-4">
-                        <div class="card box-shadow">
+                        <div class="card box-shadow h-100">
                             <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($products['id'])]) ?>"
                                target="_blank" class="text-decoration-none">
                                 <div class="image-holder">
