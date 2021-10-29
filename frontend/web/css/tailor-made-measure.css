@@ -1,0 +1,52 @@
+.text-justify {
+    text-align: justify;
+}
+
+.title-svn {
+    font-family: "SVN Veneer";
+}
+.object-fit-cover {
+    object-fit: cover !important;
+}
+.card-shadow:hover{
+    box-shadow: 5px 10px 18px #888888;
+}
+/* End Carousel */
+.zoom{
+    overflow: hidden;
+    width: 100%;
+}
+.zoom img {
+    width: 100%;
+    transition: 0.5s all ease-in-out;
+}
+
+.zoom:hover img {
+    transform: scale(1.5);
+}
+.image-holder{
+    position: relative;
+}
+
+.img-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(192,192,192,0.0);
+    width:100%;
+    height: 100%;
+}
+.img-overlay:hover{
+    background-color: rgba(192,192,192,0.5);
+}
+.measure-method__title {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+    z-index: 99;
+    background-color: rgba(255, 128, 0, 0.5);
+    padding: 15px 15px 5px;
+}

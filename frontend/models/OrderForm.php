@@ -101,39 +101,15 @@ class OrderForm extends Order
         ];
     }
 
-    public function createOrder($count,$arrCartId,$arrProductId,$arrQuantity,$arrColorId,$arrSizeId)
+    public static function createOrder()
     {
-        for($i = 0; $i<$count;$i++) {
-            $model = new OrderForm();
-            $model->user_id = Yii::$app->user->identity->getId();
-            $model->product_id = $arrProductId[$i];
-            $model->color_id = $arrColorId[$i];
-            $model->size_id = $arrSizeId[$i];
-            $model->quantity = $arrQuantity[$i];
-            $model->province_id = $this->province_id;
-            $model->district_id = $this->district_id;
-            $model->village_id = $this->village_id;
-            $model->specific_address = $this->specific_address;
-            if ($this->logistic_method == 1) {
-                $model->address = $this->name . ' (' . $this->email . '), ' . $this->specific_address . ', ' . GeoLocation::getNameGeoLocationById($this->village_id) . ', ' . GeoLocation::getNameGeoLocationById($this->district_id) . ', ' . GeoLocation::getNameGeoLocationById($this->province_id);
-            } else {
-                $model->address = null;
-            }
-            $model->tel = $this->tel;
-            $model->admin_id = 1;
-            $model->logistic_method = $this->logistic_method;
-            $model->created_at = date('Y-m-d H:i:s');
-            $model->updated_at = date('Y-m-d H:i:s');
-            if($model->save(false)){
-                $cart = \common\models\Cart::findOne($arrCartId[$i]);
-                $cart->status = SystemConstant::STATUS_INACTIVE;
-                $cart->save();
-            }
-        }
-//        if($countOrder = $count - 1) {
-            return true;
-//        } else {
-//            return false;
-//        }
+        $orderModel = new OrderForm();
+        $userId = Yii::$app->user->identity->getId();
+        $productId = CryptHelper::decryptAllElementInArray(explode(',',$orderModel->product_id));
+        $cartId = CryptHelper::decryptAllElementInArray(explode(',',$orderModel->cart));
+        $quantity = explode(',',$orderModel->quantity);
+        $colorId = explode(',',$orderModel->color_id);
+        $sizeId = explode(',',$orderModel->size_id);
+
     }
 }

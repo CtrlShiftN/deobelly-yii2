@@ -67,26 +67,14 @@ class CheckoutController extends \yii\web\Controller
         $model = new OrderForm();
         $provinces = ArrayHelper::map(GeoLocation::getAllProvince(), 'id', 'name');
         $cart = Cart::getCartByUserId(Yii::$app->user->identity->getId());
-        $modelOrder = new OrderForm();
-        if ($modelOrder->load(Yii::$app->request->post()) && $modelOrder->validate()) {
-            $order = Yii::$app->request->post('OrderForm');
-            $getCartId = explode(',',$order['cart']);
-            $arrCartId = CryptHelper::decryptAllElementInArray($getCartId);
-            $count = count($arrCartId);
-            $getProductId = explode(',',$order['product_id']);
-            $arrProductId = CryptHelper::decryptAllElementInArray($getProductId);
-            $arrQuantity = explode(',',$order['quantity']);
-            $arrColorId = explode(',',$order['color_id']);
-            $arrSizeId = explode(',',$order['product_id']);
-            if($modelOrder->createOrder($count,$arrCartId,$arrProductId,$arrQuantity,$arrColorId,$arrSizeId)){
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if($model->createOrder()){
                 Yii::$app->session->setFlash('creatOrderSuccess', 'Thank you for your feedback. We will reply to you soon.');
             } else {
                 Yii::$app->session->setFlash('creatOrderError', 'Unable to submit a response. Please try again.');
             }
         }
-//        if(count($cart) < 1) {
-//            return $this->redirect(\yii\helpers\Url::toRoute('cart/index'));
-//        } else {
+
             return $this->render('index',[
                 'model' => $model,
                 'provinces' => $provinces,

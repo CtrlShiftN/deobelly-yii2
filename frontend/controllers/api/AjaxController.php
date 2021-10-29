@@ -303,9 +303,4 @@ class AjaxController extends ActiveController
 //        //TODO: return done or fail
 //        exit;
 //    }
-
-    public function actionCreateOrder()
-    {
-
-    }
 }

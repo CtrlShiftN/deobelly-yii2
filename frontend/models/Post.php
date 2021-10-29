@@ -95,9 +95,9 @@ class Post extends \common\models\Post
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getLatestPosts()
+    public static function getLatestPosts($limit = 5)
     {
-        return Post::find()->where(['status' => 1])->orderBy('updated_at DESC')->limit(5)->asArray()->all();
+        return Post::find()->where(['status' => 1])->orderBy('updated_at DESC')->limit($limit)->asArray()->all();
     }
 
     /**
