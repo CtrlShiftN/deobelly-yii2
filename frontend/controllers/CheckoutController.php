@@ -91,6 +91,8 @@ class CheckoutController extends \yii\web\Controller
                         $orderModel->address = $order['specific_address'] . ', ' . GeoLocation::getNameGeoLocationById(intval($order['village_id'])) . ', ' . GeoLocation::getNameGeoLocationById(intval($order['district_id'])) . ', ' . GeoLocation::getNameGeoLocationById(intval($order['province_id']));
                     }
                     $orderModel->tel = $order['tel'];
+                    $orderModel->name = $order['name'];
+                    $orderModel->email = $order['email'];
                     $orderModel->admin_id = 1;
                     $orderModel->logistic_method = $order['logistic_method'];
                     $orderModel->created_at = date('Y-m-d H:i:s');
