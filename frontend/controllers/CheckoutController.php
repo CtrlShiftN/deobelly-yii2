@@ -73,30 +73,22 @@ class CheckoutController extends \yii\web\Controller
         } else {
             if ($model->load(Yii::$app->request->post())) {
                 $order = Yii::$app->request->post('OrderForm');
-                $getCartId = explode(',', $order['cart']);
-                $arrCartId = CryptHelper::decryptAllElementInArray($getCartId);
-                $getProductId = explode(',', $order['product_id']);
-                $arrProductId = CryptHelper::decryptAllElementInArray($getProductId);
-                $arrQuantity = explode(',', $order['quantity']);
-                $arrColorId = explode(',', $order['color_id']);
-                $arrSizeId = explode(',', $order['size_id']);
+                $arrCartId = CryptHelper::decryptAllElementInArray(explode(',', $order['cart']));
+                $arrProductId = CryptHelper::decryptAllElementInArray(explode(',', $order['product_id']));
                 $count = 0;
                 foreach ($arrCartId as $key => $cartId) {
                     $orderModel = new Order();
                     $orderModel->user_id = Yii::$app->user->identity->getId();
                     $orderModel->product_id = intval($arrProductId[$key]);
-                    $orderModel->color_id = intval($arrColorId[$key]);
-                    $orderModel->size_id = intval($arrSizeId[$key]);
-                    $orderModel->quantity = intval($arrQuantity[$key]);
-                    if (intval($order['logistic_method']) == 1) {
-                        $orderModel->province_id = $orderModel->district_id = $orderModel->village_id = null;
-                        $orderModel->specific_address = $orderModel->address = ' ';
-                    } else {
+                    $orderModel->color_id = intval(explode(',', $order['color_id'])[$key]);
+                    $orderModel->size_id = intval(explode(',', $order['size_id'])[$key]);
+                    $orderModel->quantity = intval(explode(',', $order['quantity'])[$key]);
+                    if (intval($order['logistic_method']) != 1) {
                         $orderModel->province_id = intval($order['province_id']);
                         $orderModel->district_id = intval($order['district_id']);
                         $orderModel->village_id = intval($order['village_id']);
                         $orderModel->specific_address = $order['specific_address'];
-                        $orderModel->address = $order['name'] . ' (' . $order['email'] . '), ' . $order['specific_address'] . ', ' . GeoLocation::getNameGeoLocationById(intval($order['village_id'])) . ', ' . GeoLocation::getNameGeoLocationById(intval($order['district_id'])) . ', ' . GeoLocation::getNameGeoLocationById(intval($order['province_id']));
+                        $orderModel->address = $order['specific_address'] . ', ' . GeoLocation::getNameGeoLocationById(intval($order['village_id'])) . ', ' . GeoLocation::getNameGeoLocationById(intval($order['district_id'])) . ', ' . GeoLocation::getNameGeoLocationById(intval($order['province_id']));
                     }
                     $orderModel->tel = $order['tel'];
                     $orderModel->admin_id = 1;

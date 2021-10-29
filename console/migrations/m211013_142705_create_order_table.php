@@ -25,6 +25,8 @@ class m211013_142705_create_order_table extends Migration
             'specific_address' => $this->string()->notNull(),
             'address' => $this->text()->notNull(),
             'notes' => $this->text()->null(),
+            'name' => $this->string()->notNull(),
+            'email' => $this->string()->notNull(),
             'tel' => $this->string()->notNull(),
             'admin_id' => $this->bigInteger()->notNull(),
             'logistic_method' => $this->smallInteger()->notNull()->comment('0:home delivery, 1:receive at store'),

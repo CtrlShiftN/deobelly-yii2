@@ -2,9 +2,6 @@
 
 namespace frontend\models;
 
-use common\components\encrypt\CryptHelper;
-use common\components\SystemConstant;
-use common\models\Order;
 use Yii;
 
 /**
@@ -22,6 +19,8 @@ use Yii;
  * @property string $specific_address
  * @property string $address
  * @property string|null $notes
+ * @property string $name
+ * @property string $email
  * @property string $tel
  * @property int $admin_id
  * @property int $logistic_method 0:home delivery, 1:receive at store
@@ -29,11 +28,8 @@ use Yii;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class OrderForm extends Order
+class OrderForm extends \yii\db\ActiveRecord
 {
-    public $name;
-    public $email;
-    public $cart;
     /**
      * {@inheritdoc}
      */
@@ -48,20 +44,11 @@ class OrderForm extends Order
     public function rules()
     {
         return [
-            ['email', 'required', 'message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
-            ['email', 'email'],
-            ['email', 'string', 'max' => 255],
-            ['cart', 'string', 'max' => 255],
-            ['name', 'required', 'message'=>'{attribute}' . Yii::t('app',' can not be blank.')],
-            ['name', 'string', 'max' => 100],
-            [['user_id', 'admin_id', 'logistic_method'], 'required'],
-            [['user_id', 'province_id', 'district_id', 'village_id', 'admin_id', 'logistic_method', 'status'], 'integer'],
-            [['province_id', 'district_id', 'village_id', 'specific_address', 'address'], 'required', 'when' => function($model) {return $model->logistic_method == 0;}, 'whenClient' => "function (attribute, value) {return $('#sm-home-delivery').prop('checked');}"],
+            [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'specific_address', 'address', 'name', 'email', 'tel', 'admin_id', 'logistic_method'], 'required'],
+            [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'admin_id', 'logistic_method', 'status'], 'integer'],
             [['address', 'notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['specific_address', 'tel'], 'string', 'max' => 255],
-            ['tel', 'required', 'message' => Yii::t('app', 'Phone number can not be blank.')],
-            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app', 'Includes 10 digits starting with 0 or 84.')],
+            [['specific_address', 'name', 'email', 'tel'], 'string', 'max' => 255],
         ];
     }
 
@@ -71,24 +58,23 @@ class OrderForm extends Order
     public function attributeLabels()
     {
         return [
-            'cart' => Yii::t('app', 'Cart'),
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User ID'),
-            'name' => Yii::t('app', "Consignee's name"),
-            'email' => Yii::t('app', 'Email'),
-            'product_id' => Yii::t('app', 'Product'),
-            'color_id' => Yii::t('app', 'Color'),
-            'size_id' => Yii::t('app', 'Size'),
+            'product_id' => Yii::t('app', 'Product ID'),
+            'color_id' => Yii::t('app', 'Color ID'),
+            'size_id' => Yii::t('app', 'Size ID'),
             'quantity' => Yii::t('app', 'Quantity'),
-            'province_id' => Yii::t('app', 'Province'),
-            'district_id' => Yii::t('app', 'District'),
-            'village_id' => Yii::t('app', 'Village'),
-            'specific_address' => Yii::t('app', 'Address'),
+            'province_id' => Yii::t('app', 'Province ID'),
+            'district_id' => Yii::t('app', 'District ID'),
+            'village_id' => Yii::t('app', 'Village ID'),
+            'specific_address' => Yii::t('app', 'Specific Address'),
             'address' => Yii::t('app', 'Address'),
             'notes' => Yii::t('app', 'Notes'),
+            'name' => Yii::t('app', 'Name'),
+            'email' => Yii::t('app', 'Email'),
             'tel' => Yii::t('app', 'Tel'),
-            'admin_id' => Yii::t('app', 'Admin'),
-            'logistic_method' => Yii::t('app', 'Logistic method'),
+            'admin_id' => Yii::t('app', 'Admin ID'),
+            'logistic_method' => Yii::t('app', 'Logistic Method'),
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
