@@ -112,7 +112,6 @@ class CheckoutController extends \yii\web\Controller
                 }
                 if ($count == count($cart)) {
                     Yii::$app->session->setFlash('creatOrderSuccess', Yii::t('app', 'Order Success! Please continue to order the product.'));
-                    \frontend\models\Order::sendNewOrderReport();
                     return $this->redirect(\yii\helpers\Url::toRoute('cart/index'));
                 } else {
                     Yii::$app->session->setFlash('creatOrderError', Yii::t('app', 'Order failed! Please try again.'));

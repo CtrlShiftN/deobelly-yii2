@@ -80,17 +80,4 @@ class Order extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
-
-    /**
-     * @return bool
-     */
-    public static function sendNewOrderReport()
-    {
-        return Yii::$app->mailer->compose()
-            ->setFrom(Yii::$app->params['supportEmail'])
-            ->setTo(Yii::$app->params['adminEmail'])
-            ->setSubject('Bạn có 1 đơn hàng mới!')
-            ->setHtmlBody('Một đơn hàng mới vừa được khởi tạo. <b><i>Hãy kiểm tra!</i></b><br>')
-            ->send();
-    }
 }
