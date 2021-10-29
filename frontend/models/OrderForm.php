@@ -57,18 +57,12 @@ class OrderForm extends Order
             [['user_id', 'admin_id', 'logistic_method'], 'required'],
             [['user_id', 'province_id', 'district_id', 'village_id', 'admin_id', 'logistic_method', 'status'], 'integer'],
             [['province_id', 'district_id', 'village_id', 'specific_address', 'address'], 'required', 'when' => function($model) {return $model->logistic_method == 0;}, 'whenClient' => "function (attribute, value) {return $('#sm-home-delivery').prop('checked');}"],
-            ['logistic_method', 'checkLogisticMethod'],
             [['address', 'notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['specific_address', 'tel'], 'string', 'max' => 255],
             ['tel', 'required', 'message' => Yii::t('app', 'Phone number can not be blank.')],
             [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app', 'Includes 10 digits starting with 0 or 84.')],
         ];
-    }
-
-    public function checkLogisticMethod()
-    {
-
     }
 
     /**
@@ -99,17 +93,5 @@ class OrderForm extends Order
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
-    }
-
-    public static function createOrder()
-    {
-        $orderModel = new OrderForm();
-        $userId = Yii::$app->user->identity->getId();
-        $productId = CryptHelper::decryptAllElementInArray(explode(',',$orderModel->product_id));
-        $cartId = CryptHelper::decryptAllElementInArray(explode(',',$orderModel->cart));
-        $quantity = explode(',',$orderModel->quantity);
-        $colorId = explode(',',$orderModel->color_id);
-        $sizeId = explode(',',$orderModel->size_id);
-
     }
 }

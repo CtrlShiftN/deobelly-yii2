@@ -17,6 +17,13 @@ $this->registerCssFile(Url::toRoute("css/cart.css"));
 $this->registerJsFile(Url::toRoute('js/cart.js'));
 ?>
 <?php if (empty($cart)): ?>
+    <?php if (Yii::$app->session->hasFlash('creatOrderSuccess')): ?>
+        <div class="alert alert-success alert-dismissible fade show my-3 w-100">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <h3><i class="icon fa fa-check"></i> <?= Yii::t('app', 'SUCCESS') ?>!</h3>
+            <?= Yii::t('app', Yii::$app->session->getFlash('creatOrderSuccess')) ?>
+        </div>
+    <?php endif; ?>
     <div class="w-100 mx-0 text-center my-4 my-md-5">
         <img src="<?= Url::toRoute('img/cart.png') ?>" class="w-25 my-2"><br>
         <a href="<?= Url::toRoute('shop/product') ?>" class="text-decoration-none"><small class="text-dark">Tiếp tục

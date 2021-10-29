@@ -133,7 +133,7 @@ class AjaxController extends ActiveController
     {
         $user_id = Yii::$app->user->id;
         $id = intval(CryptHelper::decryptString(ParamHelper::getParamValue('id')));
-        $productQuantity = Product::getQuantityProductById($id);
+        $productQuantity = Product::getProductQuantityById($id);
         $color = intval(CryptHelper::decryptString(ParamHelper::getParamValue('color')));
         $size = intval(CryptHelper::decryptString(ParamHelper::getParamValue('size')));
         $amount = intval(ParamHelper::getParamValue('amount'));
@@ -253,54 +253,4 @@ class AjaxController extends ActiveController
         echo json_encode($response);
         exit;
     }
-
-//    public function actionCreateOrder()
-//    {
-//        $user_id = Yii::$app->user->identity->getId();
-//        $getProductId = ParamHelper::getParamValue('productId');
-//        $productId = CryptHelper::decryptAllElementInArray($getProductId);
-//        $getCartId = ParamHelper::getParamValue('cartId');
-//        $cartId = CryptHelper::decryptAllElementInArray($getCartId);
-//        $colorId = ParamHelper::getParamValue('colorId');
-//        $sizeId = ParamHelper::getParamValue('sizeId');
-//        $quantity = ParamHelper::getParamValue('quantity');
-//        $name = ParamHelper::getParamValue('name');
-//        $tel = ParamHelper::getParamValue('tel');
-//        $email = ParamHelper::getParamValue('email');
-//        $notes = ParamHelper::getParamValue('notes');
-//        $logistic_method = ParamHelper::getParamValue('logistic_method');
-//        $province = ParamHelper::getParamValue('province');
-//        $district = ParamHelper::getParamValue('district');
-//        $village = ParamHelper::getParamValue('village');
-//        $specific_address = ParamHelper::getParamValue('specificAddress');
-//        $count = count(Cart::getCartByUserId(Yii::$app->user->identity->getId()));
-//        for ($i = 0; $i< $count; $i++) {
-//            $model = new Order();
-//            $model->user_id = $user_id;
-//            $model->product_id = $productId[$i];
-//            $model->color_id = $colorId[$i];
-//            $model->size_id = $sizeId[$i];
-//            $model->quantity = $quantity[$i];
-//            if(!empty($province) && !empty($district) && !empty($village)) {
-//                $model->province_id = $province;
-//                $model->district_id = $district;
-//                $model->village_id = $village;
-//                $model->specific_address = $specific_address;
-//                $model->address = $name . ' (' . $email . '),' . $specific_address . ',' . GeoLocation::getNameGeoLocationById($village) . ',' . GeoLocation::getNameGeoLocationById($district) . ',' . GeoLocation::getNameGeoLocationById($province);
-//            }
-//            $model->notes = $notes;
-//            $model->tel = $tel;
-//            $model->admin_id = 1;
-//            $model->logistic_method = $logistic_method;
-//            $model->created_at = date('Y-m-d H:i:s');
-//            $model->updated_at = date('Y-m-d H:i:s');
-//            if($model->save()) {
-//                $cart = \common\models\Cart::findOne($cartId[$i]);
-//                $cart->status = SystemConstant::STATUS_INACTIVE;
-//                $cart->save();
-//            }
-//        }
-//        //TODO: return done or fail
-//        exit;
-//    }
 }

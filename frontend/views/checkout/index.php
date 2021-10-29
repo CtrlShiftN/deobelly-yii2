@@ -14,15 +14,8 @@ $imgUrl = Yii::$app->params['common'] . "/media";
 $this->registerCssFile(Url::toRoute("css/check-out.css"));
 $this->registerJsFile(Url::toRoute('js/check-out.js'));
 ?>
-<?php if (Yii::$app->session->hasFlash('creatOrderSuccess')): ?>
-    <div class="alert alert-success alert-dismissible fade show my-3">
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        <h4><i class="icon fa fa-check"></i> <?= Yii::t('app', 'SUCCESS') ?>!</h4>
-        <?= Yii::t('app', Yii::$app->session->getFlash('creatOrderSuccess')) ?>
-    </div>
-<?php endif; ?>
 <?php if (Yii::$app->session->hasFlash('creatOrderError')): ?>
-    <div class="alert alert-danger alert-dismissible fade show my-3">
+    <div class="alert alert-danger alert-dismissible fade show my-3 w-100">
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         <h4><i class="fas fa-times"></i> <?= Yii::t('app', 'ERROR') ?>!</h4>
         <?= Yii::t('app', Yii::$app->session->getFlash('creatOrderError')) ?>

@@ -175,12 +175,14 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                 <small id="notify" class="text-danger w-100 my-2"></small>
             </div>
         </div>
-        <button class="btn btn-outline-danger p-2 me-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger rounded-0"
-             id="btnAddToCart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
-        </button>
-        <a class="btn p-2 btn-danger text-light col-12 col-sm-6 col-md-12 col-lg-5 text-light bg-danger rounded-0"
-           href="<?= Url::toRoute('checkout/') ?>"
-           id="btnBuyNow">Mua ngay</a>
+        <div class="w-100 row mx-0 px-0">
+            <button class="btn btn-outline-danger p-2 me-lg-3 my-2 my-sm-0 my-md-2 my-lg-0 col-12 col-sm-6 col-md-12 col-lg-5 text-danger bg-white border border-danger rounded-0"
+                    id="btnAddToCart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+            </button>
+            <a class="btn p-2 btn-danger text-light col-12 col-sm-6 col-md-12 col-lg-5 text-light bg-danger rounded-0"
+               href="<?= Url::toRoute('checkout/') ?>"
+               id="btnBuyNow">Mua ngay</a>
+        </div>
     </div>
     <div class="w-100 my-2 mx-0 px-md-3">
         <div class="accordion p-0" id="accordionInformation">
