@@ -74,7 +74,7 @@ return [
     'Instruction manual' => 'Cẩm nang hướng dẫn',
     'Payment guide' => 'Hướng dẫn thanh toán',
     'CONTACT INFO' => 'THÔNG TIN LIÊN HỆ',
-    'No.xxx, YYY street, ZZZ ward, ABC district, Hanoi.' => ' Số xxx, đường YYY, phường ZZZ, quận ABC, Hà Nội.',
+    'Number 536, CT1 Building, 5th Floor, , Minh Khai street, Vinh Tuy ward, Hai Ba Trung district, Hanoi.' => 'Số 536, Tòa nhà CT1, Tầng 5, đường Minh Khai, phường Vĩnh Tuy, quận Hai Bà Trưng, Hà Nội.',
     'SIGN UP TO RECEIVE NEWS' => 'ĐĂNG KÝ ĐỂ NHẬN TIN MỚI NHẤT',
     'Promotion news / Brand news' => 'Tin khuyến mãi / Tin thương hiệu',
     'CONNECT WITH US' => 'KẾT NỐI VỚI CHÚNG TÔI',

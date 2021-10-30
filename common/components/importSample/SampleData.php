@@ -2516,47 +2516,12 @@ class SampleData
 
     protected static $arrShowroom = [
         [
-            'name' => 'SHOWROOM VINCOM BÀ TRIỆU',
-            'image' => 'showroom/showroom-ba-trieu.png',
-            'address' => '191 Bà Triệu, Lê Đại Hành, Hai Bà Trưng, Hà Nội',
-            'tel' => '024 7102 8686',
-            'gps_link' => 'https://goo.gl/maps/4azB8afpttbvdGtD9',
-        ],
-        [
-            'name' => 'SHOWROOM Thái Hà',
+            'name' => 'SHOWROOM PHỐ HUẾ',
             'image' => 'showroom/showroom-thai-ha.png',
-            'address' => 'Số 159 Thái Hà, Đống Đa, Hà Nội',
-            'tel' => '024 3222 2638',
-            'gps_link' => 'https://goo.gl/maps/k1hugAF831m1BGGX6',
+            'address' => '250 Phô Huế, Phố Huế, Hai Bà Trưng, Hà Nội',
+            'tel' => '024 3205 2232',
+            'gps_link' => 'https://goo.gl/maps/9RW7c6uLmpMSaK4z7',
         ],
-        [
-            'name' => 'SHOWROOM Cầu Giấy',
-            'image' => 'showroom/showroom-cau-giay.png',
-            'address' => '111 Nguyễn Văn Huyên, Cầu Giấy, Hà Nội',
-            'tel' => '024 6261 2555',
-            'gps_link' => 'https://goo.gl/maps/87xbnXKMDEsmwwCk8',
-        ],
-        [
-            'name' => 'SHOWROOM Từ Sơn',
-            'image' => 'showroom/showroom-tu-son.png',
-            'address' => '270 Trần Phú, Từ Sơn, Bắc Ninh',
-            'tel' => '0222 376 0166',
-            'gps_link' => 'https://goo.gl/maps/3NH1bdHJaUB2JTtA6',
-        ],
-        [
-            'name' => 'SHOWROOM TP Thanh Hóa',
-            'image' => 'showroom/showroom-tp-thanh-hoa.png',
-            'address' => '168-170 Lê Hoàn, Thành phố Thanh Hóa',
-            'tel' => '0237 371 6886',
-            'gps_link' => 'https://goo.gl/maps/1nqPWEksqEDn3pp67',
-        ],
-        [
-            'name' => 'SHOWROOM Hải Phòng',
-            'image' => 'showroom/showroom-hai-phong.png',
-            'address' => '59 - 60 Nguyễn Đức Cảnh, Hải Phòng',
-            'tel' => '0225 351 0966',
-            'gps_link' => 'https://goo.gl/maps/4RKScLXVZvsYkASx5',
-        ]
     ];
 
     public static function insertSampleShowroom()
