@@ -77,11 +77,9 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
                 </h3>
             </div>
             <div class="w-100 row m-0">
-                <p class="col-12 mx-0"><span class="fw-bold"><?= Yii::t('app', 'Address') ?>:</span><br>Tầng 1,tòa nhà
-                    GP Invest, 170 Đê La Thành,
-                    Đống Đa,Hà Nội</p>
+                <p class="col-12 mx-0"><span class="fw-bold"><?= Yii::t('app', 'Address') ?>:</span><br> 536 Minh Khai, Tòa CT1, tầng 5, Phường Vĩnh Tuy, Quận Hai Bà Trưng, Hà Nội</p>
                 <p class="d-inline-block col-12 col-sm-6"><span class="fw-bold">Email:</span><br>deobelly@gmail.com</p>
-                <p class="d-inline-block col-12 col-sm-6"><span class="fw-bold"><?= Yii::t('app', 'Tel') ?>:</span><br>1900.636.099
+                <p class="d-inline-block col-12 col-sm-6"><span class="fw-bold"><?= Yii::t('app', 'Tel') ?>:</span><br><?= Yii::$app->params['adminTel'] ?>
                 </p>
                 <p class="d-inline-block col-12"><span class="fw-bold"><?= Yii::t('app', 'Working time') ?>:</span><br>Thứ
                     2 đến Thứ 6 từ 8h đến 18h; Thứ 7 và Chủ
