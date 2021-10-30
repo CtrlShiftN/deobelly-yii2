@@ -421,10 +421,10 @@ AppAsset::register($this);
                                 <ul class="footer-nav no-bullets">
                                     <h3><?= Yii::t('app', 'CONTACT INFO') ?></h3>
                                     <li><span class="ft-content"><i
-                                                    class="fas fa-home"></i> <?= Yii::t('app', 'Number 536, CT1 Building, 5th Floor, , Minh Khai street, Vinh Tuy ward, Hai Ba Trung district, Hanoi.') ?></span>
+                                                    class="fas fa-home"></i>  536 Minh Khai, Tòa CT1, tầng 5, Phường Vĩnh Tuy, Quận Hai Bà Trưng, Hà Nội</span>
                                     </li>
                                     <li><span class="ft-content"><i class="fas fa-phone-square"></i> <a
-                                                    href="tel:1800 1089"><?= Yii::$app->params['adminTel'] ?></a></span></li>
+                                                    href="tel:<?= Yii::$app->params['adminTel'] ?>"><?= Yii::$app->params['adminTel'] ?></a></span></li>
                                     <li><span class="ft-content"><i class="fas fa-envelope"></i><a
                                                     href="mailto:support@deobelly.com"> support@deobelly.com</a></span>
                                     </li>

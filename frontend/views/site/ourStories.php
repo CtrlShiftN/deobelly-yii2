@@ -70,8 +70,7 @@ $this->registerCss(".intro-quote{
                 Việt Nam, Thái Lan… Sản phẩm bắt buộc phải trải qua các vòng kiểm tra chi tiết, đảm bảo chất lượng đúng
                 chuẩn hàng xa xỉ Châu Âu – tiêu chuẩn mà De Obelly đã tuân thủ trong thời gian qua.</p>
             <p>Không chỉ quan tâm đặc biệt tới các vấn đề về sản xuất, De Obelly còn quan tâm tới việc thiết kế và
-                chỉ đạo nghệ thuật để có được sự liền mạch trong trải nghiệm khách hàng. Với việc bổ nhiệm Giám đốc Sáng
-                tạo Tim - Voegele Downing vào tháng 5/2017 cùng với đội ngũ tư vấn về sáng tạo và truyền thông có uy tín
+                chỉ đạo nghệ thuật để có được sự liền mạch trong trải nghiệm khách hàng. Với đội ngũ tư vấn về sáng tạo và truyền thông có uy tín
                 quốc tế, De Obelly hứa hẹn sẽ mang lại làn gió mới cho ngành thời trang cao cấp và cận xa xỉ ở Việt
                 Nam cũng như khu vực Đông Nam Á.</p>
         </div>
@@ -92,7 +91,6 @@ $this->registerCss(".intro-quote{
                     trội và phong cách thanh lịch tự nhiên. Sự tập trung vào việc đổi mới liên tục giúp chúng tôi phục
                     vụ khách
                     hàng ngày càng hiệu quả hơn.”</p>
-                <p>Ông Nguyễn V.A – Chủ tịch Hội đồng quản trị De Obelly chia sẻ</p>
             </div>
             <div class="col-12 col-md-1"></div>
         </div>

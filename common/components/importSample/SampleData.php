@@ -2516,11 +2516,11 @@ class SampleData
 
     protected static $arrShowroom = [
         [
-            'name' => 'SHOWROOM PHỐ HUẾ',
-            'image' => 'showroom/showroom-thai-ha.png',
-            'address' => '250 Phô Huế, Phố Huế, Hai Bà Trưng, Hà Nội',
-            'tel' => '024 3205 2232',
-            'gps_link' => 'https://goo.gl/maps/9RW7c6uLmpMSaK4z7',
+            'name' => 'SHOWROOM PHỐ HUẾ',
+            'image' => 'showroom/showroom-ba-trieu.png',
+            'address' => '250 Phố Huế, phường Phố Huế, quận Hai Bà Trưng, Hà Nội',
+            'tel' => '02432052232',
+            'gps_link' => 'https://goo.gl/maps/4azB8afpttbvdGtD9',
         ],
     ];
 
