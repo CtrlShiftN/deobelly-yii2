@@ -392,6 +392,6 @@ return [
     'Thigh' => 'Đùi',
     'Biceps' => 'Bắp Tay',
     'Notes' => 'Ghi Chú',
-    'Order Success! Please continue to order the product.' => 'Đặt hàng thành công! Vui lòng tiếp tục đặt mua sản phẩm.',
-    'Order failed! Please try again.' => 'Đặt hàng không thành công! Xin quý khách hãy thử lại.'
+    'Order Success!' => 'Đặt hàng thành công!',
+    'Order failed!' => 'Đặt hàng không thành công!'
 ];

@@ -14,14 +14,31 @@ $this->params['breadcrumbs'][] = $this->title;
 $cdnUrl = Yii::$app->params['frontend'];
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->registerCssFile(Url::toRoute("css/cart.css"));
+$this->registerCssFile(Url::toRoute("css/success_error-icon.css"));
 $this->registerJsFile(Url::toRoute('js/cart.js'));
 ?>
 <?php if (empty($cart)): ?>
     <?php if (Yii::$app->session->hasFlash('creatOrderSuccess')): ?>
-        <div class="alert alert-success alert-dismissible fade show my-3 w-100">
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            <h3><i class="icon fa fa-check"></i> <?= Yii::t('app', 'SUCCESS') ?>!</h3>
-            <?= Yii::t('app', Yii::$app->session->getFlash('creatOrderSuccess')) ?>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id='btnModalSuccess' hidden>
+        </button>
+        <div class="modal" id="myModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex;">
+                            <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+                            <span class="swal2-success-line-tip"></span>
+                            <span class="swal2-success-line-long"></span>
+                            <div class="swal2-success-ring"></div>
+                            <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+                            <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
+                        </div>
+                        <div class='text-center text-uppercase'><?= Yii::t('app', 'Order Success!') ?>
+                            <button type="button" data-bs-dismiss="modal" id='btnModalClose' hidden>Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     <?php endif; ?>
     <div class="w-100 mx-0 text-center my-4 my-md-5">

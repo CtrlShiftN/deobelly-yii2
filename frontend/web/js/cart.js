@@ -1,3 +1,7 @@
+$('#btnModalSuccess').trigger("click");
+setTimeout(function () {
+    $('#btnModalClose').trigger("click");
+}, 1800);
 let product, amount, id;
 let total_price = 0;
 product = $('.row-product');

@@ -12,13 +12,28 @@ $this->params['breadcrumbs'][] = $this->title;
 $cdnUrl = Yii::$app->params['frontend'];
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->registerCssFile(Url::toRoute("css/check-out.css"));
+$this->registerCssFile(Url::toRoute("css/success_error-icon.css"));
 $this->registerJsFile(Url::toRoute('js/check-out.js'));
 ?>
 <?php if (Yii::$app->session->hasFlash('creatOrderError')): ?>
-    <div class="alert alert-danger alert-dismissible fade show my-3 w-100">
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        <h4><i class="fas fa-times"></i> <?= Yii::t('app', 'ERROR') ?>!</h4>
-        <?= Yii::t('app', Yii::$app->session->getFlash('creatOrderError')) ?>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id='btnModaError' hidden>
+    </button>
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex;">
+              <span class="swal2-x-mark">
+                <span class="swal2-x-mark-line-left"></span>
+                <span class="swal2-x-mark-line-right"></span>
+              </span>
+                    </div>
+                    <div class='text-center'><?= Yii::t('app', 'Order failed!') ?>
+                        <button type="button" data-bs-dismiss="modal" id='btnModalClose' hidden>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 <?php endif; ?>
 <?php $form = ActiveForm::begin(['id' => 'order-form', 'options' => ['class' => 'w-100 m-0 p-0']]); ?>

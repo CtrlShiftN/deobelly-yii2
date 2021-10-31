@@ -1,3 +1,7 @@
+$('#btnModaError').trigger("click");
+setTimeout(function () {
+    $('#btnModalClose').trigger("click");
+}, 1800);
 let specificAddressOrder, province, district, village, productId,
     colorId, sizeId, quantity, logistic_method, notes, cartId;
 cartId = $('.row-product').map(function () {
