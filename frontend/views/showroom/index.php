@@ -6,8 +6,8 @@ $this->registerCssFile('/css/showroom.css');
 $this->title = Yii::t('app', 'Showroom Series');
 $imgUrl = Yii::$app->params['common'] . '/media';
 ?>
-<div class="showroom row mt-5">
-    <h1 class="showroom-title fs-4 text-bold text-uppercase"><?= $this->title ?></h1>
+<div class="showroom row mt-5 mx-0 px-0 w-100">
+    <h1 class="showroom-title fs-4 text-bold text-uppercase w-100"><?= $this->title ?></h1>
     <?php foreach ($showrooms as $showroom): ?>
         <div class="col-12 col-md-6 col-lg-4 pe-3 mb-5 showroom-block"
              title="<?= $showroom['name'] . ' - ' . $showroom['address'] ?>">

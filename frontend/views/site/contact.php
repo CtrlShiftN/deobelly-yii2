@@ -25,12 +25,12 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.859011002647!2d105.8679544149322!3d20.9982879860149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac038aa77f2f%3A0x77b2bccf4277c606!2zVMOyYSBDVDEsIDUzNkEgUC4gTWluaCBLaGFpLCBWxKluaCBQaMO6LCBIYWkgQsOgIFRyxrBuZywgSMOgIE7hu5lpIDEwMDAwMA!5e0!3m2!1svi!2s!4v1635581362751!5m2!1svi!2s"
                 width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
-    <div class="row border-bottom">
+    <div class="row border-bottom w-100 mx-0 px-0">
         <div class="p-3 text-center my-3">
             <h5><?= Yii::t('app', 'If you have a business inquiry or other question, please fill out the following form to contact us. Thank you!') ?>!</h5>
         </div>
     </div>
-    <div class="row mt-3 align-items-center justify-content-center">
+    <div class="row mt-3 align-items-center justify-content-center w-100 px-0 mx-0">
         <div class="col-12 col-lg-6 h-100">
             <?php if (Yii::$app->session->hasFlash('contactSuccess')): ?>
                 <div class="alert alert-success alert-dismissible fade show my-3">

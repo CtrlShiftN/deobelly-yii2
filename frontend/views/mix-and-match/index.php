@@ -6,11 +6,10 @@ $this->registerCssFile('/css/collection.css');
 //var_dump($otherMixes);die;
 ?>
 
-<div class="collections row mt-4">
-    <div class="top-collection">
+<div class="collections row mt-4 w-100 px-0 mx-0">
+    <div class="top-collection px-2">
 <!--        <h2 class="d-none d-lg-block">--><?//= Yii::t('app', 'Top Collection') ?><!--</h2>-->
-        <div class="px-5 px-md-3 m-0">
-            <div class="row pt-3">
+            <div class="row pt-3 w-100 px-0 mx-0">
                 <div class="col-12 col-lg-7">
                     <div class="zoom">
                         <img src="<?= $imgUrl . '/' . $topMix['image'] ?>" class="w-100">
@@ -34,7 +33,7 @@ $this->registerCssFile('/css/collection.css');
                                 </h2>
                                 <div id="collapseOne" class="accordion-collapse collapse show"
                                      aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body row mx-0 pb-4 d-flex align-items-stretch">
+                                    <div class="accordion-body row mx-0 pb-4 d-flex align-items-stretch w-100 px-0">
                                         <?php foreach ($topMix['element_products'] as $key => $products) : ?>
                                             <div class="col-12 col-md-6 pb-3">
                                                 <div class="card card-shadow h-100">
@@ -56,13 +55,12 @@ $this->registerCssFile('/css/collection.css');
                     </div>
                 </div>
             </div>
-        </div>
     </div>
     <!-- Weekly Collections -->
     <div class="weekly-collection mt-3">
-        <h2 class="mx-5 mx-md-3 previous-collection__title"><?= Yii::t('app', 'Weekly Collections') ?></h2>
-        <div class="row mx-auto my-auto justify-content-center px-0">
-            <div id="recipeCarousel" class="carousel slide px-0" data-bs-ride="carousel">
+        <h2 class="mx-3 previous-collection__title"><?= Yii::t('app', 'Weekly Collections') ?></h2>
+        <div class="row mx-0 justify-content-center px-0 w-100">
+            <div id="recipeCarousel" class="mixAndMatchCarousel carousel slide px-0 w-100" data-bs-ride="carousel">
                 <div class="carousel-inner" role="listbox">
                     <?php foreach ($otherMixes as $key => $mixes) : ?>
                         <div class="carousel-item  <?= ($key == 0) ? 'active' : $key ?>">
@@ -93,7 +91,7 @@ $this->registerCssFile('/css/collection.css');
     <!-- End Weekly Collections -->
 </div>
 <script>
-    let items = document.querySelectorAll('.carousel .carousel-item')
+    let items = document.querySelectorAll('.mixAndMatchCarousel .carousel-item')
 
     items.forEach((el) => {
         const minPerSlide = 4
