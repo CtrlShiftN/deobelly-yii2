@@ -3,9 +3,7 @@
 /* @var $this yii\web\View */
 
 use frontend\models\Color;
-use frontend\models\ProductType;
 use common\components\encrypt\CryptHelper;
-use common\components\helpers\ParamHelper;
 use frontend\models\Size;
 use yii\helpers\Url;
 

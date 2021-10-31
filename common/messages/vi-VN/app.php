@@ -393,5 +393,6 @@ return [
     'Biceps' => 'Bắp Tay',
     'Notes' => 'Ghi Chú',
     'Order Success!' => 'Đặt hàng thành công!',
-    'Order failed!' => 'Đặt hàng không thành công!'
+    'Order failed!' => 'Đặt hàng không thành công!',
+    'Out of stock' => 'Hết hàng'
 ];

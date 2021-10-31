@@ -63,7 +63,7 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
         </div>
     </div>
     <div class="col-12 col-md-7 product-information" data-id="<?= CryptHelper::encryptString($detail['id']) ?>">
-        <span class="mt-3 fs-3 m-0 fw-bolder text-uppercase d-block"><span
+        <span class="mt-md-3 fs-3 m-0 fw-bolder text-uppercase d-block"><span
                     class="badge rounded-0 bg-danger" id="outOfStock">Hết hàng</span> <?= $detail['name'] ?></span>
         <div class="d-flex w-100 mb-3 mb-md-4">
             <?php if ($detail['viewed'] >= 1000): ?>
@@ -242,8 +242,18 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                         </div>
                     </a>
                 </div>
+                <?php if (empty($value['quantity'])): ?>
+                    <div class="position-absolute text-light bg-danger out-of-stock">
+                        <?= Yii::t('app','Out of stock') ?>
+                    </div>
+                <?php endif; ?>
+                <?php if (!empty($value['sale_price'])): ?>
+                    <div class="position-absolute text-light bg-warning on-sale">
+                        <?= Yii::t('app','On sale') ?>
+                    </div>
+                <?php endif; ?>
                 <div class="product-button row m-0">
-                    <a href="javascript:void(0)"
+                    <a href="<?= Url::toRoute(['shop/product-detail','detail' => \common\components\encrypt\CryptHelper::encryptString($value['id'])])?>"
                        data-id="<?= \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>"
                        class="btn rounded-0 btnBuyNow col-6 col-md-8"><i
                                 class="fas fa-dollar-sign d-md-none"></i><span
@@ -289,8 +299,18 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                         </div>
                     </a>
                 </div>
+                <?php if (empty($value['quantity'])): ?>
+                    <div class="position-absolute text-light bg-danger out-of-stock">
+                        <?= Yii::t('app','Out of stock') ?>
+                    </div>
+                <?php endif; ?>
+                <?php if (!empty($value['sale_price'])): ?>
+                    <div class="position-absolute text-light bg-warning on-sale">
+                        <?= Yii::t('app','On sale') ?>
+                    </div>
+                <?php endif; ?>
                 <div class="product-button row m-0">
-                    <a href="javascript:void(0)"
+                    <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                        data-id="<?= \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>"
                        class="btn rounded-0 btnBuyNow col-6 col-md-8"><i
                                 class="fas fa-dollar-sign d-md-none"></i><span

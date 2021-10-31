@@ -282,6 +282,20 @@ h2 {
 #toastBoard {
     z-index: 9999;
     bottom: 5px;
-    right:15px;
+    right: 15px;
     width: 260px;
+}
+
+.out-of-stock {
+    top: 16px;
+    left: 12px;
+    z-index: 3;
+    padding: 3px 8px;
+}
+
+.on-sale {
+    top: 16px;
+    right: 12px;
+    z-index: 3;
+    padding: 3px 8px
 }

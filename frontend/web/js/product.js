@@ -1,4 +1,4 @@
-let category, type, typeName, cursor, sort, show_per_page, cdnUrl, imgUrl, buyNow;
+let category, type, typeName, cursor, sort, show_per_page, cdnUrl, imgUrl, buyNow, outOfStock, onSale;
 let myUrl = location;
 let toastLive = document.getElementById('liveToast');
 //get param
@@ -30,6 +30,8 @@ function requestParam() {
         imgUrl = arrRes.imgUrl;
         show_per_page = arrRes.showPerPage;
         buyNow = arrRes.buyNow;
+        outOfStock = arrRes.outOfStock;
+        onSale = arrRes.onSale;
         requestData();
     });
     request.fail(function (jqXHR, textStatus) {
@@ -122,8 +124,14 @@ function requestData() {
                 } else {
                     result += '<span class="px-0 fw-bold mt-2 p-price">' + selling_price + 'đ</span>';
                 }
-                result += '<p class="m-0 product-name">' + arrRes.product[i].name + '</p></div></a></div>' +
-                    '<div class="product-button row m-0">' +
+                result += '<p class="m-0 product-name">' + arrRes.product[i].name + '</p></div></a></div>';
+                if (parseInt(arrRes.product[i].quantity) === 0) {
+                    result += '<div class="position-absolute text-light bg-danger out-of-stock">' + outOfStock +'</div>';
+                }
+                if (arrRes.product[i].sale_price !== null) {
+                    result += '<div class="position-absolute text-light bg-warning on-sale">' + onSale +'</div>';
+                }
+                result += '<div class="product-button row m-0">' +
                     '<a href="' + cdnUrl + '/shop/product-detail?detail=' + arrRes.product[i].id + '" class="btn rounded-0 btnBuyNow col-6 col-md-8"><i class="fas fa-dollar-sign d-md-none"></i><span class="d-none d-md-inline-block"><i class="fas fa-dollar-sign"></i> ' + buyNow + '</span></a>' +
                     '<button data-id="' + arrRes.product[i].id + '" class="btn rounded-0 btnAdd col-6 col-md-4" onclick="addToFavorite(this)"><i class="far fa-heart"></i></button></div></div>';
             }
