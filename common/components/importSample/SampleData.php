@@ -181,31 +181,6 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'name' => 'Áo thun không cổ UNISEX',
-            'slug' => 'ao-thun-khong-co-unisex',
-            'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
-            'description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>
-<li>T-Shirts</li>
-<li>-Color：Black , White , Red, Blue, Yellow,Pink</li>
-<li>-Sizes: XS  S M L XL  XXL  3XL </li>
-<li>-If you like loose, please take a big size.</li>
-<li>-Ships From:China</li>
-<li>-Transportation time：It takes about 5-20 days, depending on the speed of logistics</li>
-<li>-Product Description</li>
-<li>-Brand New T-shirt </li>
-<li>-Various tide brands</li>
-<li>-We are committed to providing you with the best quality products at the best prices.</li>
-",
-            'cost_price' => 200000,
-            'regular_price' => 399000,
-            'sale_price' => null,
-            'image' => 'product/clothes/top/shirt5.png',
-            'images' => 'product/clothes/top/shirt1.png,product/clothes/top/shirt2.png,product/clothes/top/shirt3.png',
-            'trademark_id' => 1,
-            'quantity' => 142,
-            'admin_id' => 1,
-        ],
-        [
             'name' => 'Áo thun không cổ HUGO BOSS',
             'slug' => 'ao-thun-khong-co-hugo-boss',
             'short_description' => "<li>Category：Men's Wear   Clothing  Women’s Wear</li>",
@@ -459,14 +434,6 @@ class SampleData
         ],
         [
             'product_id' => '3',
-            'type_id' => '2',
-            'category_id' => '2',
-            'color_id' => '1,2',
-            'size_id' => '3,4,5,6',
-            'admin_id' => 1,
-        ],
-        [
-            'product_id' => '4',
             'type_id' => '2',
             'category_id' => '2',
             'color_id' => '1,2',
