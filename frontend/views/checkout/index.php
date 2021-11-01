@@ -113,7 +113,7 @@ $this->registerJsFile(Url::toRoute('js/check-out.js'));
                     </div>
                     <div class="accordion-item border">
                         <div class="accordion-header px-2 py-3 bg-lighter-gray" id="flush-heading-receive-at-store">
-                            <?= $form->field($model, 'logistic_method', ['options' => ['class' => 'm-0']])->radio(['label' => Yii::t('app', 'Receive products at the store'), 'value' => 1, 'id' => 'sm-receive-at-store', 'onClick' => '$(this).parent().closest(".accordion-header").find("button").trigger("click");']) ?>
+                            <?= $form->field($model, 'logistic_method', ['options' => ['class' => 'm-0']])->radio(['label' => Yii::t('app', 'Pick up at the store'), 'value' => 1, 'id' => 'sm-receive-at-store', 'onClick' => '$(this).parent().closest(".accordion-header").find("button").trigger("click");']) ?>
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#flush-receive-at-store" aria-expanded="false"
                                     aria-controls="flush-receive-at-store" hidden>
@@ -169,9 +169,9 @@ $this->registerJsFile(Url::toRoute('js/check-out.js'));
             <div class="my-1 py-2 w-100"><?= Yii::t('app', "Total product's price") ?>: <span class="fs-5 m-0 float-end"
                                                                                               id="total_price_product"></span>
             </div>
-            <div class="my-1 py-2 w-100"><?= Yii::t('app', 'Shipping fee') ?>: <span class="fs-5 m-0 float-end"
-                                                                                     id="shipping_fee"
-                                                                                     data-fee="0"></span>
+            <div class="my-1 py-2 w-100"><?= Yii::t('app', 'VAT') ?>: <span class="fs-5 m-0 float-end"
+                                                                                     id="vat"
+                                                                                     data-vat="<?= \common\components\SystemConstant::VAT ?>"></span>
             </div>
             <div class="my-1 py-2 w-100"><?= Yii::t('app', 'Total payment') ?>: <span
                         class="fs-4 text-danger m-0 float-end"

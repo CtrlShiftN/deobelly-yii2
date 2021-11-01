@@ -356,7 +356,7 @@ return [
     'Consignee' => 'Người nhận hàng',
     "Consignee's name" => 'Tên người nhận hàng',
     'Home delivery' => 'Giao hàng tận nhà',
-    'Receive products at the store' => 'Nhận tại cửa hàng',
+    'Pick up at the store' => 'Nhận tại cửa hàng',
     'See more' => 'Xem thêm',
     'Tailor Made' => 'Thiết Kế Riêng',
     'Featured Products' => 'Sản Phẩm Nổi Bật',

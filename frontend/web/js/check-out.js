@@ -29,8 +29,8 @@ for (let i = 0; i < $('.price').length; i++) {
     total_price += parseInt($('#total_price_' + i).attr('data-total-price'));
 }
 $('#total_price_cart,#total_price_product').html(new Intl.NumberFormat(['ban', 'id']).format(total_price) + 'đ');
-$('#shipping_fee').html($('#shipping_fee').attr('data-fee') + 'đ');
-$('#total_price').html(new Intl.NumberFormat(['ban', 'id']).format(parseInt($('#shipping_fee').attr('data-fee')) + total_price) + 'đ')
+$('#vat').html($('#vat').attr('data-vat') + '%');
+$('#total_price').html(new Intl.NumberFormat(['ban', 'id']).format((1 + parseInt($('#vat').attr('data-vat'))/100) * total_price) + 'đ')
 
 $("#telInput").keypress(function (e) {
     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
