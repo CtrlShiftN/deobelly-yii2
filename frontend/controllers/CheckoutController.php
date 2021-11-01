@@ -111,10 +111,10 @@ class CheckoutController extends \yii\web\Controller
                     }
                 }
                 if ($count == count($cart)) {
-                    Yii::$app->session->setFlash('creatOrderSuccess', Yii::t('app', 'Order Success! Please continue to order the product.'));
+                    Yii::$app->session->setFlash('creatOrderSuccess', Yii::t('app', 'Your order has been initialized.'));
                     return $this->redirect(\yii\helpers\Url::toRoute('cart/index'));
                 } else {
-                    Yii::$app->session->setFlash('creatOrderError', Yii::t('app', 'Order failed! Please try again.'));
+                    Yii::$app->session->setFlash('creatOrderError', Yii::t('app', 'Unable to initiate order.'));
                 }
             }
             return $this->render('index', [

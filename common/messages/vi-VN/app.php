@@ -392,7 +392,9 @@ return [
     'Thigh' => 'Đùi',
     'Biceps' => 'Bắp Tay',
     'Notes' => 'Ghi Chú',
-    'Order Success!' => 'Đặt hàng thành công!',
-    'Order failed!' => 'Đặt hàng không thành công!',
+    'Successfully!' => 'Thành công!',
+    'Error!' => 'Lỗi!',
+    'Your order has been initialized.' => 'Đơn hàng của bạn đã được khởi tạo.',
+    'Unable to initiate order.' => 'Không thể khởi tạo đơn hàng.',
     'Out of stock' => 'Hết hàng'
 ];

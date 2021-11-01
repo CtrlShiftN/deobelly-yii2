@@ -1,4 +1,4 @@
-$('#btnModaError').trigger("click");
+$('#btnModalError').trigger("click");
 setTimeout(function () {
     $('#btnModalClose').trigger("click");
 }, 1800);
