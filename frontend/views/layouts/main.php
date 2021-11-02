@@ -112,7 +112,7 @@ AppAsset::register($this);
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownUserLogin">
                                                     <a class="dropdown-item"
-                                                       href="<?= Url::toRoute('site/logout') ?>"><?= Yii::t('app', 'Log out') ?></a>
+                                                       href="<?= Url::toRoute('site/logout?ref=' . Yii::$app->request->url) ?>"><?= Yii::t('app', 'Log out') ?></a>
                                                 </div>
                                             </div>
                                         </li>
@@ -120,8 +120,9 @@ AppAsset::register($this);
                                         <li class="site-nav-top">
                                             <div class="vr mx-2"></div>
                                         </li>
-                                        <li class="site-nav-top"><a href="<?= Url::toRoute('site/login') ?>"
-                                                                    class="site-nav-top-link"><span><?= Yii::t('app', 'Login') ?></span></a>
+                                        <li class="site-nav-top"><a
+                                                    href="<?= Url::toRoute('site/login?ref=' . Yii::$app->request->url) ?>"
+                                                    class="site-nav-top-link"><span><?= Yii::t('app', 'Login') ?></span></a>
                                         </li>
                                         <li class="site-nav-top">
                                             <div class="vr mx-2"></div>
@@ -138,7 +139,8 @@ AppAsset::register($this);
                                             <div class="shopping-cart d-inline pe-0">
                                                 <a href="<?= Url::toRoute('cart/') ?>" class="site-nav-top-link">
                                                     <i class="fas fa-shopping-cart"></i>
-                                                    <span class='badge badge-warning' id='lblCartCount'> 0 </span>
+                                                    <span class='badge badge-warning'
+                                                          id='lblCartCount'><?= count(\frontend\models\Cart::getCartByUserId(Yii::$app->user->identity->getId())) ?></span>
                                                 </a>
                                             </div>
                                         </li>
@@ -266,7 +268,7 @@ AppAsset::register($this);
                             <!-- End Sidebar -->
                         </div>
                         <div class="main-nav-left col-10 col-sm-10 col-lg-2 text-center text-sm-center text-lg-start">
-                            <div class="d-flex align-items-center justify-content-center">
+                            <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
                                 <a href="<?= Url::home() ?>"
                                    class="logo-align <?= ($action != 'casual' && $action != 'luxury') ? 'd-none' : '' ?>">
                                     <img src="<?= $cdnUrl ?>/img/home.png" class="p-home">
@@ -419,11 +421,10 @@ AppAsset::register($this);
                                 <ul class="footer-nav no-bullets">
                                     <h3><?= Yii::t('app', 'CONTACT INFO') ?></h3>
                                     <li><span class="ft-content"><i
-                                                    class="fas fa-home"></i> <?= Yii::t('app', 'Number xxx, YYY street, ZZZ ward, ABC district, Hanoi') ?></span>
+                                                    class="fas fa-home"></i>  536 Minh Khai, Tòa CT1, tầng 5, Phường Vĩnh Tuy, Quận Hai Bà Trưng, Hà Nội</span>
                                     </li>
                                     <li><span class="ft-content"><i class="fas fa-phone-square"></i> <a
-                                                    href="tel:1800 1089">1800 1089</a> | <a
-                                                    href="tel:1800 1090">1800 1090</a></span></li>
+                                                    href="tel:<?= Yii::$app->params['adminTel'] ?>"><?= Yii::$app->params['adminTel'] ?></a></span></li>
                                     <li><span class="ft-content"><i class="fas fa-envelope"></i><a
                                                     href="mailto:support@deobelly.com"> support@deobelly.com</a></span>
                                     </li>

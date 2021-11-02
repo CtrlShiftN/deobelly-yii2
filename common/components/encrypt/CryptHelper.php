@@ -45,4 +45,17 @@ class CryptHelper
         $string = base64_decode($string);
         return openssl_decrypt(($string), self::$encryptMethod, self::$encryptKey, 0, self::$iv);
     }
+
+    /**
+     * @param $array
+     * @return array
+     */
+    public static function decryptAllElementInArray($array)
+    {
+        $decryptedArray = [];
+        foreach ($array as $key => $value) {
+            $decryptedArray[$key] = self::decryptString($value);
+        }
+        return $decryptedArray;
+    }
 }

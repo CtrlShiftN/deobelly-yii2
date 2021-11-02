@@ -8,6 +8,7 @@
     .btnAdd, .btnBuyNow {
         padding: 8px !important;
     }
+
     .product-button {
         left: 0;
     }
@@ -31,6 +32,7 @@
     .p-price {
         font-size: 14px !important;
     }
+
     .p-price .fs-regular-price {
         font-size: 12px !important;
     }
@@ -190,7 +192,7 @@ button:focus, a:focus, .btn:focus {
 }
 
 .btn-offcanvas {
-    left: -7px;
+    left: 2px;
     top: 3px;
 }
 
@@ -202,7 +204,7 @@ button:focus, a:focus, .btn:focus {
 
 .offcanvas-dropdown {
     top: 0;
-    right: -7px;
+    right: 2px;
 }
 
 .img-shadow {
@@ -220,7 +222,7 @@ button:focus, a:focus, .btn:focus {
 
 .btnAdd, .btnBuyNow {
     height: 46px !important;
-    background-image: linear-gradient(45deg,#ff9c00, #ffb34e)  !important;
+    background-image: linear-gradient(45deg, #ff9c00, #ffb34e) !important;
     color: white !important;
     padding: 10px 8px !important;
 }
@@ -237,4 +239,11 @@ button:focus, a:focus, .btn:focus {
 
 .product-card {
     padding: 0 12px !important;
+}
+
+#toastBoard {
+    z-index: 9999;
+    bottom: 5px;
+    right: 15px;
+    width: 300px
 }

@@ -1,5 +1,6 @@
 let category, type, typeName, cursor, sort, show_per_page, cdnUrl, imgUrl, buyNow;
 let myUrl = location;
+let toastLive = document.getElementById('liveToast');
 //get param
 const parseUrlQuery = (value) => {
     let urlParams = new URL(value).searchParams
@@ -121,10 +122,12 @@ function requestData() {
                 } else {
                     result += '<span class="px-0 fw-bold mt-2 p-price">' + selling_price + 'đ</span>';
                 }
-                result += '<p class="m-0 product-name">' + arrRes.product[i].name + '</p></div></a></div><div class="product-button row m-0"><a href="javascript:void(0)" data-id="' + arrRes.product[i].id + '" class="btn rounded-0 btnAdd col-4 col-md-3"><i class="fas fa-cart-plus"></i></a><a href="javascript:void(0)" data-id="' + arrRes.product[i].id + '" class="btn rounded-0 btnBuyNow col-4 col-md-6"><i class="fas fa-dollar-sign d-md-none"></i><span class="d-none d-md-inline-block"><i class="fas fa-dollar-sign"></i> ' + buyNow + '</span></a><a href="javascript:void(0)" data-id="' + arrRes.product[i].id + '" class="btn rounded-0 btnAdd col-4 col-md-3"><i class="far fa-heart"></i></a></div></div>';
+                result += '<p class="m-0 product-name">' + arrRes.product[i].name + '</p></div></a></div>' +
+                    '<div class="product-button row m-0">' +
+                    '<a href="' + cdnUrl + '/shop/product-detail?detail=' + arrRes.product[i].id + '" class="btn rounded-0 btnBuyNow col-6 col-md-8"><i class="fas fa-dollar-sign d-md-none"></i><span class="d-none d-md-inline-block"><i class="fas fa-dollar-sign"></i> ' + buyNow + '</span></a>' +
+                    '<button data-id="' + arrRes.product[i].id + '" class="btn rounded-0 btnAdd col-6 col-md-4" onclick="addToFavorite(this)"><i class="far fa-heart"></i></button></div></div>';
             }
             $("#result").html(result);
-
             //show pagination
             let number_of_items = arrRes.count;
             let number_of_pages = Math.ceil(number_of_items / show_per_page);
@@ -186,6 +189,56 @@ function requestData() {
     request.fail(function (jqXHR, textStatus) {
         alert("Request failed: " + textStatus); // check errors
     });
+}
+
+function addToFavorite(obj) {
+    var productID = obj.getAttribute('data-id');
+    if ($('#sth').attr('data-id') == 1) {
+        window.location.href = "/site/login?ref=" + window.location.pathname;
+    } else {
+        let request = $.ajax({
+            url: "/api/ajax/add-to-favorite", // send request to
+            method: "POST", // sending method
+            data: {
+                id: productID,
+            },
+        });
+        request.done(function (response) {
+            let arrRes = $.parseJSON(response);
+            if (arrRes.status === 1) {
+                let toast = new bootstrap.Toast(toastLive);
+                $('#toastNotify').html('<i class="fas fa-check-circle"></i> ' + arrRes.message);
+                toast.show();
+                $('#toastBoard, #liveToast').addClass('bg-success text-light');
+                $('#back-to-top').css('bottom','65px');
+                $('.phone-call').css('bottom','110px');
+                setTimeout(function () {
+                    toast.hide(200);
+                    $('#toastNotify').html('');
+                    $('#back-to-top').css('bottom','5px');
+                    $('.phone-call').css('bottom','50px');
+                }, 2000);
+            } else {
+                let toast = new bootstrap.Toast(toastLive);
+                $('#toastNotify').html('<i class="far fa-frown-open"></i> ' + arrRes.message);
+                toast.show();
+                $('#toastBoard, #liveToast').addClass('bg-danger text-light');
+                $('#back-to-top').css('bottom','65px');
+                $('.phone-call').css('bottom','110px');
+                setTimeout(function () {
+                    toast.hide(200);
+                    $('#toastNotify').html('');
+                    $('#back-to-top').css('bottom','65px');
+                    $('.phone-call').css('bottom','110px');
+                }, 2000);
+            }
+        });
+        request.fail(function (jqXHR, textStatus) {
+            // alert("Request failed: " + textStatus); // check errors
+            console.log('jq', jqXHR);
+            console.log('sta', textStatus);
+        });
+    }
 }
 
 function first() {

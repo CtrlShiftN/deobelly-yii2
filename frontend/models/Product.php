@@ -160,4 +160,32 @@ class Product extends \common\models\Product
     {
         return Product::find()->select('selling_price')->where(['status' => SystemConstant::STATUS_ACTIVE, 'id' => $id])->asArray()->scalar();
     }
+
+    public static function getProductQuantityById($id)
+    {
+        return Product::find()->select('quantity')->where(['status' => SystemConstant::STATUS_ACTIVE, 'id' => $id])->asArray()->scalar();
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getFeaturedProduct()
+    {
+        return Product::find()->where([
+            'status' => SystemConstant::STATUS_ACTIVE,
+            'is_feature' => 1
+        ])->orderBy('created_at DESC')
+            ->limit(6)->asArray()->all();
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getLatestProduct()
+    {
+        return Product::find()->where([
+            'status' => SystemConstant::STATUS_ACTIVE
+        ])->orderBy('created_at DESC')
+            ->limit(6)->asArray()->all();
+    }
 }

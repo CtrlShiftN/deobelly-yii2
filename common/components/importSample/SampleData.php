@@ -356,6 +356,7 @@ class SampleData
             'image' => 'product/quan-tay-ke-kieu-dang-han-quoc.jpg',
             'images' => '',
             'trademark_id' => 3,
+            'hide' => 1,
             'admin_id' => 1,
         ],
         [
@@ -385,6 +386,7 @@ class SampleData
             'image' => 'product/ao-vest-nam-the-shirt-studio-f4.jpg',
             'images' => '',
             'trademark_id' => 3,
+            'hide' => 1,
             'admin_id' => 1,
         ],
     ];
@@ -1328,6 +1330,20 @@ class SampleData
             'size_id' => 6,
             'quantity' => 3,
         ],
+        [
+            'user_id' => 4,
+            'product_id' => '3',
+            'color_id' => 4,
+            'size_id' => 3,
+            'quantity' => 4,
+        ],
+        [
+            'user_id' => 4,
+            'product_id' => '5',
+            'color_id' => 2,
+            'size_id' => 5,
+            'quantity' => 2,
+        ],
     ];
 
     /**
@@ -1372,7 +1388,10 @@ class SampleData
             'village_id' => 60,
             'specific_address' => '128A Hồ Tùng Mậu',
             'tel' => '0334517566',
+            'name' => 'Hoàng Thị Lý',
+            'email' => 'hoangly94@gmail.com',
             'admin_id' => 1,
+            'logistic_method' => 1,
         ],
         [
             'user_id' => 4,
@@ -1385,7 +1404,10 @@ class SampleData
             'village_id' => 60,
             'specific_address' => '128A Hồ Tùng Mậu',
             'tel' => '0334517566',
+            'name' => 'Hoàng Thị Lý',
+            'email' => 'hoangly94@gmail.com',
             'admin_id' => 1,
+            'logistic_method' => 1,
         ],
         [
             'user_id' => 4,
@@ -1398,7 +1420,10 @@ class SampleData
             'village_id' => 60,
             'specific_address' => '128A Hồ Tùng Mậu',
             'tel' => '0334517566',
+            'name' => 'Hoàng Thị Lý',
+            'email' => 'hoangly94@gmail.com',
             'admin_id' => 1,
+            'logistic_method' => 1,
         ],
         [
             'user_id' => 4,
@@ -1411,7 +1436,10 @@ class SampleData
             'village_id' => 60,
             'specific_address' => '128A Hồ Tùng Mậu',
             'tel' => '0334517566',
+            'name' => 'Hoàng Thị Lý',
+            'email' => 'hoangly94@gmail.com',
             'admin_id' => 1,
+            'logistic_method' => 1,
         ],
         [
             'user_id' => 5,
@@ -1424,7 +1452,10 @@ class SampleData
             'village_id' => 60,
             'specific_address' => '37C1 Ngõ 20',
             'tel' => '0334517566',
+            'name' => 'Hoàng Thị Lý',
+            'email' => 'hoangly94@gmail.com',
             'admin_id' => 1,
+            'logistic_method' => 1,
         ],
         [
             'user_id' => 5,
@@ -1437,7 +1468,10 @@ class SampleData
             'village_id' => 60,
             'specific_address' => '37C1 Ngõ 20',
             'tel' => '0394548299',
+            'name' => 'Nguyễn Văn Sơn',
+            'email' => 'vanson246@gmail.com',
             'admin_id' => 1,
+            'logistic_method' => 1,
         ],
         [
             'user_id' => 5,
@@ -1450,7 +1484,10 @@ class SampleData
             'village_id' => 60,
             'specific_address' => '37C1 Ngõ 20',
             'tel' => '0394548299',
+            'name' => 'Nguyễn Văn Sơn',
+            'email' => 'vanson246@gmail.com',
             'admin_id' => 1,
+            'logistic_method' => 1,
         ],
         [
             'user_id' => 5,
@@ -1463,7 +1500,10 @@ class SampleData
             'village_id' => 60,
             'specific_address' => '105 Doãn Kế Thiện',
             'tel' => '0394548299',
+            'name' => 'Nguyễn Văn Sơn',
+            'email' => 'vanson246@gmail.com',
             'admin_id' => 1,
+            'logistic_method' => 1,
         ],
     ];
 
@@ -1490,7 +1530,10 @@ class SampleData
             $order->specific_address = $value['specific_address'];
             $order->address = $value['specific_address'] . ', ' . \frontend\models\GeoLocation::getNameGeoLocationById($value['village_id']) . ', ' . \frontend\models\GeoLocation::getNameGeoLocationById($value['district_id']) . ', ' . \frontend\models\GeoLocation::getNameGeoLocationById($value['province_id']);
             $order->tel = $value['tel'];
+            $order->name = $value['name'];
+            $order->email = $value['email'];
             $order->admin_id = $value['admin_id'];
+            $order->logistic_method = $value['logistic_method'];
             $order->created_at = date('Y-m-d H:m:s');
             $order->updated_at = date('Y-m-d H:m:s');
             $order->status = rand(1, 8);
@@ -2473,47 +2516,12 @@ class SampleData
 
     protected static $arrShowroom = [
         [
-            'name' => 'SHOWROOM VINCOM BÀ TRIỆU',
+            'name' => 'SHOWROOM PHỐ HUẾ',
             'image' => 'showroom/showroom-ba-trieu.png',
-            'address' => '191 Bà Triệu, Lê Đại Hành, Hai Bà Trưng, Hà Nội',
-            'tel' => '024 7102 8686',
+            'address' => '250 Phố Huế, phường Phố Huế, quận Hai Bà Trưng, Hà Nội',
+            'tel' => '02432052232',
             'gps_link' => 'https://goo.gl/maps/4azB8afpttbvdGtD9',
         ],
-        [
-            'name' => 'SHOWROOM Thái Hà',
-            'image' => 'showroom/showroom-thai-ha.png',
-            'address' => 'Số 159 Thái Hà, Đống Đa, Hà Nội',
-            'tel' => '024 3222 2638',
-            'gps_link' => 'https://goo.gl/maps/k1hugAF831m1BGGX6',
-        ],
-        [
-            'name' => 'SHOWROOM Cầu Giấy',
-            'image' => 'showroom/showroom-cau-giay.png',
-            'address' => '111 Nguyễn Văn Huyên, Cầu Giấy, Hà Nội',
-            'tel' => '024 6261 2555',
-            'gps_link' => 'https://goo.gl/maps/87xbnXKMDEsmwwCk8',
-        ],
-        [
-            'name' => 'SHOWROOM Từ Sơn',
-            'image' => 'showroom/showroom-tu-son.png',
-            'address' => '270 Trần Phú, Từ Sơn, Bắc Ninh',
-            'tel' => '0222 376 0166',
-            'gps_link' => 'https://goo.gl/maps/3NH1bdHJaUB2JTtA6',
-        ],
-        [
-            'name' => 'SHOWROOM TP Thanh Hóa',
-            'image' => 'showroom/showroom-tp-thanh-hoa.png',
-            'address' => '168-170 Lê Hoàn, Thành phố Thanh Hóa',
-            'tel' => '0237 371 6886',
-            'gps_link' => 'https://goo.gl/maps/1nqPWEksqEDn3pp67',
-        ],
-        [
-            'name' => 'SHOWROOM Hải Phòng',
-            'image' => 'showroom/showroom-hai-phong.png',
-            'address' => '59 - 60 Nguyễn Đức Cảnh, Hải Phòng',
-            'tel' => '0225 351 0966',
-            'gps_link' => 'https://goo.gl/maps/4RKScLXVZvsYkASx5',
-        ]
     ];
 
     public static function insertSampleShowroom()

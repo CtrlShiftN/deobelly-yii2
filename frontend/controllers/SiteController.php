@@ -95,17 +95,21 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays homepage.
+     * Displays luxury homepage.
      *
      * @return mixed
      */
     public function actionLuxury()
     {
-        $type = ArrayHelper::index(ProductType::getAllProductType(), 'slug');
-        $slider = Slider::getSliderFromSite('index');
-        return $this->render('index', [
-            'type' => $type,
-            'slider' => $slider
+        $featuredProduct = Product::getFeaturedProduct();
+        $newProduct = Product::getLatestProduct();
+        $latestNews = Post::getLatestPosts(3);
+        $slider = Slider::getSliderFromSite('our-stories');
+        return $this->render('luxury', [
+            'slider' => $slider,
+            'featuredProducts' => $featuredProduct,
+            'newProducts' => $newProduct,
+            'latestNews' => $latestNews
         ]);
     }
 
@@ -138,7 +142,8 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            $url = !empty($_REQUEST['ref']) ? $_REQUEST['ref'] : '/';
+            return $this->redirect($url);
         }
 
         $model->password = '';
@@ -157,7 +162,8 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        $url = !empty($_REQUEST['ref']) ? $_REQUEST['ref'] : '/';
+        return $this->redirect($url);
     }
 
     /**
