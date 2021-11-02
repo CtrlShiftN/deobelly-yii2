@@ -1,4 +1,3 @@
-let items = document.querySelectorAll('.mixAndMatchCarousel .carousel-item')
 if(items.length > 4) {
     items.forEach((el) => {
         const minPerSlide = 4
@@ -13,6 +12,4 @@ if(items.length > 4) {
             next = next.nextElementSibling
         }
     })
-} else {
-    $('#btnPrevRecipeCarousel,#btnNextRecipeCarousel').addClass('d-none');
 }

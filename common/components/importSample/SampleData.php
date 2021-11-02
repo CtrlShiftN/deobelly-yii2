@@ -3,7 +3,6 @@
 namespace common\components\importsample;
 
 use common\components\helpers\StringHelper;
-use common\components\SystemConstant;
 use common\models\Cart;
 use common\models\Color;
 use common\models\GeoLocation;
@@ -125,7 +124,7 @@ class SampleData
 ",
             'cost_price' => 150000,
             'regular_price' => 299000,
-            'sale_price' => null,
+            'discount' => null,
             'image' => 'product/clothes/top/shirt1.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/top/shirt2.png,product/clothes/top/shirt3.png',
             'trademark_id' => 1,
@@ -150,7 +149,7 @@ class SampleData
 ",
             'cost_price' => 200000,
             'regular_price' => 400000,
-            'sale_price' => null,
+            'discount' => null,
             'image' => 'product/clothes/top/shirt6.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/top/shirt2.png,product/clothes/top/shirt3.png',
             'trademark_id' => 1,
@@ -174,7 +173,7 @@ class SampleData
 ",
             'cost_price' => 200000,
             'regular_price' => 399000,
-            'sale_price' => null,
+            'discount' => null,
             'image' => 'product/clothes/top/shirt3.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/top/shirt2.png,product/clothes/top/shirt3.png',
             'trademark_id' => 1,
@@ -198,7 +197,7 @@ class SampleData
 ",
             'cost_price' => 300000,
             'regular_price' => 599000,
-            'sale_price' => null,
+            'discount' => null,
             'image' => 'product/clothes/top/shirt4.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/top/shirt2.png,product/clothes/top/shirt3.png',
             'trademark_id' => 1,
@@ -222,7 +221,7 @@ class SampleData
 ",
             'cost_price' => 175000,
             'regular_price' => 349000,
-            'sale_price' => null,
+            'discount' => null,
             'image' => 'product/clothes/top/shirt2.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/top/shirt2.png,product/clothes/top/shirt3.png',
             'trademark_id' => 1,
@@ -244,7 +243,7 @@ class SampleData
 ",
             'cost_price' => 800000,
             'regular_price' => 1600000,
-            'sale_price' => 1360000,
+            'discount' => 15,
             'image' => 'product/clothes/shirt/ao-so-mi-lados.jpg',
             'images' => '',
             'trademark_id' => 2,
@@ -265,7 +264,7 @@ class SampleData
 ",
             'cost_price' => 600000,
             'regular_price' => 11999000,
-            'sale_price' => 10190000,
+            'discount' => 10,
             'image' => 'product/clothes/vest/vest-nam-han-quoc.jpg',
             'images' => '',
             'trademark_id' => 3,
@@ -297,7 +296,7 @@ class SampleData
                 Size 36 : 72kg-78kg",
             'cost_price' => 100000,
             'regular_price' => 299000,
-            'sale_price' => 170000,
+            'discount' => 15,
             'image' => 'product/quan-tay-nam-co-gian-nhe-lados.jpg',
             'images' => '',
             'trademark_id' => 3,
@@ -327,7 +326,7 @@ class SampleData
                 Size 36 : 72kg-78kg",
             'cost_price' => 150000,
             'regular_price' => 350000,
-            'sale_price' => 199000,
+            'discount' => 20,
             'image' => 'product/quan-tay-ke-kieu-dang-han-quoc.jpg',
             'images' => '',
             'trademark_id' => 3,
@@ -357,7 +356,7 @@ class SampleData
                 Size 36 : 72kg-78kg",
             'cost_price' => 140000,
             'regular_price' => 290000,
-            'sale_price' => 230000,
+            'discount' => 10,
             'image' => 'product/ao-vest-nam-the-shirt-studio-f4.jpg',
             'images' => '',
             'trademark_id' => 3,
@@ -380,9 +379,10 @@ class SampleData
             $product->description = $values['description'];
             $product->cost_price = $values['cost_price'];
             $product->regular_price = $values['regular_price'];
-            if (!empty($values['sale_price'])) {
-                $product->sale_price = $values['sale_price'];
-                $product->selling_price = $values['sale_price'];
+            $product->discount = $values['discount'];
+            if (!empty($values['discount'])) {
+                $product->sale_price = $values['regular_price']*(1-$values['discount']/100);
+                $product->selling_price = round($product->sale_price, -3);
             } else {
                 $product->sale_price = null;
                 $product->selling_price = $values['regular_price'];
@@ -441,7 +441,7 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'product_id' => '5',
+            'product_id' => '4',
             'type_id' => '2',
             'category_id' => '2',
             'color_id' => '1,2',
@@ -449,7 +449,7 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'product_id' => '6',
+            'product_id' => '5',
             'type_id' => '2',
             'category_id' => '2',
             'color_id' => '1,2,6',
@@ -457,7 +457,7 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'product_id' => '7',
+            'product_id' => '6',
             'type_id' => '2,5',
             'category_id' => '1',
             'color_id' => '1,6,7',
@@ -465,7 +465,7 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'product_id' => '8',
+            'product_id' => '7',
             'type_id' => '2,5',
             'category_id' => '3',
             'color_id' => '2,11,12',
@@ -473,7 +473,7 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'product_id' => '9',
+            'product_id' => '8',
             'type_id' => '1,4,8',
             'category_id' => '4',
             'color_id' => '3,7',
@@ -481,7 +481,7 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'product_id' => '10',
+            'product_id' => '9',
             'type_id' => '1,4,8',
             'category_id' => '4',
             'color_id' => '7',
@@ -489,7 +489,7 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'product_id' => '11',
+            'product_id' => '10',
             'type_id' => '1,4,8',
             'category_id' => '4',
             'color_id' => '8,14',

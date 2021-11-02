@@ -241,15 +241,13 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                             <p class="m-0 product-name"><?= $value['name'] ?></p>
                         </div>
                     </a>
+                    <?php if (!empty($value['discount'])): ?>
+                        <div class="sale-tag"><span><?=$value['discount']?>%</span></div>
+                    <?php endif; ?>
                 </div>
                 <?php if (empty($value['quantity'])): ?>
-                    <div class="position-absolute text-light bg-danger out-of-stock">
+                    <div class="position-absolute out-of-stock">
                         <?= Yii::t('app','Out of stock') ?>
-                    </div>
-                <?php endif; ?>
-                <?php if (!empty($value['sale_price'])): ?>
-                    <div class="position-absolute text-light bg-warning on-sale">
-                        <?= Yii::t('app','On sale') ?>
                     </div>
                 <?php endif; ?>
                 <div class="product-button row m-0">
@@ -298,15 +296,13 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                             <p class="m-0 product-name"><?= $value['name'] ?></p>
                         </div>
                     </a>
+                    <?php if (!empty($value['discount'])): ?>
+                        <div class="sale-tag"><span><?=$value['discount']?>%</span></div>
+                    <?php endif; ?>
                 </div>
                 <?php if (empty($value['quantity'])): ?>
-                    <div class="position-absolute text-light bg-danger out-of-stock">
+                    <div class="position-absolute out-of-stock">
                         <?= Yii::t('app','Out of stock') ?>
-                    </div>
-                <?php endif; ?>
-                <?php if (!empty($value['sale_price'])): ?>
-                    <div class="position-absolute text-light bg-warning on-sale">
-                        <?= Yii::t('app','On sale') ?>
                     </div>
                 <?php endif; ?>
                 <div class="product-button row m-0">

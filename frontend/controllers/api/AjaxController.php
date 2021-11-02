@@ -62,7 +62,6 @@ class AjaxController extends ActiveController
             'showPerPage' => \common\components\SystemConstant::LIMIT_PER_PAGE,
             'buyNow' => Yii::t('app', 'Buy now'),
             'outOfStock' => Yii::t('app', 'Out of stock'),
-            'onSale' => Yii::t('app', 'On sale'),
         ];
         echo json_encode($response);
         exit;

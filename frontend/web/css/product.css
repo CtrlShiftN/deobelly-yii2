@@ -111,7 +111,8 @@ button:focus:not(:focus-visible) {
 
 .product-img {
     width: 100%;
-    padding-top: 150%;
+    padding-top: 100%;
+    overflow: hidden;
 }
 
 .img-product {
@@ -119,7 +120,8 @@ button:focus:not(:focus-visible) {
     top: 0;
     left: 0;
     width: 100%;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain !important;
 }
 
 .product-name {
@@ -249,15 +251,54 @@ button:focus, a:focus, .btn:focus {
 }
 
 .out-of-stock {
-    top: 16px;
+    top: 17px;
     left: 12px;
     z-index: 3;
-    padding: 3px 8px;
+    background: crimson;
+    color: #fff;
+    display: inline-block;
+    height: 32px;
+    line-height: 26px;
+    padding: 3px 20px 3px 15px;
+    margin: 0 10px 10px 0;
+    text-decoration: none;
+    -webkit-transition: color 0.2s;
 }
 
-.on-sale {
-    top: 16px;
-    right: 12px;
-    z-index: 3;
-    padding: 3px 8px
+.out-of-stock::after {
+    background: #fff;
+    border-bottom: 16px solid transparent;
+    border-left: 13px solid crimson;
+    border-top: 16px solid transparent;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.sale-tag {
+    width: 50px;
+    height: 100px;
+    background: #ff5711;
+    position: absolute;
+    top: -43px;
+    right: -10px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.sale-tag span {
+    position: absolute;
+    top: 45px;
+    left: 4px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    font-size: 13px;
+    color: #fff;
 }
