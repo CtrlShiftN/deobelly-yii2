@@ -75,9 +75,9 @@ position: relative;
             </h2>
         </div>
         <div class="container px-0">
-            <div class="row">
+            <div class="row w-100 px-0 mx-0">
                 <?php foreach ($latestNews as $key => $value) : ?>
-                    <div class="col-12 col-sm-6 col-lg-4 text-center pb-3 px-4 ">
+                    <div class="col-12 col-sm-6 col-lg-4 text-center pb-3 px-4">
                         <div class="card box-shadow h-100">
                             <a href="<?= Url::toRoute(['post/detail', 'id' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                                target="_blank" class="text-decoration-none">

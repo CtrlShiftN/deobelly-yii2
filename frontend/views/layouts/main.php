@@ -225,7 +225,7 @@ AppAsset::register($this);
                                                             <i class="right fas fa-angle-left"></i>
                                                         </p>
                                                     </a>
-                                                    <ul class="nav nav-treeview" style="display:none">
+                                                    <ul class="nav nav-treeview">
                                                         <?php foreach ($mainType as $key => $value): ?>
                                                             <?php if ($value['segment'] == SystemConstant::SEGMENT_LUXURY): ?>
                                                                 <li class="nav-item">
@@ -275,7 +275,7 @@ AppAsset::register($this);
                                 </a>
                                 <a href="<?= Url::toRoute('site/luxury') ?>"
                                    class="logo-align <?= ($controller == 'site' && $action == 'casual') ? 'd-none' : '' ?>">
-                                    <img src="<?= $cdnUrl ?>/img/luxury.png" class="p-1">
+                                    <img src="<?= $cdnUrl ?>/img/luxury.png">
                                 </a>
                                 <a href="<?= Url::toRoute('site/casual') ?>"
                                    class="logo-align <?= ($controller == 'site' && $action == 'luxury') ? 'd-none' : '' ?>">
@@ -306,7 +306,7 @@ AppAsset::register($this);
                         </div>
                     </div>
                 </nav>
-                <nav class="d-none d-md-flex d-lg-none align-items-center justify-content-center nav-tablet bg-white border-top">
+                <nav class="d-none d-md-flex d-lg-none align-items-center justify-content-center nav-tablet bg-white border-top border-bottom">
                     <?php foreach ($mainType as $key => $value): ?>
                         <?php if ($value['segment'] == SystemConstant::SEGMENT_LUXURY): ?>
                             <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">

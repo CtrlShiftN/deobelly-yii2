@@ -15,10 +15,9 @@ $this->registerCssFile(Url::toRoute('css/tailor-made-measure.css'));
 $this->title = Yii::t('app', 'Top Measurements');
 ?>
 <div class="top pt-4 pt-lg-5">
-
-    <div class="row">
-        <h3 class="title-svn px-0 pb-4 fs-1"><?= $this->title ?></h3>
-        <div class="col-12 col-lg-8 px-4 ps-lg-0 pe-lg-4">
+    <div class="row w-100 px-0 mx-0">
+        <h3 class="title-svn px-0 fs-1 pb-3 pb-md-4 text-center text-decoration-underline"><?= $this->title ?></h3>
+        <div class="col-12 col-lg-8 px-3 px-md-4 ps-lg-0 pe-lg-4">
             <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
             <?= $form->field($model, 'file', ['hintType' => ActiveField::HINT_SPECIAL])->widget(FileInput::classname(), [
                 'options' => ['multiple' => false, 'accept' => 'image/*'],
@@ -27,41 +26,41 @@ $this->title = Yii::t('app', 'Top Measurements');
             <?= $form->field($model, 'customer_name')->textInput(['placeholder' => 'Nguyễn Văn A']) ?>
             <?= $form->field($model, 'customer_tel')->textInput(['placeholder' => '0365 113 xxx']) ?>
             <?= $form->field($model, 'customer_email')->textInput(['type' => 'email', 'placeholder' => 'nonereply@deobelly.vn']) ?>
-            <div class="row">
-                <div class="col-6 col-md-4 col-lg-3">
+            <div class="row w-100 px-0 mx-0">
+                <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
                     <?= $form->field($model, 'height', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Đơn vị đo cm, vd: 170 cm') ?>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
                     <?= $form->field($model, 'weight', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Đơn vị đo kg, vd: 68kg') ?>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
                     <?= $form->field($model, 'neck', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Số đo vòng cổ, đơn vị: cm') ?>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
                     <?= $form->field($model, 'shoulder', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Số đo chiều rộng vai, đơn vị: cm') ?>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
                     <?= $form->field($model, 'chest', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Số đo vòng 1, đơn vị: cm') ?>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
                     <?= $form->field($model, 'arm', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Số đo chiều dài cánh tay, đơn vị: cm') ?>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
                     <?= $form->field($model, 'waist', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Số đo thắt lưng, đơn vị: cm') ?>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
                     <?= $form->field($model, 'wrist', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Số đo cổ tay, đơn vị: cm') ?>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
                     <?= $form->field($model, 'hip', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Số đo vòng hông, đơn vị: cm') ?>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
                     <?= $form->field($model, 'buttock', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Số đo vòng 3, đơn vị: cm') ?>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
                     <?= $form->field($model, 'biceps', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Số đo bắp tay, đơn vị: cm') ?>
                 </div>
-                <div class="col-12">
+                <div class="col-12 px-1 px-md-auto">
                     <?= $form->field($model, 'notes', ['hintType' => ActiveField::HINT_SPECIAL])->widget(\yii\redactor\widgets\Redactor::class)->hint('Hãy mô tả thêm về yêu cầu của bạn. Kiểu áo nào, sơ mi hay vest? Chất liệu vải như thế nào, cotton hay vải lụa? Mục đích may áo là gì, đi chơi hay đi làm? v.v...') ?>
                 </div>
             </div>
@@ -70,7 +69,7 @@ $this->title = Yii::t('app', 'Top Measurements');
             </div>
             <?php ActiveForm::end(); ?>
         </div>
-        <div class="col-12 col-lg-4 px-4 pe-lg-0 ps-lg-4">
+        <div class="col-12 col-lg-4 px-3 px-md-4 pe-lg-0 ps-lg-4">
             <h4>Áo sơ mi nam, có thể tham khảo cách đo sau</h4>
             <ul class="text-justify">
                 <li>Chiều dài áo: Đo từ sát chân cổ trước đến lai áo ở vị trí mong muốn.</li>
@@ -87,11 +86,11 @@ $this->title = Yii::t('app', 'Top Measurements');
                 </li>
                 <li>Cổ tay: Đặt thước dây tại xung quanh vùng cổ tay và nên thừa ra khoảng 1cm</li>
             </ul>
-            <img src="<?= $imgUrl . '/tailor-made/measurements.png' ?>" class="img-fluid pt-3">
-            <img src="<?= $imgUrl . '/tailor-made/3-huong-dan-cach-do-thong-so-quan-ao.jpg' ?>" class="img-fluid pt-4">
+            <img src="<?= $imgUrl . '/tailor-made/measurements.png' ?>" class="img-fluid pt-3 w-100">
+            <img src="<?= $imgUrl . '/tailor-made/3-huong-dan-cach-do-thong-so-quan-ao.jpg' ?>" class="img-fluid pt-4 w-100">
         </div>
     </div>
-    <div class="row px-4 px-lg-0 mb-3 text-justify d-flex align-items-center">
+    <div class="row px-0 mx-0 mb-3 text-justify d-flex align-items-center">
         <img src="<?= $imgUrl . '/tailor-made/dress_form_measurements_guide_header.jpg' ?>" class="img-fluid">
         <h4 class="text-uppercase pt-3">Để có được các chỉ số đo vừa vặn</h4>
         <p>Lấy số đo cơ thể chính xác là một trong những chìa khóa để có được thân hình cân đối. Cho dù bạn chọn tạo

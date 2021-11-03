@@ -47,7 +47,7 @@ $this->registerCssFile(Url::toRoute("/css/index.css"));
 </div>
 <!-- Carousel wrapper -->
 <h1 class="text-uppercase fw-light text-center my-5"><?= Yii::t('app', 'new product') ?></h1>
-<div class="row">
+<div class="row w-100 mx-0">
     <div class="col-12 row mb-md-4 mx-0 p-0">
         <div class="col-md-5 px-md-3 px-lg-4 d-none d-md-block">
             <img src="<?= Url::toRoute('img/index/newProductImg1.jpg') ?>" class="object-fit-cover shadow" alt="...">
@@ -69,17 +69,17 @@ $this->registerCssFile(Url::toRoute("/css/index.css"));
            class="btn btn-dark rounded-0 fs-4 fw-light px-4 px-lg-5" target="_blank">Xem thêm</a>
     </div>
 </div>
-<div class="row px-lg-5 w-100 m-0 sereno">
+<div class="row px-3 px-md-4 w-100 m-0 sereno">
     <div class="col-12 col-md-6 ps-lg-5 px-0 px-md-4">
         <img src="<?= Url::toRoute('img/index/sereno.jpg') ?>" class="object-fit-cover shadow p-0 d-none d-md-block"
              alt="...">
         <img src="<?= Url::toRoute('img/index/sereno-responsive.jpg') ?>" class="object-fit-cover shadow p-0 d-md-none"
              alt="...">
     </div>
-    <div class="col-12 col-md-6 d-flex align-items-center px-4 pe-lg-5 mt-3 mt-md-0">
+    <div class="col-12 col-md-6 d-flex align-items-center px-0 px-md-4 pe-lg-5 mt-3 mt-md-0">
         <div class="w-100 text-justify">
             <h1 class="fw-light m-0 text-uppercase text-center text-md-start">sereno</h1>
-            <p class="fs-5 fw-light my-3 my-md-4 my-xl-5">
+            <p class="fs-5 fw-light my-3 my-md-4 my-xl-5 px-0">
                 Expressing the new definition of success,
                 DE OBELLY introduces SS21 Collection "SERENO",
                 showing a successful man should be able to comfortably express himself and effortlessly enjoy luxury.
@@ -95,8 +95,8 @@ $this->registerCssFile(Url::toRoute("/css/index.css"));
     </div>
 </div>
 <h1 class="text-uppercase fw-light text-center mt-5 mb-3 my-5"><?= Yii::t('app', 'pronto') ?></h1>
-<div class="row px-4 px-md-5 my-3 my-md-5">
-    <p class="fs-5 fw-light text-justify w-100">
+<div class="row px-3 px-md-4 my-3 my-md-5 w-100 mx-0">
+    <p class="fs-5 fw-light text-justify w-100 px-0">
         Thời gian là thứ tài sản quý giá mà khi càng thành công,
         người ta lại càng muốn tận dụng nó một cách triệt để.
         Thấu hiểu niềm khao khát sở hữu vẻ sang trọng nhưng vẫn thoải mái,
@@ -109,7 +109,7 @@ $this->registerCssFile(Url::toRoute("/css/index.css"));
     </p>
 </div>
 
-<div class="row px-md-5 my-3 my-md-5 px-3">
+<div class="row px-md-5 my-3 my-md-5 px-3 w-100 mx-0">
     <div class="col-6 px-2 ps-md-5 pe-md-3">
         <img src="<?= Url::toRoute('img/index/pronto-img-1.jpg') ?>" class="mb-md-4 w-100 shadow pronto-img-left"
              alt="...">
@@ -125,12 +125,12 @@ $this->registerCssFile(Url::toRoute("/css/index.css"));
              alt="...">
     </div>
 </div>
-<div class="row">
+<div class="row w-100 m-0 p-0">
     <div class="col-12 text-center pt-3 pt-md-5">
         <a href="javascript:void(0)" class="btn btn-dark rounded-0 fs-4 fw-light px-4 px-lg-5">Xem thêm</a>
     </div>
 </div>
-<div class="row my-5 px-4 px-md-0">
+<div class="row my-3 my-md-5 px-2 px-md-0 w-100 mx-0">
     <div class="col-12 col-md-6 position-relative p-0 px-md-3">
         <div class="overflow-hidden w-100 shadow">
             <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['san-pham-moi']['id'])]) ?>"

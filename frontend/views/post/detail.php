@@ -18,14 +18,14 @@ $latestPosts = Post::getLatestPosts();
 $postCategory = PostCategory::getAllPostCategory();
 $this->registerCssFile('/css/post.css');
 ?>
-<div class="posts row mt-4">
-    <div class="col-12 col-lg-8 col-xl-9 px-3 m-0">
+<div class="posts row mt-4 w-100 px-0 mx-0">
+    <div class="col-12 col-lg-8 col-xl-9 px-1 px-md-3 m-0">
         <h3><?= $postDetail['title'] ?></h3>
         <span><?= Yii::t('app', 'Created at ') . date_format(date_create($postDetail['created_at']), 'H:i:s d-m-Y') ?></span>
         <div class="text-center py-2">
             <img src="<?= $imgUrl . '/' . $postDetail['avatar'] ?>" width="80%">
         </div>
-        <div class="post-content">
+        <div class="post-content px-2">
             <?= $postDetail['content'] ?>
         </div>
         <div class="post-tags pb-3">
@@ -62,7 +62,7 @@ $this->registerCssFile('/css/post.css');
         </div>
         <div class="latest-news__right-side mb-3">
             <?php foreach ($latestPosts as $value) : ?>
-                <div class="row d-flex align-items-center">
+                <div class="row d-flex align-items-center w-100 px-0 mx-0">
                     <div class="col-3 col-lg-5">
                         <a href="<?= Url::toRoute(['post/detail', 'id' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"><img
                                     class="latest-news__image"

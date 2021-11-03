@@ -111,7 +111,8 @@ button:focus:not(:focus-visible) {
 
 .product-img {
     width: 100%;
-    padding-top: 150%;
+    padding-top: 100%;
+    overflow: hidden;
 }
 
 .img-product {
@@ -119,7 +120,8 @@ button:focus:not(:focus-visible) {
     top: 0;
     left: 0;
     width: 100%;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain !important;
 }
 
 .product-name {
@@ -246,4 +248,31 @@ button:focus, a:focus, .btn:focus {
     bottom: 5px;
     right: 15px;
     width: 300px
+}
+
+.sale-tag {
+    width: 50px;
+    height: 100px;
+    background: #ff5711;
+    position: absolute;
+    top: -40px;
+    right: -7px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.sale-tag span {
+    position: absolute;
+    top: 43px;
+    left: 2px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    font-size: 13px;
+    color: #fff;
 }
