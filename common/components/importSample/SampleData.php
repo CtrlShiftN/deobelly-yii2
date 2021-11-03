@@ -128,7 +128,6 @@ class SampleData
             'image' => 'product/clothes/top/shirt1.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/top/shirt2.png,product/clothes/top/shirt3.png',
             'trademark_id' => 1,
-            'quantity' => 82,
             'admin_id' => 1,
         ],
         [
@@ -153,6 +152,7 @@ class SampleData
             'image' => 'product/clothes/top/shirt6.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/top/shirt2.png,product/clothes/top/shirt3.png',
             'trademark_id' => 1,
+            'quantity' => 182,
             'admin_id' => 1,
         ],
         [
@@ -177,6 +177,7 @@ class SampleData
             'image' => 'product/clothes/top/shirt3.png',
             'images' => 'product/clothes/top/shirt1.png,product/clothes/top/shirt2.png,product/clothes/top/shirt3.png',
             'trademark_id' => 1,
+            'quantity' => 52,
             'admin_id' => 1,
         ],
         [
@@ -268,6 +269,7 @@ class SampleData
             'image' => 'product/clothes/vest/vest-nam-han-quoc.jpg',
             'images' => '',
             'trademark_id' => 3,
+            'quantity' => 152,
             'is_feature' => 1,
             'admin_id' => 1,
         ],
@@ -300,6 +302,7 @@ class SampleData
             'image' => 'product/quan-tay-nam-co-gian-nhe-lados.jpg',
             'images' => '',
             'trademark_id' => 3,
+            'quantity' => 527,
             'admin_id' => 1,
         ],
         [
@@ -330,6 +333,7 @@ class SampleData
             'image' => 'product/quan-tay-ke-kieu-dang-han-quoc.jpg',
             'images' => '',
             'trademark_id' => 3,
+            'quantity' => 326,
             'hide' => 1,
             'admin_id' => 1,
         ],
@@ -360,6 +364,7 @@ class SampleData
             'image' => 'product/ao-vest-nam-the-shirt-studio-f4.jpg',
             'images' => '',
             'trademark_id' => 3,
+            'quantity' => 126,
             'hide' => 1,
             'admin_id' => 1,
         ],
