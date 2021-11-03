@@ -250,32 +250,6 @@ button:focus, a:focus, .btn:focus {
     width: 300px
 }
 
-.out-of-stock {
-    top: 17px;
-    left: 12px;
-    z-index: 3;
-    background: crimson;
-    color: #fff;
-    display: inline-block;
-    height: 28px;
-    line-height: 26px;
-    padding: 1px 15px 1px 15px;
-    margin: 0 10px 10px 0;
-    text-decoration: none;
-    -webkit-transition: color 0.2s;
-}
-
-.out-of-stock::after {
-    background: transparent;
-    border-bottom: 14px solid transparent;
-    border-left: 11px solid crimson;
-    border-top: 14px solid transparent;
-    content: '';
-    position: absolute;
-    right: -11px;
-    top: 0;
-}
-
 .sale-tag {
     width: 50px;
     height: 100px;

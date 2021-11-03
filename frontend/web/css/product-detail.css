@@ -209,7 +209,8 @@ h2 {
 
 .product-img {
     width: 100%;
-    padding-top: 150%;
+    padding-top: 100%;
+    overflow: hidden;
 }
 
 .img-product {
@@ -217,7 +218,8 @@ h2 {
     top: 0;
     left: 0;
     width: 100%;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain !important;
 }
 
 .product-name {
@@ -284,32 +286,6 @@ h2 {
     bottom: 5px;
     right: 15px;
     width: 260px;
-}
-
-.out-of-stock {
-    top: 17px;
-    left: 12px;
-    z-index: 3;
-    background: crimson;
-    color: #fff;
-    display: inline-block;
-    height: 28px;
-    line-height: 26px;
-    padding: 1px 15px 1px 15px;
-    margin: 0 10px 10px 0;
-    text-decoration: none;
-    -webkit-transition: color 0.2s;
-}
-
-.out-of-stock::after {
-    background: transparent;
-    border-bottom: 14px solid transparent;
-    border-left: 11px solid crimson;
-    border-top: 14px solid transparent;
-    content: '';
-    position: absolute;
-    right: -11px;
-    top: 0;
 }
 
 .sale-tag {

@@ -30,7 +30,6 @@ function requestParam() {
         imgUrl = arrRes.imgUrl;
         show_per_page = arrRes.showPerPage;
         buyNow = arrRes.buyNow;
-        outOfStock = arrRes.outOfStock;
         requestData();
     });
     request.fail(function (jqXHR, textStatus) {
@@ -127,11 +126,7 @@ function requestData() {
                 if (arrRes.product[i].discount !== null) {
                     result += '<div class="sale-tag"><span>-' + arrRes.product[i].discount + '%</span></div>';
                 }
-                result += '</div>';
-                if (parseInt(arrRes.product[i].quantity) === 0) {
-                    result += '<div class="position-absolute out-of-stock">' + outOfStock + '</div>';
-                }
-                result += '<div class="product-button row m-0">' +
+                result += '</div><div class="product-button row m-0">' +
                     '<a href="' + cdnUrl + '/shop/product-detail?detail=' + arrRes.product[i].id + '" class="btn rounded-0 btnBuyNow col-6 col-md-8"><i class="fas fa-dollar-sign d-md-none"></i><span class="d-none d-md-inline-block"><i class="fas fa-dollar-sign"></i> ' + buyNow + '</span></a>' +
                     '<button data-id="' + arrRes.product[i].id + '" class="btn rounded-0 btnAdd col-6 col-md-4" onclick="addToFavorite(this)"><i class="far fa-heart"></i></button></div></div>';
             }

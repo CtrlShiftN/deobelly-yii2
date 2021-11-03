@@ -103,7 +103,7 @@ class Product extends \common\models\Product
     {
         $query = (new Query())->from('product')
             ->leftJoin('product_assoc', 'product_assoc.product_id = product.id')
-            ->where(['product.status' => 1]);
+            ->where(['product.status' => 1])->andWhere(['>','product.quantity',0]);
         if (!empty($productType)) {
             if (intval($productType) == SystemConstant::PRODUCT_TYPE_NEW) {
                 $query->andWhere(['product.hide' => SystemConstant::PRODUCT_HIDE])->orderBy('product.updated_at DESC')->limit(SystemConstant::LIMIT_PER_PAGE);
