@@ -61,6 +61,7 @@ class AjaxController extends ActiveController
             'imgUrl' => Yii::$app->params['common'] . "/media",
             'showPerPage' => \common\components\SystemConstant::LIMIT_PER_PAGE,
             'buyNow' => Yii::t('app', 'Buy now'),
+            'outOfStock' => Yii::t('app', 'Out of stock'),
         ];
         echo json_encode($response);
         exit;
@@ -143,6 +144,7 @@ class AjaxController extends ActiveController
             'product_id' => $id,
             'color_id' => $color,
             'size_id' => $size,
+            'status' => SystemConstant::STATUS_ACTIVE,
         ]);
         if (!empty($cart)) {
             if (($productQuantity - $cart->quantity) >= $amount) {
@@ -225,7 +227,7 @@ class AjaxController extends ActiveController
         $model = Favorite::findOne([
             'product_id' => $productID,
             'user_id' => Yii::$app->user->identity->getId(),
-            'status' => SystemConstant::STATUS_ACTIVE
+            'status' => SystemConstant::STATUS_ACTIVE,
         ]);
         if (empty($model)) {
             $favor = new Favorite();

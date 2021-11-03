@@ -55,10 +55,10 @@ $this->registerCss(".intro-quote{
         </div>
         <!-- Carousel wrapper -->
     </div>
-    <div class="shop-intro text-center pt-5 pb-2">
+    <div class="shop-intro text-center pt-md-5 pb-2">
         <img src="<?= $imgUrl ?>/stories/TUJ04917.jpg" width="100%">
         <h3 class="text-uppercase py-2">De Obelly Shop</h3>
-        <div class="intro-text">
+        <div class="intro-text px-3">
             <p>Với việc tập trung vào giá trị cốt lõi về chất lượng sản phẩm, cũng như phát triển dịch vụ, kết hợp trải
                 nghiệm khách hàng tại điểm bán lẻ nhằm cung cấp cho khách hàng sự tự tin, tính trang trọng và sự hứng
                 khởi trong việc mua sắm, De Obelly đã phát triển đa dạng các dòng hàng, từ áo sơ mi, polo cho tới
@@ -75,16 +75,16 @@ $this->registerCss(".intro-quote{
                 Nam cũng như khu vực Đông Nam Á.</p>
         </div>
     </div>
-    <div class="full-width pb-5 d-none d-md-block">
+    <div class="full-width pb-4 pb-md-5 d-none d-md-block">
         <img src="<?= $imgUrl ?>/stories/brand2.jpg" width="100%">
     </div>
-    <div class="container-md">
-        <div class="row quotes pb-5 text-center">
+    <div class="container-md p-0">
+        <div class="row quotes pb-4 pb-md-5 text-center w-100 mx-0 px-2">
             <div class="col-12 col-md-1"></div>
             <div class="col-12 col-md-5">
                 <img src="<?= $imgUrl ?>/stories/handsome.jpg" width="100%">
             </div>
-            <div class="col-12 col-md-5 intro-quote pt-3 pt-md-0">
+            <div class="col-12 col-md-5 intro-quote mt-3 mt-md-0 pt-md-0 pe-0">
                 <p>“Từ khi ra đời đến nay, chúng tôi luôn kiên định với sứ mệnh tái hiện nét thanh lịch tự nhiên và
                     phong cách Ý tại khu vực Đông Nam Á. Đó là lý do chúng tôi tồn tại và làm việc mỗi ngày. Chúng tôi
                     đặc biệt quan tâm tới việc phục vụ khách hàng với những sản phẩm tinh tế, xa xỉ cùng chất lượng vượt

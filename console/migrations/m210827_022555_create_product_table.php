@@ -20,6 +20,7 @@ class m210827_022555_create_product_table extends Migration
             'description' => $this->text()->notNull(),
             'cost_price' => $this->decimal(13, 0)->notNull(),
             'regular_price' => $this->decimal(13, 0)->notNull(),
+            'discount' => $this->smallInteger(2)->null(),
             'sale_price' => $this->decimal(13, 0)->null(),
             'selling_price' => $this->decimal(13, 0)->notNull(),
             'SKU' => $this->string()->null(),

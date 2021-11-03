@@ -15,10 +15,9 @@ $this->registerCssFile(Url::toRoute('css/tailor-made-measure.css'));
 $this->title = Yii::t('app', 'Pants Measurements');
 ?>
 <div class="top pt-4 pt-lg-5">
-
-    <div class="row">
-        <h3 class="title-svn px-0 pb-4 fs-1"><?= $this->title ?></h3>
-        <div class="col-12 col-lg-8 px-4 ps-lg-0 pe-lg-4">
+    <div class="row w-100 mx-0 px-0">
+        <h3 class="title-svn px-0 pb-3 pb-md-4 fs-1 w-100 mx-0 text-center"><?= $this->title ?></h3>
+        <div class="col-12 col-lg-8 px-3 ps-lg-0 pe-lg-4">
             <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
             <?= $form->field($model, 'file', ['hintType' => ActiveField::HINT_SPECIAL])->widget(FileInput::classname(), [
                 'options' => ['multiple' => false, 'accept' => 'image/*'],
@@ -27,32 +26,32 @@ $this->title = Yii::t('app', 'Pants Measurements');
             <?= $form->field($model, 'customer_name')->textInput(['placeholder' => 'Nguyễn Văn A']) ?>
             <?= $form->field($model, 'customer_tel')->textInput(['placeholder' => '0365 113 xxx']) ?>
             <?= $form->field($model, 'customer_email')->textInput(['type' => 'email', 'placeholder' => 'nonereply@deobelly.vn']) ?>
-            <div class="row">
-                <div class="col-6 col-md-4 col-lg-3">
+            <div class="row w-100 px-0 mx-0">
+                <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
                     <?= $form->field($model, 'height', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Đơn vị đo cm, vd: 170 cm') ?>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
                     <?= $form->field($model, 'weight', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Đơn vị đo kg, vd: 68kg') ?>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
                     <?= $form->field($model, 'waist_to_floor', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Đo từ phần phần thắt lưng đến chấm gót chân. Đơn vị: cm') ?>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
                     <?= $form->field($model, 'waist_to_knee', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Đo từ phần thắt lưng đến đầu gối. Đơn vị: cm') ?>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
                     <?= $form->field($model, 'ankle', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Đo một vòng quanh mắt cá chân, đơn vị: cm') ?>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
                     <?= $form->field($model, 'buttock', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Số đo vòng 3, đơn vị: cm') ?>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
                     <?= $form->field($model, 'knee', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Đo một vòng quanh đầu gối, đơn vị: cm') ?>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
                     <?= $form->field($model, 'thigh', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Đo một vòng quanh phần đùi, đơn vị: cm') ?>
                 </div>
-                <div class="col-12">
+                <div class="col-12 px-1 px-md-auto">
                     <?= $form->field($model, 'notes', ['hintType' => ActiveField::HINT_SPECIAL])->widget(\yii\redactor\widgets\Redactor::class)->hint('Hãy mô tả thêm về yêu cầu của bạn. Kiểu quần nào, quần tây hay quần jeans? Chất liệu vải như thế nào, cotton hay vải bò? Mục đích may quần là gì, đi chơi hay đi làm? v.v...') ?>
                 </div>
             </div>
@@ -78,11 +77,11 @@ $this->title = Yii::t('app', 'Pants Measurements');
                 </li>
                 <li>Cổ tay: Đặt thước dây tại xung quanh vùng cổ tay và nên thừa ra khoảng 1cm</li>
             </ul>
-            <img src="<?= $imgUrl . '/tailor-made/measurements.png' ?>" class="img-fluid pt-3">
-            <img src="<?= $imgUrl . '/tailor-made/3-huong-dan-cach-do-thong-so-quan-ao.jpg' ?>" class="img-fluid pt-4">
+            <img src="<?= $imgUrl . '/tailor-made/measurements.png' ?>" class="img-fluid pt-3 w-100">
+            <img src="<?= $imgUrl . '/tailor-made/3-huong-dan-cach-do-thong-so-quan-ao.jpg' ?>" class="img-fluid pt-4 w-100">
         </div>
     </div>
-    <div class="row px-4 px-lg-0 mb-3 text-justify d-flex align-items-center">
+    <div class="row mb-3 text-justify d-flex align-items-center w-100 mx-0 px-0">
         <img src="<?= $imgUrl . '/tailor-made/dress_form_measurements_guide_header.jpg' ?>" class="img-fluid">
         <h4 class="text-uppercase pt-3">Để có được các chỉ số đo vừa vặn</h4>
         <p>Lấy số đo cơ thể chính xác là một trong những chìa khóa để có được thân hình cân đối. Cho dù bạn chọn tạo
@@ -101,9 +100,9 @@ $this->title = Yii::t('app', 'Pants Measurements');
         <div class="col-12 col-md-4 h-100 py-2">
             <div class="card card-shadow h-100">
                 <a href="<?= Url::toRoute('tailor-made/top') ?>"
-                   target="_blank" title="<?= Yii::t('app','Top Measurements') ?>">
+                   target="_blank" title="<?= Yii::t('app', 'Top Measurements') ?>">
                     <div class="card-img h-100 zoom image-holder">
-                        <img src="<?= $imgUrl.'/tailor-made/vest-top.jpg' ?>"
+                        <img src="<?= $imgUrl . '/tailor-made/vest-top.jpg' ?>"
                              class="img-thumbnail h-100 object-fit-cover">
                         <div class="measure-method__title">
                             <p class="text-uppercase fs-4 fw-bolder title-svn"><?= Yii::t('app', 'Top Measurements') ?></p>
@@ -116,9 +115,9 @@ $this->title = Yii::t('app', 'Pants Measurements');
         <div class="col-12 col-md-4 h-100 py-2">
             <div class="card card-shadow h-100">
                 <a href="<?= Url::toRoute('tailor-made/pants') ?>"
-                   target="_blank" title="<?= Yii::t('app','Pants Measurements') ?>">
+                   target="_blank" title="<?= Yii::t('app', 'Pants Measurements') ?>">
                     <div class="card-img h-100 zoom image-holder">
-                        <img src="<?= $imgUrl.'/tailor-made/trousers.jpg' ?>"
+                        <img src="<?= $imgUrl . '/tailor-made/trousers.jpg' ?>"
                              class="img-thumbnail h-100 object-fit-cover">
                         <div class="measure-method__title">
                             <p class="text-uppercase fs-4 fw-bolder title-svn"><?= Yii::t('app', 'Pants Measurements') ?></p>
@@ -131,9 +130,9 @@ $this->title = Yii::t('app', 'Pants Measurements');
         <div class="col-12 col-md-4 h-100 py-2">
             <div class="card card-shadow h-100">
                 <a href="<?= Url::toRoute('tailor-made/set') ?>"
-                   target="_blank" title="<?= Yii::t('app','Set Measurements') ?>">
+                   target="_blank" title="<?= Yii::t('app', 'Set Measurements') ?>">
                     <div class="card-img h-100 zoom image-holder">
-                        <img src="<?= $imgUrl.'/tailor-made/fullset.jpg' ?>"
+                        <img src="<?= $imgUrl . '/tailor-made/fullset.jpg' ?>"
                              class="img-thumbnail h-100 object-fit-cover">
                         <div class="measure-method__title">
                             <p class="text-uppercase fs-4 fw-bolder title-svn"><?= Yii::t('app', 'Set Measurements') ?></p>
