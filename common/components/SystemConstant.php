@@ -15,9 +15,8 @@ class SystemConstant
     const PRODUCT_TYPE_NEW = 1;
     const PRODUCT_HIDE = 1;
     const PRODUCT_SHOW = 0;
-    const GENDER_BOTH = 0;
     const GENDER_MALE = 1;
     const GENDER_FEMALE = 2;
     const SHOWROOM_PER_PAGE = 30;
-
+    const VAT = 10;
 }

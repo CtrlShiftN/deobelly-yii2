@@ -63,7 +63,7 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
         </div>
     </div>
     <div class="col-12 col-md-7 product-information" data-id="<?= CryptHelper::encryptString($detail['id']) ?>">
-        <span class="mt-3 fs-3 m-0 fw-bolder text-uppercase d-block"><span
+        <span class="mt-md-3 fs-3 m-0 fw-bolder text-uppercase d-block"><span
                     class="badge rounded-0 bg-danger" id="outOfStock">Hết hàng</span> <?= $detail['name'] ?></span>
         <div class="d-flex w-100 mb-3 mb-md-4">
             <?php if ($detail['viewed'] >= 1000): ?>
@@ -182,6 +182,7 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
             <a class="btn p-2 btn-danger text-light col-12 col-sm-6 col-md-12 col-lg-5 text-light bg-danger rounded-0"
                href="<?= Url::toRoute('checkout/') ?>"
                id="btnBuyNow">Mua ngay</a>
+
         </div>
     </div>
     <div class="w-100 my-2 mx-0 px-md-3">
@@ -240,9 +241,12 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                             <p class="m-0 product-name"><?= $value['name'] ?></p>
                         </div>
                     </a>
+                    <?php if (!empty($value['discount'])): ?>
+                        <div class="sale-tag"><span>-<?=$value['discount']?>%</span></div>
+                    <?php endif; ?>
                 </div>
                 <div class="product-button row m-0">
-                    <a href="javascript:void(0)"
+                    <a href="<?= Url::toRoute(['shop/product-detail','detail' => \common\components\encrypt\CryptHelper::encryptString($value['id'])])?>"
                        data-id="<?= \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>"
                        class="btn rounded-0 btnBuyNow col-6 col-md-8"><i
                                 class="fas fa-dollar-sign d-md-none"></i><span
@@ -287,9 +291,12 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                             <p class="m-0 product-name"><?= $value['name'] ?></p>
                         </div>
                     </a>
+                    <?php if (!empty($value['discount'])): ?>
+                        <div class="sale-tag"><span>-<?=$value['discount']?>%</span></div>
+                    <?php endif; ?>
                 </div>
                 <div class="product-button row m-0">
-                    <a href="javascript:void(0)"
+                    <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                        data-id="<?= \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>"
                        class="btn rounded-0 btnBuyNow col-6 col-md-8"><i
                                 class="fas fa-dollar-sign d-md-none"></i><span

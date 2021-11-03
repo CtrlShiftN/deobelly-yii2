@@ -46,9 +46,9 @@ $this->registerCssFile(Url::toRoute("/css/luxury.css"));
     </div>
 </div>
 <!-- Carousel wrapper -->
-<div class="container-fluid px-0 pt-3">
-    <div class="row">
-        <div class="col-12 col-md-6 px-5 px-md-2 pb-3 pb-md-0">
+<div class="container px-0 pt-3">
+    <div class="row w-100 mx-0 px-0">
+        <div class="col-12 col-md-6 px-4 px-md-2 pb-3 pb-md-0">
             <div class="image-holder h-100">
                 <a class="text-decoration-none " href="<?= Url::toRoute('tailor-made/') ?>" target="_blank"
                    title="<?= Yii::t('app', 'Tailor Made') ?>">
@@ -61,7 +61,7 @@ $this->registerCssFile(Url::toRoute("/css/luxury.css"));
                 </a>
             </div>
         </div>
-        <div class="col-12 col-md-6 px-5 px-md-2 pb-3 pb-md-0">
+        <div class="col-12 col-md-6 px-4 px-md-2 pb-3 pb-md-0">
             <div class="image-holder h-100">
                 <a class="text-decoration-none " href="<?= Url::toRoute('mix-and-match/') ?>" target="_blank"
                    title="<?= Yii::t('app', 'Collections') ?>">
@@ -75,14 +75,14 @@ $this->registerCssFile(Url::toRoute("/css/luxury.css"));
             </div>
         </div>
     </div>
-    <section class="home-feature-product pb-5 pt-0 pt-md-5">
-        <div class="section-heading text-center">
+    <section class="home-feature-product py-3 pt-0 py-md-5">
+        <div class="section-heading text-center mb-4">
             <h2 class="section-title">
                 <span class="text-uppercase"><?= Yii::t('app', 'Featured Products') ?></span>
             </h2>
         </div>
         <div class="container px-0">
-            <div class="row">
+            <div class="row w-100 mx-0 px-0">
                 <?php foreach ($featuredProducts as $key => $products): ?>
                     <div class="col-12 col-sm-6 col-md-4 text-center pb-3 px-4">
                         <div class="card box-shadow h-100">
@@ -122,8 +122,8 @@ $this->registerCssFile(Url::toRoute("/css/luxury.css"));
             </a>
         </div>
     </section>
-    <div class="row">
-        <div class="col-12 col-md-6 px-5 px-md-2 pb-3 pb-md-0">
+    <div class="row w-100 mx-0 px-0">
+        <div class="col-12 col-md-6 px-4 px-md-2 pb-3 pb-md-0">
             <div class="image-holder h-100">
                 <a class="text-decoration-none " href="<?= Url::toRoute('mix-and-match/') ?>" target="_blank"
                    title="<?= Yii::t('app', 'Collections') ?>">
@@ -136,7 +136,7 @@ $this->registerCssFile(Url::toRoute("/css/luxury.css"));
                 </a>
             </div>
         </div>
-        <div class="col-12 col-md-6 px-5 px-md-2 pb-3 pb-md-0">
+        <div class="col-12 col-md-6 px-4 px-md-2 pb-3 pb-md-0">
             <div class="image-holder h-100">
                 <a class="text-decoration-none " href="<?= Url::toRoute('tailor-made/') ?>" target="_blank"
                    title="<?= Yii::t('app', 'Tailor Made') ?>">
@@ -151,13 +151,13 @@ $this->registerCssFile(Url::toRoute("/css/luxury.css"));
         </div>
     </div>
     <section class="home-new-product pb-5 pt-0 pt-md-5">
-        <div class="section-heading text-center">
+        <div class="section-heading text-center mb-4">
             <h2 class="section-title">
                 <span class="text-uppercase"><?= Yii::t('app', 'New-arrival Products') ?></span>
             </h2>
         </div>
         <div class="container px-0">
-            <div class="row">
+            <div class="row w-100 mx-0 px-0">
                 <?php foreach ($newProducts as $key => $products): ?>
                     <div class="col-12 col-sm-6 col-md-4 text-center pb-3 px-4">
                         <div class="card box-shadow">
@@ -200,13 +200,13 @@ $this->registerCssFile(Url::toRoute("/css/luxury.css"));
         </div>
     </section>
     <section class="home-latest-news pb-5">
-        <div class="section-heading text-center">
+        <div class="section-heading text-center mb-4">
             <h2 class="section-title">
                 <span class="text-uppercase"><?= Yii::t('app', 'Latest News') ?></span>
             </h2>
         </div>
         <div class="container px-0">
-            <div class="row">
+            <div class="row w-100 mx-0 px-0">
                 <?php foreach ($latestNews as $key => $value) : ?>
                     <div class="col-12 col-sm-6 col-lg-4 text-center pb-3 px-4 ">
                         <div class="card box-shadow h-100">

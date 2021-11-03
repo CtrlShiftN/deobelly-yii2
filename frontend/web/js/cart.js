@@ -1,3 +1,7 @@
+$('#btnModalSuccess').trigger("click");
+setTimeout(function () {
+    $('#btnModalClose').trigger("click");
+}, 1800);
 let product, amount, id;
 let total_price = 0;
 product = $('.row-product');
@@ -22,7 +26,6 @@ document.querySelectorAll('.btnDESC').forEach(item => {
         let id = item.getAttribute("data-id");
         let idAmount = $('#amount' + id);
         let idPrice = $('.price_' + id);
-        let existingProduct = $('.existing-product' + id);
         let idTotalPriceProduct = $('#total_price_product' + id);
         if (idAmount.val() > 1) {
             idAmount.val(parseInt(idAmount.val()) - 1);

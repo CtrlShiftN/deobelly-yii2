@@ -54,7 +54,6 @@ class OrderForm extends Order
             ['email', 'required', 'message' => '{attribute}' . Yii::t('app', ' can not be blank.')],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['cart', 'string', 'max' => 255],
             ['name', 'required', 'message' => '{attribute}' . Yii::t('app', ' can not be blank.')],
             ['name', 'string', 'max' => 100],
             [['user_id', 'admin_id', 'logistic_method'], 'required'],
@@ -62,7 +61,7 @@ class OrderForm extends Order
             [['province_id', 'district_id', 'village_id', 'specific_address', 'address'], 'required', 'when' => function ($model) {
                 return $model->logistic_method == 0;
             }, 'whenClient' => "function (attribute, value) {return $('#sm-home-delivery').prop('checked');}"],
-            [['address', 'notes'], 'string'],
+            [['cart', 'address', 'notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['specific_address', 'tel'], 'string', 'max' => 255],
             ['tel', 'required', 'message' => Yii::t('app', 'Phone number can not be blank.')],

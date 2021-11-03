@@ -18,10 +18,10 @@ $latestPosts = Post::getLatestPosts();
 $postCategory = PostCategory::getAllPostCategory();
 $this->registerCssFile('/css/post.css');
 ?>
-<div class="posts row mt-4">
+<div class="posts row mt-4 w-100 px-0 mx-0">
     <div class="col-12 col-lg-8 col-xl-9 px-3 m-0">
         <h2 class="d-none d-md-block"><?= Yii::t('app', 'News') ?></h2>
-        <div class="row mb-3">
+        <div class="row mb-3 w-100 px-0 mx-0">
             <?php foreach ($post as $key => $value) : ?>
                 <!-- Three in a row -->
                 <div class="col-12 col-md-6 col-lg-4 py-3 box">
@@ -102,7 +102,7 @@ $this->registerCssFile('/css/post.css');
         </div>
         <div class="latest-news__right-side mb-3">
             <?php foreach ($latestPosts as $value) : ?>
-                <div class="row d-flex align-items-center">
+                <div class="row d-flex align-items-center w-100 px-0 mx-0">
                     <div class="col-3 col-lg-5">
                         <a href="<?= Url::toRoute(['post/detail', 'id' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"><img
                                     class="latest-news__image"

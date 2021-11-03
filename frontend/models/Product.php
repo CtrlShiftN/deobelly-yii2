@@ -17,6 +17,7 @@ use yii\db\Query;
  * @property string $description
  * @property float $cost_price
  * @property float $regular_price
+ * @property int|null $discount
  * @property float|null $sale_price
  * @property float $selling_price
  * @property string|null $SKU
@@ -25,7 +26,7 @@ use yii\db\Query;
  * @property string|null $images
  * @property string|null $related_product
  * @property int|null $trademark_id
- * @property int|null $hide 0 for hide, 1 for show
+ * @property int|null $hide 0 for show, 1 for hide
  * @property int|null $is_feature 0 for no, 1 for yes
  * @property int|null $viewed +1 each click to view
  * @property int|null $fake_sold client see this amount if sold < 1k
@@ -54,7 +55,7 @@ class Product extends \common\models\Product
             [['name', 'slug', 'description', 'cost_price', 'regular_price', 'selling_price', 'image'], 'required'],
             [['description', 'images'], 'string'],
             [['cost_price', 'regular_price', 'sale_price', 'selling_price'], 'number'],
-            [['quantity', 'trademark_id', 'hide', 'is_feature', 'viewed', 'fake_sold', 'sold', 'status', 'admin_id'], 'integer'],
+            [['discount', 'quantity', 'trademark_id', 'hide', 'is_feature', 'viewed', 'fake_sold', 'sold', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'short_description', 'SKU', 'image', 'related_product'], 'string', 'max' => 255],
             [['slug'], 'unique'],
@@ -74,6 +75,7 @@ class Product extends \common\models\Product
             'description' => Yii::t('app', 'Description'),
             'cost_price' => Yii::t('app', 'Cost Price'),
             'regular_price' => Yii::t('app', 'Regular Price'),
+            'discount' => Yii::t('app', 'Discount'),
             'sale_price' => Yii::t('app', 'Sale Price'),
             'selling_price' => Yii::t('app', 'Selling Price'),
             'SKU' => Yii::t('app', 'Sku'),
@@ -101,7 +103,7 @@ class Product extends \common\models\Product
     {
         $query = (new Query())->from('product')
             ->leftJoin('product_assoc', 'product_assoc.product_id = product.id')
-            ->where(['product.status' => 1]);
+            ->where(['product.status' => 1])->andWhere(['>','product.quantity',0]);
         if (!empty($productType)) {
             if (intval($productType) == SystemConstant::PRODUCT_TYPE_NEW) {
                 $query->andWhere(['product.hide' => SystemConstant::PRODUCT_HIDE])->orderBy('product.updated_at DESC')->limit(SystemConstant::LIMIT_PER_PAGE);

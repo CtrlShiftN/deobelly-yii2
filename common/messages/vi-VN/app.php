@@ -74,7 +74,7 @@ return [
     'Instruction manual' => 'Cẩm nang hướng dẫn',
     'Payment guide' => 'Hướng dẫn thanh toán',
     'CONTACT INFO' => 'THÔNG TIN LIÊN HỆ',
-    'No.xxx, YYY street, ZZZ ward, ABC district, Hanoi.' => ' Số xxx, đường YYY, phường ZZZ, quận ABC, Hà Nội.',
+    'Number 536, CT1 Building, 5th Floor, , Minh Khai street, Vinh Tuy ward, Hai Ba Trung district, Hanoi.' => 'Số 536, Tòa nhà CT1, Tầng 5, đường Minh Khai, phường Vĩnh Tuy, quận Hai Bà Trưng, Hà Nội.',
     'SIGN UP TO RECEIVE NEWS' => 'ĐĂNG KÝ ĐỂ NHẬN TIN MỚI NHẤT',
     'Promotion news / Brand news' => 'Tin khuyến mãi / Tin thương hiệu',
     'CONNECT WITH US' => 'KẾT NỐI VỚI CHÚNG TÔI',
@@ -356,7 +356,7 @@ return [
     'Consignee' => 'Người nhận hàng',
     "Consignee's name" => 'Tên người nhận hàng',
     'Home delivery' => 'Giao hàng tận nhà',
-    'Receive products at the store' => 'Nhận tại cửa hàng',
+    'Pick up at the store' => 'Nhận tại cửa hàng',
     'See more' => 'Xem thêm',
     'Tailor Made' => 'Thiết Kế Riêng',
     'Featured Products' => 'Sản Phẩm Nổi Bật',
@@ -392,6 +392,9 @@ return [
     'Thigh' => 'Đùi',
     'Biceps' => 'Bắp Tay',
     'Notes' => 'Ghi Chú',
-    'Order Success! Please continue to order the product.' => 'Đặt hàng thành công! Vui lòng tiếp tục đặt mua sản phẩm.',
-    'Order failed! Please try again.' => 'Đặt hàng không thành công! Xin quý khách hãy thử lại.'
+    'Successfully!' => 'Thành công!',
+    'Error!' => 'Lỗi!',
+    'Your order has been initialized.' => 'Đơn hàng của bạn đã được khởi tạo.',
+    'Unable to initiate order.' => 'Không thể khởi tạo đơn hàng.',
+    'Out of stock' => 'Hết hàng'
 ];
