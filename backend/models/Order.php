@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use yii\db\Query;
 
 /**
  * This is the model class for table "order".
@@ -116,17 +117,18 @@ class Order extends \common\models\Order
      * @param $note
      * @return bool
      */
-    private static function updateOrCreateOrderTrackingNote($orderID, $adminID, $actionID, $note){
+    private static function updateOrCreateOrderTrackingNote($orderID, $adminID, $actionID, $note)
+    {
         $model = \common\models\OrderTracking::findOne([
             'order_id' => $orderID,
             'admin_id' => $adminID,
             'action' => $actionID
         ]);
-        if (!empty($model)){
+        if (!empty($model)) {
             $model->notes = $note;
             $model->updated_at = date('Y-m-d H:i:s');
             return $model->save();
-        }else{
+        } else {
             $orderTrackingModel = new \common\models\OrderTracking();
             $orderTrackingModel->order_id = $orderID;
             $orderTrackingModel->admin_id = $adminID;
@@ -159,5 +161,47 @@ class Order extends \common\models\Order
                 'admin_id' => Yii::$app->user->identity->getId()
             ], ['id' => $id]);
         }
+    }
+
+    /**
+     * @param int $limit
+     * @return array
+     */
+    public static function getLatestOrder(int $limit)
+    {
+        return (new Query())
+            ->select([
+                'o.*',
+                'p.name as product_name',
+                'u.name as user_name',
+                'c.name as color_name',
+                's.name as size_name',
+                'ts.name as status_name',
+            ])->from('order as o')
+            ->leftJoin('product as p', 'o.product_id = p.id')
+            ->leftJoin('user as u', 'o.user_id = u.id')
+            ->leftJoin('color as c', 'o.color_id = c.id')
+            ->leftJoin('size as s', 'o.size_id = s.id')
+            ->leftJoin('tracking_status as ts', 'o.status = ts.id')
+            ->orderBy('created_at DESC')
+            ->limit($limit)
+            ->all();
+    }
+
+    public static function getStatusColor()
+    {
+        return [
+            'badge-success',
+            'badge-warning',
+            'badge-success',
+            'badge-warning',
+            'badge-secondary',
+            'badge-danger',
+            'badge-danger',
+            'badge-secondary',
+            'badge-warning',
+            'badge-danger',
+            'badge-danger',
+        ];
     }
 }

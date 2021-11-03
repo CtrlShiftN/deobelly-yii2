@@ -245,4 +245,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
+    /**
+     * @return int
+     */
+    public function getRole(){
+        return $this->role;
+    }
 }

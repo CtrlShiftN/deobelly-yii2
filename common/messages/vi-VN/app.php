@@ -393,5 +393,10 @@ return [
     'Biceps' => 'Bắp Tay',
     'Notes' => 'Ghi Chú',
     'Order Success! Please continue to order the product.' => 'Đặt hàng thành công! Vui lòng tiếp tục đặt mua sản phẩm.',
-    'Order failed! Please try again.' => 'Đặt hàng không thành công! Xin quý khách hãy thử lại.'
+    'Order failed! Please try again.' => 'Đặt hàng không thành công! Xin quý khách hãy thử lại.',
+    'Latest Orders' => 'Đơn Hàng Mới Nhất',
+    'Place New Order' => 'Tạo Đơn Hàng Mới',
+    'View All Orders' => 'Tất Cả Đơn Hàng',
+    'Active Users' => 'Người Dùng Hoạt Động',
+    'More info' => 'Xem thêm',
 ];
