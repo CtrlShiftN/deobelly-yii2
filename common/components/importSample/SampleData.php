@@ -2517,7 +2517,7 @@ class SampleData
             'title' => 'Bộ trang phục công sở Lados 2021',
             'slug' => 'bo-trang-phuc-cong-so-lados-2021',
             'image' => 'product/mixes/bo-trang-phuc-cong-so-lados-2021.jpg',
-            'mixed_product_id' => '7,9',
+            'mixed_product_id' => '6,8',
             'content' => '<li> Chất vải sờ mịn không phai, không nhăn, không xù.</li><li> Chất liệu thoáng mái.</li>
                 <li> Mếch cổ và tay làm bằng chất liệu cao cấp, không bị bong tróc.</li>
                 <li> Fom Body cực chuẩn, ôm chọn bờ vai mặc cực trẻ trung và phong cách phù hợp với mọi hoàn cảnh kể cả đi chơi và đi làm.</li>
@@ -2528,7 +2528,7 @@ class SampleData
             'title' => 'Bộ vest nam The Shirt Studio F4',
             'slug' => 'bo-vest-nam-the-shirt-studio-f4',
             'image' => 'product/mixes/bo-vest-nam-the-shirt-studio-f4.jpg',
-            'mixed_product_id' => '10,11',
+            'mixed_product_id' => '9,10',
             'content' => '<li> Chất vải sờ mịn không phai, không nhăn, không xù.</li><li> Chất liệu thoáng mái.</li>
                 <li> Mếch cổ và tay làm bằng chất liệu cao cấp, không bị bong tróc.</li>
                 <li> Fom Body cực chuẩn, ôm chọn bờ vai mặc cực trẻ trung và phong cách phù hợp với mọi hoàn cảnh kể cả đi chơi và đi làm.</li>

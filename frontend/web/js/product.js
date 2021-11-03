@@ -125,7 +125,7 @@ function requestData() {
                 }
                 result += '<p class="m-0 product-name">' + arrRes.product[i].name + '</p></div></a>';
                 if (arrRes.product[i].discount !== null) {
-                    result += '<div class="sale-tag"><span>' + arrRes.product[i].discount + '%</span></div>';
+                    result += '<div class="sale-tag"><span>-' + arrRes.product[i].discount + '%</span></div>';
                 }
                 result += '</div>';
                 if (parseInt(arrRes.product[i].quantity) === 0) {

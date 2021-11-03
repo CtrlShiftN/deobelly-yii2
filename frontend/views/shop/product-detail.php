@@ -242,7 +242,7 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                         </div>
                     </a>
                     <?php if (!empty($value['discount'])): ?>
-                        <div class="sale-tag"><span><?=$value['discount']?>%</span></div>
+                        <div class="sale-tag"><span>-<?=$value['discount']?>%</span></div>
                     <?php endif; ?>
                 </div>
                 <?php if (empty($value['quantity'])): ?>
@@ -297,7 +297,7 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                         </div>
                     </a>
                     <?php if (!empty($value['discount'])): ?>
-                        <div class="sale-tag"><span><?=$value['discount']?>%</span></div>
+                        <div class="sale-tag"><span>-<?=$value['discount']?>%</span></div>
                     <?php endif; ?>
                 </div>
                 <?php if (empty($value['quantity'])): ?>
