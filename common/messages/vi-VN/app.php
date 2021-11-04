@@ -276,6 +276,9 @@ return [
     'Cost Price' => 'Giá Gốc',
     'Product Type' => 'Loại Sản Phẩm',
     'Trademark' => 'Thương Hiệu',
+    'Trademarks' => 'Thương Hiệu',
+    'Trademarks List' => 'Danh Sách Thương Hiệu',
+    'Add New Trademark' => 'Thêm Mới Thương Hiệu',
     'Gender' => 'Giới Tính',
     'All' => 'Tất Cả',
     'Male' => 'Nam',
@@ -413,6 +416,7 @@ return [
     'Add New Showroom' => 'Thêm Mới Showroom',
     'Update Account' => 'Cập Nhật Tài Khoản',
     'Edit' => 'Sửa',
+    'View' => 'Xem',
     'Add New Post' => 'Thêm Bài Viết Mới',
     'Update Post' => 'Cập Nhật Bài Viết',
 ];
