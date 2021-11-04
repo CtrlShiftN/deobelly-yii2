@@ -69,6 +69,22 @@ class ShowroomController extends Controller
     {
         $searchModel = new ShowroomSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        if (Yii::$app->request->post('hasEditable')) {
+            // which rows has been edited?
+            $_id = $_POST['editableKey'];
+            $_index = $_POST['editableIndex'];
+            // which attribute has been edited?
+            $attribute = $_POST['editableAttribute'];
+            // update to db
+            $value = $_POST['Showroom'][$_index][$attribute];
+            if ($attribute == 'name'){
+                $result = Showroom::updateTitle($_id, $attribute, $value);
+            }else{
+                $result = Showroom::updateAttribute($_id, $attribute, $value);
+            }
+            // response to gridview
+            return json_encode($result);
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,

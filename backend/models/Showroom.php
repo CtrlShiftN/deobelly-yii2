@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\components\helpers\StringHelper;
 use Yii;
 
 /**
@@ -19,7 +20,7 @@ use Yii;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class Showroom extends \yii\db\ActiveRecord
+class Showroom extends \common\models\Showroom
 {
     public $file;
     /**
@@ -65,5 +66,28 @@ class Showroom extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('app', 'Updated At'),
             'file' => Yii::t('app', 'File'),
         ];
+    }
+
+    /**
+     * @param $_id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
+    public static function updateTitle($_id, $attribute, $value)
+    {
+        $slug = StringHelper::toSlug($value);
+        return \common\models\Showroom::updateAll([$attribute => $value, 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $_id]);
+    }
+
+    /**
+     * @param array $id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
+    public static function updateAttribute($id, $attribute, $value)
+    {
+        return \common\models\Post::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $id]);
     }
 }
