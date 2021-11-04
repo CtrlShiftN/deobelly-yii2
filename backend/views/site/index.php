@@ -44,12 +44,14 @@ $imgUrl = Yii::$app->params['common'] . '/media';
                 <div class="inner">
                     <h3><?= $totalActiveUsers ?></h3>
 
-                    <p><?= Yii::t('app','Active Users') ?></p>
+                    <p><?= Yii::t('app', 'Active Users') ?></p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-user-plus"></i>
                 </div>
-                <a href="<?= (Yii::$app->user->identity->getRole() == 1) ? \yii\helpers\Url::toRoute('user/') : '#' ?>" class="small-box-footer" target="_blank"><?= Yii::t('app','More info') ?> <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= (Yii::$app->user->identity->getRole() == 1) ? \yii\helpers\Url::toRoute('user/') : '#' ?>"
+                   class="small-box-footer" target="_blank"><?= Yii::t('app', 'More info') ?> <i
+                            class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
@@ -103,7 +105,10 @@ $imgUrl = Yii::$app->params['common'] . '/media';
                             <tbody>
                             <?php foreach ($orders as $key => $orderDetail) : ?>
                                 <tr>
-                                    <td>DO<?= $orderDetail['id'] ?></td>
+                                    <td>
+                                        <a href="<?= \yii\helpers\Url::toRoute(['order/view', 'id' => \common\components\encrypt\CryptHelper::encryptString($orderDetail['id'])]) ?>"
+                                           target="_blank">DO<?= $orderDetail['id'] ?></a>
+                                    </td>
                                     <td><?= $orderDetail['product_name'] ?></td>
                                     <td>
                                         <span class="badge <?= $statusBG[$orderDetail['status'] - 1] ?>"><?= Yii::t('app', $orderDetail['status_name']) ?></span>
@@ -122,8 +127,10 @@ $imgUrl = Yii::$app->params['common'] . '/media';
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer clearfix">
-                    <a href="<?= \yii\helpers\Url::toRoute('order/create') ?>" class="btn btn-sm btn-info float-left" target="_blank"><?= Yii::t('app','Place New Order') ?></a>
-                    <a href="<?= \yii\helpers\Url::toRoute('order/') ?>" class="btn btn-sm btn-secondary float-right" target="_blank"><?= Yii::t('app','View All Orders') ?></a>
+                    <a href="<?= \yii\helpers\Url::toRoute('order/create') ?>" class="btn btn-sm btn-info float-left"
+                       target="_blank"><?= Yii::t('app', 'Place New Order') ?></a>
+                    <a href="<?= \yii\helpers\Url::toRoute('order/') ?>" class="btn btn-sm btn-secondary float-right"
+                       target="_blank"><?= Yii::t('app', 'View All Orders') ?></a>
                 </div>
                 <!-- /.card-footer -->
             </div>

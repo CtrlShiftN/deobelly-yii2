@@ -96,4 +96,13 @@ class Size extends \common\models\Size
             'admin_id' => Yii::$app->user->identity->getId()
         ], ['id' => $id]);
     }
+
+    /**
+     * @param int $size_id
+     * @return false|int|string|null
+     */
+    public static function findNameByID(int $size_id)
+    {
+        return Size::find()->select('name')->where(['status' => SystemConstant::STATUS_ACTIVE, 'id' => $size_id])->scalar();
+    }
 }

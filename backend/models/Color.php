@@ -109,4 +109,13 @@ class Color extends \common\models\Color
             'admin_id' => Yii::$app->user->identity->getId()
         ], ['id' => $id]);
     }
+
+    /**
+     * @param int $color_id
+     * @return false|int|string|null
+     */
+    public static function findNameByID(int $color_id)
+    {
+        return Color::find()->select('name')->where(['status' => SystemConstant::STATUS_ACTIVE, 'id' => $color_id])->scalar();
+    }
 }

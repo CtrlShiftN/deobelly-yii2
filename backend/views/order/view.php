@@ -1,52 +1,146 @@
 <?php
 
+use kartik\depdrop\DepDrop;
+use kartik\detail\DetailView;
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Order */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Orders'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Yii::t('app', 'Orders') . ' DO' . $model->id;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="order-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
+    <?php
+    $columns = [
+        [
+            'attribute' => 'user_id',
+            'value' => \backend\models\User::findNameByID($model->user_id),
+            'displayOnly' => true,
+        ],
+        [
+            'attribute' => 'name',
+            'value' => $model->name,
+        ],
+        [
+            'attribute' => 'email',
+            'value' => $model->email,
+        ],
+        [
+            'attribute' => 'tel',
+            'value' => $model->tel,
+        ],
+        [
+            'attribute' => 'product_id',
+            'type' => DetailView::INPUT_SELECT2,
+            'value' => \backend\models\Product::findNameByID($model->product_id),
+            'widgetOptions' => [
+                'data' => \yii\helpers\ArrayHelper::map(\backend\models\Product::getAllProduct(), 'id', 'name'),
+                'options' => ['placeholder' => '-- ' . Yii::t('app', 'Products') . ' --'],
+                'pluginOptions' => ['allowClear' => true]
             ],
-        ]) ?>
-    </p>
+        ],
+        [
+            'attribute' => 'color_id',
+            'type' => DetailView::INPUT_SELECT2,
+            'value' => \backend\models\Color::findNameByID($model->color_id),
+            'widgetOptions' => [
+                'data' => \yii\helpers\ArrayHelper::map(\backend\models\Color::getAllColor(), 'id', 'name'),
+                'options' => ['placeholder' => '-- ' . Yii::t('app', 'Colors') . ' --'],
+                'pluginOptions' => ['allowClear' => true]
+            ],
+        ],
+        [
+            'attribute' => 'size_id',
+            'type' => DetailView::INPUT_SELECT2,
+            'value' => \backend\models\Size::findNameByID($model->size_id),
+            'widgetOptions' => [
+                'data' => \yii\helpers\ArrayHelper::map(\backend\models\Size::getAllSize(), 'id', 'name'),
+                'options' => ['placeholder' => '-- ' . Yii::t('app', 'Colors') . ' --'],
+                'pluginOptions' => ['allowClear' => true]
+            ],
+        ],
+        [
+            'attribute' => 'quantity',
+            'value' => $model->quantity,
+        ],
+        [
+            'attribute' => 'province_id',
+            'value' => \backend\models\GeoLocation::findNameByID($model->province_id),
+            'type' => DetailView::INPUT_SELECT2,
+            'widgetOptions' => [
+                'data' => \yii\helpers\ArrayHelper::map(\backend\models\GeoLocation::getAllProvince(), 'id', 'name'),
+                'options' => ['placeholder' => '-- ' . Yii::t('app', 'Province') . ' --'],
+                'pluginOptions' => ['allowClear' => true]
+            ],
+        ],
+        [
+            'attribute' => 'district_id',
+            'value' => \backend\models\GeoLocation::findNameByID($model->district_id),
+            'type' => DetailView::INPUT_DEPDROP,
+            'widgetOptions' => [
+                'type' => DepDrop::TYPE_SELECT2,
+                'data' => \yii\helpers\ArrayHelper::map(\backend\models\GeoLocation::getAllGeoLocation(), 'id', 'name'),
+                'options' => ['placeholder' => '-- ' . Yii::t('app', 'District') . ' --'],
+                'select2Options' => ['pluginOptions' => ['allowClear' => true]],
+                'pluginOptions' => [
+                    'depends' => ['order-province_id'],
+                    'url' => Url::to(['/order/get-district']),
+                    //'params'=>['input-type-1', 'input-type-2']
+                ]
+            ],
+        ],
+        [
+            'attribute' => 'village_id',
+            'value' => \backend\models\GeoLocation::findNameByID($model->village_id),
+            'type' => DetailView::INPUT_DEPDROP,
+            'widgetOptions' => [
+                'type' => DepDrop::TYPE_SELECT2,
+                'data' => \yii\helpers\ArrayHelper::map(\backend\models\GeoLocation::getAllGeoLocation(), 'id', 'name'),
+                'options' => ['placeholder' => '-- ' . Yii::t('app', 'Village') . ' --'],
+                'select2Options' => ['pluginOptions' => ['allowClear' => true]],
+                'pluginOptions' => [
+                    'depends' => ['order-district_id'],
+                    'url' => Url::to(['/order/get-village']),
+                ]
+            ],
+        ],
+        [
+            'attribute' => 'specific_address',
+            'value' => $model->specific_address,
+        ],
+        [
+            'attribute' => 'notes',
+            'value' => $model->notes,
+        ],
+        [
+            'attribute' => 'logistic_method',
+            'type' => DetailView::INPUT_SELECT2,
+            'value' => \common\models\Order::getLogisticMethod()[$model->logistic_method],
+            'widgetOptions' => [
+                'data' => \common\models\Order::getLogisticMethod(),
+                'options' => ['placeholder' => '-- ' . Yii::t('app', 'Logistic Method') . ' --'],
+                'pluginOptions' => ['allowClear' => true]
+            ],
+        ],
+    ]
+    ?>
 
     <?= DetailView::widget([
         'model' => $model,
-        'attributes' => [
-            'id',
-            'user_id',
-            'product_id',
-            'color_id',
-            'size_id',
-            'quantity',
-            'province_id',
-            'district_id',
-            'village_id',
-            'specific_address',
-            'address:ntext',
-            'notes:ntext',
-            'tel',
-            'admin_id',
-            'status',
-            'created_at',
-            'updated_at',
+        'condensed' => true,
+        'hover' => true,
+        'bordered' => true,
+        'hAlign' => DetailView::ALIGN_CENTER,
+        'vAlign' => DetailView::ALIGN_MIDDLE,
+        'mode' => DetailView::MODE_VIEW,
+        'panel' => [
+            'heading' => $this->title,
+            'type' => DetailView::TYPE_INFO,
         ],
-    ]) ?>
+        'attributes' => $columns
+    ]); ?>
 
 </div>

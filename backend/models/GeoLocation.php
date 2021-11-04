@@ -87,4 +87,13 @@ class GeoLocation extends \common\models\GeoLocation
             ])->asArray()->all();
         }
     }
+
+    /**
+     * @param int $geoID
+     * @return false|int|string|null
+     */
+    public static function findNameByID(int $geoID)
+    {
+        return GeoLocation::find()->select('name')->where(['status' => SystemConstant::STATUS_ACTIVE, 'id' => $geoID])->scalar();
+    }
 }

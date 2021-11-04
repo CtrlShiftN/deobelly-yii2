@@ -11,6 +11,7 @@ use backend\models\Size;
 use backend\models\User;
 use common\components\encrypt\CryptHelper;
 use Yii;
+use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
@@ -106,7 +107,7 @@ class OrderController extends Controller
      * Displays a single Order model.
      * @param int $id ID
      * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException
      */
     public function actionView($id)
     {

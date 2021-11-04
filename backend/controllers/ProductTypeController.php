@@ -76,7 +76,11 @@ class ProductTypeController extends Controller
             $attribute = $_POST['editableAttribute'];
             // update to db
             $value = $_POST['ProductType'][$_index][$attribute];
-            $result = ProductType::updateProductType($_id, $attribute, $value);
+            if ($attribute == 'name'){
+                $result = ProductType::updateProductTypeTitle($_id, $attribute, $value);
+            }else{
+                $result = ProductType::updateProductType($_id, $attribute, $value);
+            }
             // response to gridview
             return json_encode($result);
         }

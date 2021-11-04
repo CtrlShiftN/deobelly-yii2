@@ -12,7 +12,8 @@ use yii\widgets\Pjax;
 $this->title = Yii::t('app', 'Products');
 $this->params['breadcrumbs'][] = $this->title;
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
-$arrFeature = [Yii::t('app', 'No'), Yii::t('app', 'Yes')];
+$arrFeature = [Yii::t('app', 'Non-featured'), Yii::t('app', 'Featured')];
+$arrVisibility = [Yii::t('app','Show'),Yii::t('app','Hide')];
 $commonUrl = Yii::$app->params['common'];
 ?>
 <div class="product-index">
@@ -132,24 +133,24 @@ $commonUrl = Yii::$app->params['common'];
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '75px',
-                'value' => function ($model, $key, $index, $widget) use ($arrStatus) {
-                    return $arrStatus[$model['hide']];
+                'value' => function ($model, $key, $index, $widget) use ($arrVisibility) {
+                    return $arrVisibility[$model['hide']];
                 },
-                'editableOptions' => function ($model, $key, $index) use ($arrStatus) {
+                'editableOptions' => function ($model, $key, $index) use ($arrVisibility) {
                     return [
                         'name' => 'hide',
                         'asPopover' => false,
                         'header' => Yii::t('app', 'Hide'),
                         'size' => 'md',
                         'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
-                        'data' => $arrStatus,
+                        'data' => $arrVisibility,
                         // default value in the text box
-                        'value' => $arrStatus[$model['hide']],
-                        'displayValueConfig' => $arrStatus
+                        'value' => $arrVisibility[$model['hide']],
+                        'displayValueConfig' => $arrVisibility
                     ];
                 },
                 'filterType' => GridView::FILTER_SELECT2,
-                'filter' => $arrStatus,
+                'filter' => $arrVisibility,
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],

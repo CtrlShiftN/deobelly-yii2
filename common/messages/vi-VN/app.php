@@ -401,5 +401,12 @@ return [
     'Error!' => 'Lỗi!',
     'Your order has been initialized.' => 'Đơn hàng của bạn đã được khởi tạo.',
     'Unable to initiate order.' => 'Không thể khởi tạo đơn hàng.',
-    'Out of stock' => 'Hết hàng'
+    'Out of stock' => 'Hết hàng',
+    'Featured Product' => 'Sản Phẩm Nổi Bật',
+    'Featured' => 'Nổi Bật',
+    'Non-featured' => 'Thông thường',
+    'Show' => 'Hiển thị',
+    'Hide' => 'Ẩn giấu',
+    'Specific Address' => 'Địa Chỉ Chi Tiết',
+    'Logistic Method' => 'Phương Thức Vận Chuyển',
 ];
