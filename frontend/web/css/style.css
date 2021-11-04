@@ -31,10 +31,6 @@ body {
     background-color: #fff;
 }
 
-.p-home {
-    padding: 25px;
-}
-
 .topbar > ul > li > a {
     text-decoration: none;
     color: white;
@@ -62,7 +58,7 @@ body {
     display: inline-block;
     font-size: 30px;
     text-align: center;
-    vertical-align: middle;
+    z-index: 99;
 }
 
 .logo-align > img {
@@ -393,3 +389,17 @@ footer .footer-content {
     border-radius: 9px;
 }
 /* End Shopping cart */
+
+.title-classify {
+    font-family: "SVN Veneer";
+    font-size: 1.45rem;
+    padding: 8px 16px;
+    color: rgba(0, 0, 0, 0.81);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-align:hover {
+    color: rgba(0, 0, 0, 0.81);
+}
