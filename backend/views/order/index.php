@@ -13,6 +13,7 @@ $this->title = Yii::t('app', 'Orders');
 $this->params['breadcrumbs'][] = $this->title;
 $arrStatus = \backend\models\TrackingStatus::getAllStatus();
 $arrStatus = \yii\helpers\ArrayHelper::map($arrStatus, 'id', 'name');
+$arrLogisticMethod = [Yii::t('app','Home delivery'),Yii::t('app','Pick up at the store')];
 ?>
 <div class="order-index">
     <div class="pt-3">
@@ -83,7 +84,7 @@ $arrStatus = \yii\helpers\ArrayHelper::map($arrStatus, 'id', 'name');
                 'label' => Yii::t('app', 'Size'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
-                'width' => '140px',
+                'width' => '70px',
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['size_name'];
                 },
@@ -95,7 +96,7 @@ $arrStatus = \yii\helpers\ArrayHelper::map($arrStatus, 'id', 'name');
                 'label' => Yii::t('app', 'Quantity'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
-                'width' => '140px',
+                'width' => '70px',
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['quantity'];
                 },
@@ -110,6 +111,30 @@ $arrStatus = \yii\helpers\ArrayHelper::map($arrStatus, 'id', 'name');
                 'width' => '140px',
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['tel'];
+                },
+                'filter' => false,
+                'format' => 'raw'
+            ],
+            [
+                'attribute' => 'name',
+                'label' => Yii::t('app', 'Consignee'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'width' => '140px',
+                'value' => function ($model, $key, $index, $widget) {
+                    return $model['name'];
+                },
+                'filter' => false,
+                'format' => 'raw'
+            ],
+            [
+                'attribute' => 'email',
+                'label' => Yii::t('app', 'Email'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'width' => '140px',
+                'value' => function ($model, $key, $index, $widget) {
+                    return $model['email'];
                 },
                 'filter' => false,
                 'format' => 'raw'
@@ -149,11 +174,41 @@ $arrStatus = \yii\helpers\ArrayHelper::map($arrStatus, 'id', 'name');
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'logistic_method',
+                'label' => Yii::t('app', 'Logistic method'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'width' => '70px',
+                'value' => function ($model, $key, $index, $widget) use ($arrLogisticMethod) {
+                    return Yii::t('app', $arrLogisticMethod[$model['logistic_method']]);
+                },
+                'editableOptions' => function ($model, $key, $index) use ($arrLogisticMethod) {
+                    return [
+                        'name' => 'logistic_method',
+                        'asPopover' => false,
+                        'header' => Yii::t('app', 'Logistic method'),
+                        'size' => 'md',
+                        'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
+                        'data' => $arrLogisticMethod,
+                        // default value in the text box
+                        'value' => Yii::t('app', $arrLogisticMethod[$model['logistic_method']]),
+                        'displayValueConfig' => $arrLogisticMethod
+                    ];
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => $arrLogisticMethod,
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Logistic method') . ' --']
+            ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'status',
                 'label' => Yii::t('app', 'Actions'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
-                'width' => '150px',
+                'width' => '70px',
                 'value' => function ($model, $key, $index, $widget) use ($arrStatus) {
                     return Yii::t('app', $arrStatus[$model['status']]);
                 },

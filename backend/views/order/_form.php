@@ -9,6 +9,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Order */
 /* @var $form yii\widgets\ActiveForm */
+$arrLogisticMethod = [Yii::t('app','Home delivery'),Yii::t('app','Pick up at the store')];
 ?>
 
 <div class="order-form container p-3">
@@ -27,9 +28,18 @@ use yii\helpers\Url;
             ])->label(Yii::t('app', 'Customer')); ?>
         </div>
         <div class="col-12 col-md-3">
-            <?= $form->field($model, 'tel')->textInput(['placeholder' => Yii::t('app', '0397 742 291')]) ?>
+            <?= $form->field($model, 'name')->textInput(['placeholder' => Yii::t('app', 'Họ và tên')]) ?>
         </div>
         <div class="col-12 col-md-6">
+            <?= $form->field($model, 'tel')->textInput(['placeholder' => Yii::t('app', '0397 742 291')]) ?>
+        </div>
+        <div class="col-12 col-md-4">
+            <?= $form->field($model, 'email')->textInput(['placeholder' => Yii::t('app', 'deobelly@gmail.com')]) ?>
+        </div>
+        <div class="col-12 col-md-4">
+            <?= $form->field($model, 'logistic_method')->dropDownList($arrLogisticMethod, ['prompt'=>  Yii::t('app', 'Choose logistic method')]) ?>
+        </div>
+        <div class="col-12 col-md-4">
             <?= $form->field($model, 'product_id')->widget(Select2::classname(), [
                 'data' => \yii\helpers\ArrayHelper::map($products, 'id', 'name'),
                 'options' => ['placeholder' => Yii::t('app', 'Choose a product')],

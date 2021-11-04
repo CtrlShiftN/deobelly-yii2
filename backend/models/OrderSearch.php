@@ -19,8 +19,8 @@ class OrderSearch extends Order
     public function rules()
     {
         return [
-            [['id', 'user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'admin_id', 'status'], 'integer'],
-            [['specific_address', 'address', 'notes', 'tel', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'admin_id', 'logistic_method', 'status'], 'integer'],
+            [['specific_address', 'address', 'notes', 'name', 'email', 'tel', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -77,18 +77,21 @@ class OrderSearch extends Order
             'color_id' => $this->color_id,
             'size_id' => $this->size_id,
             'quantity' => $this->quantity,
+            'province_id' => $this->province_id,
+            'district_id' => $this->district_id,
+            'village_id' => $this->village_id,
             'admin_id' => $this->admin_id,
+            'logistic_method' => $this->logistic_method,
             'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['province_id' => $this->province_id])
-            ->andFilterWhere(['district_id' => $this->district_id])
-            ->andFilterWhere(['village_id' => $this->village_id])
-            ->andFilterWhere(['like', 'specific_address', $this->specific_address])
+        $query->andFilterWhere(['like', 'specific_address', $this->specific_address])
             ->andFilterWhere(['like', 'address', $this->address])
             ->andFilterWhere(['like', 'notes', $this->notes])
+            ->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'tel', $this->tel]);
 
         return $dataProvider;
