@@ -21,6 +21,7 @@ use Yii;
  */
 class Showroom extends \yii\db\ActiveRecord
 {
+    public $file;
     /**
      * {@inheritdoc}
      */
@@ -40,6 +41,8 @@ class Showroom extends \yii\db\ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'image', 'address', 'tel', 'gps_link'], 'string', 'max' => 255],
             [['name'], 'unique'],
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
+            ['file', 'required']
         ];
     }
 
@@ -60,6 +63,7 @@ class Showroom extends \yii\db\ActiveRecord
             'admin_id' => Yii::t('app', 'Admin ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'file' => Yii::t('app', 'File'),
         ];
     }
 }

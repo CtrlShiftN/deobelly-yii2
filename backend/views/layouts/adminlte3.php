@@ -218,25 +218,36 @@ AppAsset::register($this);
                         <!-- End warehouse -->
                         <li class="nav-header text-uppercase font-weight-bold"><?= Yii::t('app', 'Others') ?></li>
                         <li class="nav-item">
-                            <a href="<?= Url::toRoute('color/') ?>" class="nav-link <?= ($controller == 'color') ? 'active' : '' ?>">
+                            <a href="<?= Url::toRoute('showroom/') ?>"
+                               class="nav-link <?= ($controller == 'showroom') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-store"></i>
+                                <p><?= Yii::t('app', 'Showroom') ?></p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= Url::toRoute('color/') ?>"
+                               class="nav-link <?= ($controller == 'color') ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-palette"></i>
                                 <p><?= Yii::t('app', 'Color') ?></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= Url::toRoute('size/') ?>" class="nav-link <?= ($controller == 'size') ? 'active' : '' ?>">
+                            <a href="<?= Url::toRoute('size/') ?>"
+                               class="nav-link <?= ($controller == 'size') ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-ruler-combined"></i>
                                 <p><?= Yii::t('app', 'Size') ?></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= Url::toRoute('contact/') ?>" class="nav-link <?= ($controller == 'contact') ? 'active' : '' ?>">
+                            <a href="<?= Url::toRoute('contact/') ?>"
+                               class="nav-link <?= ($controller == 'contact') ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-envelope"></i>
                                 <p><?= Yii::t('app', 'Contact') ?></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= Url::toRoute('tool/slider') ?>" class="nav-link <?= ($controller == 'tool' && $action == 'slider') ? 'active' : '' ?>">
+                            <a href="<?= Url::toRoute('tool/slider') ?>"
+                               class="nav-link <?= ($controller == 'tool' && $action == 'slider') ? 'active' : '' ?>">
                                 <i class="nav-icon fab fa-slideshare"></i>
                                 <p><?= Yii::t('app', 'Slider') ?></p>
                             </a>

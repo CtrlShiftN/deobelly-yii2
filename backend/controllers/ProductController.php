@@ -133,10 +133,7 @@ class ProductController extends Controller
             if ($model->load($this->request->post())) {
                 $model->file = UploadedFile::getInstance($model, 'file');
                 $model->files = UploadedFile::getInstances($model, 'files');
-                if (!file_exists(Url::to('@common/media/product'))) {
-                    mkdir(Url::to('@common/media/product'), 0777, true);
-                }
-                $imageUrl = Url::to('@common/media');
+                $imageUrl = Yii::$app->params['common'].'/media';
                 $arrImages = [];
                 $model->slug = StringHelper::toSlug($model->name);
                 $model->selling_price = ($model->sale_price > $model->regular_price) ? $model->regular_price : $model->sale_price;

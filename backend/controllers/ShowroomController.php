@@ -2,10 +2,8 @@
 
 namespace backend\controllers;
 
-use backend\models\Post;
-use backend\models\PostCategory;
-use backend\models\PostSearch;
-use backend\models\PostTag;
+use backend\models\Showroom;
+use backend\models\ShowroomSearch;
 use common\components\encrypt\CryptHelper;
 use common\components\helpers\StringHelper;
 use Yii;
@@ -17,9 +15,9 @@ use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 
 /**
- * PostController implements the CRUD actions for Post model.
+ * ShowroomController implements the CRUD actions for Showroom model.
  */
-class PostController extends Controller
+class ShowroomController extends Controller
 {
     /**
      * @inheritDoc
@@ -62,30 +60,15 @@ class PostController extends Controller
         return true; // or false to not run the action
     }
 
+
     /**
-     * Lists all Post models.
+     * Lists all Showroom models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PostSearch();
+        $searchModel = new ShowroomSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-        if (Yii::$app->request->post('hasEditable')) {
-            // which rows has been edited?
-            $_id = $_POST['editableKey'];
-            $_index = $_POST['editableIndex'];
-            // which attribute has been edited?
-            $attribute = $_POST['editableAttribute'];
-            // update to db
-            $value = $_POST['Post'][$_index][$attribute];
-            if ($attribute == 'title'){
-                $result = Post::updatePostTitle($_id, $attribute, $value);
-            }else{
-                $result = Post::updatePost($_id, $attribute, $value);
-            }
-            // response to gridview
-            return json_encode($result);
-        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -94,7 +77,7 @@ class PostController extends Controller
     }
 
     /**
-     * Displays a single Post model.
+     * Displays a single Showroom model.
      * @param int $id ID
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -108,44 +91,43 @@ class PostController extends Controller
     }
 
     /**
-     * Creates a new Post model.
+     * Creates a new Showroom model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Post();
-        $arrTagId = PostTag::find()->where(['status' => 1])->asArray()->all();
-        $arrPostCategory = PostCategory::find()->where(['status' => 1])->asArray()->all();
+        $model = new Showroom();
+
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->file = UploadedFile::getInstance($model, 'file');
-                $model->slug = trim(StringHelper::toSlug(trim($model->title)));
-                $imageUrl = Yii::$app->params['common'].'/media';
-                $fileName = $model->slug . '.' . $model->file->getExtension();
-                $isUploadedFile = $model->file->saveAs($imageUrl . '/post/' . $fileName);
-                if ($isUploadedFile) {
-                    $model->avatar = 'post/' . $fileName;
-                    $model->tag_id = implode( ",",$model->tags);
+                $model->slug = trim(StringHelper::toSlug(trim($model->name)));
+                $imageUrl = Yii::$app->params['common'] . '/media';
+                chmod($imageUrl,'0777');
+                $fileName = 'showroom/' . $model->slug . '.' . $model->file->getExtension();
+                $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                if ($isUploadedFile){
+                    $model->image = $fileName;
                     $model->admin_id = Yii::$app->user->identity->getId();
                     $model->created_at = date('Y-m-d H:i:s');
                     $model->updated_at = date('Y-m-d H:i:s');
                     if ($model->save(false)) {
-                        return $this->redirect(Url::toRoute('post/'));
+                        return $this->redirect(Url::toRoute('showroom/'));
                     }
                 }
             }
+        } else {
+            $model->loadDefaultValues();
         }
 
         return $this->render('create', [
             'model' => $model,
-            'postTag' => $arrTagId,
-            'postCate' => $arrPostCategory
         ]);
     }
 
     /**
-     * Updates an existing Post model.
+     * Updates an existing Showroom model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return mixed
@@ -166,7 +148,7 @@ class PostController extends Controller
     }
 
     /**
-     * Deletes an existing Post model.
+     * Deletes an existing Showroom model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return mixed
@@ -181,19 +163,19 @@ class PostController extends Controller
     }
 
     /**
-     * Finds the Post model based on its primary key value.
+     * Finds the Showroom model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Post the loaded model
+     * @return Showroom the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Post::findOne($id)) !== null) {
+        $id = CryptHelper::decryptString($id);
+        if (($model = Showroom::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
-
 }

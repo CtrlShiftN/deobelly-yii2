@@ -409,4 +409,6 @@ return [
     'Hide' => 'Ẩn giấu',
     'Specific Address' => 'Địa Chỉ Chi Tiết',
     'Logistic Method' => 'Phương Thức Vận Chuyển',
+    'Showroom List' => 'Danh Sách Showroom',
+    'Add New Showroom' => 'Thêm Mới Showroom',
 ];
