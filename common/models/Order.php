@@ -80,4 +80,11 @@ class Order extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
+
+    /**
+     * @return array
+     */
+    public static function getLogisticMethod(){
+        return [Yii::t('app','Home delivery'),Yii::t('app','Get at store')];
+    }
 }

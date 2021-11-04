@@ -72,21 +72,6 @@ $commonUrl = Yii::$app->params['common'];
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'slug',
-                'label' => Yii::t('app', 'Slug'),
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'value' => function ($model, $key, $index, $widget) {
-                    return $model['slug'];
-                },
-                // edit field
-                'editableOptions' => [
-                    'asPopover' => false,
-                ],
-                'filter' => false
-            ],
-            [
-                'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'segment',
                 'label' => Yii::t('app', 'Segment'),
                 'vAlign' => 'middle',

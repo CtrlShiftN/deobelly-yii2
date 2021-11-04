@@ -100,7 +100,17 @@ class User extends \common\models\User
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getAllUser(){
-        return \common\models\User::find()->where(['status'=>SystemConstant::STATUS_ACTIVE])->asArray()->all();
+    public static function getAllUser()
+    {
+        return \common\models\User::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
+    }
+
+    /**
+     * @param int $user_id
+     * @return false|int|string|null
+     */
+    public static function findNameByID(int $user_id)
+    {
+        return User::find()->select('name')->where(['status' => SystemConstant::STATUS_ACTIVE, 'id' => $user_id])->scalar();
     }
 }

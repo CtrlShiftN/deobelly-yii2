@@ -52,6 +52,10 @@ class UserController extends Controller
      */
     public function beforeAction($action)
     {
+        if (Yii::$app->user->identity->getRole() != 1){
+            $this->goHome();
+        }
+
         $this->layout = 'adminlte3';
         if (!parent::beforeAction($action)) {
             return false;
