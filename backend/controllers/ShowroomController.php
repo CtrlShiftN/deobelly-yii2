@@ -2,8 +2,8 @@
 
 namespace backend\controllers;
 
-use backend\models\ProductType;
-use backend\models\ProductTypeSearch;
+use backend\models\Showroom;
+use backend\models\ShowroomSearch;
 use common\components\encrypt\CryptHelper;
 use common\components\helpers\StringHelper;
 use Yii;
@@ -15,9 +15,9 @@ use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 
 /**
- * ProductTypeController implements the CRUD actions for ProductType model.
+ * ShowroomController implements the CRUD actions for Showroom model.
  */
-class ProductTypeController extends Controller
+class ShowroomController extends Controller
 {
     /**
      * @inheritDoc
@@ -60,13 +60,14 @@ class ProductTypeController extends Controller
         return true; // or false to not run the action
     }
 
+
     /**
-     * Lists all ProductType models.
+     * Lists all Showroom models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ProductTypeSearch();
+        $searchModel = new ShowroomSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
         if (Yii::$app->request->post('hasEditable')) {
             // which rows has been edited?
@@ -75,11 +76,11 @@ class ProductTypeController extends Controller
             // which attribute has been edited?
             $attribute = $_POST['editableAttribute'];
             // update to db
-            $value = $_POST['ProductType'][$_index][$attribute];
-            if ($attribute == 'name') {
-                $result = ProductType::updateProductTypeTitle($_id, $attribute, $value);
-            } else {
-                $result = ProductType::updateProductType($_id, $attribute, $value);
+            $value = $_POST['Showroom'][$_index][$attribute];
+            if ($attribute == 'name'){
+                $result = Showroom::updateTitle($_id, $attribute, $value);
+            }else{
+                $result = Showroom::updateAttribute($_id, $attribute, $value);
             }
             // response to gridview
             return json_encode($result);
@@ -92,44 +93,45 @@ class ProductTypeController extends Controller
     }
 
     /**
-     * Displays a single ProductType model.
+     * Displays a single Showroom model.
      * @param int $id ID
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
+        $id = CryptHelper::decryptString($id);
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new ProductType model.
+     * Creates a new Showroom model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new ProductType();
+        $model = new Showroom();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->file = UploadedFile::getInstance($model, 'file');
                 $model->slug = trim(StringHelper::toSlug(trim($model->name)));
-                if (!file_exists(Yii::getAlias('@common/media/product-type'))) {
-                    mkdir(Yii::getAlias('@common/media/product-type'), 0777);
+                if (!file_exists(Yii::getAlias('@common/media'))) {
+                    mkdir(Yii::getAlias('@common/media'), 0777);
                 }
                 $imageUrl = Yii::getAlias('@common/media');
-                $fileName = 'product-type/' . $model->slug . '.' . $model->file->getExtension();
+                $fileName = 'showroom/' . $model->slug . '.' . $model->file->getExtension();
                 $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
-                if ($isUploadedFile) {
+                if ($isUploadedFile){
                     $model->image = $fileName;
                     $model->admin_id = Yii::$app->user->identity->getId();
                     $model->created_at = date('Y-m-d H:i:s');
                     $model->updated_at = date('Y-m-d H:i:s');
                     if ($model->save(false)) {
-                        return $this->redirect(Url::toRoute('product-type/'));
+                        return $this->redirect(Url::toRoute('showroom/'));
                     }
                 }
             }
@@ -143,7 +145,7 @@ class ProductTypeController extends Controller
     }
 
     /**
-     * Updates an existing ProductType model.
+     * Updates an existing Showroom model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return mixed
@@ -164,7 +166,7 @@ class ProductTypeController extends Controller
     }
 
     /**
-     * Deletes an existing ProductType model.
+     * Deletes an existing Showroom model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return mixed
@@ -179,15 +181,15 @@ class ProductTypeController extends Controller
     }
 
     /**
-     * Finds the ProductType model based on its primary key value.
+     * Finds the Showroom model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return ProductType the loaded model
+     * @return Showroom the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = ProductType::findOne($id)) !== null) {
+        if (($model = Showroom::findOne($id)) !== null) {
             return $model;
         }
 

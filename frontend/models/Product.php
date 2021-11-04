@@ -106,12 +106,10 @@ class Product extends \common\models\Product
             ->where(['product.status' => 1])->andWhere(['>','product.quantity',0]);
         if (!empty($productType)) {
             if (intval($productType) == SystemConstant::PRODUCT_TYPE_NEW) {
-                $query->andWhere(['product.hide' => SystemConstant::PRODUCT_HIDE])->orderBy('product.updated_at DESC')->limit(SystemConstant::LIMIT_PER_PAGE);
+                $query->andWhere(['product.hide' => SystemConstant::PRODUCT_SHOW])->orderBy('product.updated_at DESC')->limit(SystemConstant::LIMIT_PER_PAGE);
             } else {
-                $query->andWhere(['product.hide' => SystemConstant::PRODUCT_SHOW])->andWhere(['like', 'product_assoc.type_id', $productType]);
+                $query->andWhere(['like', 'product_assoc.type_id', $productType]);
             }
-        } else {
-            $query->andWhere(['product.hide' => SystemConstant::PRODUCT_SHOW]);
         }
         if (!empty($productCategory)) {
             $query->andWhere(['product_assoc.category_id' => $productCategory]);

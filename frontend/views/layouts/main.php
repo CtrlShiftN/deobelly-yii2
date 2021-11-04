@@ -273,12 +273,12 @@ AppAsset::register($this);
                                    class="logo-align text-decoration-none">
                                     <img src="<?= $cdnUrl ?>/img/home.png">
                                 </a>
-                                <a href="<?= Url::toRoute('site/luxury') ?>"
-                                   class="logo-align text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'casual') ? 'd-none' : '' ?>">
-                                    <span class="title-classify">casual</span>
-                                </a>
                                 <a href="<?= Url::toRoute('site/casual') ?>"
                                    class="logo-align text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'luxury') ? 'd-none' : '' ?>">
+                                    <span class="title-classify">casual</span>
+                                </a>
+                                <a href="<?= Url::toRoute('site/luxury') ?>"
+                                   class="logo-align text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'casual') ? 'd-none' : '' ?>">
                                     <span class="title-classify">luxury</span>
                                 </a>
                             </div>
@@ -288,7 +288,11 @@ AppAsset::register($this);
                                 <?php foreach ($mainType as $key => $value): ?>
                                     <?php if ($value['segment'] == SystemConstant::SEGMENT_LUXURY): ?>
                                         <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?> px-2">
-                                            <a href="<?= Url::toRoute([$value['slug'] . '/']) ?>"
+                                            <?php if ($value['slug'] == 'mix-and-match' || $value['slug'] == 'tailor-made'): ?>
+                                                <a href="<?= Url::toRoute([$value['slug'] . '/']) ?>"
+                                            <?php else: ?>
+                                                <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                                            <?php endif; ?>
                                                class="site-nav-link">
                                                 <span><?= Yii::t('app', $value['name']) ?></span>
                                             </a>
@@ -424,7 +428,8 @@ AppAsset::register($this);
                                                     class="fas fa-home"></i>  536 Minh Khai, Tòa CT1, tầng 5, Phường Vĩnh Tuy, Quận Hai Bà Trưng, Hà Nội</span>
                                     </li>
                                     <li><span class="ft-content"><i class="fas fa-phone-square"></i> <a
-                                                    href="tel:<?= Yii::$app->params['adminTel'] ?>"><?= Yii::$app->params['adminTel'] ?></a></span></li>
+                                                    href="tel:<?= Yii::$app->params['adminTel'] ?>"><?= Yii::$app->params['adminTel'] ?></a></span>
+                                    </li>
                                     <li><span class="ft-content"><i class="fas fa-envelope"></i><a
                                                     href="mailto:support@deobelly.com"> support@deobelly.com</a></span>
                                     </li>

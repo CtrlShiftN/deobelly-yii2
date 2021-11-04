@@ -16,7 +16,8 @@ $this->title = Yii::t('app', 'Add New Product');
 $arrProductType = ArrayHelper::map($type, 'id', 'name');
 $type = \common\components\helpers\SystemArrayHelper::removeElementAt($arrProductType, \common\components\SystemConstant::PRODUCT_TYPE_NEW);
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
-$arrFeature = [Yii::t('app', 'No'), Yii::t('app', 'Yes')];
+$arrVisibility = [Yii::t('app', 'Show'), Yii::t('app', 'Hide')];
+$arrFeature = [Yii::t('app', 'Non-featured'), Yii::t('app', 'Featured')];
 ?>
 
 <div class="product-form container p-3">
@@ -88,7 +89,7 @@ $arrFeature = [Yii::t('app', 'No'), Yii::t('app', 'Yes')];
                 ],
             ]) ?>
             <?= $form->field($model, 'hide')->widget(Select2::classname(), [
-                'data' => $arrStatus,
+                'data' => $arrVisibility,
                 'options' => ['placeholder' => Yii::t('app', 'Choose to hide or show')],
                 'pluginOptions' => [
                     'allowClear' => true,
@@ -102,21 +103,6 @@ $arrFeature = [Yii::t('app', 'No'), Yii::t('app', 'Yes')];
                 ],
             ]) ?>
             <?= $form->field($model, 'quantity')->textInput(['type' => 'number']) ?>
-            <?= $form->field($model, 'type')->widget(Select2::classname(), [
-                'data' => $type,
-                'options' => ['placeholder' => Yii::t('app', 'Choose product type')],
-                'pluginOptions' => [
-                    'allowClear' => true,
-                    'multiple' => true
-                ],
-            ]) ?>
-            <?= $form->field($model, 'category')->widget(Select2::classname(), [
-                'data' => ArrayHelper::map($productCate, 'id', 'name'),
-                'options' => ['placeholder' => Yii::t('app', 'Choose product category')],
-                'pluginOptions' => [
-                    'allowClear' => true,
-                ],
-            ]) ?>
         </div>
         <div class="col-12 col-md-9 border-start ps-3">
             <?= $form->field($model, 'file')->widget(FileInput::classname(), [
@@ -129,7 +115,26 @@ $arrFeature = [Yii::t('app', 'No'), Yii::t('app', 'Yes')];
             ])->label(Yii::t('app', 'Related Images')); ?>
             <?= $form->field($model, 'description')->widget(\yii\redactor\widgets\Redactor::class) ?>
             <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-4">
+                    <?= $form->field($model, 'type')->widget(Select2::classname(), [
+                        'data' => $type,
+                        'options' => ['placeholder' => Yii::t('app', 'Choose product type')],
+                        'pluginOptions' => [
+                            'allowClear' => true,
+                            'multiple' => true
+                        ],
+                    ]) ?>
+                </div>
+                <div class="col-12 col-md-4">
+                    <?= $form->field($model, 'category')->widget(Select2::classname(), [
+                        'data' => ArrayHelper::map($productCate, 'id', 'name'),
+                        'options' => ['placeholder' => Yii::t('app', 'Choose product category')],
+                        'pluginOptions' => [
+                            'allowClear' => true,
+                        ],
+                    ]) ?>
+                </div>
+                <div class="col-12 col-md-4">
                     <?= $form->field($model, 'relatedProduct')->widget(Select2::classname(), [
                         'data' => ArrayHelper::map($products, 'id', 'name'),
                         'options' => ['placeholder' => Yii::t('app', 'Choose related product')],

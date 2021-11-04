@@ -133,19 +133,24 @@ class ProductController extends Controller
             if ($model->load($this->request->post())) {
                 $model->file = UploadedFile::getInstance($model, 'file');
                 $model->files = UploadedFile::getInstances($model, 'files');
-                if (!file_exists(Url::to('@common/media/product'))) {
-                    mkdir(Url::to('@common/media/product'), 0777, true);
-                }
-                $imageUrl = Url::to('@common/media');
+                $imageUrl = Yii::$app->params['common'] . '/media';
                 $arrImages = [];
                 $model->slug = StringHelper::toSlug($model->name);
-                $model->selling_price = ($model->sale_price > $model->regular_price) ? $model->regular_price : $model->sale_price;
-                $model->related_product = implode(",", $model->relatedProduct);
+                if (empty($model->sale_price)){
+                    $model->selling_price = $model->regular_price;
+                }else{
+                    $model->selling_price = ($model->sale_price > $model->regular_price) ? $model->regular_price : $model->sale_price;
+                }
+                $model->related_product = !empty($model->relatedProduct) ? implode(",", $model->relatedProduct) : null;
                 $model->image = 'product/' . implode("-", $model->type) . '_' . $model->category . '_' . $model->slug . '.' . $model->file->getExtension();
                 $model->admin_id = Yii::$app->user->identity->getId();
                 $model->created_at = date('Y-m-d H:i:s');
                 $model->updated_at = date('Y-m-d H:i:s');
                 $model->fake_sold = rand(201, 996);
+                if (!file_exists(Yii::getAlias('@common/media'))) {
+                    mkdir(Yii::getAlias('@common/media'), 0777);
+                }
+                $imageUrl = Yii::getAlias('@common/media');
                 $model->file->saveAs($imageUrl . '/' . $model->image);
                 if ($model->files) {
                     $count = 1;

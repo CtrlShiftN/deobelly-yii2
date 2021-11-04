@@ -93,30 +93,12 @@ AppAsset::register($this);
                         <!-- Add icons to the links using the .nav-icon class
                              with font-awesome or any other icon font library -->
                         <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 1) : ?>
-                            <li class="nav-item <?= ($controller == 'user') ? 'menu-is-opening menu-open' : '' ?>">
-                                <a href="#" class="nav-link <?= ($controller == 'user') ? 'active' : '' ?>">
+                            <li class="nav-item">
+                                <a href="<?= Url::toRoute('user/') ?>"
+                                   class="nav-link <?= ($controller == 'user') ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-user-astronaut"></i>
-                                    <p>
-                                        <?= Yii::t('app', 'Accounts') ?>
-                                        <i class="right fas fa-angle-right"></i>
-                                    </p>
+                                    <p><?= Yii::t('app', 'Accounts') ?></p>
                                 </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="<?= $cdnUrl ?>/user/create"
-                                           class="nav-link <?= ($controller == 'user' && $action == 'create') ? 'active' : '' ?>">
-                                            <i class="nav-icon fas fa-user-plus"></i>
-                                            <p><?= Yii::t('app', 'Add new account') ?></p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="<?= $cdnUrl ?>/user"
-                                           class="nav-link <?= ($controller == 'user' && $action == 'index') ? 'active' : '' ?>">
-                                            <i class="nav-icon fas fa-user"></i>
-                                            <p><?= Yii::t('app', 'Account management') ?></p>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
                         <?php endif; ?>
                         <!-- Post -->
@@ -218,25 +200,36 @@ AppAsset::register($this);
                         <!-- End warehouse -->
                         <li class="nav-header text-uppercase font-weight-bold"><?= Yii::t('app', 'Others') ?></li>
                         <li class="nav-item">
-                            <a href="<?= Url::toRoute('color/') ?>" class="nav-link <?= ($controller == 'color') ? 'active' : '' ?>">
+                            <a href="<?= Url::toRoute('showroom/') ?>"
+                               class="nav-link <?= ($controller == 'showroom') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-store"></i>
+                                <p><?= Yii::t('app', 'Showroom') ?></p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= Url::toRoute('color/') ?>"
+                               class="nav-link <?= ($controller == 'color') ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-palette"></i>
                                 <p><?= Yii::t('app', 'Color') ?></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= Url::toRoute('size/') ?>" class="nav-link <?= ($controller == 'size') ? 'active' : '' ?>">
+                            <a href="<?= Url::toRoute('size/') ?>"
+                               class="nav-link <?= ($controller == 'size') ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-ruler-combined"></i>
                                 <p><?= Yii::t('app', 'Size') ?></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= Url::toRoute('contact/') ?>" class="nav-link <?= ($controller == 'contact') ? 'active' : '' ?>">
+                            <a href="<?= Url::toRoute('contact/') ?>"
+                               class="nav-link <?= ($controller == 'contact') ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-envelope"></i>
                                 <p><?= Yii::t('app', 'Contact') ?></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= Url::toRoute('tool/slider') ?>" class="nav-link <?= ($controller == 'tool' && $action == 'slider') ? 'active' : '' ?>">
+                            <a href="<?= Url::toRoute('tool/slider') ?>"
+                               class="nav-link <?= ($controller == 'tool' && $action == 'slider') ? 'active' : '' ?>">
                                 <i class="nav-icon fab fa-slideshare"></i>
                                 <p><?= Yii::t('app', 'Slider') ?></p>
                             </a>
