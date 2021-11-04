@@ -381,6 +381,7 @@ footer .footer-content {
     vertical-align: top;
     margin-left: -10px;
 }
+
 .shopping-cart .badge {
     padding-left: 9px;
     padding-right: 9px;
@@ -388,6 +389,7 @@ footer .footer-content {
     -moz-border-radius: 9px;
     border-radius: 9px;
 }
+
 /* End Shopping cart */
 
 .title-classify {

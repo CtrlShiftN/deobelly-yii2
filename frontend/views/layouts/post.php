@@ -209,9 +209,18 @@ $postCategory = PostCategory::getAllPostCategory();
                             <!-- End Sidebar -->
                         </div>
                         <div class="main-nav-left col-10 col-sm-10 col-lg-2 text-center text-sm-center text-lg-start">
-                            <div class="py-2">
-                                <a href="<?php echo Url::home() ?>" class="logo-align">
-                                    <img src="<?= $cdnUrl ?>/img/logo.png">
+                            <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
+                                <a href="<?= Url::home() ?>"
+                                   class="logo-align text-decoration-none">
+                                    <img src="<?= $cdnUrl ?>/img/home.png">
+                                </a>
+                                <a href="<?= Url::toRoute('site/casual') ?>"
+                                   class="logo-align text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'casual') ? 'd-none' : '' ?>">
+                                    <span class="title-classify">casual</span>
+                                </a>
+                                <a href="<?= Url::toRoute('site/luxury') ?>"
+                                   class="logo-align text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'luxury') ? 'd-none' : '' ?>">
+                                    <span class="title-classify">luxury</span>
                                 </a>
                             </div>
                         </div>
