@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\components\helpers\StringHelper;
 use common\components\SystemConstant;
 use Yii;
 
@@ -64,6 +65,18 @@ class ProductType extends \common\models\ProductType
             'updated_at' => Yii::t('app', 'Updated At'),
             'file' => Yii::t('app', 'File'),
         ];
+    }
+
+    /**
+     * @param $_id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
+    public static function updateProductTypeTitle($_id, $attribute, $value)
+    {
+        $slug = StringHelper::toSlug($value);
+        return \common\models\ProductType::updateAll([$attribute => $value, 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $_id]);
     }
 
     /**

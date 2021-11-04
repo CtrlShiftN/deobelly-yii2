@@ -151,4 +151,13 @@ class Product extends \common\models\Product
     {
         return Product::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
     }
+
+    /**
+     * @param int $product_id
+     * @return false|int|string|null
+     */
+    public static function findNameByID(int $product_id)
+    {
+        return Product::find()->select('name')->where(['status' => SystemConstant::STATUS_ACTIVE, 'id' => $product_id])->scalar();
+    }
 }

@@ -3,6 +3,8 @@
 namespace backend\controllers;
 
 use backend\models\LoginForm;
+use backend\models\Order;
+use backend\models\User;
 use common\components\SystemConstant;
 use common\models\Product;
 use Yii;
@@ -74,8 +76,14 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $latestProduct = Product::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->orderBy('created_at DESC')->limit(5)->asArray()->all();
+        $latestOrders = Order::getLatestOrder(5);
+        $statusBG = Order::getStatusColor();
+        $totalActiveUsers = User::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->count();
         return $this->render('index', [
-            'products' => $latestProduct
+            'products' => $latestProduct,
+            'orders' => $latestOrders,
+            'statusBG' => $statusBG,
+            'totalActiveUsers' => $totalActiveUsers,
         ]);
     }
 

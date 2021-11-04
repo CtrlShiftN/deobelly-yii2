@@ -78,7 +78,11 @@ class PostController extends Controller
             $attribute = $_POST['editableAttribute'];
             // update to db
             $value = $_POST['Post'][$_index][$attribute];
-            $result = Post::updatePost($_id, $attribute, $value);
+            if ($attribute == 'title'){
+                $result = Post::updatePostTitle($_id, $attribute, $value);
+            }else{
+                $result = Post::updatePost($_id, $attribute, $value);
+            }
             // response to gridview
             return json_encode($result);
         }

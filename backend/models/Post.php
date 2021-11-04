@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\components\helpers\StringHelper;
 use Yii;
 
 /**
@@ -68,6 +69,12 @@ class Post extends \common\models\Post
             'file' => Yii::t('app', 'File'),
             'tags' => Yii::t('app', 'Post Tags')
         ];
+    }
+
+    public static function updatePostTitle($_id, $attribute, $value)
+    {
+        $slug = StringHelper::toSlug($value);
+        return \common\models\Post::updateAll([$attribute => $value, 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $_id]);
     }
 
     public static function updatePost($id, $attribute, $value)

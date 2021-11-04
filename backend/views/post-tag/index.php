@@ -56,16 +56,6 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 ],
             ],
             [
-                'attribute' => 'slug',
-                'label' => 'Slug',
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'value' => function ($model, $key, $index, $widget) {
-                    return $model['slug'];
-                },
-                'filter' => false
-            ],
-            [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'status',
                 'label' => Yii::t('app', 'Status'),
