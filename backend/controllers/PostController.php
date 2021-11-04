@@ -8,6 +8,7 @@ use backend\models\PostSearch;
 use backend\models\PostTag;
 use common\components\encrypt\CryptHelper;
 use common\components\helpers\StringHelper;
+use common\components\SystemConstant;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
@@ -78,9 +79,9 @@ class PostController extends Controller
             $attribute = $_POST['editableAttribute'];
             // update to db
             $value = $_POST['Post'][$_index][$attribute];
-            if ($attribute == 'title'){
+            if ($attribute == 'title') {
                 $result = Post::updatePostTitle($_id, $attribute, $value);
-            }else{
+            } else {
                 $result = Post::updatePost($_id, $attribute, $value);
             }
             // response to gridview
@@ -115,8 +116,9 @@ class PostController extends Controller
     public function actionCreate()
     {
         $model = new Post();
-        $arrTagId = PostTag::find()->where(['status' => 1])->asArray()->all();
-        $arrPostCategory = PostCategory::find()->where(['status' => 1])->asArray()->all();
+        $model->scenario = 'create';
+        $arrTagId = PostTag::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
+        $arrPostCategory = PostCategory::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->file = UploadedFile::getInstance($model, 'file');
@@ -129,7 +131,9 @@ class PostController extends Controller
                 $isUploadedFile = $model->file->saveAs($imageUrl . '/post/' . $fileName);
                 if ($isUploadedFile) {
                     $model->avatar = 'post/' . $fileName;
-                    $model->tag_id = implode( ",",$model->tags);
+                    if (!empty($model->tags)) {
+                        $model->tag_id = implode(",", $model->tags);
+                    }
                     $model->admin_id = Yii::$app->user->identity->getId();
                     $model->created_at = date('Y-m-d H:i:s');
                     $model->updated_at = date('Y-m-d H:i:s');
@@ -158,13 +162,38 @@ class PostController extends Controller
     {
         $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
-
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $arrTagId = PostTag::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
+        $arrPostCategory = PostCategory::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post())) {
+                $model->file = UploadedFile::getInstance($model, 'file');
+                $model->slug = trim(StringHelper::toSlug(trim($model->title)));
+                if ($model->file) {
+                    if (!file_exists(Yii::getAlias('@common/media'))) {
+                        mkdir(Yii::getAlias('@common/media'), 0777);
+                    }
+                    $imageUrl = Yii::getAlias('@common/media');
+                    $fileName = $model->slug . '.' . $model->file->getExtension();
+                    $isUploadedFile = $model->file->saveAs($imageUrl . '/post/' . $fileName);
+                    if ($isUploadedFile) {
+                        $model->avatar = 'post/' . $fileName;
+                    }
+                }
+                if (!empty($model->tags)) {
+                    $model->tag_id = implode(",", $model->tags);
+                }
+                $model->admin_id = Yii::$app->user->identity->getId();
+                $model->updated_at = date('Y-m-d H:i:s');
+                if ($model->save(false)) {
+                    return $this->redirect(Url::toRoute('post/'));
+                }
+            }
         }
 
         return $this->render('update', [
             'model' => $model,
+            'postTag' => $arrTagId,
+            'postCate' => $arrPostCategory
         ]);
     }
 

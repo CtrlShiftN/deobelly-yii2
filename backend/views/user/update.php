@@ -11,9 +11,9 @@ $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="user-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
+    <div class="container px-3 pt-3">
+        <h3 class="text-uppercase"><?= Yii::t('app', 'Update Account') ?></h3>
+    </div>
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

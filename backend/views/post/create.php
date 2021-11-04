@@ -10,6 +10,9 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Posts'), 'url' => ['
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-create">
+    <div class="container px-3 pt-3">
+        <h3 class="text-uppercase"><?= Yii::t('app', 'Add New Post') ?></h3>
+    </div>
 
     <?= $this->render('_form', [
         'model' => $model,

@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\components\SystemConstant;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -66,7 +67,8 @@ class UserSearch extends User
      */
     public function search($params)
     {
-        $query = User::find();
+        $query = User::find()->where(['status' => SystemConstant::STATUS_ACTIVE]);
+        $query->andWhere(['>=', 'id', 2]);
 
         // add conditions that should always apply here
 

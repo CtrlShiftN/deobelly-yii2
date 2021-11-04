@@ -12,9 +12,9 @@ use yii\widgets\Pjax;
 /* @var $searchModel backend\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app','Accounts');
+$this->title = Yii::t('app', 'Accounts');
 $this->params['breadcrumbs'][] = $this->title;
-$arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
+$arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
 ?>
 <div class="user-index">
     <div class="pt-3">
@@ -29,7 +29,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
                 'showFooter' => true,
                 'showCaption' => true,
                 'filename' => 'grid-export',
-                'alertMsg' => Yii::t('app','The EXCEL export file will be generated for download.'),
+                'alertMsg' => Yii::t('app', 'The EXCEL export file will be generated for download.'),
                 'options' => ['title' => 'Microsoft Excel 95+'],
                 'mime' => 'application/vnd.ms-excel',
                 'config' => [
@@ -47,7 +47,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'name',
-                'label' => Yii::t('app','Full name'),
+                'label' => Yii::t('app', 'Full name'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',
@@ -62,7 +62,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'tel',
-                'label' => Yii::t('app','Tel'),
+                'label' => Yii::t('app', 'Tel'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',
@@ -77,7 +77,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'address',
-                'label' => Yii::t('app','Address'),
+                'label' => Yii::t('app', 'Address'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) {
@@ -97,7 +97,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
             ],
             [
                 'attribute' => 'verified_at',
-                'label' => Yii::t('app','Verified'),
+                'label' => Yii::t('app', 'Verified'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'filter' => false
@@ -105,7 +105,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'status',
-                'label' => Yii::t('app','Status'),
+                'label' => Yii::t('app', 'Status'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) use ($arrStatus) {
@@ -115,7 +115,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
                     return [
                         'name' => 'status',
                         'asPopover' => false,
-                        'header' => Yii::t('app','Status'),
+                        'header' => Yii::t('app', 'Status'),
                         'size' => 'md',
                         'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
                         'data' => $arrStatus,
@@ -129,12 +129,12 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
-                'filterInputOptions' => ['placeholder' => '-- '.Yii::t('app','Status').' --'], // allows multiple authors to be chosen
+                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Status') . ' --'], // allows multiple authors to be chosen
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'role',
-                'label' => Yii::t('app','Role'),
+                'label' => Yii::t('app', 'Role'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) {
@@ -144,7 +144,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
                     return [
                         'name' => 'role',
                         'asPopover' => false,
-                        'header' => Yii::t('app','Role'),
+                        'header' => Yii::t('app', 'Role'),
                         'size' => 'md',
                         'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
                         'data' => User::ROLES,
@@ -158,18 +158,22 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
-                'filterInputOptions' => ['placeholder' => '-- '.Yii::t('app','Role').' --'], // allows multiple authors to be chosen
+                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Role') . ' --'], // allows multiple authors to be chosen
                 'format' => 'raw'
             ],
             [
-                'label' => Yii::t('app','Actions'),
+                'label' => Yii::t('app', 'Actions'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) {
-                    return Html::a('Xóa', Url::toRoute(['user/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger', 'data' => [
-                        'method' => 'post',
-                        'confirm' => Yii::t('app','Are you sure you want to delete this item?'),
-                    ],]);
+                    return Html::a(Yii::t('app', 'Edit'), Url::toRoute([
+                            'user/update',
+                            'id' => \common\components\encrypt\CryptHelper::encryptString($key)]),
+                            ['class' => 'me-3 btn btn-info', 'target' => '_blank']) .
+                        Html::a(Yii::t('app', 'Delete'), Url::toRoute(['user/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger', 'data' => [
+                            'method' => 'post',
+                            'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                        ],]);
                 },
                 'format' => 'raw'
             ]
@@ -187,7 +191,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
             // set export properties
             'export' => [
                 'fontAwesome' => true,
-                'label' => '<i class="far fa-file-alt"></i>  '.Yii::t('app','Export files'),
+                'label' => '<i class="far fa-file-alt"></i>  ' . Yii::t('app', 'Export files'),
             ],
             'responsive' => true,
             'persistResize' => false,
@@ -203,7 +207,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
             'exportConfig' => $defaultExportConfig,
             'toolbar' => [
                 [
-                    'content' => Html::a('<i class="fas fa-user-plus"></i> '.Yii::t('app','Create new user'), ['create'], [
+                    'content' => Html::a('<i class="fas fa-user-plus"></i> ' . Yii::t('app', 'Create new user'), ['create'], [
                         'class' => 'btn btn-success',
                         'title' => 'Reset Grid',
                         'data-pjax' => 0,
@@ -215,7 +219,7 @@ $arrStatus = [Yii::t('app','Inactive'), Yii::t('app','Active')];
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
-                'heading' => Yii::t('app','User list'),
+                'heading' => Yii::t('app', 'User list'),
             ],
         ]);
         Pjax::end();

@@ -8,7 +8,9 @@ use yii\helpers\Html;
 $this->title = 'Thêm tài khoản mới';
 ?>
 <div class="user-create">
-
+    <div class="container px-3 pt-3">
+        <h3 class="text-uppercase"><?= Yii::t('app', 'Add new account') ?></h3>
+    </div>
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

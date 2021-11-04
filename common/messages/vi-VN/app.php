@@ -411,4 +411,8 @@ return [
     'Logistic Method' => 'Phương Thức Vận Chuyển',
     'Showroom List' => 'Danh Sách Showroom',
     'Add New Showroom' => 'Thêm Mới Showroom',
+    'Update Account' => 'Cập Nhật Tài Khoản',
+    'Edit' => 'Sửa',
+    'Add New Post' => 'Thêm Bài Viết Mới',
+    'Update Post' => 'Cập Nhật Bài Viết',
 ];

@@ -81,6 +81,9 @@ class PostController extends \yii\web\Controller
     {
         $postID = ParamHelper::getParamValue('id');
         $postID = CryptHelper::decryptString($postID);
+        $model = \common\models\Post::findOne($postID);
+        $model->viewed += 1;
+        $model->save();
         $postDetail = Post::getPostDetailByID($postID);
         return $this->render('detail', [
             'postDetail' => $postDetail,

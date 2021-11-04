@@ -16,6 +16,7 @@ use yii\db\Query;
  * @property string $slug
  * @property string $content
  * @property int|null $admin_id
+ * @property int|null $viewed
  * @property string|null $tag_id
  * @property int $post_category_id
  * @property int|null $status 0 for inactive, 1 for active
@@ -40,7 +41,7 @@ class Post extends \common\models\Post
         return [
             [['avatar', 'title', 'slug', 'content', 'post_category_id'], 'required'],
             [['content'], 'string'],
-            [['admin_id', 'post_category_id', 'status'], 'integer'],
+            [['admin_id', 'viewed', 'post_category_id', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['avatar', 'title', 'slug', 'tag_id'], 'string', 'max' => 255],
         ];
@@ -58,6 +59,7 @@ class Post extends \common\models\Post
             'slug' => Yii::t('app', 'Slug'),
             'content' => Yii::t('app', 'Content'),
             'admin_id' => Yii::t('app', 'Admin ID'),
+            'viewed' => Yii::t('app', 'Viewed'),
             'tag_id' => Yii::t('app', 'Tag ID'),
             'post_category_id' => Yii::t('app', 'Post Category ID'),
             'status' => Yii::t('app', 'Status'),
