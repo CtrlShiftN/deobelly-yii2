@@ -215,11 +215,11 @@ $postCategory = PostCategory::getAllPostCategory();
                                     <img src="<?= $cdnUrl ?>/img/home.png">
                                 </a>
                                 <a href="<?= Url::toRoute('site/casual') ?>"
-                                   class="logo-align text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'casual') ? 'd-none' : '' ?>">
+                                   class="logo-align text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'luxury') ? 'd-none' : '' ?>">
                                     <span class="title-classify">casual</span>
                                 </a>
                                 <a href="<?= Url::toRoute('site/luxury') ?>"
-                                   class="logo-align text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'luxury') ? 'd-none' : '' ?>">
+                                   class="logo-align text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'casual') ? 'd-none' : '' ?>">
                                     <span class="title-classify">luxury</span>
                                 </a>
                             </div>
