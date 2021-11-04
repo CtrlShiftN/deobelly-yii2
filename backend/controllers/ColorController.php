@@ -122,10 +122,10 @@ class ColorController extends Controller
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->file = UploadedFile::getInstance($model, 'file');
-//                if (!file_exists(Url::to('@common/media/color'))) {
-//                    mkdir(Url::to('@common/media/color'), 0777, true);
-//                }
-                $imageUrl = Url::to('@common/media');
+                if (!file_exists(Yii::getAlias('@common/media'))) {
+                    mkdir(Yii::getAlias('@common/media'), 0777);
+                }
+                $imageUrl = Yii::getAlias('@common/media');
                 $model->slug = StringHelper::toSlug($model->name);
                 $model->image = 'color/' . $model->slug . '.' . $model->file->getExtension();
                 $model->created_at = date('Y-m-d H:m:s');
