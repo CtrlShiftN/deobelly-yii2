@@ -2,9 +2,11 @@
 
 namespace backend\models;
 
+use common\components\SystemConstant;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\Order;
+use yii\db\Query;
 
 /**
  * OrderSearch represents the model behind the search form of `backend\models\Order`.
@@ -40,7 +42,18 @@ class OrderSearch extends Order
      */
     public function search($params)
     {
-        $query = Order::find();
+        $query = (new Query())
+            ->select([
+                'o.*',
+                'p.name as product_name',
+                'u.name as user_name',
+                'c.name as color_name',
+                's.name as size_name',
+            ])->from('order as o')
+            ->leftJoin('product as p', 'o.product_id = p.id')
+            ->leftJoin('user as u', 'o.user_id = u.id')
+            ->leftJoin('color as c', 'o.color_id = c.id')
+            ->leftJoin('size as s', 'o.size_id = s.id');
 
         // add conditions that should always apply here
 
