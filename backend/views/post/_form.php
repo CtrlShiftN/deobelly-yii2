@@ -16,7 +16,6 @@ $this->registerCss("
 ?>
 
 <div class="container posts-form p-3">
-    <h3 class="text-uppercase pb-4"><?= Yii::t('app', 'Create new post') ?></h3>
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 

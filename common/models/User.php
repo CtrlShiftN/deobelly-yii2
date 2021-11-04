@@ -92,8 +92,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         ];
     }
 
-    public function validateTel($attribute, $params, $validator){
-        if (!preg_match('/^(84|0[1-9])+([0-9]{8})$/', $this->tel)){
+    public function validateTel($attribute, $params, $validator)
+    {
+        if (!preg_match('/^(84|0[1-9])+([0-9]{8})$/', $this->tel)) {
             $this->addError($attribute, 'Số điện thoại không hợp lệ');
         }
     }
@@ -249,7 +250,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * @return int
      */
-    public function getRole(){
+    public function getRole()
+    {
         return $this->role;
     }
 }

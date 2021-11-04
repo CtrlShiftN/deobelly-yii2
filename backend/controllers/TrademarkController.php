@@ -2,22 +2,24 @@
 
 namespace backend\controllers;
 
-use backend\models\PostTag;
-use backend\models\PostTagSearch;
+use backend\models\Trademark;
+use backend\models\TrademarkSearch;
 use common\components\encrypt\CryptHelper;
 use common\components\helpers\StringHelper;
 use common\components\SystemConstant;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Html;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PostTagController implements the CRUD actions for PostTag model.
+ * TrademarkController implements the CRUD actions for Trademark model.
  */
-class PostTagController extends Controller
+class TrademarkController extends Controller
 {
     /**
      * @inheritDoc
@@ -61,30 +63,29 @@ class PostTagController extends Controller
     }
 
     /**
-     * Lists all PostTag models.
+     * Lists all Trademark models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PostTagSearch();
+        $searchModel = new TrademarkSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-
         if (Yii::$app->request->post('hasEditable')) {
             // which rows has been edited?
             $_id = $_POST['editableKey'];
             $_index = $_POST['editableIndex'];
             // which attribute has been edited?
             $attribute = $_POST['editableAttribute'];
-            if ($attribute == 'title') {
+            if ($attribute == 'name') {
                 // update to db
-                $value = $_POST['PostTag'][$_index][$attribute];
-                $result = PostTag::updatePostTagTitle($_id, $attribute, $value);
+                $value = $_POST['Trademark'][$_index][$attribute];
+                $result = Trademark::updateTitle($_id, $attribute, $value);
                 // response to gridview
                 return json_encode($result);
             } elseif ($attribute == 'status') {
                 // update to db
-                $value = $_POST['PostTag'][$_index][$attribute];
-                $result = PostTag::updatePostTagStatus($_id, $attribute, $value);
+                $value = $_POST['Trademark'][$_index][$attribute];
+                $result = Trademark::updateStatus($_id, $attribute, $value);
                 // response to gridview
                 return json_encode($result);
             }
@@ -97,7 +98,7 @@ class PostTagController extends Controller
     }
 
     /**
-     * Displays a single PostTag model.
+     * Displays a single Trademark model.
      * @param int $id ID
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -105,28 +106,54 @@ class PostTagController extends Controller
     public function actionView($id)
     {
         $id = CryptHelper::decryptString($id);
+        $model = $this->findModel($id);
+        $post = Yii::$app->request->post();
+        // process ajax delete
+        if (Yii::$app->request->isAjax && isset($post['kvdelete'])) {
+            echo Json::encode([
+                'success' => true,
+                'messages' => [
+                    'kv-detail-info' => Yii::t('app', 'Delete successfully!') .
+                        Html::a('<i class="fas fa-hand-point-right"></i>  Click here',
+                            ['trademark/'], ['class' => 'btn btn-sm btn-info']) . ' to proceed.'
+                ]
+            ]);
+            return;
+        }
+        // return messages on update of record
+        if ($model->load($post)) {
+            $model->slug = StringHelper::toSlug($model->name);
+            $model->admin_id = Yii::$app->user->identity->getId();
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save(false)) {
+                Yii::$app->session->setFlash('kv-detail-success', 'Trademark updated!');
+            } else {
+                Yii::$app->session->setFlash('kv-detail-warning', $model->status);
+            }
+        }
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
     /**
-     * Creates a new PostTag model.
+     * Creates a new Trademark model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new PostTag();
+        $model = new Trademark();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
-                $model->slug = StringHelper::toSlug($model->title);
+                $model->slug = StringHelper::toSlug($model->name);
                 $model->created_at = date('Y-m-d H:m:s');
                 $model->updated_at = date('Y-m-d H:m:s');
                 $model->status = SystemConstant::STATUS_ACTIVE;
+                $model->admin_id = Yii::$app->user->identity->getId();
                 if ($model->save()) {
-                    return $this->redirect(Url::toRoute('post-tag/'));
+                    return $this->redirect(Url::toRoute('trademark/'));
                 }
             }
         } else {
@@ -139,7 +166,7 @@ class PostTagController extends Controller
     }
 
     /**
-     * Updates an existing PostTag model.
+     * Updates an existing Trademark model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return mixed
@@ -150,8 +177,12 @@ class PostTagController extends Controller
         $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $model->slug = StringHelper::toSlug($model->name);
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save()) {
+                return $this->redirect('trademark/');
+            }
         }
 
         return $this->render('update', [
@@ -160,7 +191,7 @@ class PostTagController extends Controller
     }
 
     /**
-     * Deletes an existing PostTag model.
+     * Deletes an existing Trademark model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return mixed
@@ -175,18 +206,18 @@ class PostTagController extends Controller
     }
 
     /**
-     * Finds the PostTag model based on its primary key value.
+     * Finds the Trademark model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return PostTag the loaded model
+     * @return Trademark the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = PostTag::findOne($id)) !== null) {
+        if (($model = Trademark::findOne($id)) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 }

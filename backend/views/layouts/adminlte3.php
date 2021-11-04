@@ -136,9 +136,9 @@ AppAsset::register($this);
                             </ul>
                         </li>
                         <!-- Product -->
-                        <li class="nav-item <?= ($controller == 'product-type' || $controller == 'product-category' || $controller == 'product') ? 'menu-is-opening menu-open' : '' ?>">
+                        <li class="nav-item <?= ($controller == 'product-type' || $controller == 'product-category' || $controller == 'product' || $controller == 'trademark') ? 'menu-is-opening menu-open' : '' ?>">
                             <a href="#"
-                               class="nav-link <?= ($controller == 'product-type' || $controller == 'product-category' || $controller == 'product') ? 'active' : '' ?>">
+                               class="nav-link <?= ($controller == 'product-type' || $controller == 'product-category' || $controller == 'product' || $controller == 'trademark') ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-shopping-basket"></i>
                                 <p>
                                     <?= Yii::t('app', 'Products') ?>
@@ -158,6 +158,13 @@ AppAsset::register($this);
                                        class="nav-link <?= ($controller == 'product-category') ? 'active' : '' ?>">
                                         <i class="nav-icon fas fa-user"></i>
                                         <p><?= Yii::t('app', 'Product Category') ?></p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= Url::toRoute('trademark/') ?>"
+                                       class="nav-link <?= ($controller == 'trademark') ? 'active' : '' ?>">
+                                        <i class="nav-icon fas fa-trademark"></i>
+                                        <p><?= Yii::t('app', 'Trademark') ?></p>
                                     </a>
                                 </li>
                                 <li class="nav-item">

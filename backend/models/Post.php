@@ -14,6 +14,7 @@ use Yii;
  * @property string $slug
  * @property string $content
  * @property int|null $admin_id
+ * @property int|null $viewed
  * @property string|null $tag_id
  * @property int $post_category_id
  * @property int|null $status 0 for inactive, 1 for active
@@ -41,11 +42,11 @@ class Post extends \common\models\Post
         return [
             [['avatar', 'title', 'slug', 'content', 'post_category_id'], 'required'],
             [['content'], 'string'],
-            [['admin_id', 'post_category_id', 'status'], 'integer'],
+            [['admin_id', 'viewed', 'post_category_id', 'status'], 'integer'],
             [['created_at', 'updated_at', 'tags'], 'safe'],
             [['avatar', 'title', 'slug', 'tag_id'], 'string', 'max' => 255],
-            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
-            ['file', 'required']
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg', 'on' => 'create'],
+            ['file', 'required', 'on' => 'create']
         ];
     }
 
@@ -61,6 +62,7 @@ class Post extends \common\models\Post
             'slug' => Yii::t('app', 'Slug'),
             'content' => Yii::t('app', 'Content'),
             'admin_id' => Yii::t('app', 'Admin ID'),
+            'viewed' => Yii::t('app', 'Viewed'),
             'tag_id' => Yii::t('app', 'Tags'),
             'post_category_id' => Yii::t('app', 'Post Categories'),
             'status' => Yii::t('app', 'Status'),
@@ -71,12 +73,24 @@ class Post extends \common\models\Post
         ];
     }
 
+    /**
+     * @param $_id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
     public static function updatePostTitle($_id, $attribute, $value)
     {
         $slug = StringHelper::toSlug($value);
         return \common\models\Post::updateAll([$attribute => $value, 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $_id]);
     }
 
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
     public static function updatePost($id, $attribute, $value)
     {
         return \common\models\Post::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $id]);

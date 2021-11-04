@@ -125,7 +125,7 @@ class UserController extends Controller
                 $model->updated_at = date('Y-m-d H:m:s');
                 $model->status = $model::STATUS_ACTIVE;
                 if ($model->save()) {
-                    return $this->redirect(Url::toRoute('user/index'));
+                    return $this->redirect(Url::toRoute('user/'));
                 }
             }
         } else {
@@ -149,8 +149,18 @@ class UserController extends Controller
         $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $model->setPassword($model->password_hash);
+            $model->generateAuthKey();
+            $model->generatePasswordResetToken();
+            $model->username = strstr($model->email, '@', true);
+            $model->referral_code = strstr($model->email, '@', true);
+            $model->created_at = date('Y-m-d H:m:s');
+            $model->updated_at = date('Y-m-d H:m:s');
+            $model->status = $model::STATUS_ACTIVE;
+            if ($model->save()) {
+                return $this->redirect(Url::toRoute('user/'));
+            }
         }
 
         return $this->render('update', [
