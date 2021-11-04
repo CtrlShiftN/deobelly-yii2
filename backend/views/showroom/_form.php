@@ -28,7 +28,7 @@ use yii\helpers\Html;
 
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Create new post'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Add New Showroom'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

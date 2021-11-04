@@ -76,9 +76,9 @@ class ProductTypeController extends Controller
             $attribute = $_POST['editableAttribute'];
             // update to db
             $value = $_POST['ProductType'][$_index][$attribute];
-            if ($attribute == 'name'){
+            if ($attribute == 'name') {
                 $result = ProductType::updateProductTypeTitle($_id, $attribute, $value);
-            }else{
+            } else {
                 $result = ProductType::updateProductType($_id, $attribute, $value);
             }
             // response to gridview
@@ -117,11 +117,14 @@ class ProductTypeController extends Controller
             if ($model->load($this->request->post())) {
                 $model->file = UploadedFile::getInstance($model, 'file');
                 $model->slug = trim(StringHelper::toSlug(trim($model->name)));
-                // TODO Change server save files to common/media
-                $fileName = $model->slug . '.' . $model->file->getExtension();
-                $isUploadedFile = $model->file->saveAs($_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $fileName);
+                if (!file_exists(Yii::getAlias('@common/media/product-type'))) {
+                    mkdir(Yii::getAlias('@common/media/product-type'), 0777);
+                }
+                $imageUrl = Yii::getAlias('@common/media');
+                $fileName = 'product-type/' . $model->slug . '.' . $model->file->getExtension();
+                $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
                 if ($isUploadedFile) {
-                    $model->image = '/uploads/' . $fileName;
+                    $model->image = $fileName;
                     $model->admin_id = Yii::$app->user->identity->getId();
                     $model->created_at = date('Y-m-d H:i:s');
                     $model->updated_at = date('Y-m-d H:i:s');

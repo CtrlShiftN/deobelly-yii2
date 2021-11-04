@@ -93,30 +93,12 @@ AppAsset::register($this);
                         <!-- Add icons to the links using the .nav-icon class
                              with font-awesome or any other icon font library -->
                         <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role == 1) : ?>
-                            <li class="nav-item <?= ($controller == 'user') ? 'menu-is-opening menu-open' : '' ?>">
-                                <a href="#" class="nav-link <?= ($controller == 'user') ? 'active' : '' ?>">
+                            <li class="nav-item">
+                                <a href="<?= Url::toRoute('user/') ?>"
+                                   class="nav-link <?= ($controller == 'user') ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-user-astronaut"></i>
-                                    <p>
-                                        <?= Yii::t('app', 'Accounts') ?>
-                                        <i class="right fas fa-angle-right"></i>
-                                    </p>
+                                    <p><?= Yii::t('app', 'Accounts') ?></p>
                                 </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="<?= $cdnUrl ?>/user/create"
-                                           class="nav-link <?= ($controller == 'user' && $action == 'create') ? 'active' : '' ?>">
-                                            <i class="nav-icon fas fa-user-plus"></i>
-                                            <p><?= Yii::t('app', 'Add new account') ?></p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="<?= $cdnUrl ?>/user"
-                                           class="nav-link <?= ($controller == 'user' && $action == 'index') ? 'active' : '' ?>">
-                                            <i class="nav-icon fas fa-user"></i>
-                                            <p><?= Yii::t('app', 'Account management') ?></p>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
                         <?php endif; ?>
                         <!-- Post -->

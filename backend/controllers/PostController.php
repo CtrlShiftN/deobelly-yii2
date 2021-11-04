@@ -121,7 +121,10 @@ class PostController extends Controller
             if ($model->load($this->request->post())) {
                 $model->file = UploadedFile::getInstance($model, 'file');
                 $model->slug = trim(StringHelper::toSlug(trim($model->title)));
-                $imageUrl = Yii::$app->params['common'].'/media';
+                if (!file_exists(Yii::getAlias('@common/media'))) {
+                    mkdir(Yii::getAlias('@common/media'), 0777);
+                }
+                $imageUrl = Yii::getAlias('@common/media');
                 $fileName = $model->slug . '.' . $model->file->getExtension();
                 $isUploadedFile = $model->file->saveAs($imageUrl . '/post/' . $fileName);
                 if ($isUploadedFile) {

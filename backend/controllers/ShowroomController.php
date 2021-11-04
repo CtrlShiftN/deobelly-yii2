@@ -119,8 +119,10 @@ class ShowroomController extends Controller
             if ($model->load($this->request->post())) {
                 $model->file = UploadedFile::getInstance($model, 'file');
                 $model->slug = trim(StringHelper::toSlug(trim($model->name)));
-                $imageUrl = Yii::$app->params['common'] . '/media';
-                chmod($imageUrl,'0777');
+                if (!file_exists(Yii::getAlias('@common/media'))) {
+                    mkdir(Yii::getAlias('@common/media'), 0777);
+                }
+                $imageUrl = Yii::getAlias('@common/media');
                 $fileName = 'showroom/' . $model->slug . '.' . $model->file->getExtension();
                 $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
                 if ($isUploadedFile){
@@ -187,7 +189,6 @@ class ShowroomController extends Controller
      */
     protected function findModel($id)
     {
-        $id = CryptHelper::decryptString($id);
         if (($model = Showroom::findOne($id)) !== null) {
             return $model;
         }
