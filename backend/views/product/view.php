@@ -36,7 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'description:ntext',
             'cost_price',
             'regular_price',
-            'discount',
             'sale_price',
             'selling_price',
             'SKU',
