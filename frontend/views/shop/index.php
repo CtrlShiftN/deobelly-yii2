@@ -50,7 +50,6 @@ $this->registerCssFile(Url::toRoute("/css/shop.css"));
 <!-- Carousel wrapper -->
 <div class="row p-0 my-5 h-100">
     <div class="col-6 px-1 ps-md-5 pe-md-3 mb-4 mb-md-5">
-        <!--        TODO: LINKS-->
         <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['ao-so-mi']['id'])]) ?>"
            class="text-decoration-none" target="_blank">
             <div class="overflow-hidden w-100 shadow h-65 position-relative my-2 my-md-3">
@@ -91,11 +90,11 @@ $this->registerCssFile(Url::toRoute("/css/shop.css"));
         </a>
     </div>
     <div class="col-12 mb-md-5 px-1 px-md-5 h-25">
-        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['san-pham-moi']['id'])]) ?>"
+        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['new-product']['id'])]) ?>"
            class="text-decoration-none" target="_blank">
             <div class="overflow-hidden w-100 shadow position-relative mt-md-3">
-                <p class="position-absolute text-light fs-title last-category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['san-pham-moi']['name']) ?></p>
-                <img src="<?= $imgUrl . '/' . $type['san-pham-moi']['image'] ?>"
+                <p class="position-absolute text-light fs-title last-category-title fw-bolder text-uppercase"><?= Yii::t('app', $type['new-product']['name']) ?></p>
+                <img src="<?= $imgUrl . '/' . $type['new-product']['image'] ?>"
                      class="w-100 shadow object-fit-cover zoom"
                      alt="...">
             </div>

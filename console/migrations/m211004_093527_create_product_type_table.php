@@ -17,7 +17,7 @@ class m211004_093527_create_product_type_table extends Migration
             'name' => $this->string()->unique()->notNull(),
             'slug' => $this->string()->unique()->notNull(),
             'image' => $this->string()->notNull(),
-            'segment' => $this->smallInteger()->defaultValue(0)->comment('0:casual, 1:luxury'),
+            'segment' => $this->smallInteger()->defaultValue(0)->comment('0:type, 1:tailor made, 2:mix and match'),
             'status' => $this->smallInteger()->defaultValue(1)->comment('0 for inactive, 1 for active'),
             'admin_id' => $this->bigInteger(),
             'created_at' => $this->dateTime(),

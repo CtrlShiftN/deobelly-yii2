@@ -10,8 +10,7 @@ class SystemConstant
     const STATUS_ACTIVE = 1;
     const LIMIT_PER_PAGE = 12;
     const POST_PER_PAGE = 8;
-    const SEGMENT_LUXURY = 1;
-    const SEGMENT_CASUAL = 0;
+    const SEGMENT_TYPE = 0;
     const PRODUCT_TYPE_NEW = 1;
     const PRODUCT_HIDE = 1;
     const PRODUCT_SHOW = 0;
