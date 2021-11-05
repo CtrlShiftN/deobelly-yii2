@@ -80,19 +80,15 @@ class ProductController extends Controller
             $_index = $_POST['editableIndex'];
             // which attribute has been edited?
             $attribute = $_POST['editableAttribute'];
+            $value = $_POST['Product'][$_index][$attribute];
             if ($attribute == 'name') {
-                // update to db
-                $value = $_POST['Product'][$_index][$attribute];
                 $result = Product::updateProductTitle($_id, $attribute, $value);
-                // response to gridview
-                return json_encode($result);
-            } elseif ($attribute == 'status' || $attribute == 'SKU') {
-                // update to db
-                $value = $_POST['Product'][$_index][$attribute];
+            } elseif ($attribute == 'discount') {
+                $result = Product::updateDiscount($_id, $value);
+            } else {
                 $result = Product::updateProductAttr($_id, $attribute, $value);
-                // response to gridview
-                return json_encode($result);
             }
+            return json_encode($result);
         }
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -109,8 +105,10 @@ class ProductController extends Controller
     public function actionView($id)
     {
         $id = CryptHelper::decryptString($id);
+        $model = $this->findModel($id);
+        
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
@@ -136,9 +134,9 @@ class ProductController extends Controller
                 $imageUrl = Yii::$app->params['common'] . '/media';
                 $arrImages = [];
                 $model->slug = StringHelper::toSlug($model->name);
-                if (empty($model->sale_price)){
+                if (empty($model->sale_price)) {
                     $model->selling_price = $model->regular_price;
-                }else{
+                } else {
                     $model->selling_price = ($model->sale_price > $model->regular_price) ? $model->regular_price : $model->sale_price;
                 }
                 $model->related_product = !empty($model->relatedProduct) ? implode(",", $model->relatedProduct) : null;

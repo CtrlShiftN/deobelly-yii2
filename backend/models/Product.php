@@ -162,4 +162,18 @@ class Product extends \common\models\Product
     {
         return Product::find()->select('name')->where(['status' => SystemConstant::STATUS_ACTIVE, 'id' => $product_id])->scalar();
     }
+
+    /**
+     * @param $_id
+     * @param $value
+     * @return bool
+     */
+    public static function updateDiscount($_id, $value)
+    {
+        $model = Product::findOne($_id);
+        $model->discount = $value;
+        $model->sale_price = $model->regular_price * (100 - $value) / 100;
+        $model->selling_price = $model->sale_price;
+        return $model->save(false);
+    }
 }
