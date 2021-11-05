@@ -423,7 +423,7 @@ class SampleData
     protected static $productAssocInfoArr = [
         [
             'product_id' => '1',
-            'type_id' => '2',
+            'type_id' => '4',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6',
@@ -431,7 +431,7 @@ class SampleData
         ],
         [
             'product_id' => '2',
-            'type_id' => '2',
+            'type_id' => '4',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6',
@@ -439,7 +439,7 @@ class SampleData
         ],
         [
             'product_id' => '3',
-            'type_id' => '2',
+            'type_id' => '4',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6',
@@ -447,7 +447,7 @@ class SampleData
         ],
         [
             'product_id' => '4',
-            'type_id' => '2',
+            'type_id' => '4',
             'category_id' => '2',
             'color_id' => '1,2',
             'size_id' => '3,4,5,6,7',
@@ -455,7 +455,7 @@ class SampleData
         ],
         [
             'product_id' => '5',
-            'type_id' => '2',
+            'type_id' => '4',
             'category_id' => '2',
             'color_id' => '1,2,6',
             'size_id' => '3,4,5,6',
@@ -463,7 +463,7 @@ class SampleData
         ],
         [
             'product_id' => '6',
-            'type_id' => '2,5',
+            'type_id' => '4,6',
             'category_id' => '1',
             'color_id' => '1,6,7',
             'size_id' => '3,4,5,6',
@@ -471,7 +471,7 @@ class SampleData
         ],
         [
             'product_id' => '7',
-            'type_id' => '2,5',
+            'type_id' => '4,6',
             'category_id' => '3',
             'color_id' => '2,11,12',
             'size_id' => '3,4,5,6',
@@ -479,7 +479,7 @@ class SampleData
         ],
         [
             'product_id' => '8',
-            'type_id' => '1,4,8',
+            'type_id' => '7,6',
             'category_id' => '4',
             'color_id' => '3,7',
             'size_id' => '8,9,10',
@@ -487,7 +487,7 @@ class SampleData
         ],
         [
             'product_id' => '9',
-            'type_id' => '1,4,8',
+            'type_id' => '7,6',
             'category_id' => '4',
             'color_id' => '7',
             'size_id' => '8,9,10',
@@ -495,7 +495,7 @@ class SampleData
         ],
         [
             'product_id' => '10',
-            'type_id' => '1,4,8',
+            'type_id' => '4,6',
             'category_id' => '4',
             'color_id' => '8,14',
             'size_id' => '8,9,10',
@@ -535,31 +535,31 @@ class SampleData
         [
             'name' => 'Áo thun',
             'slug' => 'ao-thun',
-            'type_id' => '2',
+            'type_id' => '4',
             'admin_id' => 1,
         ],
         [
             'name' => 'Áo Vest',
             'slug' => 'ao-vest',
-            'type_id' => '2,5',
+            'type_id' => '4,6',
             'admin_id' => 1,
         ],
         [
             'name' => 'Quần âu',
             'slug' => 'quan-au',
-            'type_id' => '3,5',
+            'type_id' => '7,6',
             'admin_id' => 1,
         ],
         [
             'name' => 'Dây lưng',
             'slug' => 'day-lung',
-            'type_id' => '4,5',
+            'type_id' => '5,6',
             'admin_id' => 1,
         ],
         [
             'name' => 'Giày',
             'slug' => 'giay',
-            'type_id' => '4,5',
+            'type_id' => '5,6',
             'admin_id' => 1,
         ],
     ];
