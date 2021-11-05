@@ -644,7 +644,7 @@ class SampleData
         foreach (self::$arrProductType as $value) {
             $model = new ProductType();
             $model->name = $value['name'];
-            $model->segment = $value['slug'];
+            $model->slug = $value['slug'];
             $model->image = $value['image'];
             if (!empty($value['segment'])) {
                 $model->segment = $value['segment'];
