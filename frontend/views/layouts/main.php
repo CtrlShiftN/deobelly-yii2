@@ -227,7 +227,7 @@ AppAsset::register($this);
                                                     </a>
                                                     <ul class="nav nav-treeview">
                                                         <?php foreach ($mainType as $key => $value): ?>
-                                                            <?php if ($value['segment'] != SystemConstant::SEGMENT_TYPE): ?>
+                                                            <?php if ($value['segment'] != SystemConstant::SEGMENT_CASUAL): ?>
                                                                 <li class="nav-item">
                                                                     <a href="<?= Url::toRoute($value['slug']. '/') ?>"
                                                                        class="nav-link d-flex <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
@@ -286,7 +286,7 @@ AppAsset::register($this);
                         <div class="main-nav-right col-1 col-sm-1 col-lg-10 text-end">
                             <ul class="site-nav mb-0 ps-0 d-none d-sm-none d-lg-inline-block" id="main-menu">
                                 <?php foreach ($mainType as $key => $value): ?>
-                                    <?php if ($value['segment'] != SystemConstant::SEGMENT_TYPE): ?>
+                                    <?php if ($value['segment'] != SystemConstant::SEGMENT_CASUAL): ?>
                                         <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
                                             <a href="<?= Url::toRoute($value['slug']. '/') ?>"
                                                class="site-nav-link">
@@ -308,7 +308,7 @@ AppAsset::register($this);
                 </nav>
                 <nav class="d-none d-md-flex d-lg-none align-items-center justify-content-center nav-tablet bg-white border-top border-bottom">
                     <?php foreach ($mainType as $key => $value): ?>
-                        <?php if ($value['segment'] != SystemConstant::SEGMENT_TYPE): ?>
+                        <?php if ($value['segment'] != SystemConstant::SEGMENT_CASUAL): ?>
                             <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
                                 <a href="<?= Url::toRoute($value['slug']. '/') ?>"
                                    class="site-nav-link">

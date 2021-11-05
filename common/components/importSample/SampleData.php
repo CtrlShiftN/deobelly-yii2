@@ -591,26 +591,31 @@ class SampleData
     protected static $arrProductType = [
         [
             'name' => 'New product',
+            'slug' => 'new-product',
             'image' => 'type/brand2.jpg',
             'admin_id' => 1,
         ],
         [
             'name' => 'Áo sơ mi',
+            'slug' => 'ao-so-mi',
             'image' => 'type/vest-nam-den.jpg',
             'admin_id' => 1,
         ],
         [
             'name' => 'Phụ kiện',
+            'slug' => 'phu-kien',
             'image' => 'type/GLT_1219.jpeg',
             'admin_id' => 1,
         ],
         [
             'name' => 'Quà tặng',
+            'slug' => 'qua-tang',
             'image' => 'type/gift.jpg',
             'admin_id' => 1,
         ],
         [
             'name' => 'Quần',
+            'slug' => 'quan',
             'image' => 'type/quan-tay-ong-rong.jpg',
             'admin_id' => 1,
         ],
@@ -625,7 +630,7 @@ class SampleData
             'name' => 'Collections',
             'slug' => 'mix-and-match',
             'image' => 'type/gift.jpg',
-            'segment' => 2,
+            'segment' => 1,
             'admin_id' => 1,
         ],
     ];
@@ -639,9 +644,7 @@ class SampleData
         foreach (self::$arrProductType as $value) {
             $model = new ProductType();
             $model->name = $value['name'];
-            if (!empty($value['slug'])) {
-                $model->segment = $value['slug'];
-            }
+            $model->segment = $value['slug'];
             $model->image = $value['image'];
             if (!empty($value['segment'])) {
                 $model->segment = $value['segment'];
