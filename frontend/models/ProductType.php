@@ -10,7 +10,7 @@ use Yii;
  *
  * @property int $id
  * @property string $name
- * @property string $slug
+ * @property string|null $slug
  * @property string $image
  * @property int|null $segment 0:casual, 1:luxury
  * @property int|null $status 0 for inactive, 1 for active
@@ -34,7 +34,7 @@ class ProductType extends \common\models\ProductType
     public function rules()
     {
         return [
-            [['name', 'slug', 'image'], 'required'],
+            [['name', 'image'], 'required'],
             [['segment', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'image'], 'string', 'max' => 255],
@@ -74,14 +74,18 @@ class ProductType extends \common\models\ProductType
      */
     public static function getCasualProductType()
     {
-        return ProductType::find()->where(['status' => SystemConstant::STATUS_ACTIVE,'segment' => SystemConstant::SEGMENT_CASUAL])->asArray()->all();
+        return ProductType::find()->where(['status' => SystemConstant::STATUS_ACTIVE])
+            ->andWhere(['id' => SystemConstant::PRODUCT_TYPE_NEW])
+            ->orWhere(['>=', 'id', 4])
+            ->asArray()->all();
     }
 
     /**
      * @param $id
      * @return false|int|string|null
      */
-    public static function getTypeNameById($id) {
+    public static function getTypeNameById($id)
+    {
         return ProductType::find()->select('name')->where(['status' => SystemConstant::STATUS_ACTIVE])->andWhere(['id' => $id])->scalar();
     }
 }

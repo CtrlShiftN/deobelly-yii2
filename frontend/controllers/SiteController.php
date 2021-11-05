@@ -96,7 +96,7 @@ class SiteController extends Controller
 //    }
     public function actionIndex()
     {
-        $type = ArrayHelper::index(ProductType::getAllProductType(), 'slug');
+        $type = array_values(ProductType::getCasualProductType());
         $slider = Slider::getSliderFromSite('index');
         return $this->render('index', [
             'type' => $type,
@@ -130,7 +130,7 @@ class SiteController extends Controller
      */
     public function actionCasual()
     {
-        $type = ArrayHelper::index(ProductType::getAllProductType(), 'slug');
+        $type = array_values(ProductType::getCasualProductType());
         $slider = Slider::getSliderFromSite('index');
         return $this->render('index', [
             'type' => $type,
