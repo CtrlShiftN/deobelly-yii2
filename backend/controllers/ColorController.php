@@ -9,6 +9,7 @@ use common\components\helpers\StringHelper;
 use common\components\SystemConstant;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -105,8 +106,43 @@ class ColorController extends Controller
     public function actionView($id)
     {
         $id = CryptHelper::decryptString($id);
+        $model = $this->findModel($id);
+        $post = Yii::$app->request->post();
+        // process ajax delete
+        if (Yii::$app->request->isAjax && isset($post['kvdelete'])) {
+            echo Json::encode([
+                'success' => true,
+                'messages' => [
+                    'kv-detail-info' => Yii::t('app', 'Delete successfully!')
+                ]
+            ]);
+            return;
+        }
+        // return messages on update of record
+        if ($model->load($post)) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            $model->slug = trim(StringHelper::toSlug(trim($model->name)));
+            if ($model->file) {
+                if (!file_exists(Yii::getAlias('@common/media/color'))) {
+                    mkdir(Yii::getAlias('@common/media/color'), 0777);
+                }
+                $imageUrl = Yii::getAlias('@common/media');
+                $fileName = 'color/' . $model->slug . '.' . $model->file->getExtension();
+                $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                if ($isUploadedFile) {
+                    $model->image = $fileName;
+                }
+            }
+            $model->admin_id = Yii::$app->user->identity->getId();
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save(false)) {
+                Yii::$app->session->setFlash('kv-detail-success', 'Color updated!');
+            } else {
+                Yii::$app->session->setFlash('kv-detail-warning', $model->status);
+            }
+        }
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
@@ -122,17 +158,22 @@ class ColorController extends Controller
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->file = UploadedFile::getInstance($model, 'file');
-                if (!file_exists(Yii::getAlias('@common/media'))) {
-                    mkdir(Yii::getAlias('@common/media'), 0777);
+                $model->slug = trim(StringHelper::toSlug(trim($model->name)));
+                if ($model->file) {
+                    if (!file_exists(Yii::getAlias('@common/media/color'))) {
+                        mkdir(Yii::getAlias('@common/media/color'), 0777);
+                    }
+                    $imageUrl = Yii::getAlias('@common/media');
+                    $fileName = 'color/' . $model->slug . '.' . $model->file->getExtension();
+                    $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                    if ($isUploadedFile) {
+                        $model->image = $fileName;
+                    }
                 }
-                $imageUrl = Yii::getAlias('@common/media');
-                $model->slug = StringHelper::toSlug($model->name);
-                $model->image = 'color/' . $model->slug . '.' . $model->file->getExtension();
                 $model->created_at = date('Y-m-d H:m:s');
                 $model->updated_at = date('Y-m-d H:m:s');
                 $model->status = SystemConstant::STATUS_ACTIVE;
                 $model->admin_id = \Yii::$app->user->identity->getId();
-                $model->file->saveAs($imageUrl . '/' . $model->image);
                 if ($model->save(false)) {
                     return $this->redirect(Url::toRoute('color/'));
                 }
@@ -158,8 +199,25 @@ class ColorController extends Controller
         $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            $model->slug = trim(StringHelper::toSlug(trim($model->name)));
+            if ($model->file) {
+                if (!file_exists(Yii::getAlias('@common/media/color'))) {
+                    mkdir(Yii::getAlias('@common/media/color'), 0777);
+                }
+                $imageUrl = Yii::getAlias('@common/media');
+                $fileName = 'color/' . $model->slug . '.' . $model->file->getExtension();
+                $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                if ($isUploadedFile) {
+                    $model->image = $fileName;
+                }
+            }
+            $model->admin_id = Yii::$app->user->identity->getId();
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save(false)) {
+                return $this->redirect(Url::toRoute('color/'));
+            }
         }
 
         return $this->render('update', [

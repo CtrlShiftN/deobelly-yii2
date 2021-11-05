@@ -47,7 +47,7 @@ $this->registerCssFile('/css/post.css');
                             <h5><?= $value['title'] ?></h5></a>
                     </div>
                     <div class="article-content text-center text-justify">
-                        <?= $value['content'] ?>
+                        <?= substr(strip_tags($value['content']),0,200).'...' ?>
                     </div>
                     <ul class="tags mt-2">
                         <?php foreach (\frontend\models\PostTag::getPostTag(explode(',', $value['tag_id'])) as $tag) : ?>

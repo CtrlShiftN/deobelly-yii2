@@ -124,22 +124,28 @@ $commonUrl = Yii::$app->params['common'];
                 'format' => 'raw'
             ],
             [
-                'label' => Yii::t('app', 'Actions'),
+                'class' => 'kartik\grid\ActionColumn',
+//                'label' => Yii::t('app', 'Actions'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',
-                'value' => function ($model, $key, $index, $widget) {
-                    return Html::a(Yii::t('app', 'Edit'), Url::toRoute(
-                            [
-                                'post/update',
-                                'id' => \common\components\encrypt\CryptHelper::encryptString($key)
-                            ]), ['class' => 'btn btn-info me-3']) .
-                        Html::a(Yii::t('app', 'Delete'), Url::toRoute(['post/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger', 'data' => [
-                            'method' => 'post',
-                            'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                        ],]);
-                },
-                'format' => 'raw'
+//                'value' => function ($model, $key, $index, $widget) {
+//                    return Html::a(Yii::t('app', 'View'), Url::toRoute(
+//                            [
+//                                'post/view',
+//                                'id' => \common\components\encrypt\CryptHelper::encryptString($key)
+//                            ]), ['class' => 'btn btn-info']) . '<br/>' .
+//                        Html::a(Yii::t('app', 'Edit'), Url::toRoute(
+//                            [
+//                                'post/update',
+//                                'id' => \common\components\encrypt\CryptHelper::encryptString($key)
+//                            ]), ['class' => 'btn btn-info']) . '<br/>' .
+//                        Html::a(Yii::t('app', 'Delete'), Url::toRoute(['post/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger', 'data' => [
+//                            'method' => 'post',
+//                            'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+//                        ],]);
+//                },
+//                'format' => 'raw'
             ]
 
         ];

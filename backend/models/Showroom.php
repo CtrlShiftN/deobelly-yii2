@@ -23,6 +23,7 @@ use Yii;
 class Showroom extends \common\models\Showroom
 {
     public $file;
+
     /**
      * {@inheritdoc}
      */
@@ -42,8 +43,8 @@ class Showroom extends \common\models\Showroom
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'image', 'address', 'tel', 'gps_link'], 'string', 'max' => 255],
             [['name'], 'unique'],
-            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
-            ['file', 'required']
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg', 'on' => 'create'],
+            ['file', 'required', 'on' => 'create']
         ];
     }
 

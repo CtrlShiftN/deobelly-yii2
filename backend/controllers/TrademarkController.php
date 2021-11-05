@@ -113,9 +113,7 @@ class TrademarkController extends Controller
             echo Json::encode([
                 'success' => true,
                 'messages' => [
-                    'kv-detail-info' => Yii::t('app', 'Delete successfully!') .
-                        Html::a('<i class="fas fa-hand-point-right"></i>  Click here',
-                            ['trademark/'], ['class' => 'btn btn-sm btn-info']) . ' to proceed.'
+                    'kv-detail-info' => Yii::t('app', 'Delete successfully!')
                 ]
             ]);
             return;

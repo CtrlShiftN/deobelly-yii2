@@ -8,6 +8,7 @@ use common\components\encrypt\CryptHelper;
 use common\components\helpers\StringHelper;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -77,9 +78,9 @@ class ShowroomController extends Controller
             $attribute = $_POST['editableAttribute'];
             // update to db
             $value = $_POST['Showroom'][$_index][$attribute];
-            if ($attribute == 'name'){
+            if ($attribute == 'name') {
                 $result = Showroom::updateTitle($_id, $attribute, $value);
-            }else{
+            } else {
                 $result = Showroom::updateAttribute($_id, $attribute, $value);
             }
             // response to gridview
@@ -101,8 +102,18 @@ class ShowroomController extends Controller
     public function actionView($id)
     {
         $id = CryptHelper::decryptString($id);
+        $model = $this->findModel($id);
+        if (Yii::$app->request->isAjax && isset($post['kvdelete'])) {
+            echo Json::encode([
+                'success' => true,
+                'messages' => [
+                    'kv-detail-info' => Yii::t('app', 'Delete successfully!')
+                ]
+            ]);
+            return;
+        }
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
@@ -125,7 +136,7 @@ class ShowroomController extends Controller
                 $imageUrl = Yii::getAlias('@common/media');
                 $fileName = 'showroom/' . $model->slug . '.' . $model->file->getExtension();
                 $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
-                if ($isUploadedFile){
+                if ($isUploadedFile) {
                     $model->image = $fileName;
                     $model->admin_id = Yii::$app->user->identity->getId();
                     $model->created_at = date('Y-m-d H:i:s');
@@ -156,8 +167,25 @@ class ShowroomController extends Controller
         $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            $model->slug = trim(StringHelper::toSlug(trim($model->name)));
+            if ($model->file) {
+                if (!file_exists(Yii::getAlias('@common/media/showroom'))) {
+                    mkdir(Yii::getAlias('@common/media/showroom'), 0777);
+                }
+                $imageUrl = Yii::getAlias('@common/media');
+                $fileName = 'showroom/' . $model->slug . '.' . $model->file->getExtension();
+                $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                if ($isUploadedFile) {
+                    $model->image = $fileName;
+                }
+            }
+            $model->admin_id = Yii::$app->user->identity->getId();
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save(false)) {
+                return $this->redirect(Url::toRoute('showroom/'));
+            }
         }
 
         return $this->render('update', [

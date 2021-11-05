@@ -84,6 +84,16 @@ class SiteController extends Controller
      *
      * @return mixed
      */
+//    public function actionIndex()
+//    {
+//        $this->layout = 'blank';
+//        $type = ArrayHelper::index(ProductType::getAllProductType(), 'slug');
+//        $slider = Slider::getSliderFromSite('index');
+//        return $this->render('index3', [
+//            'type' => $type,
+//            'slider' => $slider
+//        ]);
+//    }
     public function actionIndex()
     {
         $type = ArrayHelper::index(ProductType::getAllProductType(), 'slug');
