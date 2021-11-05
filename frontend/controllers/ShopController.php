@@ -4,9 +4,9 @@ namespace frontend\controllers;
 
 use common\components\encrypt\CryptHelper;
 use common\components\helpers\ParamHelper;
+use frontend\models\ProductType;
 use frontend\models\Product;
 use frontend\models\ProductCategory;
-use frontend\models\ProductType;
 use frontend\models\Slider;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
@@ -72,7 +72,7 @@ class ShopController extends Controller
     public function actionIndex()
     {
         $slider = Slider::getSliderFromSite('index');
-        $type = ArrayHelper::index(ProductType::getCasualProductType(), 'slug');
+        $type = array_values(ProductType::getCasualProductType());
         return $this->render('index', [
             'slider' => $slider,
             'type' => $type,

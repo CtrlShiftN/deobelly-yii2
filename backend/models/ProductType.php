@@ -37,7 +37,7 @@ class ProductType extends \common\models\ProductType
     public function rules()
     {
         return [
-            [['name', 'slug', 'image'], 'required'],
+            [['name', 'image'], 'required'],
             [['segment', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'image'], 'string', 'max' => 255],

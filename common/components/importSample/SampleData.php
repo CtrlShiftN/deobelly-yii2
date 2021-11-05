@@ -463,7 +463,7 @@ class SampleData
         ],
         [
             'product_id' => '6',
-            'type_id' => '2,5',
+            'type_id' => '2,4',
             'category_id' => '1',
             'color_id' => '1,6,7',
             'size_id' => '3,4,5,6',
@@ -471,7 +471,7 @@ class SampleData
         ],
         [
             'product_id' => '7',
-            'type_id' => '2,5',
+            'type_id' => '2,4',
             'category_id' => '3',
             'color_id' => '2,11,12',
             'size_id' => '3,4,5,6',
@@ -479,7 +479,7 @@ class SampleData
         ],
         [
             'product_id' => '8',
-            'type_id' => '1,4,8',
+            'type_id' => '4,5',
             'category_id' => '4',
             'color_id' => '3,7',
             'size_id' => '8,9,10',
@@ -487,7 +487,7 @@ class SampleData
         ],
         [
             'product_id' => '9',
-            'type_id' => '1,4,8',
+            'type_id' => '4,5',
             'category_id' => '4',
             'color_id' => '7',
             'size_id' => '8,9,10',
@@ -495,7 +495,7 @@ class SampleData
         ],
         [
             'product_id' => '10',
-            'type_id' => '1,4,8',
+            'type_id' => '2,4',
             'category_id' => '4',
             'color_id' => '8,14',
             'size_id' => '8,9,10',
@@ -541,25 +541,25 @@ class SampleData
         [
             'name' => 'Áo Vest',
             'slug' => 'ao-vest',
-            'type_id' => '2,5',
+            'type_id' => '2,4',
             'admin_id' => 1,
         ],
         [
             'name' => 'Quần âu',
             'slug' => 'quan-au',
-            'type_id' => '3,5',
+            'type_id' => '4,5',
             'admin_id' => 1,
         ],
         [
             'name' => 'Dây lưng',
             'slug' => 'day-lung',
-            'type_id' => '4,5',
+            'type_id' => '3,4',
             'admin_id' => 1,
         ],
         [
             'name' => 'Giày',
             'slug' => 'giay',
-            'type_id' => '4,5',
+            'type_id' => '3,4',
             'admin_id' => 1,
         ],
     ];
@@ -590,21 +590,29 @@ class SampleData
      */
     protected static $arrProductType = [
         [
-            'name' => 'Sản phẩm mới',
-            'slug' => 'san-pham-moi',
+            'name' => 'New arrival',
+            'slug' => 'new-arrival',
             'image' => 'type/brand2.jpg',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Tailor-made',
+            'slug' => 'tailor-made',
+            'image' => 'type/gift.jpg',
+            'segment' => 1,
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Collections',
+            'slug' => 'mix-and-match',
+            'image' => 'type/gift.jpg',
+            'segment' => 1,
             'admin_id' => 1,
         ],
         [
             'name' => 'Áo sơ mi',
             'slug' => 'ao-so-mi',
             'image' => 'type/vest-nam-den.jpg',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Quần',
-            'slug' => 'quan',
-            'image' => 'type/quan-tay-ong-rong.jpg',
             'admin_id' => 1,
         ],
         [
@@ -620,17 +628,9 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'name' => 'Tailor-made',
-            'slug' => 'tailor-made',
-            'image' => 'type/gift.jpg',
-            'segment' => 1,
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Collections',
-            'slug' => 'mix-and-match',
-            'image' => 'type/gift.jpg',
-            'segment' => 1,
+            'name' => 'Quần',
+            'slug' => 'quan',
+            'image' => 'type/quan-tay-ong-rong.jpg',
             'admin_id' => 1,
         ],
     ];

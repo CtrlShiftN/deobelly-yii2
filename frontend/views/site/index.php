@@ -65,7 +65,7 @@ $this->registerCssFile(Url::toRoute("/css/index.css"));
         </div>
     </div>
     <div class="col-12 text-center mb-5 mt-4 my-md-5">
-        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['san-pham-moi']['id'])]) ?>"
+        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type[0]['id'])]) ?>"
            class="btn btn-dark rounded-0 fs-4 fw-light px-4 px-lg-5" target="_blank">Xem thêm</a>
     </div>
 </div>
@@ -133,9 +133,9 @@ $this->registerCssFile(Url::toRoute("/css/index.css"));
 <div class="row my-3 my-md-5 px-2 px-md-0 w-100 mx-0">
     <div class="col-12 col-md-6 position-relative p-0 px-md-3">
         <div class="overflow-hidden w-100 shadow">
-            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['san-pham-moi']['id'])]) ?>"
+            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type[0]['id'])]) ?>"
                class="text-decoration-none w-100" target="_blank">
-                <p class="position-absolute text-light fs-1 men-title fw-bolder text-uppercase"><?= $type['san-pham-moi']['name'] ?></p>
+                <p class="position-absolute text-light fs-1 men-title fw-bolder text-uppercase"><?= $type[0]['name'] ?></p>
                 <img src="<?= Url::toRoute('img/index/men.jpg') ?>"
                      class="object-fit-cover position-relative gender-img" alt="...">
             </a>
@@ -143,9 +143,9 @@ $this->registerCssFile(Url::toRoute("/css/index.css"));
     </div>
     <div class="col-12 col-md-6 mt-4 mt-md-0 position-relative overflow-hidden p-0 px-md-3">
         <div class="overflow-hidden w-100 shadow">
-            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type['qua-tang']['id'])]) ?>"
+            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type[3]['id'])]) ?>"
                class="text-decoration-none w-100" target="_blank">
-                <p class="position-absolute text-light fs-1 women-title fw-bolder text-uppercase"><?= $type['qua-tang']['name'] ?></p>
+                <p class="position-absolute text-light fs-1 women-title fw-bolder text-uppercase"><?= $type[3]['name'] ?></p>
                 <img src="<?= Url::toRoute('img/index/women.jpg') ?>"
                      class="object-fit-cover position-relative gender-img" alt="...">
             </a>
