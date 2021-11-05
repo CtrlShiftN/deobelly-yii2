@@ -74,7 +74,7 @@ class ProductType extends \common\models\ProductType
      */
     public static function getCasualProductType()
     {
-        return ProductType::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->andWhere(['not', ['id' => [SystemConstant::PT_TAILOR_MADE,SystemConstant::PT_MIX_AND_MATCH ]]])->asArray()->all();
+        return ProductType::find()->where(['status' => SystemConstant::STATUS_ACTIVE,'segment' => SystemConstant::SEGMENT_TYPE])->asArray()->all();
     }
 
     /**

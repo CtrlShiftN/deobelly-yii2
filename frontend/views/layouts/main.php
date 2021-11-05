@@ -228,15 +228,9 @@ AppAsset::register($this);
                                                     <ul class="nav nav-treeview">
                                                         <?php foreach ($mainType as $key => $value): ?>
                                                             <?php if ($value['segment'] != SystemConstant::SEGMENT_TYPE): ?>
-
                                                                 <li class="nav-item">
-                                                                    <?php if($value['id'] == SystemConstant::PT_TAILOR_MADE): ?>
-                                                                    <a href="<?= Url::toRoute(SystemConstant::URL_TAILOR_MADE . '/') ?>"
+                                                                    <a href="<?= Url::toRoute($value['slug']. '/') ?>"
                                                                        class="nav-link d-flex <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
-                                                                    <?php else: ?>
-                                                                        <a href="<?= Url::toRoute(SystemConstant::URL_MIX_AND_MATCH . '/') ?>"
-                                                                           class="nav-link d-flex <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
-                                                                    <?php endif; ?>
                                                                         <i class="far fa-circle nav-icon me-2"></i>
                                                                         <p><?= $value['name'] ?></p>
                                                                     </a>
@@ -294,15 +288,10 @@ AppAsset::register($this);
                                 <?php foreach ($mainType as $key => $value): ?>
                                     <?php if ($value['segment'] != SystemConstant::SEGMENT_TYPE): ?>
                                         <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
-                                            <?php if($value['id'] == SystemConstant::PT_TAILOR_MADE): ?>
-                                            <a href="<?= Url::toRoute([SystemConstant::URL_TAILOR_MADE . '/']) ?>"
+                                            <a href="<?= Url::toRoute($value['slug']. '/') ?>"
                                                class="site-nav-link">
-                                                <?php else: ?>
-                                                <a href="<?= Url::toRoute([SystemConstant::URL_MIX_AND_MATCH. '/']) ?>"
-                                                   class="site-nav-link">
-                                                    <?php endif; ?>
-                                                    <span><?= $value['name'] ?></span>
-                                                </a>
+                                                <span><?= $value['name'] ?></span>
+                                            </a>
                                         </li>
                                     <?php else: ?>
                                         <li class="nav-item px-2">
@@ -319,15 +308,10 @@ AppAsset::register($this);
                 </nav>
                 <nav class="d-none d-md-flex d-lg-none align-items-center justify-content-center nav-tablet bg-white border-top border-bottom">
                     <?php foreach ($mainType as $key => $value): ?>
-                        <?php if ($value['segment'] == SystemConstant::SEGMENT_TYPE): ?>
+                        <?php if ($value['segment'] != SystemConstant::SEGMENT_TYPE): ?>
                             <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
-                                <?php if($value['id'] == SystemConstant::PT_TAILOR_MADE): ?>
-                                <a href="<?= Url::toRoute([SystemConstant::URL_TAILOR_MADE . '/']) ?>"
+                                <a href="<?= Url::toRoute($value['slug']. '/') ?>"
                                    class="site-nav-link">
-                                <?php else: ?>
-                                <a href="<?= Url::toRoute([SystemConstant::URL_MIX_AND_MATCH. '/']) ?>"
-                                   class="site-nav-link">
-                                <?php endif; ?>
                                     <span><?= $value['name'] ?></span>
                                 </a>
                             </li>
