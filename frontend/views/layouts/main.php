@@ -154,7 +154,7 @@ AppAsset::register($this);
                 <nav class="bg-white shadow">
                     <div class="main-site-nav container p-0">
                         <div class="col-1 col-sm-1 d-block d-lg-none">
-                            <button class="btn btn-white btn-sidebar" type="button" data-bs-toggle="offcanvas"
+                            <button class="btn btn-white btn-sidebar d-md-none" type="button" data-bs-toggle="offcanvas"
                                     data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"><i
                                         class="fas fa-align-justify"></i>
                             </button>
@@ -216,6 +216,18 @@ AppAsset::register($this);
                                                         <p><?= Yii::t('app', 'Home') ?></p>
                                                     </a>
                                                 </li>
+                                                <li class="nav-item  ">
+                                                    <a href="<?= Url::toRoute('site/casual') ?>"
+                                                       class="logo-align text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'luxury') ? 'd-none' : '' ?>">
+                                                        <span class="title-classify text-light">casual</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item  ">
+                                                    <a href="<?= Url::toRoute('site/luxury') ?>"
+                                                       class="logo-align text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'casual') ? 'd-none' : '' ?>">
+                                                        <span class="title-classify text-light">luxury</span>
+                                                    </a>
+                                                </li>
                                                 <li class="nav-item has-treeview">
                                                     <a href="<?= Url::toRoute(['shop/product']) ?>"
                                                        class="nav-link d-inline-block">
@@ -274,11 +286,11 @@ AppAsset::register($this);
                                     <img src="<?= $cdnUrl ?>/img/home.png">
                                 </a>
                                 <a href="<?= Url::toRoute('site/casual') ?>"
-                                   class="logo-align text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'luxury') ? 'd-none' : '' ?>">
+                                   class="logo-align d-none d-md-block text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'luxury') ? 'd-none' : '' ?>">
                                     <span class="title-classify">casual</span>
                                 </a>
                                 <a href="<?= Url::toRoute('site/luxury') ?>"
-                                   class="logo-align text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'casual') ? 'd-none' : '' ?>">
+                                   class="logo-align d-none d-md-block text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'casual') ? 'd-none' : '' ?>">
                                     <span class="title-classify">luxury</span>
                                 </a>
                             </div>
