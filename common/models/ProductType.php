@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string $name
- * @property string $slug
+ * @property string|null $slug
  * @property string $image
  * @property int|null $segment 0:casual, 1:luxury
  * @property int|null $status 0 for inactive, 1 for active
@@ -33,7 +33,7 @@ class ProductType extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'slug', 'image'], 'required'],
+            [['name', 'image'], 'required'],
             [['segment', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'image'], 'string', 'max' => 255],
