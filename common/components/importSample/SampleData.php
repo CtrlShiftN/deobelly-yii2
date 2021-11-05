@@ -590,9 +590,23 @@ class SampleData
      */
     protected static $arrProductType = [
         [
-            'name' => 'New product',
-            'slug' => 'new-product',
+            'name' => 'New arrival',
+            'slug' => 'new-arrival',
             'image' => 'type/brand2.jpg',
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Tailor-made',
+            'slug' => 'tailor-made',
+            'image' => 'type/gift.jpg',
+            'segment' => 1,
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Collections',
+            'slug' => 'mix-and-match',
+            'image' => 'type/gift.jpg',
+            'segment' => 1,
             'admin_id' => 1,
         ],
         [
@@ -617,20 +631,6 @@ class SampleData
             'name' => 'Quần',
             'slug' => 'quan',
             'image' => 'type/quan-tay-ong-rong.jpg',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Tailor-made',
-            'slug' => 'tailor-made',
-            'image' => 'type/gift.jpg',
-            'segment' => 1,
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Collections',
-            'slug' => 'mix-and-match',
-            'image' => 'type/gift.jpg',
-            'segment' => 1,
             'admin_id' => 1,
         ],
     ];
