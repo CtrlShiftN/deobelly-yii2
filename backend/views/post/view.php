@@ -13,11 +13,13 @@ $this->params['breadcrumbs'][] = $this->title;
 $imgUrl = Yii::$app->params['common'] . '/media';
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
 ?>
-<div class="post-view">
+<div class="post-view py-4">
     <?php
     $columns = [
         [
             'attribute' => 'file',
+            'type' => DetailView::INPUT_FILEINPUT,
+            'label' => Yii::t('app', 'Image'),
             'value' => Html::img($imgUrl . '/' . $model->avatar, ['alt' => $model->title]),
             'format' => 'raw'
         ],
@@ -30,7 +32,36 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
             'type' => 'widget',
             'value' => $model->content,
             'widgetOptions' => ['class' => \yii\redactor\widgets\Redactor::class],
-            'displayOnly' => true
+//            'displayOnly' => true,
+            'format' => 'raw'
+        ],
+        [
+            'attribute' => 'tags',
+            'value' => function () use ($tags) {
+                $html = '';
+                foreach ($tags as $key => $tag) {
+                    $html .= '<div class="badge badge-info me-3 p-2">' . $tag . '</div>';
+                }
+                return $html;
+            },
+            'format' => 'raw',
+            'type' => DetailView::INPUT_SELECT2,
+            'widgetOptions' => [
+                'data' => ArrayHelper::map(\backend\models\PostTag::getAllTags(), 'id', 'title'),
+                'options' => ['placeholder' => '-- ' . Yii::t('app', 'Post Tags') . ' --'],
+                'pluginOptions' => ['allowClear' => true, 'multiple' => true]
+            ],
+        ],
+        [
+            'attribute' => 'post_category_id',
+            'value' => \backend\models\PostCategory::findOne($model->post_category_id)['title'],
+            'format' => 'raw',
+            'type' => DetailView::INPUT_SELECT2,
+            'widgetOptions' => [
+                'data' => ArrayHelper::map(\backend\models\PostCategory::getAllCategory(), 'id', 'title'),
+                'options' => ['placeholder' => '-- ' . Yii::t('app', 'Post Categories') . ' --'],
+                'pluginOptions' => ['allowClear' => true]
+            ],
         ],
         [
             'attribute' => 'status',
@@ -56,7 +87,7 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
         'hover' => true,
         'bordered' => true,
 //        'enableEditMode' => false,
-        'buttons1' => '{delete}',
+//        'buttons1' => '{delete}',
         'hAlign' => DetailView::ALIGN_CENTER,
         'vAlign' => DetailView::ALIGN_MIDDLE,
         'mode' => DetailView::MODE_VIEW,

@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use common\components\helpers\StringHelper;
+use common\components\SystemConstant;
 use Yii;
 
 /**
@@ -97,4 +98,11 @@ class PostTag extends \yii\db\ActiveRecord
         return \common\models\PostTag::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
     }
 
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getAllTags()
+    {
+        return \common\models\PostTag::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
+    }
 }

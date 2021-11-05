@@ -1,5 +1,6 @@
 <?php
 
+use common\components\SystemConstant;
 use kartik\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -145,10 +146,17 @@ $commonUrl = Yii::$app->params['common'];
                 'hAlign' => 'center',
                 'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) {
-                    return Html::a(Yii::t('app', 'Delete'), Url::toRoute(['product-type/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger', 'data' => [
-                        'method' => 'post',
-                        'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                    ],]);
+                    $html = Html::a(Yii::t('app', 'View'), Url::toRoute(['product-type/view', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-info mb-3']);
+                    if ($key != SystemConstant::PRODUCT_TYPE_NEW &&
+                        $key != SystemConstant::PRODUCT_TYPE_TAILOR_MADE &&
+                        $key != SystemConstant::PRODUCT_TYPE_MIX_AND_MATCH) {
+                        $html .= "<br/>";
+                        $html .= Html::a(Yii::t('app', 'Delete'), Url::toRoute(['product-type/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger', 'data' => [
+                            'method' => 'post',
+                            'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                        ],]);
+                    }
+                    return $html;
                 },
                 'format' => 'raw'
             ]

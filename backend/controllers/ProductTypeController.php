@@ -6,8 +6,10 @@ use backend\models\ProductType;
 use backend\models\ProductTypeSearch;
 use common\components\encrypt\CryptHelper;
 use common\components\helpers\StringHelper;
+use common\components\SystemConstant;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -99,8 +101,53 @@ class ProductTypeController extends Controller
      */
     public function actionView($id)
     {
+        $id = CryptHelper::decryptString($id);
+        $model = $this->findModel($id);
+        $post = Yii::$app->request->post();
+        // process ajax delete
+        if (Yii::$app->request->isAjax && isset($post['kvdelete'])) {
+            echo Json::encode([
+                'success' => true,
+                'messages' => [
+                    'kv-detail-info' => Yii::t('app', 'Delete successfully!')
+                ]
+            ]);
+            return;
+        }
+        // return messages on update of record
+        if ($model->load($post)) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            // do not modify tailor made, mix & match slug
+            if ($model->id != SystemConstant::PRODUCT_TYPE_NEW &&
+                $model->id != SystemConstant::PRODUCT_TYPE_TAILOR_MADE &&
+                $model->id != SystemConstant::PRODUCT_TYPE_MIX_AND_MATCH) {
+                $model->slug = trim(StringHelper::toSlug(trim($model->name)));
+            }
+            if ($model->file) {
+                if (!file_exists(Yii::getAlias('@common/media/product-type'))) {
+                    mkdir(Yii::getAlias('@common/media/product-type'), 0777);
+                }
+                $imageUrl = Yii::getAlias('@common/media');
+                $fileName = 'product-type/' . $model->slug . '.' . $model->file->getExtension();
+                $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                if ($isUploadedFile) {
+                    $model->image = $fileName;
+                }
+            }
+            // not allow change tailor made and mix & match segment
+            if ($model->id == SystemConstant::PRODUCT_TYPE_TAILOR_MADE || $model->id == SystemConstant::PRODUCT_TYPE_MIX_AND_MATCH) {
+                $model->segment = SystemConstant::SEGMENT_LUXURY;
+            }
+            $model->admin_id = Yii::$app->user->identity->getId();
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save(false)) {
+                Yii::$app->session->setFlash('kv-detail-success', 'Loại sản phẩm cập nhật thành công!');
+            } else {
+                Yii::$app->session->setFlash('kv-detail-warning', $model->status);
+            }
+        }
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
@@ -125,12 +172,12 @@ class ProductTypeController extends Controller
                 $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
                 if ($isUploadedFile) {
                     $model->image = $fileName;
-                    $model->admin_id = Yii::$app->user->identity->getId();
-                    $model->created_at = date('Y-m-d H:i:s');
-                    $model->updated_at = date('Y-m-d H:i:s');
-                    if ($model->save(false)) {
-                        return $this->redirect(Url::toRoute('product-type/'));
-                    }
+                }
+                $model->admin_id = Yii::$app->user->identity->getId();
+                $model->created_at = date('Y-m-d H:i:s');
+                $model->updated_at = date('Y-m-d H:i:s');
+                if ($model->save(false)) {
+                    return $this->redirect(Url::toRoute('product-type/'));
                 }
             }
         } else {
@@ -173,7 +220,11 @@ class ProductTypeController extends Controller
     public function actionDelete($id)
     {
         $id = CryptHelper::decryptString($id);
-        $this->findModel($id)->delete();
+        if ($id != SystemConstant::PRODUCT_TYPE_NEW &&
+            $id != SystemConstant::PRODUCT_TYPE_TAILOR_MADE &&
+            $id != SystemConstant::PRODUCT_TYPE_MIX_AND_MATCH) {
+            $this->findModel($id)->delete();
+        }
 
         return $this->redirect(['index']);
     }
