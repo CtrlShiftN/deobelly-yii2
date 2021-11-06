@@ -15,6 +15,7 @@ use common\components\helpers\StringHelper;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -107,10 +108,64 @@ class ProductController extends Controller
     {
         $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
+        $assocModel = ProductAssoc::findOne($id);
+        $model->color = $assocModel->color_id;
+        $model->type = $assocModel->type_id;
+        $model->size = $assocModel->size_id;
+        $model->category = $assocModel->category_id;
         $arrTrademark = Trademark::getAllTrademark();
+        $arrColor = Color::getAllColor();
+        $arrSize = Size::getAllSize();
+        $arrType = ProductType::getAllTypes();
+        $arrCate = ProductCategory::getAllProductCategory();
+        $arrProduct = Product::getAllProduct();
+        $post = Yii::$app->request->post();
+        // process ajax delete
+        if (Yii::$app->request->isAjax && isset($post['kvdelete'])) {
+            echo Json::encode([
+                'success' => true,
+                'messages' => [
+                    'kv-detail-info' => Yii::t('app', 'Delete successfully!')
+                ]
+            ]);
+            return;
+        }
+        // return messages on update of record
+        if ($model->load($post)) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            $model->slug = trim(StringHelper::toSlug(trim($model->name)));
+            if ($model->file) {
+                if (!file_exists(Yii::getAlias('@common/media/product'))) {
+                    mkdir(Yii::getAlias('@common/media/product'), 0777);
+                }
+                $imageUrl = Yii::getAlias('@common/media');
+                $fileName = 'product/' . $model->slug . '.' . $model->file->getExtension();
+                $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                if ($isUploadedFile) {
+                    $model->image = $fileName;
+                }
+            }
+            if (!empty($model->discount)) {
+                $model->sale_price = $model->regular_price * (100 - $model->discount) / 100;
+                $model->selling_price = $model->sale_price;
+            }
+            $model->admin_id = Yii::$app->user->identity->getId();
+            $model->updated_at = date('Y-m-d H:i:s');
+            // assoc
+            if ($model->save(false)) {
+                Yii::$app->session->setFlash('kv-detail-success', 'Color updated!');
+            } else {
+                Yii::$app->session->setFlash('kv-detail-warning', $model->status);
+            }
+        }
         return $this->render('view', [
             'model' => $model,
             'trademark' => ArrayHelper::map($arrTrademark, 'id', 'name'),
+            'color' => ArrayHelper::map($arrColor, 'id', 'name'),
+            'size' => ArrayHelper::map($arrSize, 'id', 'name'),
+            'type' => ArrayHelper::map($arrType, 'id', 'name'),
+            'productCate' => ArrayHelper::map($arrCate, 'id', 'name'),
+            'products' => ArrayHelper::map($arrProduct, 'id', 'name')
         ]);
     }
 
@@ -141,14 +196,18 @@ class ProductController extends Controller
                 } else {
                     $model->selling_price = ($model->sale_price > $model->regular_price) ? $model->regular_price : $model->sale_price;
                 }
+                if (!empty($model->discount)) {
+                    $model->sale_price = $model->regular_price * (100 - $model->discount) / 100;
+                    $model->selling_price = $model->sale_price;
+                }
                 $model->related_product = !empty($model->relatedProduct) ? implode(",", $model->relatedProduct) : null;
                 $model->image = 'product/' . implode("-", $model->type) . '_' . $model->category . '_' . $model->slug . '.' . $model->file->getExtension();
                 $model->admin_id = Yii::$app->user->identity->getId();
                 $model->created_at = date('Y-m-d H:i:s');
                 $model->updated_at = date('Y-m-d H:i:s');
                 $model->fake_sold = rand(201, 996);
-                if (!file_exists(Yii::getAlias('@common/media'))) {
-                    mkdir(Yii::getAlias('@common/media'), 0777);
+                if (!file_exists(Yii::getAlias('@common/media/product'))) {
+                    mkdir(Yii::getAlias('@common/media/product'), 0777);
                 }
                 $imageUrl = Yii::getAlias('@common/media');
                 $model->file->saveAs($imageUrl . '/' . $model->image);

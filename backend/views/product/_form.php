@@ -53,6 +53,7 @@ $arrFeature = [Yii::t('app', 'Non-featured'), Yii::t('app', 'Featured')];
                     'allowNegative' => false,
                 ]
             ]) ?>
+            <?= $form->field($model, 'discount', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number', 'placeholder' => '15%'])->hint('Phần trăm giảm giá cho sản phẩm, ví du: Giảm giá 15% thì điền 15 vào ô Giảm giá') ?>
             <?= $form->field($model, 'sale_price')->widget(MaskMoney::classname(), [
                 'pluginOptions' => [
                     'prefix' => 'VND ',
@@ -88,21 +89,21 @@ $arrFeature = [Yii::t('app', 'Non-featured'), Yii::t('app', 'Featured')];
                     'allowClear' => true,
                 ],
             ]) ?>
-            <?= $form->field($model, 'hide')->widget(Select2::classname(), [
+            <?= $form->field($model, 'hide', ['hintType' => ActiveField::HINT_SPECIAL])->widget(Select2::classname(), [
                 'data' => $arrVisibility,
                 'options' => ['placeholder' => Yii::t('app', 'Choose to hide or show')],
                 'pluginOptions' => [
                     'allowClear' => true,
                 ],
-            ]) ?>
-            <?= $form->field($model, 'is_feature')->widget(Select2::classname(), [
+            ])->hint('Khi thêm sản phẩm, mặc định sẽ hiển thị trên trang sản phẩm mới, nếu để Ẩn giấu thì sản phẩm sẽ không hiển thị trên trang sản phẩm mới. Mặc định: Hiển thị') ?>
+            <?= $form->field($model, 'is_feature', ['hintType' => ActiveField::HINT_SPECIAL])->widget(Select2::classname(), [
                 'data' => $arrFeature,
                 'options' => ['placeholder' => Yii::t('app', 'Is feature?')],
                 'pluginOptions' => [
                     'allowClear' => true,
                 ],
-            ]) ?>
-            <?= $form->field($model, 'quantity')->textInput(['type' => 'number']) ?>
+            ])->hint('Cho phép hiển thị trên dòng sản phẩm nổi bật') ?>
+            <?= $form->field($model, 'quantity', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Số lượng sản phẩm nhập về trong kho, khi số lượng về 0, khách hàng không thể đặt mua sản phẩm nữa. Mặc định: Thông thường') ?>
         </div>
         <div class="col-12 col-md-9 border-start ps-3">
             <?= $form->field($model, 'file')->widget(FileInput::classname(), [

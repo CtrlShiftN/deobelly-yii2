@@ -424,6 +424,5 @@ return [
     'Update Color' => 'Chỉnh Sửa Màu Sắc',
     'Discount' => 'Giảm Giá',
     'Visibility' => 'Hiển Thị',
-    'Visible' => 'Hiển Thị',
-    'Invisible' => '',
+    'Is feature?' => 'Nổi bật'
 ];

@@ -11,8 +11,12 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 $imgUrl = Yii::$app->params['common'] . '/media';
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
-$arrHide = [Yii::t('app', 'Visible'), Yii::t('app', 'Invisible')];
+$arrHide = [Yii::t('app', 'Show'), Yii::t('app', 'Hide')];
 $arrFeature = [Yii::t('app', 'Featured'), Yii::t('app', 'Non-featured')];
+$modelColor = $model['color'];
+$modelSize = $model['size'];
+$modelType = $model['type'];
+$modelCate = $model['category'];
 ?>
 <div class="product-view py-4">
     <?php
@@ -33,8 +37,64 @@ $arrFeature = [Yii::t('app', 'Featured'), Yii::t('app', 'Non-featured')];
             'value' => $model->SKU,
         ],
         [
+            'attribute' => 'color',
+            'value' => function ($model) use ($color, $modelColor) {
+                $html = '';
+                $arrColors = explode(',', $modelColor);
+                foreach ($arrColors as $key => $colors) {
+                    $html .= '<div class="badge badge-info me-3 p-2">' . $color[$colors] . '</div>';
+                }
+                return $html;
+            },
+            'type' => DetailView::INPUT_SELECT2,
+            'widgetOptions' => [
+                'data' => $color,
+                'options' => ['placeholder' => '-- ' . Yii::t('app', 'Color') . ' --'],
+                'pluginOptions' => ['allowClear' => true, 'multiple' => true]
+            ],
+            'format' => 'raw'
+        ],
+        [
+            'attribute' => 'size',
+            'value' => function ($model) use ($size, $modelSize) {
+                $html = '';
+                $arrSize = explode(',', $modelSize);
+                foreach ($arrSize as $key => $sizes) {
+                    $html .= '<div class="badge badge-info me-3 p-2">' . $size[$sizes] . '</div>';
+                }
+                return $html;
+            },
+            'type' => DetailView::INPUT_SELECT2,
+            'widgetOptions' => [
+                'data' => $size,
+                'options' => ['placeholder' => '-- ' . Yii::t('app', 'Size') . ' --'],
+                'pluginOptions' => ['allowClear' => true, 'multiple' => true]
+            ],
+            'format' => 'raw'
+        ],
+        [
+            'attribute' => 'type',
+            'value' => function ($model) use ($type, $modelType) {
+                $html = '';
+                $arrType = explode(',', $modelType);
+                foreach ($arrType as $key => $types) {
+                    $html .= '<div class="badge badge-info me-3 p-2">' . $type[$types] . '</div>';
+                }
+                return $html;
+            },
+            'type' => DetailView::INPUT_SELECT2,
+            'widgetOptions' => [
+                'data' => $type,
+                'options' => ['placeholder' => '-- ' . Yii::t('app', 'Product Types') . ' --'],
+                'pluginOptions' => ['allowClear' => true, 'multiple' => true]
+            ],
+            'format' => 'raw'
+        ],
+        [
             'attribute' => 'short_description',
             'value' => strip_tags($model->short_description),
+            'type' => 'widget',
+            'widgetOptions' => ['class' => \yii\redactor\widgets\Redactor::class],
             'format' => 'raw'
         ],
         [
@@ -59,7 +119,13 @@ $arrFeature = [Yii::t('app', 'Featured'), Yii::t('app', 'Non-featured')];
         ],
         [
             'attribute' => 'trademark_id',
+            'type' => DetailView::INPUT_SELECT2,
             'value' => $trademark[$model->trademark_id],
+            'widgetOptions' => [
+                'data' => $trademark,
+                'options' => ['placeholder' => '-- ' . Yii::t('app', 'Trademark') . ' --'],
+                'pluginOptions' => ['allowClear' => true]
+            ],
         ],
         [
             'attribute' => 'hide',
@@ -75,6 +141,12 @@ $arrFeature = [Yii::t('app', 'Featured'), Yii::t('app', 'Non-featured')];
         [
             'attribute' => 'is_feature',
             'value' => $arrFeature[$model->is_feature],
+            'type' => DetailView::INPUT_SELECT2,
+            'widgetOptions' => [
+                'data' => $arrFeature,
+                'options' => ['placeholder' => '-- ' . Yii::t('app', 'Is featured?') . ' --'],
+                'pluginOptions' => ['allowClear' => true]
+            ],
         ],
         [
             'attribute' => 'created_at',
