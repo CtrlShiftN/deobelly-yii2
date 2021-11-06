@@ -151,8 +151,23 @@ class ProductController extends Controller
             }
             $model->admin_id = Yii::$app->user->identity->getId();
             $model->updated_at = date('Y-m-d H:i:s');
+            $model->related_product = (!empty($model->relatedProduct)) ? implode(',', $model->relatedProduct) : null;
             // assoc
-            if ($model->save(false)) {
+            if (!empty($model->type)) {
+                $assocModel->type_id = implode(',', $model->type);
+            }
+            if (!empty($model->category)) {
+                $assocModel->category_id = $model->category;
+            }
+            if (!empty($model->color)) {
+                $assocModel->color_id = implode(',', $model->color);
+            }
+            if (!empty($model->size)) {
+                $assocModel->size_id = implode(',', $model->size);
+            }
+            $assocModel->admin_id = Yii::$app->user->identity->getId();
+            $assocModel->updated_at = date('Y-m-d H:i:s');
+            if ($model->save(false) && $assocModel->save(false)) {
                 Yii::$app->session->setFlash('kv-detail-success', 'Color updated!');
             } else {
                 Yii::$app->session->setFlash('kv-detail-warning', $model->status);
@@ -200,7 +215,7 @@ class ProductController extends Controller
                     $model->sale_price = $model->regular_price * (100 - $model->discount) / 100;
                     $model->selling_price = $model->sale_price;
                 }
-                $model->related_product = !empty($model->relatedProduct) ? implode(",", $model->relatedProduct) : null;
+                $model->related_product = (!empty($model->relatedProduct)) ? implode(',', $model->relatedRecords) : null;
                 $model->image = 'product/' . implode("-", $model->type) . '_' . $model->category . '_' . $model->slug . '.' . $model->file->getExtension();
                 $model->admin_id = Yii::$app->user->identity->getId();
                 $model->created_at = date('Y-m-d H:i:s');
@@ -221,10 +236,10 @@ class ProductController extends Controller
                     }
                 }
                 $model->images = implode(",", $arrImages);
-                $typeStr = implode(",", $model->type);
+                $typeStr = (!empty($model->type)) ? implode(',', $model->type) : null;
                 $cateStr = $model->category;
-                $colorStr = implode(",", $model->color);
-                $sizeStr = implode(",", $model->size);
+                $colorStr = (!empty($model->color)) ? implode(',', $model->color) : null;
+                $sizeStr = (!empty($model->size)) ? implode(',', $model->size) : null;
                 if ($model->save(false)) {
                     $assocModel->product_id = $model->id;
                     $assocModel->type_id = $typeStr;

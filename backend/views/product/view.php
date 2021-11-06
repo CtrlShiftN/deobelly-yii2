@@ -17,8 +17,9 @@ $modelColor = $model['color'];
 $modelSize = $model['size'];
 $modelType = $model['type'];
 $modelCate = $model['category'];
+$modelRelated = $model->related_product;
 ?>
-<div class="product-view py-4">
+<div class="product-view p-4">
     <?php
     $columns = [
         [
@@ -86,6 +87,40 @@ $modelCate = $model['category'];
             'widgetOptions' => [
                 'data' => $type,
                 'options' => ['placeholder' => '-- ' . Yii::t('app', 'Product Types') . ' --'],
+                'pluginOptions' => ['allowClear' => true, 'multiple' => true]
+            ],
+            'format' => 'raw'
+        ],
+        [
+            'attribute' => 'category',
+            'value' => '<div class="badge badge-info me-3 p-2">' . $productCate[$modelCate] . '</div>',
+            'type' => DetailView::INPUT_SELECT2,
+            'widgetOptions' => [
+                'data' => $productCate,
+                'options' => ['placeholder' => '-- ' . Yii::t('app', 'Product Categories') . ' --'],
+                'pluginOptions' => ['allowClear' => true]
+            ],
+            'format' => 'raw'
+        ],
+        [
+            'attribute' => 'relatedProduct',
+            'value' => function ($model) use ($products, $modelRelated) {
+                if (!empty($modelRelated)) {
+                    $arrRelated = explode(',', $modelRelated);
+                    $html = '<ol class="mb-0">';
+                    foreach ($arrRelated as $key => $relatedProduct) {
+                        $html .= '<li>' . $products[$relatedProduct] . '</li>';
+                    }
+                    $html .= '</ol>';
+                } else {
+                    $html = null;
+                }
+                return $html;
+            },
+            'type' => DetailView::INPUT_SELECT2,
+            'widgetOptions' => [
+                'data' => $products,
+                'options' => ['placeholder' => '-- ' . Yii::t('app', 'Related Products') . ' --'],
                 'pluginOptions' => ['allowClear' => true, 'multiple' => true]
             ],
             'format' => 'raw'
