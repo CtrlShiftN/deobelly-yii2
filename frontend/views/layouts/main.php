@@ -188,7 +188,7 @@ AppAsset::register($this);
                                                 </div>
                                             </div>
                                             <div class="col-9 ps-2 text-light">
-                                                <h5 class="m-0 sidebar-user-name"><?= Yii::$app->user->identity->name ?> abdas ádbda</h5>
+                                                <h5 class="m-0 sidebar-user-name"><?= Yii::$app->user->identity->name ?></h5>
                                                 <span><i class="fas fa-circle success-icon"></i></span>
                                                 Online
                                             </div>
