@@ -37,7 +37,7 @@ return [
     'Terms & Service' => 'Điều khoản & Dịch vụ',
     'Contact' => 'Liên hệ',
     'Hi,' => 'Xin chào,',
-    'Guest' => 'Quý khách',
+    'Guest' => 'Khách',
     'Product' => 'Sản Phẩm',
     'Men' => 'Nam',
     'Women' => 'Nữ',
@@ -424,5 +424,6 @@ return [
     'Update Color' => 'Chỉnh Sửa Màu Sắc',
     'Discount' => 'Giảm Giá',
     'Visibility' => 'Hiển Thị',
-    'Is feature?' => 'Nổi bật'
+    'Is feature?' => 'Nổi bật',
+    'Login/Signup' => 'Đăng nhập/Đăng ký'
 ];
