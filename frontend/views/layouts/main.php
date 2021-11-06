@@ -240,7 +240,7 @@ AppAsset::register($this);
                                                                             <li class="nav-item">
                                                                                 <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                                                                                    class="nav-link d-block">
-                                                                                    <p></i> <?= $value['name'] ?></p>
+                                                                                    <p><?= $value['name'] ?></p>
                                                                                 </a>
                                                                             </li>
                                                                         <?php endif; ?>
@@ -313,8 +313,8 @@ AppAsset::register($this);
                             </div>
                             <!-- End Sidebar -->
                         </div>
-                        <div class="main-nav-left col-10 col-sm-10 col-lg-2 text-center text-sm-center text-lg-start">
-                            <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
+                        <div class="main-nav-left <?= (count($mainType) > 6) ? 'col-11 col-sm-11 col-lg-12 col-xxl-2' : 'col-10 col-sm-10 col-lg-2' ?>  text-center text-sm-center text-lg-start">
+                            <div class="d-flex align-items-center justify-content-center <?= (count($mainType) > 6) ? 'justify-content-xxl-start' : 'justify-content-lg-start' ?>">
                                 <a href="<?= Url::home() ?>"
                                    class="logo-align text-decoration-none">
                                     <img src="<?= $cdnUrl ?>/img/home.png">
@@ -329,7 +329,7 @@ AppAsset::register($this);
                                 </a>
                             </div>
                         </div>
-                        <div class="main-nav-right col-1 col-sm-1 col-lg-10 text-end">
+                        <div class="main-nav-right col-1 col-sm-1 col-lg-10 text-end <?= (count($mainType) > 6) ? 'd-none d-xxl-inline-block col-xxl-10' : '' ?>">
                             <ul class="site-nav mb-0 ps-0 d-none d-sm-none d-lg-inline-block" id="main-menu">
                                 <?php foreach ($mainType as $key => $value): ?>
                                     <?php if ($value['segment'] != SystemConstant::SEGMENT_CASUAL): ?>
@@ -371,7 +371,7 @@ AppAsset::register($this);
                         </a>
                     </div>
                 </nav>
-                <nav class="d-none d-md-flex d-lg-none align-items-center justify-content-center nav-tablet bg-white border-top border-bottom">
+                <nav class="d-none d-md-flex <?= (count($mainType) > 6) ? 'd-xxl-none' : 'd-lg-none' ?> align-items-center justify-content-center nav-tablet bg-white border-top border-bottom">
                     <?php foreach ($mainType as $key => $value): ?>
                         <?php if ($value['segment'] != SystemConstant::SEGMENT_CASUAL): ?>
                             <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?> px-2">
@@ -382,14 +382,14 @@ AppAsset::register($this);
                                     <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                                        class="site-nav-link">
                                         <?php endif; ?>
-                                        <span><?= $value['name'] ?></span>
+                                        <p class="m-0 text-center"><?= $value['name'] ?></p>
                                     </a>
                             </li>
                         <?php else: ?>
                             <li class="nav-item px-2">
                                 <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                                    class="site-nav-link">
-                                    <span><?= $value['name'] ?></span>
+                                    <p class="m-0 text-center"><?= $value['name'] ?></p>
                                 </a>
                             </li>
                         <?php endif; ?>

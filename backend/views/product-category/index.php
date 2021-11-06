@@ -77,10 +77,17 @@ $commonUrl = Yii::$app->params['common'];
                     $html = "";
                     foreach (explode(',', $model['type_id']) as $type) {
                         if ($type != \common\components\SystemConstant::PRODUCT_TYPE_NEW) { // ignore New product type
-                            $html .= '<span class="badge bg-info me-2">' . $arrTypes[$type] . '</span>';
+                            if (!empty($arrTypes[$type])) {
+                                $html .= '<span class="badge bg-info me-2">' . $arrTypes[$type] . '</span>';
+                            }
                         }
                     }
-                    return $html;
+
+                    if(!empty($model['type_id'])){
+                        return $html;
+                    } else {
+                        return null;
+                    }
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 // list all type except new
