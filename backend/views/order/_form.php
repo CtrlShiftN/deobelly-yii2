@@ -1,6 +1,7 @@
 <?php
 
 use kartik\depdrop\DepDrop;
+use kartik\form\ActiveField;
 use kartik\form\ActiveForm;
 use kartik\select2\Select2;
 use yii\helpers\Html;
@@ -19,13 +20,13 @@ $arrLogisticMethod = [Yii::t('app', 'Home delivery'), Yii::t('app', 'Pick up at 
 
     <div class="row">
         <div class="col-12 col-md-3">
-            <?= $form->field($model, 'user_id')->widget(Select2::classname(), [
+            <?= $form->field($model, 'user_id', ['hintType' => ActiveField::HINT_SPECIAL])->widget(Select2::classname(), [
                 'data' => \yii\helpers\ArrayHelper::map($users, 'id', 'name'),
                 'options' => ['placeholder' => Yii::t('app', 'Choose a customer')],
                 'pluginOptions' => [
                     'allowClear' => true
                 ],
-            ])->label(Yii::t('app', 'Customer')); ?>
+            ])->label(Yii::t('app', 'Customer'))->hint('Tài khoản của khách hàng đã có sẵn trên hệ thống, hoặc, một nhân viên nào đó của shop có thể đặt hàng giúp người thân, bạn bè, đối tác,...'); ?>
         </div>
         <div class="col-12 col-md-3">
             <?= $form->field($model, 'name')->textInput(['placeholder' => Yii::t('app', 'Họ và tên')]) ?>
