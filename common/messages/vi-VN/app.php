@@ -37,7 +37,7 @@ return [
     'Terms & Service' => 'Điều khoản & Dịch vụ',
     'Contact' => 'Liên hệ',
     'Hi,' => 'Xin chào,',
-    'Guest' => 'Quý khách',
+    'Guest' => 'Khách',
     'Product' => 'Sản Phẩm',
     'Men' => 'Nam',
     'Women' => 'Nữ',

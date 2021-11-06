@@ -42,8 +42,11 @@ AppAsset::register($this);
             footer .footer-content {
                 background: url('<?= $cdnUrl?>/img/footer_bg.png') no-repeat;
             }
-            .sidebar-nav .accordion-button:not(.collapsed)::after,.sidebar-nav .accordion-button::after {
-                background-image: url('<?= Url::toRoute('img/arrow-up.png') ?>') !important;
+            .sidebar-nav .accordion-button:not(.collapsed)::after {
+                background-image: url('<?= Url::toRoute('img/arrow-up-black.png') ?>') !important;
+            }
+            .sidebar-nav .accordion-button::after {
+                background-image: url('<?= Url::toRoute('img/arrow-up-white.png') ?>') !important;
             }
         </style>
     </head>
@@ -177,58 +180,27 @@ AppAsset::register($this);
                                 <div class="offcanvas-body bg-gradient-dark d-block px-0 pt-0">
                                     <?php if (!Yii::$app->user->isGuest) : ?>
                                         <!-- User -->
-                                        <div class="d-flex align-items-center px-2 py-3">
-                                            <div class="col-3">
+                                        <div class="d-flex align-items-center p-3">
+                                            <div class="col-3 p-0">
                                                 <div class="user__avatar img-circle">
                                                     <!-- Avatar image -->
-                                                    <img class="user__avatar_image w-100"
-                                                         src="https://avatarfiles.alphacoders.com/131/thumb-131310.jpg"/>
+                                                    <i class="far fa-user text-light fa-2x"></i>
                                                 </div>
                                             </div>
-                                            <div class="col-9 px-2 text-light">
-                                                <h5 class="m-0 sidebar-user-name"><?= Yii::$app->user->identity->name ?></h5>
+                                            <div class="col-9 ps-2 text-light">
+                                                <h5 class="m-0 sidebar-user-name"><?= Yii::$app->user->identity->name ?> abdas ádbda</h5>
                                                 <span><i class="fas fa-circle success-icon"></i></span>
                                                 Online
                                             </div>
                                         </div>
                                         <!-- End user -->
                                         <!-- Login & signup -->
-                                    <?php else : ?>
-                                        <div class="d-flex align-items-center px-2 py-3">
-                                            <div class="col-4">
-                                                <div class="text-white">
-                                                    <i class="fas fa-user-secret fa-3x"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-8 pe-0 text-light">
-                                                <p class="m-0"><?= Yii::t('app', 'Hi,') ?></p>
-                                                <h5 class="m-0"><?= Yii::t('app', 'Guest') ?></h5>
-                                            </div>
-                                        </div>
                                     <?php endif; ?>
                                     <!-- sm,md Navbar -->
                                     <div class="mobile-navbar border-light border-top">
                                         <nav class="sidebar-nav">
                                             <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column"
                                                 data-widget="treeview" role="menu">
-                                                <li class="nav-item bg-light border-bottom sidebar-link-home">
-                                                    <a href="<?= Url::toRoute('site/') ?>"
-                                                       class="logo-align text-uppercase d-block text-decoration-none <?= ($controller == 'site' && $action != 'luxury' && $action != 'casual') ? 'd-none' : '' ?>">
-                                                        <p class="title-classify fs-2 text-center m-0"><i class="fas fa-home pe-2"></i> home</p>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item bg-light border-bottom">
-                                                    <a href="<?= Url::toRoute('site/casual') ?>"
-                                                       class="logo-align text-uppercase d-block text-decoration-none <?= ($controller == 'site' && $action == 'luxury') ? 'd-none' : '' ?>">
-                                                        <p class="title-classify fs-2 text-center m-0">casual</p>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item bg-light border-bottom">
-                                                    <a href="<?= Url::toRoute('site/luxury') ?>"
-                                                       class="logo-align text-uppercase d-block text-decoration-none <?= ($controller == 'site' && $action == 'casual') ? 'd-none' : '' ?>">
-                                                        <p class="title-classify fs-2 text-center m-0">luxury</p>
-                                                    </a>
-                                                </li>
                                                 <li class="nav-item border-bottom border-light">
                                                     <a href="<?= Url::toRoute('site/our-stories') ?>" class="nav-link text-uppercase p-3">
                                                         <p class="m-0 fs__15px"><?= Yii::t('app', 'Introduction') ?></p>
@@ -238,10 +210,10 @@ AppAsset::register($this);
                                                     <div class="accordion" id="accordionExample">
                                                         <div class="accordion-item border-0 rounded-0">
                                                                 <button class="accordion-button p-0 bg-transparent text-light text-uppercase collapsed p-3 fw-bold fs__15px" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                                                    sản phẩm
+                                                                    shop
                                                                 </button>
                                                             <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                                                                <ul class="nav-treeview px-3">
+                                                                <ul class="nav-treeview px-3 list-unstyled">
                                                                     <?php foreach ($mainType as $key => $value): ?>
                                                                         <?php if ($value['segment'] != SystemConstant::SEGMENT_CASUAL): ?>
                                                                             <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
@@ -252,14 +224,14 @@ AppAsset::register($this);
                                                                                     <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                                                                                        class="nav-link">
                                                                                         <?php endif; ?>
-                                                                                        <p><i class="far fa-circle nav-icon me-2"></i><?= $value['name'] ?> <sup><small class="badge bg-secondary text-uppercase">Luxury</small></sup></p>
+                                                                                        <p><?= $value['name'] ?> <sup><small class="badge bg-secondary text-uppercase">Luxury</small></sup></p>
                                                                                     </a>
                                                                             </li>
                                                                         <?php else: ?>
                                                                             <li class="nav-item">
                                                                                 <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                                                                                    class="nav-link d-block">
-                                                                                    <p><i class="far fa-circle nav-icon me-2"></i> <?= $value['name'] ?></p>
+                                                                                    <p></i> <?= $value['name'] ?></p>
                                                                                 </a>
                                                                             </li>
                                                                         <?php endif; ?>
@@ -327,12 +299,12 @@ AppAsset::register($this);
                                     <img src="<?= $cdnUrl ?>/img/home.png">
                                 </a>
                                 <a href="<?= Url::toRoute('site/casual') ?>"
-                                   class="logo-align d-none d-md-block text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'luxury') ? 'd-none' : '' ?>">
-                                    <span class="title-classify">casual</span>
+                                   class="logo-align d-none text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'luxury') ? 'd-none' : 'd-md-block' ?>">
+                                    <span class="title-classify text-lighter-black py-2">casual</span>
                                 </a>
                                 <a href="<?= Url::toRoute('site/luxury') ?>"
-                                   class="logo-align d-none d-md-block text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'casual') ? 'd-none' : '' ?>">
-                                    <span class="title-classify">luxury</span>
+                                   class="logo-align d-none text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'casual') ? 'd-none' : 'd-md-block' ?>">
+                                    <span class="title-classify text-lighter-black py-2">luxury</span>
                                 </a>
                             </div>
                         </div>
@@ -362,6 +334,20 @@ AppAsset::register($this);
                                 <?php endforeach; ?>
                             </ul>
                         </div>
+                    </div>
+                </nav>
+                <nav class="w-100 row p-0 m-0 d-md-none bg-white border-top border-bottom">
+                    <div class="col-6 m-0 p-0 ">
+                        <a href="<?= Url::toRoute('site/casual') ?>"
+                           class="logo-align w-100 text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'luxury') ? 'classify-inactive' : '' ?> <?= ($controller == 'site' && $action == 'casual') ? 'classify-active' : 'text-lighter-black' ?>">
+                            <span class="title-classify py-1">casual</span>
+                        </a>
+                    </div>
+                    <div class="col-6 m-0 p-0">
+                        <a href="<?= Url::toRoute('site/luxury') ?>"
+                           class="logo-align w-100 text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'casual') ? 'classify-inactive' : '' ?> <?= ($controller == 'site' && $action == 'luxury') ? 'classify-active' : 'text-lighter-black' ?>">
+                            <span class="title-classify py-1">luxury</span>
+                        </a>
                     </div>
                 </nav>
                 <nav class="d-none d-md-flex d-lg-none align-items-center justify-content-center nav-tablet bg-white border-top border-bottom">
