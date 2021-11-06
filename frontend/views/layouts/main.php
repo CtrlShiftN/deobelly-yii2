@@ -42,9 +42,11 @@ AppAsset::register($this);
             footer .footer-content {
                 background: url('<?= $cdnUrl?>/img/footer_bg.png') no-repeat;
             }
+
             .sidebar-nav .accordion-button:not(.collapsed)::after {
                 background-image: url('<?= Url::toRoute('img/arrow-up-black.png') ?>') !important;
             }
+
             .sidebar-nav .accordion-button::after {
                 background-image: url('<?= Url::toRoute('img/arrow-up-white.png') ?>') !important;
             }
@@ -202,17 +204,22 @@ AppAsset::register($this);
                                             <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column"
                                                 data-widget="treeview" role="menu">
                                                 <li class="nav-item border-bottom border-light">
-                                                    <a href="<?= Url::toRoute('site/our-stories') ?>" class="nav-link text-uppercase p-3">
+                                                    <a href="<?= Url::toRoute('site/our-stories') ?>"
+                                                       class="nav-link text-uppercase p-3">
                                                         <p class="m-0 fs__15px"><?= Yii::t('app', 'Introduction') ?></p>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item has-treeview border-bottom border-light">
                                                     <div class="accordion" id="accordionExample">
                                                         <div class="accordion-item border-0 rounded-0">
-                                                                <button class="accordion-button p-0 bg-transparent text-light text-uppercase collapsed p-3 fw-bold fs__15px" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                                                    shop
-                                                                </button>
-                                                            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                                            <button class="accordion-button p-0 bg-transparent text-light text-uppercase collapsed p-3 fw-bold fs__15px"
+                                                                    type="button" data-bs-toggle="collapse"
+                                                                    data-bs-target="#collapseOne" aria-expanded="false"
+                                                                    aria-controls="collapseOne">
+                                                                shop
+                                                            </button>
+                                                            <div id="collapseOne" class="accordion-collapse collapse"
+                                                                 data-bs-parent="#accordionExample">
                                                                 <ul class="nav-treeview px-3 list-unstyled">
                                                                     <?php foreach ($mainType as $key => $value): ?>
                                                                         <?php if ($value['segment'] != SystemConstant::SEGMENT_CASUAL): ?>
@@ -224,7 +231,9 @@ AppAsset::register($this);
                                                                                     <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                                                                                        class="nav-link">
                                                                                         <?php endif; ?>
-                                                                                        <p><?= $value['name'] ?> <sup><small class="badge bg-secondary text-uppercase">Luxury</small></sup></p>
+                                                                                        <p><?= $value['name'] ?>
+                                                                                            <sup><small class="badge bg-secondary text-uppercase">Luxury</small></sup>
+                                                                                        </p>
                                                                                     </a>
                                                                             </li>
                                                                         <?php else: ?>
@@ -242,44 +251,56 @@ AppAsset::register($this);
                                                     </div>
                                                 </li>
                                                 <li class="nav-item border-bottom border-light <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
-                                                    <a href="<?= Url::toRoute('tailor-made/') ?>" class="nav-link text-uppercase p-3">
-                                                        <p class="m-0 fs__15px"><?= Yii::t('app', 'Tailor-made') ?> <sup><small class="badge bg-secondary text-uppercase">Luxury</small></sup></p>
+                                                    <a href="<?= Url::toRoute('tailor-made/') ?>"
+                                                       class="nav-link text-uppercase p-3">
+                                                        <p class="m-0 fs__15px"><?= Yii::t('app', 'Tailor-made') ?>
+                                                            <sup><small class="badge bg-secondary text-uppercase">Luxury</small></sup>
+                                                        </p>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item border-bottom border-light <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
-                                                    <a href="<?= Url::toRoute('mix-and-match/') ?>" class="nav-link text-uppercase p-3">
-                                                        <p class="m-0 fs__15px"><?= Yii::t('app', 'Collections') ?> <sup><small class="badge bg-secondary text-uppercase">Luxury</small></sup></p>
+                                                    <a href="<?= Url::toRoute('mix-and-match/') ?>"
+                                                       class="nav-link text-uppercase p-3">
+                                                        <p class="m-0 fs__15px"><?= Yii::t('app', 'Collections') ?>
+                                                            <sup><small class="badge bg-secondary text-uppercase">Luxury</small></sup>
+                                                        </p>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item border-bottom border-light">
-                                                    <a href="<?= Url::toRoute('showroom/') ?>" class="nav-link text-uppercase p-3">
+                                                    <a href="<?= Url::toRoute('showroom/') ?>"
+                                                       class="nav-link text-uppercase p-3">
                                                         <p class="m-0 fs__15px"><?= Yii::t('app', 'Showroom') ?></p>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item border-bottom border-light">
-                                                    <a href="<?= Url::toRoute('post/') ?>" class="nav-link text-uppercase p-3">
+                                                    <a href="<?= Url::toRoute('post/') ?>"
+                                                       class="nav-link text-uppercase p-3">
                                                         <p class="m-0 fs__15px"><?= Yii::t('app', 'News') ?></p>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item border-bottom border-light">
-                                                    <a href="<?= Url::toRoute('site/terms') ?>" class="nav-link text-uppercase p-3">
+                                                    <a href="<?= Url::toRoute('site/terms') ?>"
+                                                       class="nav-link text-uppercase p-3">
                                                         <p class="m-0 fs__15px"><?= Yii::t('app', 'Policy') ?></p>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item border-bottom border-light">
-                                                    <a href="<?= Url::toRoute('site/contact') ?>" class="nav-link text-uppercase p-3">
+                                                    <a href="<?= Url::toRoute('site/contact') ?>"
+                                                       class="nav-link text-uppercase p-3">
                                                         <p class="m-0 fs__15px"><?= Yii::t('app', 'Contact') ?></p>
                                                     </a>
                                                 </li>
                                                 <?php if (!Yii::$app->user->isGuest) : ?>
                                                     <li class="nav-item border-bottom border-light">
-                                                        <a href="<?= Url::toRoute('site/logout?ref=' . Yii::$app->request->url) ?>" class="nav-link text-uppercase p-3">
+                                                        <a href="<?= Url::toRoute('site/logout?ref=' . Yii::$app->request->url) ?>"
+                                                           class="nav-link text-uppercase p-3">
                                                             <p class="m-0 fs__15px"><?= Yii::t('app', 'Logout') ?></p>
                                                         </a>
                                                     </li>
                                                 <?php else : ?>
                                                     <li class="nav-item border-bottom border-light">
-                                                        <a href="<?= Url::toRoute('site/login?ref=' . Yii::$app->request->url) ?>" class="nav-link text-uppercase p-3">
+                                                        <a href="<?= Url::toRoute('site/login?ref=' . Yii::$app->request->url) ?>"
+                                                           class="nav-link text-uppercase p-3">
                                                             <p class="m-0 fs__15px"><?= Yii::t('app', 'Login/Signup') ?></p>
                                                         </a>
                                                     </li>
