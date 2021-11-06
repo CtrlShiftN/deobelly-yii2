@@ -8,8 +8,10 @@ use backend\models\Order;
 use backend\models\OrderSearch;
 use backend\models\Product;
 use backend\models\Size;
+use backend\models\TrackingStatus;
 use backend\models\User;
 use common\components\encrypt\CryptHelper;
+use common\components\SystemConstant;
 use Yii;
 use yii\db\Query;
 use yii\filters\AccessControl;
@@ -74,6 +76,8 @@ class OrderController extends Controller
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
         $arrOrder = $dataProvider->query->all();
+        $arrUser = User::getAllUser();
+        $arrProduct = Product::getAllProduct();
         if (Yii::$app->request->post('hasEditable')) {
             // which rows has been edited?
             $_key = $_POST['editableKey'];
@@ -100,6 +104,8 @@ class OrderController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'users' => ArrayHelper::map($arrUser, 'id', 'name'),
+            'products' => ArrayHelper::map($arrProduct, 'id', 'name'),
         ]);
     }
 
@@ -112,8 +118,28 @@ class OrderController extends Controller
     public function actionView($id)
     {
         $id = CryptHelper::decryptString($id);
+        $model = $this->findModel($id);
+        $arrCustomer = User::getAllCustomer();
+        $arrTrackingStatus = TrackingStatus::getAllStatus();
+        $post = Yii::$app->request->post();
+        // return messages on update of record
+        if ($model->load($post)) {
+            $model->address = $model->specific_address . ', ' .
+                \frontend\models\GeoLocation::getNameGeoLocationById($model->village_id) . ', ' .
+                \frontend\models\GeoLocation::getNameGeoLocationById($model->district_id) . ', ' .
+                \frontend\models\GeoLocation::getNameGeoLocationById($model->province_id);
+            $model->admin_id = Yii::$app->user->identity->getId();
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save(false)) {
+                Yii::$app->session->setFlash('kv-detail-success', 'Cập nhật thành công!');
+            } else {
+                Yii::$app->session->setFlash('kv-detail-warning', $model->status);
+            }
+        }
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'customers' => ArrayHelper::map($arrCustomer, 'id', 'name'),
+            'trackingStatus' => ArrayHelper::map($arrTrackingStatus, 'id', 'name'),
         ]);
     }
 
@@ -133,23 +159,11 @@ class OrderController extends Controller
         $locations = ArrayHelper::map(GeoLocation::getAllGeoLocation(), 'id', 'name');
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
-                $model->user_id = $model['user_id'];
-                $model->product_id = $model['product_id'];
-                $model->color_id = $model['color_id'];
-                $model->size_id = $model['size_id'];
-                $model->quantity = $model['quantity'];
-                $model->province_id = $model['province_id'];
-                $model->district_id = $model['district_id'];
-                $model->village_id = $model['village_id'];
-                $model->specific_address = $model['specific_address'];
                 $model->address = $model['specific_address'] . ', ' . \frontend\models\GeoLocation::getNameGeoLocationById($model['village_id']) . ', ' . \frontend\models\GeoLocation::getNameGeoLocationById($model['district_id']) . ', ' . \frontend\models\GeoLocation::getNameGeoLocationById($model['province_id']);
-                $model->notes = $model['notes'];
-                $model->name = $model['name'];
-                $model->email = $model['email'];
-                $model->tel = $model['tel'];
                 $model->admin_id = Yii::$app->user->identity->getId();
                 $model->created_at = date('Y-m-d H:i:s');
                 $model->updated_at = date('Y-m-d H:i:s');
+                $model->status = SystemConstant::STATUS_ACTIVE;
                 if ($model->save()) {
                     return $this->redirect(Url::toRoute('order/'));
                 }
@@ -199,7 +213,8 @@ class OrderController extends Controller
     public function actionDelete($id)
     {
         $id = CryptHelper::decryptString($id);
-        $this->findModel($id)->delete();
+        // Not allow anyone to delete
+//        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }

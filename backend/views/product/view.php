@@ -40,10 +40,18 @@ $modelRelated = $model->related_product;
         [
             'attribute' => 'color',
             'value' => function ($model) use ($color, $modelColor) {
-                $html = '';
-                $arrColors = explode(',', $modelColor);
-                foreach ($arrColors as $key => $colors) {
-                    $html .= '<div class="badge badge-info me-3 p-2">' . $color[$colors] . '</div>';
+                if (!empty($modelColor)) {
+                    $html = '';
+                    if (is_array($modelColor)) {
+                        $arrColors = $modelColor;
+                    } else {
+                        $arrColors = explode(',', $modelColor);
+                    }
+                    foreach ($arrColors as $key => $colors) {
+                        $html .= '<div class="badge badge-info me-3 p-2">' . $color[$colors] . '</div>';
+                    }
+                } else {
+                    $html = null;
                 }
                 return $html;
             },
@@ -58,10 +66,18 @@ $modelRelated = $model->related_product;
         [
             'attribute' => 'size',
             'value' => function ($model) use ($size, $modelSize) {
-                $html = '';
-                $arrSize = explode(',', $modelSize);
-                foreach ($arrSize as $key => $sizes) {
-                    $html .= '<div class="badge badge-info me-3 p-2">' . $size[$sizes] . '</div>';
+                if (!empty($modelSize)) {
+                    $html = '';
+                    if (is_array($modelSize)) {
+                        $arrSize = $modelSize;
+                    } else {
+                        $arrSize = explode(',', $modelSize);
+                    }
+                    foreach ($arrSize as $key => $sizes) {
+                        $html .= '<div class="badge badge-info me-3 p-2">' . $size[$sizes] . '</div>';
+                    }
+                } else {
+                    $html = null;
                 }
                 return $html;
             },
@@ -76,10 +92,18 @@ $modelRelated = $model->related_product;
         [
             'attribute' => 'type',
             'value' => function ($model) use ($type, $modelType) {
-                $html = '';
-                $arrType = explode(',', $modelType);
-                foreach ($arrType as $key => $types) {
-                    $html .= '<div class="badge badge-info me-3 p-2">' . $type[$types] . '</div>';
+                if (!empty($modelType)) {
+                    $html = '';
+                    if (is_array($modelType)) {
+                        $arrType = $modelType;
+                    } else {
+                        $arrType = explode(',', $modelType);
+                    }
+                    foreach ($arrType as $key => $types) {
+                        $html .= '<div class="badge badge-info me-3 p-2">' . $type[$types] . '</div>';
+                    }
+                } else {
+                    $html = null;
                 }
                 return $html;
             },
@@ -155,7 +179,7 @@ $modelRelated = $model->related_product;
         [
             'attribute' => 'trademark_id',
             'type' => DetailView::INPUT_SELECT2,
-            'value' => $trademark[$model->trademark_id],
+            'value' => (!empty($trademark[$model->trademark_id])) ? $trademark[$model->trademark_id] : null,
             'widgetOptions' => [
                 'data' => $trademark,
                 'options' => ['placeholder' => '-- ' . Yii::t('app', 'Trademark') . ' --'],

@@ -44,8 +44,15 @@ class ProductType extends \common\models\ProductType
             [['name'], 'unique', 'targetClass' => ProductType::className()],
             [['slug'], 'unique', 'targetClass' => ProductType::className()],
             ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg', 'on' => 'create'],
-            ['file', 'required', 'on' => 'create']
+//            ['file', 'required', 'on' => 'create']
         ];
+    }
+
+    public function checkEmpty()
+    {
+        if (empty($this->file)) {
+            $this->addError('file', Yii::t('app', 'This name has already been used.'));
+        }
     }
 
     /**

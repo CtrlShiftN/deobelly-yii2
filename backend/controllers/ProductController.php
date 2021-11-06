@@ -192,6 +192,7 @@ class ProductController extends Controller
     public function actionCreate()
     {
         $model = new Product();
+        $model->scenario = 'create';
         $assocModel = new ProductAssoc();
         $arrColor = Color::getAllColor();
         $arrSize = Size::getAllSize();

@@ -9,7 +9,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Order */
 /* @var $form yii\widgets\ActiveForm */
-$arrLogisticMethod = [Yii::t('app','Home delivery'),Yii::t('app','Pick up at the store')];
+$arrLogisticMethod = [Yii::t('app', 'Home delivery'), Yii::t('app', 'Pick up at the store')];
 ?>
 
 <div class="order-form container p-3">
@@ -31,13 +31,10 @@ $arrLogisticMethod = [Yii::t('app','Home delivery'),Yii::t('app','Pick up at the
             <?= $form->field($model, 'name')->textInput(['placeholder' => Yii::t('app', 'Họ và tên')]) ?>
         </div>
         <div class="col-12 col-md-6">
-            <?= $form->field($model, 'tel')->textInput(['placeholder' => Yii::t('app', '0397 742 291')]) ?>
+            <?= $form->field($model, 'tel')->textInput(['placeholder' => Yii::t('app', '0397 742 xxx')]) ?>
         </div>
         <div class="col-12 col-md-4">
             <?= $form->field($model, 'email')->textInput(['placeholder' => Yii::t('app', 'deobelly@gmail.com')]) ?>
-        </div>
-        <div class="col-12 col-md-4">
-            <?= $form->field($model, 'logistic_method')->dropDownList($arrLogisticMethod, ['prompt'=>  Yii::t('app', 'Choose logistic method')]) ?>
         </div>
         <div class="col-12 col-md-4">
             <?= $form->field($model, 'product_id')->widget(Select2::classname(), [
@@ -48,11 +45,20 @@ $arrLogisticMethod = [Yii::t('app','Home delivery'),Yii::t('app','Pick up at the
                 ],
             ]); ?>
         </div>
+        <div class="col-12 col-md-4">
+            <?= $form->field($model, 'quantity')->textInput(['type' => 'number', 'placeholder' => Yii::t('app', 'Enter a number, ex: 300')]) ?>
+        </div>
     </div>
 
     <div class="row">
         <div class="col-12 col-md-4">
-            <?= $form->field($model, 'quantity')->textInput(['type' => 'number', 'placeholder' => Yii::t('app', 'Enter a number, ex: 300')]) ?>
+            <?= $form->field($model, 'size_id')->widget(Select2::classname(), [
+                'data' => \yii\helpers\ArrayHelper::map($sizes, 'id', 'name'),
+                'options' => ['placeholder' => Yii::t('app', 'Choose a size')],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]); ?>
         </div>
         <div class="col-12 col-md-4">
             <?= $form->field($model, 'color_id')->widget(Select2::classname(), [
@@ -64,14 +70,7 @@ $arrLogisticMethod = [Yii::t('app','Home delivery'),Yii::t('app','Pick up at the
             ]); ?>
         </div>
         <div class="col-12 col-md-4">
-            <?= $form->field($model, 'size_id')->widget(Select2::classname(), [
-                'data' => \yii\helpers\ArrayHelper::map($sizes, 'id', 'name'),
-                'options' => ['placeholder' => Yii::t('app', 'Choose a size')],
-                'pluginOptions' => [
-                    'allowClear' => true
-                ],
-            ]); ?>
-
+            <?= $form->field($model, 'logistic_method')->dropDownList($arrLogisticMethod, ['prompt' => Yii::t('app', 'Choose logistic method')]) ?>
         </div>
     </div>
 
@@ -102,7 +101,7 @@ $arrLogisticMethod = [Yii::t('app','Home delivery'),Yii::t('app','Pick up at the
         </div>
     </div>
 
-    <?= $form->field($model, 'specific_address')->textInput(['placeholder' => Yii::t('app', 'No 19, 29 alley, 460 lane, Khuong Dinh street')]) ?>
+    <?= $form->field($model, 'specific_address')->textInput(['placeholder' => Yii::t('app', 'No 19, 29 alley, 460 lane, XXX street')]) ?>
 
     <?= $form->field($model, 'notes')->widget(\yii\redactor\widgets\Redactor::class) ?>
 

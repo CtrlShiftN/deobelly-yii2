@@ -13,7 +13,7 @@ $this->title = Yii::t('app', 'Orders');
 $this->params['breadcrumbs'][] = $this->title;
 $arrStatus = \backend\models\TrackingStatus::getAllStatus();
 $arrStatus = \yii\helpers\ArrayHelper::map($arrStatus, 'id', 'name');
-$arrLogisticMethod = [Yii::t('app','Home delivery'),Yii::t('app','Pick up at the store')];
+$arrLogisticMethod = [Yii::t('app', 'Home delivery'), Yii::t('app', 'Pick up at the store')];
 ?>
 <div class="order-index">
     <div class="pt-3">
@@ -52,8 +52,13 @@ $arrLogisticMethod = [Yii::t('app','Home delivery'),Yii::t('app','Pick up at the
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['user_name'];
                 },
-                'filter' => false,
-                'format' => 'raw'
+                'format' => 'raw',
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => $users,
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Accounts') . ' --']
             ],
             [
                 'attribute' => 'product_name',
@@ -64,32 +69,13 @@ $arrLogisticMethod = [Yii::t('app','Home delivery'),Yii::t('app','Pick up at the
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['product_name'];
                 },
-                'filter' => false,
-                'format' => 'raw'
-            ],
-            [
-                'attribute' => 'color_name',
-                'label' => Yii::t('app', 'Color'),
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'width' => '140px',
-                'value' => function ($model, $key, $index, $widget) {
-                    return $model['color_name'];
-                },
-                'filter' => false,
-                'format' => 'raw'
-            ],
-            [
-                'attribute' => 'size_name',
-                'label' => Yii::t('app', 'Size'),
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'width' => '70px',
-                'value' => function ($model, $key, $index, $widget) {
-                    return $model['size_name'];
-                },
-                'filter' => false,
-                'format' => 'raw'
+                'format' => 'raw',
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => $products,
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Products') . ' --']
             ],
             [
                 'attribute' => 'quantity',
@@ -100,7 +86,6 @@ $arrLogisticMethod = [Yii::t('app','Home delivery'),Yii::t('app','Pick up at the
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['quantity'];
                 },
-                'filter' => false,
                 'format' => 'raw'
             ],
             [
@@ -112,7 +97,6 @@ $arrLogisticMethod = [Yii::t('app','Home delivery'),Yii::t('app','Pick up at the
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['tel'];
                 },
-                'filter' => false,
                 'format' => 'raw'
             ],
             [
@@ -124,19 +108,6 @@ $arrLogisticMethod = [Yii::t('app','Home delivery'),Yii::t('app','Pick up at the
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['name'];
                 },
-                'filter' => false,
-                'format' => 'raw'
-            ],
-            [
-                'attribute' => 'email',
-                'label' => Yii::t('app', 'Email'),
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'width' => '140px',
-                'value' => function ($model, $key, $index, $widget) {
-                    return $model['email'];
-                },
-                'filter' => false,
                 'format' => 'raw'
             ],
             [
@@ -148,7 +119,6 @@ $arrLogisticMethod = [Yii::t('app','Home delivery'),Yii::t('app','Pick up at the
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['address'];
                 },
-                'filter' => false,
                 'format' => 'raw'
             ],
             [
@@ -205,7 +175,7 @@ $arrLogisticMethod = [Yii::t('app','Home delivery'),Yii::t('app','Pick up at the
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'status',
-                'label' => Yii::t('app', 'Actions'),
+                'label' => Yii::t('app', 'Status'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '70px',
@@ -232,6 +202,19 @@ $arrLogisticMethod = [Yii::t('app','Home delivery'),Yii::t('app','Pick up at the
                 ],
                 'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Status') . ' --']
             ],
+            [
+                'label' => Yii::t('app', 'Actions'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'width' => '150px',
+                'value' => function ($model, $key, $index, $widget) {
+                    return Html::a(
+                        Yii::t('app', 'See more'),
+                        Url::toRoute(['order/view', 'id' => \common\components\encrypt\CryptHelper::encryptString($model['id'])]),
+                        ['class' => 'btn btn-info me-3']);
+                },
+                'format' => 'raw'
+            ]
         ];
         Pjax::begin();
         echo GridView::widget([

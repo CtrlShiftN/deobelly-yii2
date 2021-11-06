@@ -72,7 +72,7 @@ class Order extends \common\models\Order
             'specific_address' => Yii::t('app', 'Specific Address'),
             'address' => Yii::t('app', 'Address'),
             'notes' => Yii::t('app', 'Notes'),
-            'name' => Yii::t('app', 'Name'),
+            'name' => Yii::t('app', 'Consignee'),
             'email' => Yii::t('app', 'Email'),
             'tel' => Yii::t('app', 'Tel'),
             'logistic_method' => Yii::t('app', 'Logistic Method'),
