@@ -20,7 +20,7 @@ $modelMixProduct = $model->mixed_product_id;
             'attribute' => 'file',
             'type' => DetailView::INPUT_FILEINPUT,
             'label' => Yii::t('app', 'Image'),
-            'value' => Html::img($imgUrl . '/' . $model->image, ['alt' => $model->title]),
+            'value' => Html::img($imgUrl . '/' . $model->image, ['alt' => $model->title, 'class' => 'img-fluid']),
             'format' => 'raw'
         ],
         [
@@ -75,7 +75,7 @@ $modelMixProduct = $model->mixed_product_id;
         ],
         [
             'attribute' => 'created_at',
-            'format' => 'date',
+            'format' => 'datetime',
             'value' => (!empty($model->created_at)) ? $model->created_at : null,
             'displayOnly' => true
         ]

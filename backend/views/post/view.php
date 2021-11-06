@@ -20,17 +20,17 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
             'attribute' => 'file',
             'type' => DetailView::INPUT_FILEINPUT,
             'label' => Yii::t('app', 'Image'),
-            'value' => Html::img($imgUrl . '/' . $model->avatar, ['alt' => $model->title]),
+            'value' => Html::img($imgUrl . '/' . $model->avatar, ['alt' => $model->title, 'class' => 'img-fluid']),
             'format' => 'raw'
         ],
         [
             'attribute' => 'title',
-            'value' => $model->title,
+            'value' => (!empty($model->title)) ? $model->title : null,
         ],
         [
             'attribute' => 'content',
             'type' => 'widget',
-            'value' => $model->content,
+            'value' => (!empty($model->content)) ? $model->content : null,
             'widgetOptions' => ['class' => \yii\redactor\widgets\Redactor::class],
 //            'displayOnly' => true,
             'format' => 'raw'
@@ -38,9 +38,13 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
         [
             'attribute' => 'tags',
             'value' => function () use ($tags) {
-                $html = '';
-                foreach ($tags as $key => $tag) {
-                    $html .= '<div class="badge badge-info me-3 p-2">' . $tag . '</div>';
+                if (!empty($tags)) {
+                    $html = '';
+                    foreach ($tags as $key => $tag) {
+                        $html .= '<div class="badge badge-info me-3 p-2">' . $tag . '</div>';
+                    }
+                } else {
+                    $html = null;
                 }
                 return $html;
             },
@@ -54,7 +58,7 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
         ],
         [
             'attribute' => 'post_category_id',
-            'value' => \backend\models\PostCategory::findOne($model->post_category_id)['title'],
+            'value' => (!empty(\backend\models\PostCategory::findOne($model->post_category_id)['title'])) ? \backend\models\PostCategory::findOne($model->post_category_id)['title'] : null,
             'format' => 'raw',
             'type' => DetailView::INPUT_SELECT2,
             'widgetOptions' => [
@@ -65,7 +69,7 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
         ],
         [
             'attribute' => 'status',
-            'value' => $arrStatus[$model->status],
+            'value' => (!empty($arrStatus[$model->status])) ? $arrStatus[$model->status] : null,
             'type' => DetailView::INPUT_SELECT2,
             'widgetOptions' => [
                 'data' => $arrStatus,
@@ -75,7 +79,8 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
         ],
         [
             'attribute' => 'created_at',
-            'value' => $model->created_at,
+            'format' => 'datetime',
+            'value' => (!empty($model->created_at)) ? $model->created_at : null,
             'displayOnly' => true
         ]
     ]
