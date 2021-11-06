@@ -162,7 +162,7 @@ class ProductTypeController extends Controller
         $model->scenario = "create";
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->validate()) {
+            if ($model->load($this->request->post())) {
                 $model->file = UploadedFile::getInstance($model, 'file');
                 if ($model->file) {
                     if (!file_exists(Yii::getAlias('@common/media/product-type'))) {
