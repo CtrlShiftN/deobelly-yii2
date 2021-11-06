@@ -37,7 +37,7 @@ return [
     'Terms & Service' => 'Điều khoản & Dịch vụ',
     'Contact' => 'Liên hệ',
     'Hi,' => 'Xin chào,',
-    'Guest' => 'Quý khách',
+    'Guest' => 'Khách',
     'Product' => 'Sản Phẩm',
     'Men' => 'Nam',
     'Women' => 'Nữ',
@@ -419,4 +419,5 @@ return [
     'View' => 'Xem',
     'Add New Post' => 'Thêm Bài Viết Mới',
     'Update Post' => 'Cập Nhật Bài Viết',
+    'Login/Signup' => 'Đăng nhập/Đăng ký'
 ];

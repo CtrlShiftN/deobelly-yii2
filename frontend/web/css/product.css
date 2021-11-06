@@ -44,6 +44,7 @@
 }
 
 .accordion-button:not(.collapsed) {
+    box-shadow: none !important;
     color: #000 !important;
     background-color: #fff !important;
     font-weight: 450 !important;
