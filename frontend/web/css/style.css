@@ -285,7 +285,7 @@ footer .footer-content {
 
 .mobile-navbar .nav-sidebar .nav-link p, .mobile-navbar .nav-sidebar > .nav-item .nav-icon {
     color: white;
-    font-weight: bolder;
+    font-weight: bold;
 }
 
 /* Phone call btn */
@@ -402,4 +402,49 @@ footer .footer-content {
 
 .logo-align:hover {
     color: rgba(0, 0, 0, 0.81);
+}
+
+.sidebar-nav .accordion-button:focus {
+    border-color: #fff;
+    box-shadow: none !important;
+}
+.sidebar-nav .accordion-item {
+    background-color: transparent !important;
+}
+
+.sidebar-nav .accordion-collapse,.sidebar-nav .accordion-button {
+    border-radius: unset !important;
+}
+
+.sidebar-nav .accordion-button:not(.collapsed) {
+    box-shadow: none !important;
+    color: #fff !important;
+    background-color: transparent !important;
+}
+
+.fs__15px {
+    font-size: 15px !important;
+}
+
+.sidebar-user-name {
+    display: block;
+    display: -webkit-box;
+    margin: 0 !important;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+}
+.img-circle {
+    border-radius: 50%;
+    overflow: hidden;
+}
+.img-circle img {
+    object-fit: cover;
+}
+.success-icon {
+    color: #31a24c;
+}
+.sidebar-link-home p i {
+    color: rgba(0,0,0,0.73);
 }

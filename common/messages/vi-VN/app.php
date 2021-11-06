@@ -419,4 +419,5 @@ return [
     'View' => 'Xem',
     'Add New Post' => 'Thêm Bài Viết Mới',
     'Update Post' => 'Cập Nhật Bài Viết',
+    'Login/Signup' => 'Đăng nhập/Đăng ký'
 ];
