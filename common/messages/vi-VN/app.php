@@ -423,4 +423,7 @@ return [
     'Update Showroom:' => 'Chỉnh Sửa Showroom',
     'Update Color' => 'Chỉnh Sửa Màu Sắc',
     'Discount' => 'Giảm Giá',
+    'Visibility' => 'Hiển Thị',
+    'Visible' => 'Hiển Thị',
+    'Invisible' => '',
 ];

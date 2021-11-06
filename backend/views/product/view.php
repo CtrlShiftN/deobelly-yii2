@@ -10,6 +10,9 @@ $this->title = $model->name;
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 $imgUrl = Yii::$app->params['common'] . '/media';
+$arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
+$arrHide = [Yii::t('app', 'Visible'), Yii::t('app', 'Invisible')];
+$arrFeature = [Yii::t('app', 'Featured'), Yii::t('app', 'Non-featured')];
 ?>
 <div class="product-view py-4">
     <?php
@@ -31,7 +34,7 @@ $imgUrl = Yii::$app->params['common'] . '/media';
         ],
         [
             'attribute' => 'short_description',
-            'value' => $model->short_description,
+            'value' => strip_tags($model->short_description),
             'format' => 'raw'
         ],
         [
@@ -56,7 +59,22 @@ $imgUrl = Yii::$app->params['common'] . '/media';
         ],
         [
             'attribute' => 'trademark_id',
-            'value' => \backend\models\Trademark::findOne($model->trademark_id)['name'],
+            'value' => $trademark[$model->trademark_id],
+        ],
+        [
+            'attribute' => 'hide',
+            'type' => DetailView::INPUT_SELECT2,
+            'value' => $arrHide[$model->hide],
+            'widgetOptions' => [
+                'data' => $arrHide,
+                'options' => ['placeholder' => '-- ' . Yii::t('app', 'Visibility') . ' --'],
+                'pluginOptions' => ['allowClear' => true]
+            ],
+            'format' => 'raw'
+        ],
+        [
+            'attribute' => 'is_feature',
+            'value' => $arrFeature[$model->is_feature],
         ],
         [
             'attribute' => 'created_at',

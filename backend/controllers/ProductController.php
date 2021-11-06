@@ -14,6 +14,7 @@ use common\components\encrypt\CryptHelper;
 use common\components\helpers\StringHelper;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -106,9 +107,10 @@ class ProductController extends Controller
     {
         $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
-        
+        $arrTrademark = Trademark::getAllTrademark();
         return $this->render('view', [
             'model' => $model,
+            'trademark' => ArrayHelper::map($arrTrademark, 'id', 'name'),
         ]);
     }
 
