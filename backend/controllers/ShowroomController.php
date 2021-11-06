@@ -131,20 +131,22 @@ class ShowroomController extends Controller
             if ($model->load($this->request->post())) {
                 $model->file = UploadedFile::getInstance($model, 'file');
                 $model->slug = trim(StringHelper::toSlug(trim($model->name)));
-                if (!file_exists(Yii::getAlias('@common/media'))) {
-                    mkdir(Yii::getAlias('@common/media'), 0777);
-                }
-                $imageUrl = Yii::getAlias('@common/media');
-                $fileName = 'showroom/' . $model->slug . '.' . $model->file->getExtension();
-                $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
-                if ($isUploadedFile) {
-                    $model->image = $fileName;
-                    $model->admin_id = Yii::$app->user->identity->getId();
-                    $model->created_at = date('Y-m-d H:i:s');
-                    $model->updated_at = date('Y-m-d H:i:s');
-                    if ($model->save(false)) {
-                        return $this->redirect(Url::toRoute('showroom/'));
+                if ($model->file) {
+                    if (!file_exists(Yii::getAlias('@common/media/showroom'))) {
+                        mkdir(Yii::getAlias('@common/media/showroom'), 0777);
                     }
+                    $imageUrl = Yii::getAlias('@common/media');
+                    $fileName = 'showroom/' . $model->slug . '.' . $model->file->getExtension();
+                    $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                    if ($isUploadedFile) {
+                        $model->image = $fileName;
+                    }
+                }
+                $model->admin_id = Yii::$app->user->identity->getId();
+                $model->created_at = date('Y-m-d H:i:s');
+                $model->updated_at = date('Y-m-d H:i:s');
+                if ($model->save(false)) {
+                    return $this->redirect(Url::toRoute('showroom/'));
                 }
             }
         } else {

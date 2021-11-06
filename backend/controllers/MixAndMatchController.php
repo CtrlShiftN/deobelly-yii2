@@ -2,24 +2,25 @@
 
 namespace backend\controllers;
 
-use backend\models\Trademark;
-use backend\models\TrademarkSearch;
+use backend\models\MixAndMatch;
+use backend\models\MixAndMatchSearch;
+use backend\models\Product;
 use common\components\encrypt\CryptHelper;
 use common\components\helpers\StringHelper;
-use common\components\SystemConstant;
 use Yii;
 use yii\filters\AccessControl;
-use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
- * TrademarkController implements the CRUD actions for Trademark model.
+ * MixAndMatchController implements the CRUD actions for MixAndMatch model.
  */
-class TrademarkController extends Controller
+class MixAndMatchController extends Controller
 {
     /**
      * @inheritDoc
@@ -63,12 +64,12 @@ class TrademarkController extends Controller
     }
 
     /**
-     * Lists all Trademark models.
+     * Lists all MixAndMatch models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TrademarkSearch();
+        $searchModel = new MixAndMatchSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
         if (Yii::$app->request->post('hasEditable')) {
             // which rows has been edited?
@@ -76,21 +77,15 @@ class TrademarkController extends Controller
             $_index = $_POST['editableIndex'];
             // which attribute has been edited?
             $attribute = $_POST['editableAttribute'];
-            if ($attribute == 'name') {
-                // update to db
-                $value = $_POST['Trademark'][$_index][$attribute];
-                $result = Trademark::updateTitle($_id, $attribute, $value);
-                // response to gridview
+            $value = $_POST['MixAndMatch'][$_index][$attribute];
+            if ($attribute == 'title') {
+                $result = MixAndMatch::updateTitle($_id, $attribute, $value);
                 return json_encode($result);
             } elseif ($attribute == 'status') {
-                // update to db
-                $value = $_POST['Trademark'][$_index][$attribute];
-                $result = Trademark::updateStatus($_id, $attribute, $value);
-                // response to gridview
+                $result = MixAndMatch::updateAttr($_id, $attribute, $value);
                 return json_encode($result);
             }
         }
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -98,7 +93,7 @@ class TrademarkController extends Controller
     }
 
     /**
-     * Displays a single Trademark model.
+     * Displays a single MixAndMatch model.
      * @param int $id ID
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -107,6 +102,7 @@ class TrademarkController extends Controller
     {
         $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
+        $arrProduct = Product::getAllProduct();
         $post = Yii::$app->request->post();
         // process ajax delete
         if (Yii::$app->request->isAjax && isset($post['kvdelete'])) {
@@ -120,7 +116,22 @@ class TrademarkController extends Controller
         }
         // return messages on update of record
         if ($model->load($post)) {
-            $model->slug = StringHelper::toSlug($model->name);
+            $model->file = UploadedFile::getInstance($model, 'file');
+            $model->slug = trim(StringHelper::toSlug(trim($model->title)));
+            if ($model->file) {
+                if (!file_exists(Yii::getAlias('@common/media/mix-and-match'))) {
+                    mkdir(Yii::getAlias('@common/media/mix-and-match'), 0777);
+                }
+                $imageUrl = Yii::getAlias('@common/media');
+                $fileName = 'mix-and-match/' . $model->slug . '.' . $model->file->getExtension();
+                $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                if ($isUploadedFile) {
+                    $model->image = $fileName;
+                }
+            }
+            if (!empty($model->mixProduct)) {
+                $model->mixed_product_id = implode(",", $model->mixProduct);
+            }
             $model->admin_id = Yii::$app->user->identity->getId();
             $model->updated_at = date('Y-m-d H:i:s');
             if ($model->save(false)) {
@@ -131,40 +142,58 @@ class TrademarkController extends Controller
         }
         return $this->render('view', [
             'model' => $model,
+            'products' => ArrayHelper::map($arrProduct, 'id', 'name'),
         ]);
     }
 
     /**
-     * Creates a new Trademark model.
+     * Creates a new MixAndMatch model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Trademark();
+        $model = new MixAndMatch();
+        $model->scenario = 'create';
+        $arrProduct = Product::getAllProduct();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
-                $model->slug = StringHelper::toSlug($model->name);
-                $model->created_at = date('Y-m-d H:m:s');
-                $model->updated_at = date('Y-m-d H:m:s');
-                $model->status = SystemConstant::STATUS_ACTIVE;
+                $model->file = UploadedFile::getInstance($model, 'file');
+                $model->slug = trim(StringHelper::toSlug(trim($model->title)));
+                if ($model->file) {
+                    if (!file_exists(Yii::getAlias('@common/media/mix-and-match'))) {
+                        mkdir(Yii::getAlias('@common/media/mix-and-match'), 0777);
+                    }
+                    $imageUrl = Yii::getAlias('@common/media');
+                    $fileName = 'mix-and-match/' . $model->slug . '.' . $model->file->getExtension();
+                    $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                    if ($isUploadedFile) {
+                        $model->image = $fileName;
+                    }
+                }
+                if (!empty($model->mixProduct)) {
+                    $model->mixed_product_id = implode(",", $model->mixProduct);
+                }
                 $model->admin_id = Yii::$app->user->identity->getId();
-                if ($model->save()) {
-                    return $this->redirect(Url::toRoute('trademark/'));
+                $model->created_at = date('Y-m-d H:i:s');
+                $model->updated_at = date('Y-m-d H:i:s');
+                if ($model->save(false)) {
+                    return $this->redirect(Url::toRoute('mix-and-match/'));
                 }
             }
         } else {
             $model->loadDefaultValues();
         }
 
-        return $this->renderAjax('create', [
+        return $this->render('create', [
             'model' => $model,
+            'products' => ArrayHelper::map($arrProduct, 'id', 'name'),
         ]);
     }
 
     /**
-     * Updates an existing Trademark model.
+     * Updates an existing MixAndMatch model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return mixed
@@ -176,11 +205,7 @@ class TrademarkController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post())) {
-            $model->slug = StringHelper::toSlug($model->name);
-            $model->updated_at = date('Y-m-d H:i:s');
-            if ($model->save(false)) {
-                return $this->redirect('trademark/');
-            }
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -189,7 +214,7 @@ class TrademarkController extends Controller
     }
 
     /**
-     * Deletes an existing Trademark model.
+     * Deletes an existing MixAndMatch model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return mixed
@@ -204,15 +229,15 @@ class TrademarkController extends Controller
     }
 
     /**
-     * Finds the Trademark model based on its primary key value.
+     * Finds the MixAndMatch model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Trademark the loaded model
+     * @return MixAndMatch the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Trademark::findOne($id)) !== null) {
+        if (($model = MixAndMatch::findOne($id)) !== null) {
             return $model;
         }
 

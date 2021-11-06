@@ -427,4 +427,7 @@ return [
     'Is feature?' => 'Nổi bật',
     'Login/Signup' => 'Đăng nhập/Đăng ký',
     'Details' => 'Chi tiết',
+    'Related Products' => 'Sản Phẩm Liên Quan',
+    'Collection List' => 'Danh Sách Bộ Sưu Tập',
+    'Add New Collections' => 'Thêm Bộ Sưu Tập Mới',
 ];

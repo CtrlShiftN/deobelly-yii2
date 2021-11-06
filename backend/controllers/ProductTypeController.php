@@ -141,9 +141,9 @@ class ProductTypeController extends Controller
             $model->admin_id = Yii::$app->user->identity->getId();
             $model->updated_at = date('Y-m-d H:i:s');
             if ($model->save(false)) {
-                Yii::$app->session->setFlash('kv-detail-success', 'Loại sản phẩm cập nhật thành công!');
+                Yii::$app->session->setFlash('kv-detail-success', 'Cập nhật thành công!');
             } else {
-                Yii::$app->session->setFlash('kv-detail-warning', $model->status);
+                Yii::$app->session->setFlash('kv-detail-warning', 'Không thể cập nhật!');
             }
         }
         return $this->render('view', [
@@ -162,8 +162,9 @@ class ProductTypeController extends Controller
         $model->scenario = "create";
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->validate()) {
+            if ($model->load($this->request->post())) {
                 $model->file = UploadedFile::getInstance($model, 'file');
+                $model->slug = trim(StringHelper::toSlug(trim($model->name)));
                 if ($model->file) {
                     if (!file_exists(Yii::getAlias('@common/media/product-type'))) {
                         mkdir(Yii::getAlias('@common/media/product-type'), 0777);
@@ -175,7 +176,6 @@ class ProductTypeController extends Controller
                         $model->image = $fileName;
                     }
                 }
-                $model->slug = trim(StringHelper::toSlug(trim($model->name)));
                 $model->admin_id = Yii::$app->user->identity->getId();
                 $model->created_at = date('Y-m-d H:i:s');
                 $model->updated_at = date('Y-m-d H:i:s');
