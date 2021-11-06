@@ -79,17 +79,23 @@ class TailorMadeController extends \yii\web\Controller
         $model = new TailorMadeOrderForm();
         if ($model->load(Yii::$app->request->post())) {
             $model->file = UploadedFile::getInstance($model, 'file');
-            $fileName = date('YmdHis') . '_' . StringHelper::toSlug($model->customer_name) . '_top-measurements.' . $model->file->getExtension();
-            $isUploadedFile = $model->file->saveAs(Url::to('@common/media') . '/tailor-made/' . $fileName);
-            if ($isUploadedFile) {
-                $model->type = 0;
-                $model->created_at = date('Y-m-d H:i:s');
-                $model->updated_at = date('Y-m-d H:i:s');
-                $model->body_image = 'tailor-made/' . $fileName;
-                $model->user_id = (Yii::$app->user->isGuest) ? null : Yii::$app->user->identity->getId();
-                if ($model->save(false)) {
-                    return $this->redirect(Url::toRoute('tailor-made/'));
+            if ($model->file) {
+                if (!file_exists(Yii::getAlias('@common/media/tailor-made'))) {
+                    mkdir(Yii::getAlias('@common/media/tailor-made'), 0777);
                 }
+                $imageUrl = Yii::getAlias('@common/media');
+                $fileName = 'tailor-made/' . date('YmdHis') . '_' . StringHelper::toSlug($model->customer_name) . '_top-measurements.' . $model->file->getExtension();
+                $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                if ($isUploadedFile) {
+                    $model->body_image = $fileName;
+                }
+            }
+            $model->type = 0;
+            $model->created_at = date('Y-m-d H:i:s');
+            $model->updated_at = date('Y-m-d H:i:s');
+            $model->user_id = (Yii::$app->user->isGuest) ? null : Yii::$app->user->identity->getId();
+            if ($model->save(false)) {
+                return $this->redirect(Url::toRoute('tailor-made/'));
             }
         }
         return $this->render('top', [
@@ -102,17 +108,23 @@ class TailorMadeController extends \yii\web\Controller
         $model = new TailorMadeOrderForm();
         if ($model->load(Yii::$app->request->post())) {
             $model->file = UploadedFile::getInstance($model, 'file');
-            $fileName = date('YmdHis') . '_' . StringHelper::toSlug($model->customer_name) . '_top-measurements.' . $model->file->getExtension();
-            $isUploadedFile = $model->file->saveAs(Url::to('@common/media') . '/tailor-made/' . $fileName);
-            if ($isUploadedFile) {
-                $model->type = 1;
-                $model->created_at = date('Y-m-d H:i:s');
-                $model->updated_at = date('Y-m-d H:i:s');
-                $model->body_image = 'tailor-made/' . $fileName;
-                $model->user_id = (Yii::$app->user->isGuest) ? null : Yii::$app->user->identity->getId();
-                if ($model->save(false)) {
-                    return $this->redirect(Url::toRoute('tailor-made/'));
+            if ($model->file) {
+                if (!file_exists(Yii::getAlias('@common/media/tailor-made'))) {
+                    mkdir(Yii::getAlias('@common/media/tailor-made'), 0777);
                 }
+                $imageUrl = Yii::getAlias('@common/media');
+                $fileName = 'tailor-made/' . date('YmdHis') . '_' . StringHelper::toSlug($model->customer_name) . '_pants-measurements.' . $model->file->getExtension();
+                $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                if ($isUploadedFile) {
+                    $model->body_image = $fileName;
+                }
+            }
+            $model->type = 1;
+            $model->created_at = date('Y-m-d H:i:s');
+            $model->updated_at = date('Y-m-d H:i:s');
+            $model->user_id = (Yii::$app->user->isGuest) ? null : Yii::$app->user->identity->getId();
+            if ($model->save(false)) {
+                return $this->redirect(Url::toRoute('tailor-made/'));
             }
         }
         return $this->render('pants', [
@@ -125,17 +137,23 @@ class TailorMadeController extends \yii\web\Controller
         $model = new TailorMadeOrderForm();
         if ($model->load(Yii::$app->request->post())) {
             $model->file = UploadedFile::getInstance($model, 'file');
-            $fileName = date('YmdHis') . '_' . StringHelper::toSlug($model->customer_name) . '_top-measurements.' . $model->file->getExtension();
-            $isUploadedFile = $model->file->saveAs(Url::to('@common/media') . '/tailor-made/' . $fileName);
-            if ($isUploadedFile) {
-                $model->type = 2;
-                $model->created_at = date('Y-m-d H:i:s');
-                $model->updated_at = date('Y-m-d H:i:s');
-                $model->body_image = 'tailor-made/' . $fileName;
-                $model->user_id = (Yii::$app->user->isGuest) ? null : Yii::$app->user->identity->getId();
-                if ($model->save(false)) {
-                    return $this->redirect(Url::toRoute('tailor-made/'));
+            if ($model->file) {
+                if (!file_exists(Yii::getAlias('@common/media/tailor-made'))) {
+                    mkdir(Yii::getAlias('@common/media/tailor-made'), 0777);
                 }
+                $imageUrl = Yii::getAlias('@common/media');
+                $fileName = 'tailor-made/' . date('YmdHis') . '_' . StringHelper::toSlug($model->customer_name) . '_set-measurements.' . $model->file->getExtension();
+                $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                if ($isUploadedFile) {
+                    $model->body_image = $fileName;
+                }
+            }
+            $model->type = 2;
+            $model->created_at = date('Y-m-d H:i:s');
+            $model->updated_at = date('Y-m-d H:i:s');
+            $model->user_id = (Yii::$app->user->isGuest) ? null : Yii::$app->user->identity->getId();
+            if ($model->save(false)) {
+                return $this->redirect(Url::toRoute('tailor-made/'));
             }
         }
         return $this->render('set', [

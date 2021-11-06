@@ -64,7 +64,6 @@ $imgUrl = Yii::$app->params['common'] . '/media';
         'hover' => true,
         'bordered' => true,
 //        'enableEditMode' => false,
-        'buttons1' => '{delete}',
         'hAlign' => DetailView::ALIGN_CENTER,
         'vAlign' => DetailView::ALIGN_MIDDLE,
         'mode' => DetailView::MODE_VIEW,
