@@ -11,6 +11,8 @@ use common\components\helpers\StringHelper;
 use common\components\SystemConstant;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -103,8 +105,53 @@ class PostController extends Controller
     public function actionView($id)
     {
         $id = CryptHelper::decryptString($id);
+        $model = $this->findModel($id);
+        $arrTag = PostTag::find()->where(
+            [
+                'status' => SystemConstant::STATUS_ACTIVE,
+                'id' => explode(',', $model->tag_id)
+            ])->asArray()->all();
+        $post = Yii::$app->request->post();
+        // process ajax delete
+        if (Yii::$app->request->isAjax && isset($post['kvdelete'])) {
+            echo Json::encode([
+                'success' => true,
+                'messages' => [
+                    'kv-detail-info' => Yii::t('app', 'Delete successfully!')
+                ]
+            ]);
+            return;
+        }
+        // return messages on update of record
+        if ($model->load($post)) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            $model->slug = trim(StringHelper::toSlug(trim($model->title)));
+            if ($model->file) {
+                if (!file_exists(Yii::getAlias('@common/media/post'))) {
+                    mkdir(Yii::getAlias('@common/media/post'), 0777);
+                }
+                $imageUrl = Yii::getAlias('@common/media');
+                $fileName = 'post/' . $model->slug . '.' . $model->file->getExtension();
+                $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                if ($isUploadedFile) {
+                    $model->avatar = $fileName;
+                }
+            }
+            if (!empty($model->tags)) {
+                $model->tag_id = implode(',', $model->tags);
+            }
+            $model->admin_id = Yii::$app->user->identity->getId();
+            $model->updated_at = date('Y-m-d H:i:s');
+            $model->viewed = 0;
+            if ($model->save(false)) {
+                Yii::$app->session->setFlash('kv-detail-success', 'Post updated!');
+            } else {
+                Yii::$app->session->setFlash('kv-detail-warning', 'Post can not be updated!');
+            }
+        }
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'tags' => ArrayHelper::map($arrTag, 'id', 'title'),
         ]);
     }
 

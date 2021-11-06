@@ -14,6 +14,8 @@ use common\components\encrypt\CryptHelper;
 use common\components\helpers\StringHelper;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -80,19 +82,15 @@ class ProductController extends Controller
             $_index = $_POST['editableIndex'];
             // which attribute has been edited?
             $attribute = $_POST['editableAttribute'];
+            $value = $_POST['Product'][$_index][$attribute];
             if ($attribute == 'name') {
-                // update to db
-                $value = $_POST['Product'][$_index][$attribute];
                 $result = Product::updateProductTitle($_id, $attribute, $value);
-                // response to gridview
-                return json_encode($result);
-            } elseif ($attribute == 'status' || $attribute == 'SKU') {
-                // update to db
-                $value = $_POST['Product'][$_index][$attribute];
+            } elseif ($attribute == 'discount') {
+                $result = Product::updateDiscount($_id, $value);
+            } else {
                 $result = Product::updateProductAttr($_id, $attribute, $value);
-                // response to gridview
-                return json_encode($result);
             }
+            return json_encode($result);
         }
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -109,8 +107,80 @@ class ProductController extends Controller
     public function actionView($id)
     {
         $id = CryptHelper::decryptString($id);
+        $model = $this->findModel($id);
+        $assocModel = ProductAssoc::findOne($id);
+        $model->color = $assocModel->color_id;
+        $model->type = $assocModel->type_id;
+        $model->size = $assocModel->size_id;
+        $model->category = $assocModel->category_id;
+        $arrTrademark = Trademark::getAllTrademark();
+        $arrColor = Color::getAllColor();
+        $arrSize = Size::getAllSize();
+        $arrType = ProductType::getAllTypes();
+        $arrCate = ProductCategory::getAllProductCategory();
+        $arrProduct = Product::getAllProduct();
+        $post = Yii::$app->request->post();
+        // process ajax delete
+        if (Yii::$app->request->isAjax && isset($post['kvdelete'])) {
+            echo Json::encode([
+                'success' => true,
+                'messages' => [
+                    'kv-detail-info' => Yii::t('app', 'Delete successfully!')
+                ]
+            ]);
+            return;
+        }
+        // return messages on update of record
+        if ($model->load($post)) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            $model->slug = trim(StringHelper::toSlug(trim($model->name)));
+            if ($model->file) {
+                if (!file_exists(Yii::getAlias('@common/media/product'))) {
+                    mkdir(Yii::getAlias('@common/media/product'), 0777);
+                }
+                $imageUrl = Yii::getAlias('@common/media');
+                $fileName = 'product/' . $model->slug . '.' . $model->file->getExtension();
+                $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                if ($isUploadedFile) {
+                    $model->image = $fileName;
+                }
+            }
+            if (!empty($model->discount)) {
+                $model->sale_price = $model->regular_price * (100 - $model->discount) / 100;
+                $model->selling_price = $model->sale_price;
+            }
+            $model->admin_id = Yii::$app->user->identity->getId();
+            $model->updated_at = date('Y-m-d H:i:s');
+            $model->related_product = (!empty($model->relatedProduct)) ? implode(',', $model->relatedProduct) : null;
+            // assoc
+            if (!empty($model->type)) {
+                $assocModel->type_id = implode(',', $model->type);
+            }
+            if (!empty($model->category)) {
+                $assocModel->category_id = $model->category;
+            }
+            if (!empty($model->color)) {
+                $assocModel->color_id = implode(',', $model->color);
+            }
+            if (!empty($model->size)) {
+                $assocModel->size_id = implode(',', $model->size);
+            }
+            $assocModel->admin_id = Yii::$app->user->identity->getId();
+            $assocModel->updated_at = date('Y-m-d H:i:s');
+            if ($model->save(false) && $assocModel->save(false)) {
+                Yii::$app->session->setFlash('kv-detail-success', 'Color updated!');
+            } else {
+                Yii::$app->session->setFlash('kv-detail-warning', $model->status);
+            }
+        }
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'trademark' => ArrayHelper::map($arrTrademark, 'id', 'name'),
+            'color' => ArrayHelper::map($arrColor, 'id', 'name'),
+            'size' => ArrayHelper::map($arrSize, 'id', 'name'),
+            'type' => ArrayHelper::map($arrType, 'id', 'name'),
+            'productCate' => ArrayHelper::map($arrCate, 'id', 'name'),
+            'products' => ArrayHelper::map($arrProduct, 'id', 'name')
         ]);
     }
 
@@ -136,19 +206,23 @@ class ProductController extends Controller
                 $imageUrl = Yii::$app->params['common'] . '/media';
                 $arrImages = [];
                 $model->slug = StringHelper::toSlug($model->name);
-                if (empty($model->sale_price)){
+                if (empty($model->sale_price)) {
                     $model->selling_price = $model->regular_price;
-                }else{
+                } else {
                     $model->selling_price = ($model->sale_price > $model->regular_price) ? $model->regular_price : $model->sale_price;
                 }
-                $model->related_product = !empty($model->relatedProduct) ? implode(",", $model->relatedProduct) : null;
+                if (!empty($model->discount)) {
+                    $model->sale_price = $model->regular_price * (100 - $model->discount) / 100;
+                    $model->selling_price = $model->sale_price;
+                }
+                $model->related_product = (!empty($model->relatedProduct)) ? implode(',', $model->relatedRecords) : null;
                 $model->image = 'product/' . implode("-", $model->type) . '_' . $model->category . '_' . $model->slug . '.' . $model->file->getExtension();
                 $model->admin_id = Yii::$app->user->identity->getId();
                 $model->created_at = date('Y-m-d H:i:s');
                 $model->updated_at = date('Y-m-d H:i:s');
                 $model->fake_sold = rand(201, 996);
-                if (!file_exists(Yii::getAlias('@common/media'))) {
-                    mkdir(Yii::getAlias('@common/media'), 0777);
+                if (!file_exists(Yii::getAlias('@common/media/product'))) {
+                    mkdir(Yii::getAlias('@common/media/product'), 0777);
                 }
                 $imageUrl = Yii::getAlias('@common/media');
                 $model->file->saveAs($imageUrl . '/' . $model->image);
@@ -162,10 +236,10 @@ class ProductController extends Controller
                     }
                 }
                 $model->images = implode(",", $arrImages);
-                $typeStr = implode(",", $model->type);
+                $typeStr = (!empty($model->type)) ? implode(',', $model->type) : null;
                 $cateStr = $model->category;
-                $colorStr = implode(",", $model->color);
-                $sizeStr = implode(",", $model->size);
+                $colorStr = (!empty($model->color)) ? implode(',', $model->color) : null;
+                $sizeStr = (!empty($model->size)) ? implode(',', $model->size) : null;
                 if ($model->save(false)) {
                     $assocModel->product_id = $model->id;
                     $assocModel->type_id = $typeStr;

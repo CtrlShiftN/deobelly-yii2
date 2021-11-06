@@ -13,7 +13,7 @@ $this->title = Yii::t('app', 'Products');
 $this->params['breadcrumbs'][] = $this->title;
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
 $arrFeature = [Yii::t('app', 'Non-featured'), Yii::t('app', 'Featured')];
-$arrVisibility = [Yii::t('app','Show'),Yii::t('app','Hide')];
+$arrVisibility = [Yii::t('app', 'Show'), Yii::t('app', 'Hide')];
 $commonUrl = Yii::$app->params['common'];
 ?>
 <div class="product-index">
@@ -96,13 +96,17 @@ $commonUrl = Yii::$app->params['common'];
                 'format' => 'raw'
             ],
             [
-                'attribute' => 'sale_price',
-                'label' => Yii::t('app', 'Sale Price'),
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'discount',
+                'label' => Yii::t('app', 'Discount'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) {
-                    return Yii::$app->formatter->asCurrency($model['sale_price']);
+                    return $model['discount'];
                 },
+                'editableOptions' => [
+                    'asPopover' => false,
+                ],
                 'format' => 'raw'
             ],
             [
@@ -117,6 +121,7 @@ $commonUrl = Yii::$app->params['common'];
                 'format' => 'raw'
             ],
             [
+                'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'quantity',
                 'label' => Yii::t('app', 'Quantity'),
                 'vAlign' => 'middle',
@@ -124,6 +129,9 @@ $commonUrl = Yii::$app->params['common'];
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['quantity'];
                 },
+                'editableOptions' => [
+                    'asPopover' => false,
+                ],
                 'format' => 'raw'
             ],
             [
@@ -217,24 +225,16 @@ $commonUrl = Yii::$app->params['common'];
                 'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Status') . ' --']
             ],
             [
-                'attribute' => 'created_at',
-                'label' => Yii::t('app', 'Created_at'),
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'filter' => false,
-                'width' => '200px',
-                'format' => 'raw'
-            ],
-            [
 //                'label' => Yii::t('app', 'Actions'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) {
-                    return Html::a('<i class="far fa-trash-alt"></i> ' . Yii::t('app', 'Delete'), Url::toRoute(['product/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger mt-2', 'data' => [
-                        'method' => 'post',
-                        'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                    ],]);
+                    return Html::a('<i class="fas fa-eye"></i> ' . Yii::t('app', 'View'), Url::toRoute(['product/view', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-info mb-2', 'target' => '_blank']) . '<br/>' .
+                        Html::a('<i class="far fa-trash-alt"></i> ' . Yii::t('app', 'Delete'), Url::toRoute(['product/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger mt-2', 'data' => [
+                            'method' => 'post',
+                            'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                        ],]);
                 },
                 'format' => 'raw'
             ]

@@ -9,13 +9,12 @@ $this->title = Yii::t('app', 'Update Color: {name}', [
     'name' => $model->name,
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Colors'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="color-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
+    <div class="container px-3 pt-3">
+        <h3 class="text-uppercase"><?= Yii::t('app', 'Update Color') ?></h3>
+    </div>
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

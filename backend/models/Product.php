@@ -66,21 +66,21 @@ class Product extends \common\models\Product
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'short_description', 'SKU', 'image', 'related_product'], 'string', 'max' => 255],
             [['slug'], 'unique'],
-            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
-            ['file', 'required'],
-            [['files'], 'file', 'extensions' => 'png, jpg, jpeg', 'maxFiles' => 10],
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg', 'on' => 'create'],
+            ['file', 'required', 'on' => 'create'],
+            [['files'], 'file', 'extensions' => 'png, jpg, jpeg', 'maxFiles' => 10, 'on' => 'create'],
             [['color', 'size', 'type', 'category', 'relatedProduct'], 'safe'],
             [['color', 'size', 'type', 'category'], 'required'],
             ['quantity', 'integer', 'min' => 1],
-            ['slug', 'checkDuplicatedSlug']
+            ['name', 'checkDuplicatedSlug']
         ];
     }
 
     public function checkDuplicatedSlug()
     {
-        $color = Product::find()->where(['slug' => StringHelper::toSlug($this->name)])->asArray()->all();
-        if ($color) {
-            $this->addError('title', Yii::t('app', 'This name has already been used.'));
+        $product = Product::find()->where(['slug' => StringHelper::toSlug($this->name)])->asArray()->all();
+        if ($product) {
+            $this->addError('name', Yii::t('app', 'This name has already been used.'));
         }
     }
 
@@ -161,5 +161,19 @@ class Product extends \common\models\Product
     public static function findNameByID(int $product_id)
     {
         return Product::find()->select('name')->where(['status' => SystemConstant::STATUS_ACTIVE, 'id' => $product_id])->scalar();
+    }
+
+    /**
+     * @param $_id
+     * @param $value
+     * @return bool
+     */
+    public static function updateDiscount($_id, $value)
+    {
+        $model = Product::findOne($_id);
+        $model->discount = $value;
+        $model->sale_price = $model->regular_price * (100 - $value) / 100;
+        $model->selling_price = $model->sale_price;
+        return $model->save(false);
     }
 }

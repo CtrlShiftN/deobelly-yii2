@@ -11,8 +11,6 @@ use yii\helpers\Html;
 
 <div class="showroom-form container p-3">
 
-    <h3 class="text-uppercase pb-4"><?= Yii::t('app', 'Add New Showroom') ?></h3>
-
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'file')->widget(FileInput::classname(), [
@@ -28,7 +26,7 @@ use yii\helpers\Html;
 
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Add New Showroom'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

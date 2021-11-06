@@ -127,13 +127,18 @@ $commonUrl = Yii::$app->params['common'];
                 'label' => Yii::t('app', 'Actions'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
-                'width' => '150px',
+                'width' => '100px',
                 'value' => function ($model, $key, $index, $widget) {
-                    return Html::a(Yii::t('app', 'Edit'), Url::toRoute(
+                    return Html::a(Yii::t('app', 'View'), Url::toRoute(
+                            [
+                                'post/view',
+                                'id' => \common\components\encrypt\CryptHelper::encryptString($key)
+                            ]), ['class' => 'btn btn-info mb-2']) . '<br/>' .
+                        Html::a(Yii::t('app', 'Edit'), Url::toRoute(
                             [
                                 'post/update',
                                 'id' => \common\components\encrypt\CryptHelper::encryptString($key)
-                            ]), ['class' => 'btn btn-info me-3']) .
+                            ]), ['class' => 'btn btn-info mb-2']) . '<br/>' .
                         Html::a(Yii::t('app', 'Delete'), Url::toRoute(['post/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger', 'data' => [
                             'method' => 'post',
                             'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),

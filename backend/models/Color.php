@@ -21,6 +21,7 @@ use Yii;
 class Color extends \common\models\Color
 {
     public $file;
+
     /**
      * {@inheritdoc}
      */
@@ -41,8 +42,8 @@ class Color extends \common\models\Color
             [['slug'], 'unique', 'targetClass' => \common\models\Color::class],
             ['name', 'checkDuplicatedSlug'],
             ['name', 'required'],
-            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
-            ['file', 'required'],
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg', 'on' => 'create'],
+            ['file', 'required', 'on' => 'create'],
         ];
     }
 

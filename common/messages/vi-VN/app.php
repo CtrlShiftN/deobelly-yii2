@@ -419,5 +419,11 @@ return [
     'View' => 'Xem',
     'Add New Post' => 'Thêm Bài Viết Mới',
     'Update Post' => 'Cập Nhật Bài Viết',
+    'Update Showroom' => 'Chỉnh Sửa Showroom',
+    'Update Showroom:' => 'Chỉnh Sửa Showroom',
+    'Update Color' => 'Chỉnh Sửa Màu Sắc',
+    'Discount' => 'Giảm Giá',
+    'Visibility' => 'Hiển Thị',
+    'Is feature?' => 'Nổi bật',
     'Login/Signup' => 'Đăng nhập/Đăng ký'
 ];

@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use common\components\helpers\StringHelper;
+use common\components\SystemConstant;
 use Yii;
 
 /**
@@ -84,5 +85,13 @@ class PostCategory extends \yii\db\ActiveRecord
     public static function updatePostCategoryStatus($id, $attribute, $value)
     {
         return \common\models\PostCategory::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s')], ['id' => $id]);
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getAllCategory()
+    {
+        return \common\models\PostCategory::find()->where(['status'=>SystemConstant::STATUS_ACTIVE])->asArray()->all();
     }
 }
