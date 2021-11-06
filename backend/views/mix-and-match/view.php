@@ -75,6 +75,7 @@ $modelMixProduct = $model->mixed_product_id;
         ],
         [
             'attribute' => 'created_at',
+            'format' => 'date',
             'value' => (!empty($model->created_at)) ? $model->created_at : null,
             'displayOnly' => true
         ]
@@ -96,7 +97,7 @@ $modelMixProduct = $model->mixed_product_id;
             'type' => DetailView::TYPE_INFO,
         ],
         'deleteOptions' => [
-            'url' => \yii\helpers\Url::toRoute(['post/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($model->id)]),
+            'url' => \yii\helpers\Url::toRoute(['mix-and-match/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($model->id)]),
             'params' => ['id' => \common\components\encrypt\CryptHelper::encryptString($model->id), 'kvdelete' => true],
         ],
         'attributes' => $columns

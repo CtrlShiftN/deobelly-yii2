@@ -124,9 +124,9 @@ class TrademarkController extends Controller
             $model->admin_id = Yii::$app->user->identity->getId();
             $model->updated_at = date('Y-m-d H:i:s');
             if ($model->save(false)) {
-                Yii::$app->session->setFlash('kv-detail-success', 'Trademark updated!');
+                Yii::$app->session->setFlash('kv-detail-success', 'Cập nhật thành công!');
             } else {
-                Yii::$app->session->setFlash('kv-detail-warning', $model->status);
+                Yii::$app->session->setFlash('kv-detail-warning', 'Không thể cập nhật!');
             }
         }
         return $this->render('view', [
@@ -178,7 +178,7 @@ class TrademarkController extends Controller
         if ($this->request->isPost && $model->load($this->request->post())) {
             $model->slug = StringHelper::toSlug($model->name);
             $model->updated_at = date('Y-m-d H:i:s');
-            if ($model->save()) {
+            if ($model->save(false)) {
                 return $this->redirect('trademark/');
             }
         }

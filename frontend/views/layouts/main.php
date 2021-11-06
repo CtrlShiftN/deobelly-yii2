@@ -335,8 +335,7 @@ AppAsset::register($this);
                                     <?php if ($value['segment'] != SystemConstant::SEGMENT_CASUAL): ?>
                                         <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?> px-2">
                                             <?php if ($value['slug'] == 'mix-and-match' || $value['slug'] == 'tailor-made'): ?>
-                                            <a href="<?= Url::toRoute([$value['slug'] . '/']) ?>"
-                                               class="site-nav-link">
+                                            <a href="<?= Url::toRoute([$value['slug'] . '/']) ?>" class="site-nav-link">
                                                 <?php else: ?>
                                                 <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                                                    class="site-nav-link">

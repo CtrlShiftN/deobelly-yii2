@@ -129,7 +129,7 @@ class OrderController extends Controller
             if ($model->save(false)) {
                 Yii::$app->session->setFlash('kv-detail-success', 'Cập nhật thành công!');
             } else {
-                Yii::$app->session->setFlash('kv-detail-warning', $model->status);
+                Yii::$app->session->setFlash('kv-detail-warning', 'Không thể cập nhật!');
             }
         }
         return $this->render('view', [

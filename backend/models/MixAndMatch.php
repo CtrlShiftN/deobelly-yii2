@@ -46,7 +46,8 @@ class MixAndMatch extends \common\models\MixAndMatch
             [['title'], 'unique'],
             ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg', 'on' => 'create'],
             ['file', 'required', 'on' => 'create'],
-            ['mixProduct', 'safe']
+            ['mixProduct', 'safe'],
+            ['mixProduct', 'required', 'on' => 'create']
         ];
     }
 
@@ -79,7 +80,7 @@ class MixAndMatch extends \common\models\MixAndMatch
     public static function updateTitle($id, $attribute, $value)
     {
         $slug = StringHelper::toSlug($value);
-        return \common\models\Product::updateAll([$attribute => $value, 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $id]);
+        return \common\models\MixAndMatch::updateAll([$attribute => $value, 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $id]);
     }
 
     /**
@@ -90,7 +91,7 @@ class MixAndMatch extends \common\models\MixAndMatch
      */
     public static function updateAttr($id, $attribute, $value)
     {
-        return \common\models\Product::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $id]);
+        return \common\models\MixAndMatch::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $id]);
     }
 
 }

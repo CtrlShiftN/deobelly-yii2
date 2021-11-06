@@ -136,9 +136,9 @@ class ColorController extends Controller
             $model->admin_id = Yii::$app->user->identity->getId();
             $model->updated_at = date('Y-m-d H:i:s');
             if ($model->save(false)) {
-                Yii::$app->session->setFlash('kv-detail-success', 'Color updated!');
+                Yii::$app->session->setFlash('kv-detail-success', 'Cập nhật thành công!');
             } else {
-                Yii::$app->session->setFlash('kv-detail-warning', $model->status);
+                Yii::$app->session->setFlash('kv-detail-warning', 'Không thể cập nhật!');
             }
         }
         return $this->render('view', [
