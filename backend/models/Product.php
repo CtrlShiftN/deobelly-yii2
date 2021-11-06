@@ -72,7 +72,8 @@ class Product extends \common\models\Product
             [['color', 'size', 'type', 'category', 'relatedProduct'], 'safe'],
             [['color', 'size', 'type', 'category'], 'required'],
             ['quantity', 'integer', 'min' => 1],
-            ['name', 'checkDuplicatedSlug']
+            ['name', 'checkDuplicatedSlug'],
+            ['discount', 'integer', 'min' => 0, 'max' => 100]
         ];
     }
 

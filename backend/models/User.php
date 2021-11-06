@@ -34,7 +34,7 @@ class User extends \common\models\User
     public function rules()
     {
         return [
-            [['username', 'name', 'auth_key', 'password_hash', 'email', 'referral_code', 'created_at', 'updated_at'], 'required','on'=>'create'],
+            [['username', 'name', 'auth_key', 'password_hash', 'email', 'referral_code', 'created_at', 'updated_at'], 'required', 'on' => 'create'],
             [['verified_at', 'created_at', 'updated_at'], 'safe'],
             [['status', 'role'], 'integer'],
             [['username', 'address', 'password_hash', 'password_reset_token', 'email', 'referral_code', 'verification_token'], 'string', 'max' => 255],
@@ -103,6 +103,17 @@ class User extends \common\models\User
     public static function getAllUser()
     {
         return \common\models\User::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getAllCustomer()
+    {
+        return \common\models\User::find()
+            ->where(['status' => SystemConstant::STATUS_ACTIVE])
+            ->andWhere(['!=', 'role', 1])
+            ->asArray()->all();
     }
 
     /**

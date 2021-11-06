@@ -52,7 +52,7 @@ class UserController extends Controller
      */
     public function beforeAction($action)
     {
-        if (Yii::$app->user->identity->getRole() != 1){
+        if (Yii::$app->user->identity->getRole() != 1) {
             $this->goHome();
         }
 
@@ -113,6 +113,7 @@ class UserController extends Controller
     public function actionCreate()
     {
         $model = new User();
+        $model->scenario = 'create';
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {

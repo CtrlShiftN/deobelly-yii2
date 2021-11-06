@@ -125,6 +125,7 @@ class ShowroomController extends Controller
     public function actionCreate()
     {
         $model = new Showroom();
+        $model->scenario = 'create';
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {

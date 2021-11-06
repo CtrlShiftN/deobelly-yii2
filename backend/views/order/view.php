@@ -11,14 +11,21 @@ use yii\helpers\Url;
 $this->title = Yii::t('app', 'Orders') . ' DO' . $model->id;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="order-view">
+<div class="order-view p-4">
 
     <?php
     $columns = [
         [
             'attribute' => 'user_id',
-            'value' => \backend\models\User::findNameByID($model->user_id),
-            'displayOnly' => true,
+            'label' => Yii::t('app', 'Accounts'),
+            'type' => DetailView::INPUT_SELECT2,
+            'value' => (!empty(\backend\models\User::findNameByID($model->user_id))) ? \backend\models\User::findNameByID($model->user_id) : null,
+            'widgetOptions' => [
+                'data' => $customers,
+                'options' => ['placeholder' => '-- ' . Yii::t('app', 'Accounts') . ' --'],
+                'pluginOptions' => ['allowClear' => true]
+            ],
+            'format' => 'raw'
         ],
         [
             'attribute' => 'name',
@@ -35,7 +42,7 @@ $this->title = Yii::t('app', 'Orders') . ' DO' . $model->id;
         [
             'attribute' => 'product_id',
             'type' => DetailView::INPUT_SELECT2,
-            'value' => \backend\models\Product::findNameByID($model->product_id),
+            'value' => (!empty(\backend\models\Product::findNameByID($model->product_id))) ? \backend\models\Product::findNameByID($model->product_id) : null,
             'widgetOptions' => [
                 'data' => \yii\helpers\ArrayHelper::map(\backend\models\Product::getAllProduct(), 'id', 'name'),
                 'options' => ['placeholder' => '-- ' . Yii::t('app', 'Products') . ' --'],
@@ -45,7 +52,7 @@ $this->title = Yii::t('app', 'Orders') . ' DO' . $model->id;
         [
             'attribute' => 'color_id',
             'type' => DetailView::INPUT_SELECT2,
-            'value' => \backend\models\Color::findNameByID($model->color_id),
+            'value' => (!empty(\backend\models\Color::findNameByID($model->color_id))) ? \backend\models\Color::findNameByID($model->color_id) : null,
             'widgetOptions' => [
                 'data' => \yii\helpers\ArrayHelper::map(\backend\models\Color::getAllColor(), 'id', 'name'),
                 'options' => ['placeholder' => '-- ' . Yii::t('app', 'Colors') . ' --'],
@@ -55,7 +62,7 @@ $this->title = Yii::t('app', 'Orders') . ' DO' . $model->id;
         [
             'attribute' => 'size_id',
             'type' => DetailView::INPUT_SELECT2,
-            'value' => \backend\models\Size::findNameByID($model->size_id),
+            'value' => (!empty(\backend\models\Size::findNameByID($model->size_id))) ? \backend\models\Size::findNameByID($model->size_id) : null,
             'widgetOptions' => [
                 'data' => \yii\helpers\ArrayHelper::map(\backend\models\Size::getAllSize(), 'id', 'name'),
                 'options' => ['placeholder' => '-- ' . Yii::t('app', 'Colors') . ' --'],
@@ -64,7 +71,7 @@ $this->title = Yii::t('app', 'Orders') . ' DO' . $model->id;
         ],
         [
             'attribute' => 'quantity',
-            'value' => $model->quantity,
+            'value' => (!empty($model->quantity)) ? $model->quantity : 0,
         ],
         [
             'attribute' => 'province_id',
@@ -109,16 +116,30 @@ $this->title = Yii::t('app', 'Orders') . ' DO' . $model->id;
         ],
         [
             'attribute' => 'specific_address',
-            'value' => $model->specific_address,
+            'value' => (!empty($model->specific_address)) ? $model->specific_address : null,
         ],
         [
             'attribute' => 'notes',
-            'value' => $model->notes,
+            'value' => (!empty($model->notes)) ? $model->notes : null,
+            'type' => 'widget',
+            'widgetOptions' => ['class' => \yii\redactor\widgets\Redactor::class],
+//            'displayOnly' => true,
+            'format' => 'raw'
+        ],
+        [
+            'attribute' => 'status',
+            'value' => (!empty($trackingStatus[$model->status])) ? $trackingStatus[$model->status] : null,
+            'type' => DetailView::INPUT_SELECT2,
+            'widgetOptions' => [
+                'data' => $trackingStatus,
+                'options' => ['placeholder' => '-- ' . Yii::t('app', 'Tracking Status') . ' --'],
+                'pluginOptions' => ['allowClear' => true]
+            ],
         ],
         [
             'attribute' => 'logistic_method',
             'type' => DetailView::INPUT_SELECT2,
-            'value' => \common\models\Order::getLogisticMethod()[$model->logistic_method],
+            'value' => (!empty(\common\models\Order::getLogisticMethod()[$model->logistic_method])) ? \common\models\Order::getLogisticMethod()[$model->logistic_method] : null,
             'widgetOptions' => [
                 'data' => \common\models\Order::getLogisticMethod(),
                 'options' => ['placeholder' => '-- ' . Yii::t('app', 'Logistic Method') . ' --'],
@@ -133,6 +154,7 @@ $this->title = Yii::t('app', 'Orders') . ' DO' . $model->id;
         'condensed' => true,
         'hover' => true,
         'bordered' => true,
+        'buttons1' => '{update}',
         'hAlign' => DetailView::ALIGN_CENTER,
         'vAlign' => DetailView::ALIGN_MIDDLE,
         'mode' => DetailView::MODE_VIEW,

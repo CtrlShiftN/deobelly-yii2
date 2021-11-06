@@ -159,20 +159,23 @@ class ProductTypeController extends Controller
     public function actionCreate()
     {
         $model = new ProductType();
+        $model->scenario = "create";
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post())) {
+            if ($model->load($this->request->post()) && $model->validate()) {
                 $model->file = UploadedFile::getInstance($model, 'file');
+                if ($model->file) {
+                    if (!file_exists(Yii::getAlias('@common/media/product-type'))) {
+                        mkdir(Yii::getAlias('@common/media/product-type'), 0777);
+                    }
+                    $imageUrl = Yii::getAlias('@common/media');
+                    $fileName = 'product-type/' . $model->slug . '.' . $model->file->getExtension();
+                    $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                    if ($isUploadedFile) {
+                        $model->image = $fileName;
+                    }
+                }
                 $model->slug = trim(StringHelper::toSlug(trim($model->name)));
-                if (!file_exists(Yii::getAlias('@common/media/product-type'))) {
-                    mkdir(Yii::getAlias('@common/media/product-type'), 0777);
-                }
-                $imageUrl = Yii::getAlias('@common/media');
-                $fileName = 'product-type/' . $model->slug . '.' . $model->file->getExtension();
-                $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
-                if ($isUploadedFile) {
-                    $model->image = $fileName;
-                }
                 $model->admin_id = Yii::$app->user->identity->getId();
                 $model->created_at = date('Y-m-d H:i:s');
                 $model->updated_at = date('Y-m-d H:i:s');

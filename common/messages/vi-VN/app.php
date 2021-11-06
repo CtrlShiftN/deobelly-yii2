@@ -315,7 +315,7 @@ return [
     'Order Statuses' => 'Trạng Thái Đơn Hàng',
     'Order Status List' => 'Danh Sách Trạng Thái Đơn Hàng',
     'Add New Status' => 'Thêm Mới Trạng Thái',
-    'No 19, 29 alley, 460 lane, Khuong Dinh street' => 'Số 19, ngách 29, ngõ 460, đường Khương Đình',
+    'No 19, 29 alley, 460 lane, XXX street' => 'Số 19, ngách 29, ngõ 460, đường XXX',
     'Customer' => 'Khách Hàng',
     'Choose a customer' => 'Chọn một khách hàng',
     'Choose a product' => 'Chọn một sản phẩm',
@@ -425,5 +425,6 @@ return [
     'Discount' => 'Giảm Giá',
     'Visibility' => 'Hiển Thị',
     'Is feature?' => 'Nổi bật',
-    'Login/Signup' => 'Đăng nhập/Đăng ký'
+    'Login/Signup' => 'Đăng nhập/Đăng ký',
+    'Details' => 'Chi tiết',
 ];
