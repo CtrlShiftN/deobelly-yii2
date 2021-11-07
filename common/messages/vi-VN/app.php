@@ -35,7 +35,8 @@ return [
     'View more news' => 'Xem thêm tin tức',
     'Introduction' => 'Giới thiệu',
     'Terms & Service' => 'Điều khoản & Dịch vụ',
-    'Contact' => 'Liên hệ',
+    'Terms & Services' => 'Điều khoản & Dịch vụ',
+    'Contact' => 'Liên Hệ',
     'Hi,' => 'Xin chào,',
     'Guest' => 'Khách',
     'Product' => 'Sản Phẩm',
@@ -434,4 +435,6 @@ return [
     'Tailor-made Types' => 'Loại Thiết Kế Riêng',
     'Update Tailor Made' => 'Cập Nhật Thiết Kế Riêng',
     'Choose a tailor-made type' => 'Chọn một loại thiết kế',
+    'Add Terms And Services' => 'Thêm Điều Khoản Và Dịch Vụ',
+    'Terms And Services List' => 'Danh Sách Điều Khoản Và Dịch Vụ',
 ];
