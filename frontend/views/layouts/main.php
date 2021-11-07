@@ -70,7 +70,7 @@ AppAsset::register($this);
                     <div class="container">
                         <div class="topbar-content row">
                             <div class="topbar col-md-12 col-lg-5 col-xl-4 d-none d-lg-block text-white py-1 text-start">
-                                <ul class="menu-topbar-left my-0">
+                                <ul class="menu-topbar-left my-0 px-0">
                                     <li class="site-nav-top">
                                         <strong>SĐT: </strong><a class="phone-num"
                                                                  href="tel:<?= Yii::$app->params['adminTel'] ?>">
@@ -337,7 +337,7 @@ AppAsset::register($this);
                             </div>
                             <div class="col-1 d-md-none m-0 p-0"></div>
                         </div>
-                        <div class="main-nav-right col-1 text-end <?= (count($mainType) > 6) ? 'd-none d-xl-flex col-xl-10' : 'col-lg-10' ?>">
+                        <div class="main-nav-right col-1 text-end <?= (count($mainType) > 6) ? 'd-none d-xl-flex col-xl-10' : 'd-none d-xl-flex col-lg-10' ?>">
                             <ul class="site-nav mb-0 ps-0 w-100 justify-content-end" id="main-menu">
                                 <?php if (count($mainType) > 6): ?>
                                     <?php if ($count > 4): ?>
@@ -444,7 +444,7 @@ AppAsset::register($this);
                                                     </a>
                                             </li>
                                         <?php else: ?>
-                                            <li class="nav-item d-inline-block px-2>
+                                            <li class="nav-item d-inline-block px-2">
                                                 <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                                                    class="site-nav-link">
                                                     <span><?= $value['name'] ?></span>
