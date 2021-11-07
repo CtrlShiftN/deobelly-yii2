@@ -20,6 +20,7 @@ use Yii;
 class Slider extends \common\models\Slider
 {
     public $file;
+
     /**
      * {@inheritdoc}
      */
@@ -38,8 +39,8 @@ class Slider extends \common\models\Slider
             [['admin_id', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['link', 'site', 'slide_label', 'slide_text'], 'string', 'max' => 255],
-            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
-            ['file', 'required']
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg', 'on' => 'create'],
+            ['file', 'required', 'on' => 'create']
         ];
     }
 
