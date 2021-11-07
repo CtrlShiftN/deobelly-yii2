@@ -38,6 +38,8 @@ use Yii;
  */
 class TailorMadeOrder extends \common\models\TailorMadeOrder
 {
+    public $file;
+
     /**
      * {@inheritdoc}
      */
@@ -54,11 +56,12 @@ class TailorMadeOrder extends \common\models\TailorMadeOrder
         return [
             [['user_id', 'type', 'status', 'admin_id'], 'integer'],
             [['customer_name', 'customer_tel', 'customer_email', 'type'], 'required'],
-            [['height', 'weight', 'neck', 'shoulder', 'chest', 'arm', 'waist', 'wrist', 'waist_to_floor', 'waist_to_knee', 'ankle', 'hip', 'buttock', 'knee', 'thigh', 'biceps'], 'number'],
+            [['height', 'weight', 'neck', 'shoulder', 'chest', 'arm', 'waist', 'wrist', 'waist_to_floor', 'waist_to_knee', 'ankle', 'hip', 'buttock', 'knee', 'thigh', 'biceps'], 'number', 'min' => 1],
             [['notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['customer_name', 'customer_tel', 'customer_email', 'body_image'], 'string', 'max' => 255],
             ['customer_email', 'email'],
+            [['customer_tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app', 'Includes 10 digits starting with 0 or 84.')],
             ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg', 'on' => 'create'],
             ['file', 'required', 'on' => 'create']
         ];
@@ -71,15 +74,15 @@ class TailorMadeOrder extends \common\models\TailorMadeOrder
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
+            'user_id' => Yii::t('app', 'Accounts'),
             'customer_name' => Yii::t('app', 'Customer Name'),
             'customer_tel' => Yii::t('app', 'Customer Tel'),
             'customer_email' => Yii::t('app', 'Customer Email'),
             'body_image' => Yii::t('app', 'Body Image'),
-            'type' => Yii::t('app', 'Type'),
+            'type' => Yii::t('app', 'Tailor-made Types'),
             'height' => Yii::t('app', 'Height'),
             'weight' => Yii::t('app', 'Weight'),
-            'neck' => Yii::t('app', 'Neck'),
+            'neck' => Yii::t('app', 'Collar'),
             'shoulder' => Yii::t('app', 'Shoulder'),
             'chest' => Yii::t('app', 'Chest'),
             'arm' => Yii::t('app', 'Arm'),
@@ -89,7 +92,7 @@ class TailorMadeOrder extends \common\models\TailorMadeOrder
             'waist_to_knee' => Yii::t('app', 'Waist To Knee'),
             'ankle' => Yii::t('app', 'Ankle'),
             'hip' => Yii::t('app', 'Hip'),
-            'buttock' => Yii::t('app', 'Buttock'),
+            'buttock' => Yii::t('app', 'Buttock Size'),
             'knee' => Yii::t('app', 'Knee'),
             'thigh' => Yii::t('app', 'Thigh'),
             'biceps' => Yii::t('app', 'Biceps'),
@@ -98,6 +101,7 @@ class TailorMadeOrder extends \common\models\TailorMadeOrder
             'admin_id' => Yii::t('app', 'Admin ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'file' => Yii::t('app', 'File'),
         ];
     }
 

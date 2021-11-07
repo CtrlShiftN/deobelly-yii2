@@ -6,12 +6,16 @@ use backend\models\TailorMadeOrder;
 use backend\models\TailorMadeOrderSearch;
 use backend\models\User;
 use common\components\encrypt\CryptHelper;
+use common\components\helpers\StringHelper;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * TailorMadeOrderController implements the CRUD actions for TailorMadeOrder model.
@@ -98,8 +102,46 @@ class TailorMadeOrderController extends Controller
     {
         $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
+        $arrCustomer = User::getAllUser();
+        $arrType = \common\models\TailorMadeOrder::getOrderType();
+        $post = Yii::$app->request->post();
+        // process ajax delete
+        if (Yii::$app->request->isAjax && isset($post['kvdelete'])) {
+            echo Json::encode([
+                'success' => true,
+                'messages' => [
+                    'kv-detail-info' => Yii::t('app', 'Delete successfully!')
+                ]
+            ]);
+            return;
+        }
+        // return messages on update of record
+        if ($model->load($post)) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            $slug = trim(StringHelper::toSlug(trim($model->customer_name)));
+            if ($model->file) {
+                if (!file_exists(Yii::getAlias('@common/media/tailor-made'))) {
+                    mkdir(Yii::getAlias('@common/media/tailor-made'), 0777);
+                }
+                $imageUrl = Yii::getAlias('@common/media');
+                $fileName = 'tailor-made/' . date('YmdHis') . '_' . $slug . trim($model->customer_email) . '.' . $model->file->getExtension();
+                $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                if ($isUploadedFile) {
+                    $model->body_image = $fileName;
+                }
+            }
+            $model->admin_id = Yii::$app->user->identity->getId();
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save(false)) {
+                Yii::$app->session->setFlash('kv-detail-success', 'Cập nhật thành công!');
+            } else {
+                Yii::$app->session->setFlash('kv-detail-warning', 'Không thể cập nhật!');
+            }
+        }
         return $this->render('view', [
             'model' => $model,
+            'users' => ArrayHelper::map($arrCustomer, 'id', 'name'),
+            'types' => $arrType
         ]);
     }
 
@@ -112,10 +154,29 @@ class TailorMadeOrderController extends Controller
     {
         $model = new TailorMadeOrder();
         $model->scenario = 'create';
+        $arrType = TailorMadeOrder::getOrderType();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
-
+                $model->file = UploadedFile::getInstance($model, 'file');
+                $slug = trim(StringHelper::toSlug(trim($model->customer_name)));
+                if ($model->file) {
+                    if (!file_exists(Yii::getAlias('@common/media/tailor-made'))) {
+                        mkdir(Yii::getAlias('@common/media/tailor-made'), 0777);
+                    }
+                    $imageUrl = Yii::getAlias('@common/media');
+                    $fileName = 'tailor-made/' . date('YmdHis') . '_' . $slug . trim($model->customer_email) . '.' . $model->file->getExtension();
+                    $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                    if ($isUploadedFile) {
+                        $model->body_image = $fileName;
+                    }
+                }
+                $model->admin_id = Yii::$app->user->identity->getId();
+                $model->created_at = date('Y-m-d H:i:s');
+                $model->updated_at = date('Y-m-d H:i:s');
+                if ($model->save(false)) {
+                    return $this->redirect(Url::toRoute('tailor-made-order/'));
+                }
             }
         } else {
             $model->loadDefaultValues();
@@ -123,6 +184,7 @@ class TailorMadeOrderController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'arrTypes' => $arrType
         ]);
     }
 
@@ -137,13 +199,32 @@ class TailorMadeOrderController extends Controller
     {
         $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
+        $arrTypes = TailorMadeOrder::getOrderType();
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            $slug = trim(StringHelper::toSlug(trim($model->customer_name)));
+            if ($model->file) {
+                if (!file_exists(Yii::getAlias('@common/media/tailor-made'))) {
+                    mkdir(Yii::getAlias('@common/media/tailor-made'), 0777);
+                }
+                $imageUrl = Yii::getAlias('@common/media');
+                $fileName = 'tailor-made/' . date('YmdHis') . '_' . $slug . trim($model->customer_email) . '.' . $model->file->getExtension();
+                $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                if ($isUploadedFile) {
+                    $model->body_image = $fileName;
+                }
+            }
+            $model->admin_id = Yii::$app->user->identity->getId();
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save(false)) {
+                return $this->redirect(Url::toRoute('tailor-made-order/'));
+            }
         }
 
         return $this->render('update', [
             'model' => $model,
+            'arrTypes' => $arrTypes
         ]);
     }
 

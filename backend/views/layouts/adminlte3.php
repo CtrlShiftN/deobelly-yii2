@@ -137,10 +137,12 @@ AppAsset::register($this);
                         </li>
                         <!-- Product -->
                         <li class="nav-item <?= ($controller == 'product-type' || $controller == 'product-category' ||
-                            $controller == 'product' || $controller == 'trademark' || $controller == 'mix-and-match') ? 'menu-is-opening menu-open' : '' ?>">
+                            $controller == 'product' || $controller == 'trademark' || $controller == 'mix-and-match' ||
+                            $controller == 'tailor-made-order') ? 'menu-is-opening menu-open' : '' ?>">
                             <a href="#"
                                class="nav-link <?= ($controller == 'product-type' || $controller == 'product-category' ||
-                                   $controller == 'product' || $controller == 'trademark' || $controller == 'mix-and-match') ? 'active' : '' ?>">
+                                   $controller == 'product' || $controller == 'trademark' || $controller == 'mix-and-match' ||
+                                   $controller == 'tailor-made-order') ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-shopping-basket"></i>
                                 <p>
                                     <?= Yii::t('app', 'Products') ?>
@@ -181,6 +183,13 @@ AppAsset::register($this);
                                        class="nav-link <?= ($controller == 'mix-and-match') ? 'active' : '' ?>">
                                         <i class="nav-icon fas fa-object-group"></i>
                                         <p><?= Yii::t('app', 'Collections') ?></p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= Url::toRoute('tailor-made-order/') ?>"
+                                       class="nav-link <?= ($controller == 'tailor-made-order') ? 'active' : '' ?>">
+                                        <i class="nav-icon fas fa-object-group"></i>
+                                        <p><?= Yii::t('app', 'Tailor Made') ?></p>
                                     </a>
                                 </li>
                             </ul>

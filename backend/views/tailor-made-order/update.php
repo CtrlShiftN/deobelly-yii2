@@ -5,19 +5,16 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\TailorMadeOrder */
 
-$this->title = Yii::t('app', 'Update Tailor Made Order: {name}', [
-    'name' => $model->id,
-]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Tailor Made Orders'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+$this->title = Yii::t('app', 'Update Tailor Made');
 ?>
 <div class="tailor-made-order-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="container px-3 pt-3">
+        <h3 class="text-uppercase"><?= Yii::t('app', 'Update Tailor Made') ?></h3>
+    </div>
 
     <?= $this->render('_form', [
         'model' => $model,
+        'arrTypes' => $arrTypes
     ]) ?>
 
 </div>
