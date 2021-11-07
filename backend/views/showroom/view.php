@@ -10,39 +10,38 @@ $this->title = $model->name;
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
-$imgUrl = Yii::$app->params['common'].'/media';
+$imgUrl = Yii::$app->params['common'] . '/media';
 ?>
 <div class="showroom-view container p-3">
 
     <?php
     $columns = [
         [
-            'attribute' => 'image',
-            'value' => Html::img($imgUrl . '/' . $model->image, ['alt' => $model->name]),
+            'attribute' => 'file',
+            'type' => DetailView::INPUT_FILEINPUT,
+            'label' => Yii::t('app', 'Image'),
+            'value' => Html::img($imgUrl . '/' . $model->image, ['alt' => $model->name, 'class' => 'img-fluid']),
             'format' => 'raw'
         ],
         [
             'attribute' => 'name',
-            'value' => $model->name,
+            'value' => (!empty($model->name)) ? $model->name : null,
         ],
         [
             'attribute' => 'address',
-            'value' => $model->address,
-            'displayOnly' => true
+            'value' => (!empty($model->address)) ? $model->address : null,
         ],
         [
             'attribute' => 'tel',
-            'value' => $model->tel,
-            'displayOnly' => true
+            'value' => (!empty($model->tel)) ? $model->tel : null,
         ],
         [
             'attribute' => 'gps_link',
-            'value' => $model->gps_link,
-            'displayOnly' => true
+            'value' => (!empty($model->gps_link)) ? $model->gps_link : null,
         ],
         [
             'attribute' => 'status',
-            'value' => $arrStatus[$model->status],
+            'value' => (!empty($arrStatus[$model->status])) ? $arrStatus[$model->status] : null,
             'type' => DetailView::INPUT_SELECT2,
             'widgetOptions' => [
                 'data' => $arrStatus,
@@ -52,7 +51,8 @@ $imgUrl = Yii::$app->params['common'].'/media';
         ],
         [
             'attribute' => 'created_at',
-            'value' => $model->created_at,
+            'format' => 'datetime',
+            'value' => (!empty($model->created_at)) ? $model->created_at : null,
             'displayOnly' => true
         ]
     ]
@@ -64,7 +64,6 @@ $imgUrl = Yii::$app->params['common'].'/media';
         'hover' => true,
         'bordered' => true,
 //        'enableEditMode' => false,
-        'buttons1' => '{delete}',
         'hAlign' => DetailView::ALIGN_CENTER,
         'vAlign' => DetailView::ALIGN_MIDDLE,
         'mode' => DetailView::MODE_VIEW,

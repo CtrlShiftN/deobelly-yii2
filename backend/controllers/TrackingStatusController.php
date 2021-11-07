@@ -125,7 +125,7 @@ class TrackingStatusController extends Controller
                 $model->updated_at = date('Y-m-d H:m:s');
                 $model->status = SystemConstant::STATUS_ACTIVE;
                 $model->admin_id = Yii::$app->user->identity->getId();
-                if ($model->save()) {
+                if ($model->save(false)) {
                     return $this->redirect(Url::toRoute('tracking-status/'));
                 }
             }

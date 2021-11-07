@@ -29,15 +29,15 @@ $this->title = Yii::t('app', 'Orders') . ' DO' . $model->id;
         ],
         [
             'attribute' => 'name',
-            'value' => $model->name,
+            'value' => (!empty($model->name)) ? $model->name : null,
         ],
         [
             'attribute' => 'email',
-            'value' => $model->email,
+            'value' => (!empty($model->email)) ? $model->email : null,
         ],
         [
             'attribute' => 'tel',
-            'value' => $model->tel,
+            'value' => (!empty($model->tel)) ? $model->tel : null,
         ],
         [
             'attribute' => 'product_id',

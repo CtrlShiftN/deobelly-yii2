@@ -26,16 +26,16 @@ $modelRelated = $model->related_product;
             'attribute' => 'file',
             'type' => DetailView::INPUT_FILEINPUT,
             'label' => Yii::t('app', 'Image'),
-            'value' => Html::img($imgUrl . '/' . $model->image, ['alt' => $model->name]),
+            'value' => Html::img($imgUrl . '/' . $model->image, ['alt' => $model->name, 'class' => 'img-fluid']),
             'format' => 'raw'
         ],
         [
             'attribute' => 'name',
-            'value' => $model->name,
+            'value' => (!empty($model->name)) ? $model->name : null,
         ],
         [
             'attribute' => 'SKU',
-            'value' => $model->SKU,
+            'value' => (!empty($model->SKU)) ? $model->SKU : null,
         ],
         [
             'attribute' => 'color',
@@ -166,15 +166,15 @@ $modelRelated = $model->related_product;
         ],
         [
             'attribute' => 'regular_price',
-            'value' => $model->regular_price,
+            'value' => (!empty($model->regular_price)) ? $model->regular_price : null,
         ],
         [
             'attribute' => 'discount',
-            'value' => $model->discount,
+            'value' => (!empty($model->discount)) ? $model->discount : null,
         ],
         [
             'attribute' => 'quantity',
-            'value' => $model->quantity,
+            'value' => (!empty($model->quantity)) ? $model->quantity : null,
         ],
         [
             'attribute' => 'trademark_id',
@@ -189,7 +189,7 @@ $modelRelated = $model->related_product;
         [
             'attribute' => 'hide',
             'type' => DetailView::INPUT_SELECT2,
-            'value' => $arrHide[$model->hide],
+            'value' => (!empty($arrHide[$model->hide])) ? $arrHide[$model->hide] : null,
             'widgetOptions' => [
                 'data' => $arrHide,
                 'options' => ['placeholder' => '-- ' . Yii::t('app', 'Visibility') . ' --'],
@@ -199,7 +199,7 @@ $modelRelated = $model->related_product;
         ],
         [
             'attribute' => 'is_feature',
-            'value' => $arrFeature[$model->is_feature],
+            'value' => (!empty($arrFeature[$model->is_feature])) ? $arrFeature[$model->is_feature] : null,
             'type' => DetailView::INPUT_SELECT2,
             'widgetOptions' => [
                 'data' => $arrFeature,
@@ -209,7 +209,8 @@ $modelRelated = $model->related_product;
         ],
         [
             'attribute' => 'created_at',
-            'value' => $model->created_at,
+            'format' => 'datetime',
+            'value' => (!empty($model->created_at)) ? $model->created_at : null,
             'displayOnly' => true,
         ],
     ]

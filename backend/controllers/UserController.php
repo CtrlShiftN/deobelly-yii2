@@ -117,11 +117,15 @@ class UserController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
-                $model->setPassword($model->password_hash);
+                if ($model->password_hash) {
+                    $model->setPassword($model->password_hash);
+                }
                 $model->generateAuthKey();
                 $model->generatePasswordResetToken();
-                $model->username = strstr($model->email, '@', true);
-                $model->referral_code = strstr($model->email, '@', true);
+                if (!empty($model->email)) {
+                    $model->username = strstr($model->email, '@', true);
+                    $model->referral_code = strstr($model->email, '@', true);
+                }
                 $model->created_at = date('Y-m-d H:m:s');
                 $model->updated_at = date('Y-m-d H:m:s');
                 $model->status = $model::STATUS_ACTIVE;
@@ -151,11 +155,15 @@ class UserController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post())) {
-            $model->setPassword($model->password_hash);
+            if (!empty($model->password_hash)) {
+                $model->setPassword($model->password_hash);
+            }
             $model->generateAuthKey();
             $model->generatePasswordResetToken();
-            $model->username = strstr($model->email, '@', true);
-            $model->referral_code = strstr($model->email, '@', true);
+            if (!empty($model->email)) {
+                $model->username = strstr($model->email, '@', true);
+                $model->referral_code = strstr($model->email, '@', true);
+            }
             $model->created_at = date('Y-m-d H:m:s');
             $model->updated_at = date('Y-m-d H:m:s');
             $model->status = $model::STATUS_ACTIVE;

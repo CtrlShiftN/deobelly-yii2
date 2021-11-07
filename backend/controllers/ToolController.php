@@ -100,18 +100,23 @@ class ToolController extends \yii\web\Controller
         $model = new Slider();
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
-                // TODO Change server save files to common/media
                 $model->file = UploadedFile::getInstance($model, 'file');
-                $fileName = 'slide' . date('YmdHis') . '.' . $model->file->getExtension();
-                $isUploadedFile = $model->file->saveAs($_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $fileName);
-                if ($isUploadedFile) {
-                    $model->link = '/uploads/' . $fileName;
-                    $model->admin_id = Yii::$app->user->identity->getId();
-                    $model->created_at = date('Y-m-d H:i:s');
-                    $model->updated_at = date('Y-m-d H:i:s');
-                    if ($model->save(false)) {
-                        return $this->redirect(Url::toRoute('tool/slider'));
+                if ($model->file) {
+                    $fileName = 'slider/' . date('YmdHis') . '.' . $model->file->getExtension();
+                    if (!file_exists(Yii::getAlias('@common/media/slider'))) {
+                        mkdir(Yii::getAlias('@common/media/slider'), 0777);
                     }
+                    $imageUrl = Yii::getAlias('@common/media');
+                    $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                    if ($isUploadedFile) {
+                        $model->link = $fileName;
+                    }
+                }
+                $model->admin_id = Yii::$app->user->identity->getId();
+                $model->created_at = date('Y-m-d H:i:s');
+                $model->updated_at = date('Y-m-d H:i:s');
+                if ($model->save(false)) {
+                    return $this->redirect(Url::toRoute('tool/slider'));
                 }
             }
         }

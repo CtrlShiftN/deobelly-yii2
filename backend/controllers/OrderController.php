@@ -86,19 +86,15 @@ class OrderController extends Controller
             $_index = $_POST['editableIndex'];
             // which attribute has been edited?
             $attribute = $_POST['editableAttribute'];
+            $value = $_POST[$attribute];
             if ($attribute == 'notes') {
                 // update to db
-                $value = $_POST[$attribute];
                 $result = Order::updateOrderNotes($_id, $attribute, $value);
-                // response to gridview
-                return json_encode($result);
-            } elseif ($attribute == 'status') {
+            } else {
                 // update to db
-                $value = $_POST[$attribute];
-                $result = Order::updateOrderStatus($_id, $attribute, $value);
-                // response to gridview
-                return json_encode($result);
+                $result = Order::updateOrder($_id, $attribute, $value);
             }
+            return json_encode($result);
         }
 
         return $this->render('index', [
@@ -133,7 +129,7 @@ class OrderController extends Controller
             if ($model->save(false)) {
                 Yii::$app->session->setFlash('kv-detail-success', 'Cập nhật thành công!');
             } else {
-                Yii::$app->session->setFlash('kv-detail-warning', $model->status);
+                Yii::$app->session->setFlash('kv-detail-warning', 'Không thể cập nhật!');
             }
         }
         return $this->render('view', [

@@ -6,15 +6,14 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\ShowroomSearch */
+/* @var $searchModel backend\models\TermsAndServicesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Showrooms');
+$this->title = Yii::t('app', 'Terms & Services');
 $this->params['breadcrumbs'][] = $this->title;
-$imgUrl = Yii::$app->params['common'] . '/media';
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
 ?>
-<div class="showroom-index">
+<div class="terms-and-services-index">
     <div class="pt-3">
         <?php
         $defaultExportConfig = [
@@ -43,73 +42,25 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 'headerOptions' => ['class' => 'kartik-sheet-style']
             ],
             [
-                'class' => 'kartik\grid\DataColumn',
-                'attribute' => 'image',
-                'label' => Yii::t('app', 'Image'),
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'width' => '140px',
-                'value' => function ($model, $key, $index, $widget) use ($imgUrl) {
-                    return Html::img($imgUrl . '/' . $model['image'], ['width' => '100%', 'alt' => $model['name']]);
-                },
-                'filter' => false,
-                'format' => 'raw'
-            ],
-            [
-                'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'name',
+                'attribute' => 'title',
                 'label' => Yii::t('app', 'Title'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
+                'width' => '75px',
                 'value' => function ($model, $key, $index, $widget) {
-                    return $model['name'];
+                    return $model['title'];
                 },
-                // edit field
-                'editableOptions' => [
-                    'asPopover' => false,
-                ],
             ],
             [
-                'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'address',
-                'label' => Yii::t('app', 'Address'),
+                'attribute' => 'content',
+                'label' => Yii::t('app', 'Content'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
+                'width' => '200px',
+                'contentOptions' => ['style' => 'width:200px;'],
                 'value' => function ($model, $key, $index, $widget) {
-                    return $model['address'];
+                    return strip_tags($model['content']);
                 },
-                // edit field
-                'editableOptions' => [
-                    'asPopover' => false,
-                ],
-            ],
-            [
-                'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'tel',
-                'label' => Yii::t('app', 'Tel'),
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'value' => function ($model, $key, $index, $widget) {
-                    return $model['tel'];
-                },
-                // edit field
-                'editableOptions' => [
-                    'asPopover' => false,
-                ],
-            ],
-            [
-                'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'gps_link',
-                'label' => Yii::t('app', 'GG Map Link'),
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'value' => function ($model, $key, $index, $widget) {
-                    return $model['gps_link'];
-                },
-                // edit field
-                'editableOptions' => [
-                    'asPopover' => false,
-                ],
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
@@ -117,7 +68,8 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 'label' => Yii::t('app', 'Status'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
-                'width' => '75px',
+                'width' => '50px',
+                'headerOptions' => ['style' => 'width:40px;'],
                 'value' => function ($model, $key, $index, $widget) use ($arrStatus) {
                     return $arrStatus[$model['status']];
                 },
@@ -142,23 +94,13 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Status') . ' --']
             ],
             [
-                'attribute' => 'created_at',
-                'label' => Yii::t('app', 'Created_at'),
+                'label' => Yii::t('app', 'Actions'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
-                'filter' => false,
-                'width' => '200px',
-                'format' => 'raw'
-            ],
-            [
-//                'label' => Yii::t('app', 'Actions'),
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'width' => '150px',
+                'contentOptions' => ['style' => 'width:40px;'],
                 'value' => function ($model, $key, $index, $widget) {
-                    return Html::a(Yii::t('app', 'View'), Url::toRoute(['showroom/view', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-primary mb-3']) . '<br/>' .
-                        Html::a(Yii::t('app', 'Edit'), Url::toRoute(['showroom/update', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-info mb-3']) . '<br/>' .
-                        Html::a(Yii::t('app', 'Delete'), Url::toRoute(['showroom/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger', 'data' => [
+                    return Html::a('<i class="fas fa-eye"></i> ' . Yii::t('app', 'View'), Url::toRoute(['terms-and-services/view', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-info mb-2', 'target' => '_blank']) . '<br/>' .
+                        Html::a('<i class="far fa-trash-alt"></i> ' . Yii::t('app', 'Delete'), Url::toRoute(['terms-and-services/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger mt-2', 'data' => [
                             'method' => 'post',
                             'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                         ],]);
@@ -196,12 +138,14 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
             'exportConfig' => $defaultExportConfig,
             'toolbar' => [
                 [
-                    'content' => Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Add New Showroom'), ['create'], [
-                        'class' => 'btn btn-success',
-                        'title' => 'Reset Grid',
-                        'data-pjax' => 0,
-                        'target' => '_blank'
-                    ]),
+                    'content' => Html::button('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Add Terms And Services'),
+                        [
+                            'value' => Url::toRoute('terms-and-services/create'),
+                            'class' => 'btn btn-success',
+                            'id' => 'modalTermsButton',
+                            'data-bs-toggle' => 'modal',
+                            'data-bs-target' => '#modalTerms'
+                        ]),
                     'options' => ['class' => 'btn-group mr-2']
                 ],
                 '{export}',
@@ -209,10 +153,27 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
-                'heading' => Yii::t('app', 'Showroom List'),
+                'heading' => Yii::t('app', 'Terms And Services List'),
             ],
         ]);
         Pjax::end();
         ?>
+        <!-- Modal -->
+        <div class="modal fade" id="modalTerms" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><?= $this->title ?></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modal-tag-content"></div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $('.modal-tag-content').load($('#modalTermsButton').attr('value'));
+            });
+        </script>
     </div>
 </div>

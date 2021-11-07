@@ -6,15 +6,15 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\ShowroomSearch */
+/* @var $searchModel backend\models\MixAndMatchSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Showrooms');
+$this->title = Yii::t('app', 'Collections');
 $this->params['breadcrumbs'][] = $this->title;
-$imgUrl = Yii::$app->params['common'] . '/media';
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
+$imgUrl = Yii::$app->params['common'] . '/media';
 ?>
-<div class="showroom-index">
+<div class="mix-and-match-index">
     <div class="pt-3">
         <?php
         $defaultExportConfig = [
@@ -50,19 +50,19 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 'hAlign' => 'center',
                 'width' => '140px',
                 'value' => function ($model, $key, $index, $widget) use ($imgUrl) {
-                    return Html::img($imgUrl . '/' . $model['image'], ['width' => '100%', 'alt' => $model['name']]);
+                    return Html::img($imgUrl . '/' . $model['image'], ['width' => '100%', 'alt' => $model['title']]);
                 },
                 'filter' => false,
                 'format' => 'raw'
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'name',
+                'attribute' => 'title',
                 'label' => Yii::t('app', 'Title'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) {
-                    return $model['name'];
+                    return $model['title'];
                 },
                 // edit field
                 'editableOptions' => [
@@ -70,46 +70,19 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 ],
             ],
             [
-                'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'address',
-                'label' => Yii::t('app', 'Address'),
+//                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'content',
+                'label' => Yii::t('app', 'Content'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function ($model, $key, $index, $widget) {
-                    return $model['address'];
+                    return substr($model['content'], 0, 200) . '...';
                 },
                 // edit field
-                'editableOptions' => [
-                    'asPopover' => false,
-                ],
-            ],
-            [
-                'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'tel',
-                'label' => Yii::t('app', 'Tel'),
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'value' => function ($model, $key, $index, $widget) {
-                    return $model['tel'];
-                },
-                // edit field
-                'editableOptions' => [
-                    'asPopover' => false,
-                ],
-            ],
-            [
-                'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'gps_link',
-                'label' => Yii::t('app', 'GG Map Link'),
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'value' => function ($model, $key, $index, $widget) {
-                    return $model['gps_link'];
-                },
-                // edit field
-                'editableOptions' => [
-                    'asPopover' => false,
-                ],
+//                'editableOptions' => [
+//                    'asPopover' => false,
+//                ],
+                'format' => 'raw'
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
@@ -117,7 +90,7 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 'label' => Yii::t('app', 'Status'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
-                'width' => '75px',
+                'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) use ($arrStatus) {
                     return $arrStatus[$model['status']];
                 },
@@ -151,14 +124,17 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 'format' => 'raw'
             ],
             [
-//                'label' => Yii::t('app', 'Actions'),
+                'label' => Yii::t('app', 'Actions'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
-                'width' => '150px',
+                'width' => '100px',
                 'value' => function ($model, $key, $index, $widget) {
-                    return Html::a(Yii::t('app', 'View'), Url::toRoute(['showroom/view', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-primary mb-3']) . '<br/>' .
-                        Html::a(Yii::t('app', 'Edit'), Url::toRoute(['showroom/update', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-info mb-3']) . '<br/>' .
-                        Html::a(Yii::t('app', 'Delete'), Url::toRoute(['showroom/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger', 'data' => [
+                    return Html::a(Yii::t('app', 'View'), Url::toRoute(
+                            [
+                                'mix-and-match/view',
+                                'id' => \common\components\encrypt\CryptHelper::encryptString($key)
+                            ]), ['class' => 'btn btn-info mb-2']) . '<br/>' .
+                        Html::a(Yii::t('app', 'Delete'), Url::toRoute(['mix-and-match/delete', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger', 'data' => [
                             'method' => 'post',
                             'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                         ],]);
@@ -196,7 +172,7 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
             'exportConfig' => $defaultExportConfig,
             'toolbar' => [
                 [
-                    'content' => Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Add New Showroom'), ['create'], [
+                    'content' => Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Add New Collections'), ['create'], [
                         'class' => 'btn btn-success',
                         'title' => 'Reset Grid',
                         'data-pjax' => 0,
@@ -209,7 +185,7 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
-                'heading' => Yii::t('app', 'Showroom List'),
+                'heading' => Yii::t('app', 'Collection List'),
             ],
         ]);
         Pjax::end();

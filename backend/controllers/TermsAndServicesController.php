@@ -2,23 +2,23 @@
 
 namespace backend\controllers;
 
-use backend\models\ProductCategory;
-use backend\models\ProductCategorySearch;
-use backend\models\ProductType;
+use backend\models\TermsAndServices;
+use backend\models\TermsAndServicesSearch;
 use common\components\encrypt\CryptHelper;
 use common\components\helpers\StringHelper;
-use common\components\SystemConstant;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
- * ProductCategoryController implements the CRUD actions for ProductCategory model.
+ * TermsAndServicesController implements the CRUD actions for TermsAndServices model.
  */
-class ProductCategoryController extends Controller
+class TermsAndServicesController extends Controller
 {
     /**
      * @inheritDoc
@@ -62,43 +62,32 @@ class ProductCategoryController extends Controller
     }
 
     /**
-     * Lists all ProductCategory models.
+     * Lists all TermsAndServices models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ProductCategorySearch();
+        $searchModel = new TermsAndServicesSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-        $productTypes = ProductType::getAllTypes();
         if (Yii::$app->request->post('hasEditable')) {
             // which rows has been edited?
             $_id = $_POST['editableKey'];
             $_index = $_POST['editableIndex'];
             // which attribute has been edited?
             $attribute = $_POST['editableAttribute'];
-            if ($attribute == 'name') {
-                // update to db
-                $value = $_POST['ProductCategory'][$_index][$attribute];
-                $result = ProductCategory::updateProductCategoryTitle($_id, $attribute, $value);
-                // response to gridview
-                return json_encode($result);
-            } elseif ($attribute == 'status') {
-                // update to db
-                $value = $_POST['ProductCategory'][$_index][$attribute];
-                $result = ProductCategory::updateProductCategoryStatus($_id, $attribute, $value);
-                // response to gridview
-                return json_encode($result);
-            }
+            $value = $_POST['TermsAndServices'][$_index][$attribute];
+            $result = TermsAndServices::updateAttribute($_id, $attribute, $value);
+            // response to gridview
+            return json_encode($result);
         }
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'productTypes' => $productTypes
         ]);
     }
 
     /**
-     * Displays a single ProductCategory model.
+     * Displays a single TermsAndServices model.
      * @param int $id ID
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -106,30 +95,50 @@ class ProductCategoryController extends Controller
     public function actionView($id)
     {
         $id = CryptHelper::decryptString($id);
+        $model = $this->findModel($id);
+        $post = Yii::$app->request->post();
+        // process ajax delete
+        if (Yii::$app->request->isAjax && isset($post['kvdelete'])) {
+            echo Json::encode([
+                'success' => true,
+                'messages' => [
+                    'kv-detail-info' => Yii::t('app', 'Delete successfully!')
+                ]
+            ]);
+            return;
+        }
+        // return messages on update of record
+        if ($model->load($post)) {
+            $model->admin_id = Yii::$app->user->identity->getId();
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save(false)) {
+                Yii::$app->session->setFlash('kv-detail-success', 'Cập nhật thành công!');
+            } else {
+                Yii::$app->session->setFlash('kv-detail-warning', 'Không thể cập nhật!');
+            }
+        }
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
     /**
-     * Creates a new ProductCategory model.
+     * Creates a new TermsAndServices model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new ProductCategory();
-        $productTypes = ProductType::getAllTypes();
+        $model = new TermsAndServices();
+        $model->scenario = 'create';
+
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
-                $model->slug = StringHelper::toSlug($model->name);
-                $model->created_at = date('Y-m-d H:m:s');
-                $model->updated_at = date('Y-m-d H:m:s');
-                $model->status = SystemConstant::STATUS_ACTIVE;
-                $model->type_id = (!empty($model->types)) ? implode(",", $model->types) : null;
                 $model->admin_id = Yii::$app->user->identity->getId();
-                if ($model->save()) {
-                    return $this->redirect(Url::toRoute('product-category/'));
+                $model->created_at = date('Y-m-d H:i:s');
+                $model->updated_at = date('Y-m-d H:i:s');
+                if ($model->save(false)) {
+                    return $this->redirect(Url::toRoute('terms-and-services/'));
                 }
             }
         } else {
@@ -138,12 +147,11 @@ class ProductCategoryController extends Controller
 
         return $this->renderAjax('create', [
             'model' => $model,
-            'types' => $productTypes
         ]);
     }
 
     /**
-     * Updates an existing ProductCategory model.
+     * Updates an existing TermsAndServices model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return mixed
@@ -154,8 +162,12 @@ class ProductCategoryController extends Controller
         $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $model->admin_id = Yii::$app->user->identity->getId();
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save(false)) {
+                return $this->redirect(Url::toRoute('terms-and-services/'));
+            }
         }
 
         return $this->render('update', [
@@ -164,7 +176,7 @@ class ProductCategoryController extends Controller
     }
 
     /**
-     * Deletes an existing ProductCategory model.
+     * Deletes an existing TermsAndServices model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return mixed
@@ -179,15 +191,15 @@ class ProductCategoryController extends Controller
     }
 
     /**
-     * Finds the ProductCategory model based on its primary key value.
+     * Finds the TermsAndServices model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return ProductCategory the loaded model
+     * @return TermsAndServices the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = ProductCategory::findOne($id)) !== null) {
+        if (($model = TermsAndServices::findOne($id)) !== null) {
             return $model;
         }
 

@@ -136,9 +136,13 @@ AppAsset::register($this);
                             </ul>
                         </li>
                         <!-- Product -->
-                        <li class="nav-item <?= ($controller == 'product-type' || $controller == 'product-category' || $controller == 'product' || $controller == 'trademark') ? 'menu-is-opening menu-open' : '' ?>">
+                        <li class="nav-item <?= ($controller == 'product-type' || $controller == 'product-category' ||
+                            $controller == 'product' || $controller == 'trademark' || $controller == 'mix-and-match' ||
+                            $controller == 'tailor-made-order') ? 'menu-is-opening menu-open' : '' ?>">
                             <a href="#"
-                               class="nav-link <?= ($controller == 'product-type' || $controller == 'product-category' || $controller == 'product' || $controller == 'trademark') ? 'active' : '' ?>">
+                               class="nav-link <?= ($controller == 'product-type' || $controller == 'product-category' ||
+                                   $controller == 'product' || $controller == 'trademark' || $controller == 'mix-and-match' ||
+                                   $controller == 'tailor-made-order') ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-shopping-basket"></i>
                                 <p>
                                     <?= Yii::t('app', 'Products') ?>
@@ -172,6 +176,20 @@ AppAsset::register($this);
                                        class="nav-link <?= ($controller == 'product') ? 'active' : '' ?>">
                                         <i class="nav-icon far fa-newspaper"></i>
                                         <p><?= Yii::t('app', 'Products') ?></p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= Url::toRoute('mix-and-match/') ?>"
+                                       class="nav-link <?= ($controller == 'mix-and-match') ? 'active' : '' ?>">
+                                        <i class="nav-icon fas fa-object-group"></i>
+                                        <p><?= Yii::t('app', 'Collections') ?></p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= Url::toRoute('tailor-made-order/') ?>"
+                                       class="nav-link <?= ($controller == 'tailor-made-order') ? 'active' : '' ?>">
+                                        <i class="nav-icon fas fa-object-group"></i>
+                                        <p><?= Yii::t('app', 'Tailor Made') ?></p>
                                     </a>
                                 </li>
                             </ul>
@@ -232,6 +250,13 @@ AppAsset::register($this);
                                class="nav-link <?= ($controller == 'contact') ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-envelope"></i>
                                 <p><?= Yii::t('app', 'Contact') ?></p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= Url::toRoute('terms-and-services/') ?>"
+                               class="nav-link <?= ($controller == 'terms-and-services') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-concierge-bell"></i>
+                                <p><?= Yii::t('app', 'Terms & Services') ?></p>
                             </a>
                         </li>
                         <li class="nav-item">

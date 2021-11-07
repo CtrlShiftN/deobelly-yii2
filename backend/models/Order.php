@@ -142,7 +142,7 @@ class Order extends \common\models\Order
      * @param $value
      * @return int|void
      */
-    public static function updateOrderStatus($id, $attribute, $value)
+    public static function updateOrder($id, $attribute, $value)
     {
         $model = new \common\models\OrderTracking();
         $model->admin_id = Yii::$app->user->identity->getId();

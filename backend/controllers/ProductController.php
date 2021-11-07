@@ -168,9 +168,9 @@ class ProductController extends Controller
             $assocModel->admin_id = Yii::$app->user->identity->getId();
             $assocModel->updated_at = date('Y-m-d H:i:s');
             if ($model->save(false) && $assocModel->save(false)) {
-                Yii::$app->session->setFlash('kv-detail-success', 'Color updated!');
+                Yii::$app->session->setFlash('kv-detail-success', 'Cập nhật thành công!');
             } else {
-                Yii::$app->session->setFlash('kv-detail-warning', $model->status);
+                Yii::$app->session->setFlash('kv-detail-warning', 'Không thể cập nhật!');
             }
         }
         return $this->render('view', [
@@ -217,7 +217,7 @@ class ProductController extends Controller
                     $model->selling_price = $model->sale_price;
                 }
                 $model->related_product = (!empty($model->relatedProduct)) ? implode(',', $model->relatedRecords) : null;
-                $model->image = 'product/' . implode("-", $model->type) . '_' . $model->category . '_' . $model->slug . '.' . $model->file->getExtension();
+                $imgPath = 'product/' . implode("-", $model->type) . '_' . $model->category . '_' . $model->slug . '.' . $model->file->getExtension();
                 $model->admin_id = Yii::$app->user->identity->getId();
                 $model->created_at = date('Y-m-d H:i:s');
                 $model->updated_at = date('Y-m-d H:i:s');
@@ -226,17 +226,22 @@ class ProductController extends Controller
                     mkdir(Yii::getAlias('@common/media/product'), 0777);
                 }
                 $imageUrl = Yii::getAlias('@common/media');
-                $model->file->saveAs($imageUrl . '/' . $model->image);
-                if ($model->files) {
-                    $count = 1;
-                    foreach ($model->files as $key => $file) {
-                        $imagePath = 'product/' . implode("-", $model->type) . '_' . $model->category . '_' . $model->slug . '_' . $count . '.' . $file->getExtension();
-                        $arrImages[$key] = $imagePath;
-                        $file->saveAs($imageUrl . '/' . $imagePath);
-                        $count++;
+                if ($model->file) {
+                    $isUploadedImage = $model->file->saveAs($imageUrl . '/' . $model->image);
+                    if ($isUploadedImage){
+                        $model->image = $imgPath;
                     }
+                    if ($model->files) {
+                        $count = 1;
+                        foreach ($model->files as $key => $file) {
+                            $imagePath = 'product/' . implode("-", $model->type) . '_' . $model->category . '_' . $model->slug . '_' . $count . '.' . $file->getExtension();
+                            $arrImages[$key] = $imagePath;
+                            $file->saveAs($imageUrl . '/' . $imagePath);
+                            $count++;
+                        }
+                    }
+                    $model->images = implode(",", $arrImages);
                 }
-                $model->images = implode(",", $arrImages);
                 $typeStr = (!empty($model->type)) ? implode(',', $model->type) : null;
                 $cateStr = $model->category;
                 $colorStr = (!empty($model->color)) ? implode(',', $model->color) : null;

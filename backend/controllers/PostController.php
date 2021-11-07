@@ -142,11 +142,10 @@ class PostController extends Controller
             }
             $model->admin_id = Yii::$app->user->identity->getId();
             $model->updated_at = date('Y-m-d H:i:s');
-            $model->viewed = 0;
             if ($model->save(false)) {
-                Yii::$app->session->setFlash('kv-detail-success', 'Post updated!');
+                Yii::$app->session->setFlash('kv-detail-success', 'Cập nhật thành công!');
             } else {
-                Yii::$app->session->setFlash('kv-detail-warning', 'Post can not be updated!');
+                Yii::$app->session->setFlash('kv-detail-warning', 'Không thể cập nhật!');
             }
         }
         return $this->render('view', [
@@ -170,23 +169,25 @@ class PostController extends Controller
             if ($model->load($this->request->post())) {
                 $model->file = UploadedFile::getInstance($model, 'file');
                 $model->slug = trim(StringHelper::toSlug(trim($model->title)));
-                if (!file_exists(Yii::getAlias('@common/media'))) {
-                    mkdir(Yii::getAlias('@common/media'), 0777);
+                if ($model->file) {
+                    if (!file_exists(Yii::getAlias('@common/media/post'))) {
+                        mkdir(Yii::getAlias('@common/media/post'), 0777);
+                    }
+                    $imageUrl = Yii::getAlias('@common/media');
+                    $fileName = 'post/' . $model->slug . '.' . $model->file->getExtension();
+                    $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                    if ($isUploadedFile) {
+                        $model->avatar = $fileName;
+                    }
                 }
-                $imageUrl = Yii::getAlias('@common/media');
-                $fileName = $model->slug . '.' . $model->file->getExtension();
-                $isUploadedFile = $model->file->saveAs($imageUrl . '/post/' . $fileName);
-                if ($isUploadedFile) {
-                    $model->avatar = 'post/' . $fileName;
-                    if (!empty($model->tags)) {
-                        $model->tag_id = implode(",", $model->tags);
-                    }
-                    $model->admin_id = Yii::$app->user->identity->getId();
-                    $model->created_at = date('Y-m-d H:i:s');
-                    $model->updated_at = date('Y-m-d H:i:s');
-                    if ($model->save(false)) {
-                        return $this->redirect(Url::toRoute('post/'));
-                    }
+                if (!empty($model->tags)) {
+                    $model->tag_id = implode(",", $model->tags);
+                }
+                $model->admin_id = Yii::$app->user->identity->getId();
+                $model->created_at = date('Y-m-d H:i:s');
+                $model->updated_at = date('Y-m-d H:i:s');
+                if ($model->save(false)) {
+                    return $this->redirect(Url::toRoute('post/'));
                 }
             }
         }
