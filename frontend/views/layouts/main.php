@@ -443,8 +443,8 @@ AppAsset::register($this);
                     <div class="ft-bg-overlay"></div>
                     <div class="container inner">
                         <div class="row d-none d-lg-flex m-0 p-0">
-                            <div class="col-sm-12 col-md-6 col-lg-3">
-                                <ul class="footer-nav no-bullets">
+                            <div class="col-sm-12 col-md-6 col-lg-3 pb-3 px-auto">
+                                <ul class="footer-nav no-bullets px-2 py-0">
                                     <h3><?= Yii::t('app', 'ABOUT US') ?></h3>
                                     <li>
                                         <a href="/"><?= Yii::t('app', 'Suplo fashion') ?></a>
@@ -463,8 +463,8 @@ AppAsset::register($this);
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-sm-12 col-md-6 col-lg-3">
-                                <ul class="footer-nav no-bullets">
+                            <div class="col-sm-12 col-md-6 col-lg-3 pb-3 px-auto">
+                                <ul class="footer-nav no-bullets px-2 py-0">
                                     <h3><?= Yii::t('app', 'News') ?></h3>
                                     <li>
                                         <a href="/"><?= Yii::t('app', 'Product reviews') ?></a>
@@ -483,8 +483,8 @@ AppAsset::register($this);
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-sm-12 col-md-6 col-lg-3">
-                                <ul class="footer-nav no-bullets">
+                            <div class="col-sm-12 col-md-6 col-lg-3 pb-3 px-auto">
+                                <ul class="footer-nav no-bullets px-2 py-0">
                                     <h3><?= Yii::t('app', 'PRODUCT CONSULTING') ?></h3>
                                     <li>
                                         <a href="/"><?= Yii::t('app', 'Office Fashion') ?></a>
@@ -503,8 +503,8 @@ AppAsset::register($this);
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-sm-12 col-md-6 col-lg-3">
-                                <ul class="footer-nav no-bullets">
+                            <div class="col-sm-12 col-md-6 col-lg-3 pb-3 px-auto">
+                                <ul class="footer-nav no-bullets px-2 py-0">
                                     <h3><?= Yii::t('app', 'INSTRUCTIONS') ?></h3>
                                     <li>
                                         <a href="/"><?= Yii::t('app', 'Shopping guide') ?></a>
