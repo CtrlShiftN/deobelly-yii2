@@ -333,18 +333,7 @@ AppAsset::register($this);
                         </div>
                         <div class="main-nav-right text-end <?= (count($mainType) > 6) ? 'd-none d-xl-flex col-1 col-xl-10' : 'd-none d-lg-flex col-1 col-lg-10' ?>">
                             <ul class="site-nav mb-0 ps-0 w-100 justify-content-end" id="main-menu">
-                                <?php if ($controller == 'site' && $action != 'luxury'): ?>
-                                    <?php foreach ($mainType as $key => $value): ?>
-                                        <?php if ($value['segment'] == SystemConstant::SEGMENT_CASUAL): ?>
-                                            <li class="nav-item p-2">
-                                                <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
-                                                   class="site-nav-link">
-                                                    <span><?= $value['name'] ?></span>
-                                                </a>
-                                            </li>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
-                                <?php else: ?>
+                                <?php if ($controller == 'site' && $action == 'luxury'): ?>
                                     <li class="nav-item d-inline-block p-2">
                                         <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($casualType[SystemConstant::PRODUCT_TYPE_NEW]['id'])]) ?>"
                                            class="site-nav-link">
@@ -372,6 +361,16 @@ AppAsset::register($this);
                                             </li>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
+                                <?php else: ?><?php foreach ($mainType as $key => $value): ?>
+                                    <?php if ($value['segment'] == SystemConstant::SEGMENT_CASUAL): ?>
+                                        <li class="nav-item p-2">
+                                            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                                               class="site-nav-link">
+                                                <span><?= $value['name'] ?></span>
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                                 <?php endif; ?>
                             </ul>
                         </div>
@@ -392,18 +391,7 @@ AppAsset::register($this);
                     </div>
                 </nav>
                 <nav class="<?= (count($mainType) > 6) ? 'd-none d-md-flex d-xl-none' : 'd-none d-md-flex d-lg-none' ?> align-items-center justify-content-center nav-tablet bg-white border-top border-bottom">
-                    <?php if ($controller == 'site' && $action != 'luxury'): ?>
-                        <?php foreach ($mainType as $key => $value): ?>
-                            <?php if ($value['segment'] == SystemConstant::SEGMENT_CASUAL): ?>
-                                <li class="nav-item p-2">
-                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
-                                       class="site-nav-link">
-                                        <span><?= $value['name'] ?></span>
-                                    </a>
-                                </li>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    <?php else: ?>
+                    <?php if ($controller == 'site' && $action == 'luxury'): ?>
                         <li class="nav-item d-inline-block p-2">
                             <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($casualType[SystemConstant::PRODUCT_TYPE_NEW]['id'])]) ?>"
                                class="site-nav-link">
@@ -428,6 +416,17 @@ AppAsset::register($this);
                                             <?php endif; ?>
                                             <span><?= $value['name'] ?></span>
                                         </a>
+                                </li>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <?php foreach ($mainType as $key => $value): ?>
+                            <?php if ($value['segment'] == SystemConstant::SEGMENT_CASUAL): ?>
+                                <li class="nav-item p-2">
+                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                                       class="site-nav-link">
+                                        <span><?= $value['name'] ?></span>
+                                    </a>
                                 </li>
                             <?php endif; ?>
                         <?php endforeach; ?>
