@@ -28,7 +28,13 @@ $this->registerCss("
     ])->label(Yii::t('app', 'Slide Image'));
     ?>
 
-    <?= $form->field($model, 'site')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'site')->widget(Select2::classname(), [
+        'data' => $siteIndex,
+        'options' => ['placeholder' => Yii::t('app', 'Choose a site')],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]); ?>
     <?= $form->field($model, 'slide_label')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'slide_text')->textInput(['maxlength' => true]) ?>
 

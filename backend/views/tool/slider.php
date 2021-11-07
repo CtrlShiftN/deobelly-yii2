@@ -11,7 +11,7 @@ use yii\widgets\Pjax;
 
 $this->title = Yii::t('app', 'Sliders');
 $this->params['breadcrumbs'][] = $this->title;
-$commonUrl = Yii::$app->params['common'];
+$commonUrl = Yii::$app->params['common'] . '/media';
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
 ?>
 <div class="slider-index">
@@ -50,7 +50,7 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 'hAlign' => 'center',
                 'width' => '140px',
                 'value' => function ($model, $key, $index, $widget) use ($commonUrl) {
-                    return Html::img($commonUrl . '/media/' . $model['link'], ['width' => '100%', 'alt' => $model['site']]);
+                    return Html::img($commonUrl . '/' . $model['link'], ['width' => '100%', 'alt' => $model['site']]);
                 },
                 'filter' => false,
                 'format' => 'raw'
@@ -61,13 +61,28 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 'label' => Yii::t('app', 'Site'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
-                'value' => function ($model, $key, $index, $widget) {
-                    return $model['site'];
+                'value' => function ($model, $key, $index, $widget) use ($siteIndex) {
+                    return (!empty($siteIndex[$model['site']])) ? $siteIndex[$model['site']] : null;
                 },
-                // edit field
-                'editableOptions' => [
-                    'asPopover' => false,
+                'editableOptions' => function ($model, $key, $index) use ($siteIndex) {
+                    return [
+                        'name' => 'site',
+                        'asPopover' => false,
+                        'header' => Yii::t('app', 'Site'),
+                        'size' => 'md',
+                        'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
+                        'data' => $siteIndex,
+                        // default value in the text box
+                        'value' => $siteIndex[$model['site']],
+                        'displayValueConfig' => $siteIndex
+                    ];
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => $siteIndex,
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
                 ],
+                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Site') . ' --']
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
@@ -142,10 +157,11 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 'hAlign' => 'center',
                 'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) {
-                    return Html::a('Xóa', Url::toRoute(['tool/delete-slider', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger', 'data' => [
-                        'method' => 'post',
-                        'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                    ],]);
+                    return Html::a(Yii::t('app', 'View'), Url::toRoute(['tool/view-slider', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-info mb-2', 'target' => '_blank']) . '<br/>' .
+                        Html::a(Yii::t('app', 'Delete'), Url::toRoute(['tool/delete-slider', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-danger', 'data' => [
+                            'method' => 'post',
+                            'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                        ],]);
                 },
                 'format' => 'raw'
             ]

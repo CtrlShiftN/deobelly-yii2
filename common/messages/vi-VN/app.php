@@ -437,4 +437,6 @@ return [
     'Choose a tailor-made type' => 'Chọn một loại thiết kế',
     'Add Terms And Services' => 'Thêm Điều Khoản Và Dịch Vụ',
     'Terms And Services List' => 'Danh Sách Điều Khoản Và Dịch Vụ',
+    'Homepage' => 'Trang Chủ',
+    'Choose a site' => 'Chọn một trang',
 ];
