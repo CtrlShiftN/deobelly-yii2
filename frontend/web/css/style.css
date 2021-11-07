@@ -76,15 +76,17 @@ body {
     padding: 20px 10px;
 }
 
-#main-menu > li > a, .nav-tablet > li > a {
+#main-menu > li > a,#main-menu > li > .dropdown > .btn, .nav-tablet > li > a, .nav-tablet > li > .dropdown > .btn {
     text-decoration: none;
     text-transform: uppercase;
     color: #333333;
     font-weight: bolder;
     font-size: 14px;
 }
-
-#main-menu > li > a:hover, .nav-tablet > li > a:hover {
+#main-menu > li > .dropdown > .btn {
+    vertical-align: unset !important;
+}
+#main-menu > li > a:hover,#main-menu > li > .dropdown > .btn:hover, .nav-tablet > li > a:hover, .nav-tablet > li > .dropdown > .btn:hover {
     color: #1aada3;
 }
 
@@ -405,7 +407,7 @@ footer .footer-content {
     color: rgba(0, 0, 0, 0.81);
 }
 
-.sidebar-nav .accordion-button:focus {
+.sidebar-nav .accordion-button:focus,button:focus {
     border-color: #fff;
     box-shadow: none !important;
 }

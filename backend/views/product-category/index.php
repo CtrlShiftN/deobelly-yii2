@@ -82,16 +82,11 @@ $commonUrl = Yii::$app->params['common'];
                             }
                         }
                     }
-
-                    if(!empty($model['type_id'])){
-                        return $html;
-                    } else {
-                        return null;
-                    }
+                    return $html;
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 // list all type except new
-                'filter' => \common\components\helpers\SystemArrayHelper::removeElementAt(ArrayHelper::map($productTypes, 'id', 'name'),\common\components\SystemConstant::PRODUCT_TYPE_NEW),
+                'filter' => \common\components\helpers\SystemArrayHelper::removeElementAt(ArrayHelper::map($productTypes, 'id', 'name'), \common\components\SystemConstant::PRODUCT_TYPE_NEW),
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
