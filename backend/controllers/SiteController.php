@@ -3,7 +3,9 @@
 namespace backend\controllers;
 
 use backend\models\LoginForm;
+use backend\models\MixAndMatch;
 use backend\models\Order;
+use backend\models\TailorMadeOrder;
 use backend\models\User;
 use common\components\SystemConstant;
 use common\models\Product;
@@ -79,11 +81,17 @@ class SiteController extends Controller
         $latestOrders = Order::getLatestOrder(5);
         $statusBG = Order::getStatusColor();
         $totalActiveUsers = User::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->count();
+        $totalOrders = Order::find()->where(['<=', 'status', 4])->count();
+        $totalTailor = TailorMadeOrder::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->count();
+        $totalMix = MixAndMatch::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->count();
         return $this->render('index', [
             'products' => $latestProduct,
             'orders' => $latestOrders,
             'statusBG' => $statusBG,
             'totalActiveUsers' => $totalActiveUsers,
+            'totalOrder' => $totalOrders,
+            'totalTailor' => $totalTailor,
+            'totalMix' => $totalMix
         ]);
     }
 
