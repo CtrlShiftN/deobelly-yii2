@@ -1,0 +1,68 @@
+<?php
+
+namespace backend\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "terms_and_services".
+ *
+ * @property int $id
+ * @property string|null $title
+ * @property string|null $content
+ * @property int|null $status 0 for inactive, 1 for active
+ * @property int|null $admin_id
+ * @property string|null $created_at
+ * @property string|null $updated_at
+ */
+class TermsAndServices extends \common\models\TermsAndServices
+{
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'terms_and_services';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['content'], 'string'],
+            [['status', 'admin_id'], 'integer'],
+            [['created_at', 'updated_at'], 'safe'],
+            [['title'], 'string', 'max' => 255],
+            [['title', 'content'], 'required', 'on' => 'create']
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'ID'),
+            'title' => Yii::t('app', 'Title'),
+            'content' => Yii::t('app', 'Content'),
+            'status' => Yii::t('app', 'Status'),
+            'admin_id' => Yii::t('app', 'Admin ID'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+        ];
+    }
+
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
+    public static function updateAttribute($id, $attribute, $value)
+    {
+        return \common\models\TermsAndServices::updateAll([$attribute => $value, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $id]);
+    }
+}
