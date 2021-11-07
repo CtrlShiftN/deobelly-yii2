@@ -195,8 +195,9 @@ footer .footer-content {
 }
 
 .copy-right {
-    font-size: 16px;
-    color: #666666;
+    font-size: 14px;
+    padding: 6px 0;
+    color: #9b9b9b;
 }
 
 .ft-bg-overlay {

@@ -592,7 +592,7 @@ AppAsset::register($this);
                         </div>
                     </div>
                 </div>
-                <div class="copy-right bg-dark text-center py-2 fw-bolder">
+                <div class="copy-right bg-dark text-center">
                     <span>Copyright &copy; <?= date('Y') ?> by DE OBELLY</span>
                 </div>
             </footer>
