@@ -55,6 +55,13 @@ AppAsset::register($this);
     <body>
     <?php $this->beginBody() ?>
     <?php $mainType = ProductType::getAllProductType(); ?>
+    <?php $count = 0 ?>
+    <?php foreach ($mainType as $key => $value): ?>
+        <?php if ($value['segment'] == SystemConstant::SEGMENT_CASUAL): ?>
+            <?php $count++ ?>
+        <?php endif; ?>
+    <?php endforeach; ?>
+    <?php $casualType = ArrayHelper::index($mainType, 'id'); ?>
     <div id="wrapper">
         <div id="content">
             <div class="sticky-top">
@@ -63,7 +70,7 @@ AppAsset::register($this);
                     <div class="container">
                         <div class="topbar-content row">
                             <div class="topbar col-md-12 col-lg-5 col-xl-4 d-none d-lg-block text-white py-1 text-start">
-                                <ul class="menu-topbar-left my-0">
+                                <ul class="menu-topbar-left my-0 px-0">
                                     <li class="site-nav-top">
                                         <strong>SĐT: </strong><a class="phone-num"
                                                                  href="tel:<?= Yii::$app->params['adminTel'] ?>">
@@ -161,197 +168,293 @@ AppAsset::register($this);
                 <!-- Main nav -->
                 <nav class="bg-white shadow">
                     <div class="main-site-nav container p-0">
-                        <div class="col-1 col-sm-1 d-block d-lg-none">
-                            <button class="btn btn-white btn-sidebar d-md-none" type="button" data-bs-toggle="offcanvas"
-                                    data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"><i
-                                        class="fas fa-align-justify"></i>
-                            </button>
-                            <!-- Sidebar -->
-                            <div class="offcanvas offcanvas-start bg-black" tabindex="-1" id="offcanvasWithBackdrop"
-                                 aria-labelledby="offcanvasWithBackdropLabel">
-                                <div class="offcanvas-header p-2 borrder-light border-bottom">
-                                    <div class="col-11 px-0 text-center">
-                                        <a class="text-decoration-none" href="<?php echo Url::home() ?>">
-                                            <img src="<?= Url::toRoute('img/sidebar-logo.png') ?>" class="w-100 px-2">
-                                        </a>
-                                    </div>
-                                    <button type="button" class="btn-close text-reset btn-close-white"
-                                            data-bs-dismiss="offcanvas"
-                                            aria-label="Close"></button>
+                        <!-- Sidebar -->
+                        <div class="offcanvas offcanvas-start bg-black" tabindex="-1" id="offcanvasWithBackdrop"
+                             aria-labelledby="offcanvasWithBackdropLabel">
+                            <div class="offcanvas-header p-2 borrder-light border-bottom">
+                                <div class="col-11 px-0 text-center">
+                                    <a class="text-decoration-none" href="<?php echo Url::home() ?>">
+                                        <img src="<?= Url::toRoute('img/sidebar-logo.png') ?>" class="w-100 px-2">
+                                    </a>
                                 </div>
-                                <div class="offcanvas-body bg-gradient-dark d-block px-0 pt-0">
-                                    <?php if (!Yii::$app->user->isGuest) : ?>
-                                        <!-- User -->
-                                        <div class="d-flex align-items-center p-3">
-                                            <div class="col-3 p-0">
-                                                <div class="user__avatar img-circle">
-                                                    <!-- Avatar image -->
-                                                    <i class="far fa-user text-light fa-2x"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-9 ps-2 text-light">
-                                                <h5 class="m-0 sidebar-user-name"><?= Yii::$app->user->identity->name ?></h5>
-                                                <span><i class="fas fa-circle success-icon"></i></span>
-                                                Online
+                                <button type="button" class="btn-close text-reset btn-close-white"
+                                        data-bs-dismiss="offcanvas"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body bg-gradient-dark d-block px-0 pt-0">
+                                <?php if (!Yii::$app->user->isGuest) : ?>
+                                    <!-- User -->
+                                    <div class="d-flex align-items-center p-3">
+                                        <div class="col-3 p-0">
+                                            <div class="user__avatar img-circle">
+                                                <!-- Avatar image -->
+                                                <i class="far fa-user text-light fa-2x"></i>
                                             </div>
                                         </div>
-                                        <!-- End user -->
-                                        <!-- Login & signup -->
-                                    <?php endif; ?>
-                                    <!-- sm,md Navbar -->
-                                    <div class="mobile-navbar border-light border-top">
-                                        <nav class="sidebar-nav">
-                                            <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column"
-                                                data-widget="treeview" role="menu">
-                                                <li class="nav-item border-bottom border-light">
-                                                    <a href="<?= Url::toRoute('site/our-stories') ?>"
-                                                       class="nav-link text-uppercase p-3">
-                                                        <p class="m-0 fs__15px"><?= Yii::t('app', 'Introduction') ?></p>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item has-treeview border-bottom border-light">
-                                                    <div class="accordion" id="accordionExample">
-                                                        <div class="accordion-item border-0 rounded-0">
-                                                            <button class="accordion-button p-0 bg-transparent text-light text-uppercase collapsed p-3 fw-bold fs__15px"
-                                                                    type="button" data-bs-toggle="collapse"
-                                                                    data-bs-target="#collapseOne" aria-expanded="false"
-                                                                    aria-controls="collapseOne">
-                                                                shop
-                                                            </button>
-                                                            <div id="collapseOne" class="accordion-collapse collapse"
-                                                                 data-bs-parent="#accordionExample">
-                                                                <ul class="nav-treeview px-3 list-unstyled">
-                                                                    <?php foreach ($mainType as $key => $value): ?>
-                                                                        <?php if ($value['segment'] != SystemConstant::SEGMENT_CASUAL): ?>
-                                                                            <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
-                                                                                <?php if ($value['slug'] == 'mix-and-match' || $value['slug'] == 'tailor-made'): ?>
-                                                                                <a href="<?= Url::toRoute([$value['slug'] . '/']) ?>"
-                                                                                   class="nav-link">
-                                                                                    <?php else: ?>
-                                                                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
-                                                                                       class="nav-link">
-                                                                                        <?php endif; ?>
-                                                                                        <p><?= $value['name'] ?>
-                                                                                            <sup><small class="badge bg-secondary text-uppercase">Luxury</small></sup>
-                                                                                        </p>
-                                                                                    </a>
-                                                                            </li>
-                                                                        <?php else: ?>
-                                                                            <li class="nav-item">
+                                        <div class="col-9 ps-2 text-light">
+                                            <h5 class="m-0 sidebar-user-name"><?= Yii::$app->user->identity->name ?></h5>
+                                            <span><i class="fas fa-circle success-icon"></i></span>
+                                            Online
+                                        </div>
+                                    </div>
+                                    <!-- End user -->
+                                    <!-- Login & signup -->
+                                <?php endif; ?>
+                                <!-- sm,md Navbar -->
+                                <div class="mobile-navbar border-light border-top">
+                                    <nav class="sidebar-nav">
+                                        <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column"
+                                            data-widget="treeview" role="menu">
+                                            <li class="nav-item border-bottom border-light">
+                                                <a href="<?= Url::toRoute('site/our-stories') ?>"
+                                                   class="nav-link text-uppercase p-3">
+                                                    <p class="m-0 fs__15px"><?= Yii::t('app', 'Introduction') ?></p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item has-treeview border-bottom border-light">
+                                                <div class="accordion" id="accordionExample">
+                                                    <div class="accordion-item border-0 rounded-0">
+                                                        <button class="accordion-button p-0 bg-transparent text-light text-uppercase collapsed p-3 fw-bold fs__15px"
+                                                                type="button" data-bs-toggle="collapse"
+                                                                data-bs-target="#collapseOne" aria-expanded="false"
+                                                                aria-controls="collapseOne">
+                                                            shop
+                                                        </button>
+                                                        <div id="collapseOne" class="accordion-collapse collapse"
+                                                             data-bs-parent="#accordionExample">
+                                                            <ul class="nav-treeview px-3 list-unstyled">
+                                                                <?php foreach ($mainType as $key => $value): ?>
+                                                                    <?php if ($value['segment'] != SystemConstant::SEGMENT_CASUAL): ?>
+                                                                        <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
+                                                                            <?php if ($value['slug'] == 'mix-and-match' || $value['slug'] == 'tailor-made'): ?>
+                                                                            <a href="<?= Url::toRoute([$value['slug'] . '/']) ?>"
+                                                                               class="nav-link">
+                                                                                <?php else: ?>
                                                                                 <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
-                                                                                   class="nav-link d-block">
-                                                                                    <p></i> <?= $value['name'] ?></p>
+                                                                                   class="nav-link">
+                                                                                    <?php endif; ?>
+                                                                                    <p><?= $value['name'] ?>
+                                                                                        <sup><small class="badge bg-secondary text-uppercase">Luxury</small></sup>
+                                                                                    </p>
                                                                                 </a>
-                                                                            </li>
-                                                                        <?php endif; ?>
-                                                                    <?php endforeach; ?>
-                                                                </ul>
-                                                            </div>
+                                                                        </li>
+                                                                    <?php else: ?>
+                                                                        <li class="nav-item">
+                                                                            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                                                                               class="nav-link d-block">
+                                                                                <p><?= $value['name'] ?></p>
+                                                                            </a>
+                                                                        </li>
+                                                                    <?php endif; ?>
+                                                                <?php endforeach; ?>
+                                                            </ul>
                                                         </div>
                                                     </div>
-                                                </li>
-                                                <li class="nav-item border-bottom border-light <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
-                                                    <a href="<?= Url::toRoute('tailor-made/') ?>"
-                                                       class="nav-link text-uppercase p-3">
-                                                        <p class="m-0 fs__15px"><?= Yii::t('app', 'Tailor-made') ?>
-                                                            <sup><small class="badge bg-secondary text-uppercase">Luxury</small></sup>
-                                                        </p>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item border-bottom border-light <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
-                                                    <a href="<?= Url::toRoute('mix-and-match/') ?>"
-                                                       class="nav-link text-uppercase p-3">
-                                                        <p class="m-0 fs__15px"><?= Yii::t('app', 'Collections') ?>
-                                                            <sup><small class="badge bg-secondary text-uppercase">Luxury</small></sup>
-                                                        </p>
-                                                    </a>
-                                                </li>
+                                                </div>
+                                            </li>
+                                            <li class="nav-item border-bottom border-light <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
+                                                <a href="<?= Url::toRoute('tailor-made/') ?>"
+                                                   class="nav-link text-uppercase p-3">
+                                                    <p class="m-0 fs__15px"><?= Yii::t('app', 'Tailor-made') ?>
+                                                        <sup><small class="badge bg-secondary text-uppercase">Luxury</small></sup>
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item border-bottom border-light <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
+                                                <a href="<?= Url::toRoute('mix-and-match/') ?>"
+                                                   class="nav-link text-uppercase p-3">
+                                                    <p class="m-0 fs__15px"><?= Yii::t('app', 'Collections') ?>
+                                                        <sup><small class="badge bg-secondary text-uppercase">Luxury</small></sup>
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item border-bottom border-light">
+                                                <a href="<?= Url::toRoute('showroom/') ?>"
+                                                   class="nav-link text-uppercase p-3">
+                                                    <p class="m-0 fs__15px"><?= Yii::t('app', 'Showroom') ?></p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item border-bottom border-light">
+                                                <a href="<?= Url::toRoute('post/') ?>"
+                                                   class="nav-link text-uppercase p-3">
+                                                    <p class="m-0 fs__15px"><?= Yii::t('app', 'News') ?></p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item border-bottom border-light">
+                                                <a href="<?= Url::toRoute('site/terms') ?>"
+                                                   class="nav-link text-uppercase p-3">
+                                                    <p class="m-0 fs__15px"><?= Yii::t('app', 'Policy') ?></p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item border-bottom border-light">
+                                                <a href="<?= Url::toRoute('site/contact') ?>"
+                                                   class="nav-link text-uppercase p-3">
+                                                    <p class="m-0 fs__15px"><?= Yii::t('app', 'Contact') ?></p>
+                                                </a>
+                                            </li>
+                                            <?php if (!Yii::$app->user->isGuest) : ?>
                                                 <li class="nav-item border-bottom border-light">
-                                                    <a href="<?= Url::toRoute('showroom/') ?>"
+                                                    <a href="<?= Url::toRoute('site/logout?ref=' . Yii::$app->request->url) ?>"
                                                        class="nav-link text-uppercase p-3">
-                                                        <p class="m-0 fs__15px"><?= Yii::t('app', 'Showroom') ?></p>
+                                                        <p class="m-0 fs__15px"><?= Yii::t('app', 'Logout') ?></p>
                                                     </a>
                                                 </li>
+                                            <?php else : ?>
                                                 <li class="nav-item border-bottom border-light">
-                                                    <a href="<?= Url::toRoute('post/') ?>"
+                                                    <a href="<?= Url::toRoute('site/login?ref=' . Yii::$app->request->url) ?>"
                                                        class="nav-link text-uppercase p-3">
-                                                        <p class="m-0 fs__15px"><?= Yii::t('app', 'News') ?></p>
+                                                        <p class="m-0 fs__15px"><?= Yii::t('app', 'Login/Signup') ?></p>
                                                     </a>
                                                 </li>
-                                                <li class="nav-item border-bottom border-light">
-                                                    <a href="<?= Url::toRoute('site/terms') ?>"
-                                                       class="nav-link text-uppercase p-3">
-                                                        <p class="m-0 fs__15px"><?= Yii::t('app', 'Policy') ?></p>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item border-bottom border-light">
-                                                    <a href="<?= Url::toRoute('site/contact') ?>"
-                                                       class="nav-link text-uppercase p-3">
-                                                        <p class="m-0 fs__15px"><?= Yii::t('app', 'Contact') ?></p>
-                                                    </a>
-                                                </li>
-                                                <?php if (!Yii::$app->user->isGuest) : ?>
-                                                    <li class="nav-item border-bottom border-light">
-                                                        <a href="<?= Url::toRoute('site/logout?ref=' . Yii::$app->request->url) ?>"
-                                                           class="nav-link text-uppercase p-3">
-                                                            <p class="m-0 fs__15px"><?= Yii::t('app', 'Logout') ?></p>
-                                                        </a>
-                                                    </li>
-                                                <?php else : ?>
-                                                    <li class="nav-item border-bottom border-light">
-                                                        <a href="<?= Url::toRoute('site/login?ref=' . Yii::$app->request->url) ?>"
-                                                           class="nav-link text-uppercase p-3">
-                                                            <p class="m-0 fs__15px"><?= Yii::t('app', 'Login/Signup') ?></p>
-                                                        </a>
-                                                    </li>
-                                                <?php endif; ?>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                    <!-- End sm,md navbar -->
+                                            <?php endif; ?>
+                                        </ul>
+                                    </nav>
                                 </div>
+                                <!-- End sm,md navbar -->
                             </div>
-                            <!-- End Sidebar -->
                         </div>
-                        <div class="main-nav-left col-10 col-sm-10 col-lg-2 text-center text-sm-center text-lg-start">
-                            <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
+                        <!-- End Sidebar -->
+                        <div class="main-nav-left <?= (count($mainType) > 6) ? 'col-12 col-xl-2' : 'col-12 col-lg-2' ?> row p-0 m-0 text-center text-sm-center text-lg-start">
+                            <div class="col-1 d-md-none m-0 p-0 d-flex align-items-center justify-content-center">
+                                <button class="btn btn-white btn-sidebar" type="button" data-bs-toggle="offcanvas"
+                                        data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"><i
+                                            class="fas fa-align-justify"></i>
+                                </button>
+                            </div>
+                            <div class="d-flex col-10 col-md-12 p-0 m-0 align-items-center justify-content-center <?= (count($mainType) > 6) ? 'justify-content-xl-start' : 'justify-content-lg-start' ?>">
                                 <a href="<?= Url::home() ?>"
                                    class="logo-align text-decoration-none">
                                     <img src="<?= $cdnUrl ?>/img/home.png">
                                 </a>
                                 <a href="<?= Url::toRoute('site/casual') ?>"
                                    class="logo-align d-none text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'luxury') ? 'd-none' : 'd-md-block' ?>">
-                                    <span class="title-classify text-lighter-black py-2">casual</span>
+                                    <span class="title-classify text-lighter-black px-2">casual</span>
                                 </a>
                                 <a href="<?= Url::toRoute('site/luxury') ?>"
                                    class="logo-align d-none text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'casual') ? 'd-none' : 'd-md-block' ?>">
-                                    <span class="title-classify text-lighter-black py-2">luxury</span>
+                                    <span class="title-classify text-lighter-black px-2">luxury</span>
                                 </a>
                             </div>
+                            <div class="col-1 d-md-none m-0 p-0"></div>
                         </div>
-                        <div class="main-nav-right col-1 col-sm-1 col-lg-10 text-end">
-                            <ul class="site-nav mb-0 ps-0 d-none d-sm-none d-lg-inline-block" id="main-menu">
-                                <?php foreach ($mainType as $key => $value): ?>
-                                    <?php if ($value['segment'] != SystemConstant::SEGMENT_CASUAL): ?>
-                                        <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?> px-2">
-                                            <?php if ($value['slug'] == 'mix-and-match' || $value['slug'] == 'tailor-made'): ?>
-                                            <a href="<?= Url::toRoute([$value['slug'] . '/']) ?>" class="site-nav-link">
-                                                <?php else: ?>
+                        <div class="main-nav-right text-end <?= (count($mainType) > 6) ? 'd-none d-xl-flex col-1 col-xl-10' : 'd-none d-lg-flex col-1 col-lg-10' ?>">
+                            <ul class="site-nav mb-0 ps-0 w-100 justify-content-end" id="main-menu">
+                                <?php if (count($mainType) > 6): ?>
+                                    <?php if ($count > 4): ?>
+                                        <!--casual type-->
+                                        <?php if ($controller == 'site' && $action == 'luxury'): ?>
+                                            <li class="nav-item d-inline-block p-2">
+                                                <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($casualType[SystemConstant::PRODUCT_TYPE_NEW]['id'])]) ?>"
+                                                   class="site-nav-link">
+                                                    <span><?= $casualType[SystemConstant::PRODUCT_TYPE_NEW]['name'] ?></span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item d-inline-block p-2">
+                                                <div class="dropdown">
+                                                    <button class="btn bg-transparent py-0" type="button"
+                                                            id="dropdownMenuLuxury"
+                                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                                        Shop <i class="fas fa-caret-down"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLuxury">
+                                                        <?php foreach ($mainType as $key => $value): ?>
+                                                            <?php if ($value['segment'] != SystemConstant::SEGMENT_LUXURY): ?>
+                                                                <?php if ($value['id'] != SystemConstant::PRODUCT_TYPE_NEW): ?>
+                                                                    <li>
+                                                                        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                                                                           class="dropdown-item">
+                                                                            <span><?= $value['name'] ?></span>
+                                                                        </a>
+                                                                    </li>
+                                                                <?php endif; ?>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        <?php else: ?>
+                                            <?php foreach ($mainType as $key => $value): ?>
+                                                <?php if ($value['segment'] == SystemConstant::SEGMENT_CASUAL): ?>
+                                                    <li class="nav-item p-2">
+                                                        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                                                           class="site-nav-link">
+                                                            <span><?= $value['name'] ?></span>
+                                                        </a>
+                                                    </li>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    <?php else: ?>
+                                        <?php foreach ($mainType as $key => $value): ?>
+                                            <?php if ($value['segment'] == SystemConstant::SEGMENT_CASUAL): ?>
+                                                <li class="nav-item d-inline-block p-2">
+                                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                                                       class="site-nav-link">
+                                                        <span><?= $value['name'] ?></span>
+                                                    </a>
+                                                </li>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                    <li class="nav-item p-2 <?= ($controller == 'site' && $action == 'luxury') ? 'd-inline-block' : 'd-none' ?>">
+                                        <div class="dropdown">
+                                            <button class="btn bg-transparent py-0" type="button"
+                                                    id="dropdownMenuLuxury"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                                Luxury <i class="fas fa-caret-down"></i>
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLuxury">
+                                                <?php foreach ($mainType as $key => $value): ?>
+                                                    <?php if ($value['segment'] != SystemConstant::SEGMENT_LUXURY): ?>
+                                                        <?php if ($value['slug'] != 'mix-and-match' && $value['slug'] != 'tailor-made'): ?>
+                                                            <li>
+                                                                <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                                                                   class="dropdown-item">
+                                                                    <span><?= $value['name'] ?></span>
+                                                                </a>
+                                                            </li>
+                                                        <?php endif; ?>
+                                                    <?php endif; ?>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item p-2 <?= ($controller == 'site' && $action == 'luxury') ? 'd-inline-block' : 'd-none' ?>">
+                                        <a href="<?= Url::toRoute(['tailor-made/']) ?>"
+                                           class="site-nav-link">
+                                            <span>tailor-made</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item p-2 <?= ($controller == 'site' && $action == 'luxury') ? 'd-inline-block' : 'd-none' ?>">
+                                        <a href="<?= Url::toRoute(['mix-and-match/']) ?>"
+                                           class="site-nav-link">
+                                            <span>collections</span>
+                                        </a>
+                                    </li>
+                                <?php else: ?>
+                                    <?php foreach ($mainType as $key => $value): ?>
+                                        <?php if ($value['segment'] != SystemConstant::SEGMENT_CASUAL): ?>
+                                            <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? 'd-inline-block' : 'd-none' ?> p-2">
+                                                <?php if ($value['slug'] == 'mix-and-match' || $value['slug'] == 'tailor-made'): ?>
+                                                <a href="<?= Url::toRoute([$value['slug'] . '/']) ?>"
+                                                   class="site-nav-link">
+                                                    <?php else: ?>
+                                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                                                       class="site-nav-link">
+                                                        <?php endif; ?>
+                                                        <span><?= $value['name'] ?></span>
+                                                    </a>
+                                            </li>
+                                        <?php else: ?>
+                                            <li class="nav-item d-inline-block p-2">
                                                 <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                                                    class="site-nav-link">
-                                                    <?php endif; ?>
                                                     <span><?= $value['name'] ?></span>
                                                 </a>
-                                        </li>
-                                    <?php else: ?>
-                                        <li class="nav-item px-2">
-                                            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
-                                               class="site-nav-link">
-                                                <span><?= $value['name'] ?></span>
-                                            </a>
-                                        </li>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
+                                            </li>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>
@@ -370,29 +473,121 @@ AppAsset::register($this);
                         </a>
                     </div>
                 </nav>
-                <nav class="d-none d-md-flex d-lg-none align-items-center justify-content-center nav-tablet bg-white border-top border-bottom">
-                    <?php foreach ($mainType as $key => $value): ?>
-                        <?php if ($value['segment'] != SystemConstant::SEGMENT_CASUAL): ?>
-                            <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?> px-2">
-                                <?php if ($value['slug'] == 'mix-and-match' || $value['slug'] == 'tailor-made'): ?>
-                                <a href="<?= Url::toRoute([$value['slug'] . '/']) ?>"
-                                   class="site-nav-link">
-                                    <?php else: ?>
+                <nav class="<?= (count($mainType) > 6) ? 'd-none d-md-flex d-xl-none' : 'd-none d-md-flex d-lg-none' ?> align-items-center justify-content-center nav-tablet bg-white border-top border-bottom">
+                    <?php if (count($mainType) > 6): ?>
+                        <?php if ($count > 4): ?>
+                            <!--casual type-->
+                            <?php if ($controller == 'site' && $action == 'luxury'): ?>
+                                <li class="nav-item p-2">
+                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($casualType[SystemConstant::PRODUCT_TYPE_NEW]['id'])]) ?>"
+                                       class="site-nav-link">
+                                        <p class="m-0 text-center"><?= $casualType[SystemConstant::PRODUCT_TYPE_NEW]['name'] ?></p>
+                                    </a>
+                                </li>
+                                <li class="nav-item p-2">
+                                    <div class="dropdown">
+                                        <button class="btn bg-transparent py-0" type="button" id="dropdownMenuLuxury"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            Shop <i class="fas fa-caret-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLuxury">
+                                            <?php foreach ($mainType as $key => $value): ?>
+                                                <?php if ($value['segment'] != SystemConstant::SEGMENT_LUXURY): ?>
+                                                    <?php if ($value['id'] != SystemConstant::PRODUCT_TYPE_NEW): ?>
+                                                        <li>
+                                                            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                                                               class="dropdown-item">
+                                                                <span><?= $value['name'] ?></span>
+                                                            </a>
+                                                        </li>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </div>
+                                </li>
+                            <?php else: ?>
+                                <?php foreach ($mainType as $key => $value): ?>
+                                    <?php if ($value['segment'] == SystemConstant::SEGMENT_CASUAL): ?>
+                                        <li class="nav-item p-2">
+                                            <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                                               class="site-nav-link">
+                                                <p class="m-0 text-center"><?= $value['name'] ?></p>
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <?php foreach ($mainType as $key => $value): ?>
+                                <?php if ($value['segment'] == SystemConstant::SEGMENT_CASUAL): ?>
+                                    <li class="nav-item p-2">
+                                        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                                           class="site-nav-link">
+                                            <p class="m-0 text-center"><?= $value['name'] ?></p>
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                        <li class="nav-item p-2 <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
+                            <div class="dropdown">
+                                <button class="btn bg-transparent py-0" type="button" id="dropdownMenuLuxury"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    Luxury <i class="fas fa-caret-down"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLuxury">
+                                    <?php foreach ($mainType as $key => $value): ?>
+                                        <?php if ($value['segment'] != SystemConstant::SEGMENT_LUXURY): ?>
+                                            <?php if ($value['slug'] != 'mix-and-match' && $value['slug'] != 'tailor-made'): ?>
+                                                <li>
+                                                    <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                                                       class="dropdown-item">
+                                                        <span><?= $value['name'] ?></span>
+                                                    </a>
+                                                </li>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item p-2 <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
+                            <a href="<?= Url::toRoute(['tailor-made/']) ?>"
+                               class="site-nav-link">
+                                <p class="m-0 text-center">tailor-made</p>
+                            </a>
+                        </li>
+                        <li class="nav-item p-2 <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
+                            <a href="<?= Url::toRoute(['mix-and-match/']) ?>"
+                               class="site-nav-link">
+                                <p class="m-0 text-center">collections</p>
+                            </a>
+                        </li>
+                    <?php else: ?>
+                        <?php foreach ($mainType as $key => $value): ?>
+                            <?php if ($value['segment'] != SystemConstant::SEGMENT_CASUAL): ?>
+                                <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?> p-2">
+                                    <?php if ($value['slug'] == 'mix-and-match' || $value['slug'] == 'tailor-made'): ?>
+                                    <a href="<?= Url::toRoute([$value['slug'] . '/']) ?>"
+                                       class="site-nav-link">
+                                        <?php else: ?>
+                                        <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
+                                           class="site-nav-link">
+                                            <?php endif; ?>
+                                            <p class="m-0 text-center"><?= $value['name'] ?></p>
+                                        </a>
+                                </li>
+                            <?php else: ?>
+                                <li class="nav-item p-2">
                                     <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                                        class="site-nav-link">
-                                        <?php endif; ?>
-                                        <span><?= $value['name'] ?></span>
+                                        <p class="m-0 text-center"><?= $value['name'] ?></p>
                                     </a>
-                            </li>
-                        <?php else: ?>
-                            <li class="nav-item px-2">
-                                <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
-                                   class="site-nav-link">
-                                    <span><?= $value['name'] ?></span>
-                                </a>
-                            </li>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
+                                </li>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </nav>
                 <!-- End navs -->
             </div>

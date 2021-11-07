@@ -47,6 +47,8 @@ class Order extends \common\models\Order
         return [
             [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'specific_address', 'address', 'name', 'email', 'tel', 'admin_id', 'logistic_method'], 'required'],
             [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'admin_id', 'logistic_method', 'status'], 'integer'],
+            [['email'], 'email', 'message' => Yii::t('app', 'Invalid email.')],
+            [['quantity'], 'integer', 'min' => 1],
             [['address', 'notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['specific_address', 'name', 'email', 'tel'], 'string', 'max' => 255],
