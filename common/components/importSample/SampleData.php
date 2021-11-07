@@ -5,6 +5,7 @@ namespace common\components\importsample;
 use common\components\helpers\StringHelper;
 use common\models\Cart;
 use common\models\Color;
+use common\models\Footer;
 use common\models\GeoLocation;
 use common\models\MixAndMatch;
 use common\models\Order;
@@ -24,6 +25,7 @@ use common\models\Trademark;
 use common\models\User;
 use frontend\models\Slider;
 use yii\base\Exception;
+use yii\helpers\Url;
 
 class SampleData
 {
@@ -2559,6 +2561,83 @@ class SampleData
         echo "Inserted " . $count . '/' . count(self::$arrMixes) . ' mixes.' . PHP_EOL;
     }
 
+    public static $arrFooter = [
+        'ABOUT US' => [
+            'link' => 'site/our-stories',
+            'children' => [
+                'Suplo fashion' => 'javascript:void(0)',
+                'Business philosophy' => 'javascript:void(0)',
+                'Event communication' => 'javascript:void(0)',
+                'Social activities' => 'javascript:void(0)',
+                'Association and cooperation' => 'javascript:void(0)',
+            ]
+        ],
+        'News' => [
+            'link' => 'post/',
+            'children' => [
+                'Product reviews' => 'javascript:void(0)',
+                'Fashion news' => 'javascript:void(0)',
+                'Famous brand' => 'javascript:void(0)',
+                'Customer feedback' => 'javascript:void(0)',
+                'Brand history' => 'javascript:void(0)',
+            ]
+        ],
+        'PRODUCT CONSULTING' => [
+            'link' => 'javascript:void(0)',
+            'children' => [
+                'Office Fashion' => 'javascript:void(0)',
+                'Order clothes' => 'javascript:void(0)',
+                'Frequently asked questions' => 'javascript:void(0)',
+                'General knowledge' => 'javascript:void(0)',
+                'Why you should choose us' => 'javascript:void(0)',
+            ]
+        ],
+        'INSTRUCTIONS' => [
+            'link' => 'javascript:void(0)',
+            'children' => [
+                'Shopping guide' => 'javascript:void(0)',
+                'Preferential policy of VIP card' => 'javascript:void(0)',
+                'warranty Policy' => 'javascript:void(0)',
+                'Directions for use' => 'javascript:void(0)',
+                'Payment Guide' => 'javascript:void(0)',
+            ]
+        ],
+    ];
+
+    public static function insertSampleFooter()
+    {
+        $count = 0;
+        foreach (self::$arrFooter as $items => $item) {
+            $model = new Footer();
+            $model->title = $items;
+            $model->link = $item['link'];
+            $model->slug = StringHelper::toSlug($items);
+            $model->parent_id = 0;
+            $model->admin_id = 1;
+            $model->created_at = date('Y-m-d H:i:s');
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save()) {
+                $count++;
+                foreach ($item['children'] as $title => $link) {
+                    $childModel = new Footer();
+                    $childModel->title = $title;
+                    $childModel->link = $link;
+                    $childModel->slug = StringHelper::toSlug($title);
+                    $childModel->parent_id = $model->id;
+                    $childModel->admin_id = 1;
+                    $childModel->created_at = date('Y-m-d H:i:s');
+                    $childModel->updated_at = date('Y-m-d H:i:s');
+                    if ($childModel->save()) {
+                        $count++;
+                    } else {
+                        echo print_r($childModel->errors) . PHP_EOL;
+                    }
+                }
+            }
+        }
+        echo "Inserted " . $count . '/' . count(self::$arrFooter) . ' footer.' . PHP_EOL;
+    }
+
     /**
      * @throws Exception
      */
@@ -2578,6 +2657,7 @@ class SampleData
         self::insertSampleTerms();
         self::insertSlider();
         self::insertSampleCart();
+        self::insertSampleFooter();
         self::insertSampleGeoLocation();
         self::insertSampleOrder();
         self::insertSampleOrderTracking();
