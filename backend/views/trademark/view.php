@@ -16,7 +16,7 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
     $columns = [
         [
             'attribute' => 'name',
-            'value' => $model->name,
+            'value' => (!empty($model->name)) ? $model->name : null,
         ],
         [
             'attribute' => 'slug',
@@ -25,7 +25,7 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
         ],
         [
             'attribute' => 'status',
-            'value' => $arrStatus[$model->status],
+            'value' => (!empty($arrStatus[$model->status])) ? $arrStatus[$model->status] : null,
             'type' => DetailView::INPUT_SELECT2,
             'widgetOptions' => [
                 'data' => $arrStatus,
@@ -35,7 +35,8 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
         ],
         [
             'attribute' => 'created_at',
-            'value' => $model->created_at,
+            'format' => 'datetime',
+            'value' => (!empty($model->created_at)) ? $model->created_at : null,
             'displayOnly' => true
         ]
     ]

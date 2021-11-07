@@ -2,12 +2,14 @@
 
 namespace backend\controllers;
 
-use backend\models\Showroom;
-use backend\models\ShowroomSearch;
+use backend\models\TailorMadeOrder;
+use backend\models\TailorMadeOrderSearch;
+use backend\models\User;
 use common\components\encrypt\CryptHelper;
 use common\components\helpers\StringHelper;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -16,9 +18,9 @@ use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 
 /**
- * ShowroomController implements the CRUD actions for Showroom model.
+ * TailorMadeOrderController implements the CRUD actions for TailorMadeOrder model.
  */
-class ShowroomController extends Controller
+class TailorMadeOrderController extends Controller
 {
     /**
      * @inheritDoc
@@ -61,40 +63,37 @@ class ShowroomController extends Controller
         return true; // or false to not run the action
     }
 
-
     /**
-     * Lists all Showroom models.
+     * Lists all TailorMadeOrder models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ShowroomSearch();
+        $searchModel = new TailorMadeOrderSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        $arrUser = User::getAllUser();
+        $arrType = \common\models\TailorMadeOrder::getOrderType();
         if (Yii::$app->request->post('hasEditable')) {
             // which rows has been edited?
             $_id = $_POST['editableKey'];
             $_index = $_POST['editableIndex'];
             // which attribute has been edited?
             $attribute = $_POST['editableAttribute'];
-            // update to db
-            $value = $_POST['Showroom'][$_index][$attribute];
-            if ($attribute == 'name') {
-                $result = Showroom::updateTitle($_id, $attribute, $value);
-            } else {
-                $result = Showroom::updateAttribute($_id, $attribute, $value);
-            }
+            $value = $_POST['TailorMadeOrder'][$_index][$attribute];
+            $result = TailorMadeOrder::updateAttribute($_id, $attribute, $value);
             // response to gridview
             return json_encode($result);
         }
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'users' => ArrayHelper::map($arrUser, 'id', 'name'),
+            'types' => $arrType
         ]);
     }
 
     /**
-     * Displays a single Showroom model.
+     * Displays a single TailorMadeOrder model.
      * @param int $id ID
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -103,7 +102,10 @@ class ShowroomController extends Controller
     {
         $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
+        $arrCustomer = User::getAllUser();
+        $arrType = \common\models\TailorMadeOrder::getOrderType();
         $post = Yii::$app->request->post();
+        // process ajax delete
         if (Yii::$app->request->isAjax && isset($post['kvdelete'])) {
             echo Json::encode([
                 'success' => true,
@@ -113,18 +115,19 @@ class ShowroomController extends Controller
             ]);
             return;
         }
+        // return messages on update of record
         if ($model->load($post)) {
             $model->file = UploadedFile::getInstance($model, 'file');
-            $model->slug = trim(StringHelper::toSlug(trim($model->name)));
+            $slug = trim(StringHelper::toSlug(trim($model->customer_name)));
             if ($model->file) {
-                if (!file_exists(Yii::getAlias('@common/media/showroom'))) {
-                    mkdir(Yii::getAlias('@common/media/showroom'), 0777);
+                if (!file_exists(Yii::getAlias('@common/media/tailor-made'))) {
+                    mkdir(Yii::getAlias('@common/media/tailor-made'), 0777);
                 }
                 $imageUrl = Yii::getAlias('@common/media');
-                $fileName = 'showroom/' . $model->slug . '.' . $model->file->getExtension();
+                $fileName = 'tailor-made/' . date('YmdHis') . '_' . $slug . trim($model->customer_email) . '.' . $model->file->getExtension();
                 $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
                 if ($isUploadedFile) {
-                    $model->image = $fileName;
+                    $model->body_image = $fileName;
                 }
             }
             $model->admin_id = Yii::$app->user->identity->getId();
@@ -137,39 +140,42 @@ class ShowroomController extends Controller
         }
         return $this->render('view', [
             'model' => $model,
+            'users' => ArrayHelper::map($arrCustomer, 'id', 'name'),
+            'types' => $arrType
         ]);
     }
 
     /**
-     * Creates a new Showroom model.
+     * Creates a new TailorMadeOrder model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Showroom();
+        $model = new TailorMadeOrder();
         $model->scenario = 'create';
+        $arrType = TailorMadeOrder::getOrderType();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->file = UploadedFile::getInstance($model, 'file');
-                $model->slug = trim(StringHelper::toSlug(trim($model->name)));
+                $slug = trim(StringHelper::toSlug(trim($model->customer_name)));
                 if ($model->file) {
-                    if (!file_exists(Yii::getAlias('@common/media/showroom'))) {
-                        mkdir(Yii::getAlias('@common/media/showroom'), 0777);
+                    if (!file_exists(Yii::getAlias('@common/media/tailor-made'))) {
+                        mkdir(Yii::getAlias('@common/media/tailor-made'), 0777);
                     }
                     $imageUrl = Yii::getAlias('@common/media');
-                    $fileName = 'showroom/' . $model->slug . '.' . $model->file->getExtension();
+                    $fileName = 'tailor-made/' . date('YmdHis') . '_' . $slug . trim($model->customer_email) . '.' . $model->file->getExtension();
                     $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
                     if ($isUploadedFile) {
-                        $model->image = $fileName;
+                        $model->body_image = $fileName;
                     }
                 }
                 $model->admin_id = Yii::$app->user->identity->getId();
                 $model->created_at = date('Y-m-d H:i:s');
                 $model->updated_at = date('Y-m-d H:i:s');
                 if ($model->save(false)) {
-                    return $this->redirect(Url::toRoute('showroom/'));
+                    return $this->redirect(Url::toRoute('tailor-made-order/'));
                 }
             }
         } else {
@@ -178,11 +184,12 @@ class ShowroomController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'arrTypes' => $arrType
         ]);
     }
 
     /**
-     * Updates an existing Showroom model.
+     * Updates an existing TailorMadeOrder model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return mixed
@@ -192,35 +199,37 @@ class ShowroomController extends Controller
     {
         $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
+        $arrTypes = TailorMadeOrder::getOrderType();
 
         if ($this->request->isPost && $model->load($this->request->post())) {
             $model->file = UploadedFile::getInstance($model, 'file');
-            $model->slug = trim(StringHelper::toSlug(trim($model->name)));
+            $slug = trim(StringHelper::toSlug(trim($model->customer_name)));
             if ($model->file) {
-                if (!file_exists(Yii::getAlias('@common/media/showroom'))) {
-                    mkdir(Yii::getAlias('@common/media/showroom'), 0777);
+                if (!file_exists(Yii::getAlias('@common/media/tailor-made'))) {
+                    mkdir(Yii::getAlias('@common/media/tailor-made'), 0777);
                 }
                 $imageUrl = Yii::getAlias('@common/media');
-                $fileName = 'showroom/' . $model->slug . '.' . $model->file->getExtension();
+                $fileName = 'tailor-made/' . date('YmdHis') . '_' . $slug . trim($model->customer_email) . '.' . $model->file->getExtension();
                 $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
                 if ($isUploadedFile) {
-                    $model->image = $fileName;
+                    $model->body_image = $fileName;
                 }
             }
             $model->admin_id = Yii::$app->user->identity->getId();
             $model->updated_at = date('Y-m-d H:i:s');
             if ($model->save(false)) {
-                return $this->redirect(Url::toRoute('showroom/'));
+                return $this->redirect(Url::toRoute('tailor-made-order/'));
             }
         }
 
         return $this->render('update', [
             'model' => $model,
+            'arrTypes' => $arrTypes
         ]);
     }
 
     /**
-     * Deletes an existing Showroom model.
+     * Deletes an existing TailorMadeOrder model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return mixed
@@ -235,15 +244,15 @@ class ShowroomController extends Controller
     }
 
     /**
-     * Finds the Showroom model based on its primary key value.
+     * Finds the TailorMadeOrder model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Showroom the loaded model
+     * @return TailorMadeOrder the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Showroom::findOne($id)) !== null) {
+        if (($model = TailorMadeOrder::findOne($id)) !== null) {
             return $model;
         }
 

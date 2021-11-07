@@ -25,11 +25,11 @@ $arrSegment = [Yii::t('app', 'Casual'), Yii::t('app', 'Luxury')];
         ],
         [
             'attribute' => 'name',
-            'value' => $model->name,
+            'value' => (!empty($model->name)) ? $model->name : null,
         ],
         [
             'attribute' => 'segment',
-            'value' => $arrSegment[$model->segment],
+            'value' => (!empty($arrSegment[$model->segment])) ? $arrSegment[$model->segment] : null,
             'type' => DetailView::INPUT_SELECT2,
             'widgetOptions' => [
                 'data' => $arrSegment,
@@ -40,7 +40,8 @@ $arrSegment = [Yii::t('app', 'Casual'), Yii::t('app', 'Luxury')];
         ],
         [
             'attribute' => 'created_at',
-            'value' => $model->created_at,
+            'format' => 'datetime',
+            'value' => (!empty($model->created_at)) ? $model->created_at : null,
             'displayOnly' => true,
         ],
     ]

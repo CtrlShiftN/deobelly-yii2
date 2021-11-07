@@ -430,4 +430,8 @@ return [
     'Related Products' => 'Sản Phẩm Liên Quan',
     'Collection List' => 'Danh Sách Bộ Sưu Tập',
     'Add New Collections' => 'Thêm Bộ Sưu Tập Mới',
+    'Tailor Made List' => 'Danh Sách Thiết Kế Riêng',
+    'Tailor-made Types' => 'Loại Thiết Kế Riêng',
+    'Update Tailor Made' => 'Cập Nhật Thiết Kế Riêng',
+    'Choose a tailor-made type' => 'Chọn một loại thiết kế',
 ];

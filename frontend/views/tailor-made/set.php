@@ -70,9 +70,6 @@ $this->title = Yii::t('app', 'Set Measurements');
                     <?= $form->field($model, 'ankle', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Đo một vòng quanh mắt cá chân, đơn vị: cm') ?>
                 </div>
                 <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
-                    <?= $form->field($model, 'buttock', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Số đo vòng 3, đơn vị: cm') ?>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
                     <?= $form->field($model, 'knee', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['type' => 'number'])->hint('Đo một vòng quanh đầu gối, đơn vị: cm') ?>
                 </div>
                 <div class="col-6 col-md-4 col-lg-3 px-1 px-md-auto">
