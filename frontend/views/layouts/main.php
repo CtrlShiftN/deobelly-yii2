@@ -328,30 +328,31 @@ AppAsset::register($this);
                                 </a>
                                 <a href="<?= Url::toRoute('site/casual') ?>"
                                    class="logo-align d-none text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'luxury') ? 'd-none' : 'd-md-block' ?>">
-                                    <span class="title-classify text-lighter-black py-2">casual</span>
+                                    <span class="title-classify text-lighter-black px-2">casual</span>
                                 </a>
                                 <a href="<?= Url::toRoute('site/luxury') ?>"
                                    class="logo-align d-none text-uppercase text-decoration-none <?= ($controller == 'site' && $action == 'casual') ? 'd-none' : 'd-md-block' ?>">
-                                    <span class="title-classify text-lighter-black py-2">luxury</span>
+                                    <span class="title-classify text-lighter-black px-2">luxury</span>
                                 </a>
                             </div>
                             <div class="col-1 d-md-none m-0 p-0"></div>
                         </div>
-                        <div class="main-nav-right col-1 text-end <?= (count($mainType) > 6) ? 'd-none d-xl-flex col-xl-10' : 'd-none d-xl-flex col-lg-10' ?>">
+                        <div class="main-nav-right text-end <?= (count($mainType) > 6) ? 'd-none d-xl-flex col-1 col-xl-10' : 'd-none d-lg-flex col-1 col-lg-10' ?>">
                             <ul class="site-nav mb-0 ps-0 w-100 justify-content-end" id="main-menu">
                                 <?php if (count($mainType) > 6): ?>
                                     <?php if ($count > 4): ?>
                                         <!--casual type-->
                                         <?php if ($controller == 'site' && $action == 'luxury'): ?>
-                                            <li class="nav-item d-inline-block px-2">
+                                            <li class="nav-item d-inline-block p-2">
                                                 <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($casualType[SystemConstant::PRODUCT_TYPE_NEW]['id'])]) ?>"
                                                    class="site-nav-link">
                                                     <span><?= $casualType[SystemConstant::PRODUCT_TYPE_NEW]['name'] ?></span>
                                                 </a>
                                             </li>
-                                            <li class="nav-item d-inline-block px-2">
+                                            <li class="nav-item d-inline-block p-2">
                                                 <div class="dropdown">
-                                                    <button class="btn bg-transparent" type="button" id="dropdownMenuLuxury"
+                                                    <button class="btn bg-transparent py-0" type="button"
+                                                            id="dropdownMenuLuxury"
                                                             data-bs-toggle="dropdown" aria-expanded="false">
                                                         Shop <i class="fas fa-caret-down"></i>
                                                     </button>
@@ -374,7 +375,7 @@ AppAsset::register($this);
                                         <?php else: ?>
                                             <?php foreach ($mainType as $key => $value): ?>
                                                 <?php if ($value['segment'] == SystemConstant::SEGMENT_CASUAL): ?>
-                                                    <li class="nav-item px-2">
+                                                    <li class="nav-item p-2">
                                                         <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                                                            class="site-nav-link">
                                                             <span><?= $value['name'] ?></span>
@@ -386,7 +387,7 @@ AppAsset::register($this);
                                     <?php else: ?>
                                         <?php foreach ($mainType as $key => $value): ?>
                                             <?php if ($value['segment'] == SystemConstant::SEGMENT_CASUAL): ?>
-                                                <li class="nav-item d-inline-block px-2">
+                                                <li class="nav-item d-inline-block p-2">
                                                     <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                                                        class="site-nav-link">
                                                         <span><?= $value['name'] ?></span>
@@ -395,9 +396,9 @@ AppAsset::register($this);
                                             <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
-                                    <li class="nav-item px-2 <?= ($controller == 'site' && $action == 'luxury') ? 'd-inline-block' : 'd-none' ?>">
+                                    <li class="nav-item p-2 <?= ($controller == 'site' && $action == 'luxury') ? 'd-inline-block' : 'd-none' ?>">
                                         <div class="dropdown">
-                                            <button class="btn bg-transparent" type="button" id="dropdownMenuLuxury"
+                                            <button class="btn bg-transparent py-0" type="button" id="dropdownMenuLuxury"
                                                     data-bs-toggle="dropdown" aria-expanded="false">
                                                 Luxury <i class="fas fa-caret-down"></i>
                                             </button>
@@ -417,13 +418,13 @@ AppAsset::register($this);
                                             </ul>
                                         </div>
                                     </li>
-                                    <li class="nav-item px-2 <?= ($controller == 'site' && $action == 'luxury') ? 'd-inline-block' : 'd-none' ?>">
+                                    <li class="nav-item p-2 <?= ($controller == 'site' && $action == 'luxury') ? 'd-inline-block' : 'd-none' ?>">
                                         <a href="<?= Url::toRoute(['tailor-made/']) ?>"
                                            class="site-nav-link">
                                             <span>tailor-made</span>
                                         </a>
                                     </li>
-                                    <li class="nav-item px-2 <?= ($controller == 'site' && $action == 'luxury') ? 'd-inline-block' : 'd-none' ?>">
+                                    <li class="nav-item p-2 <?= ($controller == 'site' && $action == 'luxury') ? 'd-inline-block' : 'd-none' ?>">
                                         <a href="<?= Url::toRoute(['mix-and-match/']) ?>"
                                            class="site-nav-link">
                                             <span>collections</span>
@@ -432,7 +433,7 @@ AppAsset::register($this);
                                 <?php else: ?>
                                     <?php foreach ($mainType as $key => $value): ?>
                                         <?php if ($value['segment'] != SystemConstant::SEGMENT_CASUAL): ?>
-                                            <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? 'd-inline-block' : 'd-none' ?> px-2">
+                                            <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? 'd-inline-block' : 'd-none' ?> p-2">
                                                 <?php if ($value['slug'] == 'mix-and-match' || $value['slug'] == 'tailor-made'): ?>
                                                 <a href="<?= Url::toRoute([$value['slug'] . '/']) ?>"
                                                    class="site-nav-link">
@@ -444,7 +445,7 @@ AppAsset::register($this);
                                                     </a>
                                             </li>
                                         <?php else: ?>
-                                            <li class="nav-item d-inline-block px-2">
+                                            <li class="nav-item d-inline-block p-2">
                                                 <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                                                    class="site-nav-link">
                                                     <span><?= $value['name'] ?></span>
@@ -476,15 +477,15 @@ AppAsset::register($this);
                         <?php if ($count > 4): ?>
                             <!--casual type-->
                             <?php if ($controller == 'site' && $action == 'luxury'): ?>
-                                <li class="nav-item px-2">
+                                <li class="nav-item p-2">
                                     <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($casualType[SystemConstant::PRODUCT_TYPE_NEW]['id'])]) ?>"
                                        class="site-nav-link">
                                         <p class="m-0 text-center"><?= $casualType[SystemConstant::PRODUCT_TYPE_NEW]['name'] ?></p>
                                     </a>
                                 </li>
-                                <li class="nav-item px-2">
+                                <li class="nav-item p-2">
                                     <div class="dropdown">
-                                        <button class="btn bg-transparent" type="button" id="dropdownMenuLuxury"
+                                        <button class="btn bg-transparent py-0" type="button" id="dropdownMenuLuxury"
                                                 data-bs-toggle="dropdown" aria-expanded="false">
                                             Shop <i class="fas fa-caret-down"></i>
                                         </button>
@@ -507,7 +508,7 @@ AppAsset::register($this);
                             <?php else: ?>
                                 <?php foreach ($mainType as $key => $value): ?>
                                     <?php if ($value['segment'] == SystemConstant::SEGMENT_CASUAL): ?>
-                                        <li class="nav-item px-2">
+                                        <li class="nav-item p-2">
                                             <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                                                class="site-nav-link">
                                                 <p class="m-0 text-center"><?= $value['name'] ?></p>
@@ -519,7 +520,7 @@ AppAsset::register($this);
                         <?php else: ?>
                             <?php foreach ($mainType as $key => $value): ?>
                                 <?php if ($value['segment'] == SystemConstant::SEGMENT_CASUAL): ?>
-                                    <li class="nav-item px-2">
+                                    <li class="nav-item p-2">
                                         <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                                            class="site-nav-link">
                                             <p class="m-0 text-center"><?= $value['name'] ?></p>
@@ -528,9 +529,9 @@ AppAsset::register($this);
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         <?php endif; ?>
-                        <li class="nav-item px-2 <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
+                        <li class="nav-item p-2 <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
                             <div class="dropdown">
-                                <button class="btn bg-transparent" type="button" id="dropdownMenuLuxury"
+                                <button class="btn bg-transparent py-0" type="button" id="dropdownMenuLuxury"
                                         data-bs-toggle="dropdown" aria-expanded="false">
                                     Luxury <i class="fas fa-caret-down"></i>
                                 </button>
@@ -550,13 +551,13 @@ AppAsset::register($this);
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item px-2 <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
+                        <li class="nav-item p-2 <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
                             <a href="<?= Url::toRoute(['tailor-made/']) ?>"
                                class="site-nav-link">
                                 <p class="m-0 text-center">tailor-made</p>
                             </a>
                         </li>
-                        <li class="nav-item px-2 <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
+                        <li class="nav-item p-2 <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?>">
                             <a href="<?= Url::toRoute(['mix-and-match/']) ?>"
                                class="site-nav-link">
                                 <p class="m-0 text-center">collections</p>
@@ -565,7 +566,7 @@ AppAsset::register($this);
                     <?php else: ?>
                         <?php foreach ($mainType as $key => $value): ?>
                             <?php if ($value['segment'] != SystemConstant::SEGMENT_CASUAL): ?>
-                                <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?> <?= (count($mainType) > 6) ? 'px-2' : 'px-3' ?>">
+                                <li class="nav-item <?= ($controller == 'site' && $action == 'luxury') ? '' : 'd-none' ?> p-2">
                                     <?php if ($value['slug'] == 'mix-and-match' || $value['slug'] == 'tailor-made'): ?>
                                     <a href="<?= Url::toRoute([$value['slug'] . '/']) ?>"
                                        class="site-nav-link">
@@ -577,7 +578,7 @@ AppAsset::register($this);
                                         </a>
                                 </li>
                             <?php else: ?>
-                                <li class="nav-item <?= (count($mainType) > 6) ? 'px-2' : 'px-3' ?>">
+                                <li class="nav-item p-2">
                                     <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
                                        class="site-nav-link">
                                         <p class="m-0 text-center"><?= $value['name'] ?></p>
