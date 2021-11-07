@@ -398,7 +398,8 @@ AppAsset::register($this);
                                     <?php endif; ?>
                                     <li class="nav-item p-2 <?= ($controller == 'site' && $action == 'luxury') ? 'd-inline-block' : 'd-none' ?>">
                                         <div class="dropdown">
-                                            <button class="btn bg-transparent py-0" type="button" id="dropdownMenuLuxury"
+                                            <button class="btn bg-transparent py-0" type="button"
+                                                    id="dropdownMenuLuxury"
                                                     data-bs-toggle="dropdown" aria-expanded="false">
                                                 Luxury <i class="fas fa-caret-down"></i>
                                             </button>
