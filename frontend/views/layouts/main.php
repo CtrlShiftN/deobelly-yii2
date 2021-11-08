@@ -8,6 +8,7 @@ use common\components\SystemConstant;
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
 use frontend\models\ProductType;
+use frontend\models\SiteContact;
 use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
@@ -58,6 +59,7 @@ AppAsset::register($this);
     <?php $mainType = ProductType::getAllProductType(); ?>
     <?php $social = \frontend\models\Social::getAllSocialNetwork(); ?>
     <?php $headerFooter = \frontend\models\Footer::getHeaderTitleFooter() ?>
+    <?php $contactFooter = SiteContact::getContactContent(); ?>
     <?php $casualType = ArrayHelper::index($mainType, 'id'); ?>
     <div id="wrapper">
         <div id="content">
@@ -70,7 +72,7 @@ AppAsset::register($this);
                                 <ul class="menu-topbar-left my-0 px-0">
                                     <li class="site-nav-top">
                                         <strong>SĐT: </strong><a class="phone-num"
-                                                                 href="tel:<?= Yii::$app->params['adminTel'] ?>">
+                                                                 href="tel:<?= $contactFooter['tel'] ?>">
                                             <?= Yii::$app->params['adminTel'] ?></a>
                                     </li>
                                     <li class="site-nav-top">
@@ -78,8 +80,8 @@ AppAsset::register($this);
                                     </li>
                                     <li class="site-nav-top">
                                         <strong>Email: </strong> <a class="mail-num"
-                                                                    href="mailto:<?= Yii::$app->params['supportEmail'] ?>">
-                                            <?= Yii::$app->params['supportEmail'] ?> </a>
+                                                                    href="mailto:<?= $contactFooter['email'] ?>">
+                                            <?= $contactFooter['email'] ?></a>
                                     </li>
                                 </ul>
                             </div>
@@ -465,13 +467,13 @@ AppAsset::register($this);
                                 <ul class="footer-nav no-bullets px-2 py-0">
                                     <h3 class="mb-1"><?= Yii::t('app', 'CONTACT INFO') ?></h3>
                                     <li><span class="ft-content"><i
-                                                    class="fas fa-home"></i>  536 Minh Khai, Tòa CT1, tầng 5, Phường Vĩnh Tuy, Quận Hai Bà Trưng, Hà Nội</span>
+                                                    class="fas fa-home"></i> <?= $contactFooter['company_address'] ?></span>
                                     </li>
                                     <li><span class="ft-content"><i class="fas fa-phone-square"></i> <a
-                                                    href="tel:<?= Yii::$app->params['adminTel'] ?>"><?= Yii::$app->params['adminTel'] ?></a></span>
+                                                    href="tel:<?= $contactFooter['tel'] ?>"><?= $contactFooter['tel'] ?></a></span>
                                     </li>
                                     <li><span class="ft-content"><i class="fas fa-envelope"></i><a
-                                                    href="mailto:support@deobelly.com"> support@deobelly.com</a></span>
+                                                    href="mailto:<?= $contactFooter['email'] ?>"> <?= $contactFooter['email'] ?></a></span>
                                     </li>
                                 </ul>
                             </div>
