@@ -56,6 +56,7 @@ AppAsset::register($this);
     <body>
     <?php $this->beginBody() ?>
     <?php $mainType = ProductType::getAllProductType(); ?>
+    <?php $social = \frontend\models\Social::getAllSocialNetwork(); ?>
     <?php $casualType = ArrayHelper::index($mainType, 'id'); ?>
     <div id="wrapper">
         <div id="content">
@@ -565,15 +566,9 @@ AppAsset::register($this);
                                                 class="ft-content"><?= Yii::t('app', 'Social network') ?></span></li>
                                     <li>
                                         <div class="ft-social-network">
-                                            <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"
-                                                                                   aria-hidden="true"></i></a>
-                                            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                                            <a href="https://www.youtube.com/" class="mt-md-1"><i
-                                                        class="fab fa-youtube"></i></a>
-                                            <a href="https://twitter.com/" class="mt-lg-1"><i
-                                                        class="fab fa-twitter"></i></a>
-                                            <a href="https://plus.google.com/" class="mt-lg-1"><i
-                                                        class="fab fa-google-plus"></i></a>
+                                            <?php foreach ($social as $value): ?>
+                                                <a href="<?= $value['link'] ?>" class="mt-1"><?= $value['icon'] ?></a>
+                                            <?php endforeach; ?>
                                         </div>
                                     </li>
                                 </ul>

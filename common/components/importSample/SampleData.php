@@ -18,6 +18,7 @@ use common\models\ProductCategory;
 use common\models\ProductType;
 use common\models\Showroom;
 use common\models\Size;
+use common\models\Social;
 use common\models\TermsAndServices;
 use common\models\TrackingStatus;
 use common\models\Trademark;
@@ -2559,6 +2560,45 @@ class SampleData
         echo "Inserted " . $count . '/' . count(self::$arrMixes) . ' mixes.' . PHP_EOL;
     }
 
+    public static $arrSocialNetwork = [
+        [
+            'icon' => '<i class="fab fa-facebook-f" aria-hidden="true"></i>',
+            'link' => 'https://www.facebook.com/',
+        ],
+        [
+            'icon' => '<i class="fab fa-instagram"></i>',
+            'link' => 'https://www.instagram.com/',
+        ],
+        [
+            'icon' => '<i class="fab fa-youtube"></i>',
+            'link' => 'https://www.youtube.com/',
+        ],
+        [
+            'icon' => '<i class="fab fa-twitter"></i>',
+            'link' => 'https://twitter.com/',
+        ],
+        [
+            'icon' => '<i class="fab fa-google-plus"></i>',
+            'link' => 'https://plus.google.com/',
+        ],
+    ];
+
+    public static function insertSampleSocialNetwork(){
+        $count = 0;
+        foreach (self::$arrSocialNetwork as $social){
+            $model = new Social();
+            $model->icon = $social['icon'];
+            $model->link = $social['link'];
+            $model->admin_id = 1;
+            $model->created_at = date('Y-m-d H:i:s');
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save()){
+                $count++;
+            }
+        }
+        echo "Inserted " . $count . '/' . count(self::$arrSocialNetwork) . ' social network.' . PHP_EOL;
+    }
+
     /**
      * @throws Exception
      */
@@ -2578,6 +2618,7 @@ class SampleData
         self::insertSampleTerms();
         self::insertSlider();
         self::insertSampleCart();
+        self::insertSampleSocialNetwork();
         self::insertSampleGeoLocation();
         self::insertSampleOrder();
         self::insertSampleOrderTracking();
