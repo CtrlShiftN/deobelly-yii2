@@ -2559,6 +2559,54 @@ class SampleData
         echo "Inserted " . $count . '/' . count(self::$arrMixes) . ' mixes.' . PHP_EOL;
     }
 
+    protected static $arrSiteIndexContent = [
+        [
+            'title' => 'New Arrivals 1',
+            'label' => null,
+            'image' => 'img/index/newProductImg1.jpg',
+            'content' => null,
+            'link' => null,
+            'section' => 'new-arrival',
+            'note' => null,
+        ],
+        [
+            'title' => 'New Arrivals 2',
+            'label' => null,
+            'image' => 'img/index/newProductImg2.jpg',
+            'content' => null,
+            'link' => null,
+            'section' => 'new-arrival',
+            'note' => null,
+        ],
+        [
+            'title' => 'New Arrivals 3',
+            'label' => null,
+            'image' => 'img/index/newProductImg3.jpg',
+            'content' => null,
+            'link' => null,
+            'section' => 'new-arrival',
+            'note' => null,
+        ],
+        [
+            'title' => 'New Arrivals 4',
+            'label' => null,
+            'image' => 'img/index/newProductImg4.jpg',
+            'content' => null,
+            'link' => null,
+            'section' => 'new-arrival',
+            'note' => null,
+        ],
+        [
+            'title' => null,
+            'label' => null,
+            'image' => null,
+            'content' => 'See more',
+            'link' => 'shop/product',
+            'section' => 'new-arrival',
+            'note' => null,
+        ],
+    ];
+
     /**
      * @throws Exception
      */
