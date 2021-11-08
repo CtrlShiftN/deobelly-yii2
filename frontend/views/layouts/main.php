@@ -41,6 +41,7 @@ AppAsset::register($this);
 
             footer .footer-content {
                 background: url('<?= $cdnUrl?>/img/footer_bg.png') no-repeat;
+                background-size: cover;
             }
 
             .sidebar-nav .accordion-button:not(.collapsed)::after {
@@ -444,8 +445,8 @@ AppAsset::register($this);
                     <div class="container inner">
                         <div class="row d-none d-lg-flex m-0 p-0">
                             <?php foreach ($headerFooter as $value): ?>
-                                <div class="col-sm-12 col-md-6 col-lg-3">
-                                    <ul class="footer-nav no-bullets">
+                                <div class="col-sm-12 col-md-6 col-lg-3 pb-3 px-auto">
+                                    <ul class="footer-nav no-bullets px-2 py-0">
                                         <a class="text-decoration-none text-light" href="<?= Url::toRoute($value['link']) ?>">
                                             <h3><?= Yii::t('app', $value['title']) ?></h3></a>
                                         <?php foreach (\frontend\models\Footer::getFooterByParentId($value['id']) as $items): ?>
@@ -458,9 +459,9 @@ AppAsset::register($this);
                             <?php endforeach; ?>
                         </div>
                         <div class="row m-0 p-0">
-                            <div class="col-sm-12 col-md-6 col-lg-3">
-                                <ul class="footer-nav no-bullets">
-                                    <h3><?= Yii::t('app', 'CONTACT INFO') ?></h3>
+                            <div class="col-sm-12 col-md-6 col-lg-3 pb-3 px-auto">
+                                <ul class="footer-nav no-bullets px-2 py-0">
+                                    <h3 class="mb-1"><?= Yii::t('app', 'CONTACT INFO') ?></h3>
                                     <li><span class="ft-content"><i
                                                     class="fas fa-home"></i>  536 Minh Khai, Tòa CT1, tầng 5, Phường Vĩnh Tuy, Quận Hai Bà Trưng, Hà Nội</span>
                                     </li>
@@ -472,9 +473,9 @@ AppAsset::register($this);
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-sm-12 col-md-6 col-lg-3">
-                                <ul class="footer-nav no-bullets">
-                                    <h3><?= Yii::t('app', 'SIGN UP TO RECEIVE NEWS') ?></h3>
+                            <div class="col-sm-12 col-md-6 col-lg-3 pb-3 px-auto">
+                                <ul class="footer-nav no-bullets px-2 py-0">
+                                    <h3 class="mb-1"><?= Yii::t('app', 'SIGN UP TO RECEIVE NEWS') ?></h3>
                                     <li class="mb-3"><span
                                                 class="ft-content"><?= Yii::t('app', 'Promotion news / Brand news') ?></span>
                                     </li>
@@ -491,9 +492,9 @@ AppAsset::register($this);
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-sm-12 col-md-6 col-lg-3">
-                                <ul class="footer-nav no-bullets">
-                                    <h3 class="h3"><?= Yii::t('app', 'CONNECT WITH US') ?></h3>
+                            <div class="col-sm-12 col-md-6 col-lg-3 pb-3 px-auto">
+                                <ul class="footer-nav no-bullets px-2 py-0">
+                                    <h3 class="mb-1"><?= Yii::t('app', 'CONNECT WITH US') ?></h3>
                                     <li class="mb-3"><span
                                                 class="ft-content"><?= Yii::t('app', 'Social network') ?></span></li>
                                     <li>
@@ -511,9 +512,9 @@ AppAsset::register($this);
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-sm-12 col-md-6 col-lg-3">
-                                <ul class="footer-nav no-bullets">
-                                    <h3><?= Yii::t('app', 'CERTIFICATE') ?></h3>
+                            <div class="col-sm-12 col-md-6 col-lg-3 pb-3 px-auto">
+                                <ul class="footer-nav no-bullets px-2 py-0">
+                                    <h3 class="mb-1"><?= Yii::t('app', 'CERTIFICATE') ?></h3>
                                     <li>
                                         <a href="javascript:void(0)" target="_blank"><img class="pt-2"
                                                                                           src="//theme.hstatic.net/1000180292/1000232392/14/footer_payment_logo_1.png?v=3509"></a>
@@ -525,7 +526,7 @@ AppAsset::register($this);
                         </div>
                     </div>
                 </div>
-                <div class="copy-right bg-dark text-center py-2 fw-bolder">
+                <div class="copy-right bg-dark text-center">
                     <span>Copyright &copy; <?= date('Y') ?> by DE OBELLY</span>
                 </div>
             </footer>
