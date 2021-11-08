@@ -267,6 +267,13 @@ AppAsset::register($this);
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="<?= Url::toRoute('social/') ?>"
+                               class="nav-link <?= ($controller == 'social') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-globe"></i>
+                                <p><?= Yii::t('app', 'Social network') ?></p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?= Url::toRoute('site/logout') ?>" class="nav-link">
                                 <i class="nav-icon fas fa-power-off"></i>
                                 <p><?= Yii::t('app', 'Logout') ?></p>

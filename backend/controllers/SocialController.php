@@ -4,14 +4,15 @@ namespace backend\controllers;
 
 use backend\models\Social;
 use backend\models\SocialSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SocailController implements the CRUD actions for Social model.
+ * SocialController implements the CRUD actions for Social model.
  */
-class SocailController extends Controller
+class SocialController extends Controller
 {
     /**
      * @inheritDoc
@@ -21,14 +22,37 @@ class SocailController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ]
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
-                        'delete' => ['POST'],
+                        'delete' => ['POST', 'GET'],
                     ],
                 ],
             ]
         );
+    }
+
+    /**
+     * @param \yii\base\Action $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action)
+    {
+        $this->layout = 'adminlte3';
+        if (!parent::beforeAction($action)){
+            return false;
+        }
+        return true;
     }
 
     /**
