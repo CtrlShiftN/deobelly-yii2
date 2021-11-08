@@ -13,7 +13,7 @@ use Yii;
  * @property string|null $image
  * @property string|null $content
  * @property string|null $link
- * @property string|null $type image, image link or text, text link, see more link
+ * @property string|null $type image, image link or text, text link, see more link, content
  * @property string $section
  * @property int|null $status 0 for inactive, 1 for active
  * @property string|null $note

@@ -13,7 +13,7 @@ use Yii;
  * @property string|null $image
  * @property string|null $content
  * @property string|null $link
- * @property string|null $type image, image link or text, text link, see more link
+ * @property string|null $type image, image link or text, text link, see more link, mix(image, text, link)
  * @property string $section
  * @property int|null $status 0 for inactive, 1 for active
  * @property string|null $note
@@ -21,8 +21,10 @@ use Yii;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class SiteIndex extends \yii\db\ActiveRecord
+class SiteIndex extends \common\models\SiteIndex
 {
+    public $file;
+
     /**
      * {@inheritdoc}
      */
@@ -42,6 +44,8 @@ class SiteIndex extends \yii\db\ActiveRecord
             [['status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title', 'label', 'image', 'link', 'type', 'section'], 'string', 'max' => 255],
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg', 'on' => 'create'],
+            ['file', 'required', 'on' => 'create'],
         ];
     }
 
@@ -64,6 +68,24 @@ class SiteIndex extends \yii\db\ActiveRecord
             'admin_id' => Yii::t('app', 'Admin ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'File' => Yii::t('app', 'File'),
         ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function getSiteContentType()
+    {
+        // text, text link, see more link, mix(image, text, link)
+        return
+            [
+                'image' => Yii::t('app', 'Image'),
+                'image-link' => Yii::t('app', 'Image Link'),
+                'text' => Yii::t('app', 'Text'),
+                'text-link' => Yii::t('app', 'Text Link'),
+                'see-more-link' => Yii::t('app', 'See More Link'),
+                'mix' => Yii::t('app', 'Mix Contents'),
+            ];
     }
 }

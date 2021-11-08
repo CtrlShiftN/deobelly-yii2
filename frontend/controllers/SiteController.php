@@ -2,11 +2,13 @@
 
 namespace frontend\controllers;
 
+use common\components\SystemConstant;
 use frontend\models\Post;
 use frontend\models\Product;
 use frontend\models\ProductType;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\SiteContact;
+use frontend\models\SiteIndex;
 use frontend\models\SiteOurStories;
 use frontend\models\Slider;
 use frontend\models\TermsAndServices;
@@ -100,9 +102,11 @@ class SiteController extends Controller
     {
         $type = array_values(ProductType::getCasualProductType());
         $slider = Slider::getSliderFromSite('index');
+        $siteContent = SiteIndex::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
         return $this->render('index', [
             'type' => $type,
-            'slider' => $slider
+            'slider' => $slider,
+            'siteContent' => ArrayHelper::index($siteContent, null, 'section')
         ]);
     }
 
@@ -346,7 +350,7 @@ class SiteController extends Controller
     public function actionOurStories()
     {
         $slider = Slider::getSliderFromSite('our-stories');
-        $stories = ArrayHelper::index(SiteOurStories::getAllStories(),'section');
+        $stories = ArrayHelper::index(SiteOurStories::getAllStories(), 'section');
         return $this->render('ourStories', [
             'slider' => $slider,
             'stories' => $stories

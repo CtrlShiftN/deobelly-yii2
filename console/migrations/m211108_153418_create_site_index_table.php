@@ -19,7 +19,7 @@ class m211108_153418_create_site_index_table extends Migration
             'image' => $this->string(),
             'content' => $this->text(),
             'link' => $this->string(),
-            'type' => $this->string()->comment('image, image link or text, text link, see more link'),
+            'type' => $this->string()->comment('image, image link or text, text link, see more link, mix(image, text, link)'),
             'section' => $this->string()->notNull(),
             'status' => $this->smallInteger(2)->defaultValue(1)->comment('0 for inactive, 1 for active'),
             'note' => $this->text(),
