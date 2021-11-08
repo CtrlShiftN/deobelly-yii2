@@ -439,5 +439,6 @@ return [
     'Terms And Services List' => 'Danh Sách Điều Khoản Và Dịch Vụ',
     'Homepage' => 'Trang Chủ',
     'Choose a site' => 'Chọn một trang',
-    'In-process Orders' => 'Đơn Hàng Đang Xử Lý'
+    'In-process Orders' => 'Đơn Hàng Đang Xử Lý',
+    'Content manager' => 'Quản lý nội dung'
 ];

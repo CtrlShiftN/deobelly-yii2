@@ -27,7 +27,7 @@ $this->registerCss("
         <div class="col-12 col-md-2 col-lg-3 col-xl-4"></div>
         <div class="col-12 col-md-8 col-lg-6 col-xl-4 bg-white p-4 rounded-3 align-self-center">
             <div class="text-center mb-2">
-                <img src="<?= $imgUrl ?>/logo.png" alt="De Obelly">
+                <img src="<?= $imgUrl ?>/logo.png" alt="De Obelly" class="w-100">
             </div>
             <div class="mb-3 hint-text">
                 <p>Để đăng nhập quản trị, vui lòng khai báo tất cả các ô trống dưới đây</p>
