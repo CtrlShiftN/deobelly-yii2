@@ -440,5 +440,5 @@ return [
     'Homepage' => 'Trang Chủ',
     'Choose a site' => 'Chọn một trang',
     'In-process Orders' => 'Đơn Hàng Đang Xử Lý',
-    'Content manager' => 'Quản lý nội dung'
+    'Content manager' => 'Quản lý nội dung',
 ];

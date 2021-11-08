@@ -22,8 +22,7 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
 ?>
 <div class="site-contact">
     <div class="w-100">
-        <iframe src="<?= $content['gps_link'] ?>"
-                width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <?= $content['gps_link'] ?>
     </div>
     <div class="row border-bottom w-100 mx-0 px-0">
         <div class="p-3 text-center my-3">
