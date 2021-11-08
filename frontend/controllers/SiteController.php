@@ -6,6 +6,8 @@ use frontend\models\Post;
 use frontend\models\Product;
 use frontend\models\ProductType;
 use frontend\models\ResendVerificationEmailForm;
+use frontend\models\SiteContact;
+use frontend\models\SiteOurStories;
 use frontend\models\Slider;
 use frontend\models\TermsAndServices;
 use frontend\models\VerifyEmailForm;
@@ -183,6 +185,7 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
+        $content = SiteContact::getContactContent();
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->saveContactData()) {
@@ -197,6 +200,7 @@ class SiteController extends Controller
 
         return $this->render('contact', [
             'model' => $model,
+            'content' => $content,
         ]);
     }
 
@@ -342,8 +346,10 @@ class SiteController extends Controller
     public function actionOurStories()
     {
         $slider = Slider::getSliderFromSite('our-stories');
+        $stories = ArrayHelper::index(SiteOurStories::getAllStories(),'section');
         return $this->render('ourStories', [
-            'slider' => $slider
+            'slider' => $slider,
+            'stories' => $stories
         ]);
     }
 }

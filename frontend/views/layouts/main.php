@@ -8,6 +8,7 @@ use common\components\SystemConstant;
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
 use frontend\models\ProductType;
+use frontend\models\SiteContact;
 use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
@@ -56,6 +57,9 @@ AppAsset::register($this);
     <body>
     <?php $this->beginBody() ?>
     <?php $mainType = ProductType::getAllProductType(); ?>
+    <?php $social = \frontend\models\Social::getAllSocialNetwork(); ?>
+    <?php $headerFooter = \frontend\models\Footer::getHeaderTitleFooter() ?>
+    <?php $contactFooter = SiteContact::getContactContent(); ?>
     <?php $casualType = ArrayHelper::index($mainType, 'id'); ?>
     <div id="wrapper">
         <div id="content">
@@ -68,7 +72,7 @@ AppAsset::register($this);
                                 <ul class="menu-topbar-left my-0 px-0">
                                     <li class="site-nav-top">
                                         <strong>SĐT: </strong><a class="phone-num"
-                                                                 href="tel:<?= Yii::$app->params['adminTel'] ?>">
+                                                                 href="tel:<?= $contactFooter['tel'] ?>">
                                             <?= Yii::$app->params['adminTel'] ?></a>
                                     </li>
                                     <li class="site-nav-top">
@@ -76,8 +80,8 @@ AppAsset::register($this);
                                     </li>
                                     <li class="site-nav-top">
                                         <strong>Email: </strong> <a class="mail-num"
-                                                                    href="mailto:<?= Yii::$app->params['supportEmail'] ?>">
-                                            <?= Yii::$app->params['supportEmail'] ?> </a>
+                                                                    href="mailto:<?= $contactFooter['email'] ?>">
+                                            <?= $contactFooter['email'] ?></a>
                                     </li>
                                 </ul>
                             </div>
@@ -443,99 +447,33 @@ AppAsset::register($this);
                     <div class="ft-bg-overlay"></div>
                     <div class="container inner">
                         <div class="row d-none d-lg-flex m-0 p-0">
-                            <div class="col-sm-12 col-md-6 col-lg-3 pb-3 px-auto">
-                                <ul class="footer-nav no-bullets px-2 py-0">
-                                    <h3><?= Yii::t('app', 'ABOUT US') ?></h3>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app', 'Suplo fashion') ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app', 'Business philosophy') ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app', 'Event communication') ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app', 'Social activities') ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app', 'Association and cooperation') ?></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-3 pb-3 px-auto">
-                                <ul class="footer-nav no-bullets px-2 py-0">
-                                    <h3><?= Yii::t('app', 'News') ?></h3>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app', 'Product reviews') ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app', 'Fashion news') ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app', 'Famous brand') ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app', 'Customer feedback') ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app', 'Brand history') ?></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-3 pb-3 px-auto">
-                                <ul class="footer-nav no-bullets px-2 py-0">
-                                    <h3><?= Yii::t('app', 'PRODUCT CONSULTING') ?></h3>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app', 'Office Fashion') ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app', 'Order clothes') ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app', 'Frequently asked questions') ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app', 'General knowledge') ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app', 'Why you should choose us') ?></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-3 pb-3 px-auto">
-                                <ul class="footer-nav no-bullets px-2 py-0">
-                                    <h3><?= Yii::t('app', 'INSTRUCTIONS') ?></h3>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app', 'Shopping guide') ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app', 'Preferential policy of VIP card') ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app', 'warranty Policy') ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app', 'Directions for use') ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?= Yii::t('app', 'Payment Guide') ?></a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <?php foreach ($headerFooter as $value): ?>
+                                <div class="col-sm-12 col-md-6 col-lg-3 pb-3 px-auto">
+                                    <ul class="footer-nav no-bullets px-2 py-0">
+                                        <a class="text-decoration-none text-light" href="<?= Url::toRoute($value['link']) ?>">
+                                            <h3 class="mb-1"><?= Yii::t('app', $value['title']) ?></h3></a>
+                                        <?php foreach (\frontend\models\Footer::getFooterByParentId($value['id']) as $items): ?>
+                                            <li>
+                                                <a href="<?= Url::toRoute($items['link']) ?>"><?= Yii::t('app', $items['title']) ?></a>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            <?php endforeach; ?>
+
                         </div>
                         <div class="row m-0 p-0">
                             <div class="col-sm-12 col-md-6 col-lg-3 pb-3 px-auto">
                                 <ul class="footer-nav no-bullets px-2 py-0">
                                     <h3 class="mb-1"><?= Yii::t('app', 'CONTACT INFO') ?></h3>
                                     <li><span class="ft-content"><i
-                                                    class="fas fa-home"></i>  536 Minh Khai, Tòa CT1, tầng 5, Phường Vĩnh Tuy, Quận Hai Bà Trưng, Hà Nội</span>
+                                                    class="fas fa-home"></i> <?= $contactFooter['company_address'] ?></span>
                                     </li>
                                     <li><span class="ft-content"><i class="fas fa-phone-square"></i> <a
-                                                    href="tel:<?= Yii::$app->params['adminTel'] ?>"><?= Yii::$app->params['adminTel'] ?></a></span>
+                                                    href="tel:<?= $contactFooter['tel'] ?>"><?= $contactFooter['tel'] ?></a></span>
                                     </li>
                                     <li><span class="ft-content"><i class="fas fa-envelope"></i><a
-                                                    href="mailto:support@deobelly.com"> support@deobelly.com</a></span>
+                                                    href="mailto:<?= $contactFooter['email'] ?>"> <?= $contactFooter['email'] ?></a></span>
                                     </li>
                                 </ul>
                             </div>
@@ -565,15 +503,9 @@ AppAsset::register($this);
                                                 class="ft-content"><?= Yii::t('app', 'Social network') ?></span></li>
                                     <li>
                                         <div class="ft-social-network">
-                                            <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"
-                                                                                   aria-hidden="true"></i></a>
-                                            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                                            <a href="https://www.youtube.com/" class="mt-md-1"><i
-                                                        class="fab fa-youtube"></i></a>
-                                            <a href="https://twitter.com/" class="mt-lg-1"><i
-                                                        class="fab fa-twitter"></i></a>
-                                            <a href="https://plus.google.com/" class="mt-lg-1"><i
-                                                        class="fab fa-google-plus"></i></a>
+                                            <?php foreach ($social as $value): ?>
+                                                <a href="<?= $value['link'] ?>" class="mt-1"><?= $value['icon'] ?></a>
+                                            <?php endforeach; ?>
                                         </div>
                                     </li>
                                 </ul>

@@ -22,7 +22,7 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
 ?>
 <div class="site-contact">
     <div class="w-100">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.859011002647!2d105.8679544149322!3d20.9982879860149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac038aa77f2f%3A0x77b2bccf4277c606!2zVMOyYSBDVDEsIDUzNkEgUC4gTWluaCBLaGFpLCBWxKluaCBQaMO6LCBIYWkgQsOgIFRyxrBuZywgSMOgIE7hu5lpIDEwMDAwMA!5e0!3m2!1svi!2s!4v1635581362751!5m2!1svi!2s"
+        <iframe src="<?= $content['gps_link'] ?>"
                 width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
     <div class="row border-bottom w-100 mx-0 px-0">
@@ -69,19 +69,16 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
         </div>
         <div class="col-12 col-lg-6 my-3">
             <div class="text-center w-100 my-3">
-                <img src="<?= $imgUrl ?>/logo.png" class="w-25 d-none d-lg-inline-block">
+                <img src="<?= $imgUrl.'/'.$content['logo_link'] ?>" class="w-50 d-none d-lg-inline-block">
                 <h3 class="fw-bold mb-4 text-center text-md-start d-lg-none"><span
                             class=" border-3 border-dark border-bottom text-uppercase"><?= Yii::t('app', 'Contact') ?></span>
                 </h3>
             </div>
             <div class="w-100 row m-0">
-                <p class="col-12 mx-0"><span class="fw-bold"><?= Yii::t('app', 'Address') ?>:</span><br> 536 Minh Khai, Tòa CT1, tầng 5, Phường Vĩnh Tuy, Quận Hai Bà Trưng, Hà Nội</p>
-                <p class="d-inline-block col-12 col-sm-6"><span class="fw-bold">Email:</span><br>deobelly@gmail.com</p>
-                <p class="d-inline-block col-12 col-sm-6"><span class="fw-bold"><?= Yii::t('app', 'Tel') ?>:</span><br><?= Yii::$app->params['adminTel'] ?>
+                <p class="col-12 mx-0"><span class="fw-bold"><?= Yii::t('app', 'Address') ?>:</span><br> <?= $content['company_address'] ?></p>
+                <p class="d-inline-block col-12 col-sm-6"><span class="fw-bold">Email:</span><br> <?= $content['email'] ?>/p>
+                <p class="d-inline-block col-12 col-sm-6"><span class="fw-bold"><?= Yii::t('app', 'Tel') ?>:</span><br> <?= $content['tel'] ?>
                 </p>
-                <p class="d-inline-block col-12"><span class="fw-bold"><?= Yii::t('app', 'Working time') ?>:</span><br>Thứ
-                    2 đến Thứ 6 từ 8h đến 18h; Thứ 7 và Chủ
-                    nhật từ 8h00 đến 17h00.</p>
             </div>
             <img src="<?= Url::toRoute('img/contact/cskh.jpg') ?>"
                  class="shadow-lg rounded w-100">
