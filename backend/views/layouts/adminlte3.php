@@ -274,6 +274,27 @@ AppAsset::register($this);
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="<?= Url::toRoute('footer/') ?>"
+                               class="nav-link <?= ($controller == 'footer') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-align-left"></i>
+                                <p><?= Yii::t('app', 'Footer') ?></p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= Url::toRoute('site-our-stories/') ?>"
+                               class="nav-link <?= ($controller == 'site-our-stories') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-scroll"></i>
+                                <p><?= Yii::t('app', 'Our stories page content') ?></p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= Url::toRoute('site-contact/') ?>"
+                               class="nav-link <?= ($controller == 'site-contact') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-scroll"></i>
+                                <p><?= Yii::t('app', 'Contact page content') ?></p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?= Url::toRoute('site/logout') ?>" class="nav-link">
                                 <i class="nav-icon fas fa-power-off"></i>
                                 <p><?= Yii::t('app', 'Logout') ?></p>
