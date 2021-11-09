@@ -4,7 +4,11 @@ namespace backend\controllers;
 
 use backend\models\Social;
 use backend\models\SocialSearch;
+use common\components\encrypt\CryptHelper;
+use common\components\SystemConstant;
+use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -49,7 +53,7 @@ class SocialController extends Controller
     public function beforeAction($action)
     {
         $this->layout = 'adminlte3';
-        if (!parent::beforeAction($action)){
+        if (!parent::beforeAction($action)) {
             return false;
         }
         return true;
@@ -63,6 +67,17 @@ class SocialController extends Controller
     {
         $searchModel = new SocialSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        if (Yii::$app->request->post('hasEditable')) {
+            //which rows has been edited?
+            $_id = $_POST['editableKey'];
+            $_index = $_POST['editableIndex'];
+            //which attribute has been edited?
+            $attribute = $_POST['editableAttribute'];
+            //update to db
+            $value = $_POST['Social'][$_index][$attribute];
+            $result = Social::updateSocial($_id, $attribute, $value);
+            return json_encode($result);
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -78,6 +93,7 @@ class SocialController extends Controller
      */
     public function actionView($id)
     {
+        $id = CryptHelper::decryptString($id);
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -91,10 +107,16 @@ class SocialController extends Controller
     public function actionCreate()
     {
         $model = new Social();
-
+        $this->layout = 'blank';
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $model->created_at = date('Y-m-d H:m:s');
+                $model->updated_at = date('Y-m-d H:m:s');
+                $model->status = SystemConstant::STATUS_ACTIVE;
+                $model->admin_id = Yii::$app->user->identity->getId();
+                if ($model->validate() && $model->save()) {
+                    return $this->redirect(Url::toRoute('social/'));
+                }
             }
         } else {
             $model->loadDefaultValues();
@@ -114,6 +136,7 @@ class SocialController extends Controller
      */
     public function actionUpdate($id)
     {
+        $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -134,6 +157,7 @@ class SocialController extends Controller
      */
     public function actionDelete($id)
     {
+        $id = CryptHelper::decryptString($id);
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

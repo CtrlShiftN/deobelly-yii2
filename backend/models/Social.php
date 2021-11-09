@@ -53,4 +53,13 @@ class Social extends \common\models\Social
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
+
+    public static function updateSocial($id, $attribute, $value)
+    {
+        return \common\models\Social::updateAll([
+            $attribute => $value,
+            'updated_at' => date('Y-m-d H:i:s'),
+            'admin_id' => Yii::$app->user->identity->getId()
+        ], ['id' => $id]);
+    }
 }
