@@ -441,4 +441,8 @@ return [
     'Choose a site' => 'Chọn một trang',
     'In-process Orders' => 'Đơn Hàng Đang Xử Lý',
     'Content manager' => 'Quản lý nội dung',
+    'Add New Social Network' => 'Thêm Liên Kết Xã Hội',
+    'Social Network List' => 'Danh Sách Liên Kết Xã Hội',
+    'Go to https://fontawesome.com/ or search for keyword "fontawesome" to get HTML code of Icon' => 'Truy cập https://fontawesome.com/ hoặc tìm từ khóa "fontawesome" để lấy code HTML của Icon',
+    'Save' => 'Lưu'
 ];
