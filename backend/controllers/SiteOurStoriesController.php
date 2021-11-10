@@ -134,7 +134,7 @@ class SiteOurStoriesController extends Controller
         $model = new SiteOurStories();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post())) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -155,9 +155,10 @@ class SiteOurStoriesController extends Controller
      */
     public function actionUpdate($id)
     {
+        $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+        if ($this->request->isPost && $model->load($this->request->post())) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -175,7 +176,8 @@ class SiteOurStoriesController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $id = CryptHelper::decryptString($id);
+//        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
