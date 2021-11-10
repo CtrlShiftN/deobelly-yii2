@@ -71,7 +71,7 @@ AppAsset::register($this);
                             <div class="topbar col-md-12 col-lg-5 col-xl-4 d-none d-lg-block text-white py-1 text-start">
                                 <ul class="menu-topbar-left my-0 px-0">
                                     <li class="site-nav-top">
-                                        <strong>SĐT: </strong><a class="phone-num"
+                                        <strong>Hotline: </strong><a class="phone-num"
                                                                  href="tel:<?= $contactFooter['tel'] ?>">
                                             <?= Yii::$app->params['adminTel'] ?></a>
                                     </li>

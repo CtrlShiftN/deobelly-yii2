@@ -14,7 +14,9 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="site-contact-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="container px-3 pt-3">
+        <h3 class="text-uppercase"><?= Yii::t('app', 'Update Contact') ?></h3>
+    </div>
 
     <?= $this->render('_form', [
         'model' => $model,

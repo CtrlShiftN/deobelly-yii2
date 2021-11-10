@@ -156,6 +156,20 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 'width' => '150px',
                 'format' => 'raw'
             ],
+            [
+                'label' => Yii::t('app', 'Actions'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'width' => '100px',
+                'value' => function ($model, $key, $index, $widget) {
+                    return Html::a(Yii::t('app', 'View'), Url::toRoute(
+                            [
+                                'site-contact/view',
+                                'id' => \common\components\encrypt\CryptHelper::encryptString($key)
+                            ]), ['class' => 'btn btn-info mb-2']);
+                },
+                'format' => 'raw'
+            ]
         ];
         Pjax::begin();
         echo GridView::widget([

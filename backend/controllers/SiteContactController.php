@@ -4,10 +4,14 @@ namespace backend\controllers;
 
 use backend\models\SiteContact;
 use backend\models\SiteContactSearch;
+use common\components\encrypt\CryptHelper;
+use common\components\helpers\StringHelper;
+use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * SiteContactController implements the CRUD actions for SiteContact model.
@@ -84,6 +88,29 @@ class SiteContactController extends Controller
      */
     public function actionView($id)
     {
+        $id = CryptHelper::decryptString($id);
+        $model = $this->findModel($id);
+        $post = Yii::$app->request->post();
+        if ($model->load($post)) {
+            $logo = UploadedFile::getInstance($model, 'logo_link');
+            if ($logo) {
+                if (!file_exists(Yii::getAlias('@common/media'))) {
+                    mkdir(Yii::getAlias('@common/media'), 0777);
+                }
+                $imageUrl = Yii::getAlias('@common/media');
+                $isUploadedFile = $logo->saveAs($imageUrl.'/'.$logo);
+                if ($isUploadedFile) {
+                    $model->logo_link = $logo;
+                }
+            }
+            $model->admin_id = Yii::$app->user->identity->getId();
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save(false)) {
+                Yii::$app->session->setFlash('kv-detail-success', 'Cập nhật thành công!');
+            } else {
+                Yii::$app->session->setFlash('kv-detail-warning', 'Không thể cập nhật!');
+            }
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -120,6 +147,7 @@ class SiteContactController extends Controller
      */
     public function actionUpdate($id)
     {
+        $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
