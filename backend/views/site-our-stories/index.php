@@ -63,6 +63,7 @@ $imgUrl = Yii::$app->params['common'] . '/media';
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['content'];
                 },
+                'format' => 'raw'
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
