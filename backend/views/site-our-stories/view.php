@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $imgUrl = Yii::$app->params['common'] . '/media';
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
 ?>
-<div class="site-our-stories-view">
+<div class="site-our-stories-view p-4">
     <?php
     $columns = [
         [
