@@ -92,15 +92,15 @@ class SiteContactController extends Controller
         $model = $this->findModel($id);
         $post = Yii::$app->request->post();
         if ($model->load($post)) {
-            $logo = UploadedFile::getInstance($model, 'logo_link');
-            if ($logo) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            if ($model->file) {
                 if (!file_exists(Yii::getAlias('@common/media'))) {
                     mkdir(Yii::getAlias('@common/media'), 0777);
                 }
                 $imageUrl = Yii::getAlias('@common/media');
-                $isUploadedFile = $logo->saveAs($imageUrl.'/'.$logo);
+                $isUploadedFile = $model->file->saveAs($imageUrl.'/'.$model->file);
                 if ($isUploadedFile) {
-                    $model->logo_link = $logo;
+                    $model->logo_link = $model->file;
                 }
             }
             $model->admin_id = Yii::$app->user->identity->getId();

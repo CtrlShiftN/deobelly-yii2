@@ -12,7 +12,7 @@ use yii\widgets\Pjax;
 
 $this->title = Yii::t('app', 'Site Contacts');
 $this->params['breadcrumbs'][] = $this->title;
-$imgUrl = Yii::$app->params['common'] . "/media/";
+$imgUrl = Yii::$app->params['common'] . "/media";
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
 ?>
 <div class="site-contact-index">
@@ -63,7 +63,7 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 'hAlign' => 'center',
                 'width' => '70px',
                 'value' => function ($model, $key, $index, $widget) use ($imgUrl) {
-                    return Html::img($imgUrl . $model['logo_link'], ['width' => '100%', 'alt' => $model['logo_link']]);
+                    return Html::img($imgUrl . '/' . $model['logo_link'], ['width' => '100%', 'alt' => $model['logo_link']]);
                 },
                 'filter' => false,
                 'format' => 'raw',
@@ -167,10 +167,10 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 'width' => '100px',
                 'value' => function ($model, $key, $index, $widget) {
                     return Html::a(Yii::t('app', 'View'), Url::toRoute(
-                            [
-                                'site-contact/view',
-                                'id' => \common\components\encrypt\CryptHelper::encryptString($key)
-                            ]), ['class' => 'btn btn-info mb-2']);
+                        [
+                            'site-contact/view',
+                            'id' => \common\components\encrypt\CryptHelper::encryptString($key)
+                        ]), ['class' => 'btn btn-info mb-2']);
                 },
                 'format' => 'raw'
             ]

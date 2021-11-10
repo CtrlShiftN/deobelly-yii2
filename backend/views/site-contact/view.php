@@ -24,7 +24,7 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
             'format' => 'raw'
         ],
         [
-            'attribute' => 'logo_link',
+            'attribute' => 'file',
             'type' => DetailView::INPUT_FILEINPUT,
             'label' => Yii::t('app', 'Logo'),
             'value' => Html::img($imgUrl . '/' . $model->logo_link, ['alt' => $model->logo_link, 'class' => 'img-fluid']),

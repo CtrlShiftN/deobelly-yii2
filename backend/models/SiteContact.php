@@ -20,6 +20,8 @@ use Yii;
  */
 class SiteContact extends \common\models\SiteContact
 {
+    public $file;
+
     /**
      * {@inheritdoc}
      */
@@ -39,6 +41,8 @@ class SiteContact extends \common\models\SiteContact
             [['tel', 'admin_id', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['logo_link', 'company_address', 'email'], 'string', 'max' => 255],
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg', 'on' => 'create'],
+            ['file', 'required', 'on' => 'create']
         ];
     }
 
@@ -58,6 +62,7 @@ class SiteContact extends \common\models\SiteContact
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'file' => Yii::t('app', 'File'),
         ];
     }
 
