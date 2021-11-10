@@ -47,9 +47,8 @@ class SiteContact extends \common\models\SiteContact
             ['email', 'required', 'message' => Yii::t('app', "Email can't be blank.")],
             [['email'], 'email', 'message' => Yii::t('app', 'Invalid email.')],
 
-            ['tel', 'integer', 'message' => Yii::t('app', 'Includes 10 digits starting with 0 or 84.')],
+            ['tel', 'integer'],
             ['tel', 'required', 'message' => Yii::t('app', 'Phone number can not be blank.')],
-            [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app', 'Includes 10 digits starting with 0 or 84.')],
         ];
     }
 
