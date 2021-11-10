@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\components\SystemConstant;
 use Yii;
 
 /**
@@ -57,5 +58,25 @@ class Footer extends \common\models\Footer
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
+    }
+
+    public static function getTitleFooter()
+    {
+        return \common\models\Footer::find()->where(['status' => SystemConstant::STATUS_ACTIVE,'parent_id' => 0])->asArray()->all();
+    }
+
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
+    public static function updateFooter($id, $attribute, $value)
+    {
+        return \common\models\Footer::updateAll([
+            $attribute => $value,
+            'updated_at' => date('Y-m-d H:i:s'),
+            'admin_id' => Yii::$app->user->identity->getId()
+        ], ['id' => $id]);
     }
 }

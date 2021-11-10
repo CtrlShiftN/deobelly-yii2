@@ -4,6 +4,8 @@ namespace backend\controllers;
 
 use backend\models\Footer;
 use backend\models\FooterSearch;
+use common\components\encrypt\CryptHelper;
+use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -63,7 +65,17 @@ class FooterController extends Controller
     {
         $searchModel = new FooterSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-
+        if (Yii::$app->request->post('hasEditable')) {
+            //which rows has been edited?
+            $_id = $_POST['editableKey'];
+            $_index = $_POST['editableIndex'];
+            //which attribute has been edited?
+            $attribute = $_POST['editableAttribute'];
+            //update to db
+            $value = $_POST['Social'][$_index][$attribute];
+            $result = Footer::updateFooter($_id, $attribute, $value);
+            return json_encode($result);
+        }
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -78,6 +90,7 @@ class FooterController extends Controller
      */
     public function actionView($id)
     {
+        $id = CryptHelper::decryptString($id);
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
