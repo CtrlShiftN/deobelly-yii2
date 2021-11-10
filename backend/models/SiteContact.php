@@ -60,4 +60,13 @@ class SiteContact extends \common\models\SiteContact
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
+
+    public static function updateSiteContact($id, $attribute, $value)
+    {
+        return \common\models\SiteContact::updateAll([
+            $attribute => $value,
+            'updated_at' => date('Y-m-d H:i:s'),
+            'admin_id' => Yii::$app->user->identity->getId()
+        ], ['id' => $id]);
+    }
 }

@@ -57,6 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'editableOptions' => [
                     'asPopover' => false,
                 ],
+                'format' => 'raw'
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',

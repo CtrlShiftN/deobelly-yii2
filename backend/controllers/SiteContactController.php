@@ -59,6 +59,16 @@ class SiteContactController extends Controller
     {
         $searchModel = new SiteContactSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        if(\Yii::$app->request->post('hasEditable')) {
+            $_id = $_POST['editableKey'];
+            $_index = $_POST['editableIndex'];
+            //which attribute has been edited?
+            $attribute = $_POST['editableAttribute'];
+            //update to db
+            $value = $_POST['SiteContact'][$_index][$attribute];
+            $result = SiteContact::updateSiteContact($_id, $attribute, $value);
+            return json_encode($result);
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
