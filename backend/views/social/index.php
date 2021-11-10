@@ -171,7 +171,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'exportConfig' => $defaultExportConfig,
             'toolbar' => [
                 [
-                    'content' => Html::button('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Add New Contact'), [
+                    'content' => Html::button('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Add New Social Network'), [
                         'value' => Url::toRoute('social/create'),
                         'class' => 'btn btn-success',
                         'id' => 'modalSocialButton',
@@ -185,7 +185,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
-                'heading' => Yii::t('app', 'Contact List'),
+                'heading' => Yii::t('app', 'Social network List'),
             ],
         ]);
         Pjax::end();
@@ -195,7 +195,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"><?= Yii::t('app', 'Add New Contact') ?></h5>
+                        <h5 class="modal-title" id="exampleModalLabel"><?= Yii::t('app', 'Add New Social Network') ?></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body modal-social-content"></div>
