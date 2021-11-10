@@ -59,7 +59,6 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 ],
             ],
             [
-                'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'logo_link',
                 'label' => Yii::t('app', 'Logo link'),
                 'vAlign' => 'middle',
@@ -68,10 +67,6 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['logo_link'];
                 },
-                // edit field
-                'editableOptions' => [
-                    'asPopover' => false,
-                ],
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
