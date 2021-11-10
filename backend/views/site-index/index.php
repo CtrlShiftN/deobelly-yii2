@@ -59,6 +59,7 @@ $imgUrl = Yii::$app->params['common'] . '/media';
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['title'];
                 },
+                'format' => 'raw'
             ],
             [
                 'attribute' => 'label',
@@ -68,6 +69,7 @@ $imgUrl = Yii::$app->params['common'] . '/media';
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['label'];
                 },
+                'format' => 'raw'
             ],
             [
                 'attribute' => 'content',
@@ -77,6 +79,7 @@ $imgUrl = Yii::$app->params['common'] . '/media';
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['content'];
                 },
+                'format' => 'raw'
             ],
             [
                 'attribute' => 'link',

@@ -4,10 +4,14 @@ namespace backend\controllers;
 
 use backend\models\SiteOurStories;
 use backend\models\SiteOurStoriesSearch;
+use common\components\encrypt\CryptHelper;
+use common\components\helpers\StringHelper;
+use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * SiteOurStoriesController implements the CRUD actions for SiteOurStories model.
@@ -34,7 +38,7 @@ class SiteOurStoriesController extends Controller
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
-                        'delete' => ['POST','GET'],
+                        'delete' => ['POST', 'GET'],
                     ],
                 ],
             ]
@@ -63,6 +67,18 @@ class SiteOurStoriesController extends Controller
     {
         $searchModel = new SiteOurStoriesSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        if (Yii::$app->request->post('hasEditable')) {
+            // which rows has been edited?
+            $_id = $_POST['editableKey'];
+            $_index = $_POST['editableIndex'];
+            // which attribute has been edited?
+            $attribute = $_POST['editableAttribute'];
+            // update to db
+            $value = $_POST['SiteOurStories'][$_index][$attribute];
+            $result = SiteOurStories::updateAttr($_id, $attribute, $value);
+            // response to gridview
+            return json_encode($result);
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -78,8 +94,33 @@ class SiteOurStoriesController extends Controller
      */
     public function actionView($id)
     {
+        $id = CryptHelper::decryptString($id);
+        $model = $this->findModel($id);
+        $post = Yii::$app->request->post();
+        if ($model->load($post)) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            if ($model->file) {
+                if (!file_exists(Yii::getAlias('@common/media/site-our-stories'))) {
+                    mkdir(Yii::getAlias('@common/media/site-our-stories'), 0777);
+                }
+                $imageUrl = Yii::getAlias('@common/media');
+                $slug = trim(StringHelper::toSlug(trim($model->file->getBaseName())));
+                $fileName = 'site-our-stories/' . $slug . '.' . $model->file->getExtension();
+                $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
+                if ($isUploadedFile) {
+                    $model->image = $fileName;
+                }
+            }
+            $model->admin_id = Yii::$app->user->identity->getId();
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save(false)) {
+                Yii::$app->session->setFlash('kv-detail-success', 'Cập nhật thành công!');
+            } else {
+                Yii::$app->session->setFlash('kv-detail-warning', 'Không thể cập nhật!');
+            }
+        }
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
@@ -93,7 +134,7 @@ class SiteOurStoriesController extends Controller
         $model = new SiteOurStories();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post())) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -114,9 +155,10 @@ class SiteOurStoriesController extends Controller
      */
     public function actionUpdate($id)
     {
+        $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+        if ($this->request->isPost && $model->load($this->request->post())) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -134,7 +176,8 @@ class SiteOurStoriesController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $id = CryptHelper::decryptString($id);
+//        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }

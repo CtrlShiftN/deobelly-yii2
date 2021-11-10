@@ -18,6 +18,8 @@ use Yii;
  */
 class SiteOurStories extends \common\models\SiteOurStories
 {
+    public $file;
+
     /**
      * {@inheritdoc}
      */
@@ -37,6 +39,9 @@ class SiteOurStories extends \common\models\SiteOurStories
             [['admin_id', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['image'], 'string', 'max' => 255],
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg', 'on' => 'create'],
+            ['file', 'required', 'on' => 'create'],
+            ['content', 'required']
         ];
     }
 
@@ -54,6 +59,17 @@ class SiteOurStories extends \common\models\SiteOurStories
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'file' => Yii::t('app', 'File')
         ];
+    }
+
+    public static function updateAttr($id, $attribute, $value)
+    {
+        return \common\models\SiteOurStories::updateAll(
+            [
+                $attribute => $value,
+                'updated_at' => date('Y-m-d H:i:s'),
+                'admin_id' => Yii::$app->user->identity->getId()
+            ], ['id' => $id]);
     }
 }

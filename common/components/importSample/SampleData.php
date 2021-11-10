@@ -2,9 +2,8 @@
 
 namespace common\components\importsample;
 
-use common\components\encrypt\CryptHelper;
+use backend\models\SiteCasual;
 use common\components\helpers\StringHelper;
-use common\components\SystemConstant;
 use common\models\Cart;
 use common\models\Color;
 use common\models\Footer;
@@ -1244,15 +1243,36 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'link' => 'slider/sliderItems2.jpg',
+            'link' => 'slider/slider2.jpg',
             'site' => 'index',
             'slide_label' => 'Second slide label',
             'slide_text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
             'admin_id' => 1,
         ],
         [
-            'link' => 'slider/slider1.jpg',
+            'link' => 'slider/sliderItems2.jpg',
             'site' => 'index',
+            'slide_label' => 'Third slide label',
+            'slide_text' => 'Praesent commodo cursus magna, vel scelerisque nisl consectetur',
+            'admin_id' => 1,
+        ],
+        [
+            'link' => 'slider/sliderItems2.jpg',
+            'site' => 'casual',
+            'slide_label' => 'First slide label',
+            'slide_text' => 'No life is free right now, sometimes soft against vibrations',
+            'admin_id' => 1,
+        ],
+        [
+            'link' => 'slider/sliderItems1.jpg',
+            'site' => 'casual',
+            'slide_label' => 'Second slide label',
+            'slide_text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+            'admin_id' => 1,
+        ],
+        [
+            'link' => 'slider/slider1.jpg',
+            'site' => 'casual',
             'slide_label' => 'Third slide label',
             'slide_text' => 'Praesent commodo cursus magna, vel scelerisque nisl consectetur',
             'admin_id' => 1,
@@ -1265,15 +1285,57 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'link' => 'slider/slider1.jpg',
+            'link' => 'slider/sliderItems1.jpg',
             'site' => 'our-stories',
             'slide_label' => null,
             'slide_text' => null,
             'admin_id' => 1,
         ],
         [
-            'link' => 'slider/slider1.jpg',
+            'link' => 'slider/slider2.jpg',
             'site' => 'our-stories',
+            'slide_label' => null,
+            'slide_text' => null,
+            'admin_id' => 1,
+        ],
+        [
+            'link' => 'slider/slider2.jpg',
+            'site' => 'luxury',
+            'slide_label' => null,
+            'slide_text' => null,
+            'admin_id' => 1,
+        ],
+        [
+            'link' => 'slider/sliderItems2.jpg',
+            'site' => 'luxury',
+            'slide_label' => null,
+            'slide_text' => null,
+            'admin_id' => 1,
+        ],
+        [
+            'link' => 'slider/sliderItems1.jpg',
+            'site' => 'luxury',
+            'slide_label' => null,
+            'slide_text' => null,
+            'admin_id' => 1,
+        ],
+        [
+            'link' => 'slider/sliderItems1.jpg',
+            'site' => 'shop',
+            'slide_label' => null,
+            'slide_text' => null,
+            'admin_id' => 1,
+        ],
+        [
+            'link' => 'slider/sliderItems2.jpg',
+            'site' => 'shop',
+            'slide_label' => null,
+            'slide_text' => null,
+            'admin_id' => 1,
+        ],
+        [
+            'link' => 'slider/slider1.jpg',
+            'site' => 'shop',
             'slide_label' => null,
             'slide_text' => null,
             'admin_id' => 1,
@@ -2956,6 +3018,204 @@ class SampleData
         echo 'Inserted ' . $count . '/' . count(self::$arrSiteIndexContent) . ' index page content' . PHP_EOL;
     }
 
+    protected static $arrSiteCasualContent = [
+        [
+            'title' => 'New Arrivals 1',
+            'label' => null,
+            'image' => 'sites/casual/newProductImg1.jpg',
+            'content' => null,
+            'type' => 'image-link',
+            'link' => 'shop/product',
+            'section' => 'new-arrival',
+            'note' => null,
+        ],
+        [
+            'title' => 'New Arrivals 2',
+            'label' => null,
+            'image' => 'sites/casual/newProductImg2.jpg',
+            'content' => null,
+            'link' => 'shop/product',
+            'section' => 'new-arrival',
+            'note' => null,
+            'type' => 'image-link',
+        ],
+        [
+            'title' => 'New Arrivals 3',
+            'label' => null,
+            'image' => 'sites/casual/newProductImg3.jpg',
+            'content' => null,
+            'link' => 'shop/product',
+            'section' => 'new-arrival',
+            'note' => null,
+            'type' => 'image-link',
+        ],
+        [
+            'title' => 'New Arrivals 4',
+            'label' => null,
+            'image' => 'sites/casual/newProductImg4.jpg',
+            'content' => null,
+            'link' => 'shop/product',
+            'section' => 'new-arrival',
+            'note' => null,
+            'type' => 'image-link',
+        ],
+        [
+            'title' => null,
+            'label' => null,
+            'image' => null,
+            'content' => 'See more',
+            'link' => 'shop/product',
+            'section' => 'new-arrival',
+            'note' => null,
+            'type' => 'see-more-link',
+        ],
+        [
+            'title' => 'De-O Collections',
+            'label' => null,
+            'image' => null,
+            'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer interdum porttitor sagittis. Suspendisse malesuada lacus sit amet nulla vehicula, vel tincidunt nulla viverra. Aliquam dapibus felis sit amet dui tincidunt vulputate. Pellentesque eu quam facilisis velit ullamcorper tincidunt id a nisl. Phasellus ornare tempus volutpat. Maecenas consequat, arcu vitae tempor dapibus, turpis metus porttitor arcu, non laoreet neque massa ut sapien. Etiam sodales egestas sem, quis hendrerit massa laoreet nec. Mauris a enim eu lorem porta blandit. Donec vehicula, dolor tempus convallis dictum, risus ex lacinia urna, eget pretium lectus dolor vitae sapien. Curabitur ultricies finibus commodo. Aenean faucibus odio nec ultrices volutpat. Quisque venenatis velit aliquet, scelerisque lorem nec, tempus ligula. Nam ullamcorper augue purus, ac feugiat massa rutrum non. Ut eget lorem purus. Mauris blandit, lacus sed eleifend tincidunt, leo lorem aliquam odio, auctor pharetra odio ligula id massa. Vestibulum id finibus urna.',
+            'link' => 'mix-and-match/',
+            'section' => 'collections',
+            'note' => null,
+            'type' => 'mix',
+        ],
+        [
+            'title' => 'De-O Collections',
+            'label' => null,
+            'image' => 'sites/casual/sereno.jpg',
+            'content' => null,
+            'link' => 'mix-and-match/',
+            'section' => 'collections',
+            'note' => 'Large screen image',
+            'type' => 'image-link',
+        ],
+        [
+            'title' => 'De-O Collections',
+            'label' => null,
+            'image' => 'sites/casual/sereno-responsive.jpg',
+            'content' => null,
+            'link' => 'mix-and-match/',
+            'section' => 'collections',
+            'note' => 'Mobile screen image',
+            'type' => 'image-link',
+        ],
+        [
+            'title' => 'Pronto',
+            'label' => null,
+            'image' => null,
+            'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer interdum porttitor sagittis. Suspendisse malesuada lacus sit amet nulla vehicula, vel tincidunt nulla viverra. Aliquam dapibus felis sit amet dui tincidunt vulputate. Pellentesque eu quam facilisis velit ullamcorper tincidunt id a nisl. Phasellus ornare tempus volutpat. Maecenas consequat, arcu vitae tempor dapibus, turpis metus porttitor arcu, non laoreet neque massa ut sapien. Etiam sodales egestas sem, quis hendrerit massa laoreet nec. Mauris a enim eu lorem porta blandit. Donec vehicula, dolor tempus convallis dictum, risus ex lacinia urna, eget pretium lectus dolor vitae sapien. Curabitur ultricies finibus commodo. Aenean faucibus odio nec ultrices volutpat. Quisque venenatis velit aliquet, scelerisque lorem nec, tempus ligula. Nam ullamcorper augue purus, ac feugiat massa rutrum non. Ut eget lorem purus. Mauris blandit, lacus sed eleifend tincidunt, leo lorem aliquam odio, auctor pharetra odio ligula id massa. Vestibulum id finibus urna.',
+            'link' => 'shop/',
+            'section' => 'product-type',
+            'note' => null,
+            'type' => 'mix',
+        ],
+        [
+            'title' => 'Pronto Image 1',
+            'label' => null,
+            'image' => 'sites/casual/pronto-img-1.jpg',
+            'content' => null,
+            'link' => 'shop/product',
+            'section' => 'product-type',
+            'note' => 'height - 50',
+            'type' => 'image-link',
+        ],
+        [
+            'title' => 'Pronto Image 2',
+            'label' => null,
+            'image' => 'sites/casual/pronto-img-2.jpg',
+            'content' => null,
+            'link' => 'shop/product',
+            'section' => 'product-type',
+            'note' => 'height - 50',
+            'type' => 'image-link',
+        ],
+        [
+            'title' => 'Pronto Image 3',
+            'label' => null,
+            'image' => 'sites/casual/pronto-img-3.jpg',
+            'content' => null,
+            'link' => 'shop/product',
+            'section' => 'product-type',
+            'note' => 'height - 25',
+            'type' => 'image-link',
+        ],
+        [
+            'title' => 'Pronto Image 4',
+            'label' => null,
+            'image' => 'sites/casual/pronto-img-4.jpg',
+            'content' => null,
+            'link' => 'shop/product',
+            'section' => 'product-type',
+            'note' => 'height - 50',
+            'type' => 'image-link',
+        ],
+        [
+            'title' => 'Pronto Image 5',
+            'label' => null,
+            'image' => 'sites/casual/pronto-img-5.jpg',
+            'content' => null,
+            'link' => 'shop/product',
+            'section' => 'product-type',
+            'note' => 'height - 25',
+            'type' => 'image-link',
+        ],
+        [
+            'title' => null,
+            'label' => null,
+            'image' => null,
+            'content' => 'See more',
+            'link' => 'shop/',
+            'section' => 'product-type',
+            'note' => null,
+            'type' => 'see-more-link',
+        ],
+        [
+            'title' => 'New arrival',
+            'label' => null,
+            'image' => 'sites/casual/men.jpg',
+            'content' => null,
+            'link' => 'shop/product',
+            'section' => 'product-types',
+            'note' => null,
+            'type' => 'image-link',
+        ],
+        [
+            'title' => 'Gifts',
+            'label' => null,
+            'image' => 'sites/casual/women.jpg',
+            'content' => null,
+            'link' => 'shop/product',
+            'section' => 'product-types',
+            'note' => null,
+            'type' => 'image-link',
+        ],
+    ];
+
+    public static function insertSampleSiteCasualContent()
+    {
+        $count = 0;
+        foreach (self::$arrSiteCasualContent as $value) {
+            $model = new SiteCasual();
+            $model->title = $value['title'];
+            $model->label = $value['label'];
+            $model->image = $value['image'];
+            $model->content = $value['content'];
+            $model->link = $value['link'];
+            $model->section = $value['section'];
+            $model->note = $value['note'];
+            $model->type = $value['type'];
+            $model->admin_id = 1;
+            $model->created_at = date('Y-m-d H:i:s');
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save()) {
+                $count++;
+            } else {
+                echo print_r($model->errors) . PHP_EOL;
+            }
+        }
+        echo 'Inserted ' . $count . '/' . count(self::$arrSiteCasualContent) . ' casual page content' . PHP_EOL;
+    }
+
     /**
      * @throws Exception
      */
@@ -2986,5 +3246,6 @@ class SampleData
         self::insertSampleShowroom();
         self::insertSampleMixes();
         self::insertSampleSiteIndexContent();
+        self::insertSampleSiteCasualContent();
     }
 }

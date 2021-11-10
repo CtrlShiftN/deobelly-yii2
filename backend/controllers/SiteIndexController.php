@@ -101,7 +101,6 @@ class SiteIndexController extends Controller
                 }
             }
             $model->admin_id = Yii::$app->user->identity->getId();
-            $model->created_at = date('Y-m-d H:i:s');
             $model->updated_at = date('Y-m-d H:i:s');
             if ($model->save(false)) {
                 Yii::$app->session->setFlash('kv-detail-success', 'Cập nhật thành công!');

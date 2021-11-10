@@ -14,7 +14,7 @@ $this->registerCss('.help-block {padding-left: 5px}');
 <div class="social-form container px-3 py-0">
     <?php $form = ActiveForm::begin(); ?>
     <div class="w-100 row px-0 mx-0">
-        <?= $form->field($model, 'icon', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['placeholder' => 'Ex: <i class="nav-icon fas fa-globe"></i>'])->hint(Yii::t('app', 'Go to https://fontawesome.com/ or search for keyword "fontawesome" to get HTML code of Icon')) ?>
+        <?= $form->field($model, 'icon', ['hintType' => ActiveField::HINT_SPECIAL])->textInput(['placeholder' => 'Ex: <i class="nav-icon fas fa-globe"></i>'])->hint(Yii::t('app', 'Go to https://fontawesome.com/ or search for keyword "fontawesome" to get code of Fontawesome Icon')) ?>
     </div>
     <div class="w-100 row px-0 mx-0">
         <?= $form->field($model, 'link')->textInput(['placeholder' => 'https://...']) ?>
