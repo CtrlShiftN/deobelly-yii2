@@ -70,19 +70,24 @@ AppAsset::register($this);
                         <div class="topbar-content row">
                             <div class="topbar col-md-12 col-lg-5 col-xl-4 d-none d-lg-block text-white py-1 text-start">
                                 <ul class="menu-topbar-left my-0 px-0">
-                                    <li class="site-nav-top">
-                                        <strong>SĐT: </strong><a class="phone-num"
-                                                                 href="tel:<?= $contactFooter['tel'] ?>">
-                                            <?= Yii::$app->params['adminTel'] ?></a>
-                                    </li>
-                                    <li class="site-nav-top">
-                                        <div class="vr mx-2"></div>
-                                    </li>
-                                    <li class="site-nav-top">
-                                        <strong>Email: </strong> <a class="mail-num"
-                                                                    href="mailto:<?= $contactFooter['email'] ?>">
-                                            <?= $contactFooter['email'] ?></a>
-                                    </li>
+                                    <?php if (!empty($contactFooter['tel'])): ?>
+                                        <li class="site-nav-top">
+                                            <strong>Hotline: </strong><a class="phone-num"
+                                                                         href="tel:<?= $contactFooter['tel'] ?>">
+                                                <?= $contactFooter['tel'] ?></a>
+                                        </li>
+                                    <?php endif; ?>
+                                    <?php if (!empty($contactFooter['email'])): ?>
+                                        <li class="site-nav-top">
+                                            <div class="vr mx-2"></div>
+                                        </li>
+                                        <li class="site-nav-top">
+                                            <strong>Email: </strong> <a class="mail-num"
+                                                                        href="mailto:<?= $contactFooter['email'] ?>">
+                                                <?= $contactFooter['email'] ?></a>
+                                        </li>
+                                    <?php endif; ?>
+
                                 </ul>
                             </div>
                             <div class="topbar col-md-12 col-lg-7 col-xl-8 text-white py-1 text-center text-lg-end text-uppercase">
@@ -466,15 +471,21 @@ AppAsset::register($this);
                             <div class="col-sm-12 col-md-6 col-lg-3 pb-3 px-auto">
                                 <ul class="footer-nav no-bullets px-2 py-0">
                                     <h3 class="mb-1"><?= Yii::t('app', 'CONTACT INFO') ?></h3>
-                                    <li><span class="ft-content"><i
-                                                    class="fas fa-home"></i> <?= $contactFooter['company_address'] ?></span>
-                                    </li>
-                                    <li><span class="ft-content"><i class="fas fa-phone-square"></i> <a
-                                                    href="tel:<?= $contactFooter['tel'] ?>"><?= $contactFooter['tel'] ?></a></span>
-                                    </li>
-                                    <li><span class="ft-content"><i class="fas fa-envelope"></i><a
-                                                    href="mailto:<?= $contactFooter['email'] ?>"> <?= $contactFooter['email'] ?></a></span>
-                                    </li>
+                                    <?php if (!empty($contactFooter['company_address'])): ?>
+                                        <li><span class="ft-content"><i
+                                                        class="fas fa-home"></i> <?= $contactFooter['company_address'] ?></span>
+                                        </li>
+                                    <?php endif; ?>
+                                    <?php if (!empty($contactFooter['tel'])): ?>
+                                        <li><span class="ft-content"><i class="fas fa-phone-square"></i> <a
+                                                        href="tel:<?= $contactFooter['tel'] ?>"><?= $contactFooter['tel'] ?></a></span>
+                                        </li>
+                                    <?php endif; ?>
+                                    <?php if (!empty($contactFooter['email'])): ?>
+                                        <li><span class="ft-content"><i class="fas fa-envelope"></i><a
+                                                        href="mailto:<?= $contactFooter['email'] ?>"> <?= $contactFooter['email'] ?></a></span>
+                                        </li>
+                                    <?php endif; ?>
                                 </ul>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-3 pb-3 px-auto">

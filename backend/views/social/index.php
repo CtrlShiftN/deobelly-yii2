@@ -44,9 +44,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['class' => 'kartik-sheet-style']
             ],
             [
-                'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'icon',
                 'label' => Yii::t('app', 'Icon'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'width' => '70px',
+                'value' => function ($model, $key, $index, $widget) {
+                    return $model['icon'];
+                },
+                'format' => 'raw',
+                'filter' => false,
+                'enableSorting' => false
+            ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'icon',
+                'label' => Yii::t('app', 'Fontawesome Icon'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',
@@ -57,6 +70,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'editableOptions' => [
                     'asPopover' => false,
                 ],
+                'filter' => false,
+                'enableSorting' => false
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
@@ -72,6 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'editableOptions' => [
                     'asPopover' => false,
                 ],
+                'filter' => false,
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',

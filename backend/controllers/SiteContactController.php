@@ -4,10 +4,14 @@ namespace backend\controllers;
 
 use backend\models\SiteContact;
 use backend\models\SiteContactSearch;
+use common\components\encrypt\CryptHelper;
+use common\components\helpers\StringHelper;
+use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * SiteContactController implements the CRUD actions for SiteContact model.
@@ -59,6 +63,16 @@ class SiteContactController extends Controller
     {
         $searchModel = new SiteContactSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        if(\Yii::$app->request->post('hasEditable')) {
+            $_id = $_POST['editableKey'];
+            $_index = $_POST['editableIndex'];
+            //which attribute has been edited?
+            $attribute = $_POST['editableAttribute'];
+            //update to db
+            $value = $_POST['SiteContact'][$_index][$attribute];
+            $result = SiteContact::updateSiteContact($_id, $attribute, $value);
+            return json_encode($result);
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -74,6 +88,30 @@ class SiteContactController extends Controller
      */
     public function actionView($id)
     {
+        $id = CryptHelper::decryptString($id);
+        $model = $this->findModel($id);
+        $post = Yii::$app->request->post();
+        if ($model->load($post)) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            if ($model->file) {
+                if (!file_exists(Yii::getAlias('@common/media/contact-logo'))) {
+                    mkdir(Yii::getAlias('@common/media/contact-logo'), 0777);
+                }
+                $imageUrl = Yii::getAlias('@common/media/contact-logo');
+                $fileName = 'contact-logo/' . $model->file->getExtension();
+                $isUploadedFile = $model->file->saveAs($imageUrl.'/'.$fileName);
+                if ($isUploadedFile) {
+                    $model->logo_link = $fileName;
+                }
+            }
+            $model->admin_id = Yii::$app->user->identity->getId();
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save(false)) {
+                Yii::$app->session->setFlash('kv-detail-success', 'Cập nhật thành công!');
+            } else {
+                Yii::$app->session->setFlash('kv-detail-warning', 'Không thể cập nhật!');
+            }
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -110,6 +148,7 @@ class SiteContactController extends Controller
      */
     public function actionUpdate($id)
     {
+        $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {

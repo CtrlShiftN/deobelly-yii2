@@ -20,6 +20,8 @@ use Yii;
  */
 class SiteContact extends \common\models\SiteContact
 {
+    public $file;
+
     /**
      * {@inheritdoc}
      */
@@ -39,6 +41,14 @@ class SiteContact extends \common\models\SiteContact
             [['tel', 'admin_id', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['logo_link', 'company_address', 'email'], 'string', 'max' => 255],
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg', 'on' => 'create'],
+            ['file', 'required', 'on' => 'create'],
+
+            ['email', 'required', 'message' => Yii::t('app', "Email can't be blank.")],
+            [['email'], 'email', 'message' => Yii::t('app', 'Invalid email.')],
+
+            ['tel', 'integer'],
+            ['tel', 'required', 'message' => Yii::t('app', 'Phone number can not be blank.')],
         ];
     }
 
@@ -58,6 +68,16 @@ class SiteContact extends \common\models\SiteContact
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'file' => Yii::t('app', 'File'),
         ];
+    }
+
+    public static function updateSiteContact($id, $attribute, $value)
+    {
+        return \common\models\SiteContact::updateAll([
+            $attribute => $value,
+            'updated_at' => date('Y-m-d H:i:s'),
+            'admin_id' => Yii::$app->user->identity->getId()
+        ], ['id' => $id]);
     }
 }

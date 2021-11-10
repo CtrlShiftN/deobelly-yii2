@@ -443,9 +443,12 @@ return [
     'Content manager' => 'Quản lý nội dung',
     'Add New Social Network' => 'Thêm Liên Kết Xã Hội',
     'Social Network List' => 'Danh Sách Liên Kết Xã Hội',
-    'Go to https://fontawesome.com/ or search for keyword "fontawesome" to get HTML code of Icon' => 'Truy cập https://fontawesome.com/ hoặc tìm từ khóa "fontawesome" để lấy code HTML của Icon',
+    'Go to https://fontawesome.com/ or search for keyword "fontawesome" to get code of Fontawesome Icon' => 'Truy cập https://fontawesome.com/ hoặc tìm từ khóa "fontawesome" để lấy code của Fontawesome Icon',
     'Save' => 'Lưu',
+    'GPS link' => 'Đường dẫn GPS',
+    'Logo link' => 'Đườnh dẫn Logo',
+    'Company address' => 'Địa chỉ công ty',
+    'Go to https://fontawesome.com/ or search for keyword "fontawesome" to get HTML code of Icon' => 'Truy cập https://fontawesome.com/ hoặc tìm từ khóa "fontawesome" để lấy code HTML của Icon',
     'Introductions' => 'Giới Thiệu',
     'Our Stories' => 'Câu Chuyện Của Chúng Tôi',
-
 ];

@@ -71,7 +71,7 @@ class ShopController extends Controller
      */
     public function actionIndex()
     {
-        $slider = Slider::getSliderFromSite('index');
+        $slider = Slider::getSliderFromSite('shop');
         $type = array_values(ProductType::getCasualProductType());
         return $this->render('index', [
             'slider' => $slider,
