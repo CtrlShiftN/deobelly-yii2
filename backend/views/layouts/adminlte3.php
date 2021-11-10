@@ -229,7 +229,7 @@ AppAsset::register($this);
                             <a href="#"
                                class="nav-link <?= ($controller == 'site-our-stories' || $controller == 'footer' ||
                                    $controller == 'site-contact' || $controller == 'site-index') ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-warehouse"></i>
+                                <i class="nav-icon fas fa-sitemap"></i>
                                 <p>
                                     <?= Yii::t('app', 'Content Managers') ?>
                                     <i class="right fas fa-angle-right"></i>
@@ -239,35 +239,35 @@ AppAsset::register($this);
                                 <li class="nav-item">
                                     <a href="<?= Url::toRoute('site-index/') ?>"
                                        class="nav-link <?= ($controller == 'site-index') ? 'active' : '' ?>">
-                                        <i class="nav-icon fas fa-scroll"></i>
+                                        <i class="nav-icon fas fa-house-user"></i>
                                         <p><?= Yii::t('app', 'Homepage') ?></p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= Url::toRoute('site-casual/') ?>"
                                        class="nav-link <?= ($controller == 'site-casual') ? 'active' : '' ?>">
-                                        <i class="nav-icon fas fa-scroll"></i>
+                                        <i class="nav-icon fab fa-elementor"></i>
                                         <p><?= Yii::t('app', 'Casual') ?></p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= Url::toRoute('site-our-stories/') ?>"
                                        class="nav-link <?= ($controller == 'site-our-stories') ? 'active' : '' ?>">
-                                        <i class="nav-icon fas fa-scroll"></i>
+                                        <i class="nav-icon fas fa-chalkboard-teacher"></i>
                                         <p><?= Yii::t('app', 'Introductions') ?></p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= Url::toRoute('site-contact/') ?>"
                                        class="nav-link <?= ($controller == 'site-contact') ? 'active' : '' ?>">
-                                        <i class="nav-icon fas fa-scroll"></i>
-                                        <p><?= Yii::t('app', 'Contact Details') ?></p>
+                                        <i class="nav-icon far fa-address-book"></i>
+                                        <p><?= Yii::t('app', 'Contact') ?></p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= Url::toRoute('footer/') ?>"
                                        class="nav-link <?= ($controller == 'footer') ? 'active' : '' ?>">
-                                        <i class="nav-icon fas fa-align-left"></i>
+                                        <i class="nav-icon fas fa-shoe-prints"></i>
                                         <p><?= Yii::t('app', 'Footer') ?></p>
                                     </a>
                                 </li>
