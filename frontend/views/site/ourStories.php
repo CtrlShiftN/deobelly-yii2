@@ -32,7 +32,7 @@ $this->registerCss(".intro-quote{
                 <?php foreach ($slider as $key => $value): ?>
                     <!-- Single item -->
                     <div class="carousel-item <?= $key == 0 ? 'active' : '' ?>">
-                        <img src="<?= $imgUrl .'/'. $value['link'] ?>" class="d-block w-100"
+                        <img src="<?= $imgUrl . '/' . $value['link'] ?>" class="d-block w-100"
                              alt="<?= empty($value['slide_label']) ? 'De Obelly' : $value['slide_label'] ?>"/>
                         <div class="carousel-caption d-none d-md-block">
                             <h5><?= empty($value['slide_label']) ? '' : $value['slide_label'] ?></h5>
@@ -56,25 +56,31 @@ $this->registerCss(".intro-quote{
         <!-- Carousel wrapper -->
     </div>
     <div class="shop-intro text-center pt-md-5 pb-2">
-        <img src="<?= $imgUrl.'/'.$stories['intro']['image'] ?>" width="100%">
-        <h3 class="text-uppercase py-2">De Obelly Shop</h3>
-        <div class="intro-text px-3">
-            <?= $stories['intro']['content'] ?>
-        </div>
+        <?php if (!empty($stories['intro'])): ?>
+            <img src="<?= $imgUrl . '/' . $stories['intro']['image'] ?>" width="100%">
+            <h3 class="text-uppercase py-2">De Obelly Shop</h3>
+            <div class="intro-text px-3">
+                <?= (!empty($stories['intro']['content'])) ? $stories['intro']['content'] : '' ?>
+            </div>
+        <?php endif; ?>
     </div>
     <div class="full-width pb-4 pb-md-5 d-none d-md-block">
-        <img src="<?= $imgUrl.'/'.$stories['fullwidth']['image'] ?>" width="100%">
+        <?php if (!empty($stories['fullwidth'])): ?>
+            <img src="<?= $imgUrl . '/' . $stories['fullwidth']['image'] ?>" width="100%">
+        <?php endif; ?>
     </div>
     <div class="container-md p-0">
         <div class="row quotes pb-4 pb-md-5 text-center w-100 mx-0 px-2 align-items-md-center justify-content-md-center">
-            <div class="col-12 col-md-1"></div>
-            <div class="col-12 col-md-5">
-                <img src="<?= $imgUrl.'/'.$stories['quote']['image'] ?>" width="100%">
-            </div>
-            <div class="col-12 col-md-5 intro-quote mt-3 mt-md-0 pt-md-0 pe-0">
-                <?= $stories['quote']['content'] ?>
-            </div>
-            <div class="col-12 col-md-1"></div>
+            <?php if (!empty($stories['quote'])): ?>
+                <div class="col-12 col-md-1"></div>
+                <div class="col-12 col-md-5">
+                    <img src="<?= $imgUrl . '/' . $stories['quote']['image'] ?>" width="100%">
+                </div>
+                <div class="col-12 col-md-5 intro-quote mt-3 mt-md-0 pt-md-0 pe-0">
+                    <?= $stories['quote']['content'] ?>
+                </div>
+                <div class="col-12 col-md-1"></div>
+            <?php endif; ?>
         </div>
     </div>
 </div>
