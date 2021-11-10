@@ -207,7 +207,7 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
-                'heading' => Yii::t('app', 'Social Network List'),
+                'heading' => Yii::t('app', 'Contact List'),
             ],
         ]);
         Pjax::end();
