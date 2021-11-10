@@ -143,21 +143,12 @@ $imgUrl = Yii::$app->params['common'] . '/media';
             'columns' => $gridColumns,
             'exportConfig' => $defaultExportConfig,
             'toolbar' => [
-                [
-                    'content' => Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Add New Type'), ['create'], [
-                        'class' => 'btn btn-success',
-                        'title' => 'Reset Grid',
-                        'data-pjax' => 0,
-                        'target' => '_blank'
-                    ]),
-                    'options' => ['class' => 'btn-group mr-2']
-                ],
                 '{export}',
                 '{toggleData}',
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
-                'heading' => Yii::t('app', 'Product Type List'),
+                'heading' => Yii::t('app', 'Site Our Stories'),
             ],
         ]);
         Pjax::end();
