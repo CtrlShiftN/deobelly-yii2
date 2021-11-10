@@ -2,8 +2,8 @@
 
 namespace backend\controllers;
 
-use backend\models\SiteIndex;
-use backend\models\SiteIndexSearch;
+use backend\models\SiteCasual;
+use backend\models\SiteCasualSearch;
 use common\components\encrypt\CryptHelper;
 use common\components\helpers\StringHelper;
 use Yii;
@@ -14,9 +14,9 @@ use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 
 /**
- * SiteIndexController implements the CRUD actions for SiteIndex model.
+ * SiteCasualController implements the CRUD actions for SiteCasual model.
  */
-class SiteIndexController extends Controller
+class SiteCasualController extends Controller
 {
     /**
      * @inheritDoc
@@ -60,22 +60,22 @@ class SiteIndexController extends Controller
     }
 
     /**
-     * Lists all SiteIndex models.
+     * Lists all SiteCasual models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SiteIndexSearch();
+        $searchModel = new SiteCasualSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
-        return $this->render('index', [
+        return $this->render('casual', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single SiteIndex model.
+     * Displays a single SiteCasual model.
      * @param int $id ID
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -84,23 +84,24 @@ class SiteIndexController extends Controller
     {
         $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
-        $arrSiteContentType = SiteIndex::getSiteContentType();
+        $arrSiteContentType = SiteCasual::getSiteContentType();
         $post = Yii::$app->request->post();
         if ($model->load($post)) {
             $model->file = UploadedFile::getInstance($model, 'file');
             $slug = trim(StringHelper::toSlug(trim($model->title)));
             if ($model->file) {
-                if (!file_exists(Yii::getAlias('@common/media/site-index'))) {
-                    mkdir(Yii::getAlias('@common/media/site-index'), 0777);
+                if (!file_exists(Yii::getAlias('@common/media/site-casual'))) {
+                    mkdir(Yii::getAlias('@common/media/site-casual'), 0777);
                 }
                 $imageUrl = Yii::getAlias('@common/media');
-                $fileName = 'site-index/' . $slug . '.' . $model->file->getExtension();
+                $fileName = 'site-casual/' . $slug . '.' . $model->file->getExtension();
                 $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
                 if ($isUploadedFile) {
                     $model->image = $fileName;
                 }
             }
             $model->admin_id = Yii::$app->user->identity->getId();
+            $model->created_at = date('Y-m-d H:i:s');
             $model->updated_at = date('Y-m-d H:i:s');
             if ($model->save(false)) {
                 Yii::$app->session->setFlash('kv-detail-success', 'Cập nhật thành công!');
@@ -115,13 +116,13 @@ class SiteIndexController extends Controller
     }
 
     /**
-     * Creates a new SiteIndex model.
+     * Creates a new SiteCasual model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new SiteIndex();
+        $model = new SiteCasual();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -137,7 +138,7 @@ class SiteIndexController extends Controller
     }
 
     /**
-     * Updates an existing SiteIndex model.
+     * Updates an existing SiteCasual model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return mixed
@@ -157,7 +158,7 @@ class SiteIndexController extends Controller
     }
 
     /**
-     * Deletes an existing SiteIndex model.
+     * Deletes an existing SiteCasual model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return mixed
@@ -171,15 +172,15 @@ class SiteIndexController extends Controller
     }
 
     /**
-     * Finds the SiteIndex model based on its primary key value.
+     * Finds the SiteCasual model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return SiteIndex the loaded model
+     * @return SiteCasual the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = SiteIndex::findOne($id)) !== null) {
+        if (($model = SiteCasual::findOne($id)) !== null) {
             return $model;
         }
 

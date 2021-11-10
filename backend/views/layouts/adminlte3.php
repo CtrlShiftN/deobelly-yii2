@@ -237,10 +237,17 @@ AppAsset::register($this);
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?= Url::toRoute('footer/') ?>"
-                                       class="nav-link <?= ($controller == 'footer') ? 'active' : '' ?>">
-                                        <i class="nav-icon fas fa-align-left"></i>
-                                        <p><?= Yii::t('app', 'Footer') ?></p>
+                                    <a href="<?= Url::toRoute('site-index/') ?>"
+                                       class="nav-link <?= ($controller == 'site-index') ? 'active' : '' ?>">
+                                        <i class="nav-icon fas fa-scroll"></i>
+                                        <p><?= Yii::t('app', 'Homepage') ?></p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= Url::toRoute('site-casual/') ?>"
+                                       class="nav-link <?= ($controller == 'site-casual') ? 'active' : '' ?>">
+                                        <i class="nav-icon fas fa-scroll"></i>
+                                        <p><?= Yii::t('app', 'Casual') ?></p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -258,10 +265,10 @@ AppAsset::register($this);
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= Url::toRoute('site-index/') ?>"
-                                       class="nav-link <?= ($controller == 'site-index') ? 'active' : '' ?>">
-                                        <i class="nav-icon fas fa-scroll"></i>
-                                        <p><?= Yii::t('app', 'Homepage') ?></p>
+                                    <a href="<?= Url::toRoute('footer/') ?>"
+                                       class="nav-link <?= ($controller == 'footer') ? 'active' : '' ?>">
+                                        <i class="nav-icon fas fa-align-left"></i>
+                                        <p><?= Yii::t('app', 'Footer') ?></p>
                                     </a>
                                 </li>
                             </ul>

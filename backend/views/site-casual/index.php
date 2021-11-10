@@ -6,15 +6,14 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\SiteOurStoriesSearch */
+/* @var $searchModel backend\models\SiteCasualSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Site Our Stories');
-$this->params['breadcrumbs'][] = $this->title;
-$arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
+$this->title = Yii::t('app', 'Site Casual');
 $imgUrl = Yii::$app->params['common'] . '/media';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-our-stories-index">
+<div class="site-casual-index">
     <div class="pt-3">
         <?php
         $defaultExportConfig = [
@@ -43,16 +42,33 @@ $imgUrl = Yii::$app->params['common'] . '/media';
                 'headerOptions' => ['class' => 'kartik-sheet-style']
             ],
             [
-                'class' => 'kartik\grid\DataColumn',
                 'attribute' => 'image',
                 'label' => Yii::t('app', 'Image'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
-                'width' => '140px',
                 'value' => function ($model, $key, $index, $widget) use ($imgUrl) {
-                    return Html::img($imgUrl . '/' . $model['image'], ['width' => '100%', 'alt' => pathinfo($model['image'], PATHINFO_BASENAME)]);
+                    return Html::img($imgUrl . '/' . $model['image'], ['class' => 'img-thumbnail', 'width' => '200px']);
                 },
-                'filter' => false,
+                'format' => 'raw'
+            ],
+            [
+                'attribute' => 'title',
+                'label' => Yii::t('app', 'Title'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'value' => function ($model, $key, $index, $widget) {
+                    return $model['title'];
+                },
+                'format' => 'raw'
+            ],
+            [
+                'attribute' => 'label',
+                'label' => Yii::t('app', 'Label'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'value' => function ($model, $key, $index, $widget) {
+                    return $model['label'];
+                },
                 'format' => 'raw'
             ],
             [
@@ -63,45 +79,16 @@ $imgUrl = Yii::$app->params['common'] . '/media';
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['content'];
                 },
-            ],
-            [
-                'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'status',
-                'label' => Yii::t('app', 'Status'),
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'width' => '150px',
-                'value' => function ($model, $key, $index, $widget) use ($arrStatus) {
-                    return $arrStatus[$model['status']];
-                },
-                'editableOptions' => function ($model, $key, $index) use ($arrStatus) {
-                    return [
-                        'name' => 'status',
-                        'asPopover' => false,
-                        'header' => Yii::t('app', 'Status'),
-                        'size' => 'md',
-                        'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
-                        'data' => $arrStatus,
-                        // default value in the text box
-                        'value' => $arrStatus[$model['status']],
-                        'displayValueConfig' => $arrStatus
-                    ];
-                },
-                'filterType' => GridView::FILTER_SELECT2,
-                'filter' => $arrStatus,
-                'filterWidgetOptions' => [
-                    'pluginOptions' => ['allowClear' => true],
-                ],
-                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Status') . ' --']
-            ],
-            [
-                'attribute' => 'created_at',
-                'label' => Yii::t('app', 'Created_at'),
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'filter' => false,
-                'width' => '200px',
                 'format' => 'raw'
+            ],
+            [
+                'attribute' => 'link',
+                'label' => Yii::t('app', 'Link'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'value' => function ($model, $key, $index, $widget) {
+                    return $model['link'];
+                },
             ],
             [
                 'label' => Yii::t('app', 'Actions'),
@@ -109,7 +96,11 @@ $imgUrl = Yii::$app->params['common'] . '/media';
                 'hAlign' => 'center',
                 'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) {
-                    return Html::a(Yii::t('app', 'View'), Url::toRoute(['site-our-stories/view', 'id' => \common\components\encrypt\CryptHelper::encryptString($key)]), ['class' => 'btn btn-info mb-3']);
+                    return Html::a(Yii::t('app', 'View'), Url::toRoute(
+                        [
+                            'site-casual/view',
+                            'id' => \common\components\encrypt\CryptHelper::encryptString($key)
+                        ]), ['class' => 'btn btn-info me-3']);
                 },
                 'format' => 'raw'
             ]
@@ -143,21 +134,12 @@ $imgUrl = Yii::$app->params['common'] . '/media';
             'columns' => $gridColumns,
             'exportConfig' => $defaultExportConfig,
             'toolbar' => [
-                [
-                    'content' => Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Add New Type'), ['create'], [
-                        'class' => 'btn btn-success',
-                        'title' => 'Reset Grid',
-                        'data-pjax' => 0,
-                        'target' => '_blank'
-                    ]),
-                    'options' => ['class' => 'btn-group mr-2']
-                ],
                 '{export}',
                 '{toggleData}',
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
-                'heading' => Yii::t('app', 'Product Type List'),
+                'heading' => Yii::t('app', 'Casual page Contents'),
             ],
         ]);
         Pjax::end();

@@ -7,6 +7,7 @@ use frontend\models\Post;
 use frontend\models\Product;
 use frontend\models\ProductType;
 use frontend\models\ResendVerificationEmailForm;
+use frontend\models\SiteCasual;
 use frontend\models\SiteContact;
 use frontend\models\SiteIndex;
 use frontend\models\SiteOurStories;
@@ -91,13 +92,16 @@ class SiteController extends Controller
 //    public function actionIndex()
 //    {
 //        $this->layout = 'blank';
-//        $type = ArrayHelper::index(ProductType::getAllProductType(), 'slug');
+//        $type = array_values(ProductType::getCasualProductType());
 //        $slider = Slider::getSliderFromSite('index');
+//        $siteContent = SiteIndex::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
 //        return $this->render('index3', [
 //            'type' => $type,
-//            'slider' => $slider
+//            'slider' => $slider,
+//            'siteContent' => ArrayHelper::index($siteContent, null, 'section')
 //        ]);
 //    }
+
     public function actionIndex()
     {
         $type = array_values(ProductType::getCasualProductType());
@@ -120,7 +124,7 @@ class SiteController extends Controller
         $featuredProduct = Product::getFeaturedProduct();
         $newProduct = Product::getLatestProduct();
         $latestNews = Post::getLatestPosts(3);
-        $slider = Slider::getSliderFromSite('our-stories');
+        $slider = Slider::getSliderFromSite('luxury');
         return $this->render('luxury', [
             'slider' => $slider,
             'featuredProducts' => $featuredProduct,
@@ -137,10 +141,12 @@ class SiteController extends Controller
     public function actionCasual()
     {
         $type = array_values(ProductType::getCasualProductType());
-        $slider = Slider::getSliderFromSite('index');
+        $slider = Slider::getSliderFromSite('casual');
+        $siteContent = SiteCasual::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
         return $this->render('index', [
             'type' => $type,
-            'slider' => $slider
+            'slider' => $slider,
+            'siteContent' => ArrayHelper::index($siteContent, null, 'section')
         ]);
     }
 
