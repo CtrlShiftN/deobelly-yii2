@@ -9,7 +9,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel backend\models\SiteCasualSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Site Casuals');
+$this->title = Yii::t('app', 'Site Casual');
 $imgUrl = Yii::$app->params['common'] . '/media';
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -1243,15 +1243,36 @@ class SampleData
             'admin_id' => 1,
         ],
         [
-            'link' => 'slider/sliderItems2.jpg',
+            'link' => 'slider/sliderItems1.jpg',
             'site' => 'index',
             'slide_label' => 'Second slide label',
             'slide_text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
             'admin_id' => 1,
         ],
         [
-            'link' => 'slider/slider1.jpg',
+            'link' => 'slider/sliderItems1.jpg',
             'site' => 'index',
+            'slide_label' => 'Third slide label',
+            'slide_text' => 'Praesent commodo cursus magna, vel scelerisque nisl consectetur',
+            'admin_id' => 1,
+        ],
+        [
+            'link' => 'slider/sliderItems2.jpg',
+            'site' => 'casual',
+            'slide_label' => 'First slide label',
+            'slide_text' => 'No life is free right now, sometimes soft against vibrations',
+            'admin_id' => 1,
+        ],
+        [
+            'link' => 'slider/sliderItems2.jpg',
+            'site' => 'casual',
+            'slide_label' => 'Second slide label',
+            'slide_text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+            'admin_id' => 1,
+        ],
+        [
+            'link' => 'slider/sliderItems2.jpg',
+            'site' => 'casual',
             'slide_label' => 'Third slide label',
             'slide_text' => 'Praesent commodo cursus magna, vel scelerisque nisl consectetur',
             'admin_id' => 1,
@@ -1273,6 +1294,27 @@ class SampleData
         [
             'link' => 'slider/slider1.jpg',
             'site' => 'our-stories',
+            'slide_label' => null,
+            'slide_text' => null,
+            'admin_id' => 1,
+        ],
+        [
+            'link' => 'slider/slider2.jpg',
+            'site' => 'luxury',
+            'slide_label' => null,
+            'slide_text' => null,
+            'admin_id' => 1,
+        ],
+        [
+            'link' => 'slider/slider2.jpg',
+            'site' => 'luxury',
+            'slide_label' => null,
+            'slide_text' => null,
+            'admin_id' => 1,
+        ],
+        [
+            'link' => 'slider/slider2.jpg',
+            'site' => 'luxury',
             'slide_label' => null,
             'slide_text' => null,
             'admin_id' => 1,
@@ -2988,7 +3030,7 @@ class SampleData
         [
             'title' => 'New Arrivals 1',
             'label' => null,
-            'image' => 'sites/index/newProductImg1.jpg',
+            'image' => 'sites/casual/newProductImg1.jpg',
             'content' => null,
             'type' => 'image-link',
             'link' => 'shop/product',
@@ -2998,7 +3040,7 @@ class SampleData
         [
             'title' => 'New Arrivals 2',
             'label' => null,
-            'image' => 'sites/index/newProductImg2.jpg',
+            'image' => 'sites/casual/newProductImg2.jpg',
             'content' => null,
             'link' => 'shop/product',
             'section' => 'new-arrival',
@@ -3008,7 +3050,7 @@ class SampleData
         [
             'title' => 'New Arrivals 3',
             'label' => null,
-            'image' => 'sites/index/newProductImg3.jpg',
+            'image' => 'sites/casual/newProductImg3.jpg',
             'content' => null,
             'link' => 'shop/product',
             'section' => 'new-arrival',
@@ -3018,7 +3060,7 @@ class SampleData
         [
             'title' => 'New Arrivals 4',
             'label' => null,
-            'image' => 'sites/index/newProductImg4.jpg',
+            'image' => 'sites/casual/newProductImg4.jpg',
             'content' => null,
             'link' => 'shop/product',
             'section' => 'new-arrival',
@@ -3048,7 +3090,7 @@ class SampleData
         [
             'title' => 'De-O Collections',
             'label' => null,
-            'image' => 'sites/index/sereno.jpg',
+            'image' => 'sites/casual/sereno.jpg',
             'content' => null,
             'link' => 'mix-and-match/',
             'section' => 'collections',
@@ -3058,7 +3100,7 @@ class SampleData
         [
             'title' => 'De-O Collections',
             'label' => null,
-            'image' => 'sites/index/sereno-responsive.jpg',
+            'image' => 'sites/casual/sereno-responsive.jpg',
             'content' => null,
             'link' => 'mix-and-match/',
             'section' => 'collections',
@@ -3078,7 +3120,7 @@ class SampleData
         [
             'title' => 'Pronto Image 1',
             'label' => null,
-            'image' => 'sites/index/pronto-img-1.jpg',
+            'image' => 'sites/casual/pronto-img-1.jpg',
             'content' => null,
             'link' => 'shop/product',
             'section' => 'product-type',
@@ -3088,7 +3130,7 @@ class SampleData
         [
             'title' => 'Pronto Image 2',
             'label' => null,
-            'image' => 'sites/index/pronto-img-2.jpg',
+            'image' => 'sites/casual/pronto-img-2.jpg',
             'content' => null,
             'link' => 'shop/product',
             'section' => 'product-type',
@@ -3098,7 +3140,7 @@ class SampleData
         [
             'title' => 'Pronto Image 3',
             'label' => null,
-            'image' => 'sites/index/pronto-img-3.jpg',
+            'image' => 'sites/casual/pronto-img-3.jpg',
             'content' => null,
             'link' => 'shop/product',
             'section' => 'product-type',
@@ -3108,7 +3150,7 @@ class SampleData
         [
             'title' => 'Pronto Image 4',
             'label' => null,
-            'image' => 'sites/index/pronto-img-4.jpg',
+            'image' => 'sites/casual/pronto-img-4.jpg',
             'content' => null,
             'link' => 'shop/product',
             'section' => 'product-type',
@@ -3118,7 +3160,7 @@ class SampleData
         [
             'title' => 'Pronto Image 5',
             'label' => null,
-            'image' => 'sites/index/pronto-img-5.jpg',
+            'image' => 'sites/casual/pronto-img-5.jpg',
             'content' => null,
             'link' => 'shop/product',
             'section' => 'product-type',
@@ -3138,7 +3180,7 @@ class SampleData
         [
             'title' => 'New arrival',
             'label' => null,
-            'image' => 'sites/index/men.jpg',
+            'image' => 'sites/casual/men.jpg',
             'content' => null,
             'link' => 'shop/product',
             'section' => 'product-types',
@@ -3148,7 +3190,7 @@ class SampleData
         [
             'title' => 'Gifts',
             'label' => null,
-            'image' => 'sites/index/women.jpg',
+            'image' => 'sites/casual/women.jpg',
             'content' => null,
             'link' => 'shop/product',
             'section' => 'product-types',
@@ -3160,7 +3202,7 @@ class SampleData
     public static function insertSampleSiteCasualContent()
     {
         $count = 0;
-        foreach (self::$arrSiteIndexContent as $value) {
+        foreach (self::$arrSiteCasualContent as $value) {
             $model = new SiteCasual();
             $model->title = $value['title'];
             $model->label = $value['label'];
@@ -3179,7 +3221,7 @@ class SampleData
                 echo print_r($model->errors) . PHP_EOL;
             }
         }
-        echo 'Inserted ' . $count . '/' . count(self::$arrSiteIndexContent) . ' casual page content' . PHP_EOL;
+        echo 'Inserted ' . $count . '/' . count(self::$arrSiteCasualContent) . ' casual page content' . PHP_EOL;
     }
 
     /**

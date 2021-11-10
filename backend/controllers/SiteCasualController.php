@@ -68,7 +68,7 @@ class SiteCasualController extends Controller
         $searchModel = new SiteCasualSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
-        return $this->render('index', [
+        return $this->render('casual', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -90,11 +90,11 @@ class SiteCasualController extends Controller
             $model->file = UploadedFile::getInstance($model, 'file');
             $slug = trim(StringHelper::toSlug(trim($model->title)));
             if ($model->file) {
-                if (!file_exists(Yii::getAlias('@common/media/site-index'))) {
-                    mkdir(Yii::getAlias('@common/media/site-index'), 0777);
+                if (!file_exists(Yii::getAlias('@common/media/site-casual'))) {
+                    mkdir(Yii::getAlias('@common/media/site-casual'), 0777);
                 }
                 $imageUrl = Yii::getAlias('@common/media');
-                $fileName = 'site-index/' . $slug . '.' . $model->file->getExtension();
+                $fileName = 'site-casual/' . $slug . '.' . $model->file->getExtension();
                 $isUploadedFile = $model->file->saveAs($imageUrl . '/' . $fileName);
                 if ($isUploadedFile) {
                     $model->image = $fileName;

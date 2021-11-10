@@ -121,7 +121,7 @@ class SiteController extends Controller
         $featuredProduct = Product::getFeaturedProduct();
         $newProduct = Product::getLatestProduct();
         $latestNews = Post::getLatestPosts(3);
-        $slider = Slider::getSliderFromSite('our-stories');
+        $slider = Slider::getSliderFromSite('luxury');
         return $this->render('luxury', [
             'slider' => $slider,
             'featuredProducts' => $featuredProduct,
@@ -138,7 +138,7 @@ class SiteController extends Controller
     public function actionCasual()
     {
         $type = array_values(ProductType::getCasualProductType());
-        $slider = Slider::getSliderFromSite('index');
+        $slider = Slider::getSliderFromSite('casual');
         $siteContent = SiteCasual::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
         return $this->render('index', [
             'type' => $type,
