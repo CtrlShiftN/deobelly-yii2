@@ -91,13 +91,16 @@ class SiteController extends Controller
 //    public function actionIndex()
 //    {
 //        $this->layout = 'blank';
-//        $type = ArrayHelper::index(ProductType::getAllProductType(), 'slug');
+//        $type = array_values(ProductType::getCasualProductType());
 //        $slider = Slider::getSliderFromSite('index');
+//        $siteContent = SiteIndex::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
 //        return $this->render('index3', [
 //            'type' => $type,
-//            'slider' => $slider
+//            'slider' => $slider,
+//            'siteContent' => ArrayHelper::index($siteContent, null, 'section')
 //        ]);
 //    }
+
     public function actionIndex()
     {
         $type = array_values(ProductType::getCasualProductType());
@@ -138,9 +141,11 @@ class SiteController extends Controller
     {
         $type = array_values(ProductType::getCasualProductType());
         $slider = Slider::getSliderFromSite('index');
+        $siteContent = SiteIndex::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
         return $this->render('index', [
             'type' => $type,
-            'slider' => $slider
+            'slider' => $slider,
+            'siteContent' => ArrayHelper::index($siteContent, null, 'section')
         ]);
     }
 
