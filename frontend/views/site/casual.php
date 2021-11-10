@@ -6,7 +6,7 @@ use yii\helpers\Url;
 
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->title = 'DE OBELLY';
-$this->registerCssFile(Url::toRoute("/css/index.css"));
+$this->registerCssFile(Url::toRoute("/css/casual.css"));
 // new-arrival
 $arrNewArrival = \yii\helpers\ArrayHelper::index($siteContent['new-arrival'], null, 'type');
 $arrNewProductImage = $arrNewArrival['image-link'];
@@ -114,11 +114,11 @@ $arrTypesImage = $arrTypes['image-link'];
         </div>
     </div>
     <?php if (!empty($newArrivalSeeMoreLink)): ?>
-    <div class="col-12 text-center mb-5 mt-4 my-md-5">
-        <a href="<?= $newArrivalSeeMoreLink['link'] ?>"
-           class="btn btn-dark rounded-0 fs-4 fw-light px-4 px-lg-5"
-           target="_blank"><?= $newArrivalSeeMoreLink['content'] ?></a>
-    </div>
+        <div class="col-12 text-center mb-5 mt-4 my-md-5">
+            <a href="<?= $newArrivalSeeMoreLink['link'] ?>"
+               class="btn btn-dark rounded-0 fs-4 fw-light px-4 px-lg-5"
+               target="_blank"><?= $newArrivalSeeMoreLink['content'] ?></a>
+        </div>
     <?php endif; ?>
 </div>
 <div class="row px-3 px-md-4 w-100 m-0 sereno">
@@ -136,16 +136,16 @@ $arrTypesImage = $arrTypes['image-link'];
     </div>
     <div class="col-12 col-md-6 d-flex align-items-center px-0 px-md-4 pe-lg-5 mt-3 mt-md-0">
         <?php if (!empty($collectionMixContent)): ?>
-        <div class="w-100 text-justify">
-            <h1 class="fw-light m-0 text-uppercase text-center text-md-start"><?= $collectionMixContent['title'] ?></h1>
-            <p class="fs-5 fw-light my-3 my-md-4 my-xl-5 px-0">
-                <?= $collectionMixContent['content'] ?>
-            </p>
-            <div class="w-100 text-center">
-                <a href="<?= $collectionMixContent['link'] ?>"
-                   class="btn btn-dark rounded-0 fs-6 fw-light px-4"><?= Yii::t('app', 'See more') ?></a>
+            <div class="w-100 text-justify">
+                <h1 class="fw-light m-0 text-uppercase text-center text-md-start"><?= $collectionMixContent['title'] ?></h1>
+                <p class="fs-5 fw-light my-3 my-md-4 my-xl-5 px-0">
+                    <?= $collectionMixContent['content'] ?>
+                </p>
+                <div class="w-100 text-center">
+                    <a href="<?= $collectionMixContent['link'] ?>"
+                       class="btn btn-dark rounded-0 fs-6 fw-light px-4"><?= Yii::t('app', 'See more') ?></a>
+                </div>
             </div>
-        </div>
         <?php endif; ?>
     </div>
 </div>

@@ -7,6 +7,7 @@ use frontend\models\Post;
 use frontend\models\Product;
 use frontend\models\ProductType;
 use frontend\models\ResendVerificationEmailForm;
+use frontend\models\SiteCasual;
 use frontend\models\SiteContact;
 use frontend\models\SiteIndex;
 use frontend\models\SiteOurStories;
@@ -138,9 +139,11 @@ class SiteController extends Controller
     {
         $type = array_values(ProductType::getCasualProductType());
         $slider = Slider::getSliderFromSite('index');
+        $siteContent = SiteCasual::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
         return $this->render('index', [
             'type' => $type,
-            'slider' => $slider
+            'slider' => $slider,
+            'siteContent' => ArrayHelper::index($siteContent, null, 'section')
         ]);
     }
 
