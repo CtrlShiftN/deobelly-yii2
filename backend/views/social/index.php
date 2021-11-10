@@ -52,7 +52,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['icon'];
                 },
-                'format' => 'raw'
+                'format' => 'raw',
+                'filter' => false,
+                'enableSorting' => false
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
@@ -68,6 +70,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'editableOptions' => [
                     'asPopover' => false,
                 ],
+                'filter' => false,
+                'enableSorting' => false
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
@@ -83,6 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'editableOptions' => [
                     'asPopover' => false,
                 ],
+                'filter' => false,
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
@@ -166,7 +171,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'exportConfig' => $defaultExportConfig,
             'toolbar' => [
                 [
-                    'content' => Html::button('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Add New Social Network'), [
+                    'content' => Html::button('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Add New Contact'), [
                         'value' => Url::toRoute('social/create'),
                         'class' => 'btn btn-success',
                         'id' => 'modalSocialButton',
@@ -180,7 +185,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
-                'heading' => Yii::t('app', 'Social Network List'),
+                'heading' => Yii::t('app', 'Contact List'),
             ],
         ]);
         Pjax::end();
@@ -190,7 +195,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"><?= Yii::t('app', 'Add New Social Network') ?></h5>
+                        <h5 class="modal-title" id="exampleModalLabel"><?= Yii::t('app', 'Add New Contact') ?></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body modal-social-content"></div>

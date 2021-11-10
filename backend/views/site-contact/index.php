@@ -12,6 +12,7 @@ use yii\widgets\Pjax;
 
 $this->title = Yii::t('app', 'Site Contacts');
 $this->params['breadcrumbs'][] = $this->title;
+$imgUrl = Yii::$app->params['common'] . "/media/";
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
 ?>
 <div class="site-contact-index">
@@ -64,9 +65,12 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '70px',
-                'value' => function ($model, $key, $index, $widget) {
-                    return $model['logo_link'];
+                'value' => function ($model, $key, $index, $widget) use ($imgUrl) {
+                    return Html::img($imgUrl . $model['logo_link'], ['width' => '100%', 'alt' => $model['logo_link']]);
                 },
+                'filter' => false,
+                'format' => 'raw',
+                'enableSorting' => false
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
