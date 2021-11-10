@@ -36,6 +36,16 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
             'value' => (!empty($model->company_address)) ? $model->company_address : null,
         ],
         [
+            'attribute' => 'tel',
+            'label' => Yii::t('app', 'Tel'),
+            'value' => (!empty($model->tel)) ? $model->tel : null,
+        ],
+        [
+            'attribute' => 'email',
+            'label' => Yii::t('app', 'Email'),
+            'value' => (!empty($model->email)) ? $model->email : null,
+        ],
+        [
             'attribute' => 'status',
             'value' => (!empty($arrStatus[$model->status])) ? $arrStatus[$model->status] : null,
             'type' => DetailView::INPUT_SELECT2,
@@ -59,6 +69,7 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
         'condensed' => true,
         'hover' => true,
         'bordered' => true,
+        'buttons1' => '{update}',
 //        'enableEditMode' => false,
 //        'buttons1' => '{delete}',
         'hAlign' => DetailView::ALIGN_CENTER,

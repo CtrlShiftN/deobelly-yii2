@@ -1319,6 +1319,27 @@ class SampleData
             'slide_text' => null,
             'admin_id' => 1,
         ],
+        [
+            'link' => 'slider/sliderItems1.jpg',
+            'site' => 'shop',
+            'slide_label' => null,
+            'slide_text' => null,
+            'admin_id' => 1,
+        ],
+        [
+            'link' => 'slider/sliderItems2.jpg',
+            'site' => 'shop',
+            'slide_label' => null,
+            'slide_text' => null,
+            'admin_id' => 1,
+        ],
+        [
+            'link' => 'slider/slider1.jpg',
+            'site' => 'shop',
+            'slide_label' => null,
+            'slide_text' => null,
+            'admin_id' => 1,
+        ],
     ];
 
     /**
