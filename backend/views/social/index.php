@@ -185,7 +185,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
-                'heading' => Yii::t('app', 'Social network List'),
+                'heading' => Yii::t('app', 'Social Network List'),
             ],
         ]);
         Pjax::end();

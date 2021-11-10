@@ -21,9 +21,11 @@ $this->registerCss("
 $config = ['template' => "{input}\n{error}\n{hint}"];
 ?>
 <div class="site-contact">
+    <?php if (!empty($content['gps_link'])): ?>
     <div class="w-100">
         <?= $content['gps_link'] ?>
     </div>
+    <?php endif; ?>
     <div class="row border-bottom w-100 mx-0 px-0">
         <div class="p-3 text-center my-3">
             <h5><?= Yii::t('app', 'If you have a business inquiry or other question, please fill out the following form to contact us. Thank you!') ?>!</h5>
@@ -68,16 +70,25 @@ $config = ['template' => "{input}\n{error}\n{hint}"];
         </div>
         <div class="col-12 col-lg-6 my-3">
             <div class="text-center w-100 my-3">
+                <?php if (!empty($content['logo_link'])): ?>
                 <img src="<?= $imgUrl.'/'.$content['logo_link'] ?>" class="w-50 d-none d-lg-inline-block">
+                <?php endif; ?>
                 <h3 class="fw-bold mb-4 text-center text-md-start d-lg-none"><span
                             class=" border-3 border-dark border-bottom text-uppercase"><?= Yii::t('app', 'Contact') ?></span>
                 </h3>
             </div>
             <div class="w-100 row m-0">
-                <p class="col-12 mx-0"><span class="fw-bold"><?= Yii::t('app', 'Address') ?>:</span><br> <?= $content['company_address'] ?></p>
-                <p class="d-inline-block col-12 col-sm-6"><span class="fw-bold">Email:</span><br> <?= $content['email'] ?></p>
-                <p class="d-inline-block col-12 col-sm-6"><span class="fw-bold"><?= Yii::t('app', 'Tel') ?>:</span><br> <?= $content['tel'] ?>
-                </p>
+                <?php if (!empty($content['company_address'])): ?>
+                    <p class="col-12 mx-0"><span class="fw-bold"><?= Yii::t('app', 'Address') ?>:</span><br> <?= $content['company_address'] ?></p>
+                <?php endif; ?>
+                <?php if (!empty($content['email'])): ?>
+                    <p class="d-inline-block col-12 col-sm-6"><span class="fw-bold">Email:</span><br> <?= $content['email'] ?></p>
+                <?php endif; ?>
+                <?php if (!empty($content['tel'])): ?>
+                    <p class="d-inline-block col-12 col-sm-6"><span class="fw-bold"><?= Yii::t('app', 'Tel') ?>:</span><br> <?= $content['tel'] ?>
+                    </p>
+                <?php endif; ?>
+
             </div>
             <img src="<?= Url::toRoute('img/contact/cskh.jpg') ?>"
                  class="shadow-lg rounded w-100">
