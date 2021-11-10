@@ -6,14 +6,14 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\SiteIndexSearch */
+/* @var $searchModel backend\models\SiteCasualSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Homepage');
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Yii::t('app', 'Site Casual');
 $imgUrl = Yii::$app->params['common'] . '/media';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-index-index">
+<div class="site-casual-index">
     <div class="pt-3">
         <?php
         $defaultExportConfig = [
@@ -97,10 +97,10 @@ $imgUrl = Yii::$app->params['common'] . '/media';
                 'width' => '150px',
                 'value' => function ($model, $key, $index, $widget) {
                     return Html::a(Yii::t('app', 'View'), Url::toRoute(
-                            [
-                                'site-index/view',
-                                'id' => \common\components\encrypt\CryptHelper::encryptString($key)
-                            ]), ['class' => 'btn btn-info me-3']);
+                        [
+                            'site-casual/view',
+                            'id' => \common\components\encrypt\CryptHelper::encryptString($key)
+                        ]), ['class' => 'btn btn-info me-3']);
                 },
                 'format' => 'raw'
             ]
@@ -139,7 +139,7 @@ $imgUrl = Yii::$app->params['common'] . '/media';
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
-                'heading' => Yii::t('app', 'Homepage Contents'),
+                'heading' => Yii::t('app', 'Casual page Contents'),
             ],
         ]);
         Pjax::end();
