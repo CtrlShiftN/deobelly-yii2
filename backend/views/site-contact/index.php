@@ -45,19 +45,16 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 'headerOptions' => ['class' => 'kartik-sheet-style']
             ],
             [
-                'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'gps_link',
                 'label' => Yii::t('app', 'GPS link'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
-                'contentOptions' => ['style' => 'max-width:250px; overflow: auto; word-break: break-all !important;'],
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['gps_link'];
                 },
-                // edit field
-                'editableOptions' => [
-                    'asPopover' => false,
-                ],
+                'format' => 'raw',
+                'enableSorting' => false,
+                'filter' => false,
             ],
             [
                 'attribute' => 'logo_link',
@@ -86,6 +83,8 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 'editableOptions' => [
                     'asPopover' => false,
                 ],
+                'enableSorting' => false,
+                'filter' => false,
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
@@ -101,6 +100,8 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 'editableOptions' => [
                     'asPopover' => false,
                 ],
+                'enableSorting' => false,
+                'filter' => false,
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
@@ -116,6 +117,8 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 'editableOptions' => [
                     'asPopover' => false,
                 ],
+                'enableSorting' => false,
+                'filter' => false,
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
@@ -140,6 +143,7 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                         'displayValueConfig' => $arrStatus
                     ];
                 },
+                'enableSorting' => false,
                 'filterType' => GridView::FILTER_SELECT2,
                 'filter' => $arrStatus,
                 'filterWidgetOptions' => [
@@ -154,7 +158,7 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
                 'hAlign' => 'center',
                 'filter' => false,
                 'width' => '150px',
-                'format' => 'raw'
+                'enableSorting' => false,
             ],
             [
                 'label' => Yii::t('app', 'Actions'),

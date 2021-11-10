@@ -1,7 +1,6 @@
 <?php
 
 use kartik\detail\DetailView;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
@@ -21,6 +20,8 @@ $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
             'attribute' => 'gps_link',
             'label' => Yii::t('app', 'GPS link'),
             'value' => (!empty($model->gps_link)) ? $model->gps_link : null,
+            'valueColOptions' => ['style' => 'overflow: auto; word-break: break-all !important;'],
+            'format' => 'raw'
         ],
         [
             'attribute' => 'logo_link',
