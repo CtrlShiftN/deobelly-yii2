@@ -80,7 +80,7 @@ return [
     'SIGN UP TO RECEIVE NEWS' => 'ĐĂNG KÝ ĐỂ NHẬN TIN MỚI NHẤT',
     'Promotion news / Brand news' => 'Tin khuyến mãi / Tin thương hiệu',
     'CONNECT WITH US' => 'KẾT NỐI VỚI CHÚNG TÔI',
-    'Social network' => 'Mạng xã hội',
+    'Social networks' => 'Mạng xã hội',
     'CERTIFICATE' => 'CHỨNG NHẬN',
     'SUCCESS' => 'THÀNH CÔNG',
     'ERROR' => 'LỖI',
@@ -499,4 +499,7 @@ return [
     'An order has just been created. Check now!' => 'Một đơn hàng vừa được khởi tạo. Kiểm tra ngay!',
     'Submitted successfully!' => 'Gửi thành công!',
     'Send failed.' => 'Gửi thất bại.',
+    'Get in touch' => 'Liên lạc',
+    'About De-Obelly' => 'Về De-Obelly',
+    'Thank you for registration!' => 'Cảm ơn bạn đã đăng ký!',
 ];
