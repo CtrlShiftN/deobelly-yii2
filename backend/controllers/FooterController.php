@@ -66,9 +66,7 @@ class FooterController extends Controller
      */
     public function actionIndex()
     {
-        $arrTitleFooter = ArrayHelper::map(\backend\models\Footer::getTitleFooter(), 'id', 'title');
-        $arrTitleFooter[0] = Yii::t('app','No');
-        ksort($arrTitleFooter);
+        $arrTitleFooter = Footer::getTitleFooter();
         $searchModel = new FooterSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
         if (Yii::$app->request->post('hasEditable')) {
@@ -111,9 +109,7 @@ class FooterController extends Controller
     public function actionCreate()
     {
         $model = new Footer();
-        $arrTitleFooter = ArrayHelper::map(\backend\models\Footer::getTitleFooter(), 'id', 'title');
-        $arrTitleFooter[0] = Yii::t('app','No');
-        ksort($arrTitleFooter);
+        $arrTitleFooter = Footer::getTitleFooter();
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->slug = StringHelper::toSlug($model->title);

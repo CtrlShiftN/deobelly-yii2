@@ -5,6 +5,7 @@ namespace backend\models;
 use common\components\helpers\StringHelper;
 use common\components\SystemConstant;
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "footer".
@@ -72,7 +73,11 @@ class Footer extends \common\models\Footer
 
     public static function getTitleFooter()
     {
-        return \common\models\Footer::find()->where(['status' => SystemConstant::STATUS_ACTIVE,'parent_id' => 0])->asArray()->all();
+        $titleFooter = \common\models\Footer::find()->where(['status' => SystemConstant::STATUS_ACTIVE,'parent_id' => 0])->asArray()->all();
+        $arrTitleFooter = ArrayHelper::map($titleFooter, 'id', 'title');
+        $arrTitleFooter[0] = Yii::t('app','No');
+        ksort($arrTitleFooter);
+        return $arrTitleFooter;
     }
 
     /**
@@ -89,4 +94,5 @@ class Footer extends \common\models\Footer
             'admin_id' => Yii::$app->user->identity->getId()
         ], ['id' => $id]);
     }
+
 }
