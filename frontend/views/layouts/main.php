@@ -31,6 +31,9 @@ AppAsset::register($this);
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
         <?= $this->render('_mainHead') ?>
+        <?php if (Yii::$app->session->hasFlash('creatNewsLetterSuccess') || Yii::$app->session->hasFlash('creatNewsLetterError')): ?>
+            <?php $this->registerCssFile(Url::toRoute("css/success_error-icon.css")); ?>
+        <?php endif; ?>
         <style>
             input[type=search] {
                 background: url('<?= $cdnUrl?>/img/search-icon.png') no-repeat 9px center;
@@ -444,6 +447,59 @@ AppAsset::register($this);
                 </nav>
                 <!-- End navs -->
             </div>
+            <?php if (Yii::$app->session->hasFlash('creatNewsLetterSuccess')): ?>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"
+                        id='btnModalNewsLetterSuccess' hidden>
+                </button>
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="swal2-icon swal2-success swal2-animate-success-icon d-flex">
+                                    <div class="swal2-success-circular-line-left"></div>
+                                    <span class="swal2-success-line-tip"></span>
+                                    <span class="swal2-success-line-long"></span>
+                                    <div class="swal2-success-ring"></div>
+                                    <div class="swal2-success-fix"></div>
+                                    <div class="swal2-success-circular-line-right"></div>
+                                </div>
+                                <div class='text-center text-uppercase'>
+                                    <h2 class="mx-0 mb-3 text-success fw-light"><?= Yii::t('app', 'Successfully!') ?></h2>
+                                    <p class="mx-0 mb-4"><?= Yii::t('app', Yii::$app->session->getFlash('creatNewsLetterSuccess')) ?></p>
+                                    <button type="button" data-bs-dismiss="modal" id='btnModalNewsLetterClose'
+                                            hidden></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if (Yii::$app->session->hasFlash('creatNewsLetterError')): ?>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"
+                        id='btnModalNewsLetterError'
+                        hidden>
+                </button>
+                <div class="modal fade" id="myModal">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="swal2-icon swal2-error swal2-animate-error-icon d-flex">
+                        <span class="swal2-x-mark">
+                            <span class="swal2-x-mark-line-left"></span>
+                            <span class="swal2-x-mark-line-right"></span>
+                        </span>
+                                </div>
+                                <div class='text-center'>
+                                    <h2 class="mx-0 mb-3 text-success fw-light"><?= Yii::t('app', 'Error!') ?></h2>
+                                    <p class="mx-0 mb-4"><?= Yii::t('app', Yii::$app->session->getFlash('creatNewsLetterError')) ?></p>
+                                    <button type="button" data-bs-dismiss="modal" id='btnModalNewsLetterClose'
+                                            hidden></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
             <div class="container px-0">
                 <?= $content ?>
             </div>
@@ -455,7 +511,7 @@ AppAsset::register($this);
                             <?php foreach ($headerFooter as $value): ?>
                                 <div class="col-sm-12 col-md-6 col-lg-3 pb-3 px-auto">
                                     <ul class="footer-nav no-bullets px-2 py-0">
-                                            <h3 class="mb-1 text-uppercase"><?= Yii::t('app', $value['title']) ?></h3>
+                                        <h3 class="mb-1 text-uppercase"><?= Yii::t('app', $value['title']) ?></h3>
                                         <?php foreach (\frontend\models\Footer::getFooterByParentId($value['id']) as $items): ?>
                                             <li>
                                                 <a href="<?= Url::toRoute($items['link']) ?>"><?= Yii::t('app', $items['title']) ?></a>
@@ -494,14 +550,22 @@ AppAsset::register($this);
                                                 class="ft-content"><?= Yii::t('app', 'Promotion news / Brand news') ?></span>
                                     </li>
                                     <li>
-                                        <form action="#" method="POST" class="d-inline">
-                                            <input name="form_type" type="hidden" value="customer">
-                                            <input type="email" class="form-control d-inline w-75"
-                                                   id="exampleInputEmail1"
-                                                   aria-describedby="emailHelp" placeholder="Nhập email của bạn...">
-                                            <input type="hidden" name="contact[tags]" value="newsletter">
-                                            <span type="submit" class="btn btn-dark d-inline"><i
-                                                        class="fas fa-paper-plane"></i></span>
+                                        <form action="<?= Url::toRoute('api/ajax/create-contact') ?>" method="POST"
+                                              class="d-flex">
+                                            <input name="nameNewsLetter" type="hidden" value="newsletter">
+                                            <input type="email" class="form-control rounded-0 d-inline w-75 border-0"
+                                                   id="exampleInputEmail1" name="emailNewsLetter"
+                                                   aria-describedby="emailHelp"
+                                                   placeholder="<?= Yii::t('app', 'Enter your email...') ?>">
+                                            <?php if (Yii::$app->user->isGuest): ?>
+                                                <a href="<?= Url::toRoute('/site/login?ref=' . $_SERVER['PHP_SELF']) ?>"
+                                                   class="btn btn-dark d-inline align-baseline rounded-0"><i
+                                                            class="fas fa-paper-plane"></i></a>
+                                            <?php else: ?>
+                                                <button type="submit"
+                                                        class="btn btn-dark d-inline align-baseline rounded-0"><i
+                                                            class="fas fa-paper-plane"></i></button>
+                                            <?php endif; ?>
                                         </form>
                                     </li>
                                 </ul>
@@ -547,6 +611,22 @@ AppAsset::register($this);
                     src="<?= Yii::$app->params['common'] . '/media/phone-call.png' ?>"
                     width="50" alt="<?= Yii::t('app', 'Call Now') ?>" title="<?= Yii::t('app', 'Call Now') ?>"></a>
     </div>
+    <?php if (Yii::$app->session->hasFlash('creatNewsLetterSuccess')): ?>
+        <script>
+            $('#btnModalNewsLetterSuccess').trigger("click");
+            setTimeout(function () {
+                $('#btnModalNewsLetterClose').trigger("click");
+            }, 1800);
+        </script>
+    <?php endif; ?>
+    <?php if (Yii::$app->session->hasFlash('creatNewsLetterError')): ?>
+        <script>
+            $('#btnModalNewsLetterError').trigger("click");
+            setTimeout(function () {
+                $('#btnModalNewsLetterClose').trigger("click");
+            }, 1800);
+        </script>
+    <?php endif; ?>
     <script>
         window.addEventListener('DOMContentLoaded', event => {
             // Toggle the side navigation

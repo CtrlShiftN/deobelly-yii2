@@ -200,4 +200,17 @@ class Order extends \common\models\Order
             'badge-danger',
         ];
     }
+
+    /**
+     * @return bool
+     */
+    public static function sendReportOrder()
+    {
+        return Yii::$app->mailer->compose()
+            ->setFrom(Yii::$app->params['senderEmail'])
+            ->setTo(Yii::$app->params['adminEmail'])
+            ->setSubject(Yii::t('app','You have a new order!'))
+            ->setHtmlBody(Yii::t('app','An order has just been created. Check now!'))
+            ->send();
+    }
 }

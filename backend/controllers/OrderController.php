@@ -161,6 +161,7 @@ class OrderController extends Controller
                 $model->updated_at = date('Y-m-d H:i:s');
                 $model->status = SystemConstant::STATUS_ACTIVE;
                 if ($model->save()) {
+                    $model::sendReportOrder();
                     return $this->redirect(Url::toRoute('order/'));
                 }
             }

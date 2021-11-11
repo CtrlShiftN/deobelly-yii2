@@ -2,7 +2,7 @@
 
 use yii\widgets\LinkPager;
 
-$this->registerCssFile('/css/showroom.css');
+$this->registerCssFile(\yii\helpers\Url::toRoute('/css/showroom.css'));
 $this->title = Yii::t('app', 'Showroom Series');
 $imgUrl = Yii::$app->params['common'] . '/media';
 ?>

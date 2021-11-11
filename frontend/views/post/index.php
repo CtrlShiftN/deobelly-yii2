@@ -16,7 +16,7 @@ $imgUrl = Yii::$app->params['common'] . "/media";
 $this->title = Yii::t('app','Fashion News');
 $latestPosts = Post::getLatestPosts();
 $postCategory = PostCategory::getAllPostCategory();
-$this->registerCssFile('/css/post.css');
+$this->registerCssFile(Url::toRoute('/css/post.css'));
 ?>
 <div class="posts row mt-4 w-100 px-0 mx-0">
     <div class="col-12 col-lg-8 col-xl-9 px-3 m-0">

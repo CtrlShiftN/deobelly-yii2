@@ -16,7 +16,7 @@ $this->registerCss('.post-content img{text-align: center}');
 $this->registerCss('.related-post-list{list-style-type: "» "}');
 $latestPosts = Post::getLatestPosts();
 $postCategory = PostCategory::getAllPostCategory();
-$this->registerCssFile('/css/post.css');
+$this->registerCssFile(Url::toRoute('/css/post.css'));
 ?>
 <div class="posts row mt-4 w-100 px-0 mx-0">
     <div class="col-12 col-lg-8 col-xl-9 px-1 px-md-3 m-0">

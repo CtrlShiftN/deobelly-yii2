@@ -111,6 +111,7 @@ class CheckoutController extends \yii\web\Controller
                     }
                 }
                 if ($count == count($cart)) {
+                    OrderForm::sendReportOrder();
                     Yii::$app->session->setFlash('creatOrderSuccess', Yii::t('app', 'Your order has been initialized.'));
                     return $this->redirect(\yii\helpers\Url::toRoute('cart/index'));
                 } else {

@@ -2,7 +2,7 @@
 /* @var $this yii\web\View */
 $imgUrl = Yii::$app->params['common'] . '/media';
 $this->title = Yii::t('app', 'Top Collection');
-$this->registerCssFile('/css/collection.css');
+$this->registerCssFile(\yii\helpers\Url::toRoute('/css/collection.css'));
 ?>
 <div class="collections row mt-4 w-100 px-0 mx-0">
     <div class="top-collection px-2">

@@ -32,7 +32,7 @@ $this->registerJsFile(Url::toRoute('js/check-out.js'));
                     <div class='text-center'>
                         <h2 class="mx-0 mb-3 text-success fw-light"><?= Yii::t('app', 'Error!') ?></h2>
                         <p class="mx-0 mb-4"><?= Yii::t('app', Yii::$app->session->getFlash('creatOrderError')) ?></p>
-                        <button type="button" data-bs-dismiss="modal" id='btnModalClose' hidden>Close</button>
+                        <button type="button" data-bs-dismiss="modal" id='btnModalClose' hidden></button>
                     </div>
                 </div>
             </div>
@@ -46,8 +46,8 @@ $this->registerJsFile(Url::toRoute('js/check-out.js'));
                 <h3 class="w-100 pb-1 border-bottom px-0"><?= Yii::t('app', 'Billing information') ?>:</h3>
 
                 <div class="w-100 row py-3 px-1 m-0" id="consignee-contact">
-                    <small id="notify-consignee-information" class="d-none"><i class="text-danger">*Bạn phải điền đủ
-                            thông tin</i></small>
+                    <small id="notify-consignee-information" class="d-none"><i
+                                class="text-danger">*<?= Yii::t('app', 'You must fill in all the information') ?></i></small>
                     <div class="col-12 col-sm-6 px-1">
                         <?= $form->field($model, 'name')->label(Yii::t('app', "Consignee's name")) ?>
                     </div>
@@ -75,9 +75,8 @@ $this->registerJsFile(Url::toRoute('js/check-out.js'));
                         </div>
                         <div id="flush-home-delivery" class="accordion-collapse collapse border-top show"
                              aria-labelledby="flush-heading-home-delivery" data-bs-parent="#accordionPaymentOnDelivery">
-                            <small id="notify-consignee-address" class="d-none"><i class="text-danger">*Bạn phải điền
-                                    đủ
-                                    thông tin</i></small>
+                            <small id="notify-consignee-address" class="d-none"><i
+                                        class="text-danger">*<?= Yii::t('app', 'You must fill in all the information') ?></i></small>
                             <div class="accordion-body row m-0 p-2">
                                 <div class="col-12 col-sm-6 px-1">
                                     <?= $form->field($model, 'province_id')->dropDownList($provinces, ['id' => 'province-id', 'prompt' => Yii::t('app', '- Choose province/city -')])->label(Yii::t('app', 'Province')) ?>
@@ -113,7 +112,7 @@ $this->registerJsFile(Url::toRoute('js/check-out.js'));
                     </div>
                     <div class="accordion-item border">
                         <div class="accordion-header px-2 py-3 bg-lighter-gray" id="flush-heading-receive-at-store">
-                            <?= $form->field($model, 'logistic_method', ['options' => ['class' => 'm-0']])->radio(['label' => Yii::t('app', 'Pick up at the store'), 'value' => 1, 'id' => 'sm-receive-at-store', 'onClick' => '$(this).parent().closest(".accordion-header").find("button").trigger("click");']) ?>
+                            <?= $form->field($model, 'logistic_method', ['options' => ['class' => 'm-0']])->radio(['label' => Yii::t('app', 'Get at the store'), 'value' => 1, 'id' => 'sm-receive-at-store', 'onClick' => '$(this).parent().closest(".accordion-header").find("button").trigger("click");']) ?>
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#flush-receive-at-store" aria-expanded="false"
                                     aria-controls="flush-receive-at-store" hidden>
@@ -170,8 +169,8 @@ $this->registerJsFile(Url::toRoute('js/check-out.js'));
                                                                                               id="total_price_product"></span>
             </div>
             <div class="my-1 py-2 w-100"><?= Yii::t('app', 'VAT') ?>: <span class="fs-5 m-0 float-end"
-                                                                                     id="vat"
-                                                                                     data-vat="<?= \common\components\SystemConstant::VAT ?>"></span>
+                                                                            id="vat"
+                                                                            data-vat="<?= \common\components\SystemConstant::VAT ?>"></span>
             </div>
             <div class="my-1 py-2 w-100"><?= Yii::t('app', 'Total payment') ?>: <span
                         class="fs-4 text-danger m-0 float-end"
