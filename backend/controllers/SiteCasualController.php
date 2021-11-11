@@ -68,7 +68,7 @@ class SiteCasualController extends Controller
         $searchModel = new SiteCasualSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
-        return $this->render('casual', [
+        return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
