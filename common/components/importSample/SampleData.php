@@ -2682,10 +2682,10 @@ class SampleData
     }
 
     public static $arrFooter = [
-        'About De-Obelly' => [
+        'About us' => [
             'link' => 'javascript:void(0)',
             'children' => [
-                'De-Obelly fashion' => '/site/our-stories',
+                'About De-Obelly' => '/site/our-stories',
                 'Terms and services' => '/site/terms',
             ]
         ],
