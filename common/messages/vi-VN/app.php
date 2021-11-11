@@ -457,6 +457,6 @@ return [
     'Main title' => "Tiêu đề chính",
     'Add New Footer' => 'Thêm mới Footer',
     'Footer List' => 'Danh sách Footer',
-    'Casual Content' => 'Nội Dung Casual',
-    'Luxury Content' => 'Nội Dung Luxury',
+    'Casual Contents' => 'Nội Dung Casual',
+    'Luxury Contents' => 'Nội Dung Luxury',
 ];

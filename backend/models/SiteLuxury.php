@@ -17,8 +17,10 @@ use Yii;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class SiteLuxury extends \yii\db\ActiveRecord
+class SiteLuxury extends \common\models\SiteLuxury
 {
+    public $file;
+
     /**
      * {@inheritdoc}
      */
@@ -38,6 +40,8 @@ class SiteLuxury extends \yii\db\ActiveRecord
             [['note'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['title', 'image', 'link'], 'string', 'max' => 255],
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg', 'on' => 'create'],
+            ['file', 'required', 'on' => 'create'],
         ];
     }
 
@@ -56,6 +60,22 @@ class SiteLuxury extends \yii\db\ActiveRecord
             'admin_id' => Yii::t('app', 'Admin ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'file' => Yii::t('app', 'File')
         ];
+    }
+
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
+    public static function updateAttr($id, $attribute, $value)
+    {
+        return \common\models\SiteLuxury::updateAll([
+            $attribute => $value,
+            'updated_at' => date('Y-m-d H:i:s'),
+            'admin_id' => Yii::$app->user->identity->getId()
+        ], ['id' => $id]);
     }
 }

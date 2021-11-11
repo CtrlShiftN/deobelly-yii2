@@ -12,6 +12,7 @@ use yii\widgets\Pjax;
 $this->title = Yii::t('app', 'Luxury');
 $this->params['breadcrumbs'][] = $this->title;
 $imgUrl = Yii::$app->params['common'] . '/media';
+$arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
 ?>
 <div class="site-luxury-index">
     <div class="pt-3">
@@ -49,9 +50,11 @@ $imgUrl = Yii::$app->params['common'] . '/media';
                 'value' => function ($model, $key, $index, $widget) use ($imgUrl) {
                     return Html::img($imgUrl . '/' . $model['image'], ['class' => 'img-thumbnail', 'width' => '200px']);
                 },
+                'filter' => false,
                 'format' => 'raw'
             ],
             [
+                'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'title',
                 'label' => Yii::t('app', 'Title'),
                 'vAlign' => 'middle',
@@ -59,9 +62,13 @@ $imgUrl = Yii::$app->params['common'] . '/media';
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['title'];
                 },
+                'editableOptions' => [
+                    'asPopover' => false,
+                ],
                 'format' => 'raw'
             ],
             [
+                'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'link',
                 'label' => Yii::t('app', 'Link'),
                 'vAlign' => 'middle',
@@ -69,6 +76,52 @@ $imgUrl = Yii::$app->params['common'] . '/media';
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['link'];
                 },
+                'editableOptions' => [
+                    'asPopover' => false,
+                ],
+            ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'note',
+                'label' => Yii::t('app', 'Notes'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'value' => function ($model, $key, $index, $widget) {
+                    return $model['note'];
+                },
+                'editableOptions' => [
+                    'asPopover' => false,
+                ],
+            ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'status',
+                'label' => Yii::t('app', 'Status'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'width' => '75px',
+                'value' => function ($model, $key, $index, $widget) use ($arrStatus) {
+                    return $arrStatus[$model['status']];
+                },
+                'editableOptions' => function ($model, $key, $index) use ($arrStatus) {
+                    return [
+                        'name' => 'status',
+                        'asPopover' => false,
+                        'header' => Yii::t('app', 'Status'),
+                        'size' => 'md',
+                        'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
+                        'data' => $arrStatus,
+                        // default value in the text box
+                        'value' => $arrStatus[$model['status']],
+                        'displayValueConfig' => $arrStatus
+                    ];
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => $arrStatus,
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Status') . ' --']
             ],
             [
                 'label' => Yii::t('app', 'Actions'),
