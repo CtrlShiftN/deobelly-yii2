@@ -5,8 +5,10 @@ namespace backend\controllers;
 use backend\models\Footer;
 use backend\models\FooterSearch;
 use common\components\encrypt\CryptHelper;
+use common\components\helpers\StringHelper;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -106,8 +108,14 @@ class FooterController extends Controller
         $model = new Footer();
         $this->layout = 'blank';
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $model->slug = StringHelper::toSlug($model->title);
+                $model->admin_id = Yii::$app->user->identity->getId();
+                $model->created_at = date('Y-m-d H:i:s');
+                $model->updated_at = date('Y-m-d H:i:s');
+                if ($model->save()) {
+                    return $this->redirect(Url::toRoute('footer/'));
+                }
             }
         } else {
             $model->loadDefaultValues();

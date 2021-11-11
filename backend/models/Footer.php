@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\components\helpers\StringHelper;
 use common\components\SystemConstant;
 use Yii;
 
@@ -38,8 +39,17 @@ class Footer extends \common\models\Footer
             [['parent_id', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title', 'slug', 'link'], 'string', 'max' => 255],
+            ['title', 'checkDuplicatedSlug'],
             [['slug'], 'unique'],
         ];
+    }
+
+    public function checkDuplicatedSlug()
+    {
+        $footer = Footer::find()->where(['slug' => StringHelper::toSlug($this->title)])->asArray()->all();
+        if ($footer) {
+            $this->addError('name', Yii::t('app', 'This title has already been used.'));
+        }
     }
 
     /**
