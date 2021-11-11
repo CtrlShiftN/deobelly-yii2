@@ -111,7 +111,7 @@ AppAsset::register($this);
                                     <i class="right fas fa-angle-right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview ps-1">
                                 <li class="nav-item">
                                     <a href="<?= Url::toRoute('post-tag/') ?>"
                                        class="nav-link <?= ($controller == 'post-tag') ? 'active' : '' ?>">
@@ -149,7 +149,7 @@ AppAsset::register($this);
                                     <i class="right fas fa-angle-right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview ps-1">
                                 <li class="nav-item">
                                     <a href="<?= Url::toRoute('product-type/') ?>"
                                        class="nav-link <?= ($controller == 'product-type') ? 'active' : '' ?>">
@@ -205,7 +205,7 @@ AppAsset::register($this);
                                     <i class="right fas fa-angle-right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview ps-1">
                                 <li class="nav-item">
                                     <a href="<?= Url::toRoute('order/') ?>"
                                        class="nav-link <?= ($controller == 'order') ? 'active' : '' ?>">
@@ -235,11 +235,11 @@ AppAsset::register($this);
                                     <i class="right fas fa-angle-right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview ps-1">
                                 <li class="nav-item">
                                     <a href="<?= Url::toRoute('site-index/') ?>"
                                        class="nav-link <?= ($controller == 'site-index') ? 'active' : '' ?>">
-                                        <i class="nav-icon fas fa-scroll"></i>
+                                        <i class="nav-icon fas fa-home"></i>
                                         <p><?= Yii::t('app', 'Homepage') ?></p>
                                     </a>
                                 </li>
@@ -253,14 +253,14 @@ AppAsset::register($this);
                                 <li class="nav-item">
                                     <a href="<?= Url::toRoute('site-our-stories/') ?>"
                                        class="nav-link <?= ($controller == 'site-our-stories') ? 'active' : '' ?>">
-                                        <i class="nav-icon fas fa-scroll"></i>
+                                        <i class="nav-icon fas fa-info"></i>
                                         <p><?= Yii::t('app', 'Introductions') ?></p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= Url::toRoute('site-contact/') ?>"
                                        class="nav-link <?= ($controller == 'site-contact') ? 'active' : '' ?>">
-                                        <i class="nav-icon fas fa-scroll"></i>
+                                        <i class="nav-icon fas fa-phone-square-alt"></i>
                                         <p><?= Yii::t('app', 'Contact Details') ?></p>
                                     </a>
                                 </li>

@@ -6,7 +6,6 @@ use yii\helpers\Html;
 /* @var $model backend\models\Footer */
 
 $this->title = Yii::t('app', 'Create Footer');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Footers'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="footer-create">
@@ -15,6 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'arrTitleFooter' => $arrTitleFooter,
     ]) ?>
 
 </div>

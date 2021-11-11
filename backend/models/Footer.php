@@ -2,7 +2,10 @@
 
 namespace backend\models;
 
+use common\components\helpers\StringHelper;
+use common\components\SystemConstant;
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "footer".
@@ -37,8 +40,17 @@ class Footer extends \common\models\Footer
             [['parent_id', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title', 'slug', 'link'], 'string', 'max' => 255],
+            ['title', 'checkDuplicatedSlug'],
             [['slug'], 'unique'],
         ];
+    }
+
+    public function checkDuplicatedSlug()
+    {
+        $footer = Footer::find()->where(['slug' => StringHelper::toSlug($this->title)])->asArray()->all();
+        if ($footer) {
+            $this->addError('title', Yii::t('app', 'This title has already been used.'));
+        }
     }
 
     /**
@@ -58,4 +70,29 @@ class Footer extends \common\models\Footer
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
+
+    public static function getTitleFooter()
+    {
+        $titleFooter = \common\models\Footer::find()->where(['status' => SystemConstant::STATUS_ACTIVE,'parent_id' => 0])->asArray()->all();
+        $arrTitleFooter = ArrayHelper::map($titleFooter, 'id', 'title');
+        $arrTitleFooter[0] = Yii::t('app','No');
+        ksort($arrTitleFooter);
+        return $arrTitleFooter;
+    }
+
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
+    public static function updateFooter($id, $attribute, $value)
+    {
+        return \common\models\Footer::updateAll([
+            $attribute => $value,
+            'updated_at' => date('Y-m-d H:i:s'),
+            'admin_id' => Yii::$app->user->identity->getId()
+        ], ['id' => $id]);
+    }
+
 }
