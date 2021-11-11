@@ -453,4 +453,6 @@ return [
     'Introductions' => 'Giới Thiệu',
     'Our Stories' => 'Câu Chuyện Của Chúng Tôi',
     'Main title' => "Tiêu đề chính",
+    'Add New Footer' => 'Thêm mới Footer',
+    'Footer List' => 'Danh sách Footer',
 ];

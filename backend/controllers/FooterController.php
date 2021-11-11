@@ -106,7 +106,6 @@ class FooterController extends Controller
     public function actionCreate()
     {
         $model = new Footer();
-        $this->layout = 'blank';
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->slug = StringHelper::toSlug($model->title);
@@ -121,7 +120,7 @@ class FooterController extends Controller
             $model->loadDefaultValues();
         }
 
-        return $this->render('create', [
+        return $this->renderAjax('create', [
             'model' => $model,
         ]);
     }

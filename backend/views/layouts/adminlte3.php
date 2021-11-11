@@ -111,7 +111,7 @@ AppAsset::register($this);
                                     <i class="right fas fa-angle-right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview ps-2">
+                            <ul class="nav nav-treeview ps-1">
                                 <li class="nav-item">
                                     <a href="<?= Url::toRoute('post-tag/') ?>"
                                        class="nav-link <?= ($controller == 'post-tag') ? 'active' : '' ?>">
@@ -149,7 +149,7 @@ AppAsset::register($this);
                                     <i class="right fas fa-angle-right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview ps-2">
+                            <ul class="nav nav-treeview ps-1">
                                 <li class="nav-item">
                                     <a href="<?= Url::toRoute('product-type/') ?>"
                                        class="nav-link <?= ($controller == 'product-type') ? 'active' : '' ?>">
@@ -205,7 +205,7 @@ AppAsset::register($this);
                                     <i class="right fas fa-angle-right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview ps-2">
+                            <ul class="nav nav-treeview ps-1">
                                 <li class="nav-item">
                                     <a href="<?= Url::toRoute('order/') ?>"
                                        class="nav-link <?= ($controller == 'order') ? 'active' : '' ?>">
@@ -235,7 +235,7 @@ AppAsset::register($this);
                                     <i class="right fas fa-angle-right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview ps-2">
+                            <ul class="nav nav-treeview ps-1">
                                 <li class="nav-item">
                                     <a href="<?= Url::toRoute('site-index/') ?>"
                                        class="nav-link <?= ($controller == 'site-index') ? 'active' : '' ?>">
