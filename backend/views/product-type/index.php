@@ -14,6 +14,7 @@ $this->title = Yii::t('app', 'Product Types');
 $this->params['breadcrumbs'][] = $this->title;
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
 $arrSegment = [Yii::t('app', 'Casual'), Yii::t('app', 'Luxury')];
+$arrShopShow = [Yii::t('app', 'Hide'), Yii::t('app', 'Show')];
 $commonUrl = Yii::$app->params['common'];
 ?>
 <div class="product-type-index">
@@ -100,6 +101,36 @@ $commonUrl = Yii::$app->params['common'];
                     'pluginOptions' => ['allowClear' => true],
                 ],
                 'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Segment') . ' --']
+            ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'shop_show',
+                'label' => Yii::t('app', 'Show in Shop?'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'width' => '150px',
+                'value' => function ($model, $key, $index, $widget) use ($arrShopShow) {
+                    return $arrShopShow[$model['shop_show']];
+                },
+                'editableOptions' => function ($model, $key, $index) use ($arrShopShow) {
+                    return [
+                        'name' => 'shop_show',
+                        'asPopover' => false,
+                        'header' => Yii::t('app', 'Show in Shop?'),
+                        'size' => 'md',
+                        'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
+                        'data' => $arrShopShow,
+                        // default value in the text box
+                        'value' => $arrShopShow[$model['shop_show']],
+                        'displayValueConfig' => $arrShopShow
+                    ];
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => $arrShopShow,
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Hide/Show') . ' --']
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',

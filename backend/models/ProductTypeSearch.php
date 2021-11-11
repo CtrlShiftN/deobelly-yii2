@@ -17,7 +17,7 @@ class ProductTypeSearch extends ProductType
     public function rules()
     {
         return [
-            [['id', 'segment', 'status', 'admin_id'], 'integer'],
+            [['id', 'segment', 'shop_show', 'status', 'admin_id'], 'integer'],
             [['name', 'slug', 'image', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -60,6 +60,7 @@ class ProductTypeSearch extends ProductType
         $query->andFilterWhere([
             'id' => $this->id,
             'segment' => $this->segment,
+            'shop_show' => $this->shop_show,
             'status' => $this->status,
             'admin_id' => $this->admin_id,
             'created_at' => $this->created_at,

@@ -603,6 +603,7 @@ class SampleData
             'name' => 'New arrival',
             'slug' => 'new-arrival',
             'image' => 'type/brand2.jpg',
+            'shop_show' => 1,
             'admin_id' => 1,
         ],
         [
@@ -623,24 +624,28 @@ class SampleData
             'name' => 'Áo sơ mi',
             'slug' => 'ao-so-mi',
             'image' => 'type/vest-nam-den.jpg',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Phụ kiện',
-            'slug' => 'phu-kien',
-            'image' => 'type/GLT_1219.jpeg',
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Quà tặng',
-            'slug' => 'qua-tang',
-            'image' => 'type/gift.jpg',
+            'shop_show' => 1,
             'admin_id' => 1,
         ],
         [
             'name' => 'Quần',
             'slug' => 'quan',
             'image' => 'type/quan-tay-ong-rong.jpg',
+            'shop_show' => 1,
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Phụ kiện',
+            'slug' => 'phu-kien',
+            'image' => 'type/GLT_1219.jpeg',
+            'shop_show' => 1,
+            'admin_id' => 1,
+        ],
+        [
+            'name' => 'Quà tặng',
+            'slug' => 'qua-tang',
+            'image' => 'type/gift.jpg',
+            'shop_show' => 1,
             'admin_id' => 1,
         ],
     ];
@@ -656,6 +661,9 @@ class SampleData
             $model->name = $value['name'];
             $model->slug = $value['slug'];
             $model->image = $value['image'];
+            if (!empty($value['shop_show'])) {
+                $model->shop_show = $value['shop_show'];
+            }
             if (!empty($value['segment'])) {
                 $model->segment = $value['segment'];
             }

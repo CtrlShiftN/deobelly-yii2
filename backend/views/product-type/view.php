@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $imgUrl = Yii::$app->params['common'] . '/media';
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
 $arrSegment = [Yii::t('app', 'Casual'), Yii::t('app', 'Luxury')];
+$arrShopShow = [Yii::t('app', 'Hide'), Yii::t('app', 'Show')];
 ?>
 <div class="product-type-view">
     <?php
@@ -34,6 +35,17 @@ $arrSegment = [Yii::t('app', 'Casual'), Yii::t('app', 'Luxury')];
             'widgetOptions' => [
                 'data' => $arrSegment,
                 'options' => ['placeholder' => '-- ' . Yii::t('app', 'Product Types') . ' --'],
+                'pluginOptions' => ['allowClear' => true]
+            ],
+            'format' => 'raw'
+        ],
+        [
+            'attribute' => 'show_shop',
+            'value' => (!empty($arrShopShow[$model->shop_show])) ? $arrShopShow[$model->shop_show] : null,
+            'type' => DetailView::INPUT_SELECT2,
+            'widgetOptions' => [
+                'data' => $arrShopShow,
+                'options' => ['placeholder' => '-- ' . Yii::t('app', 'Hide/Show') . ' --'],
                 'pluginOptions' => ['allowClear' => true]
             ],
             'format' => 'raw'

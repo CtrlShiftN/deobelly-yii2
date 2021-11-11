@@ -11,9 +11,10 @@ use Yii;
  *
  * @property int $id
  * @property string $name
- * @property string $slug
+ * @property string|null $slug
  * @property string $image
  * @property int|null $segment 0:casual, 1:luxury
+ * @property int|null $shop_show 0 for hide, 1 for show
  * @property int|null $status 0 for inactive, 1 for active
  * @property int|null $admin_id
  * @property string|null $created_at
@@ -38,7 +39,7 @@ class ProductType extends \common\models\ProductType
     {
         return [
             [['name', 'image'], 'required'],
-            [['segment', 'status', 'admin_id'], 'integer'],
+            [['segment', 'shop_show', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'image'], 'string', 'max' => 255],
             [['name'], 'unique', 'targetClass' => ProductType::className()],
@@ -66,6 +67,7 @@ class ProductType extends \common\models\ProductType
             'slug' => Yii::t('app', 'Slug'),
             'image' => Yii::t('app', 'Image'),
             'segment' => Yii::t('app', 'Segment'),
+            'shop_show' => Yii::t('app', 'Shop Show'),
             'status' => Yii::t('app', 'Status'),
             'admin_id' => Yii::t('app', 'Admin ID'),
             'created_at' => Yii::t('app', 'Created At'),
@@ -124,3 +126,4 @@ class ProductType extends \common\models\ProductType
         return ProductType::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
     }
 }
+

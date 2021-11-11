@@ -12,6 +12,7 @@ $this->registerCss("
 .help-block{color: red}
 ");
 $arrSegment = [Yii::t('app', 'Casual'), Yii::t('app', 'Luxury')];
+$arrShopShow = [Yii::t('app', 'Hide'), Yii::t('app', 'Show')];
 ?>
 
 <div class="container product-type-form p-3">
@@ -27,7 +28,15 @@ $arrSegment = [Yii::t('app', 'Casual'), Yii::t('app', 'Luxury')];
 
     <?= $form->field($model, 'segment')->widget(Select2::classname(), [
         'data' => $arrSegment,
-        'options' => ['placeholder' => Yii::t('app', 'Choose segemnt')],
+        'options' => ['placeholder' => Yii::t('app', 'Choose segment')],
+        'pluginOptions' => [
+            'allowClear' => true,
+        ],
+    ]) ?>
+
+    <?= $form->field($model, 'shop_show')->widget(Select2::classname(), [
+        'data' => $arrShopShow,
+        'options' => ['placeholder' => Yii::t('app', 'Show in Shop?')],
         'pluginOptions' => [
             'allowClear' => true,
         ],

@@ -27,6 +27,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'status') ?>
 
+    <?php // echo $form->field($model, 'shop_show') ?>
+
+    <?php // echo $form->field($model, 'status') ?>
+
     <?php // echo $form->field($model, 'admin_id') ?>
 
     <?php // echo $form->field($model, 'created_at') ?>
