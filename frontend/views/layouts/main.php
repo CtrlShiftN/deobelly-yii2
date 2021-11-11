@@ -558,7 +558,7 @@ AppAsset::register($this);
                                                    aria-describedby="emailHelp"
                                                    placeholder="<?= Yii::t('app', 'Enter your email...') ?>">
                                             <?php if (Yii::$app->user->isGuest): ?>
-                                                <a href="<?= Url::toRoute('/site/login?ref=' . $_SERVER['PHP_SELF']) ?>"
+                                                <a href="<?= Url::toRoute('site/login?ref=' . $_SERVER['PHP_SELF']) ?>"
                                                    class="btn btn-dark d-inline align-baseline rounded-0"><i
                                                             class="fas fa-paper-plane"></i></a>
                                             <?php else: ?>

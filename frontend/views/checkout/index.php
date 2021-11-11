@@ -47,7 +47,7 @@ $this->registerJsFile(Url::toRoute('js/check-out.js'));
 
                 <div class="w-100 row py-3 px-1 m-0" id="consignee-contact">
                     <small id="notify-consignee-information" class="d-none"><i
-                                class="text-danger">*<?= Yii::t('app', 'You must fill in all the information') ?></i></small>
+                                class="text-danger">*<?= Yii::t('app', 'You must fill in all the fields') ?></i></small>
                     <div class="col-12 col-sm-6 px-1">
                         <?= $form->field($model, 'name')->label(Yii::t('app', "Consignee's name")) ?>
                     </div>
@@ -76,7 +76,7 @@ $this->registerJsFile(Url::toRoute('js/check-out.js'));
                         <div id="flush-home-delivery" class="accordion-collapse collapse border-top show"
                              aria-labelledby="flush-heading-home-delivery" data-bs-parent="#accordionPaymentOnDelivery">
                             <small id="notify-consignee-address" class="d-none"><i
-                                        class="text-danger">*<?= Yii::t('app', 'You must fill in all the information') ?></i></small>
+                                        class="text-danger">*<?= Yii::t('app', 'You must fill in all the fields') ?></i></small>
                             <div class="accordion-body row m-0 p-2">
                                 <div class="col-12 col-sm-6 px-1">
                                     <?= $form->field($model, 'province_id')->dropDownList($provinces, ['id' => 'province-id', 'prompt' => Yii::t('app', '- Choose province/city -')])->label(Yii::t('app', 'Province')) ?>

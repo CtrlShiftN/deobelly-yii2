@@ -6,7 +6,7 @@ use yii\helpers\Url;
 
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->title = 'DE OBELLY';
-$this->registerCssFile(Url::toRoute("/css/casual.css"));
+$this->registerCssFile(Url::toRoute("css/casual.css"));
 // new-arrival
 $arrNewArrival = \yii\helpers\ArrayHelper::index($siteContent['new-arrival'], null, 'type');
 $arrNewProductImage = $arrNewArrival['image-link'];

@@ -11,7 +11,7 @@ use yii\bootstrap5\ActiveForm;
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->title = Yii::t('app', 'Resend verification email');
 $this->params['breadcrumbs'][] = $this->title;
-$this->registerCssFile(Url::toRoute("/css/login.css"));
+$this->registerCssFile(Url::toRoute("css/login.css"));
 $this->registerCss("
 #wrapper {
     background-image: url('$imgUrl/wp6447583.jpg');

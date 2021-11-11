@@ -112,7 +112,7 @@ $this->registerJsFile(Url::toRoute('js/cart.js'));
                                    data-existing-product="<?= $value['p-quantity'] ?>"><?= Yii::t('app', 'Warehouse') ?>
                                 : <?= ($value['p-quantity'] > 1) ? $value['p-quantity'] . ' ' . Yii::t('app', 'products') : $value['p-quantity'] . ' ' . Yii::t('app', 'product') ?></small>
                             <small id="notify_<?= $idEncrypt ?>"
-                                   class="d-none text-md-center text-lg-start text-danger"><?= Yii::t('app', 'Product is not enough') ?></small>
+                                   class="d-none text-md-center text-lg-start text-danger"><?= Yii::t('app', 'Not enough') ?></small>
                         </div>
                     </div>
                 </div>

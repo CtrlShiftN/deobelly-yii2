@@ -78,7 +78,8 @@ $this->title = Yii::t('app', 'Pants Measurements');
                 <li>Cổ tay: Đặt thước dây tại xung quanh vùng cổ tay và nên thừa ra khoảng 1cm</li>
             </ul>
             <img src="<?= $imgUrl . '/tailor-made/measurements.png' ?>" class="img-fluid pt-3 w-100">
-            <img src="<?= $imgUrl . '/tailor-made/3-huong-dan-cach-do-thong-so-quan-ao.jpg' ?>" class="img-fluid pt-4 w-100">
+            <img src="<?= $imgUrl . '/tailor-made/3-huong-dan-cach-do-thong-so-quan-ao.jpg' ?>"
+                 class="img-fluid pt-4 w-100">
         </div>
     </div>
     <div class="row mb-3 text-justify d-flex align-items-center w-100 mx-0 px-0">
