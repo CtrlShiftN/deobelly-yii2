@@ -23,7 +23,7 @@ foreach (ArrayHelper::map(\backend\models\Footer::getTitleFooter(), 'id', 'title
 
     <?= $form->field($model, 'link')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'parent_id')->dropDownList($arrTitleFooter)->label(Yii::t('app','Parent title')); ?>
+    <?= $form->field($model, 'parent_id')->dropDownList($arrTitleFooter)->label(Yii::t('app','Main title')); ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

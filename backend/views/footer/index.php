@@ -80,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'parent_id',
-                'label' => Yii::t('app', 'Parent title'),
+                'label' => Yii::t('app', 'Main title'),
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'width' => '150px',
@@ -91,7 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return [
                         'name' => 'parent_id',
                         'asPopover' => false,
-                        'header' => Yii::t('app', 'Parent title'),
+                        'header' => Yii::t('app', 'Main title'),
                         'size' => 'md',
                         'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
                         'data' => $arrTitleFooter,
@@ -105,7 +105,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
-                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Parent title') . ' --']
+                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Main title') . ' --']
             ],
             [
                 'class' => 'kartik\grid\EditableColumn',
