@@ -7,6 +7,7 @@ use yii\helpers\Url;
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->title = 'DE OBELLY';
 $this->registerCssFile(Url::toRoute("css/index.css"));
+$this->registerCssFile(Url::toRoute("css/success_error-icon.css"));
 // new-arrival
 $arrNewArrival = \yii\helpers\ArrayHelper::index($siteContent['new-arrival'], null, 'type');
 $arrNewProductImage = $arrNewArrival['image-link'];
@@ -25,6 +26,33 @@ $productTypeContent = $arrProductTypes['mix'][0];
 $arrTypes = \yii\helpers\ArrayHelper::index($siteContent['product-types'], null, 'type');
 $arrTypesImage = $arrTypes['image-link'];
 ?>
+<?php if (Yii::$app->session->hasFlash('resetSuccess')): ?>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"
+            id='btnModalResetSuccess' hidden>
+    </button>
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="swal2-icon swal2-success swal2-animate-success-icon d-flex">
+                        <div class="swal2-success-circular-line-left"></div>
+                        <span class="swal2-success-line-tip"></span>
+                        <span class="swal2-success-line-long"></span>
+                        <div class="swal2-success-ring"></div>
+                        <div class="swal2-success-fix"></div>
+                        <div class="swal2-success-circular-line-right"></div>
+                    </div>
+                    <div class='text-center text-uppercase'>
+                        <h2 class="mx-0 mb-3 text-success fw-light"><?= Yii::t('app', 'Successfully!') ?></h2>
+                        <p class="mx-0 mb-4"><?= Yii::t('app', Yii::$app->session->getFlash('resetSuccess')) ?></p>
+                        <button type="button" data-bs-dismiss="modal" id='btnModalResetClose'
+                                hidden></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
     <!-- Carousel wrapper -->
     <div class="full-width">
         <div id="sliderHeader" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -262,4 +290,12 @@ $arrTypesImage = $arrTypes['image-link'];
             <?php endif; ?>
         </div>
     </div>
+<?php endif; ?>
+<?php if (Yii::$app->session->hasFlash('resetSuccess')): ?>
+    <script>
+        $('#btnModalResetSuccess').trigger("click");
+        setTimeout(function () {
+            $('#btnModalResetClose').trigger("click");
+        }, 2000);
+    </script>
 <?php endif; ?>

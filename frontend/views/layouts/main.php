@@ -114,7 +114,7 @@ AppAsset::register($this);
                                         <div class="vr mx-2"></div>
                                     </li>
                                     <li class="site-nav-top"><a href="<?= Url::toRoute('site/terms') ?>"
-                                                                class="site-nav-top-link"><span><?= Yii::t('app', 'Terms & Service') ?></span></a>
+                                                                class="site-nav-top-link"><span><?= Yii::t('app', 'Terms & Services') ?></span></a>
                                     </li>
                                     <li class="site-nav-top">
                                         <div class="vr mx-2"></div>
@@ -574,7 +574,7 @@ AppAsset::register($this);
                                 <ul class="footer-nav no-bullets px-2 py-0">
                                     <h3 class="mb-1"><?= Yii::t('app', 'CONNECT WITH US') ?></h3>
                                     <li class="mb-3"><span
-                                                class="ft-content"><?= Yii::t('app', 'Social network') ?></span></li>
+                                                class="ft-content"><?= Yii::t('app', 'Social networks') ?></span></li>
                                     <li>
                                         <div class="ft-social-network">
                                             <?php foreach ($social as $value): ?>

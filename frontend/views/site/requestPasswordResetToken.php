@@ -13,6 +13,7 @@ $imgUrl = Yii::$app->params['common'] . "/media";
 $this->title = Yii::t('app', 'Forgot password');
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile(Url::toRoute("css/login.css"));
+$this->registerCssFile(Url::toRoute("css/success_error-icon.css"));
 $this->registerCss("
 #wrapper {
     background-image: url('$imgUrl/wp6447583.jpg');
@@ -23,6 +24,59 @@ $this->registerCss("
 }
 ");
 ?>
+<?php if (Yii::$app->session->hasFlash('requestSuccess')): ?>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"
+            id='btnModalRequestSuccess' hidden>
+    </button>
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="swal2-icon swal2-success swal2-animate-success-icon d-flex">
+                        <div class="swal2-success-circular-line-left"></div>
+                        <span class="swal2-success-line-tip"></span>
+                        <span class="swal2-success-line-long"></span>
+                        <div class="swal2-success-ring"></div>
+                        <div class="swal2-success-fix"></div>
+                        <div class="swal2-success-circular-line-right"></div>
+                    </div>
+                    <div class='text-center text-uppercase'>
+                        <h2 class="mx-0 mb-3 text-success fw-light"><?= Yii::t('app', 'Successfully!') ?></h2>
+                        <p class="mx-0 mb-4"><?= Yii::t('app', Yii::$app->session->getFlash('requestSuccess')) ?></p>
+                        <button type="button" data-bs-dismiss="modal" id='btnModalRequestClose'
+                                hidden></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+<?php if (Yii::$app->session->hasFlash('requestError')): ?>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"
+            id='btnModalRequestError'
+            hidden>
+    </button>
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="swal2-icon swal2-error swal2-animate-error-icon d-flex">
+                        <span class="swal2-x-mark">
+                            <span class="swal2-x-mark-line-left"></span>
+                            <span class="swal2-x-mark-line-right"></span>
+                        </span>
+                    </div>
+                    <div class='text-center'>
+                        <h2 class="mx-0 mb-3 text-success fw-light"><?= Yii::t('app', 'Error!') ?></h2>
+                        <p class="mx-0 mb-4"><?= Yii::t('app', Yii::$app->session->getFlash('requestError')) ?></p>
+                        <button type="button" data-bs-dismiss="modal" id='btnModalRequestClose'
+                                hidden></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
 <div class="pt-4 pt-md-5">
     <div class="row bg-transparent mt-md-5 mt-0 p-0">
         <div class="col-lg-6 col-xl-7 d-lg-flex d-none">
@@ -48,3 +102,19 @@ $this->registerCss("
         </div>
     </div>
 </div>
+<?php if (Yii::$app->session->hasFlash('requestSuccess')): ?>
+    <script>
+        $('#btnModalRequestSuccess').trigger("click");
+        setTimeout(function () {
+            $('#btnModalRequestClose').trigger("click");
+        }, 2000);
+    </script>
+<?php endif; ?>
+<?php if (Yii::$app->session->hasFlash('requestError')): ?>
+    <script>
+        $('#btnModalRequestError').trigger("click");
+        setTimeout(function () {
+            $('#btnModalRequestClose').trigger("click");
+        }, 2000);
+    </script>
+<?php endif; ?>

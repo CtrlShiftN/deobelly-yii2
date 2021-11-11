@@ -2682,7 +2682,7 @@ class SampleData
     }
 
     public static $arrFooter = [
-        'About us' => [
+        'About De-Obelly' => [
             'link' => 'javascript:void(0)',
             'children' => [
                 'De-Obelly fashion' => '/site/our-stories',
@@ -2699,9 +2699,15 @@ class SampleData
         'Product consulting' => [
             'link' => 'javascript:void(0)',
             'children' => [
-                'Order clothes' => '/tailor-made/',
+                'Get a tailor-made' => '/tailor-made/',
                 'Collections' => '/mix-and-match/',
-                'Submit your question' => '/site/contact',
+                'Ask a question' => '/site/contact',
+            ]
+        ],
+        'Instructions' => [
+            'link' => 'javascript:void(0)',
+            'children' => [
+                'Get in touch' => '/site/contact',
             ]
         ],
     ];
