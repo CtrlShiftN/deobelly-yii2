@@ -49,7 +49,7 @@ class Footer extends \common\models\Footer
     {
         $footer = Footer::find()->where(['slug' => StringHelper::toSlug($this->title)])->asArray()->all();
         if ($footer) {
-            $this->addError('name', Yii::t('app', 'This title has already been used.'));
+            $this->addError('title', Yii::t('app', 'This title has already been used.'));
         }
     }
 
