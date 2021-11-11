@@ -10,7 +10,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Order */
 /* @var $form yii\widgets\ActiveForm */
-$arrLogisticMethod = [Yii::t('app', 'Home delivery'), Yii::t('app', 'Pick up at the store')];
+$arrLogisticMethod = [Yii::t('app', 'Home delivery'), Yii::t('app', 'Get at the store')];
 ?>
 
 <div class="order-form container p-3">

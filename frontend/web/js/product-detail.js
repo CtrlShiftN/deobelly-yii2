@@ -12,7 +12,7 @@ $('#btnAddToCart').click(function () {
         if ($('#quantity').attr('data-quantity') != 0) {
             if ($('#color').attr('data-color') == '' || $('#size').attr('data-size') == '') {
                 $('#classify').addClass('bg-lighter-danger');
-                $('#notify').html('Vui lòng chọn Phân loại hàng');
+                $('#notify').html($('#notify').attr('data-validate'));
                 setTimeout(function () {
                     $('#classify').removeClass('bg-lighter-danger');
                     $('#notify').html('');
@@ -30,7 +30,7 @@ $('#btnBuyNow').click(function (e) {
         if ($('#color').attr('data-color') == '' || $('#size').attr('data-size') == '') {
             e.preventDefault();
             $('#classify').addClass('bg-lighter-danger');
-            $('#notify').html('Vui lòng chọn Phân loại hàng');
+            $('#notify').html($('#notify').attr('data-validate'));
             setTimeout(function () {
                 $('#classify').removeClass('bg-lighter-danger');
                 $('#notify').html('');
@@ -128,7 +128,7 @@ $('#amountInput').change(function () {
         $('#notify').html('');
     } else if ($(this).val() > parseInt($('#quantity').attr('data-quantity'))) {
         $(this).val(parseInt($('#quantity').attr('data-quantity')));
-        $('#notify').html('Sản phẩm không đủ để đáp ứng yêu cầu!');
+        $('#notify').html($('#notify').attr('data-out-of-stock'));
         setTimeout(function () {
             $('#notify').html('');
         }, 3000);
@@ -193,7 +193,7 @@ var $easyzoom = $('.easyzoom').easyZoom();
 $('.btn-color').click(function () {
     if (!$(this).hasClass('btn-selected')) {
         $(this).addClass('btn-selected').siblings().removeClass('btn-selected');
-        $('#color').attr('data-color', $(this).attr('data-color')).html("<span class='text-dark fw-bold fs-note'>Màu:</span> " + $(this).attr('data-name-color'));
+        $('#color').attr('data-color', $(this).attr('data-color')).html("<span class='text-dark fw-bold fs-note'>" + $('#title-classify-color').attr('data-name') + ":</span> " + $(this).attr('data-name-color'));
     } else {
         $(this).removeClass('btn-selected');
         $('#color').attr('data-color', '').html('');
@@ -202,7 +202,7 @@ $('.btn-color').click(function () {
 $('.btn-size').click(function () {
     if (!$(this).hasClass('btn-selected')) {
         $(this).addClass('btn-selected').siblings().removeClass('btn-selected');
-        $('#size').attr('data-size', $(this).attr('data-size')).html("<span class='text-dark fw-bold fs-note'>Size:</span> " + $(this).attr('data-name-size'));
+        $('#size').attr('data-size', $(this).attr('data-size')).html("<span class='text-dark fw-bold fs-note'>" + $('#title-classify-size').attr('data-name') + ":</span> " + $(this).attr('data-name-size'));
     } else {
         $(this).removeClass('btn-selected');
         $('#size').attr('data-size', '').html('');

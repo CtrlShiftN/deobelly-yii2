@@ -12,7 +12,7 @@ use yii\helpers\Url;
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->title = Yii::t('app', 'Signup');
 $this->params['breadcrumbs'][] = $this->title;
-$this->registerCssFile(Url::toRoute("/css/login.css"));
+$this->registerCssFile(Url::toRoute("css/login.css"));
 $this->registerCss("
 #wrapper {
     background-image: url('$imgUrl/wp6447583.jpg');
@@ -55,7 +55,7 @@ $this->registerCss("
                 <?= Html::submitButton(Yii::t('app', 'Register'), ['class' => 'btn btn-primary rounded-pill fs-5 text-uppercase w-100 mt-3']) ?>
                 <?php ActiveForm::end(); ?>
                 <div class="my-3">
-                    <h4 class="text-center text-uppercase m-0 text-secondary line-title"><?= Yii::t('app','Or') ?></h4>
+                    <h4 class="text-center text-uppercase m-0 text-secondary line-title"><?= Yii::t('app', 'Or') ?></h4>
                 </div>
                 <div class="row mx-0 my-3 p-0">
                     <div class="col-12 col-sm-4 m-0 p-1">

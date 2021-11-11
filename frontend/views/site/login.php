@@ -13,7 +13,7 @@ use yii\helpers\Url;
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->title = Yii::t('app', 'Login');
 $this->params['breadcrumbs'][] = $this->title;
-$this->registerCssFile(Url::toRoute("/css/login.css"));
+$this->registerCssFile(Url::toRoute("css/login.css"));
 $this->registerCss("
 #wrapper {
     background-image: url('$imgUrl/wp6447583.jpg');

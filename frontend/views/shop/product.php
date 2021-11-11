@@ -21,7 +21,7 @@ $this->registerJsFile(Url::toRoute('js/product.js'));
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasCategory"
          aria-labelledby="offcanvasCategoryLabel">
         <div class="offcanvas-header border-bottom border-dark">
-            <h5 class="offcanvas-title text-uppercase" id="offcanvasCategoryLabel">Thể loại</h5>
+            <h5 class="offcanvas-title text-uppercase" id="offcanvasCategoryLabel"><?= Yii::t('app', 'Type') ?></h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                     aria-label="Close"></button>
         </div>
@@ -31,16 +31,16 @@ $this->registerJsFile(Url::toRoute('js/product.js'));
                     <?php $idEncrypted = \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="offcanvas-flush-heading-<?= $idEncrypted ?>">
-                                <button class="accordion-button collapsed text-uppercase fw-light btn-title-category"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-type="<?= $idEncrypted ?>"
-                                        data-type-name="<?= $value['name'] ?>"
-                                        data-bs-target="#offcanvas-flush-collapse-<?= $idEncrypted ?>"
-                                        aria-expanded="false"
-                                        aria-controls="offcanvas-flush-collapse-<?= $idEncrypted ?>">
-                                    <?= Yii::t('app', $value['name']) ?>
-                                </button>
+                            <button class="accordion-button collapsed text-uppercase fw-light btn-title-category"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-type="<?= $idEncrypted ?>"
+                                    data-type-name="<?= $value['name'] ?>"
+                                    data-bs-target="#offcanvas-flush-collapse-<?= $idEncrypted ?>"
+                                    aria-expanded="false"
+                                    aria-controls="offcanvas-flush-collapse-<?= $idEncrypted ?>">
+                                <?= Yii::t('app', $value['name']) ?>
+                            </button>
                         </h2>
                         <div id="offcanvas-flush-collapse-<?= $idEncrypted ?>"
                              class="accordion-collapse collapse ps-4 ps-md-5 py-3"
@@ -64,28 +64,29 @@ $this->registerJsFile(Url::toRoute('js/product.js'));
         <button class="btn bg-transparent border-0 rounded-0 float-start text-uppercase p-0 py-auto m-0 fs-6 fw-bold btn-offcanvas"
                 type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCategory"
                 aria-controls="offcanvasCategory">
-            Thể loại <i class="fas fa-caret-down"></i>
+            <?= Yii::t('app', 'Type') ?> <i class="fas fa-caret-down"></i>
         </button>
         <?php if (!empty($paramCate)): ?>
             <span class="fw-bold text-uppercase fs-6"
                   id="offcanvas-category-name"><?= ProductType::getTypeNameById(CryptHelper::decryptString($paramCate)) ?></span>
         <?php else: ?>
-            <span class="fw-bold text-uppercase fs-6" id="offcanvas-category-name">Sản phẩm</span>
+            <span class="fw-bold text-uppercase fs-6" id="offcanvas-category-name"
+                  data-value="<?= Yii::t('app', 'Product') ?>"><?= Yii::t('app', 'Product') ?></span>
         <?php endif; ?>
         <div class="dropdown float-end offcanvas-dropdown">
             <button class="btn bg-transparent border-0 rounded-0 p-0 dropdown-toggle fs-6 fw-bold" type="button"
                     id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fas fa-sliders-h"></i> LỌC
+                <i class="fas fa-sliders-h"></i> <?= Yii::t('app', 'Filter') ?>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li>
-                    <button class="dropdown-item btn border-0 rounded-0 sortByDate">Mới nhất</button>
+                    <button class="dropdown-item btn border-0 rounded-0 sortByDate"><?= Yii::t('app', 'NEWEST') ?></button>
                 </li>
                 <li>
-                    <button class="dropdown-item btn border-0 rounded-0 highToLow">Giá giảm dần</button>
+                    <button class="dropdown-item btn border-0 rounded-0 highToLow"><?= Yii::t('app', 'PRICE (HIGH-LOW)') ?></button>
                 </li>
                 <li>
-                    <button class="dropdown-item btn border-0 rounded-0 lowToHigh">Giá tăng dần</button>
+                    <button class="dropdown-item btn border-0 rounded-0 lowToHigh"><?= Yii::t('app', 'PRICE (LOW-HIGH)') ?></button>
                 </li>
             </ul>
         </div>
@@ -93,22 +94,22 @@ $this->registerJsFile(Url::toRoute('js/product.js'));
 
     <div class="col-12 col-md-3 col-xl-2 m-0 p-0 d-md-block d-none">
         <div class="w-100 px-3 py-2 m-0 border-bottom border-dark">
-            <span class="fw-bold fs-5 p-0 text-uppercase">Thể loại</span>
+            <span class="fw-bold fs-5 p-0 text-uppercase"><?= Yii::t('app', 'Type') ?></span>
         </div>
         <div class="accordion accordion-flush w-100 pb-5" id="type_category">
             <?php foreach ($productType as $key => $value): ?>
                 <?php $idEncrypted = \common\components\encrypt\CryptHelper::encryptString($value['id']) ?>
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-heading-<?= $idEncrypted ?>">
-                            <button class="accordion-button collapsed text-uppercase fw-light btn-title-category"
-                                    type="button"
-                                    data-bs-toggle="collapse"
-                                    data-type="<?= $idEncrypted ?>"
-                                    data-type-name="<?= $value['name'] ?>"
-                                    data-bs-target="#flush-collapse-<?= $idEncrypted ?>"
-                                    aria-expanded="false" aria-controls="flush-collapse-<?= $idEncrypted ?>">
-                                <?= Yii::t('app', $value['name']) ?>
-                            </button>
+                        <button class="accordion-button collapsed text-uppercase fw-light btn-title-category"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-type="<?= $idEncrypted ?>"
+                                data-type-name="<?= $value['name'] ?>"
+                                data-bs-target="#flush-collapse-<?= $idEncrypted ?>"
+                                aria-expanded="false" aria-controls="flush-collapse-<?= $idEncrypted ?>">
+                            <?= Yii::t('app', $value['name']) ?>
+                        </button>
                     </h2>
                     <div id="flush-collapse-<?= $idEncrypted ?>"
                          class="accordion-collapse collapse ps-4 ps-md-5"
@@ -133,22 +134,23 @@ $this->registerJsFile(Url::toRoute('js/product.js'));
                     <span class="fw-bold text-uppercase fs-5"
                           id="category-name"><?= ProductType::getTypeNameById(CryptHelper::decryptString($paramCate)) ?></span>
                 <?php else: ?>
-                    <span class="fw-bold text-uppercase fs-5" id="category-name">Sản phẩm</span>
+                    <span class="fw-bold text-uppercase fs-5" id="category-name"
+                          data-value="<?= Yii::t('app', 'Product') ?>"><?= Yii::t('app', 'Product') ?></span>
                 <?php endif; ?>
                 <div class="dropdown float-end">
                     <button class="btn bg-transparent border-0 rounded-0 p-0 dropdown-toggle" type="button"
                             id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-sliders-h"></i> LỌC
+                        <i class="fas fa-sliders-h"></i> <?= Yii::t('app', 'Filter') ?>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li>
-                            <button class="dropdown-item btn border-0 rounded-0 sortByDate">Mới nhất</button>
+                            <button class="dropdown-item btn border-0 rounded-0 sortByDate"><?= Yii::t('app', 'NEWEST') ?></button>
                         </li>
                         <li>
-                            <button class="dropdown-item btn border-0 rounded-0 highToLow">Giá giảm dần</button>
+                            <button class="dropdown-item btn border-0 rounded-0 highToLow"><?= Yii::t('app', 'PRICE (HIGH-LOW)') ?></button>
                         </li>
                         <li>
-                            <button class="dropdown-item btn border-0 rounded-0 lowToHigh">Giá tăng dần</button>
+                            <button class="dropdown-item btn border-0 rounded-0 lowToHigh"><?= Yii::t('app', 'PRICE (LOW-HIGH)') ?></button>
                         </li>
                     </ul>
                 </div>
@@ -164,7 +166,8 @@ $this->registerJsFile(Url::toRoute('js/product.js'));
     </div>
 </div>
 <div id="toastBoard" class="position-fixed bg-success rounded">
-    <div id="liveToast" class="toast py-3 px-2 text-light bg-success border-2 fw-bold" role="alert" aria-live="assertive" aria-atomic="true">
+    <div id="liveToast" class="toast py-3 px-2 text-light bg-success border-2 fw-bold" role="alert"
+         aria-live="assertive" aria-atomic="true">
         <span id="toastNotify"></span>
     </div>
 </div>

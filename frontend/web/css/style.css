@@ -475,3 +475,8 @@ footer .footer-content {
 .text-lighter-black {
     color: rgba(0, 0, 0, 0.81);
 }
+
+#exampleInputEmail1:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}

@@ -3,7 +3,7 @@
 
 use yii\helpers\Url;
 
-$this->registerCssFile('css/tailor-made.css');
+$this->registerCssFile(Url::toRoute('css/tailor-made.css'));
 $this->title = Yii::t('app', 'Tailor Made');
 $imgUrl = Yii::$app->params['common'] . '/media';
 $this->registerCss(".quote-section{

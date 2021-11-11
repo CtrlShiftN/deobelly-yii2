@@ -6,9 +6,11 @@ use common\components\encrypt\CryptHelper;
 use common\components\helpers\HeaderHelper;
 use common\components\helpers\ParamHelper;
 use common\components\SystemConstant;
+use common\models\Contact;
 use common\models\Favorite;
 use common\models\Order;
 use frontend\models\Cart;
+use frontend\models\ContactForm;
 use frontend\models\GeoLocation;
 use frontend\models\OrderForm;
 use frontend\models\Product;
@@ -114,7 +116,7 @@ class AjaxController extends ActiveController
         if (empty($result)) {
             $response = [
                 'status' => SystemConstant::API_UNSUCCESS_STATUS,
-                'notify' => 'Không có sản phẩm để hiển thị!'
+                'notify' => Yii::t('app','No products to display!'),
             ];
         } else {
             $response = [
@@ -211,7 +213,7 @@ class AjaxController extends ActiveController
         } else {
             $response = [
                 'status' => SystemConstant::API_UNSUCCESS_STATUS,
-                'notify' => 'Đã có lỗi xảy ra! Hãy thử lại.',
+                'notify' => Yii::t('app','An error has occurred! Try again.'),
             ];
         }
         echo json_encode($response);
@@ -254,5 +256,20 @@ class AjaxController extends ActiveController
         }
         echo json_encode($response);
         exit;
+    }
+
+    public function actionCreateContact()
+    {
+        $model = new Contact();
+        $data = Yii::$app->request->post();
+        $model->name = $data['nameNewsLetter'];
+        $model->email = $data['emailNewsLetter'];
+        if ($model->save(false)) {
+            ContactForm::sendReplyContact();
+            Yii::$app->session->setFlash('creatNewsLetterSuccess', Yii::t('app', 'Submitted successfully!'));
+        } else {
+            Yii::$app->session->setFlash('creatNewsLetterError', Yii::t('app', 'Send failed.'));
+        }
+        return $this->redirect(\yii\helpers\Url::toRoute('site/'));
     }
 }

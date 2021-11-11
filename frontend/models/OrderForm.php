@@ -98,4 +98,17 @@ class OrderForm extends Order
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
+
+    /**
+     * @return bool
+     */
+    public static function sendReportOrder()
+    {
+        return Yii::$app->mailer->compose()
+            ->setFrom(Yii::$app->params['senderEmail'])
+            ->setTo(Yii::$app->params['adminEmail'])
+            ->setSubject(Yii::t('app','You have a new order!'))
+            ->setHtmlBody(Yii::t('app','An order has just been created. Check now!'))
+            ->send();
+    }
 }

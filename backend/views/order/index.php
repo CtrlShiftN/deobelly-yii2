@@ -13,7 +13,7 @@ $this->title = Yii::t('app', 'Orders');
 $this->params['breadcrumbs'][] = $this->title;
 $arrStatus = \backend\models\TrackingStatus::getAllStatus();
 $arrStatus = \yii\helpers\ArrayHelper::map($arrStatus, 'id', 'name');
-$arrLogisticMethod = [Yii::t('app', 'Home delivery'), Yii::t('app', 'Pick up at the store')];
+$arrLogisticMethod = [Yii::t('app', 'Home delivery'), Yii::t('app', 'Get at the store')];
 ?>
 <div class="order-index">
     <div class="pt-3">

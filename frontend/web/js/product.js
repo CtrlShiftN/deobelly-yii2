@@ -106,8 +106,8 @@ function requestData() {
             $('#category-name').html(typeName);
             $('#offcanvas-category-name').html(typeName);
         } else {
-            $('#category-name').html('Sản phẩm');
-            $('#offcanvas-category-name').html('Sản phẩm');
+            $('#category-name').html($('#category-name').attr('data-value'));
+            $('#offcanvas-category-name').html($('#offcanvas-category-name').attr('data-value'));
         }
         if (arrRes.status === 1) {
             $('#pagination').show();
@@ -213,26 +213,26 @@ function addToFavorite(obj) {
                 $('#toastNotify').html('<i class="fas fa-check-circle"></i> ' + arrRes.message);
                 toast.show();
                 $('#toastBoard, #liveToast').addClass('bg-success text-light');
-                $('#back-to-top').css('bottom','65px');
-                $('.phone-call').css('bottom','110px');
+                $('#back-to-top').css('bottom', '65px');
+                $('.phone-call').css('bottom', '110px');
                 setTimeout(function () {
                     toast.hide(200);
                     $('#toastNotify').html('');
-                    $('#back-to-top').css('bottom','5px');
-                    $('.phone-call').css('bottom','50px');
+                    $('#back-to-top').css('bottom', '5px');
+                    $('.phone-call').css('bottom', '50px');
                 }, 2000);
             } else {
                 let toast = new bootstrap.Toast(toastLive);
                 $('#toastNotify').html('<i class="far fa-frown-open"></i> ' + arrRes.message);
                 toast.show();
                 $('#toastBoard, #liveToast').addClass('bg-danger text-light');
-                $('#back-to-top').css('bottom','65px');
-                $('.phone-call').css('bottom','110px');
+                $('#back-to-top').css('bottom', '65px');
+                $('.phone-call').css('bottom', '110px');
                 setTimeout(function () {
                     toast.hide(200);
                     $('#toastNotify').html('');
-                    $('#back-to-top').css('bottom','65px');
-                    $('.phone-call').css('bottom','110px');
+                    $('#back-to-top').css('bottom', '65px');
+                    $('.phone-call').css('bottom', '110px');
                 }, 2000);
             }
         });

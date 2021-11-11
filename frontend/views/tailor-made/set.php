@@ -102,7 +102,8 @@ $this->title = Yii::t('app', 'Set Measurements');
                 <li>Cổ tay: Đặt thước dây tại xung quanh vùng cổ tay và nên thừa ra khoảng 1cm</li>
             </ul>
             <img src="<?= $imgUrl . '/tailor-made/measurements.png' ?>" class="img-fluid pt-3 w-100">
-            <img src="<?= $imgUrl . '/tailor-made/3-huong-dan-cach-do-thong-so-quan-ao.jpg' ?>" class="img-fluid pt-4 w-100">
+            <img src="<?= $imgUrl . '/tailor-made/3-huong-dan-cach-do-thong-so-quan-ao.jpg' ?>"
+                 class="img-fluid pt-4 w-100">
         </div>
     </div>
     <div class="row px-2 px-lg-0 mb-3 text-justify d-flex align-items-center w-100 px-0 mx-0">
@@ -124,9 +125,9 @@ $this->title = Yii::t('app', 'Set Measurements');
         <div class="col-12 col-md-4 h-100 py-2">
             <div class="card card-shadow h-100">
                 <a href="<?= Url::toRoute('tailor-made/top') ?>"
-                   target="_blank" title="<?= Yii::t('app','Top Measurements') ?>">
+                   target="_blank" title="<?= Yii::t('app', 'Top Measurements') ?>">
                     <div class="card-img h-100 zoom image-holder">
-                        <img src="<?= $imgUrl.'/tailor-made/vest-top.jpg' ?>"
+                        <img src="<?= $imgUrl . '/tailor-made/vest-top.jpg' ?>"
                              class="img-thumbnail h-100 object-fit-cover">
                         <div class="measure-method__title">
                             <p class="text-uppercase fs-4 fw-bolder title-svn"><?= Yii::t('app', 'Top Measurements') ?></p>
@@ -139,9 +140,9 @@ $this->title = Yii::t('app', 'Set Measurements');
         <div class="col-12 col-md-4 h-100 py-2">
             <div class="card card-shadow h-100">
                 <a href="<?= Url::toRoute('tailor-made/pants') ?>"
-                   target="_blank" title="<?= Yii::t('app','Pants Measurements') ?>">
+                   target="_blank" title="<?= Yii::t('app', 'Pants Measurements') ?>">
                     <div class="card-img h-100 zoom image-holder">
-                        <img src="<?= $imgUrl.'/tailor-made/trousers.jpg' ?>"
+                        <img src="<?= $imgUrl . '/tailor-made/trousers.jpg' ?>"
                              class="img-thumbnail h-100 object-fit-cover">
                         <div class="measure-method__title">
                             <p class="text-uppercase fs-4 fw-bolder title-svn"><?= Yii::t('app', 'Pants Measurements') ?></p>
@@ -154,9 +155,9 @@ $this->title = Yii::t('app', 'Set Measurements');
         <div class="col-12 col-md-4 h-100 py-2">
             <div class="card card-shadow h-100">
                 <a href="<?= Url::toRoute('tailor-made/set') ?>"
-                   target="_blank" title="<?= Yii::t('app','Set Measurements') ?>">
+                   target="_blank" title="<?= Yii::t('app', 'Set Measurements') ?>">
                     <div class="card-img h-100 zoom image-holder">
-                        <img src="<?= $imgUrl.'/tailor-made/fullset.jpg' ?>"
+                        <img src="<?= $imgUrl . '/tailor-made/fullset.jpg' ?>"
                              class="img-thumbnail h-100 object-fit-cover">
                         <div class="measure-method__title">
                             <p class="text-uppercase fs-4 fw-bolder title-svn"><?= Yii::t('app', 'Set Measurements') ?></p>

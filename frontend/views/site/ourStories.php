@@ -7,7 +7,7 @@ use yii\helpers\Url;
 $this->title = Yii::t('app', 'Our stories');
 $this->params['breadcrumbs'][] = $this->title;
 $imgUrl = Yii::$app->params['common'] . "/media";
-$this->registerCssFile(Url::toRoute("/css/stories.css"));
+$this->registerCssFile(Url::toRoute("css/stories.css"));
 $this->registerCss(".intro-quote{
     background: url(" . $imgUrl . "/quote.png) no-repeat top left;
     position: relative;
