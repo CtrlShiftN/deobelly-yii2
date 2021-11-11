@@ -7,6 +7,7 @@
 
 use yii\bootstrap5\Html;
 use yii\bootstrap5\ActiveForm;
+use yii\helpers\Url;
 
 $imgUrl = Yii::$app->params['common'] . "/media";
 $this->title = Yii::t('app', 'Resend verification email');

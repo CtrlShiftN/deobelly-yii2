@@ -2685,7 +2685,7 @@ class SampleData
         'About us' => [
             'link' => 'javascript:void(0)',
             'children' => [
-                'De-Obelly fashion' => '/site/our-stories',
+                'About De-Obelly' => '/site/our-stories',
                 'Terms and services' => '/site/terms',
             ]
         ],
@@ -2699,9 +2699,16 @@ class SampleData
         'Product consulting' => [
             'link' => 'javascript:void(0)',
             'children' => [
-                'Order clothes' => '/tailor-made/',
+                'Get a tailor-made' => '/tailor-made/',
                 'Collections' => '/mix-and-match/',
-                'Submit your question' => '/site/contact',
+                'Ask a question' => '/site/contact',
+            ]
+        ],
+        'Instructions' => [
+            'link' => 'javascript:void(0)',
+            'children' => [
+                'Get in touch' => '/site/contact',
+                'Get a suit' => '/tailor-made/set',
             ]
         ],
     ];
