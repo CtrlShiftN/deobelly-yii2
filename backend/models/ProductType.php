@@ -2,6 +2,8 @@
 
 namespace backend\models;
 
+use common\components\helpers\StringHelper;
+use common\components\SystemConstant;
 use Yii;
 
 /**
@@ -20,6 +22,8 @@ use Yii;
  */
 class ProductType extends \common\models\ProductType
 {
+    public $file;
+
     /**
      * {@inheritdoc}
      */
@@ -40,6 +44,8 @@ class ProductType extends \common\models\ProductType
             [['name', 'slug', 'image'], 'string', 'max' => 255],
             [['name'], 'unique'],
             [['slug'], 'unique'],
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg', 'on' => 'create'],
+//            ['file', 'required', 'on' => 'create']
         ];
     }
 
@@ -59,6 +65,57 @@ class ProductType extends \common\models\ProductType
             'admin_id' => Yii::t('app', 'Admin ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'file' => Yii::t('app', 'File'),
         ];
+    }
+
+    /**
+     * @param $_id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
+    public static function updateProductTypeTitle($_id, $attribute, $value)
+    {
+        if ($_id == SystemConstant::PRODUCT_TYPE_NEW || $_id == SystemConstant::PRODUCT_TYPE_TAILOR_MADE || $_id == SystemConstant::PRODUCT_TYPE_MIX_AND_MATCH) {
+            return self::updateProductType($_id, $attribute, $value);
+        } else {
+            $slug = StringHelper::toSlug($value);
+            return \common\models\ProductType::updateAll([$attribute => $value, 'slug' => $slug, 'updated_at' => date('Y-m-d H:i:s'), 'admin_id' => Yii::$app->user->identity->getId()], ['id' => $_id]);
+        }
+
+    }
+
+    /**
+     * @param $id
+     * @param $attribute
+     * @param $value
+     * @return int
+     */
+    public static function updateProductType($id, $attribute, $value)
+    {
+        if ($attribute == 'segment' && ($id == SystemConstant::PRODUCT_TYPE_TAILOR_MADE || $id == SystemConstant::PRODUCT_TYPE_MIX_AND_MATCH)) {
+            return \common\models\ProductType::updateAll(
+                [
+                    'segment' => SystemConstant::SEGMENT_LUXURY,
+                    'updated_at' => date('Y-m-d H:i:s'),
+                    'admin_id' => Yii::$app->user->identity->getId()
+                ], ['id' => $id]);
+        } else {
+            return \common\models\ProductType::updateAll(
+                [
+                    $attribute => $value,
+                    'updated_at' => date('Y-m-d H:i:s'),
+                    'admin_id' => Yii::$app->user->identity->getId()
+                ], ['id' => $id]);
+        }
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getAllTypes()
+    {
+        return ProductType::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
     }
 }
