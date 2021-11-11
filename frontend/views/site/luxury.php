@@ -221,7 +221,7 @@ $this->registerCssFile(Url::toRoute("/css/luxury.css"));
                                 <div class="card-body">
                                     <h4 class="text-black"><?= $value['title'] ?></h4>
                                     <div class="article-content text-black text-justify">
-                                        <?= $value['content'] ?>
+                                        <?= substr(strip_tags($value['content']),0,200).'...' ?>
                                     </div>
                                 </div>
                             </a>
