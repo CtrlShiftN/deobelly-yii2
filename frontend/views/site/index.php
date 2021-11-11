@@ -234,7 +234,7 @@ $arrTypesImage = $arrTypes['image-link'];
         <div class="overflow-hidden w-100 shadow">
             <a href="<?= $arrTypesImage[0]['link'] ?>"
                class="text-decoration-none w-100" target="_blank">
-                <p class="position-absolute text-light fs-1 men-title fw-bolder text-uppercase"><?= $arrTypesImage[0]['title'] ?></p>
+                <p class="position-absolute text-light fs-1 men-title fw-bolder text-uppercase px-2"><?= $arrTypesImage[0]['title'] ?></p>
                 <img src="<?= $imgUrl . '/' . $arrTypesImage[0]['image'] ?>"
                      class="object-fit-cover position-relative gender-img" alt="<?= $arrTypesImage[0]['title'] ?>">
             </a>
@@ -244,7 +244,7 @@ $arrTypesImage = $arrTypes['image-link'];
         <div class="overflow-hidden w-100 shadow">
             <a href="<?= $arrTypesImage[1]['link'] ?>"
                class="text-decoration-none w-100" target="_blank">
-                <p class="position-absolute text-light fs-1 women-title fw-bolder text-uppercase"><?= $arrTypesImage[1]['title'] ?></p>
+                <p class="position-absolute text-light fs-1 women-title fw-bolder text-uppercase px-2"><?= $arrTypesImage[1]['title'] ?></p>
                 <img src="<?= $imgUrl . '/' . $arrTypesImage[1]['image'] ?>"
                      class="object-fit-cover position-relative gender-img" alt="<?= $arrTypesImage[0]['title'] ?>">
             </a>

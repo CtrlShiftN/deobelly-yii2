@@ -72,7 +72,7 @@ class FooterController extends Controller
             //which attribute has been edited?
             $attribute = $_POST['editableAttribute'];
             //update to db
-            $value = $_POST['Social'][$_index][$attribute];
+            $value = $_POST['Footer'][$_index][$attribute];
             $result = Footer::updateFooter($_id, $attribute, $value);
             return json_encode($result);
         }
@@ -104,7 +104,7 @@ class FooterController extends Controller
     public function actionCreate()
     {
         $model = new Footer();
-
+        $this->layout = 'blank';
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -128,6 +128,7 @@ class FooterController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $id = CryptHelper::decryptString($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -147,6 +148,7 @@ class FooterController extends Controller
      */
     public function actionDelete($id)
     {
+        $id = CryptHelper::decryptString($id);
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

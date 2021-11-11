@@ -4,6 +4,7 @@ namespace common\components\importsample;
 
 use backend\models\SiteCasual;
 use common\components\helpers\StringHelper;
+use common\components\SystemConstant;
 use common\models\Cart;
 use common\models\Color;
 use common\models\Footer;
@@ -2672,13 +2673,26 @@ class SampleData
     }
 
     public static $arrFooter = [
-        'ABOUT US' => [
-            'link' => 'site/our-stories',
+        'About us' => [
+            'link' => 'javascript:void(0)',
+            'children' => [
+                'De-Obelly fashion' => 'site/our-stories',
+                'Terms and services' => 'site/terms',
+            ]
         ],
         'News' => [
-            'link' => 'post/',
+            'link' => 'javascript:void(0)',
             'children' => [
-                'Frequently asked questions' => 'javascript:void(0)',
+                'Latest news' => 'post/',
+                'Fashion news' => 'post/',
+            ]
+        ],
+        'Product consulting' => [
+            'link' => 'javascript:void(0)',
+            'children' => [
+                'Order clothes' => 'tailor-made/',
+                'Collections' => 'mix-and-match/',
+                'Submit your question' => 'site/contact',
             ]
         ],
     ];

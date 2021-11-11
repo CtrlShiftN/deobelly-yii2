@@ -455,8 +455,7 @@ AppAsset::register($this);
                             <?php foreach ($headerFooter as $value): ?>
                                 <div class="col-sm-12 col-md-6 col-lg-3 pb-3 px-auto">
                                     <ul class="footer-nav no-bullets px-2 py-0">
-                                        <a class="text-decoration-none text-light" href="<?= Url::toRoute($value['link']) ?>">
-                                            <h3 class="mb-1"><?= Yii::t('app', $value['title']) ?></h3></a>
+                                            <h3 class="mb-1 text-uppercase"><?= Yii::t('app', $value['title']) ?></h3>
                                         <?php foreach (\frontend\models\Footer::getFooterByParentId($value['id']) as $items): ?>
                                             <li>
                                                 <a href="<?= Url::toRoute($items['link']) ?>"><?= Yii::t('app', $items['title']) ?></a>

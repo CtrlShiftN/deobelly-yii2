@@ -13,7 +13,6 @@ $arrTitleFooter = [Yii::t('app','No')];
 foreach (ArrayHelper::map(\backend\models\Footer::getTitleFooter(), 'id', 'title') as $key => $value) {
     $arrTitleFooter[$key] = $value;
 }
-var_dump($arrTitleFooter);die;
 ?>
 
 <div class="footer-form">
@@ -24,15 +23,7 @@ var_dump($arrTitleFooter);die;
 
     <?= $form->field($model, 'link')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'parent_id')->textInput() ?>
-
-    <?= $form->field($model, 'parent_id')->widget(Select2::classname(), [
-        'data' => ArrayHelper::map(\backend\models\Footer::getTitleFooter(), 'id', 'title'),
-        'options' => ['placeholder' => Yii::t('app', 'Choose a title')],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ]); ?>
+    <?= $form->field($model, 'parent_id')->dropDownList($arrTitleFooter)->label(Yii::t('app','Parent title')); ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
