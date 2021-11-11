@@ -50,11 +50,12 @@ $this->registerCssFile(Url::toRoute("/css/luxury.css"));
     <div class="row w-100 mx-0 px-0">
         <div class="col-12 col-md-6 px-4 px-md-2 pb-3 pb-md-0">
             <div class="image-holder h-100">
-                <a class="text-decoration-none " href="<?= Url::toRoute('tailor-made/') ?>" target="_blank"
-                   title="<?= Yii::t('app', 'Tailor Made') ?>">
-                    <img src="<?= $imgUrl . '/tailor-made.jpg' ?>" class="img-fluid h-100 object-fit-cover">
+                <a class="text-decoration-none "
+                   href="<?= !empty($siteContent[1]['link']) ? $siteContent[1]['link'] : '#' ?>" target="_blank"
+                   title="<?= !empty($siteContent[1]['title']) ? $siteContent[1]['title'] : '' ?>">
+                    <img src="<?= $imgUrl . '/' . $siteContent[1]['image'] ?>" class="img-fluid h-100 object-fit-cover">
                     <div class="type-tailor-made__title">
-                        <p class="text-uppercase fs-4 fw-bolder"><?= Yii::t('app', 'Tailor Made') ?></p>
+                        <p class="text-uppercase fs-4 fw-bolder"><?= !empty($siteContent[1]['title']) ? $siteContent[1]['title'] : '' ?></p>
                         <p class="text-uppercase see-more"><?= Yii::t('app', 'See more') ?></p>
                     </div>
                     <div class="img-overlay"></div>
@@ -63,11 +64,12 @@ $this->registerCssFile(Url::toRoute("/css/luxury.css"));
         </div>
         <div class="col-12 col-md-6 px-4 px-md-2 pb-3 pb-md-0">
             <div class="image-holder h-100">
-                <a class="text-decoration-none " href="<?= Url::toRoute('mix-and-match/') ?>" target="_blank"
-                   title="<?= Yii::t('app', 'Collections') ?>">
-                    <img src="<?= $imgUrl . '/collections.png' ?>" class="img-fluid h-100 object-fit-cover">
+                <a class="text-decoration-none "
+                   href="<?= !empty($siteContent[2]['link']) ? $siteContent[2]['link'] : '#' ?>" target="_blank"
+                   title="<?= !empty($siteContent[2]['title']) ? $siteContent[2]['title'] : '' ?>">
+                    <img src="<?= $imgUrl . '/' . $siteContent[2]['image'] ?>" class="img-fluid h-100 object-fit-cover">
                     <div class="type-tailor-made__title">
-                        <p class="text-uppercase fs-4 fw-bolder"><?= Yii::t('app', 'Collections') ?></p>
+                        <p class="text-uppercase fs-4 fw-bolder"><?= !empty($siteContent[2]['title']) ? $siteContent[2]['title'] : '' ?></p>
                         <p class="text-uppercase see-more"><?= Yii::t('app', 'See more') ?></p>
                     </div>
                     <div class="img-overlay"></div>
@@ -125,11 +127,12 @@ $this->registerCssFile(Url::toRoute("/css/luxury.css"));
     <div class="row w-100 mx-0 px-0">
         <div class="col-12 col-md-6 px-4 px-md-2 pb-3 pb-md-0">
             <div class="image-holder h-100">
-                <a class="text-decoration-none " href="<?= Url::toRoute('mix-and-match/') ?>" target="_blank"
-                   title="<?= Yii::t('app', 'Collections') ?>">
-                    <img src="<?= $imgUrl . '/collections.png' ?>" class="img-fluid h-100 object-fit-cover">
+                <a class="text-decoration-none "
+                   href="<?= !empty($siteContent[3]['link']) ? $siteContent[3]['link'] : '#' ?>" target="_blank"
+                   title="<?= !empty($siteContent[3]['title']) ? $siteContent[3]['title'] : '' ?>">
+                    <img src="<?= $imgUrl . '/' . $siteContent[3]['image'] ?>" class="img-fluid h-100 object-fit-cover">
                     <div class="type-tailor-made__title">
-                        <p class="text-uppercase fs-4 fw-bolder"><?= Yii::t('app', 'Collections') ?></p>
+                        <p class="text-uppercase fs-4 fw-bolder"><?= !empty($siteContent[3]['title']) ? $siteContent[3]['title'] : '' ?></p>
                         <p class="text-uppercase see-more"><?= Yii::t('app', 'See more') ?></p>
                     </div>
                     <div class="img-overlay"></div>
@@ -138,11 +141,12 @@ $this->registerCssFile(Url::toRoute("/css/luxury.css"));
         </div>
         <div class="col-12 col-md-6 px-4 px-md-2 pb-3 pb-md-0">
             <div class="image-holder h-100">
-                <a class="text-decoration-none " href="<?= Url::toRoute('tailor-made/') ?>" target="_blank"
-                   title="<?= Yii::t('app', 'Tailor Made') ?>">
-                    <img src="<?= $imgUrl . '/tailor-made.jpg' ?>" class="img-fluid h-100 object-fit-cover">
+                <a class="text-decoration-none "
+                   href="<?= !empty($siteContent[4]['link']) ? $siteContent[4]['link'] : '#' ?>" target="_blank"
+                   title="<?= !empty($siteContent[4]['title']) ? $siteContent[4]['title'] : '' ?>">
+                    <img src="<?= $imgUrl . '/' . $siteContent[4]['image'] ?>" class="img-fluid h-100 object-fit-cover">
                     <div class="type-tailor-made__title">
-                        <p class="text-uppercase fs-4 fw-bolder"><?= Yii::t('app', 'Tailor Made') ?></p>
+                        <p class="text-uppercase fs-4 fw-bolder"><?= !empty($siteContent[4]['title']) ? $siteContent[4]['title'] : '' ?></p>
                         <p class="text-uppercase see-more"><?= Yii::t('app', 'See more') ?></p>
                     </div>
                     <div class="img-overlay"></div>

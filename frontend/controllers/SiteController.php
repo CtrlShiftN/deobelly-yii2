@@ -10,6 +10,7 @@ use frontend\models\ResendVerificationEmailForm;
 use frontend\models\SiteCasual;
 use frontend\models\SiteContact;
 use frontend\models\SiteIndex;
+use frontend\models\SiteLuxury;
 use frontend\models\SiteOurStories;
 use frontend\models\Slider;
 use frontend\models\TermsAndServices;
@@ -125,11 +126,13 @@ class SiteController extends Controller
         $newProduct = Product::getLatestProduct();
         $latestNews = Post::getLatestPosts(3);
         $slider = Slider::getSliderFromSite('luxury');
+        $siteContent = SiteLuxury::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
         return $this->render('luxury', [
             'slider' => $slider,
             'featuredProducts' => $featuredProduct,
             'newProducts' => $newProduct,
-            'latestNews' => $latestNews
+            'latestNews' => $latestNews,
+            'siteContent' => ArrayHelper::index($siteContent, 'id')
         ]);
     }
 

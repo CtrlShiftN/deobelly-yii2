@@ -225,10 +225,12 @@ AppAsset::register($this);
                         <!-- End warehouse -->
                         <!-- Site Content -->
                         <li class="nav-item <?= ($controller == 'site-our-stories' || $controller == 'footer' ||
-                            $controller == 'site-contact' || $controller == 'site-index') ? 'menu-is-opening menu-open' : '' ?>">
+                            $controller == 'site-contact' || $controller == 'site-index' || $controller == 'site-casual' ||
+                            $controller == 'site-luxury') ? 'menu-is-opening menu-open' : '' ?>">
                             <a href="#"
                                class="nav-link <?= ($controller == 'site-our-stories' || $controller == 'footer' ||
-                                   $controller == 'site-contact' || $controller == 'site-index') ? 'active' : '' ?>">
+                                   $controller == 'site-contact' || $controller == 'site-index' || $controller == 'site-casual' ||
+                                   $controller == 'site-luxury') ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-sitemap"></i>
                                 <p>
                                     <?= Yii::t('app', 'Content Managers') ?>
@@ -248,6 +250,13 @@ AppAsset::register($this);
                                        class="nav-link <?= ($controller == 'site-casual') ? 'active' : '' ?>">
                                         <i class="nav-icon fab fa-elementor"></i>
                                         <p><?= Yii::t('app', 'Casual') ?></p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= Url::toRoute('site-luxury/') ?>"
+                                       class="nav-link <?= ($controller == 'site-luxury') ? 'active' : '' ?>">
+                                        <i class="nav-icon fab fa-elementor"></i>
+                                        <p><?= Yii::t('app', 'Luxury') ?></p>
                                     </a>
                                 </li>
                                 <li class="nav-item">

@@ -28,6 +28,7 @@ use common\models\TermsAndServices;
 use common\models\TrackingStatus;
 use common\models\Trademark;
 use common\models\User;
+use frontend\models\SiteLuxury;
 use frontend\models\Slider;
 use phpDocumentor\Reflection\Types\Self_;
 use yii\base\Exception;
@@ -3245,6 +3246,53 @@ class SampleData
         echo 'Inserted ' . $count . '/' . count(self::$arrSiteCasualContent) . ' casual page content' . PHP_EOL;
     }
 
+    protected static $arrSiteLuxuryContent = [
+        [
+            'title' => 'Tailor Made',
+            'image' => 'tailor-made.jpg',
+            'link' => 'tailor-made/',
+            'note' => null,
+        ],
+        [
+            'title' => 'Collections',
+            'image' => 'collections.png',
+            'link' => 'mix-and-match/',
+            'note' => null,
+        ],
+        [
+            'title' => 'Collections',
+            'image' => 'collections.png',
+            'link' => 'mix-and-match/',
+            'note' => null,
+        ],
+        [
+            'title' => 'Tailor Made',
+            'image' => 'tailor-made.jpg',
+            'link' => 'tailor-made/',
+            'note' => null,
+        ],
+    ];
+
+    public static function insertSampleSiteLuxuryContent(){
+        $count = 0;
+        foreach (self::$arrSiteLuxuryContent as $value) {
+            $model = new SiteLuxury();
+            $model->title = $value['title'];
+            $model->image = $value['image'];
+            $model->link = $value['link'];
+            $model->note = $value['note'];
+            $model->admin_id = 1;
+            $model->created_at = date('Y-m-d H:i:s');
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save()) {
+                $count++;
+            } else {
+                echo print_r($model->errors) . PHP_EOL;
+            }
+        }
+        echo 'Inserted ' . $count . '/' . count(self::$arrSiteLuxuryContent) . ' luxury page content' . PHP_EOL;
+    }
+
     /**
      * @throws Exception
      */
@@ -3276,5 +3324,6 @@ class SampleData
         self::insertSampleMixes();
         self::insertSampleSiteIndexContent();
         self::insertSampleSiteCasualContent();
+        self::insertSampleSiteLuxuryContent();
     }
 }
