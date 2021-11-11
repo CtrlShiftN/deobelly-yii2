@@ -2708,6 +2708,7 @@ class SampleData
             'link' => 'javascript:void(0)',
             'children' => [
                 'Get in touch' => '/site/contact',
+                'Get a suit' => '/tailor-made/set',
             ]
         ],
     ];
