@@ -4,7 +4,12 @@ namespace backend\controllers;
 
 use backend\models\Footer;
 use backend\models\FooterSearch;
+use common\components\encrypt\CryptHelper;
+use common\components\helpers\StringHelper;
+use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -61,12 +66,24 @@ class FooterController extends Controller
      */
     public function actionIndex()
     {
+        $arrTitleFooter = Footer::getTitleFooter();
         $searchModel = new FooterSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-
+        if (Yii::$app->request->post('hasEditable')) {
+            //which rows has been edited?
+            $_id = $_POST['editableKey'];
+            $_index = $_POST['editableIndex'];
+            //which attribute has been edited?
+            $attribute = $_POST['editableAttribute'];
+            //update to db
+            $value = $_POST['Footer'][$_index][$attribute];
+            $result = Footer::updateFooter($_id, $attribute, $value);
+            return json_encode($result);
+        }
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'arrTitleFooter' => $arrTitleFooter,
         ]);
     }
 
@@ -78,6 +95,7 @@ class FooterController extends Controller
      */
     public function actionView($id)
     {
+        $id = CryptHelper::decryptString($id);
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -91,17 +109,24 @@ class FooterController extends Controller
     public function actionCreate()
     {
         $model = new Footer();
-
+        $arrTitleFooter = Footer::getTitleFooter();
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $model->slug = StringHelper::toSlug($model->title);
+                $model->admin_id = Yii::$app->user->identity->getId();
+                $model->created_at = date('Y-m-d H:i:s');
+                $model->updated_at = date('Y-m-d H:i:s');
+                if ($model->save()) {
+                    return $this->redirect(Url::toRoute('footer/'));
+                }
             }
         } else {
             $model->loadDefaultValues();
         }
 
-        return $this->render('create', [
+        return $this->renderAjax('create', [
             'model' => $model,
+            'arrTitleFooter' => $arrTitleFooter,
         ]);
     }
 
@@ -115,6 +140,7 @@ class FooterController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $id = CryptHelper::decryptString($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -134,6 +160,7 @@ class FooterController extends Controller
      */
     public function actionDelete($id)
     {
+        $id = CryptHelper::decryptString($id);
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

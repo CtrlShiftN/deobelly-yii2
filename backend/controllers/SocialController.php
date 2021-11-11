@@ -107,7 +107,6 @@ class SocialController extends Controller
     public function actionCreate()
     {
         $model = new Social();
-        $this->layout = 'blank';
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->created_at = date('Y-m-d H:m:s');
@@ -122,7 +121,7 @@ class SocialController extends Controller
             $model->loadDefaultValues();
         }
 
-        return $this->render('create', [
+        return $this->renderAjax('create', [
             'model' => $model,
         ]);
     }

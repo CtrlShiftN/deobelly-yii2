@@ -4,6 +4,7 @@ namespace common\components\importsample;
 
 use backend\models\SiteCasual;
 use common\components\helpers\StringHelper;
+use common\components\SystemConstant;
 use common\models\Cart;
 use common\models\Color;
 use common\models\Footer;
@@ -2673,44 +2674,26 @@ class SampleData
     }
 
     public static $arrFooter = [
-        'ABOUT US' => [
-            'link' => 'site/our-stories',
+        'About us' => [
+            'link' => 'javascript:void(0)',
             'children' => [
-                'Suplo fashion' => 'javascript:void(0)',
-                'Business philosophy' => 'javascript:void(0)',
-                'Event communication' => 'javascript:void(0)',
-                'Social activities' => 'javascript:void(0)',
-                'Association and cooperation' => 'javascript:void(0)',
+                'De-Obelly fashion' => 'site/our-stories',
+                'Terms and services' => 'site/terms',
             ]
         ],
         'News' => [
-            'link' => 'post/',
-            'children' => [
-                'Product reviews' => 'javascript:void(0)',
-                'Fashion news' => 'javascript:void(0)',
-                'Famous brand' => 'javascript:void(0)',
-                'Customer feedback' => 'javascript:void(0)',
-                'Brand history' => 'javascript:void(0)',
-            ]
-        ],
-        'PRODUCT CONSULTING' => [
             'link' => 'javascript:void(0)',
             'children' => [
-                'Office Fashion' => 'javascript:void(0)',
-                'Order clothes' => 'javascript:void(0)',
-                'Frequently asked questions' => 'javascript:void(0)',
-                'General knowledge' => 'javascript:void(0)',
-                'Why you should choose us' => 'javascript:void(0)',
+                'Latest news' => 'post/',
+                'Fashion news' => 'post/',
             ]
         ],
-        'INSTRUCTIONS' => [
+        'Product consulting' => [
             'link' => 'javascript:void(0)',
             'children' => [
-                'Shopping guide' => 'javascript:void(0)',
-                'Preferential policy of VIP card' => 'javascript:void(0)',
-                'warranty Policy' => 'javascript:void(0)',
-                'Directions for use' => 'javascript:void(0)',
-                'Payment Guide' => 'javascript:void(0)',
+                'Order clothes' => 'tailor-made/',
+                'Collections' => 'mix-and-match/',
+                'Submit your question' => 'site/contact',
             ]
         ],
     ];
@@ -2729,19 +2712,21 @@ class SampleData
             $model->updated_at = date('Y-m-d H:i:s');
             if ($model->save()) {
                 $count++;
-                foreach ($item['children'] as $title => $link) {
-                    $childModel = new Footer();
-                    $childModel->title = $title;
-                    $childModel->link = $link;
-                    $childModel->slug = StringHelper::toSlug($title);
-                    $childModel->parent_id = $model->id;
-                    $childModel->admin_id = 1;
-                    $childModel->created_at = date('Y-m-d H:i:s');
-                    $childModel->updated_at = date('Y-m-d H:i:s');
-                    if ($childModel->save()) {
-                        $count++;
-                    } else {
-                        echo print_r($childModel->errors) . PHP_EOL;
+                if(!empty($item['children'])) {
+                    foreach ($item['children'] as $title => $link) {
+                        $childModel = new Footer();
+                        $childModel->title = $title;
+                        $childModel->link = $link;
+                        $childModel->slug = StringHelper::toSlug($title);
+                        $childModel->parent_id = $model->id;
+                        $childModel->admin_id = 1;
+                        $childModel->created_at = date('Y-m-d H:i:s');
+                        $childModel->updated_at = date('Y-m-d H:i:s');
+                        if ($childModel->save()) {
+                            $count++;
+                        } else {
+                            echo print_r($childModel->errors) . PHP_EOL;
+                        }
                     }
                 }
             }

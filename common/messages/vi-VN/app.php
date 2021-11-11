@@ -64,6 +64,7 @@ return [
     'Customer feedback' => 'Đánh giá của khách hàng',
     'Brand history' => 'Lịch sử thương hiệu',
     'PRODUCT CONSULTING' => 'TƯ VẤN SẢN PHẨM',
+    'Product consulting' => 'Tư vấn sản phẩm',
     'Order clothes' => 'Đặt may trang phục',
     'Frequently asked questions' => 'Câu hỏi thường gặp',
     'General knowledge' => 'Kiến thức cần thiết',
@@ -162,7 +163,7 @@ return [
     'Winter' => 'Mùa đông',
     'Latest posts' => 'Bài viết mới nhất',
     'Category' => 'Danh mục',
-    'About us' => 'Liên hệ',
+    'About us' => 'Về chúng tôi',
     'Our stories' => 'Câu chuyện của chúng tôi',
     'Login' => 'Đăng Nhập',
     'Enter email' => 'Nhập email',
@@ -453,5 +454,9 @@ return [
     'Our Stories' => 'Câu Chuyện Của Chúng Tôi',
     'Content Managers' => 'Quản Lý Nội Dung',
     'Content Manager' => 'Quản Lý Nội Dung',
-    'Footer' => 'Chân Trang'
+    'Main title' => "Tiêu đề chính",
+    'Add New Footer' => 'Thêm mới Footer',
+    'Footer List' => 'Danh sách Footer',
+    'Casual Content' => 'Nội Dung Casual',
+    'Luxury Content' => 'Nội Dung Luxury',
 ];
