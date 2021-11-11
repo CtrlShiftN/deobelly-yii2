@@ -76,9 +76,9 @@ class ProductType extends \common\models\ProductType
      */
     public static function getCasualProductType()
     {
-        return ProductType::find()->where(['status' => SystemConstant::STATUS_ACTIVE])
-            ->andWhere(['id' => SystemConstant::PRODUCT_TYPE_NEW])
-            ->orWhere(['>=', 'id', 4])
+        return ProductType::find()
+            ->andWhere(['and',['id' => SystemConstant::PRODUCT_TYPE_NEW],['status' => SystemConstant::STATUS_ACTIVE]])
+            ->orWhere(['and',['>=', 'id', 4],['status' => SystemConstant::STATUS_ACTIVE]])
             ->asArray()->all();
     }
 
@@ -96,10 +96,9 @@ class ProductType extends \common\models\ProductType
      */
     public static function getShopShowProductType()
     {
-        return ProductType::find()->where(['status' => SystemConstant::STATUS_ACTIVE])
-            ->andWhere(['shop_show' => SystemConstant::STATUS_ACTIVE])
-            ->andWhere(['id' => SystemConstant::PRODUCT_TYPE_NEW])
-            ->orWhere(['>=', 'id', 4])
+        return ProductType::find()
+            ->andWhere(['and',['id' => SystemConstant::PRODUCT_TYPE_NEW],['status' => SystemConstant::STATUS_ACTIVE],['shop_show' => SystemConstant::STATUS_ACTIVE]])
+            ->orWhere(['and',['>=', 'id', 4],['status' => SystemConstant::STATUS_ACTIVE],['shop_show' => SystemConstant::STATUS_ACTIVE]])
             ->asArray()->all();
     }
 }

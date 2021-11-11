@@ -141,3 +141,8 @@
         height: 100vh;
     }
 }
+
+.h-final-type {
+    height: 50vh !important;
+    max-height: 50vh !important;
+}

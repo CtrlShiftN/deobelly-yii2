@@ -628,6 +628,13 @@ class SampleData
             'admin_id' => 1,
         ],
         [
+            'name' => 'Quần',
+            'slug' => 'quan',
+            'image' => 'type/quan-tay-ong-rong.jpg',
+            'shop_show' => 1,
+            'admin_id' => 1,
+        ],
+        [
             'name' => 'Phụ kiện',
             'slug' => 'phu-kien',
             'image' => 'type/GLT_1219.jpeg',
@@ -638,13 +645,6 @@ class SampleData
             'name' => 'Quà tặng',
             'slug' => 'qua-tang',
             'image' => 'type/gift.jpg',
-            'shop_show' => 1,
-            'admin_id' => 1,
-        ],
-        [
-            'name' => 'Quần',
-            'slug' => 'quan',
-            'image' => 'type/quan-tay-ong-rong.jpg',
             'shop_show' => 1,
             'admin_id' => 1,
         ],

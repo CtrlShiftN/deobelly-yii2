@@ -411,7 +411,7 @@ return [
     'Featured' => 'Nổi Bật',
     'Non-featured' => 'Thông thường',
     'Show' => 'Hiển thị',
-    'Hide' => 'Ẩn giấu',
+    'Hide' => 'Ẩn',
     'Specific Address' => 'Địa Chỉ Chi Tiết',
     'Logistic Method' => 'Phương Thức Vận Chuyển',
     'Showroom List' => 'Danh Sách Showroom',
@@ -459,4 +459,6 @@ return [
     'Footer List' => 'Danh sách Footer',
     'Casual Contents' => 'Nội Dung Casual',
     'Luxury Contents' => 'Nội Dung Luxury',
+    'Show in Shop?' => 'Hiển thị trong Shop',
+    'Hide/Show' => 'Ẩn/Hiện',
 ];
