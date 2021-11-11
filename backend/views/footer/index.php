@@ -11,10 +11,6 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Footer');
-$arrTitleFooter = [Yii::t('app','No')];
-foreach (ArrayHelper::map(\backend\models\Footer::getTitleFooter(), 'id', 'title') as $key => $value) {
-    $arrTitleFooter[$key] = $value;
-}
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

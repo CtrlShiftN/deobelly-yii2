@@ -8,10 +8,6 @@ use yii\helpers\Html;
 /* @var $model backend\models\Footer */
 /* @var $form yii\widgets\ActiveForm */
 
-$arrTitleFooter = [Yii::t('app','No')];
-foreach (ArrayHelper::map(\backend\models\Footer::getTitleFooter(), 'id', 'title') as $key => $value) {
-    $arrTitleFooter[$key] = $value;
-}
 ?>
 
 <div class="footer-form">

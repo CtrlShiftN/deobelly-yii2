@@ -8,6 +8,7 @@ use common\components\encrypt\CryptHelper;
 use common\components\helpers\StringHelper;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -65,6 +66,9 @@ class FooterController extends Controller
      */
     public function actionIndex()
     {
+        $arrTitleFooter = ArrayHelper::map(\backend\models\Footer::getTitleFooter(), 'id', 'title');
+        $arrTitleFooter[0] = Yii::t('app','No');
+        ksort($arrTitleFooter);
         $searchModel = new FooterSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
         if (Yii::$app->request->post('hasEditable')) {
@@ -81,6 +85,7 @@ class FooterController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'arrTitleFooter' => $arrTitleFooter,
         ]);
     }
 
@@ -106,6 +111,9 @@ class FooterController extends Controller
     public function actionCreate()
     {
         $model = new Footer();
+        $arrTitleFooter = ArrayHelper::map(\backend\models\Footer::getTitleFooter(), 'id', 'title');
+        $arrTitleFooter[0] = Yii::t('app','No');
+        ksort($arrTitleFooter);
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->slug = StringHelper::toSlug($model->title);
@@ -122,6 +130,7 @@ class FooterController extends Controller
 
         return $this->renderAjax('create', [
             'model' => $model,
+            'arrTitleFooter' => $arrTitleFooter,
         ]);
     }
 
