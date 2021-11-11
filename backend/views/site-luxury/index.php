@@ -6,14 +6,15 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\SiteCasualSearch */
+/* @var $searchModel backend\models\SiteLuxurySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Casual');
-$imgUrl = Yii::$app->params['common'] . '/media';
+$this->title = Yii::t('app', 'Luxury');
 $this->params['breadcrumbs'][] = $this->title;
+$imgUrl = Yii::$app->params['common'] . '/media';
+$arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
 ?>
-<div class="site-casual-index">
+<div class="site-luxury-index">
     <div class="pt-3">
         <?php
         $defaultExportConfig = [
@@ -49,9 +50,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model, $key, $index, $widget) use ($imgUrl) {
                     return Html::img($imgUrl . '/' . $model['image'], ['class' => 'img-thumbnail', 'width' => '200px']);
                 },
+                'filter' => false,
                 'format' => 'raw'
             ],
             [
+                'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'title',
                 'label' => Yii::t('app', 'Title'),
                 'vAlign' => 'middle',
@@ -59,29 +62,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['title'];
                 },
+                'editableOptions' => [
+                    'asPopover' => false,
+                ],
                 'format' => 'raw'
             ],
             [
-                'attribute' => 'label',
-                'label' => Yii::t('app', 'Label'),
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'value' => function ($model, $key, $index, $widget) {
-                    return $model['label'];
-                },
-                'format' => 'raw'
-            ],
-            [
-                'attribute' => 'content',
-                'label' => Yii::t('app', 'Content'),
-                'vAlign' => 'middle',
-                'hAlign' => 'center',
-                'value' => function ($model, $key, $index, $widget) {
-                    return $model['content'];
-                },
-                'format' => 'raw'
-            ],
-            [
+                'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'link',
                 'label' => Yii::t('app', 'Link'),
                 'vAlign' => 'middle',
@@ -89,6 +76,52 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model, $key, $index, $widget) {
                     return $model['link'];
                 },
+                'editableOptions' => [
+                    'asPopover' => false,
+                ],
+            ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'note',
+                'label' => Yii::t('app', 'Notes'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'value' => function ($model, $key, $index, $widget) {
+                    return $model['note'];
+                },
+                'editableOptions' => [
+                    'asPopover' => false,
+                ],
+            ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'status',
+                'label' => Yii::t('app', 'Status'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'width' => '75px',
+                'value' => function ($model, $key, $index, $widget) use ($arrStatus) {
+                    return $arrStatus[$model['status']];
+                },
+                'editableOptions' => function ($model, $key, $index) use ($arrStatus) {
+                    return [
+                        'name' => 'status',
+                        'asPopover' => false,
+                        'header' => Yii::t('app', 'Status'),
+                        'size' => 'md',
+                        'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
+                        'data' => $arrStatus,
+                        // default value in the text box
+                        'value' => $arrStatus[$model['status']],
+                        'displayValueConfig' => $arrStatus
+                    ];
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => $arrStatus,
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => '-- ' . Yii::t('app', 'Status') . ' --']
             ],
             [
                 'label' => Yii::t('app', 'Actions'),
@@ -98,7 +131,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model, $key, $index, $widget) {
                     return Html::a(Yii::t('app', 'View'), Url::toRoute(
                         [
-                            'site-casual/view',
+                            'site-luxury/view',
                             'id' => \common\components\encrypt\CryptHelper::encryptString($key)
                         ]), ['class' => 'btn btn-info me-3']);
                 },
@@ -139,7 +172,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
-                'heading' => Yii::t('app', 'Casual Contents'),
+                'heading' => Yii::t('app', 'Luxury Contents'),
             ],
         ]);
         Pjax::end();

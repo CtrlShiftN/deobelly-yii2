@@ -9,7 +9,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel backend\models\SiteOurStoriesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Site Our Stories');
+$this->title = Yii::t('app', 'Our Stories');
 $this->params['breadcrumbs'][] = $this->title;
 $arrStatus = [Yii::t('app', 'Inactive'), Yii::t('app', 'Active')];
 $imgUrl = Yii::$app->params['common'] . '/media';
@@ -149,7 +149,7 @@ $imgUrl = Yii::$app->params['common'] . '/media';
             ],
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
-                'heading' => Yii::t('app', 'Site Our Stories'),
+                'heading' => Yii::t('app', 'Introductions'),
             ],
         ]);
         Pjax::end();

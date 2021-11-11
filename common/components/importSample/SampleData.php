@@ -29,6 +29,7 @@ use common\models\TermsAndServices;
 use common\models\TrackingStatus;
 use common\models\Trademark;
 use common\models\User;
+use frontend\models\SiteLuxury;
 use frontend\models\Slider;
 use phpDocumentor\Reflection\Types\Self_;
 use yii\base\Exception;
@@ -2676,23 +2677,23 @@ class SampleData
         'About us' => [
             'link' => 'javascript:void(0)',
             'children' => [
-                'De-Obelly fashion' => 'site/our-stories',
-                'Terms and services' => 'site/terms',
+                'De-Obelly fashion' => '/site/our-stories',
+                'Terms and services' => '/site/terms',
             ]
         ],
         'News' => [
             'link' => 'javascript:void(0)',
             'children' => [
-                'Latest news' => 'post/',
-                'Fashion news' => 'post/',
+                'Latest news' => '/post/',
+                'Fashion news' => '/post/',
             ]
         ],
         'Product consulting' => [
             'link' => 'javascript:void(0)',
             'children' => [
-                'Order clothes' => 'tailor-made/',
-                'Collections' => 'mix-and-match/',
-                'Submit your question' => 'site/contact',
+                'Order clothes' => '/tailor-made/',
+                'Collections' => '/mix-and-match/',
+                'Submit your question' => '/site/contact',
             ]
         ],
     ];
@@ -2841,7 +2842,7 @@ class SampleData
             'image' => 'sites/index/newProductImg1.jpg',
             'content' => null,
             'type' => 'image-link',
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'new-arrival',
             'note' => null,
         ],
@@ -2850,7 +2851,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/index/newProductImg2.jpg',
             'content' => null,
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'new-arrival',
             'note' => null,
             'type' => 'image-link',
@@ -2860,7 +2861,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/index/newProductImg3.jpg',
             'content' => null,
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'new-arrival',
             'note' => null,
             'type' => 'image-link',
@@ -2870,7 +2871,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/index/newProductImg4.jpg',
             'content' => null,
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'new-arrival',
             'note' => null,
             'type' => 'image-link',
@@ -2880,7 +2881,7 @@ class SampleData
             'label' => null,
             'image' => null,
             'content' => 'See more',
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'new-arrival',
             'note' => null,
             'type' => 'see-more-link',
@@ -2890,7 +2891,7 @@ class SampleData
             'label' => null,
             'image' => null,
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer interdum porttitor sagittis. Suspendisse malesuada lacus sit amet nulla vehicula, vel tincidunt nulla viverra. Aliquam dapibus felis sit amet dui tincidunt vulputate. Pellentesque eu quam facilisis velit ullamcorper tincidunt id a nisl. Phasellus ornare tempus volutpat. Maecenas consequat, arcu vitae tempor dapibus, turpis metus porttitor arcu, non laoreet neque massa ut sapien. Etiam sodales egestas sem, quis hendrerit massa laoreet nec. Mauris a enim eu lorem porta blandit. Donec vehicula, dolor tempus convallis dictum, risus ex lacinia urna, eget pretium lectus dolor vitae sapien. Curabitur ultricies finibus commodo. Aenean faucibus odio nec ultrices volutpat. Quisque venenatis velit aliquet, scelerisque lorem nec, tempus ligula. Nam ullamcorper augue purus, ac feugiat massa rutrum non. Ut eget lorem purus. Mauris blandit, lacus sed eleifend tincidunt, leo lorem aliquam odio, auctor pharetra odio ligula id massa. Vestibulum id finibus urna.',
-            'link' => 'mix-and-match/',
+            'link' => '/mix-and-match/',
             'section' => 'collections',
             'note' => null,
             'type' => 'mix',
@@ -2900,7 +2901,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/index/sereno.jpg',
             'content' => null,
-            'link' => 'mix-and-match/',
+            'link' => '/mix-and-match/',
             'section' => 'collections',
             'note' => 'Large screen image',
             'type' => 'image-link',
@@ -2910,7 +2911,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/index/sereno-responsive.jpg',
             'content' => null,
-            'link' => 'mix-and-match/',
+            'link' => '/mix-and-match/',
             'section' => 'collections',
             'note' => 'Mobile screen image',
             'type' => 'image-link',
@@ -2920,7 +2921,7 @@ class SampleData
             'label' => null,
             'image' => null,
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer interdum porttitor sagittis. Suspendisse malesuada lacus sit amet nulla vehicula, vel tincidunt nulla viverra. Aliquam dapibus felis sit amet dui tincidunt vulputate. Pellentesque eu quam facilisis velit ullamcorper tincidunt id a nisl. Phasellus ornare tempus volutpat. Maecenas consequat, arcu vitae tempor dapibus, turpis metus porttitor arcu, non laoreet neque massa ut sapien. Etiam sodales egestas sem, quis hendrerit massa laoreet nec. Mauris a enim eu lorem porta blandit. Donec vehicula, dolor tempus convallis dictum, risus ex lacinia urna, eget pretium lectus dolor vitae sapien. Curabitur ultricies finibus commodo. Aenean faucibus odio nec ultrices volutpat. Quisque venenatis velit aliquet, scelerisque lorem nec, tempus ligula. Nam ullamcorper augue purus, ac feugiat massa rutrum non. Ut eget lorem purus. Mauris blandit, lacus sed eleifend tincidunt, leo lorem aliquam odio, auctor pharetra odio ligula id massa. Vestibulum id finibus urna.',
-            'link' => 'shop/',
+            'link' => '/shop/',
             'section' => 'product-type',
             'note' => null,
             'type' => 'mix',
@@ -2930,7 +2931,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/index/pronto-img-1.jpg',
             'content' => null,
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'product-type',
             'note' => 'height - 50',
             'type' => 'image-link',
@@ -2940,7 +2941,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/index/pronto-img-2.jpg',
             'content' => null,
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'product-type',
             'note' => 'height - 50',
             'type' => 'image-link',
@@ -2950,7 +2951,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/index/pronto-img-3.jpg',
             'content' => null,
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'product-type',
             'note' => 'height - 25',
             'type' => 'image-link',
@@ -2960,7 +2961,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/index/pronto-img-4.jpg',
             'content' => null,
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'product-type',
             'note' => 'height - 50',
             'type' => 'image-link',
@@ -2970,7 +2971,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/index/pronto-img-5.jpg',
             'content' => null,
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'product-type',
             'note' => 'height - 25',
             'type' => 'image-link',
@@ -2980,7 +2981,7 @@ class SampleData
             'label' => null,
             'image' => null,
             'content' => 'See more',
-            'link' => 'shop/',
+            'link' => '/shop/',
             'section' => 'product-type',
             'note' => null,
             'type' => 'see-more-link',
@@ -2990,7 +2991,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/index/men.jpg',
             'content' => null,
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'product-types',
             'note' => null,
             'type' => 'image-link',
@@ -3000,7 +3001,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/index/women.jpg',
             'content' => null,
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'product-types',
             'note' => null,
             'type' => 'image-link',
@@ -3039,7 +3040,7 @@ class SampleData
             'image' => 'sites/casual/newProductImg1.jpg',
             'content' => null,
             'type' => 'image-link',
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'new-arrival',
             'note' => null,
         ],
@@ -3048,7 +3049,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/casual/newProductImg2.jpg',
             'content' => null,
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'new-arrival',
             'note' => null,
             'type' => 'image-link',
@@ -3058,7 +3059,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/casual/newProductImg3.jpg',
             'content' => null,
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'new-arrival',
             'note' => null,
             'type' => 'image-link',
@@ -3068,7 +3069,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/casual/newProductImg4.jpg',
             'content' => null,
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'new-arrival',
             'note' => null,
             'type' => 'image-link',
@@ -3078,7 +3079,7 @@ class SampleData
             'label' => null,
             'image' => null,
             'content' => 'See more',
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'new-arrival',
             'note' => null,
             'type' => 'see-more-link',
@@ -3088,7 +3089,7 @@ class SampleData
             'label' => null,
             'image' => null,
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer interdum porttitor sagittis. Suspendisse malesuada lacus sit amet nulla vehicula, vel tincidunt nulla viverra. Aliquam dapibus felis sit amet dui tincidunt vulputate. Pellentesque eu quam facilisis velit ullamcorper tincidunt id a nisl. Phasellus ornare tempus volutpat. Maecenas consequat, arcu vitae tempor dapibus, turpis metus porttitor arcu, non laoreet neque massa ut sapien. Etiam sodales egestas sem, quis hendrerit massa laoreet nec. Mauris a enim eu lorem porta blandit. Donec vehicula, dolor tempus convallis dictum, risus ex lacinia urna, eget pretium lectus dolor vitae sapien. Curabitur ultricies finibus commodo. Aenean faucibus odio nec ultrices volutpat. Quisque venenatis velit aliquet, scelerisque lorem nec, tempus ligula. Nam ullamcorper augue purus, ac feugiat massa rutrum non. Ut eget lorem purus. Mauris blandit, lacus sed eleifend tincidunt, leo lorem aliquam odio, auctor pharetra odio ligula id massa. Vestibulum id finibus urna.',
-            'link' => 'mix-and-match/',
+            'link' => '/mix-and-match/',
             'section' => 'collections',
             'note' => null,
             'type' => 'mix',
@@ -3098,7 +3099,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/casual/sereno.jpg',
             'content' => null,
-            'link' => 'mix-and-match/',
+            'link' => '/mix-and-match/',
             'section' => 'collections',
             'note' => 'Large screen image',
             'type' => 'image-link',
@@ -3108,7 +3109,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/casual/sereno-responsive.jpg',
             'content' => null,
-            'link' => 'mix-and-match/',
+            'link' => '/mix-and-match/',
             'section' => 'collections',
             'note' => 'Mobile screen image',
             'type' => 'image-link',
@@ -3118,7 +3119,7 @@ class SampleData
             'label' => null,
             'image' => null,
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer interdum porttitor sagittis. Suspendisse malesuada lacus sit amet nulla vehicula, vel tincidunt nulla viverra. Aliquam dapibus felis sit amet dui tincidunt vulputate. Pellentesque eu quam facilisis velit ullamcorper tincidunt id a nisl. Phasellus ornare tempus volutpat. Maecenas consequat, arcu vitae tempor dapibus, turpis metus porttitor arcu, non laoreet neque massa ut sapien. Etiam sodales egestas sem, quis hendrerit massa laoreet nec. Mauris a enim eu lorem porta blandit. Donec vehicula, dolor tempus convallis dictum, risus ex lacinia urna, eget pretium lectus dolor vitae sapien. Curabitur ultricies finibus commodo. Aenean faucibus odio nec ultrices volutpat. Quisque venenatis velit aliquet, scelerisque lorem nec, tempus ligula. Nam ullamcorper augue purus, ac feugiat massa rutrum non. Ut eget lorem purus. Mauris blandit, lacus sed eleifend tincidunt, leo lorem aliquam odio, auctor pharetra odio ligula id massa. Vestibulum id finibus urna.',
-            'link' => 'shop/',
+            'link' => '/shop/',
             'section' => 'product-type',
             'note' => null,
             'type' => 'mix',
@@ -3128,7 +3129,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/casual/pronto-img-1.jpg',
             'content' => null,
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'product-type',
             'note' => 'height - 50',
             'type' => 'image-link',
@@ -3138,7 +3139,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/casual/pronto-img-2.jpg',
             'content' => null,
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'product-type',
             'note' => 'height - 50',
             'type' => 'image-link',
@@ -3148,7 +3149,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/casual/pronto-img-3.jpg',
             'content' => null,
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'product-type',
             'note' => 'height - 25',
             'type' => 'image-link',
@@ -3158,7 +3159,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/casual/pronto-img-4.jpg',
             'content' => null,
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'product-type',
             'note' => 'height - 50',
             'type' => 'image-link',
@@ -3168,7 +3169,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/casual/pronto-img-5.jpg',
             'content' => null,
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'product-type',
             'note' => 'height - 25',
             'type' => 'image-link',
@@ -3178,7 +3179,7 @@ class SampleData
             'label' => null,
             'image' => null,
             'content' => 'See more',
-            'link' => 'shop/',
+            'link' => '/shop/',
             'section' => 'product-type',
             'note' => null,
             'type' => 'see-more-link',
@@ -3188,7 +3189,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/casual/men.jpg',
             'content' => null,
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'product-types',
             'note' => null,
             'type' => 'image-link',
@@ -3198,7 +3199,7 @@ class SampleData
             'label' => null,
             'image' => 'sites/casual/women.jpg',
             'content' => null,
-            'link' => 'shop/product',
+            'link' => '/shop/product',
             'section' => 'product-types',
             'note' => null,
             'type' => 'image-link',
@@ -3228,6 +3229,53 @@ class SampleData
             }
         }
         echo 'Inserted ' . $count . '/' . count(self::$arrSiteCasualContent) . ' casual page content' . PHP_EOL;
+    }
+
+    protected static $arrSiteLuxuryContent = [
+        [
+            'title' => 'Tailor Made',
+            'image' => 'tailor-made.jpg',
+            'link' => '/tailor-made/',
+            'note' => null,
+        ],
+        [
+            'title' => 'Collections',
+            'image' => 'collections.png',
+            'link' => '/mix-and-match/',
+            'note' => null,
+        ],
+        [
+            'title' => 'Collections',
+            'image' => 'collections.png',
+            'link' => '/mix-and-match/',
+            'note' => null,
+        ],
+        [
+            'title' => 'Tailor Made',
+            'image' => 'tailor-made.jpg',
+            'link' => '/tailor-made/',
+            'note' => null,
+        ],
+    ];
+
+    public static function insertSampleSiteLuxuryContent(){
+        $count = 0;
+        foreach (self::$arrSiteLuxuryContent as $value) {
+            $model = new SiteLuxury();
+            $model->title = $value['title'];
+            $model->image = $value['image'];
+            $model->link = $value['link'];
+            $model->note = $value['note'];
+            $model->admin_id = 1;
+            $model->created_at = date('Y-m-d H:i:s');
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save()) {
+                $count++;
+            } else {
+                echo print_r($model->errors) . PHP_EOL;
+            }
+        }
+        echo 'Inserted ' . $count . '/' . count(self::$arrSiteLuxuryContent) . ' luxury page content' . PHP_EOL;
     }
 
     /**
@@ -3261,5 +3309,6 @@ class SampleData
         self::insertSampleMixes();
         self::insertSampleSiteIndexContent();
         self::insertSampleSiteCasualContent();
+        self::insertSampleSiteLuxuryContent();
     }
 }

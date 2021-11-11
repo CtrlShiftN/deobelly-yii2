@@ -452,7 +452,11 @@ return [
     'Go to https://fontawesome.com/ or search for keyword "fontawesome" to get HTML code of Icon' => 'Truy cập https://fontawesome.com/ hoặc tìm từ khóa "fontawesome" để lấy code HTML của Icon',
     'Introductions' => 'Giới Thiệu',
     'Our Stories' => 'Câu Chuyện Của Chúng Tôi',
+    'Content Managers' => 'Quản Lý Nội Dung',
+    'Content Manager' => 'Quản Lý Nội Dung',
     'Main title' => "Tiêu đề chính",
     'Add New Footer' => 'Thêm mới Footer',
     'Footer List' => 'Danh sách Footer',
+    'Casual Contents' => 'Nội Dung Casual',
+    'Luxury Contents' => 'Nội Dung Luxury',
 ];
