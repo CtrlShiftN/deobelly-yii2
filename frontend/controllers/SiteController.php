@@ -90,20 +90,20 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-//    public function actionIndex()
-//    {
-//        $this->layout = 'blank';
-//        $type = array_values(ProductType::getCasualProductType());
-//        $slider = Slider::getSliderFromSite('index');
-//        $siteContent = SiteIndex::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
-//        return $this->render('index3', [
-//            'type' => $type,
-//            'slider' => $slider,
-//            'siteContent' => ArrayHelper::index($siteContent, null, 'section')
-//        ]);
-//    }
-
     public function actionIndex()
+    {
+        $this->layout = 'blank';
+        $type = array_values(ProductType::getCasualProductType());
+        $slider = Slider::getSliderFromSite('index');
+        $siteContent = SiteIndex::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
+        return $this->render('index3', [
+            'type' => $type,
+            'slider' => $slider,
+            'siteContent' => ArrayHelper::index($siteContent, null, 'section')
+        ]);
+    }
+
+    public function actionIndexDe()
     {
         $type = array_values(ProductType::getCasualProductType());
         $slider = Slider::getSliderFromSite('index');
@@ -146,7 +146,7 @@ class SiteController extends Controller
         $type = array_values(ProductType::getCasualProductType());
         $slider = Slider::getSliderFromSite('casual');
         $siteContent = SiteCasual::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
-        return $this->render('index', [
+        return $this->render('casual', [
             'type' => $type,
             'slider' => $slider,
             'siteContent' => ArrayHelper::index($siteContent, null, 'section')
