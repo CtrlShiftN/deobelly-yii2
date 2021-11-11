@@ -42,11 +42,18 @@ class ProductType extends \common\models\ProductType
             [['segment', 'shop_show', 'status', 'admin_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug', 'image'], 'string', 'max' => 255],
-            [['name'], 'unique'],
-            [['slug'], 'unique'],
+            [['name'], 'unique', 'targetClass' => ProductType::className()],
+            [['slug'], 'unique', 'targetClass' => ProductType::className()],
             ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg', 'on' => 'create'],
 //            ['file', 'required', 'on' => 'create']
         ];
+    }
+
+    public function checkEmpty()
+    {
+        if (empty($this->file)) {
+            $this->addError('file', Yii::t('app', 'This name has already been used.'));
+        }
     }
 
     /**
@@ -119,3 +126,4 @@ class ProductType extends \common\models\ProductType
         return ProductType::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
     }
 }
+
