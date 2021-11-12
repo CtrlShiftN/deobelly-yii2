@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\components\mail\MailServer;
 use common\components\SystemConstant;
 use frontend\models\Post;
 use frontend\models\Product;
@@ -202,7 +203,9 @@ class SiteController extends Controller
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->saveContactData()) {
-                ContactForm::sendReplyContact();
+                $title = Yii::t('app','You have a new contact!');
+                $htmlContent = Yii::t('app','You have a new contact!');
+                MailServer::sendMail($title,$htmlContent);
                 Yii::$app->session->setFlash('contactSuccess', 'Thank you for your feedback. We will reply to you soon.');
             } else {
                 Yii::$app->session->setFlash('contactError', 'Unable to submit a response. Please try again.');

@@ -65,10 +65,12 @@ class CartController extends \yii\web\Controller
      */
     public function actionIndex()
     {
-        $cart = Cart::getCartByUserId(\Yii::$app->user->identity->getId());
-        return $this->render('index', [
-            'cart' => $cart,
-        ]);
+        if (!empty(Yii::$app->user->identity->getId())) {
+            $cart = Cart::getCartByUserId(\Yii::$app->user->identity->getId());
+            return $this->render('index', [
+                'cart' => $cart,
+            ]);
+        }
     }
 
     /**
