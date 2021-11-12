@@ -4,8 +4,6 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $user common\models\User */
-$backendUrl = Yii::$app->params['backend'];
-$imgUrl = Yii::$app->params['common'] . "/media";
 ?>
 <div class="password-reset">
     Kính chào quý khách,<br/>
@@ -28,15 +26,19 @@ $imgUrl = Yii::$app->params['common'] . "/media";
                 <tr>
             <?php endif; ?>
             <td style="padding-left: 10px"><?= $order['SKU'] ?></td>
-            <td style="padding-left: 10px;width:120px;height:auto"><img src="<?= $imgUrl.'/'.$order['product_image'] ?>" style="width:100%"></td>
+            <td style="padding-left: 10px;width:120px;height:auto"><a
+                        href="<?= Yii::$app->params['frontend'] . "/shop/product-detail?detail=" . \common\components\encrypt\CryptHelper::encryptString($order['product_id']) ?>"><img
+                            src="<?= Yii::$app->params['common'] . "/media" . $order['product_image'] ?>"
+                            style="width:100%"></a></td>
             <td style="padding-left: 10px"><?= \common\models\Product::findOne($order['product_id'])['name'] ?></td>
             <td style="text-align: center"><?= \common\models\Color::findOne($order['color_id'])['name'] ?></td>
             <td style="text-align: center"><?= \common\models\Size::findOne($order['size_id'])['name'] ?></td>
             <td style="text-align: center"><?= $order['quantity'] ?></td>
-            <td style="text-align: center"><?= $order['quantity']*$order['product_price'] ?></td>
+            <td style="text-align: center"><?= $order['quantity'] * $order['product_price'] ?></td>
             </tr>
         <?php endforeach; ?>
-    </table><br/>
-    Kiểm tra ngay: <a href="<?= $backendUrl.'/order/' ?>">Go to Order manager.</a><br/>
+    </table>
+    <br/>
+    Kiểm tra ngay: <a href="<?= Yii::$app->params['backend'] . "/order/" ?>">Go to Order manager.</a><br/>
     <b>Xin chân thành cám ơn!</b>
 </div>
