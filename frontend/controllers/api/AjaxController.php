@@ -265,7 +265,6 @@ class AjaxController extends ActiveController
         $model->name = $data['nameNewsLetter'];
         $model->email = $data['emailNewsLetter'];
         if ($model->save(false)) {
-            ContactForm::sendReplyContact();
             Yii::$app->session->setFlash('creatNewsLetterSuccess', Yii::t('app', 'Submitted successfully!'));
         } else {
             Yii::$app->session->setFlash('creatNewsLetterError', Yii::t('app', 'Send failed.'));

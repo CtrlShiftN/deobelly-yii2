@@ -40,7 +40,7 @@ $arrShopShow = [Yii::t('app', 'Hide'), Yii::t('app', 'Show')];
             'format' => 'raw'
         ],
         [
-            'attribute' => 'show_shop',
+            'attribute' => 'shop_show',
             'value' => (!empty($arrShopShow[$model->shop_show])) ? $arrShopShow[$model->shop_show] : null,
             'type' => DetailView::INPUT_SELECT2,
             'widgetOptions' => [

@@ -186,9 +186,12 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
         $url = !empty($_REQUEST['ref']) ? $_REQUEST['ref'] : '/';
-        return $this->redirect($url);
+        if ($url != '/frontend/web/cart/index' || $url != '/frontend/web/cart') {
+            return $this->redirect($url);
+        } else {
+            return $this->redirect('/');
+        }
     }
 
     /**
@@ -202,7 +205,6 @@ class SiteController extends Controller
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->saveContactData()) {
-                ContactForm::sendReplyContact();
                 Yii::$app->session->setFlash('contactSuccess', 'Thank you for your feedback. We will reply to you soon.');
             } else {
                 Yii::$app->session->setFlash('contactError', 'Unable to submit a response. Please try again.');
