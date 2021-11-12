@@ -11,7 +11,6 @@ use backend\models\Size;
 use backend\models\TrackingStatus;
 use backend\models\User;
 use common\components\encrypt\CryptHelper;
-use common\components\mail\MailServer;
 use common\components\SystemConstant;
 use Yii;
 use yii\db\Query;

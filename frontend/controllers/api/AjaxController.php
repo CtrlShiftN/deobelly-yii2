@@ -5,7 +5,6 @@ namespace frontend\controllers\api;
 use common\components\encrypt\CryptHelper;
 use common\components\helpers\HeaderHelper;
 use common\components\helpers\ParamHelper;
-use common\components\mail\MailServer;
 use common\components\SystemConstant;
 use common\models\Contact;
 use common\models\Favorite;

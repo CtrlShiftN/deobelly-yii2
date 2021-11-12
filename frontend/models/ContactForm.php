@@ -92,16 +92,16 @@ class ContactForm extends Contact
         return $contactModel->save();
     }
 
-//    /**
-//     * @return bool
-//     */
-//    public static function sendReplyContact()
-//    {
-//        return Yii::$app->mailer->compose()
-//            ->setFrom(Yii::$app->params['senderEmail'])
-//            ->setTo(Yii::$app->params['adminEmail'])
-//            ->setSubject(Yii::t('app','You have a new contact!'))
-//            ->setHtmlBody(Yii::t('app','Customer has just created a contact. Check now!'))
-//            ->send();
-//    }
+    /**
+     * @return bool
+     */
+    public static function sendReplyContact()
+    {
+        return Yii::$app->mailer->compose()
+            ->setFrom(Yii::$app->params['senderEmail'])
+            ->setTo(Yii::$app->params['adminEmail'])
+            ->setSubject(Yii::t('app','You have a new contact!'))
+            ->setHtmlBody(Yii::t('app','Customer has just created a contact. Check now!'))
+            ->send();
+    }
 }

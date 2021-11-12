@@ -2,7 +2,6 @@
 
 namespace frontend\controllers;
 
-use common\components\mail\MailServer;
 use common\components\SystemConstant;
 use frontend\models\Post;
 use frontend\models\Product;

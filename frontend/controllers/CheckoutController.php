@@ -2,7 +2,6 @@
 
 namespace frontend\controllers;
 
-use common\components\mail\MailServer;
 use common\components\SystemConstant;
 use frontend\models\GeoLocation;
 use common\components\encrypt\CryptHelper;
