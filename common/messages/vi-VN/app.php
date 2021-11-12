@@ -502,4 +502,5 @@ return [
     'Get in touch' => 'Liên lạc',
     'About De-Obelly' => 'Về De-Obelly',
     'Thank you for registration!' => 'Cảm ơn bạn đã đăng ký!',
+    'Your orders are made successfully!' => 'Đơn hàng của bạn được đặt thành công!',
 ];
