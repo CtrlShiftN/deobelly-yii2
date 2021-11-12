@@ -91,20 +91,20 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-//    public function actionIndex()
-//    {
-//        $this->layout = 'blank';
-//        $type = array_values(ProductType::getCasualProductType());
-//        $slider = Slider::getSliderFromSite('index');
-//        $siteContent = SiteIndex::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
-//        return $this->render('index3', [
-//            'type' => $type,
-//            'slider' => $slider,
-//            'siteContent' => ArrayHelper::index($siteContent, null, 'section')
-//        ]);
-//    }
-
     public function actionIndex()
+    {
+        $this->layout = 'blank';
+        $type = array_values(ProductType::getCasualProductType());
+        $slider = Slider::getSliderFromSite('index');
+        $siteContent = SiteIndex::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
+        return $this->render('index3', [
+            'type' => $type,
+            'slider' => $slider,
+            'siteContent' => ArrayHelper::index($siteContent, null, 'section')
+        ]);
+    }
+
+    public function actionIndexDe()
     {
         $type = array_values(ProductType::getCasualProductType());
         $slider = Slider::getSliderFromSite('index');
@@ -147,7 +147,7 @@ class SiteController extends Controller
         $type = array_values(ProductType::getCasualProductType());
         $slider = Slider::getSliderFromSite('casual');
         $siteContent = SiteCasual::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
-        return $this->render('index', [
+        return $this->render('casual', [
             'type' => $type,
             'slider' => $slider,
             'siteContent' => ArrayHelper::index($siteContent, null, 'section')
@@ -187,9 +187,12 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
         $url = !empty($_REQUEST['ref']) ? $_REQUEST['ref'] : '/';
-        return $this->redirect($url);
+        if ($url != '/frontend/web/cart/index' || $url != '/frontend/web/cart') {
+            return $this->redirect($url);
+        } else {
+            return $this->redirect('/');
+        }
     }
 
     /**

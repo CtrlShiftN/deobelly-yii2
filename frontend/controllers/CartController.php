@@ -5,9 +5,11 @@ namespace frontend\controllers;
 use common\components\encrypt\CryptHelper;
 use frontend\models\Cart;
 use frontend\models\OrderForm;
+use phpDocumentor\Reflection\Types\This;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
 
 class CartController extends \yii\web\Controller
 {
@@ -61,11 +63,11 @@ class CartController extends \yii\web\Controller
     }
 
     /**
-     * @return string
+     * @return string|void
      */
     public function actionIndex()
     {
-        if (!empty(Yii::$app->user->identity->getId())) {
+        if (!Yii::$app->user->isGuest){
             $cart = Cart::getCartByUserId(\Yii::$app->user->identity->getId());
             return $this->render('index', [
                 'cart' => $cart,
