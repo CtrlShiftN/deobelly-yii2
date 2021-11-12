@@ -79,6 +79,7 @@ class Cart extends \common\models\Cart
                 'p.quantity as p-quantity',
                 'p.selling_price as p-price',
                 'p.id as p-id',
+                'p.SKU as p-sku',
             ]
         )->from('cart as c')
             ->leftJoin('product as p', 'p.id = c.product_id')

@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\components\MailServer;
 use common\components\SystemConstant;
+use common\models\Product;
 use frontend\models\GeoLocation;
 use common\components\encrypt\CryptHelper;
 use common\models\Order;
