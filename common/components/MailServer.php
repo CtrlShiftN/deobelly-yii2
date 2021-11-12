@@ -20,7 +20,7 @@ class MailServer
                 ['html' => 'addOrderAdmin'],
                 ['orderModel' => $orderModel]
             )
-            ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->params['senderName'] . ' Supporter'])
+            ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->params['senderName']])
             ->setTo(Yii::$app->params['adminEmail'])
             ->setSubject($title)
             ->send();
@@ -33,7 +33,7 @@ class MailServer
             ->compose(
                 ['html' => 'addContactAdmin']
             )
-            ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->params['senderName'] . ' Supporter'])
+            ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->params['senderName']])
             ->setTo(Yii::$app->params['adminEmail'])
             ->setSubject($title)
             ->send();
@@ -54,7 +54,7 @@ class MailServer
                 ['html' => 'addOrderClient'],
                 ['orderModel' => $orderModel]
             )
-            ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->params['senderName'] . ' Supporter'])
+            ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->params['senderName']])
             ->setTo($receiver)
             ->setSubject($title)
             ->send();

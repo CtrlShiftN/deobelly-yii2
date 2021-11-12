@@ -7,7 +7,7 @@ use yii\helpers\Html;
 ?>
 <div class="password-reset">
     Kính chào quý khách,<br/>
-    Một đơn hàng mới vừa được tạo bởi người dùng có Username: <b><?= Yii::$app->user->identity->username ?></b><br/>
+    Một đơn hàng mới vừa được tạo bởi người dùng: <b><?= Yii::$app->user->identity->username ?></b><br/>
     Đơn hàng bao gồm:<br/><br/>
     <table cellpadding="0" cellspacing="0" width="100%" border="1px solid #C0C0C0">
         <tr>
@@ -26,10 +26,11 @@ use yii\helpers\Html;
                 <tr>
             <?php endif; ?>
             <td style="padding-left: 10px"><?= $order['SKU'] ?></td>
-            <td style="padding-left: 10px;width:120px;height:auto"><a
-                        href="<?= Yii::$app->params['frontend'] . "/shop/product-detail?detail=" . \common\components\encrypt\CryptHelper::encryptString($order['product_id']) ?>"><img
-                            src="<?= Yii::$app->params['common'] . "/media" . $order['product_image'] ?>"
-                            style="width:100%"></a></td>
+            <td style="padding: 10px;width:120px;">
+                <a href="<?= Yii::$app->params['frontend'] . "/shop/product-detail?detail=" . \common\components\encrypt\CryptHelper::encryptString($order['product_id']) ?>">
+                    <img src="<?= Yii::$app->params['common'] . '/media/' . $order['product_image'] ?>"
+                         alt="<?= \common\models\Product::findOne($order['product_id'])['name'] ?>" style="width: 100%">
+                </a></td>
             <td style="padding-left: 10px"><?= \common\models\Product::findOne($order['product_id'])['name'] ?></td>
             <td style="text-align: center"><?= \common\models\Color::findOne($order['color_id'])['name'] ?></td>
             <td style="text-align: center"><?= \common\models\Size::findOne($order['size_id'])['name'] ?></td>

@@ -122,9 +122,10 @@ class CheckoutController extends \yii\web\Controller
                     }
                 }
                 // send mail to inform admin & client
-                $mailSubjectAdmin = Yii::t('app', 'A new order has been initialized.');
+                $skuStr = implode(' + ', ArrayHelper::getColumn($arrOrderInformMail, 'SKU'));
+                $mailSubjectAdmin = Yii::t('app', 'A new order has been initialized.') . '! SKU: ' . $skuStr;
                 MailServer::sendMailOrderInformAdmin($mailSubjectAdmin, $arrOrderInformMail);
-                $mailSubjectCustomer = Yii::t('app', 'De Obelly - Order placed successfully');
+                $mailSubjectCustomer = Yii::t('app', 'De Obelly - Order placed successfully') . '! SKU: ' . $skuStr;
                 MailServer::sendMailOrderInformCustomer($mailSubjectCustomer, $model['email'], $arrOrderInformMail);
                 // ./ send mail to inform admin & client
                 if ($count == count($cart)) {
