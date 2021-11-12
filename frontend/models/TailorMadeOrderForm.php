@@ -61,7 +61,7 @@ class TailorMadeOrderForm extends TailorMadeOrder
             [['created_at', 'updated_at'], 'safe'],
             [['customer_name', 'customer_tel', 'customer_email', 'body_image'], 'string', 'max' => 255],
             ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
-            ['customer_tel', 'validateTel'],
+            ['customer_tel', 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app', 'Includes 10 digits starting with 0 or 84.')],
         ];
     }
 

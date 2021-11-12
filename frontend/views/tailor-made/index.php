@@ -4,6 +4,7 @@
 use yii\helpers\Url;
 
 $this->registerCssFile(Url::toRoute('css/tailor-made.css'));
+$this->registerCssFile(Url::toRoute("css/success_error-icon.css"));
 $this->title = Yii::t('app', 'Tailor Made');
 $imgUrl = Yii::$app->params['common'] . '/media';
 $this->registerCss(".quote-section{
@@ -15,6 +16,32 @@ background-size: cover;
 position: relative;
 }");
 ?>
+<?php if (Yii::$app->session->hasFlash('orderSuccess')): ?>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"
+            id='btnModalSuccess' hidden>
+    </button>
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="swal2-icon swal2-success swal2-animate-success-icon d-flex">
+                        <div class="swal2-success-circular-line-left"></div>
+                        <span class="swal2-success-line-tip"></span>
+                        <span class="swal2-success-line-long"></span>
+                        <div class="swal2-success-ring"></div>
+                        <div class="swal2-success-fix"></div>
+                        <div class="swal2-success-circular-line-right"></div>
+                    </div>
+                    <div class='text-center text-uppercase'>
+                        <h2 class="mx-0 mb-3 text-success fw-light"><?= Yii::t('app', 'Successfully!') ?></h2>
+                        <p class="mx-0 mb-4"><?= Yii::t('app', Yii::$app->session->getFlash('orderSuccess')) ?></p>
+                        <button type="button" data-bs-dismiss="modal" id='btnModalClose' hidden></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
 <div class="tailor-made">
     <div class="full-width">
         <div class="hero-image text-center">
@@ -103,3 +130,11 @@ position: relative;
         </div>
     </section>
 </div>
+<?php if (Yii::$app->session->hasFlash('orderSuccess')): ?>
+    <script>
+        $('#btnModalSuccess').trigger("click");
+        setTimeout(function () {
+            $('#btnModalClose').trigger("click");
+        }, 2000);
+    </script>
+<?php endif; ?>
