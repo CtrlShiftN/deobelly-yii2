@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\components\MailServer;
 use common\components\SystemConstant;
+use common\models\Product;
 use frontend\models\GeoLocation;
 use common\components\encrypt\CryptHelper;
 use common\models\Order;
@@ -100,8 +101,12 @@ class CheckoutController extends \yii\web\Controller
                     $orderModel->created_at = date('Y-m-d H:i:s');
                     $orderModel->updated_at = date('Y-m-d H:i:s');
                     if ($orderModel->save(false)) {
+                        $productModel = Product::findOne($orderModel->product_id);
                         $arrOrderInformMail[$key]['product_id'] = $orderModel->product_id;
                         $arrOrderInformMail[$key]['color_id'] = $orderModel->color_id;
+                        $arrOrderInformMail[$key]['SKU'] = $productModel->SKU;
+                        $arrOrderInformMail[$key]['product_image'] = $productModel->image;
+                        $arrOrderInformMail[$key]['product_price'] = $productModel->selling_price;
                         $arrOrderInformMail[$key]['size_id'] = $orderModel->size_id;
                         $arrOrderInformMail[$key]['quantity'] = $orderModel->quantity;
                         $cartModel = \common\models\Cart::findOne($cartId);
@@ -119,7 +124,7 @@ class CheckoutController extends \yii\web\Controller
                 // send mail to inform admin & client
                 $mailSubjectAdmin = Yii::t('app', 'A new order has been initialized.');
                 MailServer::sendMailOrderInformAdmin($mailSubjectAdmin, $arrOrderInformMail);
-                $mailSubjectCustomer = Yii::t('app', 'Your orders are made successfully!');
+                $mailSubjectCustomer = Yii::t('app', 'De Obelly - Order placed successfully');
                 MailServer::sendMailOrderInformCustomer($mailSubjectCustomer, $model['email'], $arrOrderInformMail);
                 // ./ send mail to inform admin & client
                 if ($count == count($cart)) {
