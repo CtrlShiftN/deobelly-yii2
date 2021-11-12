@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\components\MailServer;
 use common\components\SystemConstant;
 use frontend\models\GeoLocation;
 use common\components\encrypt\CryptHelper;
@@ -76,6 +77,7 @@ class CheckoutController extends \yii\web\Controller
                 $arrCartId = CryptHelper::decryptAllElementInArray(explode(',', $order['cart']));
                 $arrProductId = CryptHelper::decryptAllElementInArray(explode(',', $order['product_id']));
                 $count = 0;
+                $arrOrderInformMail = [];
                 foreach ($arrCartId as $key => $cartId) {
                     $orderModel = new Order();
                     $orderModel->user_id = Yii::$app->user->identity->getId();
@@ -98,6 +100,10 @@ class CheckoutController extends \yii\web\Controller
                     $orderModel->created_at = date('Y-m-d H:i:s');
                     $orderModel->updated_at = date('Y-m-d H:i:s');
                     if ($orderModel->save(false)) {
+                        $arrOrderInformMail[$key]['product_id'] = $orderModel->product_id;
+                        $arrOrderInformMail[$key]['color_id'] = $orderModel->color_id;
+                        $arrOrderInformMail[$key]['size_id'] = $orderModel->size_id;
+                        $arrOrderInformMail[$key]['quantity'] = $orderModel->quantity;
                         $cartModel = \common\models\Cart::findOne($cartId);
                         $cartModel->status = SystemConstant::STATUS_INACTIVE;
                         if (!$cartModel->save()) {
@@ -110,8 +116,13 @@ class CheckoutController extends \yii\web\Controller
                         die;
                     }
                 }
+                // send mail to inform admin & client
+                $mailSubjectAdmin = Yii::t('app', 'A new order has been initialized.');
+                MailServer::sendMailOrderInformAdmin($mailSubjectAdmin, $arrOrderInformMail);
+                $mailSubjectCustomer = Yii::t('app', 'Your orders are made successfully!');
+                MailServer::sendMailOrderInformCustomer($mailSubjectCustomer, $model['email'], $arrOrderInformMail);
+                // ./ send mail to inform admin & client
                 if ($count == count($cart)) {
-                    OrderForm::sendReportOrder();
                     Yii::$app->session->setFlash('creatOrderSuccess', Yii::t('app', 'Your order has been initialized.'));
                     return $this->redirect(\yii\helpers\Url::toRoute('cart/index'));
                 } else {
