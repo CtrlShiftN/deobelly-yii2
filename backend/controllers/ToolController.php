@@ -177,7 +177,13 @@ class ToolController extends \yii\web\Controller
 
     private function getSliderSiteIndex()
     {
-        return ['index' => Yii::t('app', 'Homepage'), 'our-stories' => Yii::t('app', 'Introduction')];
+        return [
+            'index' => Yii::t('app', 'Homepage'),
+            'our-stories' => Yii::t('app', 'Introduction'),
+            'casual' => Yii::t('app', 'Casual'),
+            'luxury' => Yii::t('app', 'Luxury'),
+            'shop' => Yii::t('app', 'Shop'),
+        ];
     }
 
     /**
