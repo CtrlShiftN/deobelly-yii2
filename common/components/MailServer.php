@@ -26,6 +26,19 @@ class MailServer
             ->send();
     }
 
+    public static function sendMailContactAdmin($title)
+    {
+        return Yii::$app
+            ->mailer
+            ->compose(
+                ['html' => 'addContactAdmin']
+            )
+            ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->params['senderName'] . ' Supporter'])
+            ->setTo(Yii::$app->params['adminEmail'])
+            ->setSubject($title)
+            ->send();
+    }
+
     /**
      * @param $title
      * @param $htmlContent
