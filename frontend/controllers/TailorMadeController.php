@@ -95,6 +95,7 @@ class TailorMadeController extends \yii\web\Controller
             $model->updated_at = date('Y-m-d H:i:s');
             $model->user_id = (Yii::$app->user->isGuest) ? null : Yii::$app->user->identity->getId();
             if ($model->save(false)) {
+                Yii::$app->session->setFlash('orderSuccess', Yii::t('app', 'Successful order!'));
                 return $this->redirect(Url::toRoute('tailor-made/'));
             }
         }
@@ -124,6 +125,7 @@ class TailorMadeController extends \yii\web\Controller
             $model->updated_at = date('Y-m-d H:i:s');
             $model->user_id = (Yii::$app->user->isGuest) ? null : Yii::$app->user->identity->getId();
             if ($model->save(false)) {
+                Yii::$app->session->setFlash('orderSuccess', Yii::t('app', 'Successful order!'));
                 return $this->redirect(Url::toRoute('tailor-made/'));
             }
         }
@@ -153,6 +155,7 @@ class TailorMadeController extends \yii\web\Controller
             $model->updated_at = date('Y-m-d H:i:s');
             $model->user_id = (Yii::$app->user->isGuest) ? null : Yii::$app->user->identity->getId();
             if ($model->save(false)) {
+                Yii::$app->session->setFlash('orderSuccess', Yii::t('app', 'Successful order!'));
                 return $this->redirect(Url::toRoute('tailor-made/'));
             }
         }
