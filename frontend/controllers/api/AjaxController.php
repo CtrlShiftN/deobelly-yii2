@@ -260,15 +260,25 @@ class AjaxController extends ActiveController
 
     public function actionCreateContact()
     {
-        $model = new Contact();
         $data = Yii::$app->request->post();
-        $model->name = $data['nameNewsLetter'];
-        $model->email = $data['emailNewsLetter'];
-        if ($model->save(false)) {
-            Yii::$app->session->setFlash('creatNewsLetterSuccess', Yii::t('app', 'Submitted successfully!'));
-        } else {
-            Yii::$app->session->setFlash('creatNewsLetterError', Yii::t('app', 'Send failed.'));
+        if ($data){
+            $model = Contact::findOne([
+                'name' => $data['nameNewsLetter'],
+                'email' => $data['emailNewsLetter'],
+            ]);
+            if (empty($model)) {
+                $contactModel = new Contact();
+                $contactModel->name = $data['nameNewsLetter'];
+                $contactModel->email = $data['emailNewsLetter'];
+                if ($contactModel->save(false)) {
+                    Yii::$app->session->setFlash('creatNewsLetterSuccess', Yii::t('app', 'Submitted successfully!'));
+                } else {
+                    Yii::$app->session->setFlash('creatNewsLetterError', Yii::t('app', 'Send failed.'));
+                }
+            } else {
+                Yii::$app->session->setFlash('creatNewsLetterSuccess', Yii::t('app', 'Submitted successfully!'));
+            }
+            return $this->redirect(\yii\helpers\Url::toRoute('site/'));
         }
-        return $this->redirect(\yii\helpers\Url::toRoute('site/'));
     }
 }
