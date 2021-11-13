@@ -24,7 +24,7 @@ use Yii;
  * @property string $email
  * @property string $tel
  * @property int $admin_id
- * @property int $logistic_method 0:home delivery, 1:pick up at the store
+ * @property int $logistic_method 0:home delivery, 1:receiver at store
  * @property int|null $status 0 - new,1 - processing,2 - approved,3 - shipping,4 - finished,5- cancelled,6 - expired,7 - returned,8 - postpone,9 - rejected,10 - failed,11 - fake
  * @property string|null $created_at
  * @property string|null $updated_at
@@ -82,5 +82,13 @@ class Order extends \yii\db\ActiveRecord
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function getLogisticMethod()
+    {
+        return [Yii::t('app', 'Home delivery'), Yii::t('app', 'Get at store')];
     }
 }
