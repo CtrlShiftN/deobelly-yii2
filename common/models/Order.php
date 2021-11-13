@@ -50,7 +50,6 @@ class Order extends \yii\db\ActiveRecord
             [['address', 'notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['BL_code', 'specific_address', 'name', 'email', 'tel'], 'string', 'max' => 255],
-            [['BL_code'], 'unique'],
         ];
     }
 

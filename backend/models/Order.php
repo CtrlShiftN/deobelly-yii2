@@ -53,7 +53,6 @@ class Order extends \common\models\Order
             [['address', 'notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['BL_code', 'specific_address', 'name', 'email', 'tel'], 'string', 'max' => 255],
-            [['BL_code'], 'unique'],
             [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app', 'Includes 10 digits starting with 0 or 84.')],
         ];
     }

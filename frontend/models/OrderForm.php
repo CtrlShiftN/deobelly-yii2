@@ -63,7 +63,6 @@ class OrderForm extends Order
             [['cart', 'address', 'notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['BL_code','specific_address', 'tel'], 'string', 'max' => 255],
-            [['BL_code'], 'unique'],
             ['tel', 'required', 'message' => Yii::t('app', 'Phone number can not be blank.')],
             [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app', 'Includes 10 digits starting with 0 or 84.')],
         ];

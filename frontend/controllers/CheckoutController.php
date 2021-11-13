@@ -79,8 +79,10 @@ class CheckoutController extends \yii\web\Controller
                 $arrProductId = CryptHelper::decryptAllElementInArray(explode(',', $order['product_id']));
                 $count = 0;
                 $arrOrderInformMail = [];
+                $BL_code = 'DE'.date('YmdHis').chr(rand(97,122)).rand(1,9);
                 foreach ($arrCartId as $key => $cartId) {
                     $orderModel = new Order();
+                    $orderModel->BL_code = $BL_code;
                     $orderModel->user_id = Yii::$app->user->identity->getId();
                     $orderModel->product_id = intval($arrProductId[$key]);
                     $orderModel->color_id = intval(explode(',', $order['color_id'])[$key]);
@@ -102,6 +104,7 @@ class CheckoutController extends \yii\web\Controller
                     $orderModel->updated_at = date('Y-m-d H:i:s');
                     if ($orderModel->save(false)) {
                         $productModel = Product::findOne($orderModel->product_id);
+                        $arrOrderInformMail[$key]['BL_code'] = $BL_code;
                         $arrOrderInformMail[$key]['product_id'] = $orderModel->product_id;
                         $arrOrderInformMail[$key]['color_id'] = $orderModel->color_id;
                         $arrOrderInformMail[$key]['SKU'] = $productModel->SKU;
@@ -122,10 +125,9 @@ class CheckoutController extends \yii\web\Controller
                     }
                 }
                 // send mail to inform admin & client
-                $skuStr = implode(' + ', ArrayHelper::getColumn($arrOrderInformMail, 'SKU'));
-                $mailSubjectAdmin = Yii::t('app', 'A new order has been initialized.') . '! SKU: ' . $skuStr;
+                $mailSubjectAdmin = Yii::t('app', 'A new order has been initialized.') . '! B/L code: ' . $BL_code;
                 MailServer::sendMailOrderInformAdmin($mailSubjectAdmin, $arrOrderInformMail);
-                $mailSubjectCustomer = Yii::t('app', 'De Obelly - Order placed successfully') . '! SKU: ' . $skuStr;
+                $mailSubjectCustomer = 'De Obelly - Order '. $BL_code .' placed successfully';
                 MailServer::sendMailOrderInformCustomer($mailSubjectCustomer, $model['email'], $arrOrderInformMail);
                 // ./ send mail to inform admin & client
                 if ($count == count($cart)) {
