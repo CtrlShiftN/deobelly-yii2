@@ -91,7 +91,7 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndexDe()
     {
         $this->layout = 'blank';
         $type = array_values(ProductType::getCasualProductType());
@@ -104,7 +104,7 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionIndexDe()
+    public function actionIndex()
     {
         $type = array_values(ProductType::getCasualProductType());
         $slider = Slider::getSliderFromSite('index');
