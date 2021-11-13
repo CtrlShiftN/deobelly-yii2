@@ -4,14 +4,9 @@ namespace backend\controllers;
 
 use backend\models\User;
 use backend\models\UserSearch;
-use common\components\encrypt\CryptHelper;
-use Yii;
-use yii\filters\AccessControl;
-use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\helpers\json;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -26,41 +21,14 @@ class UserController extends Controller
         return array_merge(
             parent::behaviors(),
             [
-                'access' => [
-                    'class' => AccessControl::className(),
-                    'rules' => [
-                        [
-                            'allow' => true,
-                            'roles' => ['@'],
-                        ]
-                    ],
-                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
-                        'delete' => ['POST', 'GET'],
+                        'delete' => ['POST'],
                     ],
                 ],
             ]
         );
-    }
-
-    /**
-     * @param \yii\base\Action $action
-     * @return bool
-     * @throws \yii\web\BadRequestHttpException
-     */
-    public function beforeAction($action)
-    {
-        if (Yii::$app->user->identity->getRole() != 1) {
-            $this->goHome();
-        }
-
-        $this->layout = 'adminlte3';
-        if (!parent::beforeAction($action)) {
-            return false;
-        }
-        return true; // or false to not run the action
     }
 
     /**
@@ -71,19 +39,6 @@ class UserController extends Controller
     {
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-
-        if (Yii::$app->request->post('hasEditable')) {
-            // which rows has been edited?
-            $_id = $_POST['editableKey'];
-            $_index = $_POST['editableIndex'];
-            // which attribute has been edited?
-            $attribute = $_POST['editableAttribute'];
-            // update to db
-            $value = $_POST['User'][$_index][$attribute];
-            $result = User::updateUser($_id, $attribute, $value);
-            // response to gridview
-            return json_encode($result);
-        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -99,7 +54,6 @@ class UserController extends Controller
      */
     public function actionView($id)
     {
-        $id = CryptHelper::decryptString($id);
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -113,25 +67,10 @@ class UserController extends Controller
     public function actionCreate()
     {
         $model = new User();
-        $model->scenario = 'create';
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post())) {
-                if ($model->password_hash) {
-                    $model->setPassword($model->password_hash);
-                }
-                $model->generateAuthKey();
-                $model->generatePasswordResetToken();
-                if (!empty($model->email)) {
-                    $model->username = strstr($model->email, '@', true);
-                    $model->referral_code = strstr($model->email, '@', true);
-                }
-                $model->created_at = date('Y-m-d H:m:s');
-                $model->updated_at = date('Y-m-d H:m:s');
-                $model->status = $model::STATUS_ACTIVE;
-                if ($model->save()) {
-                    return $this->redirect(Url::toRoute('user/'));
-                }
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();
@@ -151,25 +90,10 @@ class UserController extends Controller
      */
     public function actionUpdate($id)
     {
-        $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post())) {
-            if (!empty($model->password_hash)) {
-                $model->setPassword($model->password_hash);
-            }
-            $model->generateAuthKey();
-            $model->generatePasswordResetToken();
-            if (!empty($model->email)) {
-                $model->username = strstr($model->email, '@', true);
-                $model->referral_code = strstr($model->email, '@', true);
-            }
-            $model->created_at = date('Y-m-d H:m:s');
-            $model->updated_at = date('Y-m-d H:m:s');
-            $model->status = $model::STATUS_ACTIVE;
-            if ($model->save()) {
-                return $this->redirect(Url::toRoute('user/'));
-            }
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -186,7 +110,6 @@ class UserController extends Controller
      */
     public function actionDelete($id)
     {
-        $id = CryptHelper::decryptString($id);
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -205,6 +128,6 @@ class UserController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 }

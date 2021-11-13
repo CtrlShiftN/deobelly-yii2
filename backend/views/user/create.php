@@ -5,12 +5,14 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\User */
 
-$this->title = 'Thêm tài khoản mới';
+$this->title = Yii::t('app', 'Create User');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-create">
-    <div class="container px-3 pt-3">
-        <h3 class="text-uppercase"><?= Yii::t('app', 'Add new account') ?></h3>
-    </div>
+
+    <h1><?= Html::encode($this->title) ?></h1>
+
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

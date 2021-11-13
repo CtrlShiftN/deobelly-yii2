@@ -2,7 +2,6 @@
 
 namespace backend\models;
 
-use common\components\SystemConstant;
 use Yii;
 
 /**
@@ -24,9 +23,18 @@ use Yii;
  * @property string $created_at
  * @property string $updated_at
  * @property string|null $verification_token
+ * @property string|null $source
+ * @property string|null $source_id
  */
 class User extends \common\models\User
 {
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'user';
+    }
 
     /**
      * {@inheritdoc}
@@ -34,18 +42,17 @@ class User extends \common\models\User
     public function rules()
     {
         return [
-            [['username', 'name', 'auth_key', 'password_hash', 'email', 'referral_code', 'created_at', 'updated_at'], 'required', 'on' => 'create'],
+            [['username', 'name', 'auth_key', 'password_hash', 'email', 'referral_code', 'created_at', 'updated_at'], 'required'],
             [['verified_at', 'created_at', 'updated_at'], 'safe'],
             [['status', 'role'], 'integer'],
-            [['username', 'address', 'password_hash', 'password_reset_token', 'email', 'referral_code', 'verification_token'], 'string', 'max' => 255],
+            [['username', 'address', 'password_hash', 'password_reset_token', 'email', 'referral_code', 'verification_token', 'source', 'source_id'], 'string', 'max' => 255],
             [['name'], 'string', 'max' => 100],
             [['tel'], 'string', 'max' => 12],
-            ['tel', 'validateTel'],
             [['auth_key'], 'string', 'max' => 32],
-            [['username'], 'unique', 'targetClass' => User::className()],
-            [['email'], 'unique', 'targetClass' => User::className()],
-            [['referral_code'], 'unique', 'targetClass' => User::className()],
-            [['password_reset_token'], 'unique', 'targetClass' => User::className()],
+            [['username'], 'unique'],
+            [['email'], 'unique'],
+            [['referral_code'], 'unique'],
+            [['password_reset_token'], 'unique'],
         ];
     }
 
@@ -71,57 +78,8 @@ class User extends \common\models\User
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
             'verification_token' => Yii::t('app', 'Verification Token'),
+            'source' => Yii::t('app', 'Source'),
+            'source_id' => Yii::t('app', 'Source ID'),
         ];
-    }
-
-    /**
-     * @param $attribute
-     * @param $params
-     * @param $validator
-     */
-    public function validateTel($attribute, $params, $validator)
-    {
-        if (!preg_match('/^(84|0[1-9])+([0-9]{8})$/', $this->tel)) {
-            $this->addError($attribute, Yii::t('app', 'Invalid phone number.'));
-        }
-    }
-
-    /**
-     * @param $id
-     * @param $attribute
-     * @param $value
-     * @return int
-     */
-    public static function updateUser($id, $attribute, $value)
-    {
-        return \common\models\User::updateAll([$attribute => $value], ['id' => $id]);
-    }
-
-    /**
-     * @return array|\yii\db\ActiveRecord[]
-     */
-    public static function getAllUser()
-    {
-        return \common\models\User::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
-    }
-
-    /**
-     * @return array|\yii\db\ActiveRecord[]
-     */
-    public static function getAllCustomer()
-    {
-        return \common\models\User::find()
-            ->where(['status' => SystemConstant::STATUS_ACTIVE])
-            ->andWhere(['!=', 'role', 1])
-            ->asArray()->all();
-    }
-
-    /**
-     * @param int $user_id
-     * @return false|int|string|null
-     */
-    public static function findNameByID(int $user_id)
-    {
-        return User::find()->select('name')->where(['status' => SystemConstant::STATUS_ACTIVE, 'id' => $user_id])->scalar();
     }
 }
