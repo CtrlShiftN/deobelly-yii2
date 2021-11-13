@@ -30,7 +30,7 @@ class m211013_142705_create_order_table extends Migration
             'email' => $this->string()->notNull(),
             'tel' => $this->string()->notNull(),
             'admin_id' => $this->bigInteger()->notNull(),
-            'logistic_method' => $this->smallInteger()->notNull()->comment('0:home delivery, 1:pick up at the store'),
+            'logistic_method' => $this->smallInteger()->notNull()->comment('0:home delivery, 1:get at the store'),
             'status' => $this->smallInteger()->defaultValue(1)->comment('0 - new,1 - processing,2 - approved,3 - shipping,4 - finished,5- cancelled,6 - expired,7 - returned,8 - postpone,9 - rejected,10 - failed,11 - fake'),
             'created_at' => $this->dateTime(),
             'updated_at' => $this->dateTime(),
