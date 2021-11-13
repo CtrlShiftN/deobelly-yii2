@@ -125,5 +125,16 @@ class ProductType extends \common\models\ProductType
     {
         return ProductType::find()->where(['status' => SystemConstant::STATUS_ACTIVE])->asArray()->all();
     }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getCasualProductType()
+    {
+        return \frontend\models\ProductType::find()
+            ->andWhere(['and',['id' => SystemConstant::PRODUCT_TYPE_NEW],['status' => SystemConstant::STATUS_ACTIVE]])
+            ->orWhere(['and',['>=', 'id', 4],['status' => SystemConstant::STATUS_ACTIVE]])
+            ->asArray()->all();
+    }
 }
 

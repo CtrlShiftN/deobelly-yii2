@@ -69,12 +69,12 @@ class PasswordResetRequestForm extends Model
         return Yii::$app
             ->mailer
             ->compose(
-                ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
+                ['html' => 'passwordResetToken-html'],
                 ['user' => $user]
             )
             ->setFrom(Yii::$app->params['senderEmail'])
             ->setTo($this->email)
-            ->setSubject('Password reset for your De-Obelly account')
+            ->setSubject('De-Obelly - Password reset for your account')
             ->send();
     }
 }

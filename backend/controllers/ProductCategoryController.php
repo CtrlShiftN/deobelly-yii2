@@ -69,7 +69,7 @@ class ProductCategoryController extends Controller
     {
         $searchModel = new ProductCategorySearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-        $productTypes = ProductType::getAllTypes();
+        $productTypes = ProductType::getCasualProductType();
         if (Yii::$app->request->post('hasEditable')) {
             // which rows has been edited?
             $_id = $_POST['editableKey'];
@@ -119,7 +119,7 @@ class ProductCategoryController extends Controller
     public function actionCreate()
     {
         $model = new ProductCategory();
-        $productTypes = ProductType::getAllTypes();
+        $productTypes = ProductType::getCasualProductType();
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->slug = StringHelper::toSlug($model->name);

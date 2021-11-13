@@ -86,7 +86,7 @@ $commonUrl = Yii::$app->params['common'];
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 // list all type except new
-                'filter' => \common\components\helpers\SystemArrayHelper::removeElementAt(ArrayHelper::map($productTypes, 'id', 'name'), \common\components\SystemConstant::PRODUCT_TYPE_NEW),
+                'filter' => ArrayHelper::map($productTypes, 'id', 'name'),
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
