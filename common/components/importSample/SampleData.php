@@ -1564,7 +1564,7 @@ class SampleData
     protected static function insertSampleOrder()
     {
         $countOrder = 0;
-        foreach (self::$arrOrderInfo as $key => $value) {
+        foreach (self::$arrOrderInfo as $value) {
             $order = new Order();
             $order->BL_code = 'DE'.date('YmdHis').chr(rand(97,122)).rand(1,9);
             $order->user_id = $value['user_id'];

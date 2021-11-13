@@ -60,7 +60,7 @@ class Order extends \common\models\Order
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'BL_code' => Yii::t('app', 'Bl Code'),
+            'BL_code' => Yii::t('app', 'Bill of lading code'),
             'user_id' => Yii::t('app', 'User ID'),
             'product_id' => Yii::t('app', 'Product ID'),
             'color_id' => Yii::t('app', 'Color ID'),
