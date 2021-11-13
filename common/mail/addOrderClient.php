@@ -4,10 +4,11 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $user common\models\User */
+$siteContact = \common\models\SiteContact::find()->where(['status' => \common\components\SystemConstant::STATUS_ACTIVE])->asArray()->one();
 ?>
 <div class="password-reset">
     Kính chào quý khách,<br/>
-    Chúc mừng quý khách hàng đã đặt hàng thành công tại De Obelly!<br/>
+    <b>De Obelly</b> đã nhận được đơn đặt hàng của Quý khách vào <?= date('H:i d-m-Y') ?>.<br/>
     Đơn hàng của bạn gồm có:<br/><br/>
     <table cellpadding="0" cellspacing="0" width="100%" border="1px solid #C0C0C0">
         <tr>
@@ -43,5 +44,25 @@ use yii\helpers\Html;
     </table>
     <br/>
     <b>*Lưu ý:</b> Chi phí trên chưa bao gồm phí ship, VAT,...
-    <p>Xin chân thành cám ơn!</p>
+    <p><b>De Obelly</b> mong sớm nhận được đơn hàng tiếp theo từ Quý khách,</p>
+    <p style="padding-bottom: 15px">Xin chân thành cám ơn!</p>
+    <table style="width: 100%" width="100%">
+        <tr>
+            <td style="width: 20%">
+                <a href="<?= Yii::$app->params['frontend'] ?>">
+                    <img src="<?= Yii::$app->params['common'] . '/media/' . $siteContact['logo_link'] ?>"
+                         alt="<?= Yii::$app->params['senderName'] ?>" style="width: 100%">
+                </a>
+            </td>
+            <td style="width: 80%">
+                <h4><?= Yii::$app->params['senderName'] ?></h4>
+                <p>Hotline: <a style="text-decoration: none; color: #0b2e13"
+                               href="tel:<?= $siteContact['tel'] ?>"><?= $siteContact['tel'] ?></a></p>
+                <p>Email: <a style="text-decoration: none;color: #0b2e13"
+                             href="mailto:<?= $siteContact['email'] ?>"><?= $siteContact['email'] ?></a></p>
+                <p>Fanpage: <a style="text-decoration: none" href="https://www.facebook.com/deobellyvietnam">De Obelly</a></p>
+                <p><?= $siteContact['company_address'] ?></p>
+            </td>
+        </tr>
+    </table>
 </div>
