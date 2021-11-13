@@ -9,6 +9,7 @@ $siteContact = \common\models\SiteContact::find()->where(['status' => \common\co
 <div class="password-reset">
     Kính chào quý khách,<br/>
     <b>De Obelly</b> đã nhận được đơn đặt hàng của Quý khách vào <?= date('H:i d-m-Y') ?>.<br/>
+    Mã vận đơn của quý khách: <?= array_values($orderModel)[0]['BL_code'] ?>.<br/>
     Đơn hàng của bạn gồm có:<br/><br/>
     <table cellpadding="0" cellspacing="0" width="100%" border="1px solid #C0C0C0">
         <tr>

@@ -4,10 +4,12 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $user common\models\User */
+$siteContact = \common\models\SiteContact::find()->where(['status' => \common\components\SystemConstant::STATUS_ACTIVE])->asArray()->one();
 ?>
 <div class="password-reset">
     Kính chào quý khách,<br/>
     Một đơn hàng mới vừa được tạo bởi người dùng: <b><?= Yii::$app->user->identity->username ?></b><br/>
+    Mã vận đơn: <?= array_values($orderModel)[0]['BL_code'] ?>.<br/>
     Đơn hàng bao gồm:<br/><br/>
     <table cellpadding="0" cellspacing="0" width="100%" border="1px solid #C0C0C0">
         <tr>

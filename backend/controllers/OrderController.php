@@ -155,6 +155,7 @@ class OrderController extends Controller
         $locations = ArrayHelper::map(GeoLocation::getAllGeoLocation(), 'id', 'name');
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
+                $model->BL_code = 'DE'.date('YmdHis').chr(rand(97,122)).rand(1,9);
                 $model->address = $model['specific_address'] . ', ' . \frontend\models\GeoLocation::getNameGeoLocationById($model['village_id']) . ', ' . \frontend\models\GeoLocation::getNameGeoLocationById($model['district_id']) . ', ' . \frontend\models\GeoLocation::getNameGeoLocationById($model['province_id']);
                 $model->admin_id = Yii::$app->user->identity->getId();
                 $model->created_at = date('Y-m-d H:i:s');

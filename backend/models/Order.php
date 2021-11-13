@@ -9,6 +9,7 @@ use yii\db\Query;
  * This is the model class for table "order".
  *
  * @property int $id
+ * @property string $BL_code
  * @property int $user_id
  * @property int $product_id
  * @property int $color_id
@@ -45,13 +46,13 @@ class Order extends \common\models\Order
     public function rules()
     {
         return [
-            [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'specific_address', 'address', 'name', 'email', 'tel', 'admin_id', 'logistic_method'], 'required'],
+            [['BL_code', 'user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'specific_address', 'address', 'name', 'email', 'tel', 'admin_id', 'logistic_method'], 'required'],
             [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'admin_id', 'logistic_method', 'status'], 'integer'],
             [['email'], 'email', 'message' => Yii::t('app', 'Invalid email.')],
             [['quantity'], 'integer', 'min' => 1],
             [['address', 'notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['specific_address', 'name', 'email', 'tel'], 'string', 'max' => 255],
+            [['BL_code', 'specific_address', 'name', 'email', 'tel'], 'string', 'max' => 255],
             [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app', 'Includes 10 digits starting with 0 or 84.')],
         ];
     }
@@ -63,6 +64,7 @@ class Order extends \common\models\Order
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'BL_code' => Yii::t('app', 'Bill of lading code'),
             'user_id' => Yii::t('app', 'User'),
             'product_id' => Yii::t('app', 'Product'),
             'color_id' => Yii::t('app', 'Color'),
@@ -199,18 +201,5 @@ class Order extends \common\models\Order
             'badge-danger',
             'badge-danger',
         ];
-    }
-
-    /**
-     * @return bool
-     */
-    public static function sendReportOrder()
-    {
-        return Yii::$app->mailer->compose()
-            ->setFrom(Yii::$app->params['senderEmail'])
-            ->setTo(Yii::$app->params['adminEmail'])
-            ->setSubject(Yii::t('app','You have a new order!'))
-            ->setHtmlBody(Yii::t('app','An order has just been created. Check now!'))
-            ->send();
     }
 }

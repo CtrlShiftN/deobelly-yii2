@@ -3,6 +3,7 @@
 namespace common\components\importsample;
 
 use backend\models\SiteCasual;
+use common\components\encrypt\CryptHelper;
 use common\components\helpers\StringHelper;
 use common\components\SystemConstant;
 use common\models\Cart;
@@ -32,6 +33,7 @@ use common\models\User;
 use frontend\models\SiteLuxury;
 use frontend\models\Slider;
 use phpDocumentor\Reflection\Types\Self_;
+use Yii;
 use yii\base\Exception;
 use yii\helpers\Url;
 
@@ -1564,6 +1566,7 @@ class SampleData
         $countOrder = 0;
         foreach (self::$arrOrderInfo as $value) {
             $order = new Order();
+            $order->BL_code = 'DE'.date('YmdHis').chr(rand(97,122)).rand(1,9);
             $order->user_id = $value['user_id'];
             $order->product_id = $value['product_id'];
             if (!empty($value['color_id'])) {

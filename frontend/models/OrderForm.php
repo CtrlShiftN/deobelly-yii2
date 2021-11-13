@@ -2,8 +2,6 @@
 
 namespace frontend\models;
 
-use common\components\encrypt\CryptHelper;
-use common\components\SystemConstant;
 use common\models\Order;
 use Yii;
 
@@ -11,6 +9,7 @@ use Yii;
  * This is the model class for table "order".
  *
  * @property int $id
+ * @property string $BL_code
  * @property int $user_id
  * @property int $product_id
  * @property int $color_id
@@ -56,14 +55,14 @@ class OrderForm extends Order
             ['email', 'string', 'max' => 255],
             ['name', 'required', 'message' => '{attribute}' . Yii::t('app', ' can not be blank.')],
             ['name', 'string', 'max' => 100],
-            [['user_id', 'admin_id', 'logistic_method'], 'required'],
+            [['BL_code','user_id', 'admin_id', 'logistic_method'], 'required'],
             [['user_id', 'province_id', 'district_id', 'village_id', 'admin_id', 'logistic_method', 'status'], 'integer'],
             [['province_id', 'district_id', 'village_id', 'specific_address', 'address'], 'required', 'when' => function ($model) {
                 return $model->logistic_method == 0;
             }, 'whenClient' => "function (attribute, value) {return $('#sm-home-delivery').prop('checked');}"],
             [['cart', 'address', 'notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['specific_address', 'tel'], 'string', 'max' => 255],
+            [['BL_code','specific_address', 'tel'], 'string', 'max' => 255],
             ['tel', 'required', 'message' => Yii::t('app', 'Phone number can not be blank.')],
             [['tel'], 'match', 'pattern' => '/^(84|0)+([0-9]{9})$/', 'message' => Yii::t('app', 'Includes 10 digits starting with 0 or 84.')],
         ];
@@ -77,6 +76,7 @@ class OrderForm extends Order
         return [
             'cart' => Yii::t('app', 'Cart'),
             'id' => Yii::t('app', 'ID'),
+            'BL_code' => Yii::t('app', 'Bill of lading code'),
             'user_id' => Yii::t('app', 'User ID'),
             'name' => Yii::t('app', "Consignee's name"),
             'email' => Yii::t('app', 'Email'),

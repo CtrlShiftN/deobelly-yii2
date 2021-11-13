@@ -25,7 +25,7 @@ class OrderSearch extends Order
     {
         return [
             [['id', 'user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'admin_id', 'logistic_method', 'status'], 'integer'],
-            [['specific_address', 'address', 'notes', 'name', 'email', 'tel', 'created_at', 'updated_at'], 'safe'],
+            [['BL_code', 'specific_address', 'address', 'notes', 'name', 'email', 'tel', 'created_at', 'updated_at'], 'safe'],
             [['user_name', 'product_name', 'color_name', 'size_name'], 'safe']
         ];
     }
@@ -92,6 +92,7 @@ class OrderSearch extends Order
         // grid filtering conditions
         $query->andFilterWhere([
             'o.id' => $this->id,
+            'o.BL_code' => $this->BL_code,
             'o.user_id' => $this->user_id,
             'o.product_id' => $this->product_id,
             'o.color_id' => $this->color_id,

@@ -44,6 +44,16 @@ $arrLogisticMethod = [Yii::t('app', 'Home delivery'), Yii::t('app', 'Get at the 
                 'headerOptions' => ['class' => 'kartik-sheet-style']
             ],
             [
+                'attribute' => 'BL_code',
+                'label' => Yii::t('app', 'Bill of lading code'),
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'width' => '140px',
+                'value' => function ($model, $key, $index, $widget) {
+                    return $model['BL_code'];
+                },
+            ],
+            [
                 'attribute' => 'user_name',
                 'label' => Yii::t('app', 'Customer Name'),
                 'vAlign' => 'middle',

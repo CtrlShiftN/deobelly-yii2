@@ -503,4 +503,7 @@ return [
     'About De-Obelly' => 'Về De-Obelly',
     'Thank you for registration!' => 'Cảm ơn bạn đã đăng ký!',
     'Your orders are made successfully!' => 'Đơn hàng của bạn được đặt thành công!',
+    'Bill of lading code' => 'Mã vận đơn',
+    'Billing code:' => 'Mã đơn:',
+    'Your billing code:' => 'Mã đơn của bạn:',
 ];

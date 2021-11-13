@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "order".
  *
  * @property int $id
+ * @property string $BL_code
  * @property int $user_id
  * @property int $product_id
  * @property int $color_id
@@ -44,11 +45,11 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'specific_address', 'address', 'name', 'email', 'tel', 'admin_id', 'logistic_method'], 'required'],
+            [['BL_code', 'user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'specific_address', 'address', 'name', 'email', 'tel', 'admin_id', 'logistic_method'], 'required'],
             [['user_id', 'product_id', 'color_id', 'size_id', 'quantity', 'province_id', 'district_id', 'village_id', 'admin_id', 'logistic_method', 'status'], 'integer'],
             [['address', 'notes'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['specific_address', 'name', 'email', 'tel'], 'string', 'max' => 255],
+            [['BL_code', 'specific_address', 'name', 'email', 'tel'], 'string', 'max' => 255],
         ];
     }
 
@@ -59,6 +60,7 @@ class Order extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'BL_code' => Yii::t('app', 'Bl Code'),
             'user_id' => Yii::t('app', 'User ID'),
             'product_id' => Yii::t('app', 'Product ID'),
             'color_id' => Yii::t('app', 'Color ID'),
@@ -84,7 +86,8 @@ class Order extends \yii\db\ActiveRecord
     /**
      * @return array
      */
-    public static function getLogisticMethod(){
-        return [Yii::t('app','Home delivery'),Yii::t('app','Get at store')];
+    public static function getLogisticMethod()
+    {
+        return [Yii::t('app', 'Home delivery'), Yii::t('app', 'Get at store')];
     }
 }
