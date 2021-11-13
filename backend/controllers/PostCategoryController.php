@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\models\PostCategory;
 use backend\models\PostCategorySearch;
+use common\components\encrypt\CryptHelper;
 use common\components\helpers\StringHelper;
 use common\components\SystemConstant;
 use Yii;
@@ -164,6 +165,7 @@ class PostCategoryController extends Controller
      */
     public function actionDelete($id)
     {
+        $id = CryptHelper::decryptString($id);
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

@@ -14,6 +14,7 @@ class m211013_142705_create_order_table extends Migration
     {
         $this->createTable('{{%order}}', [
             'id' => $this->primaryKey(),
+            'BL_code' => $this->string()->unique()->notNull(),
             'user_id' => $this->bigInteger()->notNull(),
             'product_id' => $this->bigInteger()->notNull(),
             'color_id' => $this->smallInteger()->notNull(),

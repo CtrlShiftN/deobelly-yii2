@@ -15,8 +15,14 @@ class SystemArrayHelper
     {
         $tempArr = [];
         foreach ($array as $key => $value) {
-            if ($key != $index){
-                $tempArr[$key] = $value;
+            if(is_array($index)){
+                if (!in_array($key,$index)){
+                    $tempArr[$key] = $value;
+                }
+            } else {
+                if ($key != $index){
+                    $tempArr[$key] = $value;
+                }
             }
         }
         return $tempArr;
