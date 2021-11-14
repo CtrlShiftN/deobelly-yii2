@@ -602,7 +602,7 @@ AppAsset::register($this);
                     <span>Copyright &copy; <?= date('Y') ?> by DE OBELLY</span>
                 </div>
             </footer>
-            <div id="back-to-top" class="d-block">
+            <div id="back-to-top">
                 <i class="fa fa-angle-up" aria-hidden="true"></i>
             </div>
         </div>
@@ -622,17 +622,18 @@ AppAsset::register($this);
         chatbox.setAttribute("page_id", "101740955648709");
         chatbox.setAttribute("attribution", "biz_inbox");
 
-        window.fbAsyncInit = function() {
+        window.fbAsyncInit = function () {
             FB.init({
-                xfbml            : true,
-                version          : 'v12.0'
+                xfbml: true,
+                version: 'v12.0'
             });
         };
 
-        (function(d, s, id) {
+        (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
+            js = d.createElement(s);
+            js.id = id;
             js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
@@ -672,8 +673,9 @@ AppAsset::register($this);
     </script>
     <script>
         $(document).ready(function () {
-            let offset = 220;
+            let offset = window.innerHeight / 1.5;
             let duration = 500;
+            $('#back-to-top').hide();
             jQuery(window).scroll(function () {
                 if (jQuery(this).scrollTop() >= offset) {
                     jQuery('#back-to-top').fadeIn(duration);
