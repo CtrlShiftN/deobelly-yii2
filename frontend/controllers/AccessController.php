@@ -53,8 +53,7 @@ class AccessController extends Controller
         } else {
             if ($user) {
                 Yii::$app->user->login($user);
-                $url = !empty($_REQUEST['ref']) ? $_REQUEST['ref'] : '/';
-                return $this->redirect($url);
+                return $this->goHome();
             } else {
                 $userModel = new User();
                 $userModel->email = $attributes['email'];
@@ -76,8 +75,7 @@ class AccessController extends Controller
                         'source_id' => $attributes['id']
                     ]);
                     Yii::$app->user->login($_user);
-                    $url = !empty($_REQUEST['ref']) ? $_REQUEST['ref'] : '/';
-                    return $this->redirect($url);
+                    return $this->goHome();
                 }
             }
         }
