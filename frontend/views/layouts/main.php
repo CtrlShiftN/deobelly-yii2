@@ -674,7 +674,7 @@ AppAsset::register($this);
     <script>
         $(document).ready(function () {
             let offset = window.innerHeight / 1.5;
-            let duration = 500;
+            let duration = 350;
             $('#back-to-top').hide();
             jQuery(window).scroll(function () {
                 if (jQuery(this).scrollTop() >= offset) {
