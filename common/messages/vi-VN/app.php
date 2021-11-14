@@ -506,4 +506,6 @@ return [
     'Bill of lading code' => 'Mã vận đơn',
     'Billing code:' => 'Mã đơn:',
     'Your billing code:' => 'Mã đơn của bạn:',
+    'A new order has been initialized!' => 'Một đơn hàng vừa được khởi tạo!',
+    'De-Obelly - Order placed successfully!' => 'De-Obelly - Đặt hàng thành công!',
 ];
