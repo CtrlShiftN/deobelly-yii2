@@ -237,28 +237,20 @@ function addToFavorite(obj) {
                 toast.show();
                 $('#toastBoard, #liveToast').addClass('bg-success text-light');
                 $('#toastBoard').css('width', '300px');
-                $('#back-to-top').css('bottom', '65px');
-                $('.phone-call').css('bottom', '110px');
                 setTimeout(function () {
                     toast.hide(200);
                     $('#toastNotify').html('');
                     $('#toastBoard').css('width', '260px');
-                    $('#back-to-top').css('bottom', '5px');
-                    $('.phone-call').css('bottom', '50px');
                 }, 2000);
             } else {
                 $('#toastNotify').html('<i class="far fa-times-circle"></i> ' + arrRes.message);
                 toast.show();
                 $('#toastBoard, #liveToast').addClass('bg-danger text-light');
                 $('#toastBoard').css('width', '300px');
-                $('#back-to-top').css('bottom', '65px');
-                $('.phone-call').css('bottom', '110px');
                 setTimeout(function () {
                     toast.hide(200);
                     $('#toastNotify').html('');
                     $('#toastBoard').css('width', '260px');
-                    $('#back-to-top').css('bottom', '65px');
-                    $('.phone-call').css('bottom', '110px');
                 }, 2000);
             }
         });
