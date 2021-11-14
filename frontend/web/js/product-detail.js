@@ -65,14 +65,10 @@ function requestData() {
         toast.show();
         $('#toastBoard, #liveToast').addClass('bg-success text-light');
         $('#lblCartCount').html(arrRes.count);
-        $('#back-to-top').css('bottom', '65px');
-        $('.phone-call').css('bottom', '110px');
         setTimeout(function () {
             toast.hide(200);
             $('#toastNotify').html('');
             $('#toastBoard, #liveToast').removeClass('bg-success text-light');
-            $('#back-to-top').css('bottom', '5px');
-            $('.phone-call').css('bottom', '50px');
         }, 2000);
     });
     request.fail(function (response) {

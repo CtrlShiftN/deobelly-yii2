@@ -212,7 +212,7 @@ function addToFavorite(obj) {
                 let toast = new bootstrap.Toast(toastLive);
                 $('#toastNotify').html('<i class="fas fa-check-circle"></i> ' + arrRes.message);
                 toast.show();
-                $('#toastBoard, #liveToast').addClass('bg-success text-light');
+                $('#toastBoard, #liveToast').removeClass('bg-danger text-light').addClass('bg-success text-light');
                 setTimeout(function () {
                     toast.hide(200);
                     $('#toastNotify').html('');
@@ -221,7 +221,7 @@ function addToFavorite(obj) {
                 let toast = new bootstrap.Toast(toastLive);
                 $('#toastNotify').html('<i class="far fa-frown-open"></i> ' + arrRes.message);
                 toast.show();
-                $('#toastBoard, #liveToast').addClass('bg-danger text-light');
+                $('#toastBoard, #liveToast').removeClass('bg-success text-light').addClass('bg-danger text-light');
                 setTimeout(function () {
                     toast.hide(200);
                     $('#toastNotify').html('');
