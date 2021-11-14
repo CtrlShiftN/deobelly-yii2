@@ -110,7 +110,7 @@ $this->title = Yii::t('app', 'Top Measurements');
         <div class="col-12 col-md-4 h-100 py-2">
             <div class="card card-shadow h-100">
                 <a href="<?= Url::toRoute('tailor-made/top') ?>"
-                   target="_blank" title="<?= Yii::t('app', 'Top Measurements') ?>">
+                   title="<?= Yii::t('app', 'Top Measurements') ?>">
                     <div class="card-img h-100 zoom image-holder">
                         <img src="<?= $imgUrl . '/tailor-made/vest-top.jpg' ?>"
                              class="img-thumbnail h-100 object-fit-cover">
@@ -125,7 +125,7 @@ $this->title = Yii::t('app', 'Top Measurements');
         <div class="col-12 col-md-4 h-100 py-2">
             <div class="card card-shadow h-100">
                 <a href="<?= Url::toRoute('tailor-made/pants') ?>"
-                   target="_blank" title="<?= Yii::t('app', 'Pants Measurements') ?>">
+                   title="<?= Yii::t('app', 'Pants Measurements') ?>">
                     <div class="card-img h-100 zoom image-holder">
                         <img src="<?= $imgUrl . '/tailor-made/trousers.jpg' ?>"
                              class="img-thumbnail h-100 object-fit-cover">
@@ -140,7 +140,7 @@ $this->title = Yii::t('app', 'Top Measurements');
         <div class="col-12 col-md-4 h-100 py-2">
             <div class="card card-shadow h-100">
                 <a href="<?= Url::toRoute('tailor-made/set') ?>"
-                   target="_blank" title="<?= Yii::t('app', 'Set Measurements') ?>">
+                   title="<?= Yii::t('app', 'Set Measurements') ?>">
                     <div class="card-img h-100 zoom image-holder">
                         <img src="<?= $imgUrl . '/tailor-made/fullset.jpg' ?>"
                              class="img-thumbnail h-100 object-fit-cover">

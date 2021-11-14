@@ -36,7 +36,7 @@ $this->registerCssFile(\yii\helpers\Url::toRoute('css/collection.css'));
                                         <div class="col-12 col-md-6 pb-3">
                                             <div class="card card-shadow h-100">
                                                 <a href="<?= \yii\helpers\Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($products['id'])]) ?>"
-                                                   target="_blank" title="<?= $products['name'] ?>">
+                                                   title="<?= $products['name'] ?>">
                                                     <div class="card-img h-100 zoom">
                                                         <img src="<?= $imgUrl . '/' . $products['image'] ?>"
                                                              class="img-fluid h-100 object-fit-cover">

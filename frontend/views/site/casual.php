@@ -68,7 +68,8 @@ $arrTypesImage = $arrTypes['image-link'];
         <div class="col-12 row mb-md-4 mx-0 p-0">
             <div class="col-md-5 px-md-3 px-lg-4 d-none d-md-block">
                 <?php if (!empty($arrNewProductImage[0]['link'])): ?>
-                    <a href="<?= $arrNewProductImage[0]['link'] ?>" title="<?= $arrNewProductImage[0]['title'] ?>">
+                    <a href="<?= Url::toRoute($arrNewProductImage[0]['link']) ?>"
+                       title="<?= $arrNewProductImage[0]['title'] ?>">
                         <img src="<?= $imgUrl . '/' . $arrNewProductImage[0]['image'] ?>"
                              class="object-fit-cover shadow"
                              alt="<?= $arrNewProductImage[0]['title'] ?>">
@@ -80,7 +81,8 @@ $arrTypesImage = $arrTypes['image-link'];
             </div>
             <div class="col-12 col-md-7 px-md-3 px-lg-4">
                 <?php if (!empty($arrNewProductImage[1]['link'])): ?>
-                    <a href="<?= $arrNewProductImage[1]['link'] ?>" title="<?= $arrNewProductImage[1]['title'] ?>">
+                    <a href="<?= Url::toRoute($arrNewProductImage[1]['link']) ?>"
+                       title="<?= $arrNewProductImage[1]['title'] ?>">
                         <img src="<?= $imgUrl . '/' . $arrNewProductImage[1]['image'] ?>"
                              class="object-fit-cover shadow"
                              alt="<?= $arrNewProductImage[1]['title'] ?>">
@@ -94,7 +96,8 @@ $arrTypesImage = $arrTypes['image-link'];
         <div class="col-12 row mt-3 mt-md-4 mx-0 p-0">
             <div class="col-12 col-md-7 px-md-3 px-lg-4">
                 <?php if (!empty($arrNewProductImage[2]['link'])): ?>
-                    <a href="<?= $arrNewProductImage[2]['link'] ?>" title="<?= $arrNewProductImage[2]['title'] ?>">
+                    <a href="<?= Url::toRoute($arrNewProductImage[2]['link']) ?>"
+                       title="<?= $arrNewProductImage[2]['title'] ?>">
                         <img src="<?= $imgUrl . '/' . $arrNewProductImage[2]['image'] ?>"
                              class="object-fit-cover shadow"
                              alt="<?= $arrNewProductImage[2]['title'] ?>">
@@ -106,7 +109,8 @@ $arrTypesImage = $arrTypes['image-link'];
             </div>
             <div class="col-12 col-md-5 mt-3 mt-md-0 px-md-3 px-lg-4">
                 <?php if (!empty($arrNewProductImage[3]['link'])): ?>
-                    <a href="<?= $arrNewProductImage[3]['link'] ?>" title="<?= $arrNewProductImage[3]['title'] ?>">
+                    <a href="<?= Url::toRoute($arrNewProductImage[3]['link']) ?>"
+                       title="<?= $arrNewProductImage[3]['title'] ?>">
                         <img src="<?= $imgUrl . '/' . $arrNewProductImage[3]['image'] ?>"
                              class="object-fit-cover shadow"
                              alt="<?= $arrNewProductImage[3]['title'] ?>">
@@ -119,9 +123,9 @@ $arrTypesImage = $arrTypes['image-link'];
         </div>
         <?php if (!empty($newArrivalSeeMoreLink)): ?>
             <div class="col-12 text-center mb-5 mt-4 my-md-5">
-                <a href="<?= $newArrivalSeeMoreLink['link'] ?>"
+                <a href="<?= Url::toRoute($newArrivalSeeMoreLink['link']) ?>"
                    class="btn btn-dark rounded-0 fs-4 fw-light px-4 px-lg-5"
-                   target="_blank"><?= $newArrivalSeeMoreLink['content'] ?></a>
+                  ><?= $newArrivalSeeMoreLink['content'] ?></a>
             </div>
         <?php endif; ?>
     </div>
@@ -146,7 +150,7 @@ $arrTypesImage = $arrTypes['image-link'];
                         <?= $collectionMixContent['content'] ?>
                     </p>
                     <div class="w-100 text-center">
-                        <a href="<?= $collectionMixContent['link'] ?>"
+                        <a href="<?= Url::toRoute($collectionMixContent['link']) ?>"
                            class="btn btn-dark rounded-0 fs-6 fw-light px-4"><?= Yii::t('app', 'See more') ?></a>
                     </div>
                 </div>
@@ -165,7 +169,8 @@ $arrTypesImage = $arrTypes['image-link'];
     <div class="row px-md-5 my-3 my-md-5 px-3 w-100 mx-0">
         <div class="col-6 px-2 ps-md-5 pe-md-3">
             <?php if (!empty($arrProductTypeImage[0]['link'])): ?>
-                <a href="<?= $arrProductTypeImage[0]['link'] ?>" title="<?= $arrProductTypeImage[0]['title'] ?>">
+                <a href="<?= Url::toRoute($arrProductTypeImage[0]['link']) ?>"
+                   title="<?= $arrProductTypeImage[0]['title'] ?>">
                     <img src="<?= $imgUrl . '/' . $arrProductTypeImage[0]['image'] ?>"
                          class="mb-md-4 w-100 shadow pronto-img-left"
                          alt="<?= $arrProductTypeImage[0]['title'] ?>">
@@ -176,7 +181,8 @@ $arrTypesImage = $arrTypes['image-link'];
                      alt="<?= $arrProductTypeImage[0]['title'] ?>">
             <?php endif; ?>
             <?php if (!empty($arrProductTypeImage[1]['link'])): ?>
-                <a href="<?= $arrProductTypeImage[1]['link'] ?>" title="<?= $arrProductTypeImage[1]['title'] ?>">
+                <a href="<?= Url::toRoute($arrProductTypeImage[1]['link']) ?>"
+                   title="<?= $arrProductTypeImage[1]['title'] ?>">
                     <img src="<?= $imgUrl . '/' . $arrProductTypeImage[1]['image'] ?>"
                          class="w-100 mt-4 h-50 shadow d-none d-md-block"
                          alt="<?= $arrProductTypeImage[1]['title'] ?>">
@@ -189,7 +195,8 @@ $arrTypesImage = $arrTypes['image-link'];
         </div>
         <div class="col-6 px-2 ps-md-3 pe-md-5">
             <?php if (!empty($arrProductTypeImage[2]['link'])): ?>
-                <a href="<?= $arrProductTypeImage[2]['link'] ?>" title="<?= $arrProductTypeImage[2]['title'] ?>">
+                <a href="<?= Url::toRoute($arrProductTypeImage[2]['link']) ?>"
+                   title="<?= $arrProductTypeImage[2]['title'] ?>">
                     <img src="<?= $imgUrl . '/' . $arrProductTypeImage[2]['image'] ?>"
                          class="w-100 h-25 shadow d-none d-md-block"
                          alt="<?= $arrProductTypeImage[2]['title'] ?>">
@@ -201,7 +208,8 @@ $arrTypesImage = $arrTypes['image-link'];
             <?php endif; ?>
 
             <?php if (!empty($arrProductTypeImage[3]['link'])): ?>
-                <a href="<?= $arrProductTypeImage[3]['link'] ?>" title="<?= $arrProductTypeImage[3]['title'] ?>">
+                <a href="<?= Url::toRoute($arrProductTypeImage[3]['link']) ?>"
+                   title="<?= $arrProductTypeImage[3]['title'] ?>">
                     <img src="<?= $imgUrl . '/' . $arrProductTypeImage[3]['image'] ?>"
                          class="my-md-4 w-100 shadow pronto-img-left"
                          alt="<?= $arrProductTypeImage[3]['title'] ?>">
@@ -213,7 +221,8 @@ $arrTypesImage = $arrTypes['image-link'];
             <?php endif; ?>
 
             <?php if (!empty($arrProductTypeImage[4]['link'])): ?>
-                <a href="<?= $arrProductTypeImage[4]['link'] ?>" title="<?= $arrProductTypeImage[4]['title'] ?>">
+                <a href="<?= Url::toRoute($arrProductTypeImage[4]['link']) ?>"
+                   title="<?= $arrProductTypeImage[4]['title'] ?>">
                     <img src="<?= $imgUrl . '/' . $arrProductTypeImage[4]['image'] ?>"
                          class="w-100 h-25 shadow d-none d-md-block"
                          alt="<?= $arrProductTypeImage[4]['title'] ?>">
@@ -228,7 +237,7 @@ $arrTypesImage = $arrTypes['image-link'];
     <div class="row w-100 m-0 p-0">
         <div class="col-12 text-center pt-3 pt-md-5">
             <?php if (!empty($productTypeSeeMoreLink)): ?>
-                <a href="<?= $productTypeSeeMoreLink['link'] ?>"
+                <a href="<?= Url::toRoute($productTypeSeeMoreLink['link']) ?>"
                    class="btn btn-dark rounded-0 fs-4 fw-light px-4 px-lg-5"><?= Yii::t('app', 'See more') ?></a>
             <?php endif; ?>
         </div>
@@ -238,8 +247,8 @@ $arrTypesImage = $arrTypes['image-link'];
         <div class="col-12 col-md-6 position-relative p-0 px-md-3">
             <?php if (!empty($arrTypesImage[0])): ?>
                 <div class="overflow-hidden w-100 shadow">
-                    <a href="<?= $arrTypesImage[0]['link'] ?>"
-                       class="text-decoration-none w-100" target="_blank">
+                    <a href="<?= Url::toRoute($arrTypesImage[0]['link']) ?>"
+                       class="text-decoration-none w-100">
                         <p class="position-absolute text-light fs-1 men-title fw-bolder text-uppercase px-2"><?= $arrTypesImage[0]['title'] ?></p>
                         <img src="<?= $imgUrl . '/' . $arrTypesImage[0]['image'] ?>"
                              class="object-fit-cover position-relative gender-img"
@@ -251,8 +260,8 @@ $arrTypesImage = $arrTypes['image-link'];
         <div class="col-12 col-md-6 mt-4 mt-md-0 position-relative overflow-hidden p-0 px-md-3">
             <?php if (!empty($arrTypesImage[1])): ?>
                 <div class="overflow-hidden w-100 shadow">
-                    <a href="<?= $arrTypesImage[1]['link'] ?>"
-                       class="text-decoration-none w-100" target="_blank">
+                    <a href="<?= Url::toRoute($arrTypesImage[1]['link']) ?>"
+                       class="text-decoration-none w-100">
                         <p class="position-absolute text-light fs-1 women-title fw-bolder text-uppercase px-2"><?= $arrTypesImage[1]['title'] ?></p>
                         <img src="<?= $imgUrl . '/' . $arrTypesImage[1]['image'] ?>"
                              class="object-fit-cover position-relative gender-img"

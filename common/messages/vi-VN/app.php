@@ -337,7 +337,7 @@ return [
     'Collections' => 'Bộ sưu tập',
     'Weekly Collections' => 'Bộ Sưu Tập Tuần',
     'Add to cart successfully!' => 'Thêm vào giỏ hàng thành công!',
-    'Add to favorite successfully!' => 'Thêm vào mục yêu thích thành công!',
+    'Add to favorites successfully!' => 'Thêm vào mục yêu thích thành công!',
     'Can not add this product to cart.' => 'Không thể thêm sản phẩm vào giỏ hàng.',
     'Specific address' => 'Địa chỉ cụ thể',
     'Province' => 'Tỉnh/Thành phố',
@@ -508,4 +508,6 @@ return [
     'Your billing code:' => 'Mã đơn của bạn:',
     'A new order has been initialized!' => 'Một đơn hàng vừa được khởi tạo!',
     'De-Obelly - Order placed successfully!' => 'De-Obelly - Đặt hàng thành công!',
+    'Can not add this product to favorites.' => 'Không thể thêm vào mục ưa thích.',
+    'Favorites already have this product.' => 'Mục ưa thích đã có sản phẩm này.',
 ];

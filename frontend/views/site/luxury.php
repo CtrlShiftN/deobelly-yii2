@@ -51,7 +51,7 @@ $this->registerCssFile(Url::toRoute("css/luxury.css"));
         <div class="col-12 col-md-6 px-4 px-md-2 pb-3 pb-md-0">
             <div class="image-holder h-100">
                 <a class="text-decoration-none "
-                   href="<?= !empty($siteContent[1]['link']) ? $siteContent[1]['link'] : '#' ?>" target="_blank"
+                   href="<?= !empty($siteContent[1]['link']) ? Url::toRoute($siteContent[1]['link']) : '#' ?>"
                    title="<?= !empty($siteContent[1]['title']) ? $siteContent[1]['title'] : '' ?>">
                     <img src="<?= $imgUrl . '/' . $siteContent[1]['image'] ?>" class="img-fluid h-100 object-fit-cover">
                     <div class="type-tailor-made__title">
@@ -65,7 +65,7 @@ $this->registerCssFile(Url::toRoute("css/luxury.css"));
         <div class="col-12 col-md-6 px-4 px-md-2 pb-3 pb-md-0">
             <div class="image-holder h-100">
                 <a class="text-decoration-none "
-                   href="<?= !empty($siteContent[2]['link']) ? $siteContent[2]['link'] : '#' ?>" target="_blank"
+                   href="<?= !empty($siteContent[2]['link']) ? Url::toRoute($siteContent[2]['link']) : '#' ?>"
                    title="<?= !empty($siteContent[2]['title']) ? $siteContent[2]['title'] : '' ?>">
                     <img src="<?= $imgUrl . '/' . $siteContent[2]['image'] ?>" class="img-fluid h-100 object-fit-cover">
                     <div class="type-tailor-made__title">
@@ -89,13 +89,12 @@ $this->registerCssFile(Url::toRoute("css/luxury.css"));
                     <div class="col-12 col-sm-6 col-md-4 text-center pb-3 px-4">
                         <div class="card box-shadow h-100">
                             <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($products['id'])]) ?>"
-                               target="_blank" class="text-decoration-none">
+                               class="text-decoration-none">
                                 <div class="image-holder">
                                     <img src="<?= $imgUrl . '/' . $products['image'] ?>" class="card-img-top"
                                          title="<?= $products['name'] ?>" alt="<?= $products['name'] ?>">
                                     <div class="img-overlay__see-more">
                                         <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($products['id'])]) ?>"
-                                           target="_blank"
                                            class="text-decoration-none text-white text-uppercase"><?= Yii::t('app', 'See more') ?></a>
                                     </div>
                                 </div>
@@ -128,7 +127,7 @@ $this->registerCssFile(Url::toRoute("css/luxury.css"));
         <div class="col-12 col-md-6 px-4 px-md-2 pb-3 pb-md-0">
             <div class="image-holder h-100">
                 <a class="text-decoration-none "
-                   href="<?= !empty($siteContent[3]['link']) ? $siteContent[3]['link'] : '#' ?>" target="_blank"
+                   href="<?= !empty($siteContent[3]['link']) ? Url::toRoute($siteContent[3]['link']) : '#' ?>"
                    title="<?= !empty($siteContent[3]['title']) ? $siteContent[3]['title'] : '' ?>">
                     <img src="<?= $imgUrl . '/' . $siteContent[3]['image'] ?>" class="img-fluid h-100 object-fit-cover">
                     <div class="type-tailor-made__title">
@@ -142,7 +141,7 @@ $this->registerCssFile(Url::toRoute("css/luxury.css"));
         <div class="col-12 col-md-6 px-4 px-md-2 pb-3 pb-md-0">
             <div class="image-holder h-100">
                 <a class="text-decoration-none "
-                   href="<?= !empty($siteContent[4]['link']) ? $siteContent[4]['link'] : '#' ?>" target="_blank"
+                   href="<?= !empty($siteContent[4]['link']) ? Url::toRoute($siteContent[4]['link']) : '#' ?>"
                    title="<?= !empty($siteContent[4]['title']) ? $siteContent[4]['title'] : '' ?>">
                     <img src="<?= $imgUrl . '/' . $siteContent[4]['image'] ?>" class="img-fluid h-100 object-fit-cover">
                     <div class="type-tailor-made__title">
@@ -166,13 +165,12 @@ $this->registerCssFile(Url::toRoute("css/luxury.css"));
                     <div class="col-12 col-sm-6 col-md-4 text-center pb-3 px-4">
                         <div class="card box-shadow">
                             <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($products['id'])]) ?>"
-                               target="_blank" class="text-decoration-none">
+                               class="text-decoration-none">
                                 <div class="image-holder">
                                     <img src="<?= $imgUrl . '/' . $products['image'] ?>" class="card-img-top"
                                          title="<?= $products['name'] ?>" alt="<?= $products['name'] ?>">
                                     <div class="img-overlay__see-more">
                                         <a href="<?= Url::toRoute(['shop/product-detail', 'detail' => \common\components\encrypt\CryptHelper::encryptString($products['id'])]) ?>"
-                                           target="_blank"
                                            class="text-decoration-none text-white text-uppercase"><?= Yii::t('app', 'See more') ?></a>
                                     </div>
                                 </div>
@@ -215,13 +213,13 @@ $this->registerCssFile(Url::toRoute("css/luxury.css"));
                     <div class="col-12 col-sm-6 col-lg-4 text-center pb-3 px-4 ">
                         <div class="card box-shadow h-100">
                             <a href="<?= Url::toRoute(['post/detail', 'id' => \common\components\encrypt\CryptHelper::encryptString($value['id'])]) ?>"
-                               target="_blank" class="text-decoration-none">
+                               class="text-decoration-none">
                                 <img src="<?= $imgUrl . '/' . $value['avatar'] ?>" class="card-img-top img-fluid"
                                      title="<?= $value['title'] ?>" alt="<?= $value['title'] ?>">
                                 <div class="card-body">
                                     <h4 class="text-black"><?= $value['title'] ?></h4>
                                     <div class="article-content text-black text-justify">
-                                        <?= substr(strip_tags($value['content']),0,200).'...' ?>
+                                        <?= substr(strip_tags($value['content']), 0, 200) . '...' ?>
                                     </div>
                                 </div>
                             </a>
