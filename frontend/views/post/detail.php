@@ -30,7 +30,7 @@ $this->registerCssFile(Url::toRoute('css/post.css'));
         </div>
         <div class="post-tags pb-3">
             <?php foreach (\frontend\models\PostTag::getPostTag(explode(',', $postDetail['tag_id'])) as $tag) : ?>
-                <a target="_blank" class="tag"
+                <a class="tag"
                    href="<?= Url::toRoute(['post/index', 'post_tag' => \common\components\encrypt\CryptHelper::encryptString($tag['id'])]) ?>">
                     <?= Yii::t('app', $tag['title']) ?></a>
             <?php endforeach; ?>
@@ -39,7 +39,7 @@ $this->registerCssFile(Url::toRoute('css/post.css'));
             <h4 class="text-uppercase"><?= Yii::t('app', 'Related news') ?></h4>
             <ul class="related-post-list">
                 <?php foreach (\frontend\models\Post::getAllRelatedPostByCateID($postDetail['post_category_id']) as $post) : ?>
-                    <li class="pb-1"><a target="_blank" class="related-post-link text-decoration-none"
+                    <li class="pb-1"><a class="related-post-link text-decoration-none"
                                         href="<?= Url::toRoute(['post/detail', 'id' => \common\components\encrypt\CryptHelper::encryptString($post['id'])]) ?>">
                             <?= Yii::t('app', $post['title']) ?></a></li>
                 <?php endforeach; ?>
@@ -52,7 +52,7 @@ $this->registerCssFile(Url::toRoute('css/post.css'));
         </div>
         <div class="post-category__right-side">
             <?php foreach ($postCategory as $category) : ?>
-                <a target="_blank"
+                <a
                    href="<?= Url::toRoute(['post/index', 'post_category' => \common\components\encrypt\CryptHelper::encryptString($category['id'])]) ?>"><span
                             class="badge border text-dark font-weight-bold p-2 m-1"><?= Yii::t('app', $category['title']) ?></span></a>
             <?php endforeach; ?>

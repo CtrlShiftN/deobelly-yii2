@@ -62,14 +62,11 @@ $this->registerCss("
                     <h4 class="text-center text-uppercase m-0 text-secondary line-title"><?= Yii::t('app','Login with') ?></h4>
                 </div>
                 <div class="row mx-0 my-3 p-0">
-                    <div class="col-12 col-sm-4 m-0 p-1">
-                        <a class="col-12 btn btn-primary py-2"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <div class="col-12 m-0 p-1">
+                        <a class="w-100 btn btn-primary py-2 text-center" hidden><i class="fab fa-facebook-f"></i> <span class="mx-3">|</span> Facebook</a>
                     </div>
-                    <div class="col-12 col-sm-4 m-0 p-1">
-                        <a class="col-12 btn btn-danger py-2"><i class="fab fa-google"></i> Google</a>
-                    </div>
-                    <div class="col-12 col-sm-4 m-0 p-1">
-                        <a class="col-12 btn btn-success py-2"><i class="fas fa-phone"></i> Phone</a>
+                    <div class="col-12 m-0 p-1">
+                        <a class="w-100 btn btn-danger py-2 text-center" href="/access/auth?authclient=google"><i class="fab fa-google-plus-g"></i> <span class="mx-3">|</span> Google</a>
                     </div>
                 </div>
                 <div class="my-3">

@@ -115,7 +115,7 @@ function requestData() {
             for (let i = 0; i < arrRes.product.length; i++) {
                 //format price
                 let selling_price = new Intl.NumberFormat(['ban', 'id']).format(arrRes.product[i].selling_price);
-                result += '<div class="col-12 col-sm-6 col-lg-4 mx-0 py-3 position-relative product-card overflow-hidden"><div class="position-relative overflow-hidden w-100 img-shadow"><a href="' + cdnUrl + '/shop/product-detail?detail=' + arrRes.product[i].id + '" class="text-decoration-none text-dark px-0 w-100 position-relative" target="_blank"><div class="position-relative product-img w-100"><img class="img-product" src="' + imgUrl + '/' + arrRes.product[i].image + '"></div> <div class="pr-inf px-2 px-lg-1 px-xl-2 py-2 w-100 border-top">';
+                result += '<div class="col-12 col-sm-6 col-lg-4 mx-0 py-3 position-relative product-card overflow-hidden"><div class="position-relative overflow-hidden w-100 img-shadow"><a href="' + cdnUrl + '/shop/product-detail?detail=' + arrRes.product[i].id + '" class="text-decoration-none text-dark px-0 w-100 position-relative"><div class="position-relative product-img w-100"><img class="img-product" src="' + imgUrl + '/' + arrRes.product[i].image + '"></div> <div class="pr-inf px-2 px-lg-1 px-xl-2 py-2 w-100 border-top">';
                 if (arrRes.product[i].sale_price !== null) {
                     let regular_price = new Intl.NumberFormat(['ban', 'id']).format(arrRes.product[i].regular_price);
                     result += '<span class="px-0 fw-bold mt-2 p-price"><span class="text-decoration-line-through text-dark fw-light fs-regular-price">' + regular_price + 'đ</span> ' + selling_price + 'đ</span>';
@@ -212,27 +212,19 @@ function addToFavorite(obj) {
                 let toast = new bootstrap.Toast(toastLive);
                 $('#toastNotify').html('<i class="fas fa-check-circle"></i> ' + arrRes.message);
                 toast.show();
-                $('#toastBoard, #liveToast').addClass('bg-success text-light');
-                $('#back-to-top').css('bottom', '65px');
-                $('.phone-call').css('bottom', '110px');
+                $('#toastBoard, #liveToast').removeClass('bg-danger text-light').addClass('bg-success text-light');
                 setTimeout(function () {
                     toast.hide(200);
                     $('#toastNotify').html('');
-                    $('#back-to-top').css('bottom', '5px');
-                    $('.phone-call').css('bottom', '50px');
                 }, 2000);
             } else {
                 let toast = new bootstrap.Toast(toastLive);
                 $('#toastNotify').html('<i class="far fa-frown-open"></i> ' + arrRes.message);
                 toast.show();
-                $('#toastBoard, #liveToast').addClass('bg-danger text-light');
-                $('#back-to-top').css('bottom', '65px');
-                $('.phone-call').css('bottom', '110px');
+                $('#toastBoard, #liveToast').removeClass('bg-success text-light').addClass('bg-danger text-light');
                 setTimeout(function () {
                     toast.hide(200);
                     $('#toastNotify').html('');
-                    $('#back-to-top').css('bottom', '65px');
-                    $('.phone-call').css('bottom', '110px');
                 }, 2000);
             }
         });

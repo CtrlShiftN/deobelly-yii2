@@ -52,7 +52,7 @@ $this->registerCssFile(Url::toRoute("css/shop.css"));
     <div class="col-6 px-1 ps-md-5 pe-md-3 mb-4 mb-md-5">
         <?php if (!empty($type[0])): ?>
         <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type[0]['id'])]) ?>"
-           class="text-decoration-none" target="_blank">
+           class="text-decoration-none">
             <div class="overflow-hidden w-100 shadow h-35 position-relative my-2 my-md-3">
                 <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type[0]['name']) ?></p>
                 <img src="<?= $imgUrl . '/' . $type[0]['image'] ?>"
@@ -63,7 +63,7 @@ $this->registerCssFile(Url::toRoute("css/shop.css"));
         <?php endif; ?>
         <?php if (!empty($type[1])): ?>
         <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type[1]['id'])]) ?>"
-           class="text-decoration-none" target="_blank">
+           class="text-decoration-none">
             <div class="overflow-hidden w-100 shadow h-65 position-relative my-2 my-md-3">
                 <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type[1]['name']) ?></p>
                 <img src="<?= $imgUrl . '/' . $type[1]['image'] ?>"
@@ -76,7 +76,7 @@ $this->registerCssFile(Url::toRoute("css/shop.css"));
     <div class="col-6 px-1 ps-md-3 pe-md-5 mb-4 mb-md-5">
         <?php if (!empty($type[2])): ?>
         <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type[2]['id'])]) ?>"
-           class="text-decoration-none" target="_blank">
+           class="text-decoration-none">
             <div class="overflow-hidden w-100 shadow h-65 position-relative my-2 my-md-3">
                 <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type[2]['name']) ?></p>
                 <img src="<?= $imgUrl . '/' . $type[2]['image'] ?>"
@@ -87,7 +87,7 @@ $this->registerCssFile(Url::toRoute("css/shop.css"));
         <?php endif; ?>
         <?php if (!empty($type[3])): ?>
         <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type[3]['id'])]) ?>"
-           class="text-decoration-none" target="_blank">
+           class="text-decoration-none">
             <div class="overflow-hidden w-100 shadow h-35 position-relative my-2 my-md-3">
                 <p class="position-absolute text-light fs-title category-title fw-bolder text-uppercase"><?= Yii::t('app', $type[3]['name']) ?></p>
                 <img src="<?= $imgUrl . '/' . $type[3]['image'] ?>"
@@ -100,7 +100,7 @@ $this->registerCssFile(Url::toRoute("css/shop.css"));
     <?php if (!empty($type[4])): ?>
     <div class="col-12 mb-md-5 px-1 px-md-5 overflow-hidden">
         <a href="<?= Url::toRoute(['shop/product', 'type' => \common\components\encrypt\CryptHelper::encryptString($type[4]['id'])]) ?>"
-           class="text-decoration-none" target="_blank">
+           class="text-decoration-none">
             <div class="overflow-hidden h-final-type w-100 shadow position-relative mt-md-3">
                 <img src="<?= $imgUrl . '/' . $type[4]['image'] ?>"
                      class="w-100 shadow object-fit-cover zoom"

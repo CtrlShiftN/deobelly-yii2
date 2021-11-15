@@ -241,18 +241,18 @@ class AjaxController extends ActiveController
             if ($favor->save()) {
                 $response = [
                     'status' => SystemConstant::API_SUCCESS_STATUS,
-                    'message' => Yii::t('app', 'Add to favorite successfully!'),
+                    'message' => Yii::t('app', 'Add to favorites successfully!'),
                 ];
             } else {
                 $response = [
                     'status' => SystemConstant::API_UNSUCCESS_STATUS,
-                    'message' => Yii::t('app', 'Can not add this product to favorite.'),
+                    'message' => Yii::t('app', 'Can not add this product to favorites.'),
                 ];
             }
         } else {
             $response = [
                 'status' => SystemConstant::API_UNSUCCESS_STATUS,
-                'message' => Yii::t('app', 'Can not add this product to favorite.'),
+                'message' => Yii::t('app', 'Favorites already have this product.'),
             ];
         }
         echo json_encode($response);

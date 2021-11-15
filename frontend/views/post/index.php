@@ -13,7 +13,7 @@ use yii\widgets\LinkPager;
 
 $cdnUrl = Yii::$app->params['frontend'];
 $imgUrl = Yii::$app->params['common'] . "/media";
-$this->title = Yii::t('app','Fashion News');
+$this->title = Yii::t('app', 'Fashion News');
 $latestPosts = Post::getLatestPosts();
 $postCategory = PostCategory::getAllPostCategory();
 $this->registerCssFile(Url::toRoute('css/post.css'));
@@ -31,7 +31,7 @@ $this->registerCssFile(Url::toRoute('css/post.css'));
                                     src="<?= $imgUrl . '/' . $value['avatar'] ?>"
                                     alt="<?= $value['slug'] ?>"></a>
                         <div class="article-category fs__12px">
-                            <?= Yii::t('app', 'Category') ?>: <a target="_blank" class="text-decoration-none text-dark pc-title"
+                            <?= Yii::t('app', 'Category') ?>: <a class="text-decoration-none text-dark pc-title"
                                                                  href="<?= Url::toRoute(['post/index', 'post_category' => \common\components\encrypt\CryptHelper::encryptString($value['pc-id'])]) ?>">
                                 <?= Yii::t('app', $value['pc-title']) ?></a>
                         </div>
@@ -47,11 +47,11 @@ $this->registerCssFile(Url::toRoute('css/post.css'));
                             <h5><?= $value['title'] ?></h5></a>
                     </div>
                     <div class="article-content text-center text-justify">
-                        <?= substr(strip_tags($value['content']),0,200).'...' ?>
+                        <?= substr(strip_tags($value['content']), 0, 200) . '...' ?>
                     </div>
                     <ul class="tags mt-2">
                         <?php foreach (\frontend\models\PostTag::getPostTag(explode(',', $value['tag_id'])) as $tag) : ?>
-                            <li><a target="_blank" class="tag"
+                            <li><a class="tag"
                                    href="<?= Url::toRoute(['post/index', 'post_tag' => \common\components\encrypt\CryptHelper::encryptString($tag['id'])]) ?>">
                                     <?= Yii::t('app', $tag['title']) ?></a></li>
                         <?php endforeach; ?>
@@ -92,8 +92,7 @@ $this->registerCssFile(Url::toRoute('css/post.css'));
         </div>
         <div class="post-category__right-side">
             <?php foreach ($postCategory as $category) : ?>
-                <a target="_blank"
-                   href="<?= Url::toRoute(['post/index', 'post_category' => \common\components\encrypt\CryptHelper::encryptString($category['id'])]) ?>"><span
+                <a href="<?= Url::toRoute(['post/index', 'post_category' => \common\components\encrypt\CryptHelper::encryptString($category['id'])]) ?>"><span
                             class="badge border text-dark font-weight-bold p-2 m-1"><?= Yii::t('app', $category['title']) ?></span></a>
             <?php endforeach; ?>
         </div>

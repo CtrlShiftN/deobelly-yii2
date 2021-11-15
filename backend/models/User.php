@@ -24,6 +24,8 @@ use Yii;
  * @property string $created_at
  * @property string $updated_at
  * @property string|null $verification_token
+ * @property string|null $source
+ * @property string|null $source_id
  */
 class User extends \common\models\User
 {
@@ -37,7 +39,7 @@ class User extends \common\models\User
             [['username', 'name', 'auth_key', 'password_hash', 'email', 'referral_code', 'created_at', 'updated_at'], 'required', 'on' => 'create'],
             [['verified_at', 'created_at', 'updated_at'], 'safe'],
             [['status', 'role'], 'integer'],
-            [['username', 'address', 'password_hash', 'password_reset_token', 'email', 'referral_code', 'verification_token'], 'string', 'max' => 255],
+            [['username', 'address', 'password_hash', 'password_reset_token', 'email', 'referral_code', 'verification_token', 'source', 'source_id'], 'string', 'max' => 255],
             [['name'], 'string', 'max' => 100],
             [['tel'], 'string', 'max' => 12],
             ['tel', 'validateTel'],

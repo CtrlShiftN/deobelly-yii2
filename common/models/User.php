@@ -25,6 +25,8 @@ use yii\web\IdentityInterface;
  * @property string $created_at
  * @property string $updated_at
  * @property string|null $verification_token
+ * @property string|null $source
+ * @property string|null $source_id
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -55,7 +57,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['status', 'role'], 'integer'],
             ['role', 'default', 'value' => self::ROLE_USER],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            [['username', 'address', 'password_hash', 'password_reset_token', 'email', 'referral_code', 'verification_token'], 'string', 'max' => 255],
+            [['username', 'address', 'password_hash', 'password_reset_token', 'email', 'referral_code', 'verification_token', 'source', 'source_id'], 'string', 'max' => 255],
             [['name'], 'string', 'max' => 100],
             [['tel'], 'string', 'max' => 12],
             ['tel', 'validateTel'],
@@ -73,22 +75,24 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'username' => 'Username',
-            'name' => 'Name',
-            'tel' => 'Tel',
-            'address' => 'Address',
-            'auth_key' => 'Auth Key',
-            'password_hash' => 'Password Hash',
-            'password_reset_token' => 'Password Reset Token',
-            'email' => 'Email',
-            'verified_at' => 'Verified At',
-            'referral_code' => 'Referral Code',
-            'status' => 'Status',
-            'role' => 'Role',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'verification_token' => 'Verification Token',
+            'id' => Yii::t('app', 'ID'),
+            'username' => Yii::t('app', 'Username'),
+            'name' => Yii::t('app', 'Name'),
+            'tel' => Yii::t('app', 'Tel'),
+            'address' => Yii::t('app', 'Address'),
+            'auth_key' => Yii::t('app', 'Auth Key'),
+            'password_hash' => Yii::t('app', 'Password Hash'),
+            'password_reset_token' => Yii::t('app', 'Password Reset Token'),
+            'email' => Yii::t('app', 'Email'),
+            'verified_at' => Yii::t('app', 'Verified At'),
+            'referral_code' => Yii::t('app', 'Referral Code'),
+            'status' => Yii::t('app', 'Status'),
+            'role' => Yii::t('app', 'Role'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'verification_token' => Yii::t('app', 'Verification Token'),
+            'source' => Yii::t('app', 'Source'),
+            'source_id' => Yii::t('app', 'Source ID'),
         ];
     }
 

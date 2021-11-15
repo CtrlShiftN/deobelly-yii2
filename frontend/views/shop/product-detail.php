@@ -220,14 +220,6 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
             </div>
         </div>
     </div>
-    <div class="w-100 py-2 mx-0 d-flex px-md-3">
-        <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i
-                    class="fas fa-phone-alt"></i> Hotline</a>
-        <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i
-                    class="fas fa-comments"></i> Chat Online</a>
-        <a href="javascript:void(0)" class="text-decoration-none text-dark mx-3"><i
-                    class="fas fa-share-alt"></i> <?= Yii::t('app', 'Share') ?></a>
-    </div>
 </div>
 <div class="w-100 my-2 mx-0 px-3 px-md-0">
     <p class="m-0 text-uppercase border-bottom border-dark px-0 fw-bolder fs-4 pt-3 pb-2">
