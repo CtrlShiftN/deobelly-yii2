@@ -602,15 +602,15 @@ AppAsset::register($this);
                     <span>Copyright &copy; <?= date('Y') ?> by DE OBELLY</span>
                 </div>
             </footer>
-            <div id="back-to-top">
-                <i class="fa fa-angle-up" aria-hidden="true"></i>
-            </div>
+<!--            <div id="back-to-top">-->
+<!--                <i class="fa fa-angle-up" aria-hidden="true"></i>-->
+<!--            </div>-->
         </div>
     </div>
-    <div class="phone-call"><a href="tel:<?= Yii::$app->params['adminTel'] ?>"><img
-                    src="<?= Yii::$app->params['common'] . '/media/phone-call.png' ?>"
-                    width="50" alt="<?= Yii::t('app', 'Call Now') ?>" title="<?= Yii::t('app', 'Call Now') ?>"></a>
-    </div>
+<!--    <div class="phone-call"><a href="tel:--><?//= Yii::$app->params['adminTel'] ?><!--"><img-->
+<!--                    src="--><?//= Yii::$app->params['common'] . '/media/phone-call.png' ?><!--"-->
+<!--                    width="50" alt="--><?//= Yii::t('app', 'Call Now') ?><!--" title="--><?//= Yii::t('app', 'Call Now') ?><!--"></a>-->
+<!--    </div>-->
     <div id="fb-root"></div>
 
     <!-- Your Plugin chat code -->
