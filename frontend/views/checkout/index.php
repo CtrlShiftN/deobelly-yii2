@@ -165,13 +165,6 @@ $this->registerJsFile(Url::toRoute('js/check-out.js'));
         <div class="col-12 col-md-6 m-0 p-0">
         </div>
         <div class="col-12 col-md-6 m-0 p-2">
-            <div class="my-1 py-2 w-100"><?= Yii::t('app', "Total product's price") ?>: <span class="fs-5 m-0 float-end"
-                                                                                              id="total_price_product"></span>
-            </div>
-            <div class="my-1 py-2 w-100"><?= Yii::t('app', 'VAT') ?>: <span class="fs-5 m-0 float-end"
-                                                                            id="vat"
-                                                                            data-vat="<?= \common\components\SystemConstant::VAT ?>"></span>
-            </div>
             <div class="my-1 py-2 w-100"><?= Yii::t('app', 'Total payment') ?>: <span
                         class="fs-4 text-danger m-0 float-end"
                         id="total_price"></span></div>

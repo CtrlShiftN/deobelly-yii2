@@ -5,6 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $user common\models\User */
 $siteContact = \common\models\SiteContact::find()->where(['status' => \common\components\SystemConstant::STATUS_ACTIVE])->asArray()->one();
+$totalPrice = 0;
 ?>
 <div class="password-reset">
     Kính chào quý khách,<br/>
@@ -22,6 +23,9 @@ $siteContact = \common\models\SiteContact::find()->where(['status' => \common\co
             <th style="text-align: center">Đơn giá</th>
         </tr>
         <?php foreach (array_values($orderModel) as $key => $order): ?>
+            <?php
+            $totalPrice += $order['quantity'] * $order['product_price'];
+            ?>
             <?php if ($key % 2 == 0): ?>
                 <tr style="background-color: #dddddd">
             <?php else: ?>
@@ -42,8 +46,11 @@ $siteContact = \common\models\SiteContact::find()->where(['status' => \common\co
             </td>
             </tr>
         <?php endforeach; ?>
+        <tr>
+            <td colspan="7" style="text-align: right;padding:5px 10px;">Tổng thanh toán:
+                <b><?= number_format($totalPrice, 0, ',', '.') . 'đ' ?></b></td>
+        </tr>
     </table>
-    <br/>
     <b>*Lưu ý:</b> Chi phí trên chưa bao gồm phí ship, VAT,...
     <p><b>De Obelly</b> mong sớm nhận được đơn hàng tiếp theo từ Quý khách,</p>
     <p style="padding-bottom: 15px">Xin chân thành cám ơn!</p>
