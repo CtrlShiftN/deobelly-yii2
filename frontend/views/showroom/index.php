@@ -22,7 +22,7 @@ $imgUrl = Yii::$app->params['common'] . '/media';
             <a class="text-decoration-none text-black" href="tel:<?= $showroom['tel'] ?>">
                 <p class="mb-2"><i class="fas fa-phone"></i> <?= $showroom['tel'] ?></p>
             </a>
-            <a href="<?= $showroom['gps_link'] ?>">
+            <a href="<?= $showroom['gps_link'] ?>" class="text-decoration-none">
                 <p class="mb-2"><i class="fas fa-map-marked-alt text-black"></i> Chỉ đường qua Google Maps</p>
             </a>
         </div>

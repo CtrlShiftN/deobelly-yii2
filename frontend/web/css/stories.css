@@ -12,28 +12,28 @@
     object-fit: cover;
 }
 
-@-webkit-keyframes zoom {
-    from {
-        -webkit-transform: scale(1, 1);
-    }
-    to {
-        -webkit-transform: scale(1.3, 1.3);
-    }
-}
+/*@-webkit-keyframes zoom {*/
+/*    from {*/
+/*        -webkit-transform: scale(1, 1);*/
+/*    }*/
+/*    to {*/
+/*        -webkit-transform: scale(1.3, 1.3);*/
+/*    }*/
+/*}*/
 
-@keyframes zoom {
-    from {
-        transform: scale(1, 1);
-    }
-    to {
-        transform: scale(1.3, 1.3);
-    }
-}
+/*@keyframes zoom {*/
+/*    from {*/
+/*        transform: scale(1, 1);*/
+/*    }*/
+/*    to {*/
+/*        transform: scale(1.3, 1.3);*/
+/*    }*/
+/*}*/
 
-#sliderHeader .carousel-inner img {
-    -webkit-animation: zoom 20s;
-    animation: zoom 20s infinite;
-}
+/*#sliderHeader .carousel-inner img {*/
+/*    -webkit-animation: zoom 20s;*/
+/*    animation: zoom 20s infinite;*/
+/*}*/
 
 /* END SLIDER */
 .intro-text > p {

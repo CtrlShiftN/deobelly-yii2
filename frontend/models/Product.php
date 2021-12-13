@@ -101,14 +101,18 @@ class Product extends \common\models\Product
      */
     public static function getAllProduct($productType, $productCategory)
     {
-        $query = (new Query())->from('product')
+        $query = (new Query())->select(
+            [
+                'product.*',
+            ]
+        )->from('product')
             ->leftJoin('product_assoc', 'product_assoc.product_id = product.id')
             ->where(['product.status' => 1])->andWhere(['>','product.quantity',0]);
         if (!empty($productType)) {
             if (intval($productType) == SystemConstant::PRODUCT_TYPE_NEW) {
                 $query->andWhere(['product.hide' => SystemConstant::PRODUCT_SHOW])->orderBy('product.updated_at DESC')->limit(SystemConstant::LIMIT_PER_PAGE);
             } else {
-                $query->andWhere(['like', 'product_assoc.type_id', $productType]);
+                $query->andWhere(['like', 'product_assoc.type_id', ','.$productType.',']);
             }
         }
         if (!empty($productCategory)) {

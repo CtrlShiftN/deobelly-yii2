@@ -108,7 +108,9 @@ class ProductController extends Controller
     {
         $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
-        $assocModel = ProductAssoc::findOne($id);
+        $assocModel = ProductAssoc::findOne([
+            'product_id' => $id
+        ]);
         $model->color = $assocModel->color_id;
         $model->type = $assocModel->type_id;
         $model->size = $assocModel->size_id;
@@ -241,10 +243,10 @@ class ProductController extends Controller
                     }
                     $model->images = implode(",", $arrImages);
                 }
-                $typeStr = (!empty($model->type)) ? implode(',', $model->type) : null;
+                $typeStr = (!empty($model->type)) ? ','.implode(',', $model->type).',' : null;
                 $cateStr = $model->category;
-                $colorStr = (!empty($model->color)) ? implode(',', $model->color) : null;
-                $sizeStr = (!empty($model->size)) ? implode(',', $model->size) : null;
+                $colorStr = (!empty($model->color)) ? ','.implode(',', $model->color).',' : null;
+                $sizeStr = (!empty($model->size)) ? ','.implode(',', $model->size).',' : null;
                 if ($model->save(false)) {
                     $assocModel->product_id = $model->id;
                     $assocModel->type_id = $typeStr;
@@ -256,6 +258,8 @@ class ProductController extends Controller
                     $assocModel->updated_at = date('Y-m-d H:i:s');
                     if ($assocModel->save(false)) {
                         return $this->redirect(Url::toRoute('product/'));
+                    } else {
+                        return $assocModel->errors;die;
                     }
                 }
             }
@@ -306,7 +310,6 @@ class ProductController extends Controller
     {
         $id = CryptHelper::decryptString($id);
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
 

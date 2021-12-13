@@ -45,7 +45,7 @@ $modelRelated = $model->related_product;
                     if (is_array($modelColor)) {
                         $arrColors = $modelColor;
                     } else {
-                        $arrColors = explode(',', $modelColor);
+                        $arrColors = explode(",",substr($modelColor,1,strlen($modelColor)-2));
                     }
                     foreach ($arrColors as $key => $colors) {
                         $html .= '<div class="badge badge-info me-3 p-2">' . $color[$colors] . '</div>';
@@ -71,7 +71,7 @@ $modelRelated = $model->related_product;
                     if (is_array($modelSize)) {
                         $arrSize = $modelSize;
                     } else {
-                        $arrSize = explode(',', $modelSize);
+                        $arrSize = explode(",",substr($modelSize,1,strlen($modelSize)-2));
                     }
                     foreach ($arrSize as $key => $sizes) {
                         $html .= '<div class="badge badge-info me-3 p-2">' . $size[$sizes] . '</div>';
@@ -97,7 +97,7 @@ $modelRelated = $model->related_product;
                     if (is_array($modelType)) {
                         $arrType = $modelType;
                     } else {
-                        $arrType = explode(',', $modelType);
+                        $arrType = explode(",",substr($modelType,1,strlen($modelType)-2));
                     }
                     foreach ($arrType as $key => $types) {
                         $html .= '<div class="badge badge-info me-3 p-2">' . $type[$types] . '</div>';

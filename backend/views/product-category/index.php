@@ -75,7 +75,7 @@ $commonUrl = Yii::$app->params['common'];
                 'value' => function ($model, $key, $index, $widget) use ($productTypes) {
                     $arrTypes = ArrayHelper::map($productTypes, 'id', 'name');
                     $html = "";
-                    foreach (explode(',', $model['type_id']) as $type) {
+                    foreach (explode(",",substr($model['type_id'],1,strlen($model['type_id'])-2)) as $type) {
                         if ($type != \common\components\SystemConstant::PRODUCT_TYPE_NEW) { // ignore New product type
                             if (!empty($arrTypes[$type])) {
                                 $html .= '<span class="badge bg-info me-2">' . $arrTypes[$type] . '</span>';

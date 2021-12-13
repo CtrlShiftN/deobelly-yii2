@@ -83,12 +83,12 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
             <?php endif; ?>
         </div>
         <div class="w-100 my-3 py-2 py-md-3 px-1 px-md-3 bg-lighter-gray">
-            <?php if (!empty($detail['sale_price'])): ?>
+            <?php if (!empty($detail['discount'])): ?>
                 <div class="my-2 fs-3 m-0 fw-bold text-danger">
                     <span class="fw-light price text-decoration-line-through text-dark fs-6"
                           data-price="<?= $detail['selling_price'] ?>"><?= number_format($detail['regular_price'], 0, ',', '.') ?>đ</span> <?= number_format($detail['selling_price'], 0, ',', '.') ?>
                     đ
-                    <span class="badge bg-danger fs-6 text-light text-uppercase fw-light mx-md-3">-<?= number_format(100 - $detail['selling_price'] / $detail['regular_price'] * 100, 0, ',', '.') ?>%</span>
+                    <span class="badge bg-danger fs-6 text-light text-uppercase fw-light mx-md-3">-<?= $detail['discount'] ?>%</span>
                 </div>
             <?php else: ?>
                 <span class="my-2 fs-4 m-0 fw-bold price d-block text-danger"
@@ -120,16 +120,16 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                       data-name="<?= Yii::t('app', 'Color') ?>"><?= Yii::t('app', 'Color') ?>:</span>
                 <div class="col-12 col-sm-9 m-0 p-0">
                     <span id="color" class="fs-6 d-block mb-2 text-danger" data-color=""></span>
-                    <?php if (!strpos($detail['assoc_color_id'], ',')): ?>
-                        <?php if (!empty(Color::getColorCodeById($detail['assoc_color_id'])['name'])): ?>
+                    <?php if (count(explode(",",substr($detail['assoc_color_id'],1,strlen($detail['assoc_color_id'])-2))) == 1): ?>
+                        <?php if (!empty(Color::getColorCodeById(substr($detail['assoc_color_id'],1,strlen($detail['assoc_color_id']) - 2))['name'])): ?>
                             <button class="btn-color btn rounded-0 p-2 overflow-hidden fw-bold"
-                                    data-color='<?= CryptHelper::encryptString($detail['assoc_color_id']) ?>'
-                                    data-name-color="<?= Color::getColorCodeById($detail['assoc_color_id'])['name'] ?>">
-                                <?= Color::getColorCodeById($detail['assoc_color_id'])['name'] ?>
+                                    data-color='<?= CryptHelper::encryptString(substr($detail['assoc_color_id'],1,strlen($detail['assoc_color_id']) - 2)) ?>'
+                                    data-name-color="<?= Color::getColorCodeById(substr($detail['assoc_color_id'],1,strlen($detail['assoc_color_id']) - 2))['name'] ?>">
+                                <?= Color::getColorCodeById(substr($detail['assoc_color_id'],1,strlen($detail['assoc_color_id']) - 2))['name'] ?>
                             </button>
                         <?php endif; ?>
                     <?php else: ?>
-                        <?php $colorArr = explode(',', $detail['assoc_color_id']);
+                        <?php $colorArr = explode(",",substr($detail['assoc_color_id'],1,strlen($detail['assoc_color_id'])-2));
                         foreach ($colorArr as $key => $color):?>
                             <?php if (!empty(Color::getColorCodeById($color)['name'])): ?>
                                 <button class="btn-color btn rounded-0 overflow-hidden fw-bold"
@@ -148,14 +148,14 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                       data-name="<?= Yii::t('app', 'Size') ?>"><?= Yii::t('app', 'Size') ?>:</span>
                 <div class="col-12 col-sm-9 m-0 p-0">
                     <span id="size" class="fs-6 d-block mb-2 text-danger" data-size=""></span>
-                    <?php if (!strpos($detail['assoc_size_id'], ',')): ?>
-                        <?php if (!empty(\frontend\models\Size::getSizeById($detail['assoc_size_id']))): ?>
+                    <?php if (count(explode(",",substr($detail['assoc_size_id'],1,strlen($detail['assoc_size_id'])-2))) == 1): ?>
+                        <?php if (!empty(\frontend\models\Size::getSizeById(substr($detail['assoc_size_id'],1,strlen($detail['assoc_size_id'])-2)))): ?>
                             <button class="btn-size btn fs-6 fw-bold"
-                                    data-size="<?= CryptHelper::encryptString($detail['assoc_size_id']) ?>">
-                                <?= \frontend\models\Size::getSizeById($detail['assoc_size_id']) ?></button>
+                                    data-size="<?= CryptHelper::encryptString(substr($detail['assoc_size_id'],1,strlen($detail['assoc_size_id'])-2)) ?>">
+                                <?= \frontend\models\Size::getSizeById(substr($detail['assoc_size_id'],1,strlen($detail['assoc_size_id'])-2)) ?></button>
                         <?php endif; ?>
                     <?php else: ?>
-                        <?php $sizeArr = explode(',', $detail['assoc_size_id']);
+                        <?php $sizeArr = explode(",",substr($detail['assoc_size_id'],1,strlen($detail['assoc_size_id'])-2));
                         foreach ($sizeArr as $key => $size):?>
                             <?php if (!empty(\frontend\models\Size::getSizeById($size))): ?>
                                 <button class="btn-size btn fs-6 fw-bold"
