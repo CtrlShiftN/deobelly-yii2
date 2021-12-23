@@ -221,6 +221,7 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
         </div>
     </div>
 </div>
+<?php if(count(\frontend\models\Product::getBestSellingProduct($detail['id'], 5)) > 0): ?>
 <div class="w-100 my-2 mx-0 px-3 px-md-0">
     <p class="m-0 text-uppercase border-bottom border-dark px-0 fw-bolder fs-4 pt-3 pb-2">
         <?= Yii::t('app', 'Best-seller') ?>
@@ -271,6 +272,8 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
         </i>
     </div>
 </div>
+<?php endif; ?>
+<?php if(count(\frontend\models\Product::getOnSaleProduct($detail['id'], 5)) > 0) : ?>
 <div class="w-100 my-2 mx-0 px-3 px-md-0">
     <p class="m-0 text-uppercase border-bottom border-dark px-0 fw-bolder fs-4 pt-3 pb-2">
         <?= Yii::t('app', 'Promotions') ?>
@@ -321,6 +324,7 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
         </i>
     </div>
 </div>
+<?php endif; ?>
 <div id="toastBoard" class="position-fixed rounded">
     <div id="liveToast" class="toast py-3 px-2 text-light border-2 fw-bold" role="alert"
          aria-live="assertive" aria-atomic="true">
