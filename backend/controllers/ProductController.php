@@ -221,7 +221,9 @@ class ProductController extends Controller
                 $model->admin_id = Yii::$app->user->identity->getId();
                 $model->created_at = date('Y-m-d H:i:s');
                 $model->updated_at = date('Y-m-d H:i:s');
-                $model->fake_sold = rand(201, 996);
+                $sold = rand(201, 996);
+                $model->fake_sold = $sold;
+                $model->sold = $sold;
                 if ($model->file) {
                     if (!file_exists(Yii::getAlias('@common/media/product'))) {
                         mkdir(Yii::getAlias('@common/media/product'), 0777);

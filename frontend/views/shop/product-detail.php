@@ -72,14 +72,14 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
                             class="border-bottom border-dark text-danger fs-5"><?= number_format($detail['viewed'] / 1000, 1, ',', '.') ?>K</span> <?= Yii::t('app', 'Viewed') ?></span>
             <?php else: ?>
                 <span class="fw-light px-3 border-end fs-6 text-secondary"><span
-                            class="border-bottom border-dark text-danger fs-5"><?= number_format($detail['viewed'] * 10, 1, ',', '.') ?>K</span> <?= Yii::t('app', 'Viewed') ?></span>
+                            class="border-bottom border-dark text-danger fs-5"><?= $detail['viewed'] ?></span> <?= Yii::t('app', 'Viewed') ?></span>
             <?php endif; ?>
-            <?php if ($detail['fake_sold'] >= 1000): ?>
+            <?php if ($detail['sold'] >= 1000): ?>
                 <span class="fw-light px-3 fs-6 text-secondary"><span
-                            class="border-bottom border-dark text-danger fs-5"><?= number_format($detail['fake_sold'] / 1000, 1, ',', '.') ?>K</span> <?= Yii::t('app', 'Sold') ?></span>
+                            class="border-bottom border-dark text-danger fs-5"><?= number_format($detail['sold'] / 1000, 1, ',', '.') ?>K</span> <?= Yii::t('app', 'Sold') ?></span>
             <?php else: ?>
                 <span class="fw-light px-3 fs-6 text-secondary"><span
-                            class="border-bottom border-dark text-danger fs-5"><?= $detail['fake_sold'] ?></span> <?= Yii::t('app', 'Sold') ?></span>
+                            class="border-bottom border-dark text-danger fs-5"><?= $detail['sold'] ?></span> <?= Yii::t('app', 'Sold') ?></span>
             <?php endif; ?>
         </div>
         <div class="w-100 my-3 py-2 py-md-3 px-1 px-md-3 bg-lighter-gray">
