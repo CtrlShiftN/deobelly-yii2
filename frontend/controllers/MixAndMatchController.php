@@ -69,6 +69,7 @@ class MixAndMatchController extends \yii\web\Controller
         $mixID = ParamHelper::getParamValue('mix');
         $mixID = CryptHelper::decryptString($mixID);
         $arrMix = MixAndMatch::getAllCollections();
+        $otherMixes = MixAndMatch::getOtherMix($mixID);
         if (!empty($mixID)) {
             $topMix = MixAndMatch::getCollectionByID($mixID);
         } else {
@@ -77,7 +78,7 @@ class MixAndMatchController extends \yii\web\Controller
         $topMix['element_products'] = MixAndMatch::getAllCollectionElements($topMix['mixed_product_id']);
         return $this->render('index', [
             'topMix' => $topMix,
-            'otherMixes' => array_values(SystemArrayHelper::removeElementAt($arrMix, 0))
+            'otherMixes' => $otherMixes
         ]);
     }
 

@@ -96,4 +96,12 @@ class MixAndMatch extends \common\models\MixAndMatch
         ])->asArray()->all();
         return ArrayHelper::index($arrProduct, 'id');
     }
+
+    public static function getOtherMix($id) {
+        return \common\models\MixAndMatch::find()
+            ->where(['status'=>SystemConstant::STATUS_ACTIVE])
+            ->andWhere(['not',['id' => $id]])
+            ->orderBy('updated_at DESC, created_at DESC')
+            ->asArray()->all();
+    }
 }
