@@ -43,7 +43,7 @@ $this->registerJsFile(Url::toRoute('js/product.js'));
                             </button>
                         </h2>
                         <div id="offcanvas-flush-collapse-<?= $idEncrypted ?>"
-                             class="accordion-collapse collapse ps-4 ps-md-5 py-3"
+                             class="accordion-collapse collapse ps-4 ps-md-5"
                              aria-labelledby="offcanvas-flush-heading-<?= $idEncrypted ?>"
                              data-bs-parent="#type_category_offcanvas">
                             <?php foreach (\frontend\models\ProductCategory::getCategoryByTypeId($value['id']) as $key => $cate): ?>
@@ -60,7 +60,7 @@ $this->registerJsFile(Url::toRoute('js/product.js'));
         </div>
     </div>
 
-    <div class="w-100 d-md-none m-0 p-0 text-center position-relative h-tool border-dark border-bottom">
+    <div class="w-100 d-md-none m-0 p-0 text-center position-relative h-tool border-dark border-bottom" id="toolbar-mb">
         <button class="btn bg-transparent border-0 rounded-0 float-start text-uppercase p-0 py-auto m-0 fs-6 fw-bold btn-offcanvas"
                 type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCategory"
                 aria-controls="offcanvasCategory">

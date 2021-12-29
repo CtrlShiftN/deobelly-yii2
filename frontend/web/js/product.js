@@ -115,15 +115,15 @@ function requestData() {
             for (let i = 0; i < arrRes.product.length; i++) {
                 //format price
                 let selling_price = new Intl.NumberFormat(['ban', 'id']).format(arrRes.product[i].selling_price);
+                let regular_price = new Intl.NumberFormat(['ban', 'id']).format(arrRes.product[i].regular_price);
                 result += '<div class="col-12 col-sm-6 col-lg-4 mx-0 py-3 position-relative product-card overflow-hidden"><div class="position-relative overflow-hidden w-100 img-shadow"><a href="' + cdnUrl + '/shop/product-detail?detail=' + arrRes.product[i].id + '" class="text-decoration-none text-dark px-0 w-100 position-relative"><div class="position-relative product-img w-100"><img class="img-product" src="' + imgUrl + '/' + arrRes.product[i].image + '"></div> <div class="pr-inf px-2 px-lg-1 px-xl-2 py-2 w-100 border-top">';
-                if (arrRes.product[i].sale_price !== null) {
-                    let regular_price = new Intl.NumberFormat(['ban', 'id']).format(arrRes.product[i].regular_price);
+                if (!isNaN(parseInt(arrRes.product[i].discount)) && parseInt(arrRes.product[i].discount) !== 0) {
                     result += '<span class="px-0 fw-bold mt-2 p-price"><span class="text-decoration-line-through text-dark fw-light fs-regular-price">' + regular_price + 'đ</span> ' + selling_price + 'đ</span>';
                 } else {
                     result += '<span class="px-0 fw-bold mt-2 p-price">' + selling_price + 'đ</span>';
                 }
                 result += '<p class="m-0 product-name">' + arrRes.product[i].name + '</p></div></a>';
-                if (arrRes.product[i].discount !== null) {
+                if (!isNaN(parseInt(arrRes.product[i].discount)) && parseInt(arrRes.product[i].discount) !== 0) {
                     result += '<div class="sale-tag"><span>-' + arrRes.product[i].discount + '%</span></div>';
                 }
                 result += '</div><div class="product-button row m-0">' +

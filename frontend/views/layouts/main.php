@@ -301,6 +301,12 @@ AppAsset::register($this);
                                             </li>
                                             <?php if (!Yii::$app->user->isGuest) : ?>
                                                 <li class="nav-item border-bottom border-light">
+                                                    <a href="<?= Url::toRoute('cart/') ?>"
+                                                       class="nav-link text-uppercase p-3">
+                                                        <p class="m-0 fs__15px"><?= Yii::t('app', 'Cart') ?></p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item border-bottom border-light">
                                                     <a href="<?= Url::toRoute('site/logout?ref=' . Yii::$app->request->url) ?>"
                                                        class="nav-link text-uppercase p-3">
                                                         <p class="m-0 fs__15px"><?= Yii::t('app', 'Logout') ?></p>

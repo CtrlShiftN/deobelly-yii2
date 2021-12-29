@@ -108,7 +108,9 @@ class ProductController extends Controller
     {
         $id = CryptHelper::decryptString($id);
         $model = $this->findModel($id);
-        $assocModel = ProductAssoc::findOne($id);
+        $assocModel = ProductAssoc::findOne([
+            'product_id' => $id
+        ]);
         $model->color = $assocModel->color_id;
         $model->type = $assocModel->type_id;
         $model->size = $assocModel->size_id;
@@ -146,7 +148,8 @@ class ProductController extends Controller
                 }
             }
             if (!empty($model->discount)) {
-                $model->sale_price = $model->regular_price * (100 - $model->discount) / 100;
+                $salePrice = $model->regular_price * (100 - $model->discount) / 100;
+                $model->sale_price = round($salePrice, -3);
                 $model->selling_price = $model->sale_price;
             }
             $model->admin_id = Yii::$app->user->identity->getId();
@@ -206,20 +209,29 @@ class ProductController extends Controller
                 $model->files = UploadedFile::getInstances($model, 'files');
                 $arrImages = [];
                 $model->slug = StringHelper::toSlug($model->name);
-                if (empty($model->sale_price)) {
-                    $model->selling_price = $model->regular_price;
+                if(!empty($model->discount) && !empty($model->sale_price)) {
+                    $model->selling_price = ($model->sale_price >= $model->regular_price) ? $model->regular_price : $model->sale_price;
+                    $model->discount = ($model->sale_price >= $model->regular_price) ? 0 : round(100 -$model->sale_price / $model->regular_price * 100);
                 } else {
-                    $model->selling_price = ($model->sale_price > $model->regular_price) ? $model->regular_price : $model->sale_price;
-                }
-                if (!empty($model->discount)) {
-                    $model->sale_price = $model->regular_price * (100 - $model->discount) / 100;
-                    $model->selling_price = $model->sale_price;
+                    if (!empty($model->discount)) {
+                        $model->sale_price = round($model->regular_price * (100 - $model->discount) / 100, -3);
+                        $model->selling_price = $model->sale_price;
+                    }
+                    if (empty($model->sale_price)) {
+                        $model->selling_price = $model->regular_price;
+                    } else {
+                        $model->selling_price = ($model->sale_price >= $model->regular_price) ? $model->regular_price : $model->sale_price;
+                        $model->discount = ($model->sale_price >= $model->regular_price) ? 0 : round(100 - $model->sale_price / $model->regular_price * 100);
+                    }
                 }
                 $model->related_product = (!empty($model->relatedProduct)) ? implode(',', $model->relatedRecords) : null;
                 $model->admin_id = Yii::$app->user->identity->getId();
                 $model->created_at = date('Y-m-d H:i:s');
                 $model->updated_at = date('Y-m-d H:i:s');
-                $model->fake_sold = rand(201, 996);
+                $sold = rand(201, 996);
+                $model->fake_sold = $sold;
+                $model->sold = $sold;
+                $model->viewed = rand(345, 9876);
                 if ($model->file) {
                     if (!file_exists(Yii::getAlias('@common/media/product'))) {
                         mkdir(Yii::getAlias('@common/media/product'), 0777);
@@ -241,10 +253,10 @@ class ProductController extends Controller
                     }
                     $model->images = implode(",", $arrImages);
                 }
-                $typeStr = (!empty($model->type)) ? implode(',', $model->type) : null;
+                $typeStr = (!empty($model->type)) ? ','.implode(',', $model->type).',' : null;
                 $cateStr = $model->category;
-                $colorStr = (!empty($model->color)) ? implode(',', $model->color) : null;
-                $sizeStr = (!empty($model->size)) ? implode(',', $model->size) : null;
+                $colorStr = (!empty($model->color)) ? ','.implode(',', $model->color).',' : null;
+                $sizeStr = (!empty($model->size)) ? ','.implode(',', $model->size).',' : null;
                 if ($model->save(false)) {
                     $assocModel->product_id = $model->id;
                     $assocModel->type_id = $typeStr;
@@ -256,6 +268,8 @@ class ProductController extends Controller
                     $assocModel->updated_at = date('Y-m-d H:i:s');
                     if ($assocModel->save(false)) {
                         return $this->redirect(Url::toRoute('product/'));
+                    } else {
+                        return $assocModel->errors;die;
                     }
                 }
             }
@@ -306,7 +320,6 @@ class ProductController extends Controller
     {
         $id = CryptHelper::decryptString($id);
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
 

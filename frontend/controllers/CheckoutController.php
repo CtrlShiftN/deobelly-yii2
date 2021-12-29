@@ -104,6 +104,8 @@ class CheckoutController extends \yii\web\Controller
                     $orderModel->updated_at = date('Y-m-d H:i:s');
                     if ($orderModel->save(false)) {
                         $productModel = Product::findOne($orderModel->product_id);
+                        $productModel->sold += $orderModel->quantity;
+                        $productModel->save();
                         $arrOrderInformMail[$key]['BL_code'] = $BL_code;
                         $arrOrderInformMail[$key]['product_id'] = $orderModel->product_id;
                         $arrOrderInformMail[$key]['color_id'] = $orderModel->color_id;
@@ -128,7 +130,7 @@ class CheckoutController extends \yii\web\Controller
                 $mailSubjectAdmin = 'De-Obelly - '.Yii::t('app', 'A new order has been initialized!') . ' '.Yii::t('app','Billing code:') . $BL_code;
                 MailServer::sendMailOrderInformAdmin($mailSubjectAdmin, $arrOrderInformMail);
                 $mailSubjectCustomer = Yii::t('app','De-Obelly - Order placed successfully!'). ' '.Yii::t('app','Your billing code:') . $BL_code;
-                MailServer::sendMailOrderInformCustomer($mailSubjectCustomer, $model['email'], $arrOrderInformMail);
+                MailServer::sendMailOrderInformCustomer($mailSubjectCustomer, $order['email'], $arrOrderInformMail);
                 // ./ send mail to inform admin & client
                 if ($count == count($cart)) {
                     Yii::$app->session->setFlash('creatOrderSuccess', Yii::t('app', 'Your order has been initialized.'));

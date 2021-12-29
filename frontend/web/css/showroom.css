@@ -12,12 +12,24 @@
 }
 
 .showroom-image img {
-    width: 100%;
+    object-fit: cover !important;
     transition: 0.5s all ease-in-out;
 }
 
+@media (max-width: 1575px) {
+    .showroom-image img {
+        height: 20vw !important;
+    }
+}
+
+@media (min-width: 1575px) {
+    .showroom-image img {
+        height: 16vw !important;
+    }
+}
+
 .showroom-image:hover img {
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 .showroom-block:hover {

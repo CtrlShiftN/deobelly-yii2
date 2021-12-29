@@ -173,7 +173,8 @@ class Product extends \common\models\Product
     {
         $model = Product::findOne($_id);
         $model->discount = $value;
-        $model->sale_price = $model->regular_price * (100 - $value) / 100;
+        $salePrice = $model->regular_price * (100 - $model->discount) / 100;
+        $model->sale_price = round($salePrice, -3);
         $model->selling_price = $model->sale_price;
         return $model->save(false);
     }
