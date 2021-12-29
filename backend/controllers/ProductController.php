@@ -211,17 +211,17 @@ class ProductController extends Controller
                 $model->slug = StringHelper::toSlug($model->name);
                 if(!empty($model->discount) && !empty($model->sale_price)) {
                     $model->selling_price = ($model->sale_price >= $model->regular_price) ? $model->regular_price : $model->sale_price;
-                    $model->discount = ($model->sale_price >= $model->regular_price) ? 0 : round($model->sale_price / $model->regular_price * 100);
+                    $model->discount = ($model->sale_price >= $model->regular_price) ? 0 : round(100 -$model->sale_price / $model->regular_price * 100);
                 } else {
                     if (!empty($model->discount)) {
-                        $model->sale_price = $model->regular_price * (100 - $model->discount) / 100;
+                        $model->sale_price = round($model->regular_price * (100 - $model->discount) / 100, -3);
                         $model->selling_price = $model->sale_price;
                     }
                     if (empty($model->sale_price)) {
                         $model->selling_price = $model->regular_price;
                     } else {
                         $model->selling_price = ($model->sale_price >= $model->regular_price) ? $model->regular_price : $model->sale_price;
-                        $model->discount = ($model->sale_price >= $model->regular_price) ? 0 : round($model->sale_price / $model->regular_price * 100);
+                        $model->discount = ($model->sale_price >= $model->regular_price) ? 0 : round(100 - $model->sale_price / $model->regular_price * 100);
                     }
                 }
                 $model->related_product = (!empty($model->relatedProduct)) ? implode(',', $model->relatedRecords) : null;
