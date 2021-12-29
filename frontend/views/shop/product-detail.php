@@ -83,10 +83,10 @@ $this->registerJsFile(Url::toRoute('js/product-detail.js'));
             <?php endif; ?>
         </div>
         <div class="w-100 my-3 py-2 py-md-3 px-1 px-md-3 bg-lighter-gray">
-            <?php if ($detail['sale_price'] < $detail['regular_price']): ?>
+            <?php if (!empty($detail['discount'])): ?>
                 <div class="my-2 fs-3 m-0 fw-bold text-danger">
                     <span class="fw-light price text-decoration-line-through text-dark fs-6"
-                          data-price="<?= $detail['selling_price'] ?>"><?= number_format($detail['regular_price'], 0, ',', '.') ?>đ</span> <?= number_format($detail['sale_price'], 0, ',', '.') ?>
+                          data-price="<?= $detail['selling_price'] ?>"><?= number_format($detail['regular_price'], 0, ',', '.') ?>đ</span> <?= number_format($detail['selling_price'], 0, ',', '.') ?>
                     đ
                     <span class="badge bg-danger fs-6 text-light text-uppercase fw-light mx-md-3">-<?= $detail['discount'] ?>%</span>
                 </div>
