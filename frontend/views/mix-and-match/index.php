@@ -1,8 +1,11 @@
 <?php
 /* @var $this yii\web\View */
+use yii\helpers\Url;
+
 $imgUrl = Yii::$app->params['common'] . '/media';
 $this->title = Yii::t('app', 'Top Collection');
-$this->registerCssFile(\yii\helpers\Url::toRoute('css/collection.css'));
+$this->registerCssFile(Url::toRoute("css/swiper.min.css"));
+$this->registerCssFile(Url::toRoute('css/collection.css'));
 ?>
 <div class="collections row mt-4 w-100 px-0 mx-0">
     <div class="top-collection px-2">
@@ -57,50 +60,57 @@ $this->registerCssFile(\yii\helpers\Url::toRoute('css/collection.css'));
     <!-- Weekly Collections -->
     <div class="weekly-collection mt-3">
         <h2 class="mx-3 previous-collection__title"><?= Yii::t('app', 'Weekly Collections') ?></h2>
-        <div class="row mx-0 justify-content-center px-0 w-100">
-            <div id="recipeCarousel" class="mixAndMatchCarousel carousel slide px-0 w-100" data-bs-ride="carousel">
-                <div class="carousel-inner" role="listbox">
+        <div class="row mx-0 justify-content-center px-0 w-100 overflow-hidden">
+            <div class="swiper position-relative">
+                <div class="swiper-wrapper">
                     <?php foreach ($otherMixes as $key => $mixes) : ?>
-                        <div class="carousel-item <?= ($key == 0) ? 'active' : '' ?>">
-                            <div class="col-12 col-md-3 px-5 px-md-3 pb-5">
-                                <div class="card card-shadow">
-                                    <a href="<?= \yii\helpers\Url::toRoute(['mix-and-match/', 'mix' => \common\components\encrypt\CryptHelper::encryptString($mixes['id'])]) ?>">
-                                        <div class="card-img">
-                                            <img src="<?= $imgUrl . '/' . $mixes['image'] ?>" class="img-fluid">
-                                        </div>
-                                        <div class="other-mixes__title fw-bolder fs-6"><?= $mixes['title'] ?></div>
-                                    </a>
-                                </div>
+                        <div class="swiper-slide col-12 col-md-3 px-5 px-md-3 pb-5">
+                            <div class="card card-shadow">
+                                <a href="<?= \yii\helpers\Url::toRoute(['mix-and-match/', 'mix' => \common\components\encrypt\CryptHelper::encryptString($mixes['id'])]) ?>">
+                                    <div class="card-img">
+                                        <img src="<?= $imgUrl . '/' . $mixes['image'] ?>" class="img-fluid">
+                                    </div>
+                                    <div class="other-mixes__title fw-bolder fs-6"><?= $mixes['title'] ?></div>
+                                </a>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button"
-                   data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                </a>
-                <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button"
-                   data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                </a>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
         </div>
     </div>
     <!-- End Weekly Collections -->
 </div>
+<script src="<?= Url::toRoute('js/swiper-bundle.min.js') ?>"></script>
 <script>
-    let items = document.querySelectorAll('.mixAndMatchCarousel .carousel-item')
-    items.forEach((el) => {
-        const minPerSlide = 4
-        let next = el.nextElementSibling
-        for (var i = 1; i < minPerSlide; i++) {
-            if (!next) {
-                // wrap carousel by using first child
-                next = items[0]
-            }
-            let cloneChild = next.cloneNode(true)
-            el.appendChild(cloneChild.children[0])
-            next = next.nextElementSibling
+    var swiper = new Swiper('.swiper', {
+        slidesPerView: 1,
+        // spaceBetween: 5,
+        // loop: true,
+        // init: false,
+        // pagination: {
+        //     el: '.swiper-pagination',
+        //     clickable: true,
+        // },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+        },
+        breakpoints: {
+            576: {
+                slidesPerView: 2,
+            },
+            992: {
+                slidesPerView: 3,
+            },
+            1200: {
+                slidesPerView: 4,
+            },
+            1400: {
+                slidesPerView: 5,
+            },
         }
-    })
+    });
 </script>
